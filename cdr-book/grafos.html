@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 3 Análisis de grafos y redes sociales | Fundamentos de ciencia de datos con R</title>
+  <meta name="description" content="Falta hacer" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 3 Análisis de grafos y redes sociales | Fundamentos de ciencia de datos con R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Falta hacer" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 3 Análisis de grafos y redes sociales | Fundamentos de ciencia de datos con R" />
+  
+  <meta name="twitter:description" content="Falta hacer" />
+  
+
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero" />
+
+
+<meta name="date" content="2022-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mineria-textos.html"/>
+<link rel="next" href="aplicaciones-webs-interactivas-con-shiny.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33KQ1S5ZCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-33KQ1S5ZCJ');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Ciencia de datos con <strong>R</strong></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html"><i class="fa fa-check"></i><b>1</b> Modelización de series temporales</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#conceptos-básicos"><i class="fa fa-check"></i><b>1.1</b> Conceptos básicos</a></li>
+<li class="chapter" data-level="1.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#modelos-arima"><i class="fa fa-check"></i><b>1.2</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="1.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#análisis-de-series-temporales-con-r"><i class="fa fa-check"></i><b>1.3</b> Análisis de series temporales con R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#identificación-o-especificación-del-modelo"><i class="fa fa-check"></i><b>1.3.1</b> Identificación o especificación del modelo</a></li>
+<li class="chapter" data-level="1.3.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#estimación-del-modelo"><i class="fa fa-check"></i><b>1.3.2</b> Estimación del modelo</a></li>
+<li class="chapter" data-level="1.3.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#diagnosis-validación-y-contrastación"><i class="fa fa-check"></i><b>1.3.3</b> Diagnosis, validación y contrastación</a></li>
+<li class="chapter" data-level="1.3.4" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#predicción"><i class="fa fa-check"></i><b>1.3.4</b> Predicción</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="mineria-textos.html"><a href="mineria-textos.html"><i class="fa fa-check"></i><b>2</b> Minería de textos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="mineria-textos.html"><a href="mineria-textos.html#introducción"><i class="fa fa-check"></i><b>2.1</b> Introducción</a></li>
+<li class="chapter" data-level="2.2" data-path="mineria-textos.html"><a href="mineria-textos.html#secCONCEPTOS"><i class="fa fa-check"></i><b>2.2</b> Conceptos y tareas fundamentales</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="mineria-textos.html"><a href="mineria-textos.html#preparación-de-los-datos"><i class="fa fa-check"></i><b>2.2.1</b> Preparación de los datos</a></li>
+<li class="chapter" data-level="2.2.2" data-path="mineria-textos.html"><a href="mineria-textos.html#secTOKEN"><i class="fa fa-check"></i><b>2.2.2</b> Segmentación del texto: tokenización</a></li>
+<li class="chapter" data-level="2.2.3" data-path="mineria-textos.html"><a href="mineria-textos.html#secESTILOM"><i class="fa fa-check"></i><b>2.2.3</b> Campos de aplicación de la minería de textos</a></li>
+<li class="chapter" data-level="2.2.4" data-path="mineria-textos.html"><a href="mineria-textos.html#minería-de-textos-en-r"><i class="fa fa-check"></i><b>2.2.4</b> Minería de textos en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="mineria-textos.html"><a href="mineria-textos.html#secSENTIM"><i class="fa fa-check"></i><b>2.3</b> Análisis de sentimientos</a></li>
+<li class="chapter" data-level="2.4" data-path="mineria-textos.html"><a href="mineria-textos.html#caso-de-aplicación"><i class="fa fa-check"></i><b>2.4</b> Caso de aplicación</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="mineria-textos.html"><a href="mineria-textos.html#declaración-institucional-del-estado-de-alarma-2020"><i class="fa fa-check"></i><b>2.4.1</b> Declaración institucional del estado de alarma 2020</a></li>
+<li class="chapter" data-level="2.4.2" data-path="mineria-textos.html"><a href="mineria-textos.html#segmentación-en-palabras-y-oraciones"><i class="fa fa-check"></i><b>2.4.2</b> Segmentación en palabras y oraciones</a></li>
+<li class="chapter" data-level="2.4.3" data-path="mineria-textos.html"><a href="mineria-textos.html#análisis-exploratorio"><i class="fa fa-check"></i><b>2.4.3</b> Análisis exploratorio</a></li>
+<li class="chapter" data-level="2.4.4" data-path="mineria-textos.html"><a href="mineria-textos.html#secSENTYEMO"><i class="fa fa-check"></i><b>2.4.4</b> Análisis de sentimientos y detección de emociones</a></li>
+<li class="chapter" data-level="2.4.5" data-path="mineria-textos.html"><a href="mineria-textos.html#n-gramas"><i class="fa fa-check"></i><b>2.4.5</b> <em>N-gramas</em></a></li>
+<li class="chapter" data-level="2.4.6" data-path="mineria-textos.html"><a href="mineria-textos.html#análisis-de-redes"><i class="fa fa-check"></i><b>2.4.6</b> Análisis de redes</a></li>
+<li class="chapter" data-level="" data-path="mineria-textos.html"><a href="mineria-textos.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="grafos.html"><a href="grafos.html"><i class="fa fa-check"></i><b>3</b> Análisis de grafos y redes sociales</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="grafos.html"><a href="grafos.html#introducción-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
+<li class="chapter" data-level="3.2" data-path="grafos.html"><a href="grafos.html#teoría-de-grafos"><i class="fa fa-check"></i><b>3.2</b> Teoría de grafos</a></li>
+<li class="chapter" data-level="3.3" data-path="grafos.html"><a href="grafos.html#elementos-de-un-grafo"><i class="fa fa-check"></i><b>3.3</b> Elementos de un grafo</a></li>
+<li class="chapter" data-level="3.4" data-path="grafos.html"><a href="grafos.html#el-paquete-igraph"><i class="fa fa-check"></i><b>3.4</b> El paquete <code>igraph</code></a></li>
+<li class="chapter" data-level="3.5" data-path="grafos.html"><a href="grafos.html#análisis-de-influencia-en-un-grafo-aplicado-a-redes-sociales"><i class="fa fa-check"></i><b>3.5</b> Análisis de influencia en un grafo aplicado a redes sociales</a></li>
+<li class="chapter" data-level="3.6" data-path="grafos.html"><a href="grafos.html#otras-utilidades-de-grafos"><i class="fa fa-check"></i><b>3.6</b> Otras utilidades de grafos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html"><i class="fa fa-check"></i><b>4</b> Aplicaciones webs interactivas con Shiny</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#introducción-2"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#partes-mínimas-de-una-aplicación-shiny-y-disposición-básica"><i class="fa fa-check"></i><b>4.2</b> Partes mínimas de una aplicación <code>Shiny</code> y disposición básica</a></li>
+<li class="chapter" data-level="4.3" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#diseño-de-una-aplicación-shiny"><i class="fa fa-check"></i><b>4.3</b> Diseño de una aplicación <code>Shiny</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#diseño-de-las-páginas-fluidpage"><i class="fa fa-check"></i><b>4.3.1</b> Diseño de las páginas: fluidPage()</a></li>
+<li class="chapter" data-level="4.3.2" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#segmentación-de-diseños-tabsetpanel-y-navlistpanel"><i class="fa fa-check"></i><b>4.3.2</b> Segmentación de diseños: tabsetPanel() y navlistPanel()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#elementos-para-entrada-de-datos"><i class="fa fa-check"></i><b>4.4</b> Elementos para entrada de datos</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#lectura-de-ficheros-de-datos"><i class="fa fa-check"></i><b>4.4.1</b> Lectura de ficheros de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#elementos-para-visualización-salida"><i class="fa fa-check"></i><b>4.5</b> Elementos para visualización (salida)</a></li>
+<li class="chapter" data-level="4.6" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#reactividad"><i class="fa fa-check"></i><b>4.6</b> Reactividad</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#conductores-reactivos-y-control-de-la-reactividad"><i class="fa fa-check"></i><b>4.6.1</b> Conductores reactivos y control de la reactividad</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#publicación-de-la-aplicación-en-la-web"><i class="fa fa-check"></i><b>4.7</b> Publicación de la aplicación en la web</a></li>
+<li class="chapter" data-level="4.8" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#extensiones-de-shiny"><i class="fa fa-check"></i><b>4.8</b> Extensiones de <code>Shiny</code></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://blog.uclm.es/tp-mbsba/"> Ciencia de datos con R </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fundamentos de ciencia de datos con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="grafos" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Capítulo 3</span> Análisis de grafos y redes sociales<a href="grafos.html#grafos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>José Javier Galán</em></p>
+<div id="introducción-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Introducción<a href="grafos.html#introducción-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+El origen de la teoría de grafos se debe al problema de los Siete puentes de Königsberg <span class="citation">(<a href="#ref-Euler1736" role="doc-biblioref"><strong>Euler1736?</strong></a>)</span>, es considerado el primer artículo sobre teoría de grafos. El problema se centra en la ciudad Königsberg en Prusia, ahora Kaliningrado (Rusia), donde existen varios puentes y el problema plantea trazar una ruta que cruce todos los puentes una única vez (ver Fig.<a href="grafos.html#fig:puentes">3.1</a>). Euler mediante el uso de grafos demostró que no era posible.
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:puentes"></span>
+<img src="img/Fig_g1.png" alt="Siete puentes de Königsberg, Euler." width="60%" />
+<p class="caption">
+Figura 3.1: Siete puentes de Königsberg, Euler.
+</p>
+</div>
+</div>
+<div id="teoría-de-grafos" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Teoría de grafos<a href="grafos.html#teoría-de-grafos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Un <strong>grafo</strong> es un conjunto de <strong>nodos</strong> (vértices) que pueden estar unidos por <strong>aristas</strong> (enlaces).</p>
+<p>Si se piensa en cada nodo como una persona y en cada arista como la relación que los une, entonces se puede representar mediante grafos una <strong>red social</strong> (ver Fig.<a href="grafos.html#fig:grafo">3.2</a>).</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="grafos.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el paquete de igraph</span></span>
+<span id="cb38-2"><a href="grafos.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># if(!require(&#39;igraph&#39;)) install.packages(&#39;igraph&#39;)</span></span>
+<span id="cb38-3"><a href="grafos.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb38-4"><a href="grafos.html#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="grafos.html#cb38-5" aria-hidden="true" tabindex="-1"></a>datos_facebook <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/DatosFacebook.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Origen&quot;</span>, <span class="st">&quot;Destino&quot;</span>))</span>
+<span id="cb38-6"><a href="grafos.html#cb38-6" aria-hidden="true" tabindex="-1"></a>grafo_facebook <span class="ot">&lt;-</span> <span class="fu">graph.data.frame</span>(datos_facebook, <span class="at">directed =</span> T)</span>
+<span id="cb38-7"><a href="grafos.html#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(grafo_facebook, <span class="at">vertex.label =</span> <span class="cn">NA</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafo"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafo-1.png" alt="Estructura de una red social representada como grafo." width="60%" />
+<p class="caption">
+Figura 3.2: Estructura de una red social representada como grafo.
+</p>
+</div>
+<p>Una <strong>red social</strong> es una estructura de red invisible que une mediante relaciones a distintos actores a través de sus intereses o valores comunes, estableciendo una relación personal entre individuos o grupos de individuos conectados.</p>
+</div>
+<div id="elementos-de-un-grafo" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Elementos de un grafo<a href="grafos.html#elementos-de-un-grafo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El análisis de redes sociales mediante le teoría de grafos requiere conocer previamente una serie de conceptos básicos, <span class="citation">(<a href="#ref-Perez2021" role="doc-biblioref"><strong>Perez2021?</strong></a>)</span>.</p>
+<ul>
+<li>Las <strong>aristas</strong> son la relaciones que unen los nodos. Son <strong>dirigidas</strong> (ver Fig.<a href="grafos.html#fig:grafodirigido">3.3</a>) si tienen un sentido definido y <strong>no dirigidas</strong> (ver Fig.<a href="grafos.html#fig:grafonodirigido">3.4</a>) en caso contrario.</li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="grafos.html#cb39-1" aria-hidden="true" tabindex="-1"></a>datos_grafo <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/DatosGrafos.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb39-2"><a href="grafos.html#cb39-2" aria-hidden="true" tabindex="-1"></a>grafo <span class="ot">&lt;-</span> <span class="fu">graph.data.frame</span>(datos_grafo, <span class="at">directed =</span> T)</span>
+<span id="cb39-3"><a href="grafos.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(grafo, <span class="at">edge.label =</span> <span class="fu">paste</span>(<span class="fu">E</span>(grafo)<span class="sc">$</span>weight))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafodirigido"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafodirigido-1.png" alt="Grafo dirigido." width="60%" />
+<p class="caption">
+Figura 3.3: Grafo dirigido.
+</p>
+</div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="grafos.html#cb40-1" aria-hidden="true" tabindex="-1"></a>grafo <span class="ot">&lt;-</span> <span class="fu">graph.data.frame</span>(datos_grafo, <span class="at">directed =</span> F)</span>
+<span id="cb40-2"><a href="grafos.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(grafo, <span class="at">edge.label =</span> <span class="fu">paste</span>(<span class="fu">E</span>(grafo)<span class="sc">$</span>weight))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafonodirigido"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafonodirigido-1.png" alt="Grafo no dirigido." width="60%" />
+<p class="caption">
+Figura 3.4: Grafo no dirigido.
+</p>
+</div>
+<p>En una red social como <strong>LinkedIn</strong> las aristas representan la relación que une las personas. Las personas forman parte de un grupo con intereses comunes, formando un grado no dirigido. Pero también pueden seguir a alguien sin necesariamente ser seguido, en ese caso podemos representar un grafo dirigido.</p>
+<ul>
+<li><p>Los <strong>vértices</strong>, vertex , representan nodos que serán unidos mediante aristas. En una red social cada vértice representa una de las personas de dicha red, unidas en ocasiones por intereses comunes a otras.</p></li>
+<li><p>Un <strong>grafo</strong> es un conjunto de vértices y de aristas que podemos representar mediante <span class="math inline">\(G = (V, E)\)</span>. Donde <span class="math inline">\(V\)</span> es el conjunto de nodos o vértices del grafo y <span class="math inline">\(E\)</span> es un conjunto de pares de vértices llamado arista, arco o edge.</p></li>
+<li><p>Una <strong>matriz de adyacencia</strong> representa una matriz cuadrada de <span class="math inline">\(n \times n\)</span>, siendo n el número de vértices del grafo. Se inicia con valor 0 donde a cada valor <span class="math inline">\(a_{ij}\)</span> se suma 1 por cada arista que relaciona los vértices <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span>. Si no existe relación el elemento <span class="math inline">\(a_{ij}\)</span> vale 0.</p></li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="grafos.html#cb41-1" aria-hidden="true" tabindex="-1"></a>matriz_adyacencia <span class="ot">&lt;-</span> <span class="fu">get.adjacency</span>(grafo, <span class="at">sparse =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb41-2"><a href="grafos.html#cb41-2" aria-hidden="true" tabindex="-1"></a>matriz_adyacencia</span>
+<span id="cb41-3"><a href="grafos.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1 2 3 4 5</span></span>
+<span id="cb41-4"><a href="grafos.html#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 0 1 1 1 1</span></span>
+<span id="cb41-5"><a href="grafos.html#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 1 0 1 2 0</span></span>
+<span id="cb41-6"><a href="grafos.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 1 1 0 2 1</span></span>
+<span id="cb41-7"><a href="grafos.html#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 1 2 2 0 0</span></span>
+<span id="cb41-8"><a href="grafos.html#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 1 0 1 0 0</span></span></code></pre></div>
+<ul>
+<li>El <strong>grado</strong> de un nodo son el numero de aristas que tiene dicho nodo <span class="math inline">\(x\)</span>, y se representa mediante grado(x), g(x) o gr(x), siendo un vértice de grado 0 un vértice aislado. En un grafo <span class="math inline">\(G\)</span> existirá un grado máximo <span class="math inline">\(\Delta (G)\)</span> y un grado mínimo <span class="math inline">\(\delta (G)\)</span>, mientras que el grado del grafo, g(G), es la suma de todos los grados de sus vértices. En una red social representa el número de relaciones que existen, en una red social como Facebook significaría conocer cuántos amigos tienes.</li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="grafos.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">degree</span>(grafo)</span>
+<span id="cb42-2"><a href="grafos.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2 3 4 5 </span></span>
+<span id="cb42-3"><a href="grafos.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 4 5 5 2</span></span></code></pre></div>
+<ul>
+<li>Un <strong>camino</strong> une dos vértices constituyendo un conjunto de aristas no recursivas. Entre dos vértices puede no existir un camino, puede haber varios y se puede incluir el mismo vértice en el camino mas de una vez. Evidentemente siempre habrá un <strong>camino mas corto</strong> , aquel que menos aristas ha recorrido. Si entre todos los pares de vértices existe un camino estamos hablando de un grafo conexo.</li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="grafos.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Camino más corto entre el nodo 2 y el 5</span></span>
+<span id="cb43-2"><a href="grafos.html#cb43-2" aria-hidden="true" tabindex="-1"></a>caminos <span class="ot">&lt;-</span> <span class="fu">get.shortest.paths</span>(grafo, <span class="at">from =</span> <span class="st">&quot;2&quot;</span>, <span class="at">to =</span> <span class="st">&quot;5&quot;</span>)</span>
+<span id="cb43-3"><a href="grafos.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(grafo)[caminos<span class="sc">$</span>vpath[[<span class="dv">1</span>]]]</span>
+<span id="cb43-4"><a href="grafos.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; + 4/5 vertices, named, from a9aa3df:</span></span>
+<span id="cb43-5"><a href="grafos.html#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2 4 3 5</span></span></code></pre></div>
+</div>
+<div id="el-paquete-igraph" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> El paquete <code>igraph</code><a href="grafos.html#el-paquete-igraph" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Existen diversos paquetes, pero el más utilizado y popularizado por sencillez y eficacia es <code>igraph</code> <span class="citation">(<a href="#ref-igraph2022" role="doc-biblioref"><strong>igraph2022?</strong></a>)</span>. Se trata de un paquete que permite crear y manipular grafos para poder analizar redes en <strong>R</strong> de forma muy sencilla (ver Fig.<a href="grafos.html#fig:grafobasico">3.5</a>).</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="grafos.html#cb44-1" aria-hidden="true" tabindex="-1"></a>nodes <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="st">&quot;nodos&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>))</span>
+<span id="cb44-2"><a href="grafos.html#cb44-2" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="st">&quot;from&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>), <span class="st">&quot;to&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;B&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>))</span>
+<span id="cb44-3"><a href="grafos.html#cb44-3" aria-hidden="true" tabindex="-1"></a>red <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(edges, <span class="at">directed =</span> F, <span class="at">vertices =</span> nodes)</span>
+<span id="cb44-4"><a href="grafos.html#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="grafos.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(red)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafobasico"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafobasico-1.png" alt="Ejemplo de grafo con Igraph." width="60%" />
+<p class="caption">
+Figura 3.5: Ejemplo de grafo con Igraph.
+</p>
+</div>
+<p>Para crear un grafo a partir de un <strong>dataframe</strong> se han usado los argumentos:</p>
+<p><code>graph_from_data_frame(edges, directed = TRUE, vertices = NULL)</code> donde:</p>
+<ul>
+<li><p><strong>edges</strong> Es un data frame donde las dos primeras columnas representan una lista de aristas.</p></li>
+<li><p><strong>directed</strong> es un Valor lógico que indica si es un grafo dirigido o no dirigido.</p></li>
+<li><p><strong>vertices</strong> es un data frame con los valores de los vertices o NULL.</p></li>
+</ul>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="grafos.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb45-2"><a href="grafos.html#cb45-2" aria-hidden="true" tabindex="-1"></a>nodes <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="st">&quot;actores&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Jim Carrey&quot;</span>, <span class="st">&quot;Arnold Swarzenneger&quot;</span>, <span class="st">&quot;George Cloney&quot;</span>, <span class="st">&quot;Cameron Diaz&quot;</span>), <span class="st">&quot;descripcion&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;actor&quot;</span>, <span class="st">&quot;actor&quot;</span>, <span class="st">&quot;actor&quot;</span>, <span class="st">&quot;actriz&quot;</span>))</span>
+<span id="cb45-3"><a href="grafos.html#cb45-3" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb45-4"><a href="grafos.html#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;from&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Jim Carrey&quot;</span>, <span class="st">&quot;Jim Carrey&quot;</span>, <span class="st">&quot;George Cloney&quot;</span>, <span class="st">&quot;Jim Carrey&quot;</span>),</span>
+<span id="cb45-5"><a href="grafos.html#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;to&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Arnold Swarzenneger&quot;</span>, <span class="st">&quot;George Cloney&quot;</span>, <span class="st">&quot;Arnold Swarzenneger&quot;</span>, <span class="st">&quot;Cameron Diaz&quot;</span>),</span>
+<span id="cb45-6"><a href="grafos.html#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;pelicula&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Batman y Robin&quot;</span>, <span class="st">&quot;Batman y Robin&quot;</span>, <span class="st">&quot;Batman y Robin&quot;</span>, <span class="st">&quot;La mascara&quot;</span>)</span>
+<span id="cb45-7"><a href="grafos.html#cb45-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb45-8"><a href="grafos.html#cb45-8" aria-hidden="true" tabindex="-1"></a>red <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(edges, <span class="at">directed =</span> F, <span class="at">vertices =</span> nodes)</span>
+<span id="cb45-9"><a href="grafos.html#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(red)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafoactores"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafoactores-1.png" alt="Grafo representativo de la relacion de actores respecto a peliculas" width="60%" />
+<p class="caption">
+Figura 3.6: Grafo representativo de la relacion de actores respecto a peliculas
+</p>
+</div>
+<p>En la Fig. <a href="grafos.html#fig:grafoactores">3.6</a> se puede observar como el actor Jim Carrey tuvo relación con todos los actores de la red propuesta, mientras que la actriz Cameron Diaz solo participo con uno de ellos.</p>
+</div>
+<div id="análisis-de-influencia-en-un-grafo-aplicado-a-redes-sociales" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Análisis de influencia en un grafo aplicado a redes sociales<a href="grafos.html#análisis-de-influencia-en-un-grafo-aplicado-a-redes-sociales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Existen paquetes para obtener informacion de distintas redes sociales, por ejemplo, se puede utilizar el paquete <code>Rfacebook</code> para conectarse a <strong>Facebook</strong> y obtener información de lo contactos existentes, para ello sera necesario activar la API desde <strong><a href="https://developers.facebook.com" class="uri">https://developers.facebook.com</a></strong>. La información necesaria podemos encontrarla en su página web <strong><a href="https://developers.facebook.com/docs" class="uri">https://developers.facebook.com/docs</a></strong>. Para ilustrar un ejemplo didactico, sin ncesidad de que el lector necesite conocimientos de desarrollo para descargar datos, se ha generado un fichero excel que simula la relacion entre amigos de una red social como podria ser perfertamente Facebook.</p>
+<ul>
+<li>Se incorporan los datos y se muestra su cabecera.
+Los datos han sido recogidos en un fichero csv, constando de dos columnas separadas por espacio. La primera columna contiene el id de la primera persona, la cual establece relación con la persona indicada también por su id en la segunda columna.</li>
+</ul>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="grafos.html#cb46-1" aria-hidden="true" tabindex="-1"></a>datos_faceboook <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/DatosFacebook.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Origen&quot;</span>, <span class="st">&quot;Destino&quot;</span>))</span>
+<span id="cb46-2"><a href="grafos.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos_faceboook)</span>
+<span id="cb46-3"><a href="grafos.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Origen Destino</span></span>
+<span id="cb46-4"><a href="grafos.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   3434    3409</span></span>
+<span id="cb46-5"><a href="grafos.html#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   3493    3361</span></span>
+<span id="cb46-6"><a href="grafos.html#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3   3329    3324</span></span>
+<span id="cb46-7"><a href="grafos.html#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4   3496    3384</span></span>
+<span id="cb46-8"><a href="grafos.html#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5   3370    3415</span></span>
+<span id="cb46-9"><a href="grafos.html#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6   3383    3490</span></span></code></pre></div>
+<p>Un grafo no tiene una centralidad real porque no tiene coordenadas, pero tenemos distintas medidas de centralidad que en un grafo social nos ayudara a identificar el poder social de cada individuo, es decir, su influencia.</p>
+<p>Se puede decir que la <strong>centralidad de un grafo</strong> coincide con el grado de vértices a analizar, si un vértice representa una persona de una red social de amigos su centralidad representa el número de amigos que tiene.</p>
+<p>En los grafos dirigidos cuantas más aristas dirigidas a un nodo existan significará que más personas intentar interactuar con una persona concreta y esta más prestigio tendrá. Pero si la interacción hacia esta persona no es directa y se realiza a través de un camino más largo pasando por más nodos quiere decir que su influencia es elevada.</p>
+<ul>
+<li>Se convierten los datos a formato igraph y mostramos el grafo (ver Fig.<a href="grafos.html#fig:grafofacebook1">3.7</a>).
+Se compone el data frame de tipo igraph necesario indicando que es un grafo dirigido, finalmente mediante ‘plot’ se muestra el grado al mismo tiempo que se establecen sus propiedades.</li>
+</ul>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="grafos.html#cb47-1" aria-hidden="true" tabindex="-1"></a>grafo_faceboook <span class="ot">&lt;-</span> <span class="fu">graph.data.frame</span>(datos_faceboook, <span class="at">directed =</span> T)</span>
+<span id="cb47-2"><a href="grafos.html#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="grafos.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.igraph</span>(grafo_faceboook,</span>
+<span id="cb47-4"><a href="grafos.html#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">layout =</span> layout.fruchterman.reingold,</span>
+<span id="cb47-5"><a href="grafos.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">vertex.label =</span> <span class="cn">NA</span>,</span>
+<span id="cb47-6"><a href="grafos.html#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">vertex.label.cex =</span> <span class="dv">1</span>,</span>
+<span id="cb47-7"><a href="grafos.html#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">vertex.size =</span> <span class="dv">3</span>, <span class="at">edge.curved =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb47-8"><a href="grafos.html#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">edge.arrow.size =</span> <span class="dv">0</span></span>
+<span id="cb47-9"><a href="grafos.html#cb47-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafofacebook1"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafofacebook1-1.png" alt="Aplicación de Igraph a Redes Sociales." width="60%" />
+<p class="caption">
+Figura 3.7: Aplicación de Igraph a Redes Sociales.
+</p>
+</div>
+<ul>
+<li>Relaciones de la red social.
+Se puede observar que el numero de aristas que contiene cada vertice son el numero de personas con las que se relaciona cada individuo, por lo tanto son las relaciones que contiene cada persona.</li>
+</ul>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="grafos.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">degree</span>(grafo_faceboook))</span>
+<span id="cb48-2"><a href="grafos.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb48-3"><a href="grafos.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 </span></span>
+<span id="cb48-4"><a href="grafos.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1  2  4  4  7  4  8 14 19 15 14 19 22 15 11 13  9  5  3  3  4  1  4</span></span></code></pre></div>
+<ul>
+<li>Se personalizan los datos (ver Fig.<a href="grafos.html#fig:grafofacebook3">3.8</a>).
+Son muchos nodos y para focalizar este caso de estudio se centra el codigo en los nodos que sean de grado igual o superior a 26 y se les asigna nombre.</li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="grafos.html#cb49-1" aria-hidden="true" tabindex="-1"></a>bad_network <span class="ot">&lt;-</span> <span class="fu">V</span>(grafo_faceboook)[<span class="fu">degree</span>(grafo_faceboook) <span class="sc">&lt;=</span> <span class="dv">26</span>]</span>
+<span id="cb49-2"><a href="grafos.html#cb49-2" aria-hidden="true" tabindex="-1"></a>grafo_faceboook <span class="ot">&lt;-</span> <span class="fu">delete.vertices</span>(grafo_faceboook, bad_network)</span>
+<span id="cb49-3"><a href="grafos.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(grafo_faceboook)<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Gema&quot;</span>, <span class="st">&quot;Patricia&quot;</span>, <span class="st">&quot;Ramon&quot;</span>, <span class="st">&quot;Jose&quot;</span>, <span class="st">&quot;Maria&quot;</span>, <span class="st">&quot;Angeles&quot;</span>, <span class="st">&quot;Gabriel&quot;</span>, <span class="st">&quot;Javier&quot;</span>, <span class="st">&quot;Victor&quot;</span>, <span class="st">&quot;Leonor&quot;</span>, <span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Isabel&quot;</span>, <span class="st">&quot;Cristobal&quot;</span>, <span class="st">&quot;Rosa&quot;</span>, <span class="st">&quot;Aurola&quot;</span>)</span>
+<span id="cb49-4"><a href="grafos.html#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(grafo_faceboook)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafofacebook3"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafofacebook3-1.png" alt="Aplicación de Igraph a Redes Sociales, grafo dendrograma" width="60%" />
+<p class="caption">
+Figura 3.8: Aplicación de Igraph a Redes Sociales, grafo dendrograma
+</p>
+</div>
+<p>Se pueden observar las relaciones entre las distintas personas que lo componen, como siguen a otras y son seguidas. Tambien se pueden observar los casos extremos como el de Gema a quien nadie sigue, o el de Leonor que no sigue a nadie pero varios podrian llegar hasta ella.</p>
+<p><strong>Detección de comunidades</strong></p>
+<p>En el análisis de una red social es importante detectar las distintas comunidades que la componen.</p>
+<ul>
+<li>Se puede observar dos comunidades detectadas con <strong>Walktrap</strong> en la (ver Fig.<a href="grafos.html#fig:grafofacebook5">3.9</a>)</li>
+</ul>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="grafos.html#cb50-1" aria-hidden="true" tabindex="-1"></a>Walktrap_grafo <span class="ot">&lt;-</span> <span class="fu">walktrap.community</span>(grafo_faceboook, <span class="at">steps =</span> <span class="dv">5</span>, <span class="at">modularity =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb50-2"><a href="grafos.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Walktrap_grafo, grafo_faceboook, <span class="at">edge.arrow.size =</span> <span class="fl">0.25</span>, <span class="at">vertex.label =</span> (grafo_faceboook)<span class="sc">$</span>name)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafofacebook5"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafofacebook5-1.png" alt="Walktrap Community on Full dataset" width="60%" />
+<p class="caption">
+Figura 3.9: Walktrap Community on Full dataset
+</p>
+</div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="grafos.html#cb51-1" aria-hidden="true" tabindex="-1"></a>dend_g_network <span class="ot">&lt;-</span> <span class="fu">as.dendrogram</span>(Walktrap_grafo)</span>
+<span id="cb51-2"><a href="grafos.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dend_g_network)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafofacebook4"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafofacebook4-1.png" alt="Grafo dendrograma de Walktrap" width="60%" />
+<p class="caption">
+Figura 3.10: Grafo dendrograma de Walktrap
+</p>
+</div>
+<p><strong>Walktrap</strong> detecta las comunidades basandose en el concepto de que las caminatas aleatorias cortas permanecen en la misma comunidad.
+Debe indicarse èl largo de la caminata aleatoria, se recomienda usar 5 caminatas.
+Se puede ver su dendrograma en la Fig.<a href="grafos.html#fig:grafofacebook4">3.10</a>.
+El dendograma es un tipo de diagrama en forma de arbol, en el cual se subdivide los datos en subcategorias sucesivamente hasta llegar a las vistas deseadas.</p>
+<ul>
+<li>La técnica de <strong>Centralidad de intermediación (betweenness)</strong> se basa en el número de caminos mínimos en los que un nodo esta involucrado. Por lo tanto, en un red social una persona tendrá mayor influencia cuanto mayor betweenness tenga porque comunicara mucha información a través de los nodos de la red. Si puede llegar a un grupo grande, aunque sea a través de un nodo puede alcanzar un gran nivel de viralización (ver Fig.<a href="grafos.html#fig:grafofacebook6">3.11</a> y Fig.<a href="grafos.html#fig:grafofacebook7">3.12</a>).</li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="grafos.html#cb52-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-2"><a href="grafos.html#cb52-2" aria-hidden="true" tabindex="-1"></a>edge_g_network <span class="ot">&lt;-</span> <span class="fu">edge.betweenness.community</span>(grafo_faceboook)</span>
+<span id="cb52-3"><a href="grafos.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">as.dendrogram</span>(edge_g_network), <span class="at">main =</span> <span class="st">&quot;Grafo dendrograma de Betweenness&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafofacebook6"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafofacebook6-1.png" alt="Grafo dendrograma de Betweenness" width="60%" />
+<p class="caption">
+Figura 3.11: Grafo dendrograma de Betweenness
+</p>
+</div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="grafos.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(edge_g_network, grafo_faceboook, <span class="at">edge.arrow.size =</span> <span class="fl">0.25</span>, <span class="at">main =</span> <span class="st">&quot;Edge Betweenness Community&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafofacebook7"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafofacebook7-1.png" alt="Grafo dendrograma de Betweenness" width="60%" />
+<p class="caption">
+Figura 3.12: Grafo dendrograma de Betweenness
+</p>
+</div>
+<p>En este ejemplo vemos como se han detectado mediante este algoritmo siete comunidades.</p>
+<ul>
+<li><strong>Centralidad de vector propio (eigenvector)</strong> se basa en la centralidad de los nodos con los que se relaciona, la centralidad de un nodo es proporcional a la suma de las centralidades de sus nodos vecinos.</li>
+</ul>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="grafos.html#cb54-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-2"><a href="grafos.html#cb54-2" aria-hidden="true" tabindex="-1"></a>cl_g_network <span class="ot">&lt;-</span> <span class="fu">leading.eigenvector.community</span>(grafo_faceboook)</span>
+<span id="cb54-3"><a href="grafos.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cl_g_network, grafo_faceboook, <span class="at">edge.arrow.size =</span> <span class="fl">0.25</span>, <span class="at">main =</span> <span class="st">&quot;Leading Eigenvector Community&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafofacebook8"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafofacebook8-1.png" alt="Aplicación de Igraph a Redes Sociales" width="60%" />
+<p class="caption">
+Figura 3.13: Aplicación de Igraph a Redes Sociales
+</p>
+</div>
+<p>Se representa mediante <span class="math inline">\(c_{i} = \lambda \sum_{j} a_{ij}c_{j}\)</span>, donde <span class="math inline">\(\lambda\)</span> es la constante de proporcionalidad y <span class="math inline">\(a_{ij}\)</span> es el valor de la fila <span class="math inline">\(i\)</span> y la columna <span class="math inline">\(j\)</span> de la matriz de adyacencia <strong>A</strong> de la red social.</p>
+<p>En este ejemplo vemos como se han detectado mediante este algoritmo tres comunidades. Segun este metodo, no es tan importante que tengas muchos amigos, lo importante es que tus amigos sean muy influyentes (ver Fig.<a href="grafos.html#fig:grafofacebook8">3.13</a>).</p>
+</div>
+<div id="otras-utilidades-de-grafos" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Otras utilidades de grafos<a href="grafos.html#otras-utilidades-de-grafos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En la Fig <a href="grafos.html#fig:accidentalidad">3.14</a> se muestran los tipos de accidente ocurridos en Madrid durante el año 2020 que tiene como relación la zona en la que sucedió, en este caso en “Barajas”. Ademas se añade a las aristas el numero de accidentes sucedido por cada tipo.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="grafos.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb55-2"><a href="grafos.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CDR)</span>
+<span id="cb55-3"><a href="grafos.html#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="grafos.html#cb55-4" aria-hidden="true" tabindex="-1"></a>datos_accidentalidad_2020 <span class="ot">&lt;-</span> accidentes2020_data</span>
+<span id="cb55-5"><a href="grafos.html#cb55-5" aria-hidden="true" tabindex="-1"></a>conjunto <span class="ot">&lt;-</span> datos_accidentalidad_2020[, <span class="fu">c</span>(<span class="st">&quot;distrito&quot;</span>, <span class="st">&quot;tipo_accidente&quot;</span>)]</span>
+<span id="cb55-6"><a href="grafos.html#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="grafos.html#cb55-7" aria-hidden="true" tabindex="-1"></a>distrito <span class="ot">&lt;-</span> datos_accidentalidad_2020[, <span class="fu">c</span>(<span class="st">&quot;distrito&quot;</span>)]</span>
+<span id="cb55-8"><a href="grafos.html#cb55-8" aria-hidden="true" tabindex="-1"></a>tipo_accidente <span class="ot">&lt;-</span> datos_accidentalidad_2020[, <span class="fu">c</span>(<span class="st">&quot;tipo_accidente&quot;</span>)]</span>
+<span id="cb55-9"><a href="grafos.html#cb55-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-10"><a href="grafos.html#cb55-10" aria-hidden="true" tabindex="-1"></a>grupos <span class="ot">&lt;-</span> <span class="fu">group_by</span>(conjunto, distrito, tipo_accidente)</span>
+<span id="cb55-11"><a href="grafos.html#cb55-11" aria-hidden="true" tabindex="-1"></a>contados <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">summarise</span>(grupos,</span>
+<span id="cb55-12"><a href="grafos.html#cb55-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">num =</span> <span class="fu">n</span>()</span>
+<span id="cb55-13"><a href="grafos.html#cb55-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-14"><a href="grafos.html#cb55-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-15"><a href="grafos.html#cb55-15" aria-hidden="true" tabindex="-1"></a>zona_Barajas <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(contados, distrito <span class="sc">==</span> <span class="st">&quot;BARAJAS&quot;</span>)</span>
+<span id="cb55-16"><a href="grafos.html#cb55-16" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(zona_Barajas)</span>
+<span id="cb55-17"><a href="grafos.html#cb55-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.igraph</span>(g3, <span class="at">edge.label =</span> zona_Barajas<span class="sc">$</span>num)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:accidentalidad"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/accidentalidad-1.png" alt="Accidentes en Barajas" width="60%" />
+<p class="caption">
+Figura 3.14: Accidentes en Barajas
+</p>
+</div>
+<p>Ahora mostramos los principales puntos conflictivos de Barajas unidos para ver si existen caminos que pasaern por otros accidentes y evitarlos, Fig <a href="#fig:gmapa"><strong>??</strong></a>.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="grafos.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(proj4)</span>
+<span id="cb56-2"><a href="grafos.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb56-3"><a href="grafos.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
+<span id="cb56-4"><a href="grafos.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb56-5"><a href="grafos.html#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="grafos.html#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CDR)</span>
+<span id="cb56-7"><a href="grafos.html#cb56-7" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> accidentes2020_data</span>
+<span id="cb56-8"><a href="grafos.html#cb56-8" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> datos[, <span class="fu">c</span>(<span class="st">&quot;localizacion&quot;</span>, <span class="st">&quot;distrito&quot;</span>, <span class="st">&quot;coordenada_x_utm&quot;</span>, <span class="st">&quot;coordenada_y_utm&quot;</span>)]</span>
+<span id="cb56-9"><a href="grafos.html#cb56-9" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(datos, distrito <span class="sc">==</span> <span class="st">&quot;BARAJAS&quot;</span>)</span>
+<span id="cb56-10"><a href="grafos.html#cb56-10" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> datos[, <span class="fu">c</span>(<span class="st">&quot;localizacion&quot;</span>, <span class="st">&quot;coordenada_x_utm&quot;</span>, <span class="st">&quot;coordenada_y_utm&quot;</span>)]</span>
+<span id="cb56-11"><a href="grafos.html#cb56-11" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">distinct</span>(datos)</span>
+<span id="cb56-12"><a href="grafos.html#cb56-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-13"><a href="grafos.html#cb56-13" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> datos[[<span class="st">&quot;localizacion&quot;</span>]], <span class="at">lon =</span> datos[[<span class="st">&quot;coordenada_x_utm&quot;</span>]], <span class="at">lat =</span> datos[[<span class="st">&quot;coordenada_y_utm&quot;</span>]])</span>
+<span id="cb56-14"><a href="grafos.html#cb56-14" aria-hidden="true" tabindex="-1"></a>proj4string <span class="ot">&lt;-</span> <span class="st">&quot;+proj=utm +zone=30 +ellps=WGS84 +datum=WGS84 +units=m +no_defs &quot;</span></span>
+<span id="cb56-15"><a href="grafos.html#cb56-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-16"><a href="grafos.html#cb56-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-17"><a href="grafos.html#cb56-17" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(meta<span class="sc">$</span>lon, meta<span class="sc">$</span>lat) <span class="co"># data frame con utm</span></span>
+<span id="cb56-18"><a href="grafos.html#cb56-18" aria-hidden="true" tabindex="-1"></a>pj <span class="ot">&lt;-</span> <span class="fu">project</span>(xy, proj4string, <span class="at">inverse =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb56-19"><a href="grafos.html#cb56-19" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> datos[[<span class="st">&quot;localizacion&quot;</span>]], <span class="at">lat =</span> pj<span class="sc">$</span>y, <span class="at">lon =</span> pj<span class="sc">$</span>x)</span>
+<span id="cb56-20"><a href="grafos.html#cb56-20" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">from =</span> datos[[<span class="st">&quot;localizacion&quot;</span>]], <span class="at">to =</span> datos[[<span class="st">&quot;localizacion&quot;</span>]])</span>
+<span id="cb56-21"><a href="grafos.html#cb56-21" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">distinct</span>(meta))</span>
+<span id="cb56-22"><a href="grafos.html#cb56-22" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">distinct</span>(df))</span>
+<span id="cb56-23"><a href="grafos.html#cb56-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-24"><a href="grafos.html#cb56-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-25"><a href="grafos.html#cb56-25" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">ncol =</span> <span class="dv">0</span>, <span class="at">nrow =</span> <span class="dv">0</span>)</span>
+<span id="cb56-26"><a href="grafos.html#cb56-26" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(mat)</span>
+<span id="cb56-27"><a href="grafos.html#cb56-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (f <span class="cf">in</span> df[, <span class="dv">1</span>])</span>
+<span id="cb56-28"><a href="grafos.html#cb56-28" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb56-29"><a href="grafos.html#cb56-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> df[, <span class="dv">2</span>])</span>
+<span id="cb56-30"><a href="grafos.html#cb56-30" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb56-31"><a href="grafos.html#cb56-31" aria-hidden="true" tabindex="-1"></a>    fila_nueva <span class="ot">&lt;-</span> <span class="fu">c</span>(f, t)</span>
+<span id="cb56-32"><a href="grafos.html#cb56-32" aria-hidden="true" tabindex="-1"></a>    df2 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df2, fila_nueva)</span>
+<span id="cb56-33"><a href="grafos.html#cb56-33" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb56-34"><a href="grafos.html#cb56-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb56-35"><a href="grafos.html#cb56-35" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df2</span>
+<span id="cb56-36"><a href="grafos.html#cb56-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-37"><a href="grafos.html#cb56-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-38"><a href="grafos.html#cb56-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-39"><a href="grafos.html#cb56-39" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">graph.data.frame</span>(df, <span class="at">directed =</span> <span class="cn">FALSE</span>, <span class="at">vertices =</span> meta)</span>
+<span id="cb56-40"><a href="grafos.html#cb56-40" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">get.data.frame</span>(g, <span class="st">&quot;both&quot;</span>)</span>
+<span id="cb56-41"><a href="grafos.html#cb56-41" aria-hidden="true" tabindex="-1"></a>vert <span class="ot">&lt;-</span> gg<span class="sc">$</span>vertices</span>
+<span id="cb56-42"><a href="grafos.html#cb56-42" aria-hidden="true" tabindex="-1"></a><span class="fu">coordinates</span>(vert) <span class="ot">&lt;-</span> <span class="er">~</span> lon <span class="sc">+</span> lat</span>
+<span id="cb56-43"><a href="grafos.html#cb56-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-44"><a href="grafos.html#cb56-44" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> gg<span class="sc">$</span>edges</span>
+<span id="cb56-45"><a href="grafos.html#cb56-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-46"><a href="grafos.html#cb56-46" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(edges), <span class="cf">function</span>(i) {</span>
+<span id="cb56-47"><a href="grafos.html#cb56-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as</span>(</span>
+<span id="cb56-48"><a href="grafos.html#cb56-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rbind</span>(</span>
+<span id="cb56-49"><a href="grafos.html#cb56-49" aria-hidden="true" tabindex="-1"></a>      vert[vert<span class="sc">$</span>name <span class="sc">==</span> edges[i, <span class="st">&quot;from&quot;</span>], ],</span>
+<span id="cb56-50"><a href="grafos.html#cb56-50" aria-hidden="true" tabindex="-1"></a>      vert[vert<span class="sc">$</span>name <span class="sc">==</span> edges[i, <span class="st">&quot;to&quot;</span>], ]</span>
+<span id="cb56-51"><a href="grafos.html#cb56-51" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb56-52"><a href="grafos.html#cb56-52" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;SpatialLines&quot;</span></span>
+<span id="cb56-53"><a href="grafos.html#cb56-53" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb56-54"><a href="grafos.html#cb56-54" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb56-55"><a href="grafos.html#cb56-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-56"><a href="grafos.html#cb56-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-57"><a href="grafos.html#cb56-57" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(edges)) {</span>
+<span id="cb56-58"><a href="grafos.html#cb56-58" aria-hidden="true" tabindex="-1"></a>  edges[[i]] <span class="ot">&lt;-</span> <span class="fu">spChFIDs</span>(edges[[i]], <span class="fu">as.character</span>(i))</span>
+<span id="cb56-59"><a href="grafos.html#cb56-59" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb56-60"><a href="grafos.html#cb56-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-61"><a href="grafos.html#cb56-61" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, edges)</span>
+<span id="cb56-62"><a href="grafos.html#cb56-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-63"><a href="grafos.html#cb56-63" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(vert) <span class="sc">%&gt;%</span></span>
+<span id="cb56-64"><a href="grafos.html#cb56-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb56-65"><a href="grafos.html#cb56-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">data =</span> vert) <span class="sc">%&gt;%</span></span>
+<span id="cb56-66"><a href="grafos.html#cb56-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addPolylines</span>(<span class="at">data =</span> edges)</span></code></pre></div>
+<div class="infobox_resume">
+<p><strong>RESUMEN</strong></p>
+<p>El uso de los grafos para el estudio de las redes sociales resultad de gran utilidad y aunque existen distintos paquetes uno de los mas potentes sigue siendo <code>igraph</code>. Se ha aprendido que tres componentes son necesarios: obtener datos de una red social, conocer las propiedades de los grafos y aplicarlos mediante el paquete <code>igraph</code>. Gracias a los grafos podemos representar las relaciones que unen a los individuos en una red social, asi como las comunidades que forman e incluso la popularidad de cada uno, sus seguidores y a quien siguen.</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mineria-textos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="aplicaciones-webs-interactivas-con-shiny.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Ciencia_de_datos_con_r.pdf", "Ciencia_de_datos_con_r.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Fundamentos de ciencia de datos con R</title>
+  <meta name="description" content="Falta" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Fundamentos de ciencia de datos con R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Falta" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Fundamentos de ciencia de datos con R" />
+  
+  <meta name="twitter:description" content="Falta" />
+  
+
+<meta name="author" content="Coordinadores" />
+
+
+<meta name="date" content="2022-10-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33KQ1S5ZCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-33KQ1S5ZCJ');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Ciencia de datos con <strong>R</strong></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="chapters/212050_cd_retail.html"><a href="#segmentación-de-clientes-en-retail"><i class="fa fa-check"></i><b>1</b> Segmentación de clientes en retail</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="chapters/212050_cd_retail.html"><a href="#justificación-del-proyecto-y-conceptos-clave"><i class="fa fa-check"></i><b>1.1</b> Justificación del proyecto y conceptos clave</a></li>
+<li class="chapter" data-level="1.2" data-path="chapters/212050_cd_retail.html"><a href="#modelo-rfm"><i class="fa fa-check"></i><b>1.2</b> Modelo RFM</a></li>
+<li class="chapter" data-level="1.3" data-path="chapters/212050_cd_retail.html"><a href="#pasos-para-la-obtención-del-modelo-de-segmentación"><i class="fa fa-check"></i><b>1.3</b> Pasos para la obtención del modelo de segmentación</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="chapters/212050_cd_retail.html"><a href="#recopilación-y-comprensión-de-los-datos"><i class="fa fa-check"></i><b>1.3.1</b> Recopilación y comprensión de los datos</a></li>
+<li class="chapter" data-level="1.3.2" data-path="chapters/212050_cd_retail.html"><a href="#cálculo-de-las-variables-del-modelo-rfm"><i class="fa fa-check"></i><b>1.3.2</b> Cálculo de las variables del modelo RFM</a></li>
+<li class="chapter" data-level="1.3.3" data-path="chapters/212050_cd_retail.html"><a href="#breve-análisis-exploratorio-de-las-variables-rfm"><i class="fa fa-check"></i><b>1.3.3</b> Breve análisis exploratorio de las variables RFM</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://blog.uclm.es/tp-mbsba/"> Ciencia de datos con R </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fundamentos de ciencia de datos con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Fundamentos de ciencia de datos con R</h1>
+<p class="author"><em>Coordinadores</em></p>
+<p class="date"><em>2022-10-05</em></p>
+</div>
+<div id="segmentación-de-clientes-en-retail" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Capítulo 1</span> Segmentación de clientes en retail<a href="#segmentación-de-clientes-en-retail" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Segmentación de clientes en una empresa de venta minorista en función
+del comportamiento de compra, empleando técnicas de normalización y
+aprendizaje no supervisado.</em></p>
+<p><em>Jaime Fierro Martín, Rocío González Martínez y Cristina Sánchez
+Figueroa</em></p>
+<div id="justificación-del-proyecto-y-conceptos-clave" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Justificación del proyecto y conceptos clave<a href="#justificación-del-proyecto-y-conceptos-clave" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Durante estos últimos años se ha puesto de manifiesto que el
+comportamiento del consumidor y su hábito de compra está cambiando. Es
+muy importante para las empresas definir una estrategia de marketing,
+desarrollar las tácticas adecuadas a la hora de definir los mercados
+objetivo, determinar y cuantificar las necesidades de los clientes,
+comunicar las propuestas de valor para satisfacer sus necesidades y, por
+último, supervisar el valor que realmente ha sido entregado. Esto no es
+tan sencillo cuando la relación que la empresa tiene con su cliente no
+es contractual y, por tanto, no hay exigencia de proporcionar ninguna
+información a la compañía sobre datos personales, y ninguna seguridad de
+que el cliente mantenga en el tiempo su relación con la empresa.</p>
+<p>Los comercios minoristas (<em>retailers</em>), se mueven en un entorno
+turbulento. Necesitan acercarse a sus clientes para asegurar su
+supervivencia, teniendo siempre en cuenta que su producto o servicio es
+el nexo clave en dicho proceso. Conocer el <strong>perfil de los clientes</strong>
+permitirá detectar en qué momento de su
+ciclo de vida con la empresa se encuentran y desarrollar propuestas de
+valor centradas en su captación, activación, desarrollo y retención,
+según convenga en cada momento.</p>
+<p><strong>Segmentar</strong> se define como el proceso de dividir a
+los clientes actuales o potenciales, en diferentes grupos o segmentos
+consistentes en individuos con características y niveles similares de
+interés. Es un proceso creativo e iterativo con el fin de satisfacer con
+mayor acierto las necesidades de los clientes, proporcionando una
+ventaja competitiva y sostenible a la companía. La segmentación viene
+dada por las necesidades de los clientes, no de la compañia, y debería
+ser revisada periódicamente.</p>
+<p>Del mismo modo, en el proyecto de segmentación deben participar todos
+los niveles de la organización. Muy especialmente aquellas áreas
+funcionales que tengan un buen conocimiento de los productos, servicios
+y clientes de la compañia. En el proceso de segmentación es conveniente
+atender a las siguientes reglas:</p>
+<ul>
+<li><p>Los segmentos han de tener un tamaño suficiente para justificar el
+tiempo y el esfuerzo que supone aprovechar las oportunidades que
+surjan.</p></li>
+<li><p>Cada segmento debe distinguirse de los demás, de manera que cada uno
+de ellos tenga un conjunto distinto de requisitos y pueda ser
+aborado mediante una estrategia de marketing diferenciada y
+rentable.</p></li>
+</ul>
+<p>Este caso práctico de negocio está basado en un proyecto real impulsado
+por el departamento de marketing de una empresa retail que necesitaba
+mejorar el conocimiento de sus clientes, agrupándolos en función de su
+coportamiento de compra. Los resultados obtenidos fueron clave en la
+definición de la estrategia de marketing relacional de la compañia.</p>
+</div>
+<div id="modelo-rfm" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Modelo RFM<a href="#modelo-rfm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El <strong>Modelo RFM</strong> es una técnica popular que se
+utiliza para analizar el comportamiento de compra de los clientes: cómo
+compra, la frecuencia de compra y cuánto gasta. Es un método útil para
+enriquecer la segmentación de los clientes en varios grupos que permitan
+la personalización e identificación de los clientes más proclives a
+responder a las promociones. El análisis RFM depende de las medidas de
+actualidad <strong>(<em>recency</em>)</strong> <strong>(R)</strong>, frecuencia
+<strong>(<em>frequency</em>)</strong><strong>(F)</strong> y valor monetario
+<strong>(<em>monetary</em>)</strong> <strong>(M)</strong>, que son tres importantes
+variables relacionadas con la compra que influyen en las posibilidades
+de compra futura de los clientes.</p>
+<p>La actualidad <strong>(R)</strong> se refiere al intervalo entre el instante en que
+se produce la última transacción y el momento de análisis. En los
+sectores de comercio minorista existe el consenso de que los compradores
+más recientes tienen más probabilidades de repetir compra que los
+compradores menos recientes. La frecuencia <strong>(F)</strong>, es el número de
+transacciones que un cliente ha realizado en un periodo determinado.
+Esta medida se basa en el supuesto de que que los clientes con más
+compras son más propensos a comprar nuevos productos que los clientes
+con menos compras. El valor monetario <strong>(M)</strong> se refiere al total
+acumulado de dinero gastado por un determinado cliente.</p>
+<p>En el <strong>Modelo RFM tradicional</strong> a cada cliente se asigna a un segmento
+en función de la puntuación obtenida en cada variable, aplicando una
+escala por quintiles. Es decir, cada una de las tres variables se divide
+en quintiles, generando 125 posibles valores para cada cliente (5x5x5).
+El valor 5 representa el 20% de los mejores clientes de cada variable, y
+el valor 1 representa el 20% de los peores. Sin embargo, en los últimos
+años, diversas técnicas de <em>clustering,</em> basadas en aprendizaje no
+supervisado<em>,</em> se han aplicado para identificar segmentos de clientes de
+acuerdo al comportamiento de compra fundamentado en las variables RFM.</p>
+</div>
+<div id="pasos-para-la-obtención-del-modelo-de-segmentación" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Pasos para la obtención del modelo de segmentación<a href="#pasos-para-la-obtención-del-modelo-de-segmentación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los autores de este caso práctico recomiendan seguir una metodología de
+gestión de proyecto que ayude a la consecución del éxito del proyecto en
+términos de alcance, tiempo, coste y calidad. La <strong>Metodología
+CRISP-DM</strong><span class="citation">(<a href="#ref-chapman2000crisp" role="doc-biblioref"><strong>chapman2000crisp?</strong></a>)</span> es un estándar
+ampliamente utilizado en los proyectos de ciencia de datos.</p>
+<p>Una vez definido y analizado el problema que se trata de abordar, la
+recopilación y comprensión de los datos se establece como una etapa
+esencial para el desarrollo del proyecto.</p>
+<div id="recopilación-y-comprensión-de-los-datos" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Recopilación y comprensión de los datos<a href="#recopilación-y-comprensión-de-los-datos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Hoy en día la gran mayoría de las empresas de <em>e-commerce</em> y comercio
+minorista tradicional cuentan con sistemas que permiten registrar los
+datos básicos de cada una de sus ventas (fecha, artículo, cantidad e
+importe), asociados a un código único de cliente. La información
+contenida en estos datos de compra atesora gran valor, ya que carecen
+del sesgo y subjetividad propias de otras informaciones obtenidas
+mediante encuestas de opinión, estudios de mercado, entrevistas y grupos
+de discusión, etc. Estos datos suelen encontrarse en las plataformas ERP
+(Enterprise Resource Planning) de gestión de pedidos y ventas, o CRM
+(Customer Relationship Management) de las empresas.</p>
+<p>El lector es, o será, consciente de que la fase de extracción, carga y
+limpieza de los datos es la más exigente del proyecto, y donde se
+empleará gran parte de los recursos y tiempo de todo el proyecto. <strong>R</strong>
+cuenta con una gran cantidad de paquetes y recursos que facilitan la
+extracción desde diferentes tipos de bases de datos, a modo meramente
+ilustrativo mencionamos <a href="https://rsqlite.r-dbi.org/">RSQLite</a>,
+<a href="https://github.com/r-dbi/odbc">odbc</a>,
+<a href="https://github.com/jeroen/mongolite/">mogolite</a>,
+<a href="https://httr.r-lib.org/">httr</a>, entre otras muchas.</p>
+<p>Con el propósito de facilitar el manejo de los datos, se ha realizado un
+muestreo previo de datos reales de transacciones de venta anonimizados.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate) </span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span></code></pre></div>
+<pre><code>## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (gt)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtExtras)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/datos_retail.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 200000 Columns: 4
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (2): id_ticket, codigo_socio
+## dbl  (1): importe_venta
+## date (1): fecha
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(datos)</span></code></pre></div>
+<pre><code>## Rows: 200,000
+## Columns: 4
+## $ id_ticket     &lt;chr&gt; &quot;num_1646673&quot;, &quot;num_2762559&quot;, &quot;num_0309422&quot;, &quot;num_211369…
+## $ fecha         &lt;date&gt; 2021-10-30, 2021-12-03, 2022-01-07, 2021-08-27, 2020-11…
+## $ importe_venta &lt;dbl&gt; 12.39, 38.83, 67.76, 37.18, 44.21, 12.05, 51.38, 50.19, …
+## $ codigo_socio  &lt;chr&gt; &quot;id_1076134&quot;, &quot;id_0552641&quot;, &quot;id_0537369&quot;, &quot;id_0814765&quot;, …</code></pre>
+<p>Cualquier tipo de estudio o proyecto de ciencia de datos requiere
+familiarizarse con los datos y determinar si presentan suficiente
+exactitud, completitud, consistencia, credibilidad y
+actualidad<span class="citation">(<a href="#ref-munoz2018calidad" role="doc-biblioref"><strong>munoz2018calidad?</strong></a>)</span>. Los datos de transacciones de venta
+registrados por las empresas pueden contener datos atípicos (p.ej.
+valores perdidos, inexactos, outliers, etc.). Para determinar la acción
+a tomar, o no, de limpieza o corrección de los datos de partida, es
+esencial conocer el negocio y las consecuencias que éstas operaciones
+tendrán en el resultado final de la segmentación.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   id_ticket   fecha      importe_venta codigo_socio
+##   &lt;chr&gt;       &lt;date&gt;             &lt;dbl&gt; &lt;chr&gt;       
+## 1 num_1646673 2021-10-30          12.4 id_1076134  
+## 2 num_2762559 2021-12-03          38.8 id_0552641  
+## 3 num_0309422 2022-01-07          67.8 id_0537369  
+## 4 num_2113698 2021-08-27          37.2 id_0814765  
+## 5 num_0794486 2020-11-21          44.2 id_0494840  
+## 6 num_0184609 2021-05-22          12.0 id_0214173</code></pre>
+<p>El conjunto de datos de muestra, resultado del proceso extracción,
+transformación y carga contiene 200 000 observaciones correspondientes a
+transacciones de compra con las siguientes variables:</p>
+<ul>
+<li><p><em>id_ticket</em>: variable categórica. Incluye el identificador de ticket
+para cada una de las ventas.</p></li>
+<li><p><em>fecha</em>: variable temporal. Abarca las fechas de las transacciones
+en el periodo de estudio, desde octubre 2019 a julio de 2022.</p></li>
+<li><p><em>importe_venta</em>: variable cuantitativa. Recoge el importe neto de
+cada transacción de venta en euros, sin incluir impuestos ni otros
+costes adicionales que puedan distorsionar la comparativa entre los
+clientes objeto de la segmentación. Con una mediana de 25.6€ y un
+rango de 5.01€ - 2 482.46€</p></li>
+<li><p><em>codigo_socio</em>: variable categórica. Contiene el código
+identificador único de cada cliente vinculado a cada transacción de
+compra. En el set de muestra alcanza los 107 929 clientes únicos.</p></li>
+</ul>
+</div>
+<div id="cálculo-de-las-variables-del-modelo-rfm" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Cálculo de las variables del modelo RFM<a href="#cálculo-de-las-variables-del-modelo-rfm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>La variable <em>recency</em> (R) es el intervalo de tiempo transcurrido
+desde la compra más reciente por socio hasta la fecha de elaboración
+del modelo RFM.</p></li>
+<li><p>El valor de la variable <em>frequency</em> (F) se obtiene agrupando las
+compras por socio y contando el número total de tickets únicos.</p></li>
+<li><p>La variable <em>monetary</em> (M) se calcula sumando todos los importes de
+venta por cliente.</p></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fecha_estudio_rfm <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">&quot;2022-08-01&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>rfm <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(codigo_socio) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">frecuencia =</span> <span class="fu">n_distinct</span>(id_ticket),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">monetario =</span> <span class="fu">sum</span>(importe_venta, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fecha_transaccion_reciente =</span> <span class="fu">first</span>(fecha, <span class="at">order_by =</span> <span class="fu">desc</span>(fecha))</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">actualidad =</span> <span class="fu">time_length</span>(<span class="fu">interval</span>(<span class="at">start =</span> fecha_transaccion_reciente, <span class="at">end =</span> fecha_estudio_rfm), <span class="at">unit =</span> <span class="st">&quot;days&quot;</span>),</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">.keep =</span> <span class="st">&quot;unused&quot;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   codigo_socio frecuencia monetario actualidad
+##   &lt;chr&gt;             &lt;int&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1 id_0000007            1      12.8        170
+## 2 id_0000015            1      24.8       1019
+## 3 id_0000027            2      52.4        275
+## 4 id_0000033            3     129.         222
+## 5 id_0000034            1      21.5        786
+## 6 id_0000054            2      57.8        342</code></pre>
+</div>
+<div id="breve-análisis-exploratorio-de-las-variables-rfm" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Breve análisis exploratorio de las variables RFM<a href="#breve-análisis-exploratorio-de-las-variables-rfm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Del análisis de las variables RFM obtenidas puede concluirse que:</p>
+<ul>
+<li><p>107 929 clientes únicos han realizado una media de 1.85 compras, con
+un importe medio total de 70.56€ y 450.4 días de media desde la
+última compra hasta la fecha de realización del estudio, con una
+fuerte asimetría positiva de los valores frecuencia - <em>frequency</em> y
+valor monetario - <em>monetary</em>.</p></li>
+<li><p>Se detecta una gran estacionalidad de las compras, como se puede
+apreciar en la agrupación de las observaciones actualidad -
+<em>recency</em>. Teniendo en cuenta la fecha fijada del análisis RFM
+(2022-08-01),los valores obtenidos en la variable actualidad -
+<em>recency</em> pueden interpretarse como el periodo de ventas de la
+campaña navideña.</p></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rfm)</span></code></pre></div>
+<pre><code>##  codigo_socio         frecuencia       monetario         actualidad    
+##  Length:107929      Min.   : 1.000   Min.   :   5.01   Min.   :   1.0  
+##  Class :character   1st Qu.: 1.000   1st Qu.:  24.46   1st Qu.: 221.0  
+##  Mode  :character   Median : 2.000   Median :  47.38   Median : 394.0  
+##                     Mean   : 1.853   Mean   :  70.56   Mean   : 450.4  
+##                     3rd Qu.: 2.000   3rd Qu.:  90.22   3rd Qu.: 649.0  
+##                     Max.   :25.000   Max.   :4949.32   Max.   :1035.0</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> rfm <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>codigo_socio, <span class="at">names_to =</span> <span class="st">&quot;variable&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;valor&quot;</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>plot_data <span class="sc">|&gt;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> variable, <span class="at">y =</span> valor)) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Box-plot de variables RFM&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>variable, <span class="at">ncol =</span> <span class="dv">6</span>, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="Ciencia_de_datos_con_r_files/figure-html/exploratorio-rfm2-1.png" width="672" /></p>
+<!-- #### *Ranking de percentiles como mejora al Modelo clásico RFM* -->
+<!-- El modelo clásico RFM categoriza el valor de las variables dividiéndolas -->
+<!-- en quintiles, a partir de los cuales se calcula una puntuación única que -->
+<!-- representa el valor del cliente. Sin embargo, el modelo clásico basado -->
+<!-- en cuantiles no es muy preciso. Si el intervalo de frecuencia de compras -->
+<!-- se fija entre 0 y 20, en términos de negocio podría interpretarse como -->
+<!-- que un cliente con una sola compra será igual que otro que tenga 20. Con -->
+<!-- este sencillo ejemplo comprobamos que los enfoques de conjuntos clásicos -->
+<!-- pueden resultar poco funcionales [@martinez2019comparison]. Por ello, se -->
+<!-- propone una mejora en la definición de los intervalos mediante la -->
+<!-- aplicación del **ranking de percentiles**\index{ranking de percentiles}, -->
+<!-- que además proporciona un método robusto de tratar los valores atípicos -->
+<!-- (*outliers*), y normaliza las variables entre 0 y 1 para evitar la -->
+<!-- diferencias de peso entre las variables, permitiendo así la correcta -->
+<!-- implementación del algoritmo de clustering. -->
+<!-- *ranking de percentiles cliente* -->
+<!-- $x_i =\frac{Número de valores inferiores a x_i}{Número total de clientes}$ -->
+<!-- Hay que tener presente que los valores de ranking obtenidos son -->
+<!-- relativos entre clientes, y por tanto no pueden ser empleados para -->
+<!-- objetivos de negocio basados en valores absolutos de puntuación por -->
+<!-- cliente. -->
+<!-- ```{r ranking} -->
+<!-- rfm_rank <- rfm |> -->
+<!--   mutate(across(.cols = c( "frecuencia","monetario"), percent_rank, .names = "rank_{.col}")) |> -->
+<!--   mutate(across(.cols = c("actualidad"), ~ percent_rank(-.x), .names = "rank_{.col}")) #atención menor recency indica mayor puntuación en rank -->
+<!-- head(rfm_rank) -->
+<!-- ``` -->
+<!-- ### Modelado -->
+<!-- #### Elección del modelo de *clustering* -->
+<!-- El término *clustering* hace referencia a un amplio abanico de -->
+<!-- **técnicas no supervisadas**\index{técnicas no supervisadas} cuya -->
+<!-- finalidad es encontrar patrones o grupos (*clusters*) dentro de un -->
+<!-- conjunto de observaciones, que en el caso de este estudio asociamos al -->
+<!-- comportamiento de compra de los clientes. Se trata de un método no -->
+<!-- supervisado, ya que el proceso ignora la variable respuesta que indica a -->
+<!-- qué grupo pertenece realmente cada cliente. Esta característica -->
+<!-- diferencia al *clustering* de las técnicas supervisadas, que emplean un -->
+<!-- set de entrenamiento en el que se conoce la verdadera clasificación. -->
+<!-- Aunque el objetivo del análisis de agrupamiento es muy intuitivo, su -->
+<!-- formalización no es tan sencilla. Los métodos de *clustering* tienen la -->
+<!-- propiedad de encontrar agrupaciones en cualquier set de datos, -->
+<!-- independientemente de que realmente existan o no dichos grupos en la -->
+<!-- población de la que proceden las observaciones. Por ello, una vez -->
+<!-- realizada la selección de las variables, su procesado previo -->
+<!-- (estandarización o normalización) y medida de distancia adecuada para -->
+<!-- cuantificar la similitud entre observaciones (euclídea, Manhattan, -->
+<!-- Gower, correlación, etc.), es recomendable realizar un estudio previo de -->
+<!-- la **tendencia de clustering**\index{tendencia del clustering} mediante -->
+<!-- test estadísticos (Hopkins stistics)[@hopkins1954new] -->
+<!-- Valores entre 0.7-1 indican datos agrupados y susceptibles de aplicar -->
+<!-- técnicas de *clustering.* -->
+<!-- ```{r Hopkins-estadistico} -->
+<!-- library(hopkins) -->
+<!-- hopkins(X = rfm_rank[ ,5:7], m=200) -->
+<!-- ``` -->
+<!-- Cuando alcanzamos la etapa de modelado ya se ha identificado y explorado -->
+<!-- los datos disponibles que serán útiles para transformar la información -->
+<!-- en conocimiento para mejorar la toma de decisiones. En este caso, el -->
+<!-- modelo establecido debe proporcionar una segmentación de clientes útil, -->
+<!-- en sintonía con las expectativas y necesidades que el negocio y el -->
+<!-- departamento de marketing fije previamente. Para la resolución de este -->
+<!-- caso práctico se opta por el algoritmo de clustering estándar -->
+<!-- [k-means,](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/kmeans.html) -->
+<!-- que presenta la ventaja de ser muy intuitivo, sencillo, rápido -->
+<!-- computacionalmente y permite trabajar con grandes conjuntos de datos. -->
+<!-- Otros muchos algoritmos de aprendizaje supervisado pueden ser empleados -->
+<!-- dependiendo de los datos de partida: *K-medoids (PAM), CLARA, -->
+<!-- Hierarchical clustering, Fuzzy clustering, Density based clustering -->
+<!-- (DBSCAN), K-Prototypes,* etc. El lector puede profundizar en el -->
+<!-- conocimiento de los diferentes métodos y paquetes en R en el link [CRAN -->
+<!-- Task View: Cluster Analysis & Finite Mixture -->
+<!-- Models](https://cran.r-project.org/web/views/Cluster.html). -->
+<!-- #### Número óptimo de *clusters* -->
+<!-- El número óptimo de *clusters* es uno de los retos a la hora de aplicar -->
+<!-- técnicas de *clustering*. No existe una manera exclusiva de encontrar el -->
+<!-- número adecuado de clusters. Se trata de un proceso subjetivo que -->
+<!-- depende de los datos, del tipo de *clustering* empleado y, en este caso, -->
+<!-- de que el número elegido tenga sentido y utilidad en el negocio. Existen -->
+<!-- numerosos métodos para facilitar la elección del número de *clusters*, -->
+<!-- entre ellos destacan *Elbow method, Average silhouette method y Gap -->
+<!-- statistic method*, que gracias a la función `fviz_nbclust()` del paquete -->
+<!-- `factoextra` se pueden calcular con facilidad para realizar una buena -->
+<!-- elección. -->
+<!-- ```{r elbow-method, eval=FALSE} -->
+<!-- set.seed(123) -->
+<!-- muestra_clusters <- rfm_rank |> -->
+<!--   slice_sample(n=5000) |> -->
+<!--   select(matches("rank")) -->
+<!-- fviz_nbclust(x = muestra_clusters, FUNcluster = kmeans, method = "wss", k.max = 10) + ggtitle(label = "Número óptimo de clusters") -->
+<!-- ``` -->
+<!-- Mediante el método Elbow se observa que la varianza total -->
+<!-- *intra-cluster* apenas consigue mejoría a partir del cuarto *cluster*. -->
+<!-- #### Cálculo del modelo RFM mediante k-means -->
+<!-- *K-means clustering* encuentra los *K* *clusters* cuya varianza interna -->
+<!-- (*intra-cluster variation*) sea lo más baja posible. Se trata de un -->
+<!-- problema de optimización, en el que se reparten las observaciones en *K -->
+<!-- clusters* de forma que la suma de las varianzas internas de todos ellos -->
+<!-- sea lo menor posible. -->
+<!-- Con los las variables RFM normalizadas en ranking por cliente se entrena -->
+<!-- el modelo *k-means*. La salida de la función `kmeans()` del paquete base -->
+<!-- `stats` es un objeto que entre otros componentes ofrece un vector -->
+<!-- numérico indicativo del *clusters* al que pertenece cada uno de los -->
+<!-- clientes. -->
+<!-- ```{r kmeans} -->
+<!-- set.seed(123) -->
+<!-- km_fit <- kmeans(x = rfm_rank[,5:7], centers = 4, nstart = 10) -->
+<!-- clientes_segmentos <- rfm_rank |> -->
+<!--   mutate(segmento = km_fit$cluster) -->
+<!-- head(clientes_segmentos) -->
+<!-- ``` -->
+<!-- #### Descriptivos e interpretación de los segmentos -->
+<!-- Los segmentos obtenidos deben tener sentido y utilidad de negocio. Para -->
+<!-- ello es imprescindible realizar un el descriptivo de cada segmento y -->
+<!-- proceder a su interpretación de perfil de cliente. -->
+<!-- ```{r descriptivo-segmentos} -->
+<!-- print(km_fit$centers) -->
+<!-- print(km_fit$size) -->
+<!-- descriptivo_segmentos <- clientes_segmentos |> -->
+<!--   group_by(segmento)  |> -->
+<!--   summarise(across(c("monetario", "frecuencia","actualidad"), -->
+<!--                    .fns =list(mediana=median, promedio=mean), -->
+<!--                    .names = "{.fn}_{.col}"), -->
+<!--             across(starts_with("rank"), mean, -->
+<!--                    .names = "{.col}"), -->
+<!--            numero_clientes =n()) |> -->
+<!--   ungroup() |> -->
+<!--   relocate(segmento, -->
+<!--            numero_clientes, -->
+<!--            starts_with("rank")) -->
+<!-- head(descriptivo_segmentos) -->
+<!-- descriptivo_segmentos |> -->
+<!--   mutate(segmento= case_when(segmento==1 ~ "Nuevos probando", -->
+<!--          segmento==2 ~ "Una compra", -->
+<!--          segmento==3 ~ "No podemos perder", -->
+<!--          segmento==4 ~ "TOP")) |> -->
+<!--   mutate(across(starts_with("rank"),~.*100)) |> -->
+<!--   gt() |> -->
+<!--   tab_header(title = md("Segmentación de clientes por su comportamiento de compra")) |> -->
+<!--   fmt(columns =c(mediana_actualidad,promedio_actualidad),fns = function(x){paste0(round(x, 2)," días")}) |> -->
+<!--   fmt(columns =c(mediana_frecuencia,promedio_frecuencia),fns = function(x){paste0(round(x, 2)," compra/s")}) |> -->
+<!--   fmt_currency(columns = c(mediana_monetario, promedio_monetario),currency = "EUR",placement = "right") |> -->
+<!--   gt_plt_bar_pct(column = rank_monetario, scaled=TRUE, fill = "blue", background = "lightgrey") |> -->
+<!--   gt_plt_bar_pct(column = rank_frecuencia, scaled=TRUE, fill = "orange", background = "lightgrey") |> -->
+<!--   gt_plt_bar_pct(column = rank_actualidad, scaled=TRUE, fill = "tomato", background = "lightgrey") |> -->
+<!--   opt_stylize(style=1, color = "blue") |> -->
+<!--   gt_theme_pff() -->
+<!-- ``` -->
+<!-- -   *Nuevos probando*: segmento que agrupa nuevos clientes que están -->
+<!--     realizando compras desde hace poco tiempo y tienen un gran potencial -->
+<!--     de desarrollo. Es un segmento de clientes con interés para la -->
+<!--     empresa. -->
+<!-- -   *Una compra*: segmento formado por aquellos clientes que han -->
+<!--     realizado una sola compra hace tiempo. Presentan frecuencia, -->
+<!--     actualidad y valor monetario bajo. Se trata de un segmento de -->
+<!--     clientes con escaso interés para la compañía. -->
+<!-- -   *No podemos perder*: se trata de los clientes 'churn' que fueron -->
+<!--     buenos clientes en términos monetarios y de frecuencia pero que hace -->
+<!--     tiempo que no realizan nuevas compras. La compañía debe dedicar -->
+<!--     esfuerzos en recuperar estos clientes para convertirlos al segmento -->
+<!--     TOP. -->
+<!-- -   *TOP*: reúne los mejores clientes de la empresa. Son clientes que -->
+<!--     compran con frecuencia, están activos y aportan ventas a la -->
+<!--     compañía. Es el segmento de clientes con mayor interés para la -->
+<!--     empresa. -->
+<!-- ### Puesta en producción -->
+<!-- Calculado el modelo RFM k-means la compañía puede incorporan -->
+<!-- periódicamente los datos de los clientes nuevos o actualizados. De este -->
+<!-- modo los segmentos de clientes se actualizarán y, más allá de las -->
+<!-- acciones de *marketing mix* que realicen las compañías gracias a la -->
+<!-- segmentación, podrán analizarse las migraciones de clientes entre los -->
+<!-- diferentes segmentos en el periodo estudiado. La función `cl_predict()` -->
+<!-- del paquete en [R clue: Cluster -->
+<!-- Ensembles](https://cran.r-project.org/web/packages/clue/index.html) -->
+<!-- facilita realizar la actualización periódica de los segmentos con el -->
+<!-- modelo entrenado. -->
+<!-- ```{r} -->
+<!-- # El set de datos actualizado se transforma en <rfm_rank_updated> siguiendo los mismos pasos que se describen para el set de entrenamiento del modelo. -->
+<!-- # clientes_segmentos_actulizados <-cl_predict(km_fit, newdata = rfm_rank_updated)  -->
+<!-- ``` -->
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Ciencia_de_datos_con_r.pdf", "Ciencia_de_datos_con_r.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 4 Aplicaciones webs interactivas con Shiny | Fundamentos de ciencia de datos con R</title>
+  <meta name="description" content="Falta hacer" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 4 Aplicaciones webs interactivas con Shiny | Fundamentos de ciencia de datos con R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Falta hacer" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 4 Aplicaciones webs interactivas con Shiny | Fundamentos de ciencia de datos con R" />
+  
+  <meta name="twitter:description" content="Falta hacer" />
+  
+
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero" />
+
+
+<meta name="date" content="2022-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="grafos.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33KQ1S5ZCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-33KQ1S5ZCJ');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Ciencia de datos con <strong>R</strong></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html"><i class="fa fa-check"></i><b>1</b> Modelización de series temporales</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#conceptos-básicos"><i class="fa fa-check"></i><b>1.1</b> Conceptos básicos</a></li>
+<li class="chapter" data-level="1.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#modelos-arima"><i class="fa fa-check"></i><b>1.2</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="1.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#análisis-de-series-temporales-con-r"><i class="fa fa-check"></i><b>1.3</b> Análisis de series temporales con R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#identificación-o-especificación-del-modelo"><i class="fa fa-check"></i><b>1.3.1</b> Identificación o especificación del modelo</a></li>
+<li class="chapter" data-level="1.3.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#estimación-del-modelo"><i class="fa fa-check"></i><b>1.3.2</b> Estimación del modelo</a></li>
+<li class="chapter" data-level="1.3.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#diagnosis-validación-y-contrastación"><i class="fa fa-check"></i><b>1.3.3</b> Diagnosis, validación y contrastación</a></li>
+<li class="chapter" data-level="1.3.4" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#predicción"><i class="fa fa-check"></i><b>1.3.4</b> Predicción</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="mineria-textos.html"><a href="mineria-textos.html"><i class="fa fa-check"></i><b>2</b> Minería de textos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="mineria-textos.html"><a href="mineria-textos.html#introducción"><i class="fa fa-check"></i><b>2.1</b> Introducción</a></li>
+<li class="chapter" data-level="2.2" data-path="mineria-textos.html"><a href="mineria-textos.html#secCONCEPTOS"><i class="fa fa-check"></i><b>2.2</b> Conceptos y tareas fundamentales</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="mineria-textos.html"><a href="mineria-textos.html#preparación-de-los-datos"><i class="fa fa-check"></i><b>2.2.1</b> Preparación de los datos</a></li>
+<li class="chapter" data-level="2.2.2" data-path="mineria-textos.html"><a href="mineria-textos.html#secTOKEN"><i class="fa fa-check"></i><b>2.2.2</b> Segmentación del texto: tokenización</a></li>
+<li class="chapter" data-level="2.2.3" data-path="mineria-textos.html"><a href="mineria-textos.html#secESTILOM"><i class="fa fa-check"></i><b>2.2.3</b> Campos de aplicación de la minería de textos</a></li>
+<li class="chapter" data-level="2.2.4" data-path="mineria-textos.html"><a href="mineria-textos.html#minería-de-textos-en-r"><i class="fa fa-check"></i><b>2.2.4</b> Minería de textos en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="mineria-textos.html"><a href="mineria-textos.html#secSENTIM"><i class="fa fa-check"></i><b>2.3</b> Análisis de sentimientos</a></li>
+<li class="chapter" data-level="2.4" data-path="mineria-textos.html"><a href="mineria-textos.html#caso-de-aplicación"><i class="fa fa-check"></i><b>2.4</b> Caso de aplicación</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="mineria-textos.html"><a href="mineria-textos.html#declaración-institucional-del-estado-de-alarma-2020"><i class="fa fa-check"></i><b>2.4.1</b> Declaración institucional del estado de alarma 2020</a></li>
+<li class="chapter" data-level="2.4.2" data-path="mineria-textos.html"><a href="mineria-textos.html#segmentación-en-palabras-y-oraciones"><i class="fa fa-check"></i><b>2.4.2</b> Segmentación en palabras y oraciones</a></li>
+<li class="chapter" data-level="2.4.3" data-path="mineria-textos.html"><a href="mineria-textos.html#análisis-exploratorio"><i class="fa fa-check"></i><b>2.4.3</b> Análisis exploratorio</a></li>
+<li class="chapter" data-level="2.4.4" data-path="mineria-textos.html"><a href="mineria-textos.html#secSENTYEMO"><i class="fa fa-check"></i><b>2.4.4</b> Análisis de sentimientos y detección de emociones</a></li>
+<li class="chapter" data-level="2.4.5" data-path="mineria-textos.html"><a href="mineria-textos.html#n-gramas"><i class="fa fa-check"></i><b>2.4.5</b> <em>N-gramas</em></a></li>
+<li class="chapter" data-level="2.4.6" data-path="mineria-textos.html"><a href="mineria-textos.html#análisis-de-redes"><i class="fa fa-check"></i><b>2.4.6</b> Análisis de redes</a></li>
+<li class="chapter" data-level="" data-path="mineria-textos.html"><a href="mineria-textos.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="grafos.html"><a href="grafos.html"><i class="fa fa-check"></i><b>3</b> Análisis de grafos y redes sociales</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="grafos.html"><a href="grafos.html#introducción-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
+<li class="chapter" data-level="3.2" data-path="grafos.html"><a href="grafos.html#teoría-de-grafos"><i class="fa fa-check"></i><b>3.2</b> Teoría de grafos</a></li>
+<li class="chapter" data-level="3.3" data-path="grafos.html"><a href="grafos.html#elementos-de-un-grafo"><i class="fa fa-check"></i><b>3.3</b> Elementos de un grafo</a></li>
+<li class="chapter" data-level="3.4" data-path="grafos.html"><a href="grafos.html#el-paquete-igraph"><i class="fa fa-check"></i><b>3.4</b> El paquete <code>igraph</code></a></li>
+<li class="chapter" data-level="3.5" data-path="grafos.html"><a href="grafos.html#análisis-de-influencia-en-un-grafo-aplicado-a-redes-sociales"><i class="fa fa-check"></i><b>3.5</b> Análisis de influencia en un grafo aplicado a redes sociales</a></li>
+<li class="chapter" data-level="3.6" data-path="grafos.html"><a href="grafos.html#otras-utilidades-de-grafos"><i class="fa fa-check"></i><b>3.6</b> Otras utilidades de grafos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html"><i class="fa fa-check"></i><b>4</b> Aplicaciones webs interactivas con Shiny</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#introducción-2"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#partes-mínimas-de-una-aplicación-shiny-y-disposición-básica"><i class="fa fa-check"></i><b>4.2</b> Partes mínimas de una aplicación <code>Shiny</code> y disposición básica</a></li>
+<li class="chapter" data-level="4.3" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#diseño-de-una-aplicación-shiny"><i class="fa fa-check"></i><b>4.3</b> Diseño de una aplicación <code>Shiny</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#diseño-de-las-páginas-fluidpage"><i class="fa fa-check"></i><b>4.3.1</b> Diseño de las páginas: fluidPage()</a></li>
+<li class="chapter" data-level="4.3.2" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#segmentación-de-diseños-tabsetpanel-y-navlistpanel"><i class="fa fa-check"></i><b>4.3.2</b> Segmentación de diseños: tabsetPanel() y navlistPanel()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#elementos-para-entrada-de-datos"><i class="fa fa-check"></i><b>4.4</b> Elementos para entrada de datos</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#lectura-de-ficheros-de-datos"><i class="fa fa-check"></i><b>4.4.1</b> Lectura de ficheros de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#elementos-para-visualización-salida"><i class="fa fa-check"></i><b>4.5</b> Elementos para visualización (salida)</a></li>
+<li class="chapter" data-level="4.6" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#reactividad"><i class="fa fa-check"></i><b>4.6</b> Reactividad</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#conductores-reactivos-y-control-de-la-reactividad"><i class="fa fa-check"></i><b>4.6.1</b> Conductores reactivos y control de la reactividad</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#publicación-de-la-aplicación-en-la-web"><i class="fa fa-check"></i><b>4.7</b> Publicación de la aplicación en la web</a></li>
+<li class="chapter" data-level="4.8" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#extensiones-de-shiny"><i class="fa fa-check"></i><b>4.8</b> Extensiones de <code>Shiny</code></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://blog.uclm.es/tp-mbsba/"> Ciencia de datos con R </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fundamentos de ciencia de datos con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="aplicaciones-webs-interactivas-con-shiny" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Capítulo 4</span> Aplicaciones webs interactivas con Shiny<a href="aplicaciones-webs-interactivas-con-shiny.html#aplicaciones-webs-interactivas-con-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Aurora González Vidal</em></p>
+<div id="introducción-2" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Introducción<a href="aplicaciones-webs-interactivas-con-shiny.html#introducción-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>Shiny</code> es un paquete de <strong>R</strong> que permite crear aplicaciones web interactivas que cuentan con todos los elementos de R. <code>Shiny</code> se ha convertido en un referente ya que, para aquellos que tienen conocimiento de R, es muy sencillo crear una aplicación en cuestión de horas <span class="citation">(<a href="#ref-changshiny" role="doc-biblioref"><strong>changshiny?</strong></a>)</span>. Para crear una aplicación mínima, no se necesitan conocimientos de HTML (<em>HyperText Markup Language</em>), CSS (<em>Cascading Style Sheets</em>) o <em>JavaScript</em> y sus dependencias. Además, no es necesario pensar en elementos técnicos para hacerla accesible en la web como, por ejemplo, el puerto, ya que <code>Shiny</code> se encarga de esos detalles si no se cambian las opciones por defecto. Éstas son algunas de las razones principales por las cuales <code>Shiny</code> se ha vuelto tan popular a lo largo de los años, ya que con poco esfuerzo se pueden crear pruebas de concepto de un producto, mostrar algoritmos o presentar resultados de investigación de forma elegante a través de interfaces de usuario accesibles, reproducibles y amigables <span class="citation">(<a href="#ref-fay2021engineering" role="doc-biblioref"><strong>fay2021engineering?</strong></a>)</span>.</p>
+<p>El primer paso para disfrutar de <code>Shiny</code> consiste en instalar el paquete que está disponible en CRAN:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)</span></code></pre></div>
+<p>Para asegurarse de que la versión instalada es igual o superior a la 1.5.0. use <code>packageVersion("shiny")</code>.
+A continuación se puede cargar el paquete y ver algunos ejemplos que se incluyen directamente en el mismo utilizando distintas opciones para el argumento <code>example</code>.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;shiny&quot;</span>)</span>
+<span id="cb58-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">runExample</span>(<span class="at">example =</span> <span class="st">&quot;01_hello&quot;</span>)</span>
+<span id="cb58-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co"># otras: 02_text, 03_reactivity, 04_mpg, 05_sliders, 06_tabsets, 07_widgets, 08_html, 09_upload, 10_download,  11_timer.</span></span></code></pre></div>
+</div>
+<div id="partes-mínimas-de-una-aplicación-shiny-y-disposición-básica" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Partes mínimas de una aplicación <code>Shiny</code> y disposición básica<a href="aplicaciones-webs-interactivas-con-shiny.html#partes-mínimas-de-una-aplicación-shiny-y-disposición-básica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Las aplicaciones <code>Shiny</code> tienen dos componentes:</p>
+<ol style="list-style-type: decimal">
+<li>Una interfaz de usuario <code>ui</code>, que es un script y</li>
+<li>Un <code>server</code> que es un script de servidor o secuencia de comandos de servidor.</li>
+</ol>
+<p>Estas partes pueden encontrarse en el mismo script o estar separadas en dos scripts con nombres fijos: <code>ui.R</code> y <code>server.R</code>. En este caso se ha elegeido la segunda opción para ilustrar los ejemplos con mayor claridad.
+Una aplicacion <code>Shiny</code> es un directorio que contiene estos scripts y otros ficheros adicionales (conjuntos de datos, fichero donde se definen funciones no dinámicas, etc)</p>
+<p>El código mínimo para crear una aplicación con un título, panel lateral y panel principal es el que sigue:</p>
+<ul>
+<li><code>ui.R</code></li>
+</ul>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyUI</span>(<span class="fu">fluidPage</span>(</span>
+<span id="cb59-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">headerPanel</span>(<span class="st">&quot;TITULO&quot;</span>),</span>
+<span id="cb59-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarPanel</span>(),</span>
+<span id="cb59-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mainPanel</span>()</span>
+<span id="cb59-5"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb59-5" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
+<ul>
+<li><code>server.R</code></li>
+</ul>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyServer</span>(<span class="cf">function</span>(input, output) {})</span></code></pre></div>
+<p>Para lanzar la aplicación existen dos maneras, mediante el comando <code>runApp</code> que tiene como argumento la ruta del directorio que almacena los ficheros que componen la aplicación.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb61-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">runApp</span>(<span class="st">&quot;ruta al directorio&quot;</span>)</span></code></pre></div>
+<p>O directamente desde Rstudio mediante el botón RunApp que aparece en cualquiera de los dos scripts <code>ui.R</code>, <code>server.R</code> reemplazando al Run habitual.</p>
+<p>En este capítulo, además de ver los distintos componentes de <code>Shiny</code>, construiremos una aplicación para la visualización de algunos gráficos presentados en el capítulo “Perfilado estadístico de parados” {#paro-clm}.</p>
+<p>Además del <code>ui.R</code> y el <code>sever.R</code>, puede ser muy útil tener un fichero <code>source.R</code> en la misma carpeta para cargar los paquetes y datos estáticos necesarios para el funcionamiento de la aplicación.</p>
+</div>
+<div id="diseño-de-una-aplicación-shiny" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Diseño de una aplicación <code>Shiny</code><a href="aplicaciones-webs-interactivas-con-shiny.html#diseño-de-una-aplicación-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>Shiny</code> incluye una serie de opciones para el diseño o la disposición de los distintos componentes de una aplicación. En este apartado veremos dos muy sencillos:</p>
+<ul>
+<li>sidebarLayout(): para colocar un sidebarPanel() de entradas junto a un mainPanel() de contenido de salida.</li>
+<li>tabsetPanel() y navlistPanel() para la segmentación de diseños</li>
+</ul>
+<p>Hasta ahora se ha utilizado el primero sin introducirlo específicamente para mostrar distintos ejemplos por ser el más sencillo.</p>
+<div id="diseño-de-las-páginas-fluidpage" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Diseño de las páginas: fluidPage()<a href="aplicaciones-webs-interactivas-con-shiny.html#diseño-de-las-páginas-fluidpage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un diseño de página fluido <code>fluidPage()</code> consiste en filas que a su vez incluyen columnas. Las filas existen con el propósito de asegurar que sus elementos aparezcan en la misma línea (si el navegador tiene el ancho adecuado). Las columnas existen con el propósito de definir cuánto espacio horizontal dentro de una cuadrícula de 12 unidades de ancho deben ocupar sus elementos. Las páginas fluidas escalan sus componentes en tiempo real para llenar todo el ancho disponible del navegador.</p>
+<p>Una <code>fluidPage()</code> presenta 2 argumentos: <code>headerPanel()</code> con el título de la aplicación,
+y <code>sidebarLayout()</code>.<code>sidebarLayout()</code> es un punto de partida útil para la mayoría de las aplicaciones. Este a su vez tiene 2 argumentos más: <code>sidebarPanel()</code>, que es una barra lateral para las entradas y <code>mainPanel()</code>, una gran área principal para la salida.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyUI</span>(<span class="fu">fluidPage</span>(</span>
+<span id="cb62-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">headerPanel</span>(<span class="st">&quot;Evolución del paro&quot;</span>),</span>
+<span id="cb62-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb62-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb62-5"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">radioButtons</span>(</span>
+<span id="cb62-6"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;vble&quot;</span>, <span class="st">&quot;Variable&quot;</span>,</span>
+<span id="cb62-7"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(</span>
+<span id="cb62-8"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;sexo&quot;</span> <span class="ot">=</span> <span class="st">&quot;sexo&quot;</span>,</span>
+<span id="cb62-9"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;tramo_edad&quot;</span> <span class="ot">=</span> <span class="st">&quot;tramo_edad&quot;</span>,</span>
+<span id="cb62-10"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;tiempo_busqueda_empleo_agregado&quot;</span> <span class="ot">=</span> <span class="st">&quot;tiempo_busqueda_empleo_agregado&quot;</span>,</span>
+<span id="cb62-11"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-11" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;sector&quot;</span> <span class="ot">=</span> <span class="st">&quot;sector&quot;</span>,</span>
+<span id="cb62-12"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-12" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;tiempo_busqueda_empleo&quot;</span> <span class="ot">=</span> <span class="st">&quot;tiempo_busqueda_empleo&quot;</span></span>
+<span id="cb62-13"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-13" aria-hidden="true" tabindex="-1"></a>        ), <span class="st">&quot;sexo&quot;</span></span>
+<span id="cb62-14"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-14" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb62-15"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb62-16"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb62-17"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotOutput</span>(<span class="st">&quot;gra1&quot;</span>)</span>
+<span id="cb62-18"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb62-19"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb62-20"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb62-20" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:foo1"></span>
+<img src="img/evparo1.png" alt="fluidPage, sidebarLayout, sidebarPanel por defecto" width="80%" />
+<p class="caption">
+Figura 4.1: fluidPage, sidebarLayout, sidebarPanel por defecto
+</p>
+</div>
+<p>La barra lateral puede posicionarse a la izquierda (por defecto) o a la derecha del área principal. Por ejemplo, para posicionar la barra lateral a la derecha se debe utilizar <code>position = 'right'</code> y éste es el resultado.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyUI</span>(<span class="fu">fluidPage</span>(</span>
+<span id="cb63-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">headerPanel</span>(<span class="st">&quot;Evolución del paro&quot;</span>),</span>
+<span id="cb63-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(<span class="at">position =</span> <span class="st">&quot;right&quot;</span>, ...)</span>
+<span id="cb63-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb63-4" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="img/evparo2.png" alt="fluidPage, sidebarLayout a la derecha" width="80%" />
+<p class="caption">
+Figura 4.2: fluidPage, sidebarLayout a la derecha
+</p>
+</div>
+<p>Las funciones <code>radioButtons</code> y <code>plotOutput</code> se introducirán en detalle en las respectivas secciones de este capítulo.</p>
+</div>
+<div id="segmentación-de-diseños-tabsetpanel-y-navlistpanel" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Segmentación de diseños: tabsetPanel() y navlistPanel()<a href="aplicaciones-webs-interactivas-con-shiny.html#segmentación-de-diseños-tabsetpanel-y-navlistpanel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para subdividir el panel principal en varias secciones discretas, se puede usar <code>tabsetPanel()</code> y `tabPanel()`` como sigue:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mainPanel</span>(</span>
+<span id="cb64-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabsetPanel</span>(</span>
+<span id="cb64-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb64-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tabPanel</span>(<span class="st">&quot;Plot1&quot;</span>, <span class="fu">plotOutput</span>(<span class="st">&quot;gra1&quot;</span>)),</span>
+<span id="cb64-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb64-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tabPanel</span>(<span class="st">&quot;Plot2&quot;</span>, <span class="fu">plotOutput</span>(<span class="st">&quot;gra2&quot;</span>)),</span>
+<span id="cb64-5"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tabPanel</span>(<span class="st">&quot;Plot3&quot;</span>, <span class="fu">plotOutput</span>(<span class="st">&quot;gra3&quot;</span>))</span>
+<span id="cb64-6"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb64-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb64-7"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb64-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><code>navlistPanel()</code> es una alternativa a <code>tabsetPanel()</code> cuando existan muchas separaciones. Un <code>navlist</code> presenta los distintos componentes como una lista de la barra lateral en lugar de utilizar pestañas y no se hace en el mainPanel.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb65-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb65-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;Application Title&quot;</span>),</span>
+<span id="cb65-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">navlistPanel</span>(</span>
+<span id="cb65-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb65-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Header A&quot;</span>,</span>
+<span id="cb65-5"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb65-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tabPanel</span>(<span class="st">&quot;Component 1&quot;</span>),</span>
+<span id="cb65-6"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb65-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tabPanel</span>(<span class="st">&quot;Component 2&quot;</span>),</span>
+<span id="cb65-7"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb65-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Header B&quot;</span>,</span>
+<span id="cb65-8"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb65-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tabPanel</span>(<span class="st">&quot;Component 3&quot;</span>)</span>
+<span id="cb65-9"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb65-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb65-10"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb65-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+</div>
+<div id="elementos-para-entrada-de-datos" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Elementos para entrada de datos<a href="aplicaciones-webs-interactivas-con-shiny.html#elementos-para-entrada-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para que el usuario de la aplicación <code>Shiny</code> introduzca datos manualmente, hay diversos elementos que se enumeran a continuación:</p>
+<ul>
+<li><strong>Control deslizante</strong>: Un control deslizante permite que el usuario seleccione entre un intervalo de valores moviendo un control de posición por una pista. En <code>Shiny</code> se crean con la función <code>sliderInput</code> que tiene, entre otros, los siguientes argumentos autoexplicativos:</li>
+</ul>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(inputId, label, min, max, value, <span class="at">step =</span> <span class="cn">NULL</span>, <span class="at">animate =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Sus características incluyen:</p>
+<pre><code>- La posibilidad de introducir un único valor y rangos
+
+- Formatos customizaods (por ejemplo para entradas relativas al dinero)
+
+- Pueden ser animados y recorrer los valores de forma automática (argumento `animate`)</code></pre>
+<p>Algunos ejemplos son:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(<span class="st">&quot;enteros&quot;</span>, <span class="st">&quot;Enteros:&quot;</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1000</span>, <span class="at">value =</span> <span class="dv">500</span>)</span>
+<span id="cb68-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(<span class="st">&quot;decimales&quot;</span>, <span class="st">&quot;Decimales:&quot;</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>, <span class="at">value =</span> <span class="fl">0.5</span>, <span class="at">step =</span> <span class="fl">0.1</span>)</span>
+<span id="cb68-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(<span class="st">&quot;rango&quot;</span>, <span class="st">&quot;Rango:&quot;</span>, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1000</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">500</span>))</span>
+<span id="cb68-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(<span class="st">&quot;animacion&quot;</span>, <span class="st">&quot;Animacion:&quot;</span>, <span class="dv">10</span>, <span class="dv">200</span>, <span class="dv">10</span>, <span class="at">step =</span> <span class="dv">10</span>, <span class="at">animate =</span> <span class="fu">animationOptions</span>(<span class="at">loop =</span> T))</span></code></pre></div>
+<ul>
+<li><strong>Botón circular</strong>: Un botón circular es un tipo de selector que da una lista de opciones entre las cuales solo se puede seleccionar una. En <code>Shiny</code> se crean con la función <code>radioButtons</code> que tiene, entre otros, los siguientes argumentos autoexplicativos:</li>
+</ul>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">radioButtons</span>(inputId, label, choices, <span class="at">selected =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<p>Un ejemplo donde la variable “sexo” está elegida por defecto se puede ver en el primer trozo de código de la subsección 2.1.1.1 sidebarLayout().</p>
+<ul>
+<li><strong>Selección múltiple</strong>: Un cuadro de selección múltiple es un tipo de selector que da una lista de opciones entre las cuales se pueden seleccionar varias. En <code>Shiny</code> se crean con la función <code>selectInput</code> que tiene, entre otros, los siguientes argumentos autoexplicativos:</li>
+</ul>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">selectInput</span>(inputId, label, choices, <span class="at">multiple =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">selectInput</span>(<span class="st">&quot;año&quot;</span>, <span class="st">&quot;Año:&quot;</span>,</span>
+<span id="cb71-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb71-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb71-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;año1&quot;</span> <span class="ot">=</span> <span class="st">&quot;2007&quot;</span>,</span>
+<span id="cb71-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb71-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;año2&quot;</span> <span class="ot">=</span> <span class="st">&quot;2013&quot;</span>,</span>
+<span id="cb71-5"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb71-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;año3&quot;</span> <span class="ot">=</span> <span class="st">&quot;2019&quot;</span>,</span>
+<span id="cb71-6"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb71-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;año4&quot;</span> <span class="ot">=</span> <span class="st">&quot;2022&quot;</span></span>
+<span id="cb71-7"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb71-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb71-8"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb71-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">multiple =</span> <span class="cn">TRUE</span></span>
+<span id="cb71-9"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb71-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<ul>
+<li><strong>checkboxGroupInput</strong></li>
+</ul>
+<p>Muy similar al anterior, este componente crea un grupo de casillas que se pueden utilizars para alternar varias opciones de forma independiente.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">checkboxGroupInput</span>(inputId, label, choices, <span class="at">multiple =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">checkboxGroupInput</span>(</span>
+<span id="cb73-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;variable&quot;</span>, <span class="st">&quot;Variables to show:&quot;</span>,</span>
+<span id="cb73-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb73-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb73-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;año1&quot;</span> <span class="ot">=</span> <span class="st">&quot;2007&quot;</span>,</span>
+<span id="cb73-5"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb73-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;año2&quot;</span> <span class="ot">=</span> <span class="st">&quot;2013&quot;</span>,</span>
+<span id="cb73-6"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb73-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;año3&quot;</span> <span class="ot">=</span> <span class="st">&quot;2019&quot;</span>,</span>
+<span id="cb73-7"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb73-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;año4&quot;</span> <span class="ot">=</span> <span class="st">&quot;2022&quot;</span></span>
+<span id="cb73-8"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb73-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb73-9"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb73-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<ul>
+<li><strong>Entrada numérica</strong></li>
+</ul>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">numericInput</span>(<span class="st">&quot;obs&quot;</span>, <span class="st">&quot;Numero de observaciones:&quot;</span>, <span class="dv">10</span>)</span></code></pre></div>
+<ul>
+<li><strong>Entrada de texto</strong></li>
+</ul>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">helpText</span>(<span class="st">&quot;aclaraciones&quot;</span>)</span></code></pre></div>
+<p>Otras opciones de entrada que se invita al lector a analizar se relacionan con las fechas: <code>dateInput()</code>, <code>dateRangeInput()</code> y con un áreas de texto: <code>textAreaInput()</code>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-44"></span>
+<img src="img/entradas2.png" alt="Distintos elementos para la entrada de datos" width="80%" />
+<p class="caption">
+Figura 4.3: Distintos elementos para la entrada de datos
+</p>
+</div>
+<div id="lectura-de-ficheros-de-datos" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Lectura de ficheros de datos<a href="aplicaciones-webs-interactivas-con-shiny.html#lectura-de-ficheros-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>También es posible introducir información a través de la lectura de ficheros de datos con la función <code>fileInput()</code>. Podemos combinar valores por defecto de la función utilizada para la lectura de datos con algunos de los elementos anteriores para definir las características del dataset (seaprador, decimal, cabecera). En el siguiente ejemplo se utiliza la función <code>read.csv</code> y como separador siempre punto y coma, mientras que los demás elementos se dan a elegir.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyUI</span>(<span class="fu">fluidPage</span>(</span>
+<span id="cb76-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">headerPanel</span>(<span class="st">&quot;Lectura de datos&quot;</span>),</span>
+<span id="cb76-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarPanel</span>(</span>
+<span id="cb76-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">h4</span>(<span class="st">&quot;Cargar fichero CSV&quot;</span>),</span>
+<span id="cb76-5"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fileInput</span>(<span class="st">&quot;file1&quot;</span>, <span class="st">&quot;&quot;</span>,</span>
+<span id="cb76-6"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">accept =</span> <span class="fu">c</span>(<span class="st">&quot;text/csv&quot;</span>, <span class="st">&quot;text/comma-separated-values,text/plain&quot;</span>, <span class="st">&quot;.csv&quot;</span>)</span>
+<span id="cb76-7"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb76-8"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">checkboxInput</span>(<span class="st">&quot;header&quot;</span>, <span class="st">&quot;Header (el csv tiene nombres de variables)&quot;</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb76-9"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">radioButtons</span>(</span>
+<span id="cb76-10"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;dec&quot;</span>, <span class="st">&quot;Separador de decimales:&quot;</span>,</span>
+<span id="cb76-11"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(</span>
+<span id="cb76-12"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Punto&quot;</span> <span class="ot">=</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb76-13"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Coma&quot;</span> <span class="ot">=</span> <span class="st">&quot;.&quot;</span></span>
+<span id="cb76-14"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-14" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb76-15"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb76-16"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-16" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb76-17"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mainPanel</span>(</span>
+<span id="cb76-18"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tabsetPanel</span>(</span>
+<span id="cb76-19"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tabPanel</span>(</span>
+<span id="cb76-20"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;CSV&quot;</span>,</span>
+<span id="cb76-21"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">h4</span>(<span class="st">&quot;Vista del fichero CSV&quot;</span>),</span>
+<span id="cb76-22"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tableOutput</span>(<span class="st">&quot;contents&quot;</span>)</span>
+<span id="cb76-23"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-23" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb76-24"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb76-25"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb76-26"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb76-26" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:foo"></span>
+<img src="img/lecturadatos.png" alt="Lectura de datos" width="80%" />
+<p class="caption">
+Figura 4.4: Lectura de datos
+</p>
+</div>
+</div>
+</div>
+<div id="elementos-para-visualización-salida" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Elementos para visualización (salida)<a href="aplicaciones-webs-interactivas-con-shiny.html#elementos-para-visualización-salida" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tras la introducción de ciertos parámetros en el <code>ui.R</code>, éstos se pueden utilizar en el script <code>server.R</code> mediante la expresión <code>input</code>. El código de <strong>R</strong> que construye el objeto basado en esos datos se desarrolla en el servidor y para generar esos objetos se utilizan las funciones <code>renderX</code> donde X es el tipo de objeto a devolver. Por úlitmo, este objeto se referencia nuevamente en el <code>ui.R</code> en el lugar que se desea mostrar (panel) a través de la expresión <code>XOutput</code>.</p>
+<p>El hecho de colocar una función en <code>ui</code> le dice a <code>Shiny</code> dónde mostrar su objeto. A continuación, hay que decirle a <code>Shiny</code> cómo construir el objeto.
+Esto se hace proporcionando el código <strong>R</strong> que construye el objeto en la función del servidor.</p>
+<p>En concreto, algunas posibildiades son se pueden ver en la Tabla @ref(tab:my_table).</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Server
+</th>
+<th style="text-align:left;">
+Ui
+</th>
+<th style="text-align:left;">
+Crea
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+renderImage
+</td>
+<td style="text-align:left;">
+imageOutput
+</td>
+<td style="text-align:left;">
+Imagen
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+renderPlot
+</td>
+<td style="text-align:left;">
+plotOutput
+</td>
+<td style="text-align:left;">
+Grafico
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+renderTable
+</td>
+<td style="text-align:left;">
+tableOutput
+</td>
+<td style="text-align:left;">
+Tabla
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+renderText
+</td>
+<td style="text-align:left;">
+textOutput
+</td>
+<td style="text-align:left;">
+Texto
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+htmlOutput
+</td>
+<td style="text-align:left;">
+HTML
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+verbatimTextOutput
+</td>
+<td style="text-align:left;">
+Texto verbatim
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Gráficos</strong>: Para generar la aplicación de la Figura <a href="aplicaciones-webs-interactivas-con-shiny.html#fig:foo1">4.1</a>, se utiliza <code>renderPlot</code> en el server.R como sigue:</li>
+</ul>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;source.R&quot;</span>)</span>
+<span id="cb77-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyServer</span>(<span class="cf">function</span>(input, output) {</span>
+<span id="cb77-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb77-3" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>gra1 <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb77-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb77-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">graf_evol</span>(input<span class="sc">$</span>vble)</span>
+<span id="cb77-5"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb77-5" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb77-6"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb77-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p>Se ha llamado <code>gra1</code> a la variable que es el gráfico y que se crea con <code>renderPlot()</code>. En el interior se utiliza una función denominada <code>graf_evol</code> que es compleja y se crea en el<code>source.R</code> que se carga al principio. Lo que interesa de esta función es que tiene como único argumento el nombre de la variable por el cual crear el gráfico, que puede ser una de las diversas opciones que se dan a través del radioButton vble creado anteriormente y que, como vemos, se utiliza <code>input$vble</code> para invocar a la selección realizada en la interfaz de usuario.</p>
+<ul>
+<li><strong>Tablas</strong>: Para mostrar la tabla de la Figura <a href="aplicaciones-webs-interactivas-con-shiny.html#fig:foo">4.4</a> se utiliza <code>renderTable()</code> en el server y <code>tableOutput()</code> en el ui.</li>
+</ul>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyServer</span>(<span class="cf">function</span>(input, output) {</span>
+<span id="cb78-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb78-2" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>contents <span class="ot">&lt;-</span> <span class="fu">renderTable</span>({</span>
+<span id="cb78-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb78-3" aria-hidden="true" tabindex="-1"></a>    inFile <span class="ot">&lt;-</span> input<span class="sc">$</span>file1</span>
+<span id="cb78-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb78-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.null</span>(inFile)) {</span>
+<span id="cb78-5"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb78-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb78-6"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb78-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb78-7"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb78-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read.csv</span>(inFile<span class="sc">$</span>datapath, <span class="at">header =</span> input<span class="sc">$</span>header, <span class="at">dec =</span> input<span class="sc">$</span>dec, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb78-8"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb78-8" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb78-9"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb78-9" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+</div>
+<div id="reactividad" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Reactividad<a href="aplicaciones-webs-interactivas-con-shiny.html#reactividad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El modelo de reactividad que utiliza <code>Shiny</code> es el siguiente: hay una fuente reactiva, un conductor reactivo y un punto final de la reactividad.
+La fuente reactiva suele ser lo que el usuario introduce y el punto de parada lo que se muestra por pantalla. A lo que el usuario introduce se accede con el objeto input y a lo que se muestra por pantalla con el objeto output.
+Un ejemplo que ya se ha usado es el siguiente:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb79-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>gra1 <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb79-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">graf_evol</span>(input<span class="sc">$</span>vble)</span>
+<span id="cb79-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb79-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p>El objeto <code>output$gra1</code> es un punto final de la reactividad, y usa la fuente reactiva <code>input$vble</code>. Cuando <code>input$vbles</code> cambia, a <code>output$gra1</code> se le notifica que necesita ejecutarse de nuevo.</p>
+<div id="conductores-reactivos-y-control-de-la-reactividad" class="section level3 hasAnchor" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> Conductores reactivos y control de la reactividad<a href="aplicaciones-webs-interactivas-con-shiny.html#conductores-reactivos-y-control-de-la-reactividad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>También es posible crear componentes reactivos que conecten los inputs y los outputs. En el siguiente ejemplo se ha creado un objeto reactivo <code>datos</code> que genera datos que siguen una distribución que el usuario selecciona a través del radioButton <code>dist</code> y cuya muestra tiene tantos elementos como el usuario haya especificado en el numericInput <code>obs</code>.</p>
+<p><code>Shiny</code>, además, permite controlar la reactividad a través de los actionButtons. Se pueden modificar las entradas sin obtener una respuesta hasta que se apriete dicho botón.</p>
+<p>Se ha creado un panel nuevo dentro del mainPanel y éste contendrá, además del <code>plot</code> previo, un <code>actionButton</code> con la etiqueta <code>Presiona</code>.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyUI</span>(<span class="fu">fluidPage</span>(</span>
+<span id="cb80-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">headerPanel</span>(<span class="st">&quot;Controlar reactividad&quot;</span>),</span>
+<span id="cb80-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarPanel</span>(</span>
+<span id="cb80-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">radioButtons</span>(<span class="st">&quot;dist&quot;</span>, <span class="st">&quot;Tipo de distribucion:&quot;</span>,</span>
+<span id="cb80-5"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(</span>
+<span id="cb80-6"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Normal&quot;</span> <span class="ot">=</span> <span class="st">&quot;norm&quot;</span>,</span>
+<span id="cb80-7"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Uniforme&quot;</span> <span class="ot">=</span> <span class="st">&quot;unif&quot;</span>,</span>
+<span id="cb80-8"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Log-normal&quot;</span> <span class="ot">=</span> <span class="st">&quot;lnorm&quot;</span>,</span>
+<span id="cb80-9"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Exponencial&quot;</span> <span class="ot">=</span> <span class="st">&quot;exp&quot;</span></span>
+<span id="cb80-10"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-10" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb80-11"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">selected =</span> <span class="st">&quot;Exponencial&quot;</span></span>
+<span id="cb80-12"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb80-13"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">numericInput</span>(<span class="st">&quot;obs&quot;</span>, <span class="st">&quot;Numero de observaciones:&quot;</span>, <span class="dv">10</span>),</span>
+<span id="cb80-14"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-14" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb80-15"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mainPanel</span>(</span>
+<span id="cb80-16"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tabPanel</span>(</span>
+<span id="cb80-17"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Histograma distribucion RadioButton&quot;</span>,</span>
+<span id="cb80-18"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-18" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;Plot&quot;</span>, <span class="fu">plotOutput</span>(<span class="st">&quot;plot&quot;</span>), <span class="fu">actionButton</span>(<span class="st">&quot;botonReac&quot;</span>, <span class="st">&quot;Presiona&quot;</span>)</span>
+<span id="cb80-19"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb80-20"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb80-21"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb80-21" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div>
+<p>A continuación, se hace referencia a ese botón para cada una de las expresiones reactivas que se aislarán con la función <code>isolate</code>:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyServer</span>(<span class="cf">function</span>(input, output) {</span>
+<span id="cb81-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  datos <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb81-3"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (input<span class="sc">$</span>botonReac <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb81-4"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">dist</span>(<span class="fu">rexp</span>(input<span class="sc">$</span>obs)))</span>
+<span id="cb81-5"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb81-6"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">isolate</span>({</span>
+<span id="cb81-7"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-7" aria-hidden="true" tabindex="-1"></a>      dist <span class="ot">&lt;-</span> <span class="cf">switch</span>(input<span class="sc">$</span>dist,</span>
+<span id="cb81-8"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">norm =</span> rnorm,</span>
+<span id="cb81-9"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">unif =</span> runif,</span>
+<span id="cb81-10"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">lnorm =</span> rlnorm,</span>
+<span id="cb81-11"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">exp =</span> rexp,</span>
+<span id="cb81-12"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-12" aria-hidden="true" tabindex="-1"></a>        rnorm</span>
+<span id="cb81-13"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-13" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb81-14"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-15"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">dist</span>(input<span class="sc">$</span>obs)</span>
+<span id="cb81-16"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-16" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb81-17"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-17" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb81-18"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-19"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-19" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb81-20"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (input<span class="sc">$</span>botonReac <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb81-21"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb81-22"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb81-23"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">isolate</span>({</span>
+<span id="cb81-24"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">hist</span>(<span class="fu">datos</span>(),</span>
+<span id="cb81-25"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">&quot;r&quot;</span>, input<span class="sc">$</span>dist, <span class="st">&quot;(&quot;</span>, input<span class="sc">$</span>obs, <span class="st">&quot;)&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb81-26"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-26" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb81-27"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-27" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb81-28"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-28" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb81-29"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb81-29" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-52"></span>
+<img src="img/controlar.png" alt="Barras" width="80%" />
+<p class="caption">
+Figura 4.5: Barras
+</p>
+</div>
+</div>
+</div>
+<div id="publicación-de-la-aplicación-en-la-web" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Publicación de la aplicación en la web<a href="aplicaciones-webs-interactivas-con-shiny.html#publicación-de-la-aplicación-en-la-web" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Después del desarrollo de una aplicación <code>Shiny</code>, suele ser interesante publicarla para su explotación científica o empresarial. Rstudio ofrece diversas soluciones que se analizarán, con distintos niveles de complejidad y libertad para poder publicar la aplicación web : (i) shinyapps.io, (ii) Shiny Server y (iii) RStudio Connect.</p>
+<p>Se dará una introducción muy breve a cada uno de ellos y enlaces para que el lectro pueda indagar en profundidad</p>
+<ul>
+<li>Shinyapps.io</li>
+</ul>
+<p>Rstudio ofrece un servicio de <em>hosting</em> denominado Shinyapps.io que permite subir la aplicación directamente desde la sesión de <strong>R</strong> a un servidor que se mantiene por Rstudio. Hay un control casi completo sobre la aplicación, incluyendo la administración del servidor.</p>
+<p>Lo único que se necesita es:
+- Un entorno de desarrollo de R, como RStudio IDE
+- La última versión del paquete rsconnect</p>
+<p>En la web <a href="shinyapps.io">shinyapps.io</a> en el apartado “Dashboard” se realiza el registro. Shinyapps.io genera de forma automática un token que el paquete <code>rsconnect</code> utiliza para acceder a la cuenta.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb82-1" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">setAccountInfo</span>(<span class="at">name =</span> <span class="st">&quot;&lt;ACCOUNT&gt;&quot;</span>, <span class="at">token =</span> <span class="st">&quot;&lt;TOKEN&gt;&quot;</span>, <span class="at">secret =</span> <span class="st">&quot;&lt;SECRET&gt;&quot;</span>)</span></code></pre></div>
+<p>Para desplegar la aplicación utiliza <code>deployApp()</code> como sigue</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsconnect)</span>
+<span id="cb83-2"><a href="aplicaciones-webs-interactivas-con-shiny.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">deployApp</span>()</span></code></pre></div>
+<p>Para más información sobre este método, consulta la página <a href="https://shiny.rstudio.com/articles/shinyapps.html">https://shiny.rstudio.com/articles/shinyapps.html</a></p>
+<ul>
+<li><code>Shiny</code> Server</li>
+</ul>
+<p><code>Shiny</code> server construye un servidor web diseñado para hospedar aplicaciones <code>Shiny</code>. Es gratuito, de código abierto y está disponible en GitHub.</p>
+<p>Para usar el <code>Shiny</code> Server, es necesario tener un servidor Linux que tenga soporte explícito para Ubuntu 12.04 or superior (64 bit) y CentOS/RHEL 5 (64 bit). Si no se está utilizando una distribución con soporte explícito, se puede aún así utilizar construyéndolo desde el paqeute fuente.</p>
+<p>En el mismo <code>Shiny</code> Server se pueden hospedar múltiples aplicaciones <code>Shiny</code>. Para ver instrucciones detalladas para su instalación y configuración, se recomienda la guía <code>Shiny</code> Server <a href="https://docs.rstudio.com/shiny-server">https://docs.rstudio.com/shiny-server</a>.`</p>
+<ul>
+<li>RStudio Connect</li>
+</ul>
+<p>Cuando <code>Shiny</code> se utiliza en entornos con fines lucrativos, existen herramientas de servidor que se pueden comprar y que vienen equipadas con los programas habituales de un servidor de pago:</p>
+<ul>
+<li>Soporte SSL</li>
+<li>Herramientas de administrador</li>
+<li>Soporte prioritario</li>
+</ul>
+<p>Para ello, la plataforma de publicación RStudio Connect puede ser una solución. Esta herramienta permite compartir aplicacciones <code>Shiny</code>, informes RMarkdown, cuadros de mando, gráficos, Jupyter Notebooks y más.
+Con RStudio Connect se puede programar la ejecución de informes y políticas de seguridad flexibles.</p>
+</div>
+<div id="extensiones-de-shiny" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Extensiones de <code>Shiny</code><a href="aplicaciones-webs-interactivas-con-shiny.html#extensiones-de-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>Shiny</code> es una herramienta totalmente expansible. Lo que se ha mostrado en este capítulo hasta ahora es un aperitivo en relación a todas las posibilidades que existen en el mundo de <code>Shiny</code>. Hay repositorios que recopilan información sobre paquetes que proveen de mejoras a las aplicaciones <code>Shiny</code> en su estilo y funcionalidad <span class="citation">(<a href="#ref-awesome2" role="doc-biblioref"><strong>awesome2?</strong></a>)</span>. En esta sección se mencionarán algunos de ellos pero, sobre todo, se econmienda al lector els visitar dichos repositorios para una mayor profundidad en este tema.</p>
+<ul>
+<li><code>shinydashboard</code>, <code>shinydashboardPlus</code> y <code>flexdashboards</code></li>
+</ul>
+<p>En temas de estilo, se destacan éstos tres paquetes. Los dos primeros presentan una serie de plantillas predefinidas para la creación de las aplicaciones <code>Shiny</code>, de manera que los colores combinan y los elementos visuales tienen cierta armonía.</p>
+<p>Por su parte, flexdashboards tiene como base un documento <em>R Markdown</em> y los distintos niveles del mismo definen los paneles de la aplicación a crear.</p>
+<ul>
+<li><code>shinyWidgets</code></li>
+</ul>
+<p>Este paquete ofrece <em>widgets</em> personalizados y diversos componentes para mejorar las aplicaciones. Se pueden reemplazar los <code>checkboxes</code> por <code>switch buttons</code>, añadir colores a los <code>radioButtons</code> y al grupo de casillas de verificación (<code>checkboxGroupInput</code>), etc. Cada widget tiene un método de actualización para cambiar el valor de una entrada del server.</p>
+<ul>
+<li><code>shinycssloaders</code></li>
+</ul>
+<p>Cuando una salida de <code>Shiny</code> (un gráfico, una tabla, etc.) se está calculando, permanece visible pero en gris. Si hay procesos algo más complejos, pueden tardar en mostrarse. Utilizando <code>shinycssloaders</code>, se puede añadir una rueda de carga (<em>spinner</em>) a las salidas en lugar de hacerlas grises. Envolviendo una salida <code>Shiny</code> en <code>withSpinner()</code>, el <em>spinner</em> aparecerá automáticamente mientras la salida se recalcula. Hay 8 tipos de animación incorporadas y personalizables en color y tamaño, pero también se pueden cargar otras animaciones.</p>
+<ul>
+<li>Visualizaciones interactivas</li>
+</ul>
+<p>Paquetes como <em>heatmaply</em> o <em>leaflet</em> se pueden combinar perfectamente con <code>Shiny</code> para crear mapas de calor y mapas geográficos interactivos y utilizarlos en las aplicaciones.</p>
+<div class="infobox_resume">
+<p><strong>RESUMEN</strong></p>
+<p><code>Shiny</code> es un paquete de <strong>R</strong> que permite crear aplicaciones web interactivas requiriendo únicamente conocimientos de R. En la primera parte de este capítulo se muestran los elementos básicos de una aplicación <code>Shiny</code>: user interface (ui.R) y servidor (server.R), se muestran posibles diseños en relación a los componentes que una aplicación puede tener: barra lateral, paneles discretos, paneles de navegación, etc. A continuación, se repasan los elementos de entrada de datos en una aplicación <code>Shiny</code>, incluyendo la carga de conjuntos de datos y también los elementos de salida como gráficas y tablas. También se repasa el modelo reactividad, es decir, cómo al cambiar algo en los parámetros de entrada de forma dinámica cambia la salida y cómo controlarlo y se muestran distintas opciones para la publicación de las aplicaciones <code>Shiny</code>. Por último, se mencionan algunas de las posibles extensiones al paquete.</p>
+</div>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Baddeley, Adrian, and Rolf Turner. 2005. <span>“<span class="nocase">spatstat</span>: An <span>R</span> Package for Analyzing Spatial Point Patterns.”</span> <em>Journal of Statistical Software</em> 12 (6): 1–42. <a href="https://doi.org/10.18637/jss.v012.i06">https://doi.org/10.18637/jss.v012.i06</a>.
+</div>
+<div class="csl-entry">
+Cressie, Noel A. C. 1993. <em>Statistics for <span>Spatial</span> <span>Data</span></em>. Wiley <span>Series</span> in <span>Probability</span> and <span>Statistics</span>. Hoboken, NJ, USA: John Wiley &amp; Sons, Inc. <a href="https://doi.org/10.1002/9781119115151">https://doi.org/10.1002/9781119115151</a>.
+</div>
+<div class="csl-entry">
+Montero, José María, Gema Fernández-Avilés, Jorge Mateu, and Emilio Porcu. 2011. <span>“Geoestadística Espacial y Espacio-Temporal: Vino Nuevo, Cepas Viejas.”</span> In <em>Historia de La Probabilidad y La Estadística (<span>V</span>)</em>, edited by José María Riobóo Almanzor and Irene Riobóo Lestón, 163–78. Santiago de Compostela, Spain: A.H.E.P.E.
+</div>
+<div class="csl-entry">
+Pizarro, Manuel, Diego Hernangómez, and Gema Fernández-Avilés. 2021. <em><span class="nocase">climaemet</span>: Climate <span>AEMET</span> Tools</em>. <a href="https://doi.org/10.5281/zenodo.5205573">https://doi.org/10.5281/zenodo.5205573</a>.
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="grafos.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Ciencia_de_datos_con_r.pdf", "Ciencia_de_datos_con_r.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

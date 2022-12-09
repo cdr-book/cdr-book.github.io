@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 13 Fundamentos de Inferencia Estadística | Fundamentos de ciencia de datos con R</title>
+  <meta name="description" content="Falta hacer" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 13 Fundamentos de Inferencia Estadística | Fundamentos de ciencia de datos con R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Falta hacer" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 13 Fundamentos de Inferencia Estadística | Fundamentos de ciencia de datos con R" />
+  
+  <meta name="twitter:description" content="Falta hacer" />
+  
+
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero" />
+
+
+<meta name="date" content="2022-12-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="Funda-probab.html"/>
+<link rel="next" href="muestreo.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33KQ1S5ZCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-33KQ1S5ZCJ');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Ciencia de datos con <strong>R</strong></a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Fundamentos y ‘tool-kit’ de la ciencia de datos</b></span></li>
+<li class="chapter" data-level="1" data-path="ciencia-datos.html"><a href="ciencia-datos.html"><i class="fa fa-check"></i><b>1</b> ¿Es la Ciencia de datos una Ciencia?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ciencia-datos.html"><a href="ciencia-datos.html#ciencia"><i class="fa fa-check"></i><b>1.1</b> ¿Qué se entiende por Ciencia?</a></li>
+<li class="chapter" data-level="1.2" data-path="ciencia-datos.html"><a href="ciencia-datos.html#qué-es-la-ciencia-de-datos"><i class="fa fa-check"></i><b>1.2</b> ¿Qué es la Ciencia de Datos?</a></li>
+<li class="chapter" data-level="1.3" data-path="ciencia-datos.html"><a href="ciencia-datos.html#lo-científico-de-la-ciencia-de-datos"><i class="fa fa-check"></i><b>1.3</b> Lo científico de la Ciencia de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="metodología.html"><a href="metodología.html"><i class="fa fa-check"></i><b>2</b> Metodología para la Ciencia de datos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="metodología.html"><a href="metodología.html#preliminares"><i class="fa fa-check"></i><b>2.1</b> Preliminares</a></li>
+<li class="chapter" data-level="2.2" data-path="metodología.html"><a href="metodología.html#principales-metodologías-en-ciencia-de-datos"><i class="fa fa-check"></i><b>2.2</b> Principales metodologías en Ciencia de datos</a></li>
+<li class="chapter" data-level="2.3" data-path="metodología.html"><a href="metodología.html#met-crisp-dm"><i class="fa fa-check"></i><b>2.3</b> CRISP-DM para Ciencia de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch-110003.html"><a href="ch-110003.html"><i class="fa fa-check"></i><b>3</b> R para ciencia de datos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ch-110003.html"><a href="ch-110003.html#introducción"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
+<li class="chapter" data-level="3.2" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-bases"><i class="fa fa-check"></i><b>3.2</b> La sesión de R</a></li>
+<li class="chapter" data-level="3.3" data-path="ch-110003.html"><a href="ch-110003.html#instalación-de-r"><i class="fa fa-check"></i><b>3.3</b> Instalación de R</a></li>
+<li class="chapter" data-level="3.4" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-proyectos"><i class="fa fa-check"></i><b>3.4</b> Trabajar con proyectos de RStudio</a></li>
+<li class="chapter" data-level="3.5" data-path="ch-110003.html"><a href="ch-110003.html#manipulación-de-datos-con-r"><i class="fa fa-check"></i><b>3.5</b> Manipulación de datos con R</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-estructuras"><i class="fa fa-check"></i><b>3.5.1</b> Estructuras y tipos de datos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-importacion"><i class="fa fa-check"></i><b>3.5.2</b> Importación de datos</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ch-110003.html"><a href="ch-110003.html#exportación-y-archivos-de-datos-de-r"><i class="fa fa-check"></i><b>3.5.3</b> Exportación y archivos de datos de R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-tidyverse"><i class="fa fa-check"></i><b>3.6</b> Organización de datos con el <em>tidyverse</em></a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ch-110003.html"><a href="ch-110003.html#el-tidyverse-y-su-flujo-de-trabajo"><i class="fa fa-check"></i><b>3.6.1</b> El <em>tidyverse</em> y su flujo de trabajo</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ch-110003.html"><a href="ch-110003.html#transformación-de-datos-con-dplyr"><i class="fa fa-check"></i><b>3.6.2</b> Transformación de datos con <code>dplyr</code></a></li>
+<li class="chapter" data-level="3.6.3" data-path="ch-110003.html"><a href="ch-110003.html#combinación-de-datos"><i class="fa fa-check"></i><b>3.6.3</b> Combinación de datos</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ch-110003.html"><a href="ch-110003.html#reorganización-de-datos"><i class="fa fa-check"></i><b>3.6.4</b> Reorganización de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><i class="fa fa-check"></i><b>4</b> Gestión y operación de datos con bases de datos relacionales</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#introducción-1"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#concepto-de-base-de-datos"><i class="fa fa-check"></i><b>4.2</b> Concepto de Base de datos</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#gestión-de-los-datos-en-una-base-o-repositorio-de-datos"><i class="fa fa-check"></i><b>4.2.1</b> Gestión de los datos en una base o repositorio de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#el-lenguaje-estructurado-de-consulta-sql"><i class="fa fa-check"></i><b>4.3</b> El Lenguaje Estructurado de Consulta (SQL)</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#sql-como-lenguaje-de-definición-de-datos-ldd"><i class="fa fa-check"></i><b>4.3.1</b> SQL como Lenguaje de Definición de Datos (LDD)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#sql-como-lenguaje-de-manipulación-de-datos-lmd"><i class="fa fa-check"></i><b>4.3.2</b> SQL como Lenguaje de Manipulación de Datos (LMD)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#sql-como-lenguaje-de-administración-de-datos-lad"><i class="fa fa-check"></i><b>4.3.3</b> SQL como Lenguaje de Administración de Datos (LAD)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#usando-bases-de-datos-desde-r"><i class="fa fa-check"></i><b>4.4</b> Usando bases de datos desde R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#conexión-a-una-base-de-datos"><i class="fa fa-check"></i><b>4.4.1</b> Conexión a una base de datos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#operaciones-de-lectura-selección-read-de-datos"><i class="fa fa-check"></i><b>4.4.2</b> Operaciones de lectura / selección (<em>read</em>) de datos</a></li>
+<li class="chapter" data-level="4.4.3" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#operaciones-de-inserción-create-y-actualización-update-de-datos"><i class="fa fa-check"></i><b>4.4.3</b> Operaciones de inserción (<em>create</em>) y actualización (<em>update</em>) de datos</a></li>
+<li class="chapter" data-level="4.4.4" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#operaciones-de-borrado-de-datos-delete"><i class="fa fa-check"></i><b>4.4.4</b> Operaciones de Borrado de datos (<em>delete</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datos-no-sql.html"><a href="datos-no-sql.html"><i class="fa fa-check"></i><b>5</b> Gestión y operación de datos masivos (BigData) con bases de datos NoSQL</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="datos-no-sql.html"><a href="datos-no-sql.html#introducción-al-big-data"><i class="fa fa-check"></i><b>5.1</b> Introducción al Big Data</a></li>
+<li class="chapter" data-level="5.2" data-path="datos-no-sql.html"><a href="datos-no-sql.html#VsBigData"><i class="fa fa-check"></i><b>5.2</b> Las V’s del Big Data</a></li>
+<li class="chapter" data-level="5.3" data-path="datos-no-sql.html"><a href="datos-no-sql.html#fuentes-de-datos-en-entornos-big-data"><i class="fa fa-check"></i><b>5.3</b> Fuentes de Datos en entornos Big Data</a></li>
+<li class="chapter" data-level="5.4" data-path="datos-no-sql.html"><a href="datos-no-sql.html#bases-de-datos-relacionales-vs.-nosql"><i class="fa fa-check"></i><b>5.4</b> Bases de datos Relacionales vs. NoSQL</a></li>
+<li class="chapter" data-level="5.5" data-path="datos-no-sql.html"><a href="datos-no-sql.html#bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5</b> Bases de datos NoSQL</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="datos-no-sql.html"><a href="datos-no-sql.html#definición-de-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5.1</b> Definición de bases de datos NoSQL</a></li>
+<li class="chapter" data-level="5.5.2" data-path="datos-no-sql.html"><a href="datos-no-sql.html#necesidades-no-cubiertas-por-las-bases-de-datos-relacionales"><i class="fa fa-check"></i><b>5.5.2</b> Necesidades no cubiertas por las bases de datos relacionales</a></li>
+<li class="chapter" data-level="5.5.3" data-path="datos-no-sql.html"><a href="datos-no-sql.html#tipos-de-almacenamiento-en-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5.3</b> Tipos de almacenamiento en bases de datos NoSQL</a></li>
+<li class="chapter" data-level="5.5.4" data-path="datos-no-sql.html"><a href="datos-no-sql.html#limitaciones-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5.4</b> Limitaciones de las bases de datos NoSQL</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="datos-no-sql.html"><a href="datos-no-sql.html#ejemplo-de-integración-de-una-base-de-datos-nosql-y-análisis-de-datos-en-r"><i class="fa fa-check"></i><b>5.6</b> Ejemplo de integración de una base de datos NoSQL y análisis de datos en R</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="datos-no-sql.html"><a href="datos-no-sql.html#introMongo"><i class="fa fa-check"></i><b>5.6.1</b> Introducción a MongoDB</a></li>
+<li class="chapter" data-level="5.6.2" data-path="datos-no-sql.html"><a href="datos-no-sql.html#paquetesCaso"><i class="fa fa-check"></i><b>5.6.2</b> Plataforma tecnológica para el caso práctico</a></li>
+<li class="chapter" data-level="5.6.3" data-path="datos-no-sql.html"><a href="datos-no-sql.html#conexionMongo"><i class="fa fa-check"></i><b>5.6.3</b> Conexión y acceso a MongoDB desde R</a></li>
+<li class="chapter" data-level="5.6.4" data-path="datos-no-sql.html"><a href="datos-no-sql.html#consultaViajes"><i class="fa fa-check"></i><b>5.6.4</b> Obtención de datos en R desde MongoDB</a></li>
+<li class="chapter" data-level="5.6.5" data-path="datos-no-sql.html"><a href="datos-no-sql.html#analisisViajes"><i class="fa fa-check"></i><b>5.6.5</b> Analizando datos de MongoDB en R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="id_120007-informes.html"><a href="id_120007-informes.html"><i class="fa fa-check"></i><b>6</b> Informes reproducibles con R-markdown -&gt; Quarto</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="id_120007-informes.html"><a href="id_120007-informes.html#introducción-2"><i class="fa fa-check"></i><b>6.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="id_120007-informes.html"><a href="id_120007-informes.html#por-qué-informes-reproducibles"><i class="fa fa-check"></i><b>6.1.1</b> ¿Por qué informes reproducibles?</a></li>
+<li class="chapter" data-level="6.1.2" data-path="id_120007-informes.html"><a href="id_120007-informes.html#markdown-r-markdown-y-rstudio"><i class="fa fa-check"></i><b>6.1.2</b> Markdown, R Markdown y RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="id_120007-informes.html"><a href="id_120007-informes.html#documentos-r-markdown"><i class="fa fa-check"></i><b>6.2</b> Documentos R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="id_120007-informes.html"><a href="id_120007-informes.html#encabezado-yaml-y-configuración"><i class="fa fa-check"></i><b>6.2.1</b> Encabezado YAML y configuración</a></li>
+<li class="chapter" data-level="6.2.2" data-path="id_120007-informes.html"><a href="id_120007-informes.html#formateado-de-texto"><i class="fa fa-check"></i><b>6.2.2</b> Formateado de texto</a></li>
+<li class="chapter" data-level="6.2.3" data-path="id_120007-informes.html"><a href="id_120007-informes.html#inclusión-de-código"><i class="fa fa-check"></i><b>6.2.3</b> Inclusión de código</a></li>
+<li class="chapter" data-level="6.2.4" data-path="id_120007-informes.html"><a href="id_120007-informes.html#opciones-de-los-bloques-de-código-chunks"><i class="fa fa-check"></i><b>6.2.4</b> Opciones de los bloques de código (<em>chunks</em>)</a></li>
+<li class="chapter" data-level="6.2.5" data-path="id_120007-informes.html"><a href="id_120007-informes.html#editor-visual"><i class="fa fa-check"></i><b>6.2.5</b> Editor visual</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="id_120007-informes.html"><a href="id_120007-informes.html#otros-formatos"><i class="fa fa-check"></i><b>6.3</b> Otros formatos</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>7</b> Git y GitHub en R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="github.html"><a href="github.html#qué-es-git"><i class="fa fa-check"></i><b>7.1</b> ¿Qué es Git?</a></li>
+<li class="chapter" data-level="7.2" data-path="github.html"><a href="github.html#qué-es-github"><i class="fa fa-check"></i><b>7.2</b> ¿Qué es GitHub?</a></li>
+<li class="chapter" data-level="7.3" data-path="github.html"><a href="github.html#por-qué-usar-git-y-github"><i class="fa fa-check"></i><b>7.3</b> ¿Por qué usar Git y GitHub?</a></li>
+<li class="chapter" data-level="7.4" data-path="github.html"><a href="github.html#configuración"><i class="fa fa-check"></i><b>7.4</b> Configuración</a></li>
+<li class="chapter" data-level="7.5" data-path="github.html"><a href="github.html#configurar-git"><i class="fa fa-check"></i><b>7.5</b> Configurar git</a></li>
+<li class="chapter" data-level="7.6" data-path="github.html"><a href="github.html#workflow"><i class="fa fa-check"></i><b>7.6</b> Workflow</a></li>
+</ul></li>
+<li class="part"><span><b>II Manipulación de datos con R. Técnicas y herramientas</b></span></li>
+<li class="chapter" data-level="8" data-path="id_120006-aed.html"><a href="id_120006-aed.html"><i class="fa fa-check"></i><b>8</b> Análisis exploratorio de datos</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#introducción-3"><i class="fa fa-check"></i><b>8.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#el-cuarterto-de-anscombe"><i class="fa fa-check"></i><b>8.1.1</b> El cuarterto de Anscombe</a></li>
+<li class="chapter" data-level="8.1.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#conceptos-generales"><i class="fa fa-check"></i><b>8.1.2</b> Conceptos generales</a></li>
+<li class="chapter" data-level="8.1.3" data-path="id_120006-aed.html"><a href="id_120006-aed.html#componentes-de-un-gráfico-y-su-representación-en-r"><i class="fa fa-check"></i><b>8.1.3</b> Componentes de un gráfico y su representación en R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#id_120006-aeduni"><i class="fa fa-check"></i><b>8.2</b> Análisis exploratorio de una característica</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cualitativas"><i class="fa fa-check"></i><b>8.2.1</b> Variables cualitativas</a></li>
+<li class="chapter" data-level="8.2.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cuantitativas"><i class="fa fa-check"></i><b>8.2.2</b> Variables cuantitativas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="id_120006-aed.html"><a href="id_120006-aed.html#id_120006-aedmulti"><i class="fa fa-check"></i><b>8.3</b> Análisis exploratorio de varias características</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cualitativas-1"><i class="fa fa-check"></i><b>8.3.1</b> Variables cualitativas</a></li>
+<li class="chapter" data-level="8.3.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cuantitativas-1"><i class="fa fa-check"></i><b>8.3.2</b> Variables cuantitativas</a></li>
+<li class="chapter" data-level="8.3.3" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cualitativas-y-cuantitativas"><i class="fa fa-check"></i><b>8.3.3</b> Variables cualitativas y cuantitativas</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Preparación de datos: evaluación de la calidad de los datos. Integración, limpieza y transformación</b></span></li>
+<li class="chapter" data-level="9" data-path="DGDQM.html"><a href="DGDQM.html"><i class="fa fa-check"></i><b>9</b> Gobierno y gestión de calidad de Datos</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="DGDQM.html"><a href="DGDQM.html#introducción-4"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="DGDQM.html"><a href="DGDQM.html#concepto-de-gobierno-de-datos"><i class="fa fa-check"></i><b>9.2</b> Concepto de Gobierno de datos</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="DGDQM.html"><a href="DGDQM.html#beneficiosDG"><i class="fa fa-check"></i><b>9.2.1</b> Beneficios del Gobierno de Datos</a></li>
+<li class="chapter" data-level="9.2.2" data-path="DGDQM.html"><a href="DGDQM.html#artefactosDG"><i class="fa fa-check"></i><b>9.2.2</b> Artefactos de un sistema de Gobierno de Datos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="DGDQM.html"><a href="DGDQM.html#marcos-y-metodologías-existentes-de-gobierno-de-datos"><i class="fa fa-check"></i><b>9.3</b> Marcos y metodologías existentes de Gobierno de Datos</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="DGDQM.html"><a href="DGDQM.html#modelo-alarcos-de-mejora-de-datos-mamd"><i class="fa fa-check"></i><b>9.3.1</b> Modelo Alarcos de Mejora de Datos (MAMD)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="DGDQM.html"><a href="DGDQM.html#gestión-de-calidad-de-datos"><i class="fa fa-check"></i><b>9.4</b> Gestión de calidad de datos</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="DGDQM.html"><a href="DGDQM.html#medición-de-calidad-de-datos-vs-perfilado-de-datos"><i class="fa fa-check"></i><b>9.4.1</b> Medición de calidad de datos vs perfilado de datos</a></li>
+<li class="chapter" data-level="9.4.2" data-path="DGDQM.html"><a href="DGDQM.html#mejora-de-datos"><i class="fa fa-check"></i><b>9.4.2</b> Mejora de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="id_130009.html"><a href="id_130009.html"><i class="fa fa-check"></i><b>10</b> Integración y limpieza de datos</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="id_130009.html"><a href="id_130009.html#introducción-5"><i class="fa fa-check"></i><b>10.1</b> Introducción</a></li>
+<li class="chapter" data-level="10.2" data-path="id_130009.html"><a href="id_130009.html#problemas-de-calidad-de-datos"><i class="fa fa-check"></i><b>10.2</b> Problemas de calidad de datos</a></li>
+<li class="chapter" data-level="10.3" data-path="id_130009.html"><a href="id_130009.html#niveles-inadecuados-de-completitud-valores-missing"><i class="fa fa-check"></i><b>10.3</b> Niveles inadecuados de completitud: Valores <em>missing</em></a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="id_130009.html"><a href="id_130009.html#visualización"><i class="fa fa-check"></i><b>10.3.1</b> Visualización</a></li>
+<li class="chapter" data-level="10.3.2" data-path="id_130009.html"><a href="id_130009.html#imputacion"><i class="fa fa-check"></i><b>10.3.2</b> Técnicas de Imputación</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="id_130009.html"><a href="id_130009.html#mejorando-la-exactitud-y-la-precisión-eliminación-del-ruido-estadístico"><i class="fa fa-check"></i><b>10.4</b> Mejorando la exactitud y la precisión: eliminación del ruido estadístico</a></li>
+<li class="chapter" data-level="10.5" data-path="id_130009.html"><a href="id_130009.html#integración-de-datos"><i class="fa fa-check"></i><b>10.5</b> Integración de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="id_130010.html"><a href="id_130010.html"><i class="fa fa-check"></i><b>11</b> Feature Selection and Engineering</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="id_130010.html"><a href="id_130010.html#introducción-6"><i class="fa fa-check"></i><b>11.1</b> Introducción</a></li>
+<li class="chapter" data-level="11.2" data-path="id_130010.html"><a href="id_130010.html#feature-selection-selección-de-variables"><i class="fa fa-check"></i><b>11.2</b> <em>Feature Selection</em> (Selección de variables)</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="id_130010.html"><a href="id_130010.html#métodos-de-selección-tipo-filtro"><i class="fa fa-check"></i><b>11.2.1</b> Métodos de selección tipo Filtro</a></li>
+<li class="chapter" data-level="11.2.2" data-path="id_130010.html"><a href="id_130010.html#métodos-de-selección-de-variables-tipo-wrapper"><i class="fa fa-check"></i><b>11.2.2</b> Métodos de selección de variables tipo <em>wrapper</em></a></li>
+<li class="chapter" data-level="11.2.3" data-path="id_130010.html"><a href="id_130010.html#métodos-de-selección-tipo-embedded"><i class="fa fa-check"></i><b>11.2.3</b> Métodos de selección tipo Embedded</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="id_130010.html"><a href="id_130010.html#transformaciones-de-escala-y-de-la-distribución-de-la-variable-objetivo"><i class="fa fa-check"></i><b>11.3</b> Transformaciones de escala y de la distribución de la variable objetivo</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="id_130010.html"><a href="id_130010.html#id_31"><i class="fa fa-check"></i><b>11.3.1</b> Transformaciones de la variable objetivo</a></li>
+<li class="chapter" data-level="11.3.2" data-path="id_130010.html"><a href="id_130010.html#escalado-de-datos"><i class="fa fa-check"></i><b>11.3.2</b> Escalado de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="id_130010.html"><a href="id_130010.html#feature-engineering"><i class="fa fa-check"></i><b>11.4</b> <em>Feature engineering</em></a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="id_130010.html"><a href="id_130010.html#binning"><i class="fa fa-check"></i><b>11.4.1</b> <em>Binning</em></a></li>
+<li class="chapter" data-level="11.4.2" data-path="id_130010.html"><a href="id_130010.html#codificación"><i class="fa fa-check"></i><b>11.4.2</b> Codificación</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="id_130010.html"><a href="id_130010.html#reducción-de-dimensionalidad"><i class="fa fa-check"></i><b>11.5</b> Reducción de dimensionalidad</a></li>
+<li class="chapter" data-level="11.6" data-path="id_130010.html"><a href="id_130010.html#otras-transformaciones"><i class="fa fa-check"></i><b>11.6</b> Otras transformaciones</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="id_130010.html"><a href="id_130010.html#particionado-de-datos"><i class="fa fa-check"></i><b>11.6.1</b> Particionado de datos</a></li>
+<li class="chapter" data-level="11.6.2" data-path="id_130010.html"><a href="id_130010.html#técnicas-para-manejar-datos-no-balanceados"><i class="fa fa-check"></i><b>11.6.2</b> Técnicas para manejar datos no balanceados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="id_130010.html"><a href="id_130010.html#métodos-de-remuestreo"><i class="fa fa-check"></i><b>11.6.3</b> Métodos de remuestreo</a></li>
+<li class="chapter" data-level="11.6.4" data-path="id_130010.html"><a href="id_130010.html#ajuste-de-hiperparámetros"><i class="fa fa-check"></i><b>11.6.4</b> Ajuste de hiperparámetros</a></li>
+<li class="chapter" data-level="11.6.5" data-path="id_130010.html"><a href="id_130010.html#evaluación-de-modelos"><i class="fa fa-check"></i><b>11.6.5</b> Evaluación de modelos</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Técnicas de modelización estadísticas avanzadas</b></span></li>
+<li class="chapter" data-level="12" data-path="Funda-probab.html"><a href="Funda-probab.html"><i class="fa fa-check"></i><b>12</b> Fundamentos de probabilidad</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="Funda-probab.html"><a href="Funda-probab.html#introducción-a-la-probabilidad"><i class="fa fa-check"></i><b>12.1</b> Introducción a la probabilidad</a></li>
+<li class="chapter" data-level="12.2" data-path="Funda-probab.html"><a href="Funda-probab.html#probabilidad-elementos-básicos-definición-y-teoremas"><i class="fa fa-check"></i><b>12.2</b> Probabilidad: elementos básicos, definición y teoremas</a></li>
+<li class="chapter" data-level="12.3" data-path="Funda-probab.html"><a href="Funda-probab.html#variable-aleatoria-y-su-distribución-tipos-de-variables-aleatorias"><i class="fa fa-check"></i><b>12.3</b> Variable aleatoria y su distribución: tipos de variables aleatorias</a></li>
+<li class="chapter" data-level="12.4" data-path="Funda-probab.html"><a href="Funda-probab.html#modelos-de-distribución-de-probabilidad"><i class="fa fa-check"></i><b>12.4</b> Modelos de distribución de probabilidad</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="Funda-probab.html"><a href="Funda-probab.html#modelos-discretos"><i class="fa fa-check"></i><b>12.4.1</b> Modelos discretos</a></li>
+<li class="chapter" data-level="12.4.2" data-path="Funda-probab.html"><a href="Funda-probab.html#modelos-continuos"><i class="fa fa-check"></i><b>12.4.2</b> Modelos continuos</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="Funda-probab.html"><a href="Funda-probab.html#tcl"><i class="fa fa-check"></i><b>12.5</b> Teorema central del límite (TCL)</a></li>
+<li class="chapter" data-level="12.6" data-path="Funda-probab.html"><a href="Funda-probab.html#ejemplo-de-distribuciones-usando-r"><i class="fa fa-check"></i><b>12.6</b> Ejemplo de distribuciones usando <strong>R</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="Fundainfer.html"><a href="Fundainfer.html"><i class="fa fa-check"></i><b>13</b> Fundamentos de Inferencia Estadística</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="Fundainfer.html"><a href="Fundainfer.html#introinfer"><i class="fa fa-check"></i><b>13.1</b> Introducción a la Inferencia Estadística</a></li>
+<li class="chapter" data-level="13.2" data-path="Fundainfer.html"><a href="Fundainfer.html#mas"><i class="fa fa-check"></i><b>13.2</b> Muestreo aleatorio simple</a></li>
+<li class="chapter" data-level="13.3" data-path="Fundainfer.html"><a href="Fundainfer.html#estimpuntual"><i class="fa fa-check"></i><b>13.3</b> Estimación puntual</a></li>
+<li class="chapter" data-level="13.4" data-path="Fundainfer.html"><a href="Fundainfer.html#estimintervalos"><i class="fa fa-check"></i><b>13.4</b> Estimación por intervalos</a></li>
+<li class="chapter" data-level="13.5" data-path="Fundainfer.html"><a href="Fundainfer.html#contrhip"><i class="fa fa-check"></i><b>13.5</b> Contrastes de hipótesis</a></li>
+<li class="chapter" data-level="13.6" data-path="Fundainfer.html"><a href="Fundainfer.html#pobnormales"><i class="fa fa-check"></i><b>13.6</b> Inferencia estadística paramétrica sobre poblaciones normales</a></li>
+<li class="chapter" data-level="13.7" data-path="Fundainfer.html"><a href="Fundainfer.html#ejemplopobnorm"><i class="fa fa-check"></i><b>13.7</b> Inferencia sobre poblaciones normales con <strong>R</strong></a></li>
+<li class="chapter" data-level="13.8" data-path="Fundainfer.html"><a href="Fundainfer.html#contrnormalidad"><i class="fa fa-check"></i><b>13.8</b> Inferencia estadística no paramétrica: contrastes de normalidad</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="muestreo.html"><a href="muestreo.html"><i class="fa fa-check"></i><b>14</b> Métodos de muestreo y remuestreo</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="muestreo.html"><a href="muestreo.html#introducción-al-muestreo"><i class="fa fa-check"></i><b>14.1</b> Introducción al muestreo</a></li>
+<li class="chapter" data-level="14.2" data-path="muestreo.html"><a href="muestreo.html#muestreo-aleatorio-simple-1"><i class="fa fa-check"></i><b>14.2</b> Muestreo aleatorio simple</a></li>
+<li class="chapter" data-level="14.3" data-path="muestreo.html"><a href="muestreo.html#muestestra"><i class="fa fa-check"></i><b>14.3</b> Muestreo estratificado</a></li>
+<li class="chapter" data-level="14.4" data-path="muestreo.html"><a href="muestreo.html#otros-tipos-de-muestreo-probabilístico"><i class="fa fa-check"></i><b>14.4</b> Otros tipos de muestreo probabilístico</a></li>
+<li class="chapter" data-level="14.5" data-path="muestreo.html"><a href="muestreo.html#técnicas-de-remuestreo-bootstrap."><i class="fa fa-check"></i><b>14.5</b> Técnicas de remuestreo: Bootstrap.</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="modelización-lineal.html"><a href="modelización-lineal.html"><i class="fa fa-check"></i><b>15</b> Modelización lineal</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="modelización-lineal.html"><a href="modelización-lineal.html#modelización"><i class="fa fa-check"></i><b>15.1</b> Modelización</a></li>
+<li class="chapter" data-level="15.2" data-path="modelización-lineal.html"><a href="modelización-lineal.html#procedimiento-de-modelización"><i class="fa fa-check"></i><b>15.2</b> Procedimiento de modelización</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="modelización-lineal.html"><a href="modelización-lineal.html#Bondad"><i class="fa fa-check"></i><b>15.2.1</b> Estimación del modelo</a></li>
+<li class="chapter" data-level="15.2.2" data-path="modelización-lineal.html"><a href="modelización-lineal.html#validación-del-modelo"><i class="fa fa-check"></i><b>15.2.2</b> Validación del modelo</a></li>
+<li class="chapter" data-level="15.2.3" data-path="modelización-lineal.html"><a href="modelización-lineal.html#interpretación-de-los-coeficientes"><i class="fa fa-check"></i><b>15.2.3</b> Interpretación de los coeficientes</a></li>
+<li class="chapter" data-level="15.2.4" data-path="modelización-lineal.html"><a href="modelización-lineal.html#predicción"><i class="fa fa-check"></i><b>15.2.4</b> Predicción</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="modelización-lineal.html"><a href="modelización-lineal.html#procedimiento-con-r-la-función-lm"><i class="fa fa-check"></i><b>15.3</b> Procedimiento con R: la función <code>lm</code></a></li>
+<li class="chapter" data-level="15.4" data-path="modelización-lineal.html"><a href="modelización-lineal.html#Casos"><i class="fa fa-check"></i><b>15.4</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="modelización-lineal.html"><a href="modelización-lineal.html#estimación-de-los-coeficientes"><i class="fa fa-check"></i><b>15.4.1</b> Estimación de los coeficientes</a></li>
+<li class="chapter" data-level="15.4.2" data-path="modelización-lineal.html"><a href="modelización-lineal.html#validación"><i class="fa fa-check"></i><b>15.4.2</b> Validación</a></li>
+<li class="chapter" data-level="15.4.3" data-path="modelización-lineal.html"><a href="modelización-lineal.html#interpretación-de-los-coeficientes-1"><i class="fa fa-check"></i><b>15.4.3</b> Interpretación de los coeficientes</a></li>
+<li class="chapter" data-level="15.4.4" data-path="modelización-lineal.html"><a href="modelización-lineal.html#predicción-1"><i class="fa fa-check"></i><b>15.4.4</b> Predicción</a></li>
+<li class="chapter" data-level="15.4.5" data-path="modelización-lineal.html"><a href="modelización-lineal.html#nuevo-ajuste-con-logozone"><i class="fa fa-check"></i><b>15.4.5</b> Nuevo ajuste con <code>log(Ozone)</code></a></li>
+<li class="chapter" data-level="15.4.6" data-path="modelización-lineal.html"><a href="modelización-lineal.html#coeficientes-de-variables-categóricas"><i class="fa fa-check"></i><b>15.4.6</b> Coeficientes de variables categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="modelización-lineal.html"><a href="modelización-lineal.html#comentarios-finales"><i class="fa fa-check"></i><b>15.5</b> Comentarios finales</a>
+<ul>
+<li class="chapter" data-level="" data-path="modelización-lineal.html"><a href="modelización-lineal.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html"><i class="fa fa-check"></i><b>16</b> Modelos lineales generalizados</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#motivación"><i class="fa fa-check"></i><b>16.1</b> Motivación</a></li>
+<li class="chapter" data-level="16.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#modelo-y-sus-componentes"><i class="fa fa-check"></i><b>16.2</b> Modelo y sus componentes</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#función-enlace"><i class="fa fa-check"></i><b>16.2.1</b> Función enlace </a></li>
+<li class="chapter" data-level="16.2.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#glms-en-r"><i class="fa fa-check"></i><b>16.2.2</b> GLMs en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#regresión-logística"><i class="fa fa-check"></i><b>16.3</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#procedimiento-de-ajuste"><i class="fa fa-check"></i><b>16.3.1</b> Procedimiento de ajuste</a></li>
+<li class="chapter" data-level="16.3.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#adecuación-del-modelo"><i class="fa fa-check"></i><b>16.3.2</b> Adecuación del modelo</a></li>
+<li class="chapter" data-level="16.3.3" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#SECCinterp"><i class="fa fa-check"></i><b>16.3.3</b> Interpretación de resultados</a></li>
+<li class="chapter" data-level="16.3.4" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#predicción.-curva-roc-y-auc"><i class="fa fa-check"></i><b>16.3.4</b> Predicción. Curva ROC y AUC</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#regresión-de-poisson"><i class="fa fa-check"></i><b>16.4</b> Regresión de Poisson</a></li>
+<li class="chapter" data-level="16.5" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#casos-prácticos"><i class="fa fa-check"></i><b>16.5</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ejemplos-de-regresión-logística"><i class="fa fa-check"></i><b>16.5.1</b> Ejemplos de regresión logística</a></li>
+<li class="chapter" data-level="16.5.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ejemplo-de-regresión-de-poisson"><i class="fa fa-check"></i><b>16.5.2</b> Ejemplo de regresión de Poisson</a></li>
+<li class="chapter" data-level="" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#resumen-1"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html"><i class="fa fa-check"></i><b>17</b> Modelos aditivos generalizados</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#introducción-7"><i class="fa fa-check"></i><b>17.1</b> Introducción</a></li>
+<li class="chapter" data-level="17.2" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#splines-con-penalizaciones"><i class="fa fa-check"></i><b>17.2</b> Splines con penalizaciones</a></li>
+<li class="chapter" data-level="17.3" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#aspectos-metodológicos"><i class="fa fa-check"></i><b>17.3</b> Aspectos metodológicos</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#estimación-de-los-paraámetros-del-modelo"><i class="fa fa-check"></i><b>17.3.1</b> Estimación de los paraámetros del modelo</a></li>
+<li class="chapter" data-level="17.3.2" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#inferencia-sobre-las-funciones-suaves"><i class="fa fa-check"></i><b>17.3.2</b> Inferencia sobre las funciones suaves</a></li>
+<li class="chapter" data-level="17.3.3" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#suavizado-mutidimensional-y-para-datos-no-gaussianos"><i class="fa fa-check"></i><b>17.3.3</b> Suavizado mutidimensional y para datos no Gaussianos</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#la-función-gam-del-paquete-mgcv"><i class="fa fa-check"></i><b>17.4</b> La función <code>gam</code> del paquete <code>mgcv</code></a></li>
+<li class="chapter" data-level="17.5" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#casos-prácticos-1"><i class="fa fa-check"></i><b>17.5</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-unidimensional-con-fossil"><i class="fa fa-check"></i><b>17.5.1</b> Modelo unidimensional con <code>fossil</code></a></li>
+<li class="chapter" data-level="17.5.2" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-aditivo-con-airquality"><i class="fa fa-check"></i><b>17.5.2</b> Modelo aditivo con <code>airquality</code></a></li>
+<li class="chapter" data-level="17.5.3" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-semiparamétrico-con-onions"><i class="fa fa-check"></i><b>17.5.3</b> Modelo semiparamétrico con <code>onions</code></a></li>
+<li class="chapter" data-level="17.5.4" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-aditivo-generalizado-y-multidimensional-con-smacker"><i class="fa fa-check"></i><b>17.5.4</b> Modelo aditivo generalizado y multidimensional, con <code>smacker</code></a></li>
+<li class="chapter" data-level="" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#resumen-2"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html"><i class="fa fa-check"></i><b>18</b> Modelos mixtos</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#conceptos-básicos"><i class="fa fa-check"></i><b>18.1</b> Conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#tipo-y-estructura-de-los-datos"><i class="fa fa-check"></i><b>18.1.1</b> Tipo y estructura de los datos</a></li>
+<li class="chapter" data-level="18.1.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#efectos-fijos-o-aleatorios"><i class="fa fa-check"></i><b>18.1.2</b> ¿Efectos fijos o aleatorios?</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#formulación-del-modelo-con-efectos-aleatorios-o-modelos-mixtos"><i class="fa fa-check"></i><b>18.2</b> Formulación del modelo con efectos aleatorios o modelos mixtos</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#formulación-general"><i class="fa fa-check"></i><b>18.2.1</b> Formulación general</a></li>
+<li class="chapter" data-level="18.2.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#inferencia-y-selección-del-modelo"><i class="fa fa-check"></i><b>18.2.2</b> Inferencia y selección del modelo</a></li>
+<li class="chapter" data-level="18.2.3" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#diagnosis-del-modelo"><i class="fa fa-check"></i><b>18.2.3</b> Diagnosis del modelo</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#funciones-de-r-para-ajustar-modelos-mixtos"><i class="fa fa-check"></i><b>18.3</b> Funciones de <code>R</code> para ajustar modelos mixtos</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#la-función-lmer"><i class="fa fa-check"></i><b>18.3.1</b> La función <code>lmer()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#caso-práctico"><i class="fa fa-check"></i><b>18.4</b> Caso práctico</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#modelo-con-ordenada-en-el-origen-aleatoria"><i class="fa fa-check"></i><b>18.4.1</b> Modelo con ordenada en el origen aleatoria</a></li>
+<li class="chapter" data-level="18.4.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#modelo-con-pendiente-aleatoria"><i class="fa fa-check"></i><b>18.4.2</b> Modelo con pendiente aleatoria</a></li>
+<li class="chapter" data-level="18.4.3" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#cómo-construir-el-modelo-en-la-práctica"><i class="fa fa-check"></i><b>18.4.3</b> ¿Cómo construir el modelo en la práctica?</a></li>
+<li class="chapter" data-level="" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#resumen-3"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html"><i class="fa fa-check"></i><b>19</b> Modelos sparse y métodos penalizados de regresión</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#introducción-8"><i class="fa fa-check"></i><b>19.1</b> Introducción</a></li>
+<li class="chapter" data-level="19.2" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#selección-del-mejor-subconjunto"><i class="fa fa-check"></i><b>19.2</b> Selección del mejor subconjunto</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#ejemplo-sueldo-de-jugadores-de-béisbol"><i class="fa fa-check"></i><b>19.2.1</b> Ejemplo: Sueldo de jugadores de béisbol</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#selección-stepwise"><i class="fa fa-check"></i><b>19.3</b> Selección <em>Stepwise</em></a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#forward-stepwise"><i class="fa fa-check"></i><b>19.3.1</b> Forward stepwise</a></li>
+<li class="chapter" data-level="19.3.2" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#backward-stepwise"><i class="fa fa-check"></i><b>19.3.2</b> Backward stepwise</a></li>
+<li class="chapter" data-level="19.3.3" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#ejemplo-sueldo-de-jugadores-de-béisbol-1"><i class="fa fa-check"></i><b>19.3.3</b> Ejemplo: Sueldo de jugadores de béisbol</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#métodos-shrinkage"><i class="fa fa-check"></i><b>19.4</b> Métodos Shrinkage</a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#regresión-ridge"><i class="fa fa-check"></i><b>19.4.1</b> Regresión ridge</a></li>
+<li class="chapter" data-level="19.4.2" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#selección-del-parámetro-de-tuneado"><i class="fa fa-check"></i><b>19.4.2</b> Selección del parámetro de tuneado</a></li>
+<li class="chapter" data-level="19.4.3" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#regresión-lasso"><i class="fa fa-check"></i><b>19.4.3</b> Regresión Lasso</a></li>
+<li class="chapter" data-level="19.4.4" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#elastic-net"><i class="fa fa-check"></i><b>19.4.4</b> Elastic net </a></li>
+<li class="chapter" data-level="" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#resumen-4"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html"><i class="fa fa-check"></i><b>20</b> Modelización de series temporales</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#conceptos-básicos-1"><i class="fa fa-check"></i><b>20.1</b> Conceptos básicos</a></li>
+<li class="chapter" data-level="20.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#modelos-arima"><i class="fa fa-check"></i><b>20.2</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="20.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#análisis-de-series-temporales-con-r"><i class="fa fa-check"></i><b>20.3</b> Análisis de series temporales con R</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#identificación-o-especificación-del-modelo"><i class="fa fa-check"></i><b>20.3.1</b> Identificación o especificación del modelo</a></li>
+<li class="chapter" data-level="20.3.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#estimación-del-modelo"><i class="fa fa-check"></i><b>20.3.2</b> Estimación del modelo</a></li>
+<li class="chapter" data-level="20.3.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#diagnosis-validación-y-contrastación"><i class="fa fa-check"></i><b>20.3.3</b> Diagnosis, validación y contrastación</a></li>
+<li class="chapter" data-level="20.3.4" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#predicción-2"><i class="fa fa-check"></i><b>20.3.4</b> Predicción</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliografía.html"><a href="bibliografía.html"><i class="fa fa-check"></i>Bibliografía</a></li>
+<li class="chapter" data-level="21" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html"><i class="fa fa-check"></i><b>21</b> Análisis de tablas de contingencia</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-9"><i class="fa fa-check"></i><b>21.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#motiv"><i class="fa fa-check"></i><b>21.1.1</b> Motivación</a></li>
+<li class="chapter" data-level="21.1.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#notac"><i class="fa fa-check"></i><b>21.1.2</b> Notación</a></li>
+<li class="chapter" data-level="21.1.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#diseños-experimentales-o-procedimientos-de-muestreo-que-dan-lugar-a-una-tabla-de-contingencia"><i class="fa fa-check"></i><b>21.1.3</b> Diseños experimentales o procedimientos de muestreo que dan lugar a una tabla de contingencia</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-de-independencia-en-tablas-2times-2"><i class="fa fa-check"></i><b>21.2</b> Contraste de independencia en tablas <span class="math inline">\((2\times 2)\)</span></a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-10"><i class="fa fa-check"></i><b>21.2.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.2.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#plantgen"><i class="fa fa-check"></i><b>21.2.2</b> Planteamiento general del contraste exacto de independencia</a></li>
+<li class="chapter" data-level="21.2.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#algoritmo"><i class="fa fa-check"></i><b>21.2.3</b> Algoritmo para la realización del contraste exacto de independencia</a></li>
+<li class="chapter" data-level="21.2.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-de-independencia-diseño-tipo-1"><i class="fa fa-check"></i><b>21.2.4</b> Contraste de independencia: Diseño Tipo 1</a></li>
+<li class="chapter" data-level="21.2.5" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#dise"><i class="fa fa-check"></i><b>21.2.5</b> Contraste de independencia: Diseños Tipo 2 y Tipo 3</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-de-independencia-en-tablas-rtimes-c"><i class="fa fa-check"></i><b>21.3</b> Contraste de independencia en tablas <span class="math inline">\(R\times C\)</span></a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#IntroRxC"><i class="fa fa-check"></i><b>21.3.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.3.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contaprox"><i class="fa fa-check"></i><b>21.3.2</b> Contrastes aproximados</a></li>
+<li class="chapter" data-level="21.3.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-aproximado-con-corrección-de-continuidad-1"><i class="fa fa-check"></i><b>21.3.3</b> Contraste aproximado con corrección de continuidad</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas"><i class="fa fa-check"></i><b>21.4</b> Medidas de asociación en tablas <span class="math inline">\(2\times 2\)</span></a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-11"><i class="fa fa-check"></i><b>21.4.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.4.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#la-hatq-de-yule"><i class="fa fa-check"></i><b>21.4.2</b> La <span class="math inline">\(\hat{Q}\)</span> de Yule</a></li>
+<li class="chapter" data-level="21.4.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#otras-medidas-de-asociación-para-tablas-2times-2"><i class="fa fa-check"></i><b>21.4.3</b> Otras medidas de asociación para tablas <span class="math inline">\(2\times 2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas-de-asociación-en-tablas-rtimes-c"><i class="fa fa-check"></i><b>21.5</b> Medidas de asociación en tablas <span class="math inline">\(R\times C\)</span></a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-12"><i class="fa fa-check"></i><b>21.5.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.5.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas-derivadas-del-estadístico-chi-cuadrado"><i class="fa fa-check"></i><b>21.5.2</b> Medidas derivadas del estadístico Chi-cuadrado</a></li>
+<li class="chapter" data-level="21.5.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas-basadas-en-la-reducción-proporcional-del-error-lambda-de-goodman-y-kruskal"><i class="fa fa-check"></i><b>21.5.3</b> Medidas basadas en la reducción proporcional del error: <span class="math inline">\(\lambda\)</span> de Goodman y Kruskal</a></li>
+<li class="chapter" data-level="21.5.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#determinación-de-las-fuentes-de-asociación"><i class="fa fa-check"></i><b>21.5.4</b> Determinación de las fuentes de asociación</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contrastes-de-independencia-en-tablas-multidimensionales"><i class="fa fa-check"></i><b>21.6</b> Contrastes de independencia en tablas multidimensionales</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="correspondencias.html"><a href="correspondencias.html"><i class="fa fa-check"></i><b>22</b> Análisis de correspondencias</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="correspondencias.html"><a href="correspondencias.html#introducción-13"><i class="fa fa-check"></i><b>22.1</b> Introducción</a></li>
+<li class="chapter" data-level="22.2" data-path="correspondencias.html"><a href="correspondencias.html#metodología-del-análisis-de-correspondencias"><i class="fa fa-check"></i><b>22.2</b> Metodología del análisis de correspondencias</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="correspondencias.html"><a href="correspondencias.html#proyecciones-fila-columna-y-simétrica"><i class="fa fa-check"></i><b>22.2.1</b> Proyecciones fila, columna y simétrica</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="correspondencias.html"><a href="correspondencias.html#ejemplos-de-análisis-de-correspondencias-con-r"><i class="fa fa-check"></i><b>22.3</b> Ejemplos de análisis de correspondencias con <strong>R</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html"><i class="fa fa-check"></i><b>23</b> Análisis conjunto</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html#introducción-conceptos-clave-y-tipos-de-análisis"><i class="fa fa-check"></i><b>23.1</b> Introducción, conceptos clave y tipos de análisis</a></li>
+<li class="chapter" data-level="23.2" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html#aplicación-del-análisis-conjunto-etapas"><i class="fa fa-check"></i><b>23.2</b> Aplicación del Análisis Conjunto (etapas):</a></li>
+<li class="chapter" data-level="23.3" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html#ejemplo-utilizando-r"><i class="fa fa-check"></i><b>23.3</b> Ejemplo utilizando R:</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>24</b> Análisis discriminante</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#introducción-14"><i class="fa fa-check"></i><b>24.1</b> Introducción</a></li>
+<li class="chapter" data-level="24.2" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#tipos-de-análisis-discriminantes"><i class="fa fa-check"></i><b>24.2</b> Tipos de análisis discriminantes:</a></li>
+<li class="chapter" data-level="24.3" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#ejemplos"><i class="fa fa-check"></i><b>24.3</b> Ejemplos:</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html"><i class="fa fa-check"></i><b>25</b> Árboles de clasificación y regresión </a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#introducción-15"><i class="fa fa-check"></i><b>25.1</b> Introducción </a></li>
+<li class="chapter" data-level="25.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#aprendizaje-con-árboles-de-decisión"><i class="fa fa-check"></i><b>25.2</b> Aprendizaje con árboles de decisión</a></li>
+<li class="chapter" data-level="25.3" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#cómo-se-va-dividiendo-el-árbol"><i class="fa fa-check"></i><b>25.3</b> ¿Cómo se va dividiendo el árbol? </a>
+<ul>
+<li class="chapter" data-level="25.3.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#impureza-de-gini"><i class="fa fa-check"></i><b>25.3.1</b> Impureza de Gini</a></li>
+<li class="chapter" data-level="25.3.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#entropía"><i class="fa fa-check"></i><b>25.3.2</b> Entropía </a></li>
+<li class="chapter" data-level="25.3.3" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#ganancia-de-información"><i class="fa fa-check"></i><b>25.3.3</b> Ganancia de información</a></li>
+<li class="chapter" data-level="25.3.4" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#suma-residual-de-cuadrados-mínima"><i class="fa fa-check"></i><b>25.3.4</b> Suma residual de cuadrados mínima</a></li>
+</ul></li>
+<li class="chapter" data-level="25.4" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#sobreajuste"><i class="fa fa-check"></i><b>25.4</b> Sobreajuste </a></li>
+<li class="chapter" data-level="25.5" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#cuánto-debe-crecer-un-árbol"><i class="fa fa-check"></i><b>25.5</b> ¿Cuánto debe crecer un árbol? </a>
+<ul>
+<li class="chapter" data-level="25.5.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#la-parada-temprana"><i class="fa fa-check"></i><b>25.5.1</b> La parada temprana </a></li>
+<li class="chapter" data-level="25.5.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#la-poda"><i class="fa fa-check"></i><b>25.5.2</b> La poda </a></li>
+</ul></li>
+<li class="chapter" data-level="25.6" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#el-algoritmo-id3-para-la-construcción-de-un-árbol-de-decisión"><i class="fa fa-check"></i><b>25.6</b> El algoritmo ID3 para la construcción de un árbol de decisión</a></li>
+<li class="chapter" data-level="25.7" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#procedimiento-con-r-la-funcion-rpart"><i class="fa fa-check"></i><b>25.7</b> Procedimiento con R: la funcion <code>rpart</code></a></li>
+<li class="chapter" data-level="25.8" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#aplicaciones-de-los-árboles-de-decisión"><i class="fa fa-check"></i><b>25.8</b> Aplicaciones de los árboles de decisión</a>
+<ul>
+<li class="chapter" data-level="25.8.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#el-caso-de-negocio"><i class="fa fa-check"></i><b>25.8.1</b> El caso de negocio</a></li>
+<li class="chapter" data-level="25.8.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#árbol-de-clasificación-para-determinar-la-intención-de-compra"><i class="fa fa-check"></i><b>25.8.2</b> Árbol de clasificación para determinar la intención de compra</a></li>
+<li class="chapter" data-level="25.8.3" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#árbol-de-regresión-para-estimar-el-número-de-días-hospitalizado"><i class="fa fa-check"></i><b>25.8.3</b> Árbol de regresión para estimar el número de días hospitalizado</a></li>
+<li class="chapter" data-level="" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#resumen-5"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html"><i class="fa fa-check"></i><b>26</b> Máquinas de Vector Soporte</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#introducción-16"><i class="fa fa-check"></i><b>26.1</b> Introducción</a></li>
+<li class="chapter" data-level="26.2" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#algoritmo-svm-para-clasificación-binaria"><i class="fa fa-check"></i><b>26.2</b> Algoritmo SVM para clasificación binaria</a></li>
+<li class="chapter" data-level="26.3" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#y-si-tengo-más-de-dos-clases"><i class="fa fa-check"></i><b>26.3</b> ¿Y si tengo más de dos clases?</a></li>
+<li class="chapter" data-level="26.4" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#truco-del-kernel-tratando-con-la-no-linearidad"><i class="fa fa-check"></i><b>26.4</b> Truco del Kernel: Tratando con la no linearidad</a>
+<ul>
+<li class="chapter" data-level="26.4.1" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#algunos-kernels-populares"><i class="fa fa-check"></i><b>26.4.1</b> Algunos kernels populares</a></li>
+</ul></li>
+<li class="chapter" data-level="26.5" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#procedimiento-con-r-la-funcion-svm"><i class="fa fa-check"></i><b>26.5</b> Procedimiento con R: la funcion <code>svm</code></a></li>
+<li class="chapter" data-level="26.6" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#aplicación-de-un-modelo-svm-radial-con-ajuste-automático-en-r"><i class="fa fa-check"></i><b>26.6</b> Aplicación de un modelo SVM Radial con ajuste automático en R</a>
+<ul>
+<li class="chapter" data-level="26.6.1" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#importancia-de-las-variables"><i class="fa fa-check"></i><b>26.6.1</b> Importancia de las variables</a></li>
+<li class="chapter" data-level="" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#resumen-6"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html"><i class="fa fa-check"></i><b>27</b> Clasificador k-vecinos más próximos</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#introducción-17"><i class="fa fa-check"></i><b>27.1</b> Introducción</a></li>
+<li class="chapter" data-level="27.2" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#decisiones-a-tener-en-cuenta"><i class="fa fa-check"></i><b>27.2</b> Decisiones a tener en cuenta</a>
+<ul>
+<li class="chapter" data-level="27.2.1" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#función-de-distancia-a-utilizar"><i class="fa fa-check"></i><b>27.2.1</b> Función de distancia a utilizar</a></li>
+<li class="chapter" data-level="27.2.2" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#número-de-vecinos-k-seleccionados"><i class="fa fa-check"></i><b>27.2.2</b> Número de vecinos (k) seleccionados</a></li>
+</ul></li>
+<li class="chapter" data-level="27.3" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#procedimiento-con-r-la-funcion-knn"><i class="fa fa-check"></i><b>27.3</b> Procedimiento con R: la funcion knn</a></li>
+<li class="chapter" data-level="27.4" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#aplicación-del-modelo-knn-en-r"><i class="fa fa-check"></i><b>27.4</b> Aplicación del modelo KNN en R</a>
+<ul>
+<li class="chapter" data-level="" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#resumen-7"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="naive-bayes.html"><a href="naive-bayes.html"><i class="fa fa-check"></i><b>28</b> Naive Bayes</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="naive-bayes.html"><a href="naive-bayes.html#introducción-18"><i class="fa fa-check"></i><b>28.1</b> Introducción</a></li>
+<li class="chapter" data-level="28.2" data-path="naive-bayes.html"><a href="naive-bayes.html#teorema-de-bayes"><i class="fa fa-check"></i><b>28.2</b> Teorema de Bayes</a></li>
+<li class="chapter" data-level="28.3" data-path="naive-bayes.html"><a href="naive-bayes.html#el-algoritmo-naive-bayes"><i class="fa fa-check"></i><b>28.3</b> El algoritmo Naive Bayes</a></li>
+<li class="chapter" data-level="28.4" data-path="naive-bayes.html"><a href="naive-bayes.html#procedimiento-con-r-la-funcion-naive_bayes"><i class="fa fa-check"></i><b>28.4</b> Procedimiento con R: la funcion <code>naive_bayes</code></a></li>
+<li class="chapter" data-level="28.5" data-path="naive-bayes.html"><a href="naive-bayes.html#aplicación-del-modelo-naive-bayes"><i class="fa fa-check"></i><b>28.5</b> Aplicación del modelo Naive Bayes</a>
+<ul>
+<li class="chapter" data-level="" data-path="naive-bayes.html"><a href="naive-bayes.html#resumen-8"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html"><i class="fa fa-check"></i><b>29</b> Bagging. Random Forest </a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#introducción-metodos-de-ensamble"><i class="fa fa-check"></i><b>29.1</b> Introducción: Metodos de Ensamble</a></li>
+<li class="chapter" data-level="29.2" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#bagging"><i class="fa fa-check"></i><b>29.2</b> Bagging</a></li>
+<li class="chapter" data-level="29.3" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#procedimiento-con-r-la-función-bagging"><i class="fa fa-check"></i><b>29.3</b> Procedimiento con R: la función <code>bagging</code> </a></li>
+<li class="chapter" data-level="29.4" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#implementando-bagging-en-r"><i class="fa fa-check"></i><b>29.4</b> Implementando bagging en R</a>
+<ul>
+<li class="chapter" data-level="29.4.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#interpretación-de-variables-en-el-bagging"><i class="fa fa-check"></i><b>29.4.1</b> Interpretación de variables en el bagging</a></li>
+</ul></li>
+<li class="chapter" data-level="29.5" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#random-forest"><i class="fa fa-check"></i><b>29.5</b> Random Forest</a>
+<ul>
+<li class="chapter" data-level="29.5.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#número-de-árboles-k"><i class="fa fa-check"></i><b>29.5.1</b> Número de árboles (<span class="math inline">\(K\)</span>)</a></li>
+<li class="chapter" data-level="29.5.2" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#número-de-variables-a-considerar-mtry"><i class="fa fa-check"></i><b>29.5.2</b> Número de variables a considerar (<span class="math inline">\(mtry\)</span>)</a></li>
+<li class="chapter" data-level="29.5.3" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#complejidad-de-los-árboles"><i class="fa fa-check"></i><b>29.5.3</b> Complejidad de los árboles</a></li>
+<li class="chapter" data-level="29.5.4" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#esquema-de-muestreo"><i class="fa fa-check"></i><b>29.5.4</b> Esquema de muestreo</a></li>
+<li class="chapter" data-level="29.5.5" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#regla-de-división"><i class="fa fa-check"></i><b>29.5.5</b> Regla de división</a></li>
+</ul></li>
+<li class="chapter" data-level="29.6" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#procedimiento-con-r-la-función-randomforest"><i class="fa fa-check"></i><b>29.6</b> Procedimiento con R: la función <code>randomForest</code></a></li>
+<li class="chapter" data-level="29.7" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#aplicación-del-modelo-random-forest-en-r"><i class="fa fa-check"></i><b>29.7</b> Aplicación del modelo Random Forest en R</a>
+<ul>
+<li class="chapter" data-level="29.7.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#aplicación-del-random-forest"><i class="fa fa-check"></i><b>29.7.1</b> Aplicación del Random Forest</a></li>
+<li class="chapter" data-level="" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#resumen-9"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html"><i class="fa fa-check"></i><b>30</b> Boosting. XGBoost.</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#introducción.-boosting."><i class="fa fa-check"></i><b>30.1</b> Introducción. Boosting.</a></li>
+<li class="chapter" data-level="30.2" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#gradient-boosting"><i class="fa fa-check"></i><b>30.2</b> Gradient Boosting</a>
+<ul>
+<li class="chapter" data-level="30.2.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#hiperparámetros-del-modelo-gradient-boosting"><i class="fa fa-check"></i><b>30.2.1</b> Hiperparámetros del modelo gradient boosting</a></li>
+<li class="chapter" data-level="30.2.2" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#estrategia-de-ajuste-de-hiperparametros"><i class="fa fa-check"></i><b>30.2.2</b> Estrategia de ajuste de hiperparametros</a></li>
+</ul></li>
+<li class="chapter" data-level="30.3" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#procedimiento-con-r-la-funcion-gbm"><i class="fa fa-check"></i><b>30.3</b> Procedimiento con R: la funcion <code>gbm</code></a></li>
+<li class="chapter" data-level="30.4" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#aplicación-del-modelo-gbm-en-r"><i class="fa fa-check"></i><b>30.4</b> Aplicación del modelo GBM en R</a>
+<ul>
+<li class="chapter" data-level="30.4.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#gbm-con-ajuste-automático"><i class="fa fa-check"></i><b>30.4.1</b> GBM con ajuste automático</a></li>
+</ul></li>
+<li class="chapter" data-level="30.5" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#extreme-gradient-boosting-xgb"><i class="fa fa-check"></i><b>30.5</b> eXtreme Gradient Boosting (XGB)</a>
+<ul>
+<li class="chapter" data-level="30.5.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#hiperparametros-del-modelo-xgboost"><i class="fa fa-check"></i><b>30.5.1</b> Hiperparametros del modelo XGBoost</a></li>
+</ul></li>
+<li class="chapter" data-level="30.6" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#procedimiento-con-r-la-funcion-xgboost"><i class="fa fa-check"></i><b>30.6</b> Procedimiento con R: la funcion <code>xgboost</code></a></li>
+<li class="chapter" data-level="30.7" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#aplicación-del-módelo-xgboost-en-r"><i class="fa fa-check"></i><b>30.7</b> Aplicación del módelo XGBoost en R</a>
+<ul>
+<li class="chapter" data-level="30.7.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#xgboost-y-ajuste-automático"><i class="fa fa-check"></i><b>30.7.1</b> XGBoost y ajuste automático</a></li>
+<li class="chapter" data-level="" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#resumen-10"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://blog.uclm.es/tp-mbsba/"> Ciencia de datos con R </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fundamentos de ciencia de datos con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Fundainfer" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Capítulo 13</span> Fundamentos de Inferencia Estadística<a href="Fundainfer.html#Fundainfer" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Mª Leticia Meseguer Santamaría</em> y <em>Manuel Vargas Vargas</em></p>
+<div id="introinfer" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Introducción a la Inferencia Estadística<a href="Fundainfer.html#introinfer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando se estudian fenómenos mediante variables, el objetivo estadístico básico es determinar cuáles son las distribuciones probabilísticas que rigen dichas variables o algunas características determinadas por ellas. Es este comportamiento aleatorio el que permite hacer predicciones con unos márgenes de error conocidos, analizar y cuantificar la relación entre variables, evaluar si hipótesis o modelos teóricos son congruentes con los datos disponibles, etc. Así, en la práctica, cuando se estudia una variable, <span class="math inline">\(X\)</span>, lo habitual es que se desconozca su distribución, llamada distribución poblacional, <span class="math inline">\(F(x)\)</span>, pero que se disponga de un conjunto de realizaciones <span class="math inline">\((x_1,...,x_n)\)</span>, también llamado muestra, valores concretos de dicha variable a partir de los cuales “aproximar” la distribución desconocida.</p>
+<p>La inferencia estadística proporciona las herramientas y técnicas que permiten, a partir de la información muestral, extrapolar resultados a la distribución poblacional con márgenes de error conocidos. Un primer objetivo (más detallado en el Capítulo siguiente, <a href="muestreo.html#muestreo">14</a>) es analizar qué condiciones debe cumplir la muestra para que su información sea válida y extrapolable a toda la población (es la conocida como <strong>teoría de muestreo</strong>). Un segundo objetivo es establecer los mecanismos que permitan dicha extrapolación manteniendo controlados los errores de muestreo.</p>
+<p>Es habitual que se conozca (o se asuma) que la distribución poblacional <span class="math inline">\(F(x)\)</span> pertenezca a alguna familia paramétrica, es decir, que se asuma su forma funcional pero que dependa de algunos parámetros (lo más frecuente es que se asuma la normalidad, pero podría ser cualquiera de los modelos paramétricos existentes). Se habla entonces de <strong>inferencia paramétrica</strong>, ya que se usa la información muestral para determinar los “mejores” valores (bajo algún criterio) de los parámetros que rigen la distribución poblacional, existiendo tres planteamientos básicos, estimación puntual (epígrafe <a href="Fundainfer.html#estimpuntual">13.3</a>), por intervalo (epígrafe <a href="Fundainfer.html#estimintervalos">13.4</a>) y contraste de hipótesis (epígrafe <a href="Fundainfer.html#contrhip">13.5</a>).</p>
+<p>También hay situaciones en las que la forma funcional de la distribución poblacional es desconocida, o se duda de que la familia paramétrica considerada sea adecuada. En estos casos, bajo el nombre genérico de <strong>inferencia no paramétrica</strong>, se plantean contrastes que buscan determinar cuándo es posible asumir un modelo concreto de distribución, entre los que destacan, por su frecuente uso, los contrastes de normalidad (epígrafe <a href="Fundainfer.html#contrnormalidad">13.8</a>). Otra alternativa que permite aproximar características poblacionales sin asumir ninguna distribución poblacional concreta es el <strong>remuestreo</strong>, fundamentalmente el denominado <em>“bootstrap”</em>, (tema tratado en el Capítulo <a href="muestreo.html#muestreo">14</a>).</p>
+</div>
+<div id="mas" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Muestreo aleatorio simple<a href="Fundainfer.html#mas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Al estudiar una variable poblacional, <span class="math inline">\(X\)</span>, de la que se desconoce su distribución, llamada <strong>distribución poblacional, <span class="math inline">\(F(x)\)</span></strong>, se utiliza la información suministrada por una <strong>muestra</strong> obtenida por algún método de muestreo probabilístico que garantice que sea representativa de la variable poblacional.</p>
+<p>En la mayoría de los casos y técnicas estadísticas se asume que la muestra está obtenida mediante el método básico de muestreo, conocido como <strong>muestreo aleatorio simple</strong>, consistente en seleccionar totalmente al azar a los individuos de la muestra, por lo que todos tienen la misma probabilidad de formar parte de ella. Si cada individuo sólo puede aparecer una vez en la muestra, se habla de <strong>muestra sin reemplazamiento</strong>, mientras que se denomina <strong>muestra con reemplazamiento</strong> en caso contrario. De esta forma, dada una distribución poblacional <span class="math inline">\(F(x)\)</span>,una muestra aleatoria simple (m.a.s.) es una realización de un conjunto de <span class="math inline">\(n\)</span> variables aleatorias independientes e idénticamente distribuidas <span class="math inline">\(X=(X_1,...,X_n)\)</span>, cuya <strong>distribución conjunta</strong> es de la forma:
+<span class="math display" id="eq:distrconjunta">\[\begin{equation}
+F(X_1,...,X_n)=F_{X_1}(x_1)...F_{X_n}(x_n)=F(x_1)...F(x_n)
+\tag{13.1}
+\end{equation}\]</span></p>
+<p>Una herramienta básica para la inferencia es la <strong>distribución empírica de la muestra</strong>, definida como:
+<span class="math display" id="eq:distrempirica">\[\begin{equation}
+\hat{\mathbb{F}}_n (x)= {1 \over n} \sum_{i=1}^n \mathbb{I}_{(-\infty ,x]}(X_i)
+\tag{13.2}
+\end{equation}\]</span>
+donde por <span class="math inline">\(\mathbb{I}_{(-\infty ,x]}(X_i)\)</span> se indica la función indicadora, que toma el valor 1 si <span class="math inline">\(X_1 \leq x\)</span> y 0 en caso contrario.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a></p>
+<p>La gran ventaja del muestreo aleatorio simple consiste en que, dada una m.a.s. <span class="math inline">\((X_1,..., X_n)\)</span>:
+<span class="math display" id="eq:glivenko">\[\begin{equation}
+\underset {n \rightarrow \infty}{lim} \ E \left [ {\left ( \hat{\mathbb{F}}_n (x)- F(x) \right )^2} \right ] = 0
+\tag{13.3}
+\end{equation}\]</span>
+conocido como <em>teorema de Glivenko-Cantelli</em>. Este resultado es fundamental en inferencia, pues garantiza que el muestreo aleatorio simple produce muestras representativas de la población, ya que, a medida que aumenta el tamaño muestral, la distribución empírica de la muestra se aproxima a la distribución poblacional (véase fig. <a href="Fundainfer.html#fig:distrempir">13.1</a>). <a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> Así, cualquier característica de una distribución poblacional puede ser aproximada por su equivalente en la distribución empírica.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:distrempir"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/distrempir-1.png" alt="Distribución empírica para muestras de diferente tamaño de una distribución Normal" width="60%" />
+<p class="caption">
+Figura 13.1: Distribución empírica para muestras de diferente tamaño de una distribución Normal
+</p>
+</div>
+<p>Es muy frecuente que, a efectos de inferencia, no se estudie el comportamiento aleatorio de toda la muestra (su distribución conjunta) sino que interese el comportamiento de una función de la muestra que no dependa de ningún valor desconocido, <span class="math inline">\(T(X)=T(X_1,...,X_n)\)</span>, llamada genéricamente <strong>estadístico muestral</strong>; dicho comportamiento vendrá determinado por la <strong>distribución en el muestreo</strong> del estadístico <span class="math inline">\(T(X)\)</span>. El hecho de utilizar una m.a.s. permite establecer resultados de interés sobre los estadísticos o, en algunos casos, incluso obtener la distribución en el muestreo exacta de los estadísticos más usuales (epígrafe <a href="Fundainfer.html#pobnormales">13.6</a>).</p>
+<p>Así, dada una variable poblacional <span class="math inline">\(X\)</span> con varianza finita, y una m.a.s. se define la <strong>media muestral</strong> como
+<span class="math display" id="eq:mediamuestral">\[\begin{equation}
+\bar X = \frac {X_1, + ... + X_n}{n}
+\tag{13.4}
+\end{equation}\]</span>
+El hecho de utilizar una m.a.s. garantiza que:
+<span class="math display">\[\begin{equation}
+E[\bar X] = E[X] \ \text{;} \ Var(\bar X)=\frac{Var(X)}{n}
+\end{equation}\]</span>
+Este resultado es muy útil, ya que indica que la variabilidad de la media muestral es más pequeña que la variabilidad de la variable poblacional, siendo inversamente proporcional al tamaño muestral.</p>
+<p>Otro estadístico muy utilizado es la <strong>varianza muestral</strong>, que se define como:
+<span class="math display" id="eq:varmuestral">\[\begin{equation}
+S^2 = {\sum_{i=1}^n \left ( X_i - \bar X \right ) ^2 \over n}
+\tag{13.5}
+\end{equation}\]</span>
+En este caso, su esperanza es:
+<span class="math display">\[\begin{equation}
+E[S^2] = \frac {n-1}{n} Var[X]
+\end{equation}\]</span>
+que no coincide con la varianza poblacional. Para evitar este hecho, se define la <strong>cuasivarianza muestral</strong>:
+<span class="math display" id="eq:cuasivarmuestral">\[\begin{equation}
+S_c^2 = {\sum_{i=1}^n \left ( X_i - \bar X \right ) ^2 \over {n-1}}
+\tag{13.6}
+\end{equation}\]</span>
+estadístico para el que sí se cumple que <span class="math inline">\(E[S_c ^2] = Var[X]\)</span>, ya que existe una relación de proporcionalidad entre ambos estadísticos <span class="math inline">\(nS^2 = (n-1)S_c ^2\)</span>.<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a></p>
+</div>
+<div id="estimpuntual" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Estimación puntual<a href="Fundainfer.html#estimpuntual" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sea una población caracterizada por una distribución poblacional <span class="math inline">\(F_\theta (x)\)</span>, de una familia paramétrica pero que se desconoce el valor del parámetro <span class="math inline">\(\theta \in \Theta\)</span>, donde <span class="math inline">\(\Theta\)</span> es el espacio paramétrico (conjunto de posibles valores de <span class="math inline">\(\theta\)</span>). Dada una m.a.s. <span class="math inline">\(X=(X_1,...,X_n)\)</span>, se considera como <em>estimador</em> de <span class="math inline">\(\theta\)</span> a un estadístico muestral cuyo resultado sea un posible valor del parámetro:
+<span class="math display" id="eq:estimador">\[\begin{equation}
+\hat{\theta}=T(X)=T(X_1,...,X_n) \in \Theta
+(\tag{13.7})
+\end{equation}\]</span>
+Para cada estimador, se puede definir su <strong>error cuadrático medio</strong>:
+<span class="math display" id="eq:ecm">\[\begin{equation}
+ECM_\theta (\hat{\theta})=E_\theta \left[ { \left ( \hat{\theta}-\theta \right ) ^2 } \right]
+\tag{13.8}
+\end{equation}\]</span>
+que proporciona un valor medio del error que se comete al “aproximar” el verdadero valor <span class="math inline">\(\theta\)</span> por el resultado del estimador <span class="math inline">\(\hat{\theta}\)</span>.
+Así, el criterio de <em>“mínimos cuadrados”</em> propone utilizar aquel estimador que minimiza el error cuadrático medio:
+<span class="math display">\[\begin{equation}
+\hat{\theta}_{MC}= \underset {\hat{\theta}} {min} E_\theta \left[ {\left ( \hat{\theta}-\theta \right )^2} \right]
+\end{equation}\]</span>
+Desarrollando la expresión del ECM (@(eq:ecm)), éste se puede reexpresar como
+<span class="math display">\[\begin{equation}
+ECM_\theta (\hat{\theta})=Var_\theta (\hat{\theta}) + \left ( E_{\theta}(\hat{\theta}) - \theta \right ) ^2  = Var_\theta (\hat{\theta}) + b_\theta ^2 (\hat{\theta})
+\end{equation}\]</span>
+donde <span class="math inline">\(b_\theta(\hat{\theta}) =\left ( E_{\theta}(\hat{\theta}) - \theta \right )\)</span> se conoce como <strong>sesgo</strong> del estimador (<em>bias</em>, en inglés). Así, el ECM de un estimador depende de su varianza y de su sesgo al cuadrado.</p>
+<p>Para determinar, por tanto, el <em>“mejor”</em> estimador bajo el criterio de mínimos cuadrados, se podría obtener en dos pasos:</p>
+<ul>
+<li><p>Utilizar estimadores “insesgados”, es decir, de sesgo cero, o sea, <span class="math inline">\(E(\hat{\theta})=\theta\)</span> (el valor medio del estimador coincide con el parámetro).</p></li>
+<li><p>De entre los estimadores inesgados, utilizar el de varianza mínima, <span class="math inline">\(Var(\hat{\theta}_{MC})= \underset {\hat{\theta}} {min} Var(\hat{\theta})\)</span></p></li>
+</ul>
+<p>Queda fuera del objetivo de este capítulo plantear la obtención del estimador de mínimos cuadrados para cualquier distribución poblacional y parámetros, que el lector interesado puede encontrar en cualquier texto teórico de inferencia estadística (<span class="citation">Casella and Berger (<a href="#ref-CasellaBerger2007" role="doc-biblioref">2007</a>)</span> , <span class="citation">Blais (<a href="#ref-Blais2020" role="doc-biblioref">2020</a>)</span> , <span class="citation">Almudevar (<a href="#ref-Almudevar2021" role="doc-biblioref">2021</a>)</span>).</p>
+<p>Otro planteamiento para encontrar estimadores puntuales se basa en la función de densidad de la muestra, que depende de ésta y del parámetro que caracteriza a la distribución poblacional:
+<span class="math display" id="eq:verosimilitud">\[\begin{equation}
+f(x_1,...,x_n;\theta)=f(x_1;\theta)...f(x_n;\theta)=L(\theta;x_1,...,x_n)
+\tag{13.9}
+\end{equation}\]</span>
+Considerando el parámetro como fijo, la función se interpreta como la densidad de la muestra. Sin embargo, si se considera que la muestra está dada, también se puede interpretar como una función del parámetro, que mide la <strong>verosimilitud</strong> (<em>likelihood</em>, en inglés) de cada valor del parámetro en función de la muestra obtenida. Así, el criterio para determinar el <em>“mejor”</em> estimador puede ser utilizar aquél que maximiza la función de verosimilitud; se obtiene entonces el conocido como <em>estimador máximo verosímil</em>:
+<span class="math display">\[\begin{equation}
+\hat{\theta}_{MV}= \underset {\theta} {max} L(\theta;x_1,...,x_n)
+\end{equation}\]</span>
+Para el cálculo del estimador máximo verosímil no se suele utilizar la función de verosimilitud, sino su logaritmo (que alcanza los máximos y mínimos en los mismos puntos), derivando respecto al parámetro e igualando a cero (ecuación de verosimilitud).</p>
+<p>Este método suele proporcionar estimadores con buenas propiedades estadísticas y, en muchos casos, suele conducir al mismo resultado que el método de mínimos cuadrados. <a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>. En las distribuciones usuales, es relativamente sencillo obtener la ecuación de verosimilitud y resolverla, por lo que se dispone de estimadores máximo verosímiles conocidos. En modelos más elaborados, la resolución de la ecuación de verosimilitud se puede complicar, hasta el extremo de que haya que recurrir a métodos numéricos de aproximación.</p>
+<p>Una alternativa computacionalmente más sencilla es la basada en el conocido como <strong>método de los momentos</strong>. El planteamiento básico es expresar el parámetro en función de los momentos poblacionales (esperanza, varianza, etc.) y utilizar como estimador la misma función pero de los momentos muestrales (media muestral, varianza muestral, etc.). En las distribuciones más usuales, los parámetros suelen ser momentos poblacionales o tranformadas simples de éstos, por lo que el método de los momentos es muy sencillo. Como contrapartida, es más difícil evaluar las propiedades estadísticas de estos estimadores, salvo que coincidan con los de mínimos cuadrados o de máxima verosimilitud.</p>
+<p>En <strong>R</strong>, la librería <code>fdistrplus</code> dispone de la función <code>fitdist()</code>, que permite la obtención de los estimadores para las distribuciones usuales por diversos métodos, incluidos el de máxima verosimilitud (mle) y el de los momentos (mme).</p>
+</div>
+<div id="estimintervalos" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> Estimación por intervalos<a href="Fundainfer.html#estimintervalos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Dado que todo estimador es una variable aleatoria, su valor concreto, la <em>“estimación”</em> de parámetro <span class="math inline">\(\hat\theta\)</span>, depende de la muestra. Esta variación muestral ocasiona incertidumbre sobre la estimación. Una forma de incluir esta variabilidad en la estimación puede consistir en sustituir la estimación puntual por un intervalo de valores en el que se tenga un cierto nivel de confianza de que contenga al verdadero valor del parámetro.</p>
+<p>El método más extendido para obtener <strong>intervalos de confianza</strong> consiste en utilizar un estimador puntual y utilizar su distribución en el muestreo para construir una región que contenga, con cierta probabilidad <span class="math inline">\((1-\alpha)\)</span>, al verdadero valor <span class="math inline">\(\theta\)</span>:
+<span class="math display" id="eq:interconfianza">\[\begin{equation}
+IC_{(1-\alpha)}=[LIC , LSC] \ \text{tal que} \ P \left ( LIC \leq \theta \leq LUC  \right ) = (1-\alpha)
+\tag{13.10}
+\end{equation}\]</span>
+donde los límites inferior (LIC) y superior (LSC) de confianza dependen de la desviación típica del estimador y de constantes asociadas a su distribución y al nivel de confianza <span class="math inline">\((1-\alpha)\)</span>, llamados <strong>valores críticos</strong>. En esta ecuación, tanto el LIC como el LSC son variables aleatorias; cuando se utilizan los datos de una muestra, se convierten en valores reales, por lo que no se puede hablar de <em>“probabilidad de que el parámetro esté dentro del intervalo”</em>, sino que se habla de <em>“confianza en que el intervalo contenga al valor del parámetro”</em>.</p>
+<p>En <strong>R</strong>, la librería <code>Rlab</code> permite obtener los valores críticos de las distribuciones usuales a través de los cuantiles, anteponiendo <em>q</em> al nombre de la distribución, recogidos en la tabla XXX-ref. cruzada “Funciones de distribución en R” (por ejemplo usando las funciones <code>qbinom()</code>, <code>qnorm()</code>, <code>qt()</code>, <code>qf()</code>, etc.). Igualmente, la librería <code>DescTools</code> dispone de funciones para calcular intervalos de confianza en poblaciones normales para la media (<code>MeanCI()</code>), la diferencia de medias (<code>MeanDiffCI()</code>), la mediana (<code>MedianCI()</code>), cualquier cuantil (<code>QuantileCI()</code>), o la varianza (<code>VarCI()</code>). Por último, en el caso de no conocer la distribución en el muestreo del estimador, se puede recurrir al remuestreo por bootstrap, que se detallará en el capítulo <a href="muestreo.html#muestreo">14</a>, indicando el método <em>“boot”</em> en las funciones anteriores.</p>
+</div>
+<div id="contrhip" class="section level2 hasAnchor" number="13.5">
+<h2><span class="header-section-number">13.5</span> Contrastes de hipótesis<a href="Fundainfer.html#contrhip" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hay situaciones donde no interesa tanto estimar el valor de un parámetro sino decidir si la información muestral es congruente con algún valor concreto del parámetro. En estos casos, se puede establecer como <strong>hipótesis</strong> que el parámetro toma un valor concreto y <em>contrastar</em> si es verosímil haber obtenido el resultado muestral dado. Este planteamiento se conoce como <strong>contrastes de significación</strong>.</p>
+<p>Así, se establece una hipótesis, históricamente conocida como <strong>hipótesis nula</strong>, que determina un valor del parámetro:
+<span class="math display">\[\begin{equation}
+H_0 \equiv \theta = \theta_0
+\end{equation}\]</span>
+Con este valor, la distribución muestral del estimador permite obtener la probabilidad de observar un valor tan <em>“distante”</em> como el obtenido en la muestra, conocido como <strong>p-valor</strong>: si es muy pequeño, sería poco probable haber observado ese valor si la hipótesis es cierta, por lo que la evidencia empírica no es congruente con ella; si no es pequeño, sería probable haber observado el valor bajo la hipótesis, por lo que no hay evidencia empírica <em>“contra”</em> dicha hipótesis nula.</p>
+<p>Cuando por <em>“distante”</em> se entiende alejado del valor medio del estimador, mayor o menor, se habla de <strong>p-valor bilateral</strong> o “a dos colas”. Cuando se considera <em>“distante”</em> como menor que (o mayor que) la media del estimador, se habla de <strong>p-valor unilateral</strong> (a la izquierda o a la derecha, respectivamente) o “a una cola”.</p>
+<p>Habitualmente, se considera que un p-valor por debajo de 0.05 ya indica que la evidencia empírica no permite asumir como cierta la hipótesis nula, expresándose como que el valor del parámetro es <em>“significativamente distinto (menor o mayor)”</em> que <span class="math inline">\(\theta_0\)</span>. También es posible interpretar el p-valor como <em>“la probabilidad máxima de cometer el error de rechazar la hipótesis nula cuando es cierta”</em>, abreviado como <em>“tamaño del error si se rechaza la hipótesis nula”</em>.</p>
+<p>Estos contrastes de significación, originalmente desarrollados por Ronald Fisher, fueron incluidos en un esquema de toma de decisiones por Jerzy Neyman y Egon Pearson, planteando que, de no ser cierta la hipótesis nula, se debe plantear una hipótesis alternativa <span class="math inline">\(H_1\)</span>. La decisión de qué hipótesis resulta más congruente con los datos se basa en la comparación por cociente de las verosimilitudes de la muestra bajo cada una de ellas, decidiendo el rechazo de la hipótesis nula a favor de la alternativa cuando dicho cociente es, en probabilidad, inferior a un valor prefijado, <span class="math inline">\(\alpha\)</span>, conocido como <strong>nivel de significación</strong>. Dependiendo de la estructura de las hipótesis (simples, si sólo determinan un valor del parámetro, o compuestas, si determinan más de uno; a su vez, unilaterales si los valores son todos menores, o mayores, que uno dado, o bilaterales en caso contrario) la regla de decisión del contrate resulta más o menos compleja de obtener.</p>
+<p>Computacionalmente, dada la información muestral, es más fácil calcular el p-valor que plantear el esquema de decisión de Neyman-Pearson, por lo que es la estrategia utilizada en la práctica. Dado el carácter breve e introductorio de este capítulo, no se profundizará más en este esquema de decisión, que puede consultarse en, por ejemplo, <span class="citation">Casella and Berger (<a href="#ref-CasellaBerger2007" role="doc-biblioref">2007</a>)</span>, <span class="citation">Blais (<a href="#ref-Blais2020" role="doc-biblioref">2020</a>)</span> o <span class="citation">Almudevar (<a href="#ref-Almudevar2021" role="doc-biblioref">2021</a>)</span>.</p>
+</div>
+<div id="pobnormales" class="section level2 hasAnchor" number="13.6">
+<h2><span class="header-section-number">13.6</span> Inferencia estadística paramétrica sobre poblaciones normales<a href="Fundainfer.html#pobnormales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Como consecuenca del TCL (<a href="Funda-probab.html#tcl">12.5</a>), el supuesto de que la distribución poblacional es una normal es el caso más habitual en la práctica, siendo requisito básico en muchísimas técnicas estadísticas. En este caso, las distribuciones muestrales de los estimadores de los parámetros poblacionales, tanto de la media <span class="math inline">\(\mu\)</span> como de la varianza <span class="math inline">\(\sigma^2\)</span>, son conocidas, lo que facilita la construcción de intervalos de confianza y contrastes de hipótesis.</p>
+<p>Así, dada una distribución poblacional normal y una m.a.s. de tamaño n,</p>
+<ul>
+<li>Para estimar la varianza poblacional, <span class="math inline">\(\sigma ^2\)</span>, el estimador máximo verosímil es la varianza muestral <a href="Fundainfer.html#eq:varmuestral">(13.5)</a>, que es sesgado. El estimador insesgado es la cuasivarianza muestral <a href="Fundainfer.html#eq:cuasivarmuestral">(13.6)</a>. Sus distribuciones en el muestreo son:
+<span class="math display">\[\begin{equation}
+{n S^2 \over \sigma^2} = {(n-1) S_c^2 \over \sigma^2} \sim \chi^2_{n-1}
+\end{equation}\]</span>
+Así, el intervalo de confianza a nivel <span class="math inline">\((1-\alpha)\)</span> es:
+<span class="math display">\[\begin{equation}
+IC_{(1-\alpha)} =\left [ {n S^2 \over {\chi^2_{n-1,\alpha /2}}} , {n S^2 \over {\chi^2_{n-1, 1-\alpha /2}}}  \right ]
+\end{equation}\]</span>
+o, equivalentemente, usando la proprocionalidad entre varianza y cuasivarianza muestrales
+<span class="math display">\[\begin{equation}
+IC_{(1-\alpha)} = \left [ {(n-1) S_c^2 \over {\chi^2_{n-1,\alpha /2}}} , {(n-1) S_c^2 \over {\chi^2_{n-1, 1-\alpha /2}}}  \right ]
+\end{equation}\]</span>
+donde <span class="math inline">\(\chi ^2 _{n-1,\alpha / 2}\)</span> representa el cuantil en la distribución.</li>
+</ul>
+<p>Para el contraste de <span class="math inline">\(H_0 \equiv \sigma^2 = \sigma_0^2\)</span>, la “distancia” es <span class="math inline">\({n S^2 \over \sigma^2_0} = {(n-1) S_c^2 \over \sigma_0^2}\)</span>, lo que permite calcular los p-valores mediante una distribución <span class="math inline">\(\chi^2_{n-1}\)</span>.</p>
+<p>Para el caso de querer estimar la desviación típica, basta con calcular la raiz cuadrada del estimador de la varianza, o si se busca un intervalo de confianza, la raiz de los extremos del intervalo para la varianza. Los contrastes de hipótesis son equivalentes, ya que <span class="math inline">\(\sigma^2=\sigma_0^2 \equiv \sigma = \sigma_0\)</span>.</p>
+<ul>
+<li><p>Para estimar el parámetro <span class="math inline">\(\mu\)</span> se utiliza el estimador media muestral <span class="math inline">\(\hat{\mu} = \bar X\)</span>, en el que coinciden los métodos de mínimos cuadrados, máxima verosimilitud y el de los momentos, siendo insesgado y de varianza mínima.</p></li>
+<li><p>Si la varianza poblacional es conocida, la distribución en el muestreo de la media muestral es:
+<span class="math display">\[\begin{equation}
+\bar X \sim N \left ( \mu , {\sigma \over {\sqrt{n}}} \right ) \equiv {\bar X - \mu \over {\sigma / \sqrt n}} \sim N(0,1)
+\end{equation}\]</span>
+El intervalo de confianza a nivel <span class="math inline">\((1-\alpha)\)</span> es:
+<span class="math display">\[\begin{equation}
+IC_{(1-\alpha)} =\left [ \bar X - z_{\alpha / 2} {\sigma \over \sqrt n} , \bar X + z_{\alpha / 2} {\sigma \over \sqrt n}  \right ]
+\end{equation}\]</span>
+donde <span class="math inline">\(z_{\alpha/2}\)</span> representa el cuantil en una distribución normal estándar.</p></li>
+</ul>
+<p>Para el contraste de <span class="math inline">\(H_0 \equiv \mu = \mu_0\)</span>, la “distancia” es <span class="math inline">\(\bar X - \mu_0 \over \sigma / \sqrt n\)</span>, lo que permite calcular los p-valores mediante una distribución <span class="math inline">\(N(\mu , \sigma )\)</span>.</p>
+<ul>
+<li>Si la varianza poblacional es desconocida, se sustituye por su estimación, por lo que la distribución en el muestreo de la media muestral es:
+<span class="math display">\[\begin{equation}
+{\bar X - \mu \over {S / \sqrt {n-1}}} \equiv {\bar X - \mu \over {S_c / \sqrt n}} \sim t_{n-1}
+\end{equation}\]</span>
+El intervalo de confianza a nivel <span class="math inline">\((1-\alpha)\)</span> es:
+<span class="math display">\[\begin{equation}
+IC_{(1-\alpha)} =\left [ \bar X - t_{n-1,\alpha / 2} {S \over \sqrt {n-1}} , \bar X + t_{n-1, \alpha / 2} {S \over \sqrt {n-1}}  \right ]
+\end{equation}\]</span>
+o, equivalentemente,
+<span class="math display">\[\begin{equation}
+IC_{(1-\alpha)} = \left [ \bar X - t_{n-1,\alpha / 2} {S_c \over \sqrt n} , \bar X + t_{n-1, \alpha / 2} {S_c \over \sqrt n}  \right ]
+\end{equation}\]</span>
+donde <span class="math inline">\(t_{n-1,\alpha/2}\)</span> representa el cuantil de la distribución <em>t-Student</em>.</li>
+</ul>
+<p>Para el contraste de <span class="math inline">\(H_0 \equiv \mu = \mu_0\)</span>, la “distancia” es <span class="math inline">\({\bar X - \mu_0 \over S / \sqrt {n-1}} = {\bar X - \mu_0 \over S_c / \sqrt n}\)</span>, lo que permite calcular los p-valores mediante una distribución <span class="math inline">\(t_{n-1}\)</span>.</p>
+<p>Cuando el interés es la comparación de dos poblaciones normales independientes, X e Y, a partir de muestras <span class="math inline">\((X_1,...,X_n)\)</span> y <span class="math inline">\((Y_1,...,Y_m)\)</span>, se modifican los estimadores.</p>
+<ul>
+<li><p>Para la comparación de las varianzas poblacionales, la distribución muestral del cociente es una distribución F-Snedecor:
+<span class="math display">\[\begin{equation}
+{{{m S_Y^2} \over {(m-1)\sigma_Y^2}} \over {{n S_X^2} \over {(n-1)\sigma_X^2}}} \equiv {S_{cY}^2 / \sigma_Y^2 \over S_{cX} ^2 / \sigma_X^2} \sim F_{m-1,n-1}
+\end{equation}\]</span>
+que permite calcular intervalos de confianza de forma idéntica a la expuesta a los casos anteriores pero con la distribución F. Un caso muy frecuente es querer contrastar si ambas varianzas poblacionales son iguales (el cociente entre ellas es la unidad).</p></li>
+<li><p>Para la comparación de las medias poblacionales, el caso más común es asumir que las varianzas (aunque desconocidas) son iguales, por lo que el estimador es:
+<span class="math display">\[\begin{equation}
+{(\bar X - \bar Y)-(\mu_X - \mu_Y) \over \sqrt{{nS_X^2+mS_Y^2} \over n+m-2} \sqrt{{1\over n} + {1 \over m}}} \sim t_{n+m-2}
+\end{equation}\]</span>
+si se utiliza la varianza muestral o
+<span class="math display">\[\begin{equation}
+{(\bar X - \bar Y)-(\mu_X - \mu_Y) \over \sqrt{{(n-1)S_{cX}^2+(m-1)S_{cY}^2} \over n+m-2} \sqrt{{1\over n} + {1 \over m}}} \sim t_{n+m-2}
+\end{equation}\]</span>
+si se utiliza la cuasivarianza muestral.</p></li>
+</ul>
+<p>Al ser distribuciones t-Student, los intervalos de confianza y contrastes de hipótesis son similares a los del caso de una única población con las correcciones pertinentes.</p>
+</div>
+<div id="ejemplopobnorm" class="section level2 hasAnchor" number="13.7">
+<h2><span class="header-section-number">13.7</span> Inferencia sobre poblaciones normales con <strong>R</strong><a href="Fundainfer.html#ejemplopobnorm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los datos sobre calidad del aire en la ciudad de Nueva York (<code>airquality</code>) recogen la variable <code>Wind</code> que mide, en mph, la velocidad del viento entre el día 1 de mayo y el 30 de septiembre. Se particionan dichos datos en dos variables <span class="math inline">\(X=\text{Velocidad del viento hasta el 15 de julio}\)</span> e <span class="math inline">\(Y=\text{Velocidad del viento desde el 16 de julio}\)</span>. Asumiendo que las distribuciones poblacionales son normales, se propone:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Determinar una estimación de la velocidad media y de la desviación típica de ambas variables, usando el método de máxima verosimilitud.</li>
+</ol>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="Fundainfer.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fitdistrplus)</span>
+<span id="cb144-2"><a href="Fundainfer.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span>
+<span id="cb144-3"><a href="Fundainfer.html#cb144-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind[<span class="dv">1</span><span class="sc">:</span><span class="dv">76</span>]</span>
+<span id="cb144-4"><a href="Fundainfer.html#cb144-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> airquality<span class="sc">$</span>Wind[<span class="dv">77</span><span class="sc">:</span><span class="dv">153</span>] <span class="co"># Se particiona la muestra en los dos períodos</span></span>
+<span id="cb144-5"><a href="Fundainfer.html#cb144-5" aria-hidden="true" tabindex="-1"></a>mle_x <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(x, <span class="at">distr =</span> <span class="st">&quot;norm&quot;</span>, <span class="at">method =</span> <span class="st">&quot;mle&quot;</span>)</span>
+<span id="cb144-6"><a href="Fundainfer.html#cb144-6" aria-hidden="true" tabindex="-1"></a>mle_y <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(y, <span class="at">distr =</span> <span class="st">&quot;norm&quot;</span>, <span class="at">method =</span> <span class="st">&quot;mle&quot;</span>)</span>
+<span id="cb144-7"><a href="Fundainfer.html#cb144-7" aria-hidden="true" tabindex="-1"></a>mle_x</span>
+<span id="cb144-8"><a href="Fundainfer.html#cb144-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fitting of the distribution &#39; norm &#39; by maximum likelihood </span></span>
+<span id="cb144-9"><a href="Fundainfer.html#cb144-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Parameters:</span></span>
+<span id="cb144-10"><a href="Fundainfer.html#cb144-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       estimate Std. Error</span></span>
+<span id="cb144-11"><a href="Fundainfer.html#cb144-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean 10.640789  0.4274723</span></span>
+<span id="cb144-12"><a href="Fundainfer.html#cb144-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sd    3.726618  0.3022685</span></span>
+<span id="cb144-13"><a href="Fundainfer.html#cb144-13" aria-hidden="true" tabindex="-1"></a>mle_y</span>
+<span id="cb144-14"><a href="Fundainfer.html#cb144-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fitting of the distribution &#39; norm &#39; by maximum likelihood </span></span>
+<span id="cb144-15"><a href="Fundainfer.html#cb144-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Parameters:</span></span>
+<span id="cb144-16"><a href="Fundainfer.html#cb144-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      estimate Std. Error</span></span>
+<span id="cb144-17"><a href="Fundainfer.html#cb144-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean 9.283117  0.3581657</span></span>
+<span id="cb144-18"><a href="Fundainfer.html#cb144-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sd   3.142891  0.2532613</span></span></code></pre></div>
+<p>Es resultado muestra como estimaciones la media y la desviación típica muestrales respectivamente, junto al <em>“error estandar”</em>, o desviación típica de los estimadores respectivos.</p>
+<p>La orden <code>plot(mle_x)</code> permite un análisis gráfico de las estimaciones realizadas; por ejemplo si optamos por el primer período, se obtiene la fig.<a href="Fundainfer.html#fig:mle">13.2</a> siguiente:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="Fundainfer.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb145-2"><a href="Fundainfer.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mle_x)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:mle"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/mle-1.png" alt="Resultados gráficos de la estimación por máxima verosimilitud" width="60%" />
+<p class="caption">
+Figura 13.2: Resultados gráficos de la estimación por máxima verosimilitud
+</p>
+</div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Establecer un intervalo de confianza para la velocidad media del viento hasta el 15 de julio, con un nivel de confianza del 95%.</li>
+</ol>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="Fundainfer.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">MeanCI</span>(x, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb146-2"><a href="Fundainfer.html#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      mean    lwr.ci    upr.ci </span></span>
+<span id="cb146-3"><a href="Fundainfer.html#cb146-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10.640789  9.783563 11.498016</span></span></code></pre></div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Calcular un intervalo de confianza para la desviación típica de la velocidad del viento desde el 16 de julio, con un nivel de confianza del 90%.</li>
+</ol>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="Fundainfer.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">VarCI</span>(y, <span class="at">conf.level =</span> <span class="fl">0.9</span>))</span>
+<span id="cb147-2"><a href="Fundainfer.html#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      var   lwr.ci   upr.ci </span></span>
+<span id="cb147-3"><a href="Fundainfer.html#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3.163501 2.795147 3.655468</span></span></code></pre></div>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>¿Se puede considerar que las varianzas poblacionales en ambos períodos son iguales, con un nivel de significación del 1%?.</li>
+</ol>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="Fundainfer.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VarTest</span>(x, y, <span class="at">conf.level =</span> <span class="fl">0.99</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb148-2"><a href="Fundainfer.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb148-3"><a href="Fundainfer.html#cb148-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  F test to compare two variances</span></span>
+<span id="cb148-4"><a href="Fundainfer.html#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb148-5"><a href="Fundainfer.html#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  x and y</span></span>
+<span id="cb148-6"><a href="Fundainfer.html#cb148-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; F = 1.4062, num df = 75, denom df = 76, p-value = 0.1406</span></span>
+<span id="cb148-7"><a href="Fundainfer.html#cb148-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true ratio of variances is not equal to 1</span></span>
+<span id="cb148-8"><a href="Fundainfer.html#cb148-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 99 percent confidence interval:</span></span>
+<span id="cb148-9"><a href="Fundainfer.html#cb148-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.7727136 2.5616496</span></span>
+<span id="cb148-10"><a href="Fundainfer.html#cb148-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb148-11"><a href="Fundainfer.html#cb148-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ratio of variances </span></span>
+<span id="cb148-12"><a href="Fundainfer.html#cb148-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           1.406197</span></span></code></pre></div>
+<p>El estadístico de contraste, <em>F-Snedecor</em>, arroja un valor de 1.4062, con un p-valor de 0.1406. Como este p-valor no es pequeño, no hay suficiente evidencia empírica como para rechazar la hipótesis nula de igualdad de varianzas.</p>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Teniendo en cuenta los resultados del apartado anterior, ¿se puede afirmar que la velocidad media del viento en el primer período es mayor que la del segundo, con un nivel de significación del 1%?</li>
+</ol>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="Fundainfer.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, y, <span class="at">conf.level =</span> <span class="fl">0.99</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb149-2"><a href="Fundainfer.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb149-3"><a href="Fundainfer.html#cb149-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Two Sample t-test</span></span>
+<span id="cb149-4"><a href="Fundainfer.html#cb149-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb149-5"><a href="Fundainfer.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  x and y</span></span>
+<span id="cb149-6"><a href="Fundainfer.html#cb149-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = 2.4212, df = 151, p-value = 0.008328</span></span>
+<span id="cb149-7"><a href="Fundainfer.html#cb149-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means is greater than 0</span></span>
+<span id="cb149-8"><a href="Fundainfer.html#cb149-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 99 percent confidence interval:</span></span>
+<span id="cb149-9"><a href="Fundainfer.html#cb149-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.03918338        Inf</span></span>
+<span id="cb149-10"><a href="Fundainfer.html#cb149-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb149-11"><a href="Fundainfer.html#cb149-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean of x mean of y </span></span>
+<span id="cb149-12"><a href="Fundainfer.html#cb149-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10.640789  9.283117</span></span></code></pre></div>
+<p>Un p-valor tan bajo (0.008) indica que existe suficiente evidencia empírica como para rechazar la hipótesis nula de igualdad de medias, por lo que sí se podría afirmar, con un nivel de confianza del 99%, que la velocidad media del viento en el primer período es superior a la del segundo.</p>
+</div>
+<div id="contrnormalidad" class="section level2 hasAnchor" number="13.8">
+<h2><span class="header-section-number">13.8</span> Inferencia estadística no paramétrica: contrastes de normalidad<a href="Fundainfer.html#contrnormalidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hasta ahora, se ha supuesto que la distribución muestral del estimador era “funcionalmente” conocida, aunque dependiente de un parámetro (o varios). Sin embargo, hay situaciones donde no se conoce cómo se distribuyen los datos, debiendo decidir qué distribución los ha generado. Es lo que se conoce como <em>“inferencia estadística no paramétrica”</em>. En este capítulo no se aborda un planteamiento sistemático de esta rama, sino que se presenta la situación más habitual en la práctica, que es decidir si se puede mantener que una muestra proviene de una distribución normal, supuesto básico en muchas técnicas estadísticas.</p>
+<p>Posiblemente el test más potente para contrastar la normalidad sea la prueba de Shapiro-Wilks, que asume como hipótesis nula que los datos están generados por una distribución normal. Un rechazo de esta hipótesis (p-valor muy bajo) debería hacer reflexionar sobre la adecuación de muchas técnicas y la interpretación de los resultados. En <strong>R</strong>, la función <code>shapiro.test()</code> proporciona dicho contraste de normalidad.</p>
+<p>Una alternativa es el uso del test de Kolmogorov-Smirnov, diseñado para comparar las distribuciones de dos muestras, fijando que una de ellas sea la distribución normal (este test puede ser igualmente utilizado para cualquier otra distribución usual). La función <code>ks.test()</code> permite en <strong>R</strong> obtener los resultados de este contraste.</p>
+<p>Como ejemplificación del uso del test de Shapiro-Wilk en <strong>R</strong>, utilizando los datos sobre calidad del aire en la ciudad de Nueva York del ejemplo anterior (<a href="Fundainfer.html#ejemplopobnorm">13.7</a>), se va a contrastar si se puede asumir que las variables <em>Temp</em> y <em>Wind</em> están generadas por distribuciones normales:</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="Fundainfer.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(airquality<span class="sc">$</span>Temp)</span>
+<span id="cb150-2"><a href="Fundainfer.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb150-3"><a href="Fundainfer.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Shapiro-Wilk normality test</span></span>
+<span id="cb150-4"><a href="Fundainfer.html#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb150-5"><a href="Fundainfer.html#cb150-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  airquality$Temp</span></span>
+<span id="cb150-6"><a href="Fundainfer.html#cb150-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W = 0.97617, p-value = 0.009319</span></span>
+<span id="cb150-7"><a href="Fundainfer.html#cb150-7" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(airquality<span class="sc">$</span>Wind)</span>
+<span id="cb150-8"><a href="Fundainfer.html#cb150-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb150-9"><a href="Fundainfer.html#cb150-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Shapiro-Wilk normality test</span></span>
+<span id="cb150-10"><a href="Fundainfer.html#cb150-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb150-11"><a href="Fundainfer.html#cb150-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  airquality$Wind</span></span>
+<span id="cb150-12"><a href="Fundainfer.html#cb150-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W = 0.98575, p-value = 0.1178</span></span></code></pre></div>
+<p>Para la variable <em>Temp</em> el p-valor es muy bajo (0.0093), por lo que hay suficiente evidencia empírica como para rechazar que provenga de una distribución normal. Por el contrario, en el caso de la variable <em>Wind</em>, el p-valor (0.1178) no es pequeño, por lo que no hay suficiente evidencia como para rechazar que esté generada por una distribución normal. La fig. <a href="Fundainfer.html#fig:qqplots">13.3</a> siguiente muestra la comparación entre los cuantiles empíricos de ambas variables y los teóricos de una distribución normal.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:qqplots"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/qqplots-1.png" alt="Q-Q Plots normales para las variables Temp (izq) y Wind (der)" width="60%" />
+<p class="caption">
+Figura 13.3: Q-Q Plots normales para las variables Temp (izq) y Wind (der)
+</p>
+</div>
+<div class="infobox_resume">
+<p><strong>RESUMEN</strong></p>
+<p>La inferencia estadística permite estimar la distribución poblacional de una variable a partir de la información suministrada por una muestra. A partir de estimadores muestrales, se plantean los métodos de estimación puntual, construcción de intervalos de confianza y resolución de contrastes de significación sobre diversas hipótesis.</p>
+<p>Para el caso de poblaciones normales, se han desarrollado las expresiones operativas de los métodos anteriores. Igualmente, se ha presentado un contraste de normalidad que permite decidir cuándo el supuesto de normalidad es adecuado o no.</p>
+</div>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Almudevar2021" class="csl-entry">
+Almudevar, Anthony. 2021. <em>Theory of Statistical Inference</em>. Texts in Statistical Science. Chapman &amp; Hall/CRC.
+</div>
+<div id="ref-Blais2020" class="csl-entry">
+Blais, Brian. 2020. <em>Statistical Inference for Everyone</em>. Save the broccoli publishing.
+</div>
+<div id="ref-CasellaBerger2007" class="csl-entry">
+Casella, George, and Roger L. Berger. 2007. <em>Statistical Inference, 2nd Ed.</em> Cengage Learning.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="23">
+<li id="fn23"><p>Es decir, la distribución empírica de la muestra indica, para cada valor <em>x</em>, la proporción de elementos de la muestra que toman un valor menor o igual que él.<a href="Fundainfer.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<li id="fn24"><p>Un tema que se abordará en el Capítulo <a href="muestreo.html#muestreo">14</a> es la determinación del tamaño muestral necesario para que la aproximación tenga un error menor que uno prefijado.<a href="Fundainfer.html#fnref24" class="footnote-back">↩︎</a></p></li>
+<li id="fn25"><p>Muchos textos, sobre todo anglosajones no hacen esta distinción, sino que denominan directamente <em>“varianza muestral”</em> a la cuasivarianza. En R, por ejemplo, las funciones <em>var</em> o <em>sd</em> proporcionan la cuasivarianza y cuasidesviación típica muestrales respectivamente, matiz que hay que tener siempre presente.<a href="Fundainfer.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p>En las distribuciones usuales es así, salvo que el estimador de máxima verosimilitud no sea insesgado, como es el caso de estimar la varianza en una distibución normal.<a href="Fundainfer.html#fnref26" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="Funda-probab.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="muestreo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Ciencia_de_datos_con_r.pdf", "Ciencia_de_datos_con_r.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 2 Evolución de la estructura del paro registrado en Castilla-La Mancha | Fundamentos de ciencia de datos con R</title>
+  <meta name="description" content="Falta" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 2 Evolución de la estructura del paro registrado en Castilla-La Mancha | Fundamentos de ciencia de datos con R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Falta" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 2 Evolución de la estructura del paro registrado en Castilla-La Mancha | Fundamentos de ciencia de datos con R" />
+  
+  <meta name="twitter:description" content="Falta" />
+  
+
+<meta name="author" content="Coordinadores" />
+
+
+<meta name="date" content="2022-11-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="modelos-econométricos-espaciales.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33KQ1S5ZCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-33KQ1S5ZCJ');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Ciencia de datos con <strong>R</strong></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="modelos-econométricos-espaciales.html"><a href="modelos-econométricos-espaciales.html"><i class="fa fa-check"></i><b>1</b> Modelos econométricos espaciales</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="modelos-econométricos-espaciales.html"><a href="modelos-econométricos-espaciales.html#la-dependencia-espacial"><i class="fa fa-check"></i><b>1.1</b> La dependencia espacial </a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="modelos-econométricos-espaciales.html"><a href="modelos-econométricos-espaciales.html#modelización-del-espacio-la-matriz-w"><i class="fa fa-check"></i><b>1.1.1</b> Modelización del espacio: La matriz W</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="modelos-econométricos-espaciales.html"><a href="modelos-econométricos-espaciales.html#medidas-de-autocorrelación"><i class="fa fa-check"></i><b>1.2</b> Medidas de Autocorrelación </a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="modelos-econométricos-espaciales.html"><a href="modelos-econométricos-espaciales.html#el-indicador-i-de-moran"><i class="fa fa-check"></i><b>1.2.1</b> El indicador <em>I</em> de Moran</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="modelos-econométricos-espaciales.html"><a href="modelos-econométricos-espaciales.html#modelos-econométricos-espaciales-de-corte-transversal"><i class="fa fa-check"></i><b>1.3</b> Modelos econométricos espaciales de corte transversal </a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="modelos-econométricos-espaciales.html"><a href="modelos-econométricos-espaciales.html#interpretación-de-los-estimadores-de-los-modelos-de-autocorrelación-espacial"><i class="fa fa-check"></i><b>1.3.1</b> Interpretación de los estimadores de los modelos de autocorrelación espacial </a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html"><i class="fa fa-check"></i><b>2</b> Evolución de la estructura del paro registrado en Castilla-La Mancha</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#planteamiento.-las-variables"><i class="fa fa-check"></i><b>2.1</b> Planteamiento. Las variables</a></li>
+<li class="chapter" data-level="2.2" data-path="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#evolución-del-número-total-de-parados"><i class="fa fa-check"></i><b>2.2</b> Evolución del número total de parados</a></li>
+<li class="chapter" data-level="2.3" data-path="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#evolución-de-la-edad-y-el-sexo-en-la-población-parada"><i class="fa fa-check"></i><b>2.3</b> Evolución de la edad y el sexo en la población parada</a></li>
+<li class="chapter" data-level="2.4" data-path="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#evolución-del-tiempo-de-búsqueda-de-empleo-en-la-población-parada"><i class="fa fa-check"></i><b>2.4</b> Evolución del tiempo de búsqueda de empleo en la población parada</a></li>
+<li class="chapter" data-level="2.5" data-path="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#evolución-del-paro-registrado-según-sexo-y-sector-de-procedencia"><i class="fa fa-check"></i><b>2.5</b> Evolución del paro registrado según sexo y sector de procedencia</a></li>
+<li class="chapter" data-level="2.6" data-path="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#conclusiones"><i class="fa fa-check"></i><b>2.6</b> Conclusiones</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://blog.uclm.es/tp-mbsba/"> Ciencia de datos con R </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fundamentos de ciencia de datos con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Capítulo 2</span> Evolución de la estructura del paro registrado en Castilla-La Mancha<a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Isidro Hidalgo Arellano</em> y <em>Ángel Jiménez Rojas</em><br />
+Observatorio del Mercado de Trabajo de Castilla-La Mancha</p>
+<div id="planteamiento.-las-variables" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Planteamiento. Las variables<a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#planteamiento.-las-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En los últimos 15 años el mundo ha sufrido dos grandes períodos de crisis: en 2008, de tipo financiero; y en 2020, a causa de la pandemia de COVID-19. Castilla-La Mancha no ha sido ajena a estos procesos, por lo que en este trabajo se quiere analizar su impacto en la estructura del <strong>paro registrado</strong> de la región.</p>
+<p>El paro registrado comprende<span class="citation">(<a href="#ref-TOHARIA" role="doc-biblioref"><strong>TOHARIA?</strong></a>)</span> todos los demandantes de empleo inscritos en las oficinas de empleo, una vez excluidos los inscritos sin disponibilidad para trabajar y los DENOS (demandantes de empleo no ocupados), tales como estudiantes, desempleados en formación,etc.</p>
+<p>Para ello se han tomado las siguientes variables: <strong>sexo</strong> y <strong>edad</strong> de la persona, <strong>sector de actividad económica de procedencia</strong> y <strong>tiempo de búsqueda de empleo</strong>. El conjunto de datos utilizado comprende la media anual del paro registrado desagregado según estas variables a lo largo de los años que van desde <em>2007</em> a <em>2022</em> (éste último con datos desde enero hasta agosto).</p>
+<p>Para este análisis se usan las librerías y variables (paletas de colores para los gráficos) siguientes:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-3"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb1-3" aria-hidden="true" tabindex="-1"></a>paleta_heatmaps <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rgb</span>(.<span class="dv">7</span>,<span class="dv">1</span>,<span class="dv">0</span>,.<span class="dv">5</span>),  <span class="fu">rgb</span>(.<span class="dv">13</span>,.<span class="dv">22</span>,.<span class="dv">58</span>,<span class="dv">1</span>))</span>
+<span id="cb1-4"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb1-4" aria-hidden="true" tabindex="-1"></a>paleta_líneas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;blue4&quot;</span>, <span class="st">&quot;orange&quot;</span>,<span class="st">&quot;darkgreen&quot;</span>)</span></code></pre></div>
+<p>Se cargan los datos, y se muestra la estructura de la <em>tibble</em>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;parados_clm&quot;</span>) </span>
+<span id="cb2-2"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(parados_clm)</span>
+<span id="cb2-3"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># tibble [92,095 × 8] (S3: tbl_df/tbl/data.frame)  </span></span>
+<span id="cb2-4"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  $ año                            : Ord.factor w/ 16 levels &quot;2007&quot;&lt;&quot;2008&quot;&lt;..: 16 16  ...</span></span>
+<span id="cb2-5"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#  $ sexo                           : Factor w/ 2 levels &quot;HOMBRE&quot;,&quot;MUJER&quot;: 1 2 1 2 1 2 ...</span></span>
+<span id="cb2-6"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#  $ edad                           : num [1:92095] 16 16 28 28 48 48 56 55 55 51 ...</span></span>
+<span id="cb2-7"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  $ sector                         : Factor w/ 5 levels &quot;AGRICULTURA Y PESCA&quot;,..: 5 5 ...</span></span>
+<span id="cb2-8"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  $ tiempo_búsqueda_empleo         : Ord.factor w/ 12 levels &quot;t &lt;= 7 días&quot;&lt;..: 1 1 1 ...</span></span>
+<span id="cb2-9"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  $ tramo_edad                     : Ord.factor w/ 3 levels &quot;Menor de 30 años&quot;&lt;..: 1 ...</span></span>
+<span id="cb2-10"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  $ tiempo_búsqueda_empleo_agregado: Ord.factor w/ 4 levels &quot;t &lt;= 6 meses&quot;&lt;..: 1 1 1 ...</span></span>
+<span id="cb2-11"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#  $ parados</span></span></code></pre></div>
+</div>
+<div id="evolución-del-número-total-de-parados" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Evolución del número total de parados<a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#evolución-del-número-total-de-parados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para ver la evolución del número total de parados se puede construir un gráfico de evolución:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-1" aria-hidden="true" tabindex="-1"></a>resumen <span class="ot">&lt;-</span> parados_clm <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(año) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarise</span>(<span class="at">parados =</span> <span class="fu">sum</span>(parados)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(año <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(año)))</span>
+<span id="cb3-5"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-5" aria-hidden="true" tabindex="-1"></a>años <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2007</span>, <span class="dv">2013</span>, <span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2022</span>)</span>
+<span id="cb3-6"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-6" aria-hidden="true" tabindex="-1"></a>paro_años <span class="ot">&lt;-</span> resumen <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(año <span class="sc">%in%</span> años) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(parados) <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">parados =</span> <span class="fu">round</span>(parados, <span class="dv">0</span>))</span>
+<span id="cb3-10"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-10" aria-hidden="true" tabindex="-1"></a>puntos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(años, paro_años)</span>
+<span id="cb3-11"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-11" aria-hidden="true" tabindex="-1"></a>graf <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(resumen, <span class="fu">aes</span>(año, parados)) <span class="sc">+</span></span>
+<span id="cb3-12"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-12" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">2</span>, <span class="at">col =</span> paleta_líneas[<span class="dv">1</span>], <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb3-13"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>)<span class="sc">+</span></span>
+<span id="cb3-14"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-14" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;número de parados&quot;</span>) <span class="sc">+</span></span>
+<span id="cb3-15"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-15" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(puntos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> años, <span class="at">y =</span> parados, <span class="at">shape =</span> <span class="st">&quot;circle filled&quot;</span>,</span>
+<span id="cb3-16"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-16" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">size =</span> <span class="dv">1</span>, <span class="at">fill =</span> paleta_líneas[<span class="dv">1</span>], <span class="at">alpha =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb3-17"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-17" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb3-18"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">9</span>),</span>
+<span id="cb3-19"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb3-20"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-20" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">format</span>(x, <span class="at">big.mark =</span> <span class="st">&quot;.&quot;</span>, <span class="at">scientific =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb3-21"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb3-21" aria-hidden="true" tabindex="-1"></a>graf</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="Ciencia_de_datos_con_r_files/figure-html/gr%C3%A1fico%20n%C3%BAmero%20total-1.png" alt="Evolución del paro registrado en CLM" width="60%" height="60%" />
+<p class="caption">
+(#fig:gráfico número total)Evolución del paro registrado en CLM
+</p>
+</div>
+<p>Como puede verse en la <strong>figura nº 1</strong>, existen <strong>dos máximos</strong>: <em>2013</em> y <em>2020</em>, consecuencia de los dos períodos de crisis, por lo que se toman como puntos de referencia los años de giro: <em>2007</em>, <em>2013</em>, <em>2019</em>, <em>2020</em> y <em>2022</em>.</p>
+<p>Se puede observar que, si bien la crisis de la <strong>COVID-19</strong> ha tenido profundos efectos sectoriales, principalmente en turismo, comercio y restauración, la <strong>crisis de 2008</strong> tuvo un impacto enorme y generalizado en toda la economía, por lo que su efecto en el paro registrado fue devastador, multiplicando por un factor mayor de 3 la cifra total de paro en la región desde <em>2007</em>. Sin embargo, a partir del año <em>2013</em> el paro registrado inicia una tendencia a la baja muy pronunciada que aún hoy continúa, después de haber repuntado ligeramente por la crisis de la <em>COVID-19</em>.</p>
+</div>
+<div id="evolución-de-la-edad-y-el-sexo-en-la-población-parada" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Evolución de la edad y el sexo en la población parada<a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#evolución-de-la-edad-y-el-sexo-en-la-población-parada" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para ver cómo ha cambiado la estructura del paro registrado en función de la <strong>edad</strong> y el <strong>sexo</strong> de los parados se pueden utilizar diferentes gráficos. En este análisis, se usan mapas de calor y gráficos de distribución de densidad. Para hacer un mapa de calor que permita comparar dos variables simultáneamente, se usará la siguiente función:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-1" aria-hidden="true" tabindex="-1"></a>heatmap_años <span class="ot">&lt;-</span> <span class="cf">function</span>(variable1, variable2, <span class="at">inicio =</span> <span class="dv">2007</span>, <span class="at">intermedio =</span> <span class="dv">2019</span>, <span class="at">fin =</span> <span class="dv">2022</span>){</span>
+<span id="cb4-2"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-2" aria-hidden="true" tabindex="-1"></a>     tabla <span class="ot">&lt;-</span> <span class="fu">select</span>(parados_clm, año, variable1, variable2, parados) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(año <span class="sc">%in%</span> <span class="fu">c</span>(inicio, intermedio, fin))</span>
+<span id="cb4-4"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">names</span>(tabla) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;año&quot;</span>, <span class="st">&quot;variable1&quot;</span>, <span class="st">&quot;variable2&quot;</span>, <span class="st">&quot;parados&quot;</span>)</span>
+<span id="cb4-5"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-5" aria-hidden="true" tabindex="-1"></a>     tabla <span class="ot">&lt;-</span> tabla <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-6" aria-hidden="true" tabindex="-1"></a>          <span class="fu">group_by</span>(año, variable1, variable2) <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-7" aria-hidden="true" tabindex="-1"></a>          <span class="fu">summarise</span>(<span class="at">parados =</span> <span class="fu">sum</span>(parados))</span>
+<span id="cb4-8"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-8" aria-hidden="true" tabindex="-1"></a>     graf <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tabla, <span class="fu">aes</span>(<span class="at">x =</span> variable1, <span class="at">y=</span> variable2, <span class="at">fill =</span> parados)) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-9" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_raster</span>() <span class="sc">+</span></span>
+<span id="cb4-10"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-10" aria-hidden="true" tabindex="-1"></a>          <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> paleta_heatmaps) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-11" aria-hidden="true" tabindex="-1"></a>          <span class="fu">facet_wrap</span>(<span class="sc">~</span> año) <span class="sc">+</span> </span>
+<span id="cb4-12"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-12" aria-hidden="true" tabindex="-1"></a>          <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-13"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-13" aria-hidden="true" tabindex="-1"></a>          <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb4-14"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb4-15"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>))</span>
+<span id="cb4-16"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb4-16" aria-hidden="true" tabindex="-1"></a>     <span class="fu">return</span>(graf)}</span></code></pre></div>
+<p>Si se lanza la función <em>heatmap_años()</em> para las variables <em>edad</em> y <em>sexo</em>, tomando como años comparativos <em>2007</em>, <em>2019</em> y <em>2022</em>, se obtiene:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb5-1" aria-hidden="true" tabindex="-1"></a>heatmap_años(<span class="st">&quot;sexo&quot;</span>, <span class="st">&quot;edad&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-4-1.png" alt="Paro registrado según edad y sexo en 2007 y 2022" width="60%" height="60%" />
+<p class="caption">
+Figura 2.1: Paro registrado según edad y sexo en 2007 y 2022
+</p>
+</div>
+<p>Se puede apreciar en la <strong>figura nº 2</strong> que en los dos procesos críticos se ha producido un <strong>desplazamiento a mayor edad</strong>, siendo este cambio más pronunciado en las <strong>mujeres</strong>.<br />
+El mapa de calor es muy útil para ver inicialmente de forma visual estos cambios, pero si se desea ver detalladamente cómo ha cambiado la distribución del paro según el <em>sexo</em> y la <em>edad</em>, es posible construir otra función, que proporcione mayor nivel de detalle:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-1" aria-hidden="true" tabindex="-1"></a>densidad_compara <span class="ot">&lt;-</span> <span class="cf">function</span>(variab, <span class="at">inicio =</span> <span class="dv">2007</span>, <span class="at">medio =</span> <span class="dv">2019</span>, <span class="at">fin =</span> <span class="dv">2022</span>){</span>
+<span id="cb6-2"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-2" aria-hidden="true" tabindex="-1"></a>     tabla <span class="ot">&lt;-</span> <span class="fu">select</span>(parados_clm, año, variab, edad, parados) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(año <span class="sc">%in%</span> <span class="fu">c</span>(inicio, medio, fin))</span>
+<span id="cb6-4"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">names</span>(tabla) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;año&quot;</span>, <span class="st">&quot;variable&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="st">&quot;parados&quot;</span>)</span>
+<span id="cb6-5"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-5" aria-hidden="true" tabindex="-1"></a>     tabla <span class="ot">&lt;-</span> tabla <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-6" aria-hidden="true" tabindex="-1"></a>          <span class="fu">group_by</span>(año, edad, variable) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-7"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-7" aria-hidden="true" tabindex="-1"></a>          <span class="fu">summarise</span>(<span class="at">parados =</span> <span class="fu">sum</span>(parados))<span class="co"># %&gt;%</span></span>
+<span id="cb6-8"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-8" aria-hidden="true" tabindex="-1"></a>     graf <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tabla, <span class="fu">aes</span>(<span class="at">x =</span> edad, <span class="at">y =</span> parados, <span class="at">color =</span> año, <span class="at">fill =</span> año)) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-9" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_line</span>(<span class="at">alpha=</span><span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-10" aria-hidden="true" tabindex="-1"></a>          <span class="fu">facet_wrap</span>(<span class="sc">~</span> variable, <span class="at">ncol =</span> <span class="fu">dim</span>(<span class="fu">table</span>(tabla<span class="sc">$</span>variable))[<span class="dv">1</span>]) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-11" aria-hidden="true" tabindex="-1"></a>          <span class="fu">ylab</span>(<span class="st">&quot;número de parados&quot;</span>) <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> paleta_líneas) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-12" aria-hidden="true" tabindex="-1"></a>          <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">format</span>(x, <span class="at">big.mark =</span> <span class="st">&quot;.&quot;</span>,</span>
+<span id="cb6-13"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-13" aria-hidden="true" tabindex="-1"></a>                                                         <span class="at">scientific =</span> <span class="cn">FALSE</span>)) <span class="sc">+</span></span>
+<span id="cb6-14"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-14" aria-hidden="true" tabindex="-1"></a>          <span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb6-15"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb6-16"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>))</span>
+<span id="cb6-17"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb6-17" aria-hidden="true" tabindex="-1"></a>     <span class="fu">return</span>(graf)}</span></code></pre></div>
+<p>La función <em>densidad_compara()</em> produce un cuadro de gráficos comparando las distribuciones de la edad dentro de cada estrato de la variable elegida, para tres años diferentes (<em>2007</em>, <em>2019</em> y <em>2022</em> por defecto). Ejecutando esta función para la variable <em>sexo</em> se obtiene:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">densidad_compara</span>(<span class="st">&quot;sexo&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-5-1.png" alt="Distribución por edad y sexo para 2007, 2019 y 2022" width="60%" height="60%" />
+<p class="caption">
+Figura 2.2: Distribución por edad y sexo para 2007, 2019 y 2022
+</p>
+</div>
+<p>En la <strong>figura nº 3</strong> se puede empezar por observar las distribuciones del año <em>2007</em>, anterior a ambas crisis: los hombres parados presentan <strong>dos máximos</strong>, en torno a 25 y 60 años, mientras que las mujeres tienen una distribución bastante centrada entre 30 y 40 años. En cambio, si se observan las distribuciones en <em>2022</em>, se aprecia el desplazamiento de la distribución de ambos sexos a edades <strong>mayores de 50 años</strong>. Este desplazamiento es algo más intenso en las mujeres.<br />
+Se observa igualmente que comparando las distribuciones de las mujeres de <em>2019</em> y <em>2022</em> la crisis de la <em>COVID-19</em> ha desplazado entre 5 y 10 años la distribución de la edad de las mujeres paradas. Este desplazamiento es inferior en los hombres, donde supone menos de 5 años.</p>
+</div>
+<div id="evolución-del-tiempo-de-búsqueda-de-empleo-en-la-población-parada" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Evolución del tiempo de búsqueda de empleo en la población parada<a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#evolución-del-tiempo-de-búsqueda-de-empleo-en-la-población-parada" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se define el <em>tiempo de búsqueda de empleo</em> como el tiempo transcurrido ininterrumpidamente desde la última inscripción de la persona en el paro registrado<span class="citation">(<a href="#ref-JIPINFANTE" role="doc-biblioref"><strong>JIPINFANTE?</strong></a>)</span>.<br />
+Si se ejecuta la función <em>heatmap_años()</em> para las variables <em>edad</em> y <em>tiempo_búsqueda_empleo</em>, tomando como años comparativos <em>2007</em>, <em>2019</em> y <em>2022</em>, se obtiene el siguiente gráfico:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb8-1" aria-hidden="true" tabindex="-1"></a>heatmap_años(<span class="st">&quot;sexo&quot;</span>, <span class="st">&quot;tiempo_búsqueda_empleo&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-6-1.png" alt="Paro registrado según sexo y tiempo de búsqueda de empleo" width="60%" height="60%" />
+<p class="caption">
+Figura 2.3: Paro registrado según sexo y tiempo de búsqueda de empleo
+</p>
+</div>
+<p>El mapa de calor de la <strong>figura nº 4</strong> nos señala un fuerte incremento en el paro correspondiente al tiempo de búsqueda de empleo <strong>mayor de 24 meses</strong>, indicándonos que después de la crisis financiera de <em>2008</em>, es más difícil encontrar empleo para una persona en <strong>paro de larga duración</strong>.<br />
+Si se toma como simplificación una agregación de cuatro tramos de tiempo de búsqueda de empleo (de los doce originales), ejecutando la función <em>densidad_compara()</em> para la variable <em>tiempo_búsqueda_empleo_agregado</em> se obtiene:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">densidad_compara</span>(<span class="st">&quot;tiempo_búsqueda_empleo_agregado&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-7-1.png" alt="Distribución del paro registrado por edad y tiempo de búsqueda de empleo" width="80%" height="80%" />
+<p class="caption">
+Figura 2.4: Distribución del paro registrado por edad y tiempo de búsqueda de empleo
+</p>
+</div>
+<p>Como puede observarse en la <strong>figura nº5</strong>, además del desplazamiento en <em>edad</em>, que ya se había visto en el apartado anterior, el tramo con mayor incremento de número de parados es el correspondiente a más de 24 meses de búsqueda de empleo. Es decir, los dos períodos de crisis han supuesto la creación de un <strong>paro estructural de larga duración</strong>.</p>
+</div>
+<div id="evolución-del-paro-registrado-según-sexo-y-sector-de-procedencia" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Evolución del paro registrado según sexo y sector de procedencia<a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#evolución-del-paro-registrado-según-sexo-y-sector-de-procedencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La variable sector de procedencia es un tanto particular ya que, cuando un parado lleva más de dos años buscando empleo ininterrumpidamente, “pierde” el sector de procedencia y se clasifica automáticamente como “sin empleo anterior”. A la hora de analizar esta variable, por tanto, es importante tener en cuenta que una parte de los parados calificados como “sin empleo anterior”, realmente tuvieron un trabajo hace más de dos años.<br />
+Si se desea visualizar los cambios producidos en estas variables con un mapa de calor, es posible ejecutar de nuevo la función <em>heatmap_años()</em> para obtener:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb10-1" aria-hidden="true" tabindex="-1"></a>heatmap_años(<span class="st">&quot;sexo&quot;</span>, <span class="st">&quot;sector&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-8-1.png" alt="Paro registrado según sexo y sector de procedencia" width="60%" height="60%" />
+<p class="caption">
+Figura 2.5: Paro registrado según sexo y sector de procedencia
+</p>
+</div>
+<p>En la <strong>figura nº 6</strong> destaca el incremento de paro registrado correspondiente al sector <em>servicios</em>, siendo este efecto mayor para las mujeres.<br />
+Ejecutando la función <em>densidad_compara()</em> para la variable <em>sector</em> se obtiene:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">densidad_compara</span>(<span class="st">&quot;sector&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-9-1.png" alt="Distribución del paro registrado por edad y tiempo de búsqueda de empleo" width="60%" height="60%" />
+<p class="caption">
+Figura 2.6: Distribución del paro registrado por edad y tiempo de búsqueda de empleo
+</p>
+</div>
+<p>Como se puede ver en la <strong>figura nº 7</strong> las diferencias a lo largo del tiempo de las distribuciones por <em>sector de actividad económica</em> revelan algunas particularidades interesantes. <strong>Industria</strong> y <strong>construcción</strong> se comportan de modo similar: hay un fuerte desplazamiento en edad desde <em>2007</em>, pero se mantiene el volumen de paro en ambos sectores a lo largo de los 15 años de estudio. El paro en el sector <em>agrícola</em> y en el sector <em>servicios</em> presenta igualmente desplazamiento en edad, pero además ha subido intensamente en estos 15 años; ambos efectos son mucho más evidentes en el sector <em>servicios</em>. Finalmente, en el colectivo <em>sin empleo anterior</em> se aprecian dos características: en primer lugar, la población menor de 30 años supone el mayor volumen en este colectivo, como era de esperar, ya que la población joven que accede al mercado laboral por primera vez, no cuenta con experiencia previa; en segundo lugar, desde <em>2007</em> a <em>2019</em>, y algo menos desde <em>2019</em> a <em>2022</em> hay un incremento de volumen de paro en los <strong>mayores de 45 años</strong> que, con toda probabilidad corresponde a los parados de larga duración de mayor edad.<br />
+En todos los sectores se aprecia el descenso del volumen total de paro registrado desde <em>2019</em> a <em>2022</em>, a pesar de la crisis sanitaria de la <em>COVID-19</em>.</p>
+</div>
+<div id="conclusiones" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Conclusiones<a href="evolución-de-la-estructura-del-paro-registrado-en-castilla-la-mancha.html#conclusiones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La crisis de 2008 tuvo un gran impacto en el paro registrado de Castilla- La Mancha, multiplicándolo por un factor mayor de 3 desde 2007. Sin embargo, a partir del año 2013 el paro registrado inicia una tendencia a la baja muy pronunciada que aún hoy continúa, después de haber sufrido un rebote debido a la crisis de la COVID-19.<br />
+La estructura interna de la población parada en la región ha cambiado sustancialmente atendiendo a las variables analizadas. En efecto, la población mayor de 45 años, las mujeres, los parados de larga duración y el sector servicios son los grandes perjudicados por ambos procesos de crisis.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelos-econométricos-espaciales.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Ciencia_de_datos_con_r.pdf", "Ciencia_de_datos_con_r.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

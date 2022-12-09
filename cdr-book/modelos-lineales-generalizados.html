@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 16 Modelos lineales generalizados | Fundamentos de ciencia de datos con R</title>
+  <meta name="description" content="Falta hacer" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 16 Modelos lineales generalizados | Fundamentos de ciencia de datos con R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Falta hacer" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 16 Modelos lineales generalizados | Fundamentos de ciencia de datos con R" />
+  
+  <meta name="twitter:description" content="Falta hacer" />
+  
+
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero" />
+
+
+<meta name="date" content="2022-12-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="modelización-lineal.html"/>
+<link rel="next" href="modelos-aditivos-generalizados.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33KQ1S5ZCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-33KQ1S5ZCJ');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Ciencia de datos con <strong>R</strong></a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Fundamentos y ‘tool-kit’ de la ciencia de datos</b></span></li>
+<li class="chapter" data-level="1" data-path="ciencia-datos.html"><a href="ciencia-datos.html"><i class="fa fa-check"></i><b>1</b> ¿Es la Ciencia de datos una Ciencia?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ciencia-datos.html"><a href="ciencia-datos.html#ciencia"><i class="fa fa-check"></i><b>1.1</b> ¿Qué se entiende por Ciencia?</a></li>
+<li class="chapter" data-level="1.2" data-path="ciencia-datos.html"><a href="ciencia-datos.html#qué-es-la-ciencia-de-datos"><i class="fa fa-check"></i><b>1.2</b> ¿Qué es la Ciencia de Datos?</a></li>
+<li class="chapter" data-level="1.3" data-path="ciencia-datos.html"><a href="ciencia-datos.html#lo-científico-de-la-ciencia-de-datos"><i class="fa fa-check"></i><b>1.3</b> Lo científico de la Ciencia de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="metodología.html"><a href="metodología.html"><i class="fa fa-check"></i><b>2</b> Metodología para la Ciencia de datos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="metodología.html"><a href="metodología.html#preliminares"><i class="fa fa-check"></i><b>2.1</b> Preliminares</a></li>
+<li class="chapter" data-level="2.2" data-path="metodología.html"><a href="metodología.html#principales-metodologías-en-ciencia-de-datos"><i class="fa fa-check"></i><b>2.2</b> Principales metodologías en Ciencia de datos</a></li>
+<li class="chapter" data-level="2.3" data-path="metodología.html"><a href="metodología.html#met-crisp-dm"><i class="fa fa-check"></i><b>2.3</b> CRISP-DM para Ciencia de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch-110003.html"><a href="ch-110003.html"><i class="fa fa-check"></i><b>3</b> R para ciencia de datos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ch-110003.html"><a href="ch-110003.html#introducción"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
+<li class="chapter" data-level="3.2" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-bases"><i class="fa fa-check"></i><b>3.2</b> La sesión de R</a></li>
+<li class="chapter" data-level="3.3" data-path="ch-110003.html"><a href="ch-110003.html#instalación-de-r"><i class="fa fa-check"></i><b>3.3</b> Instalación de R</a></li>
+<li class="chapter" data-level="3.4" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-proyectos"><i class="fa fa-check"></i><b>3.4</b> Trabajar con proyectos de RStudio</a></li>
+<li class="chapter" data-level="3.5" data-path="ch-110003.html"><a href="ch-110003.html#manipulación-de-datos-con-r"><i class="fa fa-check"></i><b>3.5</b> Manipulación de datos con R</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-estructuras"><i class="fa fa-check"></i><b>3.5.1</b> Estructuras y tipos de datos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-importacion"><i class="fa fa-check"></i><b>3.5.2</b> Importación de datos</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ch-110003.html"><a href="ch-110003.html#exportación-y-archivos-de-datos-de-r"><i class="fa fa-check"></i><b>3.5.3</b> Exportación y archivos de datos de R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-tidyverse"><i class="fa fa-check"></i><b>3.6</b> Organización de datos con el <em>tidyverse</em></a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ch-110003.html"><a href="ch-110003.html#el-tidyverse-y-su-flujo-de-trabajo"><i class="fa fa-check"></i><b>3.6.1</b> El <em>tidyverse</em> y su flujo de trabajo</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ch-110003.html"><a href="ch-110003.html#transformación-de-datos-con-dplyr"><i class="fa fa-check"></i><b>3.6.2</b> Transformación de datos con <code>dplyr</code></a></li>
+<li class="chapter" data-level="3.6.3" data-path="ch-110003.html"><a href="ch-110003.html#combinación-de-datos"><i class="fa fa-check"></i><b>3.6.3</b> Combinación de datos</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ch-110003.html"><a href="ch-110003.html#reorganización-de-datos"><i class="fa fa-check"></i><b>3.6.4</b> Reorganización de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><i class="fa fa-check"></i><b>4</b> Gestión y operación de datos con bases de datos relacionales</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#introducción-1"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#concepto-de-base-de-datos"><i class="fa fa-check"></i><b>4.2</b> Concepto de Base de datos</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#gestión-de-los-datos-en-una-base-o-repositorio-de-datos"><i class="fa fa-check"></i><b>4.2.1</b> Gestión de los datos en una base o repositorio de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#el-lenguaje-estructurado-de-consulta-sql"><i class="fa fa-check"></i><b>4.3</b> El Lenguaje Estructurado de Consulta (SQL)</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#sql-como-lenguaje-de-definición-de-datos-ldd"><i class="fa fa-check"></i><b>4.3.1</b> SQL como Lenguaje de Definición de Datos (LDD)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#sql-como-lenguaje-de-manipulación-de-datos-lmd"><i class="fa fa-check"></i><b>4.3.2</b> SQL como Lenguaje de Manipulación de Datos (LMD)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#sql-como-lenguaje-de-administración-de-datos-lad"><i class="fa fa-check"></i><b>4.3.3</b> SQL como Lenguaje de Administración de Datos (LAD)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#usando-bases-de-datos-desde-r"><i class="fa fa-check"></i><b>4.4</b> Usando bases de datos desde R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#conexión-a-una-base-de-datos"><i class="fa fa-check"></i><b>4.4.1</b> Conexión a una base de datos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#operaciones-de-lectura-selección-read-de-datos"><i class="fa fa-check"></i><b>4.4.2</b> Operaciones de lectura / selección (<em>read</em>) de datos</a></li>
+<li class="chapter" data-level="4.4.3" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#operaciones-de-inserción-create-y-actualización-update-de-datos"><i class="fa fa-check"></i><b>4.4.3</b> Operaciones de inserción (<em>create</em>) y actualización (<em>update</em>) de datos</a></li>
+<li class="chapter" data-level="4.4.4" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#operaciones-de-borrado-de-datos-delete"><i class="fa fa-check"></i><b>4.4.4</b> Operaciones de Borrado de datos (<em>delete</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datos-no-sql.html"><a href="datos-no-sql.html"><i class="fa fa-check"></i><b>5</b> Gestión y operación de datos masivos (BigData) con bases de datos NoSQL</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="datos-no-sql.html"><a href="datos-no-sql.html#introducción-al-big-data"><i class="fa fa-check"></i><b>5.1</b> Introducción al Big Data</a></li>
+<li class="chapter" data-level="5.2" data-path="datos-no-sql.html"><a href="datos-no-sql.html#VsBigData"><i class="fa fa-check"></i><b>5.2</b> Las V’s del Big Data</a></li>
+<li class="chapter" data-level="5.3" data-path="datos-no-sql.html"><a href="datos-no-sql.html#fuentes-de-datos-en-entornos-big-data"><i class="fa fa-check"></i><b>5.3</b> Fuentes de Datos en entornos Big Data</a></li>
+<li class="chapter" data-level="5.4" data-path="datos-no-sql.html"><a href="datos-no-sql.html#bases-de-datos-relacionales-vs.-nosql"><i class="fa fa-check"></i><b>5.4</b> Bases de datos Relacionales vs. NoSQL</a></li>
+<li class="chapter" data-level="5.5" data-path="datos-no-sql.html"><a href="datos-no-sql.html#bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5</b> Bases de datos NoSQL</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="datos-no-sql.html"><a href="datos-no-sql.html#definición-de-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5.1</b> Definición de bases de datos NoSQL</a></li>
+<li class="chapter" data-level="5.5.2" data-path="datos-no-sql.html"><a href="datos-no-sql.html#necesidades-no-cubiertas-por-las-bases-de-datos-relacionales"><i class="fa fa-check"></i><b>5.5.2</b> Necesidades no cubiertas por las bases de datos relacionales</a></li>
+<li class="chapter" data-level="5.5.3" data-path="datos-no-sql.html"><a href="datos-no-sql.html#tipos-de-almacenamiento-en-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5.3</b> Tipos de almacenamiento en bases de datos NoSQL</a></li>
+<li class="chapter" data-level="5.5.4" data-path="datos-no-sql.html"><a href="datos-no-sql.html#limitaciones-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5.4</b> Limitaciones de las bases de datos NoSQL</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="datos-no-sql.html"><a href="datos-no-sql.html#ejemplo-de-integración-de-una-base-de-datos-nosql-y-análisis-de-datos-en-r"><i class="fa fa-check"></i><b>5.6</b> Ejemplo de integración de una base de datos NoSQL y análisis de datos en R</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="datos-no-sql.html"><a href="datos-no-sql.html#introMongo"><i class="fa fa-check"></i><b>5.6.1</b> Introducción a MongoDB</a></li>
+<li class="chapter" data-level="5.6.2" data-path="datos-no-sql.html"><a href="datos-no-sql.html#paquetesCaso"><i class="fa fa-check"></i><b>5.6.2</b> Plataforma tecnológica para el caso práctico</a></li>
+<li class="chapter" data-level="5.6.3" data-path="datos-no-sql.html"><a href="datos-no-sql.html#conexionMongo"><i class="fa fa-check"></i><b>5.6.3</b> Conexión y acceso a MongoDB desde R</a></li>
+<li class="chapter" data-level="5.6.4" data-path="datos-no-sql.html"><a href="datos-no-sql.html#consultaViajes"><i class="fa fa-check"></i><b>5.6.4</b> Obtención de datos en R desde MongoDB</a></li>
+<li class="chapter" data-level="5.6.5" data-path="datos-no-sql.html"><a href="datos-no-sql.html#analisisViajes"><i class="fa fa-check"></i><b>5.6.5</b> Analizando datos de MongoDB en R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="id_120007-informes.html"><a href="id_120007-informes.html"><i class="fa fa-check"></i><b>6</b> Informes reproducibles con R-markdown -&gt; Quarto</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="id_120007-informes.html"><a href="id_120007-informes.html#introducción-2"><i class="fa fa-check"></i><b>6.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="id_120007-informes.html"><a href="id_120007-informes.html#por-qué-informes-reproducibles"><i class="fa fa-check"></i><b>6.1.1</b> ¿Por qué informes reproducibles?</a></li>
+<li class="chapter" data-level="6.1.2" data-path="id_120007-informes.html"><a href="id_120007-informes.html#markdown-r-markdown-y-rstudio"><i class="fa fa-check"></i><b>6.1.2</b> Markdown, R Markdown y RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="id_120007-informes.html"><a href="id_120007-informes.html#documentos-r-markdown"><i class="fa fa-check"></i><b>6.2</b> Documentos R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="id_120007-informes.html"><a href="id_120007-informes.html#encabezado-yaml-y-configuración"><i class="fa fa-check"></i><b>6.2.1</b> Encabezado YAML y configuración</a></li>
+<li class="chapter" data-level="6.2.2" data-path="id_120007-informes.html"><a href="id_120007-informes.html#formateado-de-texto"><i class="fa fa-check"></i><b>6.2.2</b> Formateado de texto</a></li>
+<li class="chapter" data-level="6.2.3" data-path="id_120007-informes.html"><a href="id_120007-informes.html#inclusión-de-código"><i class="fa fa-check"></i><b>6.2.3</b> Inclusión de código</a></li>
+<li class="chapter" data-level="6.2.4" data-path="id_120007-informes.html"><a href="id_120007-informes.html#opciones-de-los-bloques-de-código-chunks"><i class="fa fa-check"></i><b>6.2.4</b> Opciones de los bloques de código (<em>chunks</em>)</a></li>
+<li class="chapter" data-level="6.2.5" data-path="id_120007-informes.html"><a href="id_120007-informes.html#editor-visual"><i class="fa fa-check"></i><b>6.2.5</b> Editor visual</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="id_120007-informes.html"><a href="id_120007-informes.html#otros-formatos"><i class="fa fa-check"></i><b>6.3</b> Otros formatos</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>7</b> Git y GitHub en R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="github.html"><a href="github.html#qué-es-git"><i class="fa fa-check"></i><b>7.1</b> ¿Qué es Git?</a></li>
+<li class="chapter" data-level="7.2" data-path="github.html"><a href="github.html#qué-es-github"><i class="fa fa-check"></i><b>7.2</b> ¿Qué es GitHub?</a></li>
+<li class="chapter" data-level="7.3" data-path="github.html"><a href="github.html#por-qué-usar-git-y-github"><i class="fa fa-check"></i><b>7.3</b> ¿Por qué usar Git y GitHub?</a></li>
+<li class="chapter" data-level="7.4" data-path="github.html"><a href="github.html#configuración"><i class="fa fa-check"></i><b>7.4</b> Configuración</a></li>
+<li class="chapter" data-level="7.5" data-path="github.html"><a href="github.html#configurar-git"><i class="fa fa-check"></i><b>7.5</b> Configurar git</a></li>
+<li class="chapter" data-level="7.6" data-path="github.html"><a href="github.html#workflow"><i class="fa fa-check"></i><b>7.6</b> Workflow</a></li>
+</ul></li>
+<li class="part"><span><b>II Manipulación de datos con R. Técnicas y herramientas</b></span></li>
+<li class="chapter" data-level="8" data-path="id_120006-aed.html"><a href="id_120006-aed.html"><i class="fa fa-check"></i><b>8</b> Análisis exploratorio de datos</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#introducción-3"><i class="fa fa-check"></i><b>8.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#el-cuarterto-de-anscombe"><i class="fa fa-check"></i><b>8.1.1</b> El cuarterto de Anscombe</a></li>
+<li class="chapter" data-level="8.1.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#conceptos-generales"><i class="fa fa-check"></i><b>8.1.2</b> Conceptos generales</a></li>
+<li class="chapter" data-level="8.1.3" data-path="id_120006-aed.html"><a href="id_120006-aed.html#componentes-de-un-gráfico-y-su-representación-en-r"><i class="fa fa-check"></i><b>8.1.3</b> Componentes de un gráfico y su representación en R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#id_120006-aeduni"><i class="fa fa-check"></i><b>8.2</b> Análisis exploratorio de una característica</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cualitativas"><i class="fa fa-check"></i><b>8.2.1</b> Variables cualitativas</a></li>
+<li class="chapter" data-level="8.2.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cuantitativas"><i class="fa fa-check"></i><b>8.2.2</b> Variables cuantitativas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="id_120006-aed.html"><a href="id_120006-aed.html#id_120006-aedmulti"><i class="fa fa-check"></i><b>8.3</b> Análisis exploratorio de varias características</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cualitativas-1"><i class="fa fa-check"></i><b>8.3.1</b> Variables cualitativas</a></li>
+<li class="chapter" data-level="8.3.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cuantitativas-1"><i class="fa fa-check"></i><b>8.3.2</b> Variables cuantitativas</a></li>
+<li class="chapter" data-level="8.3.3" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cualitativas-y-cuantitativas"><i class="fa fa-check"></i><b>8.3.3</b> Variables cualitativas y cuantitativas</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Preparación de datos: evaluación de la calidad de los datos. Integración, limpieza y transformación</b></span></li>
+<li class="chapter" data-level="9" data-path="DGDQM.html"><a href="DGDQM.html"><i class="fa fa-check"></i><b>9</b> Gobierno y gestión de calidad de Datos</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="DGDQM.html"><a href="DGDQM.html#introducción-4"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="DGDQM.html"><a href="DGDQM.html#concepto-de-gobierno-de-datos"><i class="fa fa-check"></i><b>9.2</b> Concepto de Gobierno de datos</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="DGDQM.html"><a href="DGDQM.html#beneficiosDG"><i class="fa fa-check"></i><b>9.2.1</b> Beneficios del Gobierno de Datos</a></li>
+<li class="chapter" data-level="9.2.2" data-path="DGDQM.html"><a href="DGDQM.html#artefactosDG"><i class="fa fa-check"></i><b>9.2.2</b> Artefactos de un sistema de Gobierno de Datos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="DGDQM.html"><a href="DGDQM.html#marcos-y-metodologías-existentes-de-gobierno-de-datos"><i class="fa fa-check"></i><b>9.3</b> Marcos y metodologías existentes de Gobierno de Datos</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="DGDQM.html"><a href="DGDQM.html#modelo-alarcos-de-mejora-de-datos-mamd"><i class="fa fa-check"></i><b>9.3.1</b> Modelo Alarcos de Mejora de Datos (MAMD)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="DGDQM.html"><a href="DGDQM.html#gestión-de-calidad-de-datos"><i class="fa fa-check"></i><b>9.4</b> Gestión de calidad de datos</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="DGDQM.html"><a href="DGDQM.html#medición-de-calidad-de-datos-vs-perfilado-de-datos"><i class="fa fa-check"></i><b>9.4.1</b> Medición de calidad de datos vs perfilado de datos</a></li>
+<li class="chapter" data-level="9.4.2" data-path="DGDQM.html"><a href="DGDQM.html#mejora-de-datos"><i class="fa fa-check"></i><b>9.4.2</b> Mejora de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="id_130009.html"><a href="id_130009.html"><i class="fa fa-check"></i><b>10</b> Integración y limpieza de datos</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="id_130009.html"><a href="id_130009.html#introducción-5"><i class="fa fa-check"></i><b>10.1</b> Introducción</a></li>
+<li class="chapter" data-level="10.2" data-path="id_130009.html"><a href="id_130009.html#problemas-de-calidad-de-datos"><i class="fa fa-check"></i><b>10.2</b> Problemas de calidad de datos</a></li>
+<li class="chapter" data-level="10.3" data-path="id_130009.html"><a href="id_130009.html#niveles-inadecuados-de-completitud-valores-missing"><i class="fa fa-check"></i><b>10.3</b> Niveles inadecuados de completitud: Valores <em>missing</em></a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="id_130009.html"><a href="id_130009.html#visualización"><i class="fa fa-check"></i><b>10.3.1</b> Visualización</a></li>
+<li class="chapter" data-level="10.3.2" data-path="id_130009.html"><a href="id_130009.html#imputacion"><i class="fa fa-check"></i><b>10.3.2</b> Técnicas de Imputación</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="id_130009.html"><a href="id_130009.html#mejorando-la-exactitud-y-la-precisión-eliminación-del-ruido-estadístico"><i class="fa fa-check"></i><b>10.4</b> Mejorando la exactitud y la precisión: eliminación del ruido estadístico</a></li>
+<li class="chapter" data-level="10.5" data-path="id_130009.html"><a href="id_130009.html#integración-de-datos"><i class="fa fa-check"></i><b>10.5</b> Integración de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="id_130010.html"><a href="id_130010.html"><i class="fa fa-check"></i><b>11</b> Feature Selection and Engineering</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="id_130010.html"><a href="id_130010.html#introducción-6"><i class="fa fa-check"></i><b>11.1</b> Introducción</a></li>
+<li class="chapter" data-level="11.2" data-path="id_130010.html"><a href="id_130010.html#feature-selection-selección-de-variables"><i class="fa fa-check"></i><b>11.2</b> <em>Feature Selection</em> (Selección de variables)</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="id_130010.html"><a href="id_130010.html#métodos-de-selección-tipo-filtro"><i class="fa fa-check"></i><b>11.2.1</b> Métodos de selección tipo Filtro</a></li>
+<li class="chapter" data-level="11.2.2" data-path="id_130010.html"><a href="id_130010.html#métodos-de-selección-de-variables-tipo-wrapper"><i class="fa fa-check"></i><b>11.2.2</b> Métodos de selección de variables tipo <em>wrapper</em></a></li>
+<li class="chapter" data-level="11.2.3" data-path="id_130010.html"><a href="id_130010.html#métodos-de-selección-tipo-embedded"><i class="fa fa-check"></i><b>11.2.3</b> Métodos de selección tipo Embedded</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="id_130010.html"><a href="id_130010.html#transformaciones-de-escala-y-de-la-distribución-de-la-variable-objetivo"><i class="fa fa-check"></i><b>11.3</b> Transformaciones de escala y de la distribución de la variable objetivo</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="id_130010.html"><a href="id_130010.html#id_31"><i class="fa fa-check"></i><b>11.3.1</b> Transformaciones de la variable objetivo</a></li>
+<li class="chapter" data-level="11.3.2" data-path="id_130010.html"><a href="id_130010.html#escalado-de-datos"><i class="fa fa-check"></i><b>11.3.2</b> Escalado de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="id_130010.html"><a href="id_130010.html#feature-engineering"><i class="fa fa-check"></i><b>11.4</b> <em>Feature engineering</em></a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="id_130010.html"><a href="id_130010.html#binning"><i class="fa fa-check"></i><b>11.4.1</b> <em>Binning</em></a></li>
+<li class="chapter" data-level="11.4.2" data-path="id_130010.html"><a href="id_130010.html#codificación"><i class="fa fa-check"></i><b>11.4.2</b> Codificación</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="id_130010.html"><a href="id_130010.html#reducción-de-dimensionalidad"><i class="fa fa-check"></i><b>11.5</b> Reducción de dimensionalidad</a></li>
+<li class="chapter" data-level="11.6" data-path="id_130010.html"><a href="id_130010.html#otras-transformaciones"><i class="fa fa-check"></i><b>11.6</b> Otras transformaciones</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="id_130010.html"><a href="id_130010.html#particionado-de-datos"><i class="fa fa-check"></i><b>11.6.1</b> Particionado de datos</a></li>
+<li class="chapter" data-level="11.6.2" data-path="id_130010.html"><a href="id_130010.html#técnicas-para-manejar-datos-no-balanceados"><i class="fa fa-check"></i><b>11.6.2</b> Técnicas para manejar datos no balanceados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="id_130010.html"><a href="id_130010.html#métodos-de-remuestreo"><i class="fa fa-check"></i><b>11.6.3</b> Métodos de remuestreo</a></li>
+<li class="chapter" data-level="11.6.4" data-path="id_130010.html"><a href="id_130010.html#ajuste-de-hiperparámetros"><i class="fa fa-check"></i><b>11.6.4</b> Ajuste de hiperparámetros</a></li>
+<li class="chapter" data-level="11.6.5" data-path="id_130010.html"><a href="id_130010.html#evaluación-de-modelos"><i class="fa fa-check"></i><b>11.6.5</b> Evaluación de modelos</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Técnicas de modelización estadísticas avanzadas</b></span></li>
+<li class="chapter" data-level="12" data-path="Funda-probab.html"><a href="Funda-probab.html"><i class="fa fa-check"></i><b>12</b> Fundamentos de probabilidad</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="Funda-probab.html"><a href="Funda-probab.html#introducción-a-la-probabilidad"><i class="fa fa-check"></i><b>12.1</b> Introducción a la probabilidad</a></li>
+<li class="chapter" data-level="12.2" data-path="Funda-probab.html"><a href="Funda-probab.html#probabilidad-elementos-básicos-definición-y-teoremas"><i class="fa fa-check"></i><b>12.2</b> Probabilidad: elementos básicos, definición y teoremas</a></li>
+<li class="chapter" data-level="12.3" data-path="Funda-probab.html"><a href="Funda-probab.html#variable-aleatoria-y-su-distribución-tipos-de-variables-aleatorias"><i class="fa fa-check"></i><b>12.3</b> Variable aleatoria y su distribución: tipos de variables aleatorias</a></li>
+<li class="chapter" data-level="12.4" data-path="Funda-probab.html"><a href="Funda-probab.html#modelos-de-distribución-de-probabilidad"><i class="fa fa-check"></i><b>12.4</b> Modelos de distribución de probabilidad</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="Funda-probab.html"><a href="Funda-probab.html#modelos-discretos"><i class="fa fa-check"></i><b>12.4.1</b> Modelos discretos</a></li>
+<li class="chapter" data-level="12.4.2" data-path="Funda-probab.html"><a href="Funda-probab.html#modelos-continuos"><i class="fa fa-check"></i><b>12.4.2</b> Modelos continuos</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="Funda-probab.html"><a href="Funda-probab.html#tcl"><i class="fa fa-check"></i><b>12.5</b> Teorema central del límite (TCL)</a></li>
+<li class="chapter" data-level="12.6" data-path="Funda-probab.html"><a href="Funda-probab.html#ejemplo-de-distribuciones-usando-r"><i class="fa fa-check"></i><b>12.6</b> Ejemplo de distribuciones usando <strong>R</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="Fundainfer.html"><a href="Fundainfer.html"><i class="fa fa-check"></i><b>13</b> Fundamentos de Inferencia Estadística</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="Fundainfer.html"><a href="Fundainfer.html#introinfer"><i class="fa fa-check"></i><b>13.1</b> Introducción a la Inferencia Estadística</a></li>
+<li class="chapter" data-level="13.2" data-path="Fundainfer.html"><a href="Fundainfer.html#mas"><i class="fa fa-check"></i><b>13.2</b> Muestreo aleatorio simple</a></li>
+<li class="chapter" data-level="13.3" data-path="Fundainfer.html"><a href="Fundainfer.html#estimpuntual"><i class="fa fa-check"></i><b>13.3</b> Estimación puntual</a></li>
+<li class="chapter" data-level="13.4" data-path="Fundainfer.html"><a href="Fundainfer.html#estimintervalos"><i class="fa fa-check"></i><b>13.4</b> Estimación por intervalos</a></li>
+<li class="chapter" data-level="13.5" data-path="Fundainfer.html"><a href="Fundainfer.html#contrhip"><i class="fa fa-check"></i><b>13.5</b> Contrastes de hipótesis</a></li>
+<li class="chapter" data-level="13.6" data-path="Fundainfer.html"><a href="Fundainfer.html#pobnormales"><i class="fa fa-check"></i><b>13.6</b> Inferencia estadística paramétrica sobre poblaciones normales</a></li>
+<li class="chapter" data-level="13.7" data-path="Fundainfer.html"><a href="Fundainfer.html#ejemplopobnorm"><i class="fa fa-check"></i><b>13.7</b> Inferencia sobre poblaciones normales con <strong>R</strong></a></li>
+<li class="chapter" data-level="13.8" data-path="Fundainfer.html"><a href="Fundainfer.html#contrnormalidad"><i class="fa fa-check"></i><b>13.8</b> Inferencia estadística no paramétrica: contrastes de normalidad</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="muestreo.html"><a href="muestreo.html"><i class="fa fa-check"></i><b>14</b> Métodos de muestreo y remuestreo</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="muestreo.html"><a href="muestreo.html#introducción-al-muestreo"><i class="fa fa-check"></i><b>14.1</b> Introducción al muestreo</a></li>
+<li class="chapter" data-level="14.2" data-path="muestreo.html"><a href="muestreo.html#muestreo-aleatorio-simple-1"><i class="fa fa-check"></i><b>14.2</b> Muestreo aleatorio simple</a></li>
+<li class="chapter" data-level="14.3" data-path="muestreo.html"><a href="muestreo.html#muestestra"><i class="fa fa-check"></i><b>14.3</b> Muestreo estratificado</a></li>
+<li class="chapter" data-level="14.4" data-path="muestreo.html"><a href="muestreo.html#otros-tipos-de-muestreo-probabilístico"><i class="fa fa-check"></i><b>14.4</b> Otros tipos de muestreo probabilístico</a></li>
+<li class="chapter" data-level="14.5" data-path="muestreo.html"><a href="muestreo.html#técnicas-de-remuestreo-bootstrap."><i class="fa fa-check"></i><b>14.5</b> Técnicas de remuestreo: Bootstrap.</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="modelización-lineal.html"><a href="modelización-lineal.html"><i class="fa fa-check"></i><b>15</b> Modelización lineal</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="modelización-lineal.html"><a href="modelización-lineal.html#modelización"><i class="fa fa-check"></i><b>15.1</b> Modelización</a></li>
+<li class="chapter" data-level="15.2" data-path="modelización-lineal.html"><a href="modelización-lineal.html#procedimiento-de-modelización"><i class="fa fa-check"></i><b>15.2</b> Procedimiento de modelización</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="modelización-lineal.html"><a href="modelización-lineal.html#Bondad"><i class="fa fa-check"></i><b>15.2.1</b> Estimación del modelo</a></li>
+<li class="chapter" data-level="15.2.2" data-path="modelización-lineal.html"><a href="modelización-lineal.html#validación-del-modelo"><i class="fa fa-check"></i><b>15.2.2</b> Validación del modelo</a></li>
+<li class="chapter" data-level="15.2.3" data-path="modelización-lineal.html"><a href="modelización-lineal.html#interpretación-de-los-coeficientes"><i class="fa fa-check"></i><b>15.2.3</b> Interpretación de los coeficientes</a></li>
+<li class="chapter" data-level="15.2.4" data-path="modelización-lineal.html"><a href="modelización-lineal.html#predicción"><i class="fa fa-check"></i><b>15.2.4</b> Predicción</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="modelización-lineal.html"><a href="modelización-lineal.html#procedimiento-con-r-la-función-lm"><i class="fa fa-check"></i><b>15.3</b> Procedimiento con R: la función <code>lm</code></a></li>
+<li class="chapter" data-level="15.4" data-path="modelización-lineal.html"><a href="modelización-lineal.html#Casos"><i class="fa fa-check"></i><b>15.4</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="modelización-lineal.html"><a href="modelización-lineal.html#estimación-de-los-coeficientes"><i class="fa fa-check"></i><b>15.4.1</b> Estimación de los coeficientes</a></li>
+<li class="chapter" data-level="15.4.2" data-path="modelización-lineal.html"><a href="modelización-lineal.html#validación"><i class="fa fa-check"></i><b>15.4.2</b> Validación</a></li>
+<li class="chapter" data-level="15.4.3" data-path="modelización-lineal.html"><a href="modelización-lineal.html#interpretación-de-los-coeficientes-1"><i class="fa fa-check"></i><b>15.4.3</b> Interpretación de los coeficientes</a></li>
+<li class="chapter" data-level="15.4.4" data-path="modelización-lineal.html"><a href="modelización-lineal.html#predicción-1"><i class="fa fa-check"></i><b>15.4.4</b> Predicción</a></li>
+<li class="chapter" data-level="15.4.5" data-path="modelización-lineal.html"><a href="modelización-lineal.html#nuevo-ajuste-con-logozone"><i class="fa fa-check"></i><b>15.4.5</b> Nuevo ajuste con <code>log(Ozone)</code></a></li>
+<li class="chapter" data-level="15.4.6" data-path="modelización-lineal.html"><a href="modelización-lineal.html#coeficientes-de-variables-categóricas"><i class="fa fa-check"></i><b>15.4.6</b> Coeficientes de variables categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="modelización-lineal.html"><a href="modelización-lineal.html#comentarios-finales"><i class="fa fa-check"></i><b>15.5</b> Comentarios finales</a>
+<ul>
+<li class="chapter" data-level="" data-path="modelización-lineal.html"><a href="modelización-lineal.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html"><i class="fa fa-check"></i><b>16</b> Modelos lineales generalizados</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#motivación"><i class="fa fa-check"></i><b>16.1</b> Motivación</a></li>
+<li class="chapter" data-level="16.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#modelo-y-sus-componentes"><i class="fa fa-check"></i><b>16.2</b> Modelo y sus componentes</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#función-enlace"><i class="fa fa-check"></i><b>16.2.1</b> Función enlace </a></li>
+<li class="chapter" data-level="16.2.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#glms-en-r"><i class="fa fa-check"></i><b>16.2.2</b> GLMs en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#regresión-logística"><i class="fa fa-check"></i><b>16.3</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#procedimiento-de-ajuste"><i class="fa fa-check"></i><b>16.3.1</b> Procedimiento de ajuste</a></li>
+<li class="chapter" data-level="16.3.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#adecuación-del-modelo"><i class="fa fa-check"></i><b>16.3.2</b> Adecuación del modelo</a></li>
+<li class="chapter" data-level="16.3.3" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#SECCinterp"><i class="fa fa-check"></i><b>16.3.3</b> Interpretación de resultados</a></li>
+<li class="chapter" data-level="16.3.4" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#predicción.-curva-roc-y-auc"><i class="fa fa-check"></i><b>16.3.4</b> Predicción. Curva ROC y AUC</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#regresión-de-poisson"><i class="fa fa-check"></i><b>16.4</b> Regresión de Poisson</a></li>
+<li class="chapter" data-level="16.5" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#casos-prácticos"><i class="fa fa-check"></i><b>16.5</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ejemplos-de-regresión-logística"><i class="fa fa-check"></i><b>16.5.1</b> Ejemplos de regresión logística</a></li>
+<li class="chapter" data-level="16.5.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ejemplo-de-regresión-de-poisson"><i class="fa fa-check"></i><b>16.5.2</b> Ejemplo de regresión de Poisson</a></li>
+<li class="chapter" data-level="" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#resumen-1"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html"><i class="fa fa-check"></i><b>17</b> Modelos aditivos generalizados</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#introducción-7"><i class="fa fa-check"></i><b>17.1</b> Introducción</a></li>
+<li class="chapter" data-level="17.2" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#splines-con-penalizaciones"><i class="fa fa-check"></i><b>17.2</b> Splines con penalizaciones</a></li>
+<li class="chapter" data-level="17.3" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#aspectos-metodológicos"><i class="fa fa-check"></i><b>17.3</b> Aspectos metodológicos</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#estimación-de-los-paraámetros-del-modelo"><i class="fa fa-check"></i><b>17.3.1</b> Estimación de los paraámetros del modelo</a></li>
+<li class="chapter" data-level="17.3.2" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#inferencia-sobre-las-funciones-suaves"><i class="fa fa-check"></i><b>17.3.2</b> Inferencia sobre las funciones suaves</a></li>
+<li class="chapter" data-level="17.3.3" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#suavizado-mutidimensional-y-para-datos-no-gaussianos"><i class="fa fa-check"></i><b>17.3.3</b> Suavizado mutidimensional y para datos no Gaussianos</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#la-función-gam-del-paquete-mgcv"><i class="fa fa-check"></i><b>17.4</b> La función <code>gam</code> del paquete <code>mgcv</code></a></li>
+<li class="chapter" data-level="17.5" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#casos-prácticos-1"><i class="fa fa-check"></i><b>17.5</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-unidimensional-con-fossil"><i class="fa fa-check"></i><b>17.5.1</b> Modelo unidimensional con <code>fossil</code></a></li>
+<li class="chapter" data-level="17.5.2" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-aditivo-con-airquality"><i class="fa fa-check"></i><b>17.5.2</b> Modelo aditivo con <code>airquality</code></a></li>
+<li class="chapter" data-level="17.5.3" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-semiparamétrico-con-onions"><i class="fa fa-check"></i><b>17.5.3</b> Modelo semiparamétrico con <code>onions</code></a></li>
+<li class="chapter" data-level="17.5.4" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-aditivo-generalizado-y-multidimensional-con-smacker"><i class="fa fa-check"></i><b>17.5.4</b> Modelo aditivo generalizado y multidimensional, con <code>smacker</code></a></li>
+<li class="chapter" data-level="" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#resumen-2"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html"><i class="fa fa-check"></i><b>18</b> Modelos mixtos</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#conceptos-básicos"><i class="fa fa-check"></i><b>18.1</b> Conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#tipo-y-estructura-de-los-datos"><i class="fa fa-check"></i><b>18.1.1</b> Tipo y estructura de los datos</a></li>
+<li class="chapter" data-level="18.1.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#efectos-fijos-o-aleatorios"><i class="fa fa-check"></i><b>18.1.2</b> ¿Efectos fijos o aleatorios?</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#formulación-del-modelo-con-efectos-aleatorios-o-modelos-mixtos"><i class="fa fa-check"></i><b>18.2</b> Formulación del modelo con efectos aleatorios o modelos mixtos</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#formulación-general"><i class="fa fa-check"></i><b>18.2.1</b> Formulación general</a></li>
+<li class="chapter" data-level="18.2.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#inferencia-y-selección-del-modelo"><i class="fa fa-check"></i><b>18.2.2</b> Inferencia y selección del modelo</a></li>
+<li class="chapter" data-level="18.2.3" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#diagnosis-del-modelo"><i class="fa fa-check"></i><b>18.2.3</b> Diagnosis del modelo</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#funciones-de-r-para-ajustar-modelos-mixtos"><i class="fa fa-check"></i><b>18.3</b> Funciones de <code>R</code> para ajustar modelos mixtos</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#la-función-lmer"><i class="fa fa-check"></i><b>18.3.1</b> La función <code>lmer()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#caso-práctico"><i class="fa fa-check"></i><b>18.4</b> Caso práctico</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#modelo-con-ordenada-en-el-origen-aleatoria"><i class="fa fa-check"></i><b>18.4.1</b> Modelo con ordenada en el origen aleatoria</a></li>
+<li class="chapter" data-level="18.4.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#modelo-con-pendiente-aleatoria"><i class="fa fa-check"></i><b>18.4.2</b> Modelo con pendiente aleatoria</a></li>
+<li class="chapter" data-level="18.4.3" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#cómo-construir-el-modelo-en-la-práctica"><i class="fa fa-check"></i><b>18.4.3</b> ¿Cómo construir el modelo en la práctica?</a></li>
+<li class="chapter" data-level="" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#resumen-3"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html"><i class="fa fa-check"></i><b>19</b> Modelos sparse y métodos penalizados de regresión</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#introducción-8"><i class="fa fa-check"></i><b>19.1</b> Introducción</a></li>
+<li class="chapter" data-level="19.2" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#selección-del-mejor-subconjunto"><i class="fa fa-check"></i><b>19.2</b> Selección del mejor subconjunto</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#ejemplo-sueldo-de-jugadores-de-béisbol"><i class="fa fa-check"></i><b>19.2.1</b> Ejemplo: Sueldo de jugadores de béisbol</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#selección-stepwise"><i class="fa fa-check"></i><b>19.3</b> Selección <em>Stepwise</em></a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#forward-stepwise"><i class="fa fa-check"></i><b>19.3.1</b> Forward stepwise</a></li>
+<li class="chapter" data-level="19.3.2" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#backward-stepwise"><i class="fa fa-check"></i><b>19.3.2</b> Backward stepwise</a></li>
+<li class="chapter" data-level="19.3.3" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#ejemplo-sueldo-de-jugadores-de-béisbol-1"><i class="fa fa-check"></i><b>19.3.3</b> Ejemplo: Sueldo de jugadores de béisbol</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#métodos-shrinkage"><i class="fa fa-check"></i><b>19.4</b> Métodos Shrinkage</a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#regresión-ridge"><i class="fa fa-check"></i><b>19.4.1</b> Regresión ridge</a></li>
+<li class="chapter" data-level="19.4.2" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#selección-del-parámetro-de-tuneado"><i class="fa fa-check"></i><b>19.4.2</b> Selección del parámetro de tuneado</a></li>
+<li class="chapter" data-level="19.4.3" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#regresión-lasso"><i class="fa fa-check"></i><b>19.4.3</b> Regresión Lasso</a></li>
+<li class="chapter" data-level="19.4.4" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#elastic-net"><i class="fa fa-check"></i><b>19.4.4</b> Elastic net </a></li>
+<li class="chapter" data-level="" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#resumen-4"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html"><i class="fa fa-check"></i><b>20</b> Modelización de series temporales</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#conceptos-básicos-1"><i class="fa fa-check"></i><b>20.1</b> Conceptos básicos</a></li>
+<li class="chapter" data-level="20.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#modelos-arima"><i class="fa fa-check"></i><b>20.2</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="20.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#análisis-de-series-temporales-con-r"><i class="fa fa-check"></i><b>20.3</b> Análisis de series temporales con R</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#identificación-o-especificación-del-modelo"><i class="fa fa-check"></i><b>20.3.1</b> Identificación o especificación del modelo</a></li>
+<li class="chapter" data-level="20.3.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#estimación-del-modelo"><i class="fa fa-check"></i><b>20.3.2</b> Estimación del modelo</a></li>
+<li class="chapter" data-level="20.3.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#diagnosis-validación-y-contrastación"><i class="fa fa-check"></i><b>20.3.3</b> Diagnosis, validación y contrastación</a></li>
+<li class="chapter" data-level="20.3.4" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#predicción-2"><i class="fa fa-check"></i><b>20.3.4</b> Predicción</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliografía.html"><a href="bibliografía.html"><i class="fa fa-check"></i>Bibliografía</a></li>
+<li class="chapter" data-level="21" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html"><i class="fa fa-check"></i><b>21</b> Análisis de tablas de contingencia</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-9"><i class="fa fa-check"></i><b>21.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#motiv"><i class="fa fa-check"></i><b>21.1.1</b> Motivación</a></li>
+<li class="chapter" data-level="21.1.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#notac"><i class="fa fa-check"></i><b>21.1.2</b> Notación</a></li>
+<li class="chapter" data-level="21.1.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#diseños-experimentales-o-procedimientos-de-muestreo-que-dan-lugar-a-una-tabla-de-contingencia"><i class="fa fa-check"></i><b>21.1.3</b> Diseños experimentales o procedimientos de muestreo que dan lugar a una tabla de contingencia</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-de-independencia-en-tablas-2times-2"><i class="fa fa-check"></i><b>21.2</b> Contraste de independencia en tablas <span class="math inline">\((2\times 2)\)</span></a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-10"><i class="fa fa-check"></i><b>21.2.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.2.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#plantgen"><i class="fa fa-check"></i><b>21.2.2</b> Planteamiento general del contraste exacto de independencia</a></li>
+<li class="chapter" data-level="21.2.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#algoritmo"><i class="fa fa-check"></i><b>21.2.3</b> Algoritmo para la realización del contraste exacto de independencia</a></li>
+<li class="chapter" data-level="21.2.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-de-independencia-diseño-tipo-1"><i class="fa fa-check"></i><b>21.2.4</b> Contraste de independencia: Diseño Tipo 1</a></li>
+<li class="chapter" data-level="21.2.5" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#dise"><i class="fa fa-check"></i><b>21.2.5</b> Contraste de independencia: Diseños Tipo 2 y Tipo 3</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-de-independencia-en-tablas-rtimes-c"><i class="fa fa-check"></i><b>21.3</b> Contraste de independencia en tablas <span class="math inline">\(R\times C\)</span></a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#IntroRxC"><i class="fa fa-check"></i><b>21.3.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.3.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contaprox"><i class="fa fa-check"></i><b>21.3.2</b> Contrastes aproximados</a></li>
+<li class="chapter" data-level="21.3.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-aproximado-con-corrección-de-continuidad-1"><i class="fa fa-check"></i><b>21.3.3</b> Contraste aproximado con corrección de continuidad</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas"><i class="fa fa-check"></i><b>21.4</b> Medidas de asociación en tablas <span class="math inline">\(2\times 2\)</span></a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-11"><i class="fa fa-check"></i><b>21.4.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.4.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#la-hatq-de-yule"><i class="fa fa-check"></i><b>21.4.2</b> La <span class="math inline">\(\hat{Q}\)</span> de Yule</a></li>
+<li class="chapter" data-level="21.4.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#otras-medidas-de-asociación-para-tablas-2times-2"><i class="fa fa-check"></i><b>21.4.3</b> Otras medidas de asociación para tablas <span class="math inline">\(2\times 2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas-de-asociación-en-tablas-rtimes-c"><i class="fa fa-check"></i><b>21.5</b> Medidas de asociación en tablas <span class="math inline">\(R\times C\)</span></a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-12"><i class="fa fa-check"></i><b>21.5.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.5.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas-derivadas-del-estadístico-chi-cuadrado"><i class="fa fa-check"></i><b>21.5.2</b> Medidas derivadas del estadístico Chi-cuadrado</a></li>
+<li class="chapter" data-level="21.5.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas-basadas-en-la-reducción-proporcional-del-error-lambda-de-goodman-y-kruskal"><i class="fa fa-check"></i><b>21.5.3</b> Medidas basadas en la reducción proporcional del error: <span class="math inline">\(\lambda\)</span> de Goodman y Kruskal</a></li>
+<li class="chapter" data-level="21.5.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#determinación-de-las-fuentes-de-asociación"><i class="fa fa-check"></i><b>21.5.4</b> Determinación de las fuentes de asociación</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contrastes-de-independencia-en-tablas-multidimensionales"><i class="fa fa-check"></i><b>21.6</b> Contrastes de independencia en tablas multidimensionales</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="correspondencias.html"><a href="correspondencias.html"><i class="fa fa-check"></i><b>22</b> Análisis de correspondencias</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="correspondencias.html"><a href="correspondencias.html#introducción-13"><i class="fa fa-check"></i><b>22.1</b> Introducción</a></li>
+<li class="chapter" data-level="22.2" data-path="correspondencias.html"><a href="correspondencias.html#metodología-del-análisis-de-correspondencias"><i class="fa fa-check"></i><b>22.2</b> Metodología del análisis de correspondencias</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="correspondencias.html"><a href="correspondencias.html#proyecciones-fila-columna-y-simétrica"><i class="fa fa-check"></i><b>22.2.1</b> Proyecciones fila, columna y simétrica</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="correspondencias.html"><a href="correspondencias.html#ejemplos-de-análisis-de-correspondencias-con-r"><i class="fa fa-check"></i><b>22.3</b> Ejemplos de análisis de correspondencias con <strong>R</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html"><i class="fa fa-check"></i><b>23</b> Análisis conjunto</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html#introducción-conceptos-clave-y-tipos-de-análisis"><i class="fa fa-check"></i><b>23.1</b> Introducción, conceptos clave y tipos de análisis</a></li>
+<li class="chapter" data-level="23.2" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html#aplicación-del-análisis-conjunto-etapas"><i class="fa fa-check"></i><b>23.2</b> Aplicación del Análisis Conjunto (etapas):</a></li>
+<li class="chapter" data-level="23.3" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html#ejemplo-utilizando-r"><i class="fa fa-check"></i><b>23.3</b> Ejemplo utilizando R:</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>24</b> Análisis discriminante</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#introducción-14"><i class="fa fa-check"></i><b>24.1</b> Introducción</a></li>
+<li class="chapter" data-level="24.2" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#tipos-de-análisis-discriminantes"><i class="fa fa-check"></i><b>24.2</b> Tipos de análisis discriminantes:</a></li>
+<li class="chapter" data-level="24.3" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#ejemplos"><i class="fa fa-check"></i><b>24.3</b> Ejemplos:</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html"><i class="fa fa-check"></i><b>25</b> Árboles de clasificación y regresión </a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#introducción-15"><i class="fa fa-check"></i><b>25.1</b> Introducción </a></li>
+<li class="chapter" data-level="25.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#aprendizaje-con-árboles-de-decisión"><i class="fa fa-check"></i><b>25.2</b> Aprendizaje con árboles de decisión</a></li>
+<li class="chapter" data-level="25.3" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#cómo-se-va-dividiendo-el-árbol"><i class="fa fa-check"></i><b>25.3</b> ¿Cómo se va dividiendo el árbol? </a>
+<ul>
+<li class="chapter" data-level="25.3.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#impureza-de-gini"><i class="fa fa-check"></i><b>25.3.1</b> Impureza de Gini</a></li>
+<li class="chapter" data-level="25.3.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#entropía"><i class="fa fa-check"></i><b>25.3.2</b> Entropía </a></li>
+<li class="chapter" data-level="25.3.3" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#ganancia-de-información"><i class="fa fa-check"></i><b>25.3.3</b> Ganancia de información</a></li>
+<li class="chapter" data-level="25.3.4" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#suma-residual-de-cuadrados-mínima"><i class="fa fa-check"></i><b>25.3.4</b> Suma residual de cuadrados mínima</a></li>
+</ul></li>
+<li class="chapter" data-level="25.4" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#sobreajuste"><i class="fa fa-check"></i><b>25.4</b> Sobreajuste </a></li>
+<li class="chapter" data-level="25.5" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#cuánto-debe-crecer-un-árbol"><i class="fa fa-check"></i><b>25.5</b> ¿Cuánto debe crecer un árbol? </a>
+<ul>
+<li class="chapter" data-level="25.5.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#la-parada-temprana"><i class="fa fa-check"></i><b>25.5.1</b> La parada temprana </a></li>
+<li class="chapter" data-level="25.5.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#la-poda"><i class="fa fa-check"></i><b>25.5.2</b> La poda </a></li>
+</ul></li>
+<li class="chapter" data-level="25.6" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#el-algoritmo-id3-para-la-construcción-de-un-árbol-de-decisión"><i class="fa fa-check"></i><b>25.6</b> El algoritmo ID3 para la construcción de un árbol de decisión</a></li>
+<li class="chapter" data-level="25.7" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#procedimiento-con-r-la-funcion-rpart"><i class="fa fa-check"></i><b>25.7</b> Procedimiento con R: la funcion <code>rpart</code></a></li>
+<li class="chapter" data-level="25.8" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#aplicaciones-de-los-árboles-de-decisión"><i class="fa fa-check"></i><b>25.8</b> Aplicaciones de los árboles de decisión</a>
+<ul>
+<li class="chapter" data-level="25.8.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#el-caso-de-negocio"><i class="fa fa-check"></i><b>25.8.1</b> El caso de negocio</a></li>
+<li class="chapter" data-level="25.8.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#árbol-de-clasificación-para-determinar-la-intención-de-compra"><i class="fa fa-check"></i><b>25.8.2</b> Árbol de clasificación para determinar la intención de compra</a></li>
+<li class="chapter" data-level="25.8.3" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#árbol-de-regresión-para-estimar-el-número-de-días-hospitalizado"><i class="fa fa-check"></i><b>25.8.3</b> Árbol de regresión para estimar el número de días hospitalizado</a></li>
+<li class="chapter" data-level="" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#resumen-5"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html"><i class="fa fa-check"></i><b>26</b> Máquinas de Vector Soporte</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#introducción-16"><i class="fa fa-check"></i><b>26.1</b> Introducción</a></li>
+<li class="chapter" data-level="26.2" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#algoritmo-svm-para-clasificación-binaria"><i class="fa fa-check"></i><b>26.2</b> Algoritmo SVM para clasificación binaria</a></li>
+<li class="chapter" data-level="26.3" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#y-si-tengo-más-de-dos-clases"><i class="fa fa-check"></i><b>26.3</b> ¿Y si tengo más de dos clases?</a></li>
+<li class="chapter" data-level="26.4" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#truco-del-kernel-tratando-con-la-no-linearidad"><i class="fa fa-check"></i><b>26.4</b> Truco del Kernel: Tratando con la no linearidad</a>
+<ul>
+<li class="chapter" data-level="26.4.1" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#algunos-kernels-populares"><i class="fa fa-check"></i><b>26.4.1</b> Algunos kernels populares</a></li>
+</ul></li>
+<li class="chapter" data-level="26.5" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#procedimiento-con-r-la-funcion-svm"><i class="fa fa-check"></i><b>26.5</b> Procedimiento con R: la funcion <code>svm</code></a></li>
+<li class="chapter" data-level="26.6" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#aplicación-de-un-modelo-svm-radial-con-ajuste-automático-en-r"><i class="fa fa-check"></i><b>26.6</b> Aplicación de un modelo SVM Radial con ajuste automático en R</a>
+<ul>
+<li class="chapter" data-level="26.6.1" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#importancia-de-las-variables"><i class="fa fa-check"></i><b>26.6.1</b> Importancia de las variables</a></li>
+<li class="chapter" data-level="" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#resumen-6"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html"><i class="fa fa-check"></i><b>27</b> Clasificador k-vecinos más próximos</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#introducción-17"><i class="fa fa-check"></i><b>27.1</b> Introducción</a></li>
+<li class="chapter" data-level="27.2" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#decisiones-a-tener-en-cuenta"><i class="fa fa-check"></i><b>27.2</b> Decisiones a tener en cuenta</a>
+<ul>
+<li class="chapter" data-level="27.2.1" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#función-de-distancia-a-utilizar"><i class="fa fa-check"></i><b>27.2.1</b> Función de distancia a utilizar</a></li>
+<li class="chapter" data-level="27.2.2" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#número-de-vecinos-k-seleccionados"><i class="fa fa-check"></i><b>27.2.2</b> Número de vecinos (k) seleccionados</a></li>
+</ul></li>
+<li class="chapter" data-level="27.3" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#procedimiento-con-r-la-funcion-knn"><i class="fa fa-check"></i><b>27.3</b> Procedimiento con R: la funcion knn</a></li>
+<li class="chapter" data-level="27.4" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#aplicación-del-modelo-knn-en-r"><i class="fa fa-check"></i><b>27.4</b> Aplicación del modelo KNN en R</a>
+<ul>
+<li class="chapter" data-level="" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#resumen-7"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="naive-bayes.html"><a href="naive-bayes.html"><i class="fa fa-check"></i><b>28</b> Naive Bayes</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="naive-bayes.html"><a href="naive-bayes.html#introducción-18"><i class="fa fa-check"></i><b>28.1</b> Introducción</a></li>
+<li class="chapter" data-level="28.2" data-path="naive-bayes.html"><a href="naive-bayes.html#teorema-de-bayes"><i class="fa fa-check"></i><b>28.2</b> Teorema de Bayes</a></li>
+<li class="chapter" data-level="28.3" data-path="naive-bayes.html"><a href="naive-bayes.html#el-algoritmo-naive-bayes"><i class="fa fa-check"></i><b>28.3</b> El algoritmo Naive Bayes</a></li>
+<li class="chapter" data-level="28.4" data-path="naive-bayes.html"><a href="naive-bayes.html#procedimiento-con-r-la-funcion-naive_bayes"><i class="fa fa-check"></i><b>28.4</b> Procedimiento con R: la funcion <code>naive_bayes</code></a></li>
+<li class="chapter" data-level="28.5" data-path="naive-bayes.html"><a href="naive-bayes.html#aplicación-del-modelo-naive-bayes"><i class="fa fa-check"></i><b>28.5</b> Aplicación del modelo Naive Bayes</a>
+<ul>
+<li class="chapter" data-level="" data-path="naive-bayes.html"><a href="naive-bayes.html#resumen-8"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html"><i class="fa fa-check"></i><b>29</b> Bagging. Random Forest </a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#introducción-metodos-de-ensamble"><i class="fa fa-check"></i><b>29.1</b> Introducción: Metodos de Ensamble</a></li>
+<li class="chapter" data-level="29.2" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#bagging"><i class="fa fa-check"></i><b>29.2</b> Bagging</a></li>
+<li class="chapter" data-level="29.3" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#procedimiento-con-r-la-función-bagging"><i class="fa fa-check"></i><b>29.3</b> Procedimiento con R: la función <code>bagging</code> </a></li>
+<li class="chapter" data-level="29.4" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#implementando-bagging-en-r"><i class="fa fa-check"></i><b>29.4</b> Implementando bagging en R</a>
+<ul>
+<li class="chapter" data-level="29.4.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#interpretación-de-variables-en-el-bagging"><i class="fa fa-check"></i><b>29.4.1</b> Interpretación de variables en el bagging</a></li>
+</ul></li>
+<li class="chapter" data-level="29.5" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#random-forest"><i class="fa fa-check"></i><b>29.5</b> Random Forest</a>
+<ul>
+<li class="chapter" data-level="29.5.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#número-de-árboles-k"><i class="fa fa-check"></i><b>29.5.1</b> Número de árboles (<span class="math inline">\(K\)</span>)</a></li>
+<li class="chapter" data-level="29.5.2" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#número-de-variables-a-considerar-mtry"><i class="fa fa-check"></i><b>29.5.2</b> Número de variables a considerar (<span class="math inline">\(mtry\)</span>)</a></li>
+<li class="chapter" data-level="29.5.3" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#complejidad-de-los-árboles"><i class="fa fa-check"></i><b>29.5.3</b> Complejidad de los árboles</a></li>
+<li class="chapter" data-level="29.5.4" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#esquema-de-muestreo"><i class="fa fa-check"></i><b>29.5.4</b> Esquema de muestreo</a></li>
+<li class="chapter" data-level="29.5.5" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#regla-de-división"><i class="fa fa-check"></i><b>29.5.5</b> Regla de división</a></li>
+</ul></li>
+<li class="chapter" data-level="29.6" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#procedimiento-con-r-la-función-randomforest"><i class="fa fa-check"></i><b>29.6</b> Procedimiento con R: la función <code>randomForest</code></a></li>
+<li class="chapter" data-level="29.7" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#aplicación-del-modelo-random-forest-en-r"><i class="fa fa-check"></i><b>29.7</b> Aplicación del modelo Random Forest en R</a>
+<ul>
+<li class="chapter" data-level="29.7.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#aplicación-del-random-forest"><i class="fa fa-check"></i><b>29.7.1</b> Aplicación del Random Forest</a></li>
+<li class="chapter" data-level="" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#resumen-9"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html"><i class="fa fa-check"></i><b>30</b> Boosting. XGBoost.</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#introducción.-boosting."><i class="fa fa-check"></i><b>30.1</b> Introducción. Boosting.</a></li>
+<li class="chapter" data-level="30.2" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#gradient-boosting"><i class="fa fa-check"></i><b>30.2</b> Gradient Boosting</a>
+<ul>
+<li class="chapter" data-level="30.2.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#hiperparámetros-del-modelo-gradient-boosting"><i class="fa fa-check"></i><b>30.2.1</b> Hiperparámetros del modelo gradient boosting</a></li>
+<li class="chapter" data-level="30.2.2" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#estrategia-de-ajuste-de-hiperparametros"><i class="fa fa-check"></i><b>30.2.2</b> Estrategia de ajuste de hiperparametros</a></li>
+</ul></li>
+<li class="chapter" data-level="30.3" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#procedimiento-con-r-la-funcion-gbm"><i class="fa fa-check"></i><b>30.3</b> Procedimiento con R: la funcion <code>gbm</code></a></li>
+<li class="chapter" data-level="30.4" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#aplicación-del-modelo-gbm-en-r"><i class="fa fa-check"></i><b>30.4</b> Aplicación del modelo GBM en R</a>
+<ul>
+<li class="chapter" data-level="30.4.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#gbm-con-ajuste-automático"><i class="fa fa-check"></i><b>30.4.1</b> GBM con ajuste automático</a></li>
+</ul></li>
+<li class="chapter" data-level="30.5" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#extreme-gradient-boosting-xgb"><i class="fa fa-check"></i><b>30.5</b> eXtreme Gradient Boosting (XGB)</a>
+<ul>
+<li class="chapter" data-level="30.5.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#hiperparametros-del-modelo-xgboost"><i class="fa fa-check"></i><b>30.5.1</b> Hiperparametros del modelo XGBoost</a></li>
+</ul></li>
+<li class="chapter" data-level="30.6" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#procedimiento-con-r-la-funcion-xgboost"><i class="fa fa-check"></i><b>30.6</b> Procedimiento con R: la funcion <code>xgboost</code></a></li>
+<li class="chapter" data-level="30.7" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#aplicación-del-módelo-xgboost-en-r"><i class="fa fa-check"></i><b>30.7</b> Aplicación del módelo XGBoost en R</a>
+<ul>
+<li class="chapter" data-level="30.7.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#xgboost-y-ajuste-automático"><i class="fa fa-check"></i><b>30.7.1</b> XGBoost y ajuste automático</a></li>
+<li class="chapter" data-level="" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#resumen-10"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://blog.uclm.es/tp-mbsba/"> Ciencia de datos con R </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fundamentos de ciencia de datos con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modelos-lineales-generalizados" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Capítulo 16</span> Modelos lineales generalizados<a href="modelos-lineales-generalizados.html#modelos-lineales-generalizados" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Víctor Casero y María Durbán</em></p>
+<div id="motivación" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Motivación<a href="modelos-lineales-generalizados.html#motivación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Como se ha mencionado en el Capítulo 16 de modelos lineales, el objetivo detrás del uso de modelos es el de intentar explicar una variable en función de otras que se cree que influyen en ella. Por ejemplo, podría interesar <em>predecir</em></p>
+<ul>
+<li><p>si un empleado abandonará la empresa, o no, en función de los años de experiencia, la formación, etc.
+O si un paciente sufrirá o no un accidente coronario en función de su edad, sexo, nivel de colesterol, etc.</p></li>
+<li><p>el número de días que el empleado estará de baja laboral en función de su antigüedad, salario, etc.
+O el número de días que un paciente estará en el hospital en función del motivo de ingreso, su edad, sexo, etc.</p></li>
+</ul>
+<p>Estos casos no pueden analizarse (correctamente) con el modelo de regresión lineal múltiple visto en el Capítulo 16, por que la <em>variable respuesta</em>, la que interesa predecir en cada ejemplo, no sigue una distribución de probabilidad normal (supuesto necesario para utilizar la regresión lineal). Concretamente,</p>
+<ul>
+<li><p>abandonar (o no) la empresa o sufrir (o no) un accidente coronario se puede modelizar mediante una variable <em>dicotómica/binaria</em>, típicamente asignando los valores 0 y 1, lo que encaja perfectamente con una distribución de probabilidad de Bernoulli (muy distinta de la normal).</p></li>
+<li><p>el número de días… de baja, de hospitalización… es una variable de tipo <em>recuento</em> (sólo valores positivos) modelizable mediante una variable discreta que podría seguir una distribución de Poisson (que por ser discreta, es también distinta a la normal, aunque podría parecerse).</p></li>
+</ul>
+<p>En este Capítulo se mostrará cómo el <strong>modelo lineal generalizado</strong> es el modelo teórico adecuado que permite abordar el problema de regresión con <em>variables respuesta con distinto tipo de distribución de probabilidad</em>. Concretamente permitirá explicar una <em>función de la media</em> a partir de los distintos valores que pueden tomar las variables explicativas. Este Capítulo se centra en la regresión logística y la regresión de Poisson, casos particulares de este modelo, que permiten dar respuesta (correcta) a los dos casos planteados. Un buen libro de referencia para este Capítulo y otros es <span class="citation">(<a href="#ref-james2013introduction" role="doc-biblioref"><strong>james2013introduction?</strong></a>)</span>.</p>
+</div>
+<div id="modelo-y-sus-componentes" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Modelo y sus componentes<a href="modelos-lineales-generalizados.html#modelo-y-sus-componentes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El <strong>Modelo Lineal Generalizado</strong>, <strong>GLM</strong><a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a> se puede escribir como:
+<span class="math display">\[ \mu = g^{-1}(\eta)\]</span>
+en el que se tienen los siguientes componentes:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\mu=E(Y)\)</span>, el componente aleatorio: la <em>media</em> de la variable respuesta <span class="math inline">\(Y\)</span>, que puede seguir cualquier distribución de probabilidad de la familia exponencial. Entre ellas están las más habituales: la normal (por tanto el modelo de regresión lineal es un caso particular de GLM), la Bernoulli/binomial (la utilizada en la regresión logística), la Poisson, la gamma, etc.</p></li>
+<li><p><span class="math inline">\(\eta = X \beta\)</span>, el componente sistemático, el <em>predictor lineal</em>, la ‘estructura’ que aportan las variables explicativas/predictoras <span class="math inline">\(X=(X_1, \ldots , X_k)\)</span>, que intentan explicar el comportamiento de la variable respuesta, donde <span class="math inline">\(\beta=(\beta_1, \ldots , \beta_k)\)</span> es el vector de coeficientes (parámetros) a estimar del modelo.</p></li>
+<li><p><span class="math inline">\(g(\cdot)\)</span>, la novedad de los GLM, la denominada <strong>función de enlace</strong>, que relaciona los dos componentes anteriores. Esta función puede tomar distintas formas como se ve en el próximo apartado.</p></li>
+</ol>
+<p>Por lo tanto, gracias al GLM se podrá intentar explicar la relación entre una variable respuesta, y una o varias variables que pueden ‘explicarla’. El procedimiento de análisis suele constar de dos partes:</p>
+<ol style="list-style-type: decimal">
+<li>La <strong>especificación</strong> de la relación o estructura predefinida de antemano, mediante la <em>estimación</em> de los <em>coeficientes</em> que mejor ajustan dicha relación, utilizando el método de <em>máxima verosimilitud</em><a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a>.
+Más adelante se verá cómo se interpretan tales coeficientes y cómo se puede comprobar la adecuación del modelo.</li>
+<li>La utilización del modelo estimado (especificado) para <strong>predecir</strong> nuevas respuestas, según sea el caso: valores, probabilidades de ocurrencia, etc.</li>
+</ol>
+<p>Para la correcta aplicación de los GLM es crucial la elección de dichas variables respuesta y explicativas (que podrían ser de distinto tipo: numéricas -continuas o discretas- o categóricas/cualitativas -dicotómicas o politómicas-<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a>) y la distribución de probabilidad más apropiada para la respuesta.
+Como muestra sirva percatarse de que una misma variable podría ser explicativa o respuesta, por ejemplo ‘diabetes’ (sí o no), según se tenga interés en explicar la influencia de la diabetes en otra variable, o se pretende estudiar la influencia de otras variables en la diabetes.
+También una misma variable podría considerarse y utilizarse como variable de distinto tipo, por ejemplo ‘edad’, como variable discreta (<em>años cumplidos</em>) o como categórica ordinal (<em>grupos de edad</em>), aunque es una variable continua (puede tomar cualquier valor en un intervalo).</p>
+<div id="función-enlace" class="section level3 hasAnchor" number="16.2.1">
+<h3><span class="header-section-number">16.2.1</span> Función enlace <a href="modelos-lineales-generalizados.html#función-enlace" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cada distribución de probabilidad tiene asociada una función de enlace <em>canónica</em><a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>:</p>
+<ul>
+<li>Para la normal es la identidad: <span class="math inline">\(g(\mu)=\mu=\eta\)</span>.</li>
+<li>Para la Bernoulli, es la función logit: <span class="math inline">\(g(\mu)=logit(\mu)=log (\mu / (1-\mu)) =\eta\)</span>.</li>
+<li>Para la Poisson, es el logaritmo: <span class="math inline">\(g(\mu)=log(\mu)=\eta\)</span>.</li>
+<li>Para la Gamma es la inversa: <span class="math inline">\(g(\mu)=1/\mu=\eta\)</span>, …</li>
+</ul>
+<p>Tanto en el caso de la regresión logística como la de Poisson aparece el logaritmo (neperiano) en la función de enlace, lo que conduce a efectos <strong>multiplicativos</strong> de los <em>factores</em> o <em>covariables</em> <span class="math inline">\(X_i\)</span> sobre la respuesta, como se verá más claramente en la sección <a href="modelos-lineales-generalizados.html#SECCinterp">16.3.3</a>. Este es un punto que las distingue de la regresión lineal, en la que los efectos son <strong>aditivos</strong>.</p>
+</div>
+<div id="glms-en-r" class="section level3 hasAnchor" number="16.2.2">
+<h3><span class="header-section-number">16.2.2</span> GLMs en <code>R</code><a href="modelos-lineales-generalizados.html#glms-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En el paquete <code>stats</code> (de la distribución ‘base’ de <code>R</code>) se encuentra la función <code>glm</code> que se utiliza para obtener el ajuste:</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="modelos-lineales-generalizados.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glm</span>(formula, <span class="at">family =</span> ..., <span class="at">data =</span> ..., ...)</span></code></pre></div>
+<ul>
+<li><code>formula</code>: que refleje el <em>predictor lineal</em>: <code>Y ~ X1 + X2 + X3</code>, etc.</li>
+<li><code>family</code>: la distribución aleatoria de la variable respuesta: <code>gaussian</code>, <code>binomial</code>, <code>poisson</code> … que determina la función de enlace (<code>binomial</code> -&gt; <code>logit</code>, etc. <code>?family</code> o <code>?glm</code> para más detalles).</li>
+</ul>
+<p>Las ‘herramientas’ utilizadas para <code>lm</code> se pueden usar para <code>glm</code> (aunque algunas interpretaciones varían). Así se pueden usar <code>summary</code> para detectar los predictores importantes, obtener los valores ajustados con <code>fitted</code>, etc.</p>
+</div>
+</div>
+<div id="regresión-logística" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">16.3</span> Regresión logística<a href="modelos-lineales-generalizados.html#regresión-logística" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La regresión logística es el caso más ‘famoso’ de GLM, de gran relevancia en distintos contextos: Medicina, Economía, etc.
+Se utiliza cuando la <em>variable respuesta</em> es <em>dicotómica</em>, del tipo pertenencia, o no, a un determinado grupo (fumadores, enfermedad X, parados, morosos, …).
+Habitualmente se considera que toma el valor <span class="math inline">\(Y=1\)</span> si se pertenece al grupo e <span class="math inline">\(Y=0\)</span> si NO se pertenece al grupo.
+Tal tipo de variable se puede modelizar con una <em>distribución de Bernoulli</em> caracterizada por el parámetro <span class="math inline">\(p\)</span> que representa la probabilidad de pertenencia al grupo.</p>
+<p>El objetivo principal suele ser predecir la pertenencia o no al grupo de un nuevo individuo/elemento basado en la información conocida del mismo a través de las <em>variables explicativas</em>. Para ello se estimará el modelo, con los datos disponibles, para determinar que variables influyen <em>significativamente</em> en la variable respuesta<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a>.</p>
+<p>¿Por qué no tiene cabida aquí el uso del modelo de regresión lineal múltiple?<br />
+Al ajustar un modelo del tipo: <span class="math inline">\(Y=\beta_0 + \beta_1 X_1 + \ldots + \beta_k X_k,\)</span>
+las estimaciones realizadas <span class="math inline">\(\hat{Y}\)</span> serán números reales que rara vez
+coincidirán con 0 ó 1 (que es el valor esperable de la variable respuesta).
+Dicho de otro modo, si sólo se tuviese una variable explicativa, al ajustar el modelo de regresión lineal simple, la recta se saldría o no llegaría a los valores posibles de respuesta (0 ó 1), como ocurre en la Figura <a href="modelos-lineales-generalizados.html#fig:dispersionYlogit">16.1</a> (izquierda) obtenida a partir de los datos del ejemplo coronario que se manejará.</p>
+<p>El <strong>modelo de regresión logística múltiple</strong> permite ajustar el modelo
+<span class="math display" id="eq:eta">\[\begin{equation}
+   \log{ \Big(\dfrac{p}{1-p}  \Big)}=\beta_0 + \beta_1 X_1 + \ldots + \beta_k X_k
+   \tag{16.1}
+\end{equation}\]</span>
+mediante el cual se pueden obtener las probabilidades <span class="math inline">\(P[Y = 1] = p\)</span> y <span class="math inline">\(P[Y = 0] = 1-p\)</span>.
+Para ello se utiliza una <em>función de enlace</em> que transforma el predictor lineal <span class="math inline">\(\eta=\beta_0 + \beta_1 X_1 + \ldots + \beta_k X_k\)</span> en valores plausibles para una probabilidad.
+La función logística definida como
+<span class="math display" id="eq:logit">\[\begin{equation}
+  p = \frac{e^\eta}{1+e^\eta}
+  \tag{16.2}
+\end{equation}\]</span>
+y representada en la Figura <a href="modelos-lineales-generalizados.html#fig:dispersionYlogit">16.1</a> (derecha), es la más habitual, y de la que recibe su nombre la regresión logística.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dispersionYlogit"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/dispersionYlogit-1.png" alt="Gráfico de dispersión del diagnóstico frente a la edad (izquierda) y función logística (derecha)." width="60%" />
+<p class="caption">
+Figura 16.1: Gráfico de dispersión del diagnóstico frente a la edad (izquierda) y función logística (derecha).
+</p>
+</div>
+<p>La ventaja del modelo logístico es que la función tiende a cero por la izquierda y a uno por la derecha, por lo que la predicción será
+siempre un valor válido para una probabilidad. Como contrapartida, a medida que las probabilidades se
+acercan a cero o a uno la relación entre el predictor y la probabilidad es menos lineal, lo que complica la interpretación de los coeficientes.</p>
+<div id="procedimiento-de-ajuste" class="section level3 hasAnchor" number="16.3.1">
+<h3><span class="header-section-number">16.3.1</span> Procedimiento de ajuste<a href="modelos-lineales-generalizados.html#procedimiento-de-ajuste" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A partir de los datos disponibles, tanto de los valores de las variables <em>predictoras</em> como de las <em>respuestas</em>, recogidas en el estudio</p>
+<ol style="list-style-type: decimal">
+<li>Se <strong>estimarán los coeficientes</strong> <span class="math inline">\(\beta_i\)</span> del modelo, para especificar la relación entre las variables, comprobando si tales estimaciones, <span class="math inline">\(\hat\beta_j\)</span>, son <strong>significativas</strong><a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a>.</li>
+<li>Se valorará la eliminación de variables no significativas, atendiendo a la significación global del modelo, etc.</li>
+<li>Se comprobará la adecuación del modelo final obtenido</li>
+<li>Se interpretarán los coeficientes y quedará listo para hacer <strong>predicciones</strong> de probabilidades o valores para <strong>clasificar</strong> a los individuos/elementos.</li>
+</ol>
+<p><strong>Nota:</strong> como se ha mencionado en el Capítulo 16 del modelo lineal, para decir que un coeficiente es <strong>significativo</strong> se acude a su <strong>p-valor</strong> asociado, concretamente cuando dicho p-valor es lo suficientemente pequeño, como norma general inferior a 0.05 (aunque podrían tomarse otros valores de referencia<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a>).</p>
+</div>
+<div id="adecuación-del-modelo" class="section level3 hasAnchor" number="16.3.2">
+<h3><span class="header-section-number">16.3.2</span> Adecuación del modelo<a href="modelos-lineales-generalizados.html#adecuación-del-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para comprobar si el modelo estimado es adecuado, se compara con el modelo más simple, el que solo incluye el término independiente.
+Para ello se pueden utilizar distintos <em>contrastes basados en la deviance</em><a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a>, una medida que juega el papel de la suma de cuadrados de los residuos.
+En el modelo de regresión logística, la <em>deviance</em> es menos dos veces el logaritmo de la <em>verosimilitud</em>.
+La diferencia entre la <em>deviance</em> de un modelo más elaborado y el simple se distribuye como una chi-cuadrado, lo que permite contrastar cuál de los dos modelos ajusta mejor los datos.
+P-valores bajos indicarán que el modelo ajustado es inadecuado, debiendo investigarse otras posibles variables predictoras, si se incumple la hipótesis de linealidad o existe sobredispersión (por ejemplo por exceso de ceros).</p>
+<p>Adicionalmente se puede aplicar el contraste de de la razón de verosimilitud, que también se basará en las <em>deviance</em>, las generadas al añadir cada término secuencialmente al modelo. Contrasta si cada variable (añadida en ese orden al modelo que contiene las anteriores) es significativa, lo que ayuda a decidir si mantenerla o eliminarla del modelo.</p>
+<p>Para contrastar la bondad de ajuste del modelo es habitual en la literatura el <em>contraste de Hosmer-Lemeshow</em>.
+Aplicable a modelos con al menos una variable cuantitativa .
+Valores bajos del p-valor resultante indicarán falta de ajuste.</p>
+<p>Respecto a las medidas del ajuste del modelo, en el modelo de regresión logística no tiene sentido calcular el coeficiente de determinación <span class="math inline">\(R^2\)</span>, pero existen varias alternativas equivalentes para hacernos una idea de la variabilidad explicada por el modelo.
+Las tres medidas más habituales son la Pseudo <span class="math inline">\(R^2\)</span> de McFadden, la <span class="math inline">\(R^2\)</span> de Cox y Snell (que por construcción no puede alcanzar el 1)
+y la <span class="math inline">\(R^2\)</span> de Nagelkerke (es una corrección de la de Cox y Snell).</p>
+</div>
+<div id="SECCinterp" class="section level3 hasAnchor" number="16.3.3">
+<h3><span class="header-section-number">16.3.3</span> Interpretación de resultados<a href="modelos-lineales-generalizados.html#SECCinterp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La interpretación de los coeficientes no es tan directa y sencilla como en el modelo lineal.
+A partir de las estimaciones de la regresión lineal <span class="math inline">\(\eta\)</span>, modelo <a href="modelos-lineales-generalizados.html#eq:eta">(16.1)</a>, se puede obtener la probabilidad de que un individuo pertenezca al grupo (<span class="math inline">\(Y = 1\)</span>) utilizando la expresión <a href="modelos-lineales-generalizados.html#eq:logit">(16.2)</a>. Alternativamente se pueden obtener los <em>odds</em>, con la siguiente expresión que se deduce de <a href="modelos-lineales-generalizados.html#eq:logit">(16.2)</a>:
+<span class="math display" id="eq:odds">\[\begin{equation}
+\mathit{odds} = \frac{p}{1-p} =  e^\eta = e^{\beta_0 + \beta_1 X_1 + \ldots + \beta_k X_k},
+\tag{16.3}
+\end{equation}\]</span>
+Los <em>odds</em> vienen a ser cuántas veces es posible
+pertenecer al grupo (<span class="math inline">\(Y = 1\)</span>) frente a no pertenecer (<span class="math inline">\(Y = 0\)</span>).
+Por ejemplo, si <span class="math inline">\(p = 0.75\)</span> el <em>odds</em> es <span class="math inline">\(0.75/0.25=3\)</span>. Esto indica que es tres veces más posible pertenecer al grupo que no pertenecer<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a>.</p>
+<p>La ecuación <a href="modelos-lineales-generalizados.html#eq:odds">(16.3)</a> se puede expresar equivalentemente como:
+<span class="math display" id="eq:modds1">\[\begin{equation}
+\mathit{odds}=e^{\beta_0} \cdot e^{\beta_1 X_1} \cdot \ldots \cdot e^{\beta_k X_k}.  
+\tag{16.4}
+\end{equation}\]</span>
+La interpretación de los <span class="math inline">\(\hat{\beta}_j\)</span> carece de sentido, lo interpretable es <span class="math inline">\(e^{\hat\beta_j}\)</span>, denominado <strong>odd ratio (OR)</strong>.
+Además se ve que el modelo <a href="modelos-lineales-generalizados.html#eq:modds1">(16.4)</a> es <em>multiplicativo</em> (los términos aparecen multiplicando, no sumando), por lo que obtener <span class="math inline">\(e^{\hat{\beta}_j}\)</span> inferiores a 1 implican disminución de odds, y por encima de 1, implican aumento, <em>ceteris paribus</em><a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>.</p>
+<p>Con el modelo de regresión logística se puede proporcionar el llamado <strong>riesgo relativo</strong> (RR, <em>relative risk</em>). Es una razón de
+probabilidades como los <em>odds</em>, pero en vez de comparar la probabilidad de pertenecer a un grupo
+o a otro de la variable respuesta, compara las probabilidades de pertenecer al grupo
+de referencia <span class="math inline">\(Y=1\)</span> según los valores del predictor categórico <span class="math inline">\(X_j\)</span>.
+El riesgo relativo es similar al OR de la variable <span class="math inline">\(X_j\)</span> sólo cuando la probabilidad de <span class="math inline">\(Y=1\)</span> es baja, se suele dar como referencia que sea inferior al 10%. Por lo tanto, OR y RR no coinciden siempre.</p>
+</div>
+<div id="predicción.-curva-roc-y-auc" class="section level3 hasAnchor" number="16.3.4">
+<h3><span class="header-section-number">16.3.4</span> Predicción. Curva ROC y AUC<a href="modelos-lineales-generalizados.html#predicción.-curva-roc-y-auc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Como se ha mencionado, el uso habitual de la regresión logística es la predicción, no tanto de valores o probabilidades sino de la clasificación en un grupo u otro de futuros individuos/elementos basado en la información conocida de ellos a través de las variables explicativas.
+La regla de clasificación en los grupos depende de la elección del punto de corte de la probabilidad, por ejemplo <span class="math inline">\(\hat{Y}=1\)</span> si <span class="math inline">\(\hat p&gt;0.7\)</span> y <span class="math inline">\(\hat{Y}=0\)</span> para el resto.
+Para ello se acude al análisis de los casos clasificados correctamente o no por el modelo ajustado: <em>análisis de sensibilidad y especificidad del modelo</em>, y su visualización más popular, la <strong>curva ROC</strong> (<em>Receiver Operating Characteristic</em>) y la medición de su <strong>AUC</strong> (<em>area under the curve</em>).</p>
+<p>Tanto la <strong>sensibilidad</strong> como la <strong>especificidad</strong> son el porcentaje de elementos de la muestra bien clasificados por el modelo. La <em>sensibilidad</em> de los que pertenecen al grupo (<span class="math inline">\(Y=1\)</span>), la <em>especificidad</em> de los que no pertenecen (<span class="math inline">\(Y=0\)</span>). Los mal clasificados se dividen en <em>falsos positivos</em>, cuando el modelo pronostica <span class="math inline">\(\hat{Y}=1\)</span> pero en realidad es <span class="math inline">\(Y=0\)</span>, y <em>falsos negativos</em>, el caso contrario.</p>
+<p>Gráficamente, se pueden obtener los valores de la sensibilidad y especificidad para distintos puntos de corte (entre 0 y 1).
+La Figura <a href="modelos-lineales-generalizados.html#fig:disc2">16.2</a> (izquierda) muestra este gráfico para uno de los casos prácticos<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>.
+Pero la forma más popular de analizar la sensibilidad y especificidad es
+mediante la curva ROC que representa la sensibilidad frente al ratio de falsos positivos, esto es <em>1-especificidad</em> (Figura <a href="modelos-lineales-generalizados.html#fig:disc2">16.2</a> (derecha)).
+Su AUC sirve para comparar distintos modelos de regresión logística (u otros modelos con el mismo fin<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a>).
+Cuanto mejor poder discriminante tenga el modelo más próximo a 1 será el AUC.
+Un clasificador aleatorio presentaría la curva ROC coincidente con la diagonal, con un AUC de 0.5.</p>
+</div>
+</div>
+<div id="regresión-de-poisson" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">16.4</span> Regresión de Poisson<a href="modelos-lineales-generalizados.html#regresión-de-poisson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se utiliza cuando la <em>variable respuesta</em> es <em>discreta</em> y toma sólo valores positivos, modelizable con la <em>distribución de Poisson</em>. Típicamente variables de tipo <em>número de …</em>, como el ejemplo motivador del principio: número de días de hospitalización.
+El parámetro que caracteriza la distribución de Poisson es <span class="math inline">\(\lambda\)</span> que representa la <em>media</em> de la variable aleatoria, y a la vez la varianza (a nivel teórico).</p>
+<p>Aquí tampoco tiene cabida el modelo de regresión lineal, principalmente porque las estimaciones realizadas <span class="math inline">\(\hat{Y}\)</span> podrían arrojar valores negativos.</p>
+<p>De nuevo el objetivo suele ser la predicción, en el ejemplo, el número de días que un (nuevo) paciente estará ingresado, basado en la información de sus <em>variables explicativas</em>.
+Previo a la predicción se estimará e interpretará el modelo, a partir de los datos disponibles, para determinar las variables explicativas que influyen sobre la variable respuesta (significativas). Y de nuevo los efectos serán <em>multiplicativos</em> por ser el logaritmo su función de enlace, como se mencionó. Por ello, lo visto anteriormente para la regresión logística es asimilable a la regresión de Poisson.</p>
+</div>
+<div id="casos-prácticos" class="section level2 hasAnchor" number="16.5">
+<h2><span class="header-section-number">16.5</span> Casos prácticos<a href="modelos-lineales-generalizados.html#casos-prácticos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ejemplos-de-regresión-logística" class="section level3 hasAnchor" number="16.5.1">
+<h3><span class="header-section-number">16.5.1</span> Ejemplos de regresión logística<a href="modelos-lineales-generalizados.html#ejemplos-de-regresión-logística" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se manejará el conjunto de datos <code>cleveland</code> descrito en el Capítulo… Se quiere explicar la variable <code>diag</code> (dicotómica: 1, ha sufrido el accidente coronario, 0 no lo ha sufrido) a partir de otras variables.</p>
+<p><strong>Estimación</strong><br />
+La variable respuesta <code>diag</code> ya aparece como factor en la base de datos, y se considera un primer modelo con variables explicativas <code>edad</code> y <code>dep</code> (variables continuas):</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="modelos-lineales-generalizados.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;./data/cleveland.Rdata&quot;</span>)</span>
+<span id="cb175-2"><a href="modelos-lineales-generalizados.html#cb175-2" aria-hidden="true" tabindex="-1"></a>reg.log <span class="ot">&lt;-</span> <span class="fu">glm</span>(diag <span class="sc">~</span> edad <span class="sc">+</span> dep,</span>
+<span id="cb175-3"><a href="modelos-lineales-generalizados.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="at">data =</span> cleveland</span>
+<span id="cb175-4"><a href="modelos-lineales-generalizados.html#cb175-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb175-5"><a href="modelos-lineales-generalizados.html#cb175-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg.log)</span>
+<span id="cb175-6"><a href="modelos-lineales-generalizados.html#cb175-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb175-7"><a href="modelos-lineales-generalizados.html#cb175-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb175-8"><a href="modelos-lineales-generalizados.html#cb175-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; glm(formula = diag ~ edad + dep, family = &quot;binomial&quot;, data = cleveland)</span></span>
+<span id="cb175-9"><a href="modelos-lineales-generalizados.html#cb175-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb175-10"><a href="modelos-lineales-generalizados.html#cb175-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Deviance Residuals: </span></span>
+<span id="cb175-11"><a href="modelos-lineales-generalizados.html#cb175-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span></span>
+<span id="cb175-12"><a href="modelos-lineales-generalizados.html#cb175-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -2.3804  -0.8905  -0.6210   1.0021   1.9644  </span></span>
+<span id="cb175-13"><a href="modelos-lineales-generalizados.html#cb175-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb175-14"><a href="modelos-lineales-generalizados.html#cb175-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb175-15"><a href="modelos-lineales-generalizados.html#cb175-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span id="cb175-16"><a href="modelos-lineales-generalizados.html#cb175-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) -3.08080    0.81939  -3.760  0.00017 ***</span></span>
+<span id="cb175-17"><a href="modelos-lineales-generalizados.html#cb175-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; edad         0.03738    0.01476   2.532  0.01134 *  </span></span>
+<span id="cb175-18"><a href="modelos-lineales-generalizados.html#cb175-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dep          0.86851    0.13791   6.298 3.02e-10 ***</span></span>
+<span id="cb175-19"><a href="modelos-lineales-generalizados.html#cb175-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb175-20"><a href="modelos-lineales-generalizados.html#cb175-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb175-21"><a href="modelos-lineales-generalizados.html#cb175-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb175-22"><a href="modelos-lineales-generalizados.html#cb175-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span id="cb175-23"><a href="modelos-lineales-generalizados.html#cb175-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb175-24"><a href="modelos-lineales-generalizados.html#cb175-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 417.98  on 302  degrees of freedom</span></span>
+<span id="cb175-25"><a href="modelos-lineales-generalizados.html#cb175-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 350.64  on 300  degrees of freedom</span></span>
+<span id="cb175-26"><a href="modelos-lineales-generalizados.html#cb175-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; AIC: 356.64</span></span>
+<span id="cb175-27"><a href="modelos-lineales-generalizados.html#cb175-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb175-28"><a href="modelos-lineales-generalizados.html#cb175-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 4</span></span></code></pre></div>
+<p>En la salida se muestran las estimaciones de los coeficientes del modelo (columna <code>Estimate</code>) y su significatividad (columna <code>Pr(&gt;|z|)</code>). En este ejemplo, los dos coeficientes de interés (los correspondientes a <code>edad</code> y <code>dep</code>) son significativos (al 5% de significación).</p>
+<p>Se completa el modelo anterior añadiendo variables <em>categóricas</em>, concretamente, <code>tdolor</code> (politómica) y <code>sexo</code> (dicotómica), para poder incluir más adelante la interpretación de los coeficientes asociados a este tipo de variables.
+Para su correcta interpretación, se deben introducir en el predictor como variables de tipo <code>factor</code><a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a>. Si no, el procedimiento la considera numérica, obteniendo una salida que llevaría a una interpretación errónea.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="modelos-lineales-generalizados.html#cb176-1" aria-hidden="true" tabindex="-1"></a>reg.log2 <span class="ot">&lt;-</span> <span class="fu">update</span>(reg.log, <span class="sc">~</span> . <span class="sc">+</span> sexo <span class="sc">+</span> tdolor)</span></code></pre></div>
+<p><strong>Adecuación del modelo</strong><br />
+Se realiza el contraste de Hosmer-Lemeshow para comprobar la bondad de ajuste de los modelos:</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="modelos-lineales-generalizados.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ResourceSelection)</span>
+<span id="cb177-2"><a href="modelos-lineales-generalizados.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hoslem.test</span>(reg.log<span class="sc">$</span>y, reg.log<span class="sc">$</span>fitted.values)</span>
+<span id="cb177-3"><a href="modelos-lineales-generalizados.html#cb177-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb177-4"><a href="modelos-lineales-generalizados.html#cb177-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Hosmer and Lemeshow goodness of fit (GOF) test</span></span>
+<span id="cb177-5"><a href="modelos-lineales-generalizados.html#cb177-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb177-6"><a href="modelos-lineales-generalizados.html#cb177-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  reg.log$y, reg.log$fitted.values</span></span>
+<span id="cb177-7"><a href="modelos-lineales-generalizados.html#cb177-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; X-squared = 5.631, df = 8, p-value = 0.6885</span></span>
+<span id="cb177-8"><a href="modelos-lineales-generalizados.html#cb177-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hoslem.test</span>(reg.log2<span class="sc">$</span>y, reg.log2<span class="sc">$</span>fitted.values)</span>
+<span id="cb177-9"><a href="modelos-lineales-generalizados.html#cb177-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb177-10"><a href="modelos-lineales-generalizados.html#cb177-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Hosmer and Lemeshow goodness of fit (GOF) test</span></span>
+<span id="cb177-11"><a href="modelos-lineales-generalizados.html#cb177-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb177-12"><a href="modelos-lineales-generalizados.html#cb177-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  reg.log2$y, reg.log2$fitted.values</span></span>
+<span id="cb177-13"><a href="modelos-lineales-generalizados.html#cb177-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; X-squared = 4.8171, df = 8, p-value = 0.7769</span></span></code></pre></div>
+<p>Arrojan p-valores ‘altos’ indicando que no hay falta de ajuste.</p>
+<p>Para realizar el test de la razón de verosimilitud con R se acude a la función <code>anova</code>:</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="modelos-lineales-generalizados.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(reg.log2, <span class="at">test =</span> <span class="st">&quot;Chisq&quot;</span>)</span>
+<span id="cb178-2"><a href="modelos-lineales-generalizados.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Deviance Table</span></span>
+<span id="cb178-3"><a href="modelos-lineales-generalizados.html#cb178-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb178-4"><a href="modelos-lineales-generalizados.html#cb178-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Model: binomial, link: logit</span></span>
+<span id="cb178-5"><a href="modelos-lineales-generalizados.html#cb178-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb178-6"><a href="modelos-lineales-generalizados.html#cb178-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Response: diag</span></span>
+<span id="cb178-7"><a href="modelos-lineales-generalizados.html#cb178-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb178-8"><a href="modelos-lineales-generalizados.html#cb178-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Terms added sequentially (first to last)</span></span>
+<span id="cb178-9"><a href="modelos-lineales-generalizados.html#cb178-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb178-10"><a href="modelos-lineales-generalizados.html#cb178-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb178-11"><a href="modelos-lineales-generalizados.html#cb178-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    </span></span>
+<span id="cb178-12"><a href="modelos-lineales-generalizados.html#cb178-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL                     302     417.98              </span></span>
+<span id="cb178-13"><a href="modelos-lineales-generalizados.html#cb178-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; edad    1   15.447       301     402.54 8.487e-05 ***</span></span>
+<span id="cb178-14"><a href="modelos-lineales-generalizados.html#cb178-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dep     1   51.894       300     350.64 5.858e-13 ***</span></span>
+<span id="cb178-15"><a href="modelos-lineales-generalizados.html#cb178-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sexo    1   23.982       299     326.66 9.726e-07 ***</span></span>
+<span id="cb178-16"><a href="modelos-lineales-generalizados.html#cb178-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tdolor  3   62.153       296     264.51 2.037e-13 ***</span></span>
+<span id="cb178-17"><a href="modelos-lineales-generalizados.html#cb178-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb178-18"><a href="modelos-lineales-generalizados.html#cb178-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<p>Utilizando la <em>deviance</em> de añadir cada término secuencialmente al modelo permite concluir que la inclusión secuencial de tales variables predictoras es significativa respecto al modelo que contiene las anteriores.</p>
+<p>Para completar, se podría contrastar también el efecto de una variable comparando la <em>deviance</em> del modelo con dicha variable o sin ella:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="modelos-lineales-generalizados.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="do">## se elimina edad del segundo modelo</span></span>
+<span id="cb179-2"><a href="modelos-lineales-generalizados.html#cb179-2" aria-hidden="true" tabindex="-1"></a>reg.log3 <span class="ot">&lt;-</span> <span class="fu">update</span>(reg.log2, <span class="sc">~</span> . <span class="sc">-</span> edad)</span>
+<span id="cb179-3"><a href="modelos-lineales-generalizados.html#cb179-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(reg.log3, reg.log2, <span class="at">test =</span> <span class="st">&quot;Chisq&quot;</span>)</span>
+<span id="cb179-4"><a href="modelos-lineales-generalizados.html#cb179-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Analysis of Deviance Table</span></span>
+<span id="cb179-5"><a href="modelos-lineales-generalizados.html#cb179-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb179-6"><a href="modelos-lineales-generalizados.html#cb179-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Model 1: diag ~ dep + sexo + tdolor</span></span>
+<span id="cb179-7"><a href="modelos-lineales-generalizados.html#cb179-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Model 2: diag ~ edad + dep + sexo + tdolor</span></span>
+<span id="cb179-8"><a href="modelos-lineales-generalizados.html#cb179-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)   </span></span>
+<span id="cb179-9"><a href="modelos-lineales-generalizados.html#cb179-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       297     274.45                        </span></span>
+<span id="cb179-10"><a href="modelos-lineales-generalizados.html#cb179-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       296     264.51  1   9.9488  0.00161 **</span></span>
+<span id="cb179-11"><a href="modelos-lineales-generalizados.html#cb179-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb179-12"><a href="modelos-lineales-generalizados.html#cb179-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<p>El resultado indica que la variable <code>edad</code> se considera un predictor significativo en el modelo. Se deja al lector realizar las restantes, que le llevarán a concluir que todos son predictores significativos.</p>
+<p>El cálculo de de la medida de bondad de ajuste de la Pseudo <span class="math inline">\(R^2\)</span> de McFadden se puede obtener así:</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="modelos-lineales-generalizados.html#cb180-1" aria-hidden="true" tabindex="-1"></a>null <span class="ot">&lt;-</span> <span class="fu">glm</span>(diag <span class="sc">~</span> <span class="dv">1</span>, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="at">data =</span> cleveland)</span>
+<span id="cb180-2"><a href="modelos-lineales-generalizados.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">logLik</span>(reg.log) <span class="sc">/</span> <span class="fu">logLik</span>(null)</span>
+<span id="cb180-3"><a href="modelos-lineales-generalizados.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;log Lik.&#39; 0.1611088 (df=3)</span></span>
+<span id="cb180-4"><a href="modelos-lineales-generalizados.html#cb180-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">logLik</span>(reg.log2) <span class="sc">/</span> <span class="fu">logLik</span>(null)</span>
+<span id="cb180-5"><a href="modelos-lineales-generalizados.html#cb180-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;log Lik.&#39; 0.3671819 (df=7)</span></span></code></pre></div>
+<p>Para el primer modelo la Pseudo <span class="math inline">\(R^2\)</span> de McFadden es 0.16, mientras que para el segundo es 0.37.</p>
+<p><strong>Interpretación de los coeficientes</strong><br />
+Se muestran los coeficientes estimados del segundo modelo, y sus correspondientes OR (sus exponenciales) que son los interpretables:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="modelos-lineales-generalizados.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg.log2)</span>
+<span id="cb181-2"><a href="modelos-lineales-generalizados.html#cb181-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb181-3"><a href="modelos-lineales-generalizados.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb181-4"><a href="modelos-lineales-generalizados.html#cb181-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; glm(formula = diag ~ edad + dep + sexo + tdolor, family = &quot;binomial&quot;, </span></span>
+<span id="cb181-5"><a href="modelos-lineales-generalizados.html#cb181-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     data = cleveland)</span></span>
+<span id="cb181-6"><a href="modelos-lineales-generalizados.html#cb181-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb181-7"><a href="modelos-lineales-generalizados.html#cb181-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Deviance Residuals: </span></span>
+<span id="cb181-8"><a href="modelos-lineales-generalizados.html#cb181-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span></span>
+<span id="cb181-9"><a href="modelos-lineales-generalizados.html#cb181-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -2.5346  -0.6604  -0.2436   0.6568   2.3975  </span></span>
+<span id="cb181-10"><a href="modelos-lineales-generalizados.html#cb181-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb181-11"><a href="modelos-lineales-generalizados.html#cb181-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb181-12"><a href="modelos-lineales-generalizados.html#cb181-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span id="cb181-13"><a href="modelos-lineales-generalizados.html#cb181-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) -6.67669    1.30016  -5.135 2.82e-07 ***</span></span>
+<span id="cb181-14"><a href="modelos-lineales-generalizados.html#cb181-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; edad         0.05621    0.01828   3.075   0.0021 ** </span></span>
+<span id="cb181-15"><a href="modelos-lineales-generalizados.html#cb181-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dep          0.80890    0.16597   4.874 1.10e-06 ***</span></span>
+<span id="cb181-16"><a href="modelos-lineales-generalizados.html#cb181-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sexo1        1.69477    0.36801   4.605 4.12e-06 ***</span></span>
+<span id="cb181-17"><a href="modelos-lineales-generalizados.html#cb181-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tdolor2      0.65668    0.67357   0.975   0.3296    </span></span>
+<span id="cb181-18"><a href="modelos-lineales-generalizados.html#cb181-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tdolor3      0.19465    0.59654   0.326   0.7442    </span></span>
+<span id="cb181-19"><a href="modelos-lineales-generalizados.html#cb181-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tdolor4      2.58230    0.57549   4.487 7.22e-06 ***</span></span>
+<span id="cb181-20"><a href="modelos-lineales-generalizados.html#cb181-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb181-21"><a href="modelos-lineales-generalizados.html#cb181-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb181-22"><a href="modelos-lineales-generalizados.html#cb181-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb181-23"><a href="modelos-lineales-generalizados.html#cb181-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span id="cb181-24"><a href="modelos-lineales-generalizados.html#cb181-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb181-25"><a href="modelos-lineales-generalizados.html#cb181-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 417.98  on 302  degrees of freedom</span></span>
+<span id="cb181-26"><a href="modelos-lineales-generalizados.html#cb181-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 264.51  on 296  degrees of freedom</span></span>
+<span id="cb181-27"><a href="modelos-lineales-generalizados.html#cb181-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; AIC: 278.51</span></span>
+<span id="cb181-28"><a href="modelos-lineales-generalizados.html#cb181-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb181-29"><a href="modelos-lineales-generalizados.html#cb181-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 5</span></span>
+<span id="cb181-30"><a href="modelos-lineales-generalizados.html#cb181-30" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(reg.log2))[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb181-31"><a href="modelos-lineales-generalizados.html#cb181-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      edad       dep     sexo1   tdolor2   tdolor3   tdolor4 </span></span>
+<span id="cb181-32"><a href="modelos-lineales-generalizados.html#cb181-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1.057824  2.245432  5.445391  1.928371  1.214880 13.227480</span></span></code></pre></div>
+<p>Los coeficientes asociados a las variables <em>continuas</em> son positivos y significativos, por tanto sus OR son significativamente superiores a 1<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a>.
+Indican que, <em>ceteris paribus</em></p>
+<ul>
+<li>por cada año más cumplido el odds de padecer la enfermedad aumenta poco más de 1 vez, un 1.0578. ¿Y un aumento de 20 años?… En tal caso sería <span class="math inline">\(e^{\beta_1*20} =\)</span> 3.078… En 20 años más que se triplica el odds. Ojo con la interpretación, no se triplica la probabilidad sino el odds.</li>
+<li>por un aumento de una unidad en la variable <em>dep</em> más que se duplican los <em>odds</em> del paciente, pues su OR es 2.2454.</li>
+</ul>
+<p>¿Y cómo se interpretan los coeficientes asociados a las variables <em>categóricas</em>?
+¿qué significa <code>sexo1</code>? ¿ <code>tdolor2</code>…? Representan <em>el cambio de la categoría de referencia a la mostrada</em>.<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a></p>
+<ul>
+<li>el de <code>sexo1</code> significa que el odds de padecer la enfermedad es más de 5 veces superior para los hombres (<code>sexo=1</code>) que para las mujeres (<code>sexo=0</code>).</li>
+<li>el de <code>tdolor4</code> que los de este tipo de dolor (asintomáticos) presentan un odds 13 veces superior al de los de <code>tdolor=1</code>.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a></li>
+</ul>
+<p>Nótese que no se muestra <span class="math inline">\(e^{\beta_0}\)</span>, pues su interpretación carece de sentido práctico, sería el OR de las personas de 0 años, <code>dep = 0</code>, <code>sexo=0</code> y <code>tdolor=1</code>.</p>
+<p><strong>Predicciones</strong><br />
+Una vez estimado e interpretado el modelo y comprobada su bondad, se puede usar para obtener predicciones.
+Para ello se deben asignar valores a las variables explicativas: <code>edad</code>, <code>dep</code>, <code>sexo</code> y <code>tdolor</code> (se han escogido arbitrariamente).</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="modelos-lineales-generalizados.html#cb182-1" aria-hidden="true" tabindex="-1"></a>individuo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb182-2"><a href="modelos-lineales-generalizados.html#cb182-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">edad =</span> <span class="dv">50</span>, <span class="at">dep =</span> <span class="dv">3</span>,</span>
+<span id="cb182-3"><a href="modelos-lineales-generalizados.html#cb182-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sexo =</span> <span class="st">&quot;1&quot;</span>, <span class="at">tdolor =</span> <span class="st">&quot;4&quot;</span> <span class="co"># entre comillas por ser factores</span></span>
+<span id="cb182-4"><a href="modelos-lineales-generalizados.html#cb182-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Con la función <code>predict</code> se pueden obtener tanto el valor predicho para el predictor lineal (valor no interpretable), <code>eta</code>, como directamente la probabilidad de que dicho individuo padezca la enfermedad coronaria, <code>p</code>:</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="modelos-lineales-generalizados.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (eta &lt;- predict(reg.log2, individuo))</span></span>
+<span id="cb183-2"><a href="modelos-lineales-generalizados.html#cb183-2" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">predict</span>(reg.log2, individuo, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>))</span>
+<span id="cb183-3"><a href="modelos-lineales-generalizados.html#cb183-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         1 </span></span>
+<span id="cb183-4"><a href="modelos-lineales-generalizados.html#cb183-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.9446843</span></span></code></pre></div>
+<p>Con cualquiera de los valores anteriores se pueden obtener su <em>odds</em>:</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="modelos-lineales-generalizados.html#cb184-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> p) <span class="co"># exp(eta)</span></span>
+<span id="cb184-2"><a href="modelos-lineales-generalizados.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        1 </span></span>
+<span id="cb184-3"><a href="modelos-lineales-generalizados.html#cb184-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17.07805</span></span></code></pre></div>
+<p>Es decir, un individuo con 50 años, <code>dep=3</code>, <code>sexo=1</code>(hombre) y <code>tdolor=4</code>(asintomático) tiene 17 veces más posibilidades de padecer la enfermedad que de no padecerla.</p>
+<p><strong>Riesgo relativo</strong><br />
+Se ha visto que el OR para el nivel ‘hombre’ en el segundo modelo es 5.45. El riesgo relativo de ser hombre para un paciente de 50 años, valor <code>dep</code> de 3 y <code>tdolor</code> 4 (de nuevo valores arbitrarios) es:</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="modelos-lineales-generalizados.html#cb185-1" aria-hidden="true" tabindex="-1"></a>hom <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">edad =</span> <span class="dv">50</span>, <span class="at">dep =</span> <span class="dv">3</span>, <span class="at">sexo =</span> <span class="st">&quot;1&quot;</span>, <span class="at">tdolor =</span> <span class="st">&quot;4&quot;</span>)</span>
+<span id="cb185-2"><a href="modelos-lineales-generalizados.html#cb185-2" aria-hidden="true" tabindex="-1"></a>muj <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">edad =</span> <span class="dv">50</span>, <span class="at">dep =</span> <span class="dv">3</span>, <span class="at">sexo =</span> <span class="st">&quot;0&quot;</span>, <span class="at">tdolor =</span> <span class="st">&quot;4&quot;</span>)</span>
+<span id="cb185-3"><a href="modelos-lineales-generalizados.html#cb185-3" aria-hidden="true" tabindex="-1"></a>(ph <span class="ot">&lt;-</span> <span class="fu">predict</span>(reg.log2, hom, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>))</span>
+<span id="cb185-4"><a href="modelos-lineales-generalizados.html#cb185-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         1 </span></span>
+<span id="cb185-5"><a href="modelos-lineales-generalizados.html#cb185-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.9446843</span></span>
+<span id="cb185-6"><a href="modelos-lineales-generalizados.html#cb185-6" aria-hidden="true" tabindex="-1"></a>(pm <span class="ot">&lt;-</span> <span class="fu">predict</span>(reg.log2, muj, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>))</span>
+<span id="cb185-7"><a href="modelos-lineales-generalizados.html#cb185-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         1 </span></span>
+<span id="cb185-8"><a href="modelos-lineales-generalizados.html#cb185-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.7582346</span></span>
+<span id="cb185-9"><a href="modelos-lineales-generalizados.html#cb185-9" aria-hidden="true" tabindex="-1"></a>ph <span class="sc">/</span> pm <span class="co"># riesgo relativo hombre/mujer</span></span>
+<span id="cb185-10"><a href="modelos-lineales-generalizados.html#cb185-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      1 </span></span>
+<span id="cb185-11"><a href="modelos-lineales-generalizados.html#cb185-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1.2459</span></span></code></pre></div>
+<p>El riesgo relativo de ser hombre para padecer la enfermedad
+cardíaca es <span class="math inline">\(RR=0.9447/0.7582 = 1.2459\)</span>, es
+decir, tiene un 24.6% más de posibilidades de tener la enfermedad que una mujer. En este caso se observa que el OR y el RR no son valores cercanos, debido a que el diagnóstico 1 es frecuente (concretamente lo presentan el 45.9% de los pacientes de la base de datos)</p>
+<p><strong>Curva ROC</strong><br />
+El <em>análisis de sensibilidad y especificidad del modelo</em> y la curva ROC y su AUC para este ejemplo se pueden obtener con el siguiente código.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="modelos-lineales-generalizados.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb186-2"><a href="modelos-lineales-generalizados.html#cb186-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Epi)</span>
+<span id="cb186-3"><a href="modelos-lineales-generalizados.html#cb186-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ROC</span>(</span>
+<span id="cb186-4"><a href="modelos-lineales-generalizados.html#cb186-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">form =</span> diag <span class="sc">~</span> edad <span class="sc">+</span> dep <span class="sc">+</span> sexo <span class="sc">+</span> tdolor, <span class="at">data =</span> cleveland,</span>
+<span id="cb186-5"><a href="modelos-lineales-generalizados.html#cb186-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> <span class="st">&quot;sp&quot;</span></span>
+<span id="cb186-6"><a href="modelos-lineales-generalizados.html#cb186-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb186-7"><a href="modelos-lineales-generalizados.html#cb186-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ROC</span>(</span>
+<span id="cb186-8"><a href="modelos-lineales-generalizados.html#cb186-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">form =</span> diag <span class="sc">~</span> edad <span class="sc">+</span> dep <span class="sc">+</span> sexo <span class="sc">+</span> tdolor, <span class="at">data =</span> cleveland,</span>
+<span id="cb186-9"><a href="modelos-lineales-generalizados.html#cb186-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> <span class="st">&quot;ROC&quot;</span>, <span class="at">las =</span> <span class="dv">1</span></span>
+<span id="cb186-10"><a href="modelos-lineales-generalizados.html#cb186-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:disc2"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/disc2-1.png" alt="Gráfico de sensibilidad y especificidad según puntos de corte de discriminación (izquierda) y curva ROC (derecha) para el segundo modelo de regresión logística" width="95%" />
+<p class="caption">
+Figura 16.2: Gráfico de sensibilidad y especificidad según puntos de corte de discriminación (izquierda) y curva ROC (derecha) para el segundo modelo de regresión logística
+</p>
+</div>
+<p>La Figura <a href="modelos-lineales-generalizados.html#fig:disc2">16.2</a> (izquierda) muestra que tomando como punto de corte una probabilidad cercana a 0.45 se obtienen valores de sensibilidad y especificidad alrededor de 0.8. No obstante, se deben evaluar los costes y riesgos de una mala clasificación (por ejemplo, dar tratamiento cuando no hace falta, y no darlo cuando hace falta).</p>
+<p>La Figura <a href="modelos-lineales-generalizados.html#fig:disc2">16.2</a> (derecha) representa la curva ROC de <code>reg.log2</code>. La curva está por encima de la diagonal, con lo que es mejor que un clasificador aleatorio. El AUC es de 0.878, con una sensibilidad de 78.4% y una especificidad de 84.1%.
+Si se realiza el análisis para <code>reg.log</code> se comprobará que el AUC es de 0.759, por lo que el segundo modelo es mejor para discriminar.
+Además, el gráfico indica el valor del ‘punto de corte óptimo’, 0.518, el que proporciona el mayor AUC, el citado 0.878, con sus correspondientes valores de sensibilidad, especificidad, etc. También presenta las estimaciones y errores estándar (<em>s.e.</em>) de los coeficientes del modelo considerado.</p>
+</div>
+<div id="ejemplo-de-regresión-de-poisson" class="section level3 hasAnchor" number="16.5.2">
+<h3><span class="header-section-number">16.5.2</span> Ejemplo de regresión de Poisson<a href="modelos-lineales-generalizados.html#ejemplo-de-regresión-de-poisson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A partir del mismo conjunto de datos, <code>cleveland</code>, se considera como variable a explicar, variable respuesta, <code>dhosp</code>, el número de días de hospitalización de un paciente.
+Y como variables explicativas: <code>diag</code>, <code>edad</code>, <code>sexo</code> y <code>tdolor</code>, que son de distinto tipo, lo que permitirá ilustrar sus distintas interpretaciones.</p>
+<p><strong>Visualización ilustrativa</strong></p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="modelos-lineales-generalizados.html#cb187-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cleveland, <span class="fu">aes</span>(dhosp, <span class="at">fill =</span> diag)) <span class="sc">+</span></span>
+<span id="cb187-2"><a href="modelos-lineales-generalizados.html#cb187-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span>
+<span id="cb187-3"><a href="modelos-lineales-generalizados.html#cb187-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cleveland, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(dhosp), <span class="at">y =</span> edad)) <span class="sc">+</span></span>
+<span id="cb187-4"><a href="modelos-lineales-generalizados.html#cb187-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb187-5"><a href="modelos-lineales-generalizados.html#cb187-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb187-6"><a href="modelos-lineales-generalizados.html#cb187-6" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grafpois"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/grafpois-1.png" alt="Gráfico de barras de 'dhosp' separado por 'diag' (izquierda) y gráficos de cajas de 'edad' separados por 'dhosp' (derecha)." width="60%" />
+<p class="caption">
+Figura 16.3: Gráfico de barras de ‘dhosp’ separado por ‘diag’ (izquierda) y gráficos de cajas de ‘edad’ separados por ‘dhosp’ (derecha).
+</p>
+</div>
+<p>A la vista de los gráficos de la Figura <a href="modelos-lineales-generalizados.html#fig:grafpois">16.3</a>, generados con las sentencias anteriores, <code>diag</code> parece ser una buena variable predictora del número de días de hospitalización, mientras que <code>edad</code> no tiene una influencia tan clara.</p>
+<p><strong>Ajuste e interpretación</strong></p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="modelos-lineales-generalizados.html#cb188-1" aria-hidden="true" tabindex="-1"></a>reg.pois <span class="ot">&lt;-</span> <span class="fu">glm</span>(dhosp <span class="sc">~</span> diag <span class="sc">+</span> edad <span class="sc">+</span> sexo <span class="sc">+</span> tdolor,</span>
+<span id="cb188-2"><a href="modelos-lineales-generalizados.html#cb188-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> cleveland, <span class="at">family =</span> <span class="st">&quot;poisson&quot;</span></span>
+<span id="cb188-3"><a href="modelos-lineales-generalizados.html#cb188-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Al especificar <code>family = "poisson"</code> la función <code>glm</code> selecciona automáticamente la función de enlace canónica apropiada: el logaritmo (efectos multiplicativos).</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="modelos-lineales-generalizados.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg.pois)<span class="sc">$</span>coef</span>
+<span id="cb189-2"><a href="modelos-lineales-generalizados.html#cb189-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  Estimate  Std. Error     z value     Pr(&gt;|z|)</span></span>
+<span id="cb189-3"><a href="modelos-lineales-generalizados.html#cb189-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) -0.2230728726 0.332125111 -0.67165314 5.018045e-01</span></span>
+<span id="cb189-4"><a href="modelos-lineales-generalizados.html#cb189-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; diag1        1.0902902179 0.109731744  9.93595999 2.903654e-23</span></span>
+<span id="cb189-5"><a href="modelos-lineales-generalizados.html#cb189-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; edad         0.0001026277 0.004877904  0.02103931 9.832143e-01</span></span>
+<span id="cb189-6"><a href="modelos-lineales-generalizados.html#cb189-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sexo1        0.2160286255 0.103297627  2.09132226 3.649919e-02</span></span>
+<span id="cb189-7"><a href="modelos-lineales-generalizados.html#cb189-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tdolor2      0.1408464230 0.205232539  0.68627725 4.925383e-01</span></span>
+<span id="cb189-8"><a href="modelos-lineales-generalizados.html#cb189-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tdolor3      0.1217757202 0.189404790  0.64293897 5.202637e-01</span></span>
+<span id="cb189-9"><a href="modelos-lineales-generalizados.html#cb189-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tdolor4      0.1215388103 0.178729482  0.68001546 4.964947e-01</span></span>
+<span id="cb189-10"><a href="modelos-lineales-generalizados.html#cb189-10" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(reg.pois))[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb189-11"><a href="modelos-lineales-generalizados.html#cb189-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    diag1     edad    sexo1  tdolor2  tdolor3  tdolor4 </span></span>
+<span id="cb189-12"><a href="modelos-lineales-generalizados.html#cb189-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2.975137 1.000103 1.241138 1.151248 1.129501 1.129233</span></span></code></pre></div>
+<p>De todas las variables introducidas en el modelo sólo <code>diag</code> y <code>sexo</code> son significativas (al 5%). Se confirma así lo visto en la Figura <a href="modelos-lineales-generalizados.html#fig:grafpois">16.3</a> (derecha), que <code>edad</code> no influye en la respuesta. Al ser ambas variables significativas de tipo dicotómico su interpretación, como ya ocurría en regresión logística, se hace en función del ‘nivel/grupo de referencia’, y <em>ceteris paribus</em> (en todos los casos).</p>
+<ul>
+<li><p>El coeficiente de <code>diag</code> es 1.0903 pero se le debe aplicar la exponencial para tener como unidades de medida días.
+Así, el número medio de días de estancia en el hospital es 2.98 veces mayor con <code>diag=1</code> que con <code>diag=0</code> (grupo tomado como referencia).</p></li>
+<li><p>Similar para <code>sexo</code>, un hombre (<code>sexo=1</code>) se espera que esté, en media, 1.24 días por cada día que esté una mujer.</p></li>
+<li><p>De la misma manera se interpretarían los coeficientes asociados a <code>tdolor</code>, cada uno de ellos expresaría la diferencia con los pacientes del grupo <code>tdolor=1</code>.</p></li>
+<li><p>Aunque <code>edad</code> no es significativa, y la magnitud es ínfima, se da su interpretación, al ser la única variable continua: <em>ceteris paribus</em>
+por cada año que aumente la <code>edad</code> el número medio de días en el hospital se ve multiplicado por
+1.0001 (ínfimo)<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a>.</p></li>
+</ul>
+<p>Para posteriores comparaciones se considera otro modelo en el que se elimina <code>tdolor</code> (por no ser significativa):</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="modelos-lineales-generalizados.html#cb190-1" aria-hidden="true" tabindex="-1"></a>reg.pois2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(dhosp <span class="sc">~</span> diag <span class="sc">+</span> sexo <span class="sc">+</span> edad,</span>
+<span id="cb190-2"><a href="modelos-lineales-generalizados.html#cb190-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> cleveland, <span class="at">family =</span> <span class="st">&quot;poisson&quot;</span></span>
+<span id="cb190-3"><a href="modelos-lineales-generalizados.html#cb190-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><strong>Adecuación</strong></p>
+<p>En las salidas obtenidas hay información sobre la <em>Null</em> y la <em>Residual deviance</em>, con las que se puede realizar un contraste de comparación de modelos (el simple frente al elaborado).</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="modelos-lineales-generalizados.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(reg.pois<span class="sc">$</span>deviance, reg.pois<span class="sc">$</span>df.residual, <span class="at">lower.tail =</span> F)</span>
+<span id="cb191-2"><a href="modelos-lineales-generalizados.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1325654</span></span>
+<span id="cb191-3"><a href="modelos-lineales-generalizados.html#cb191-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(reg.pois2<span class="sc">$</span>deviance, reg.pois2<span class="sc">$</span>df.residual, <span class="at">lower.tail =</span> F)</span>
+<span id="cb191-4"><a href="modelos-lineales-generalizados.html#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.155157</span></span></code></pre></div>
+<p>Al ser los p-valores superiores a 0.05 ambos modelos se pueden considerar que explican ‘mejor’ que el modelo nulo.</p>
+<p><strong>Predicción</strong></p>
+<p>Con los modelos ajustados, y comprobada su adecuación, se pueden predecir valores, que en este caso serán el número <em>medio</em> de días de hospitalización.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="modelos-lineales-generalizados.html#cb192-1" aria-hidden="true" tabindex="-1"></a>pacientes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb192-2"><a href="modelos-lineales-generalizados.html#cb192-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">diag =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;0&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;0&quot;</span>),</span>
+<span id="cb192-3"><a href="modelos-lineales-generalizados.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">edad =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">50</span>),</span>
+<span id="cb192-4"><a href="modelos-lineales-generalizados.html#cb192-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sexo =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;0&quot;</span>, <span class="st">&quot;0&quot;</span>),</span>
+<span id="cb192-5"><a href="modelos-lineales-generalizados.html#cb192-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">tdolor =</span> <span class="fu">c</span>(<span class="st">&quot;4&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;4&quot;</span>)</span>
+<span id="cb192-6"><a href="modelos-lineales-generalizados.html#cb192-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb192-7"><a href="modelos-lineales-generalizados.html#cb192-7" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(reg.pois, pacientes, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb192-8"><a href="modelos-lineales-generalizados.html#cb192-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         1         2         3         4 </span></span>
+<span id="cb192-9"><a href="modelos-lineales-generalizados.html#cb192-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3.3532035 1.1270752 2.7017171 0.9080983</span></span></code></pre></div>
+<p>Se han escogido arbitrariamente valores de las variables explicativas para 4 <code>pacientes</code>: 2 de ellos con accidente coronario (<code>diag=1</code>), un hombre (<code>sexo=1</code>) y una mujer y otros 2 sin accidente, también un hombre y una mujer, los cuatro con 50 años y asintomáticos (<code>tdolor=4</code>).
+La predicción obtenida indica que el hombre con accidente coronario estará hospitalizado más días, en media, que el resto, aunque le sigue de cerca la mujer con accidente coronario.</p>
+<p>También se pueden dibujar las predicciones de todo el conjunto de datos, que <code>glm</code> ha guardado como <code>fitted.values</code>. Para el modelo <code>reg.pois</code> sería:</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="modelos-lineales-generalizados.html#cb193-1" aria-hidden="true" tabindex="-1"></a>cleveland<span class="sc">$</span>hat <span class="ot">&lt;-</span> reg.pois<span class="sc">$</span>fitted.values</span>
+<span id="cb193-2"><a href="modelos-lineales-generalizados.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cleveland, <span class="fu">aes</span>(<span class="at">x =</span> edad, <span class="at">y =</span> hat, <span class="at">colour =</span> diag)) <span class="sc">+</span></span>
+<span id="cb193-3"><a href="modelos-lineales-generalizados.html#cb193-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb193-4"><a href="modelos-lineales-generalizados.html#cb193-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Edad&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Días hospitalización&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:predictPois"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/predictPois-1.png" alt="Predicciones de todo el conjunto de datos del modelo reg.pois (izquierda) y reg.pois2 (derecha)" width="60%" />
+<p class="caption">
+Figura 16.4: Predicciones de todo el conjunto de datos del modelo reg.pois (izquierda) y reg.pois2 (derecha)
+</p>
+</div>
+<p>La Figura <a href="modelos-lineales-generalizados.html#fig:predictPois">16.4</a> muestra las predicciones de los 303 individuos, para cada uno de los dos modelos de regresión de Poisson considerados. Cabe recordar que en el segundo se ha eliminado la variable <code>tdolor</code>. A la vista de dichos gráficos se puede concluir que es <code>tdolor</code> la que genera las distintas ‘lineas horizontales’ de puntos en torno a <code>hosp=3</code> por un lado y en torno a <code>hosp=1</code> por otro lado.</p>
+</div>
+<div id="resumen-1" class="section level3 unnumbered hasAnchor infobox_resume">
+<h3>Resumen<a href="modelos-lineales-generalizados.html#resumen-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En este Capítulo se ha introducido el modelo de regresión lineal <em>generalizado</em>, indicado cuando las respuestas no son gaussianas (normales). En particular:</p>
+<ul>
+<li>Se ha introducido la función de enlace, que juega un papel importante en estos modelos.</li>
+<li>Se describen los casos particulares de regresión logística y de regresión de Poisson.</li>
+<li>Se muestra el uso de <code>R</code> para el ajuste de estos modelos.</li>
+<li>Se ilustra la interpretación de los coeficientes, tanto asociados a variables continuas como a categóricas, y los demás resultados obtenidos con <code>R</code> mediante casos prácticos.</li>
+<li>Se incluye el uso de la regresión logística como clasificador y se dan indicaciones de su análisis mediante la curva ROC y el AUC.</li>
+</ul>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="40">
+<li id="fn40"><p>Generalized Linear Model. <em>Cuidado</em>: <em>general</em> y <em>generalizado</em> no son sinónimos en este contexto.<a href="modelos-lineales-generalizados.html#fnref40" class="footnote-back">↩︎</a></p></li>
+<li id="fn41"><p>A diferencia de la regresión lineal múltiple, que utiliza el de <em>mínimos cuadrados</em>.<a href="modelos-lineales-generalizados.html#fnref41" class="footnote-back">↩︎</a></p></li>
+<li id="fn42"><p>En este contexto, las variables categóricas se denominan <em>factores</em> y las numéricas <em>covariables</em>.<a href="modelos-lineales-generalizados.html#fnref42" class="footnote-back">↩︎</a></p></li>
+<li id="fn43"><p>Podrían considerarse otras para cada distribución, pero excede el nivel de este Capítulo.<a href="modelos-lineales-generalizados.html#fnref43" class="footnote-back">↩︎</a></p></li>
+<li id="fn44"><p>desde el punto de vista estadístico <em>la influencia/efecto no es fruto del azar</em>.<a href="modelos-lineales-generalizados.html#fnref44" class="footnote-back">↩︎</a></p></li>
+<li id="fn45"><p>Significativamente distintas de cero: tiene sentido no eliminarlas del predictor lineal.<a href="modelos-lineales-generalizados.html#fnref45" class="footnote-back">↩︎</a></p></li>
+<li id="fn46"><p>Por ejemplo, en las salidas de <code>R</code> aparecen otros tres niveles de referencia, 0.10, 0.01 y 0.001<a href="modelos-lineales-generalizados.html#fnref46" class="footnote-back">↩︎</a></p></li>
+<li id="fn47"><p>en ocasiones traducida como <em>Devianza</em>, aunque es habitual no traducirla.<a href="modelos-lineales-generalizados.html#fnref47" class="footnote-back">↩︎</a></p></li>
+<li id="fn48"><p>Por esto se traduce <em>odds</em> como <em>ventaja</em>. Pero cuidado con su uso: si <span class="math inline">\(Y=1\)</span> es tener una enfermedad, no parece muy adecuado hablar de <em>ventaja</em>.<a href="modelos-lineales-generalizados.html#fnref48" class="footnote-back">↩︎</a></p></li>
+<li id="fn49"><p>Manteniendo constante el valor de las demás variables.<a href="modelos-lineales-generalizados.html#fnref49" class="footnote-back">↩︎</a></p></li>
+<li id="fn50"><p>La interpretación del gráfico se hace en dicho apartado.<a href="modelos-lineales-generalizados.html#fnref50" class="footnote-back">↩︎</a></p></li>
+<li id="fn51"><p>Véase el Capítulo 10 de Feature selection &amp; engineering.<a href="modelos-lineales-generalizados.html#fnref51" class="footnote-back">↩︎</a></p></li>
+<li id="fn52"><p> En este caso ya están definidas como factor en el <code>data.frame</code>.<a href="modelos-lineales-generalizados.html#fnref52" class="footnote-back">↩︎</a></p></li>
+<li id="fn53"><p>En regresión lineal que un coeficiente sea significativo se interpreta como significativamente distinto de cero, por el hecho de que el modelo considera efectos aditivos de las variables. El modelo de regresión logística es de efectos multiplicativos, como se ha mencionado, y por ello el valor ‘neutro’ es el 1. Así, un coeficiente significativo se interpreta ahora como significativamente distinto de 1.<a href="modelos-lineales-generalizados.html#fnref53" class="footnote-back">↩︎</a></p></li>
+<li id="fn54"><p><code>R</code> en las variables definidas como <code>factor</code> toma como referencia la primera categoría al ordenar los valores de la variable o bien alfabéticamente (a, b, c…) o bien numéricamente de menor a mayor. De ahí que <code>sexo=0</code> sea la categoría de referencia, porque toma los valores 0 y 1, y sólo aparezca en las estimaciones <code>sexo1</code> reflejando el cambio a tal categoría desde la de referencia. Para <code>tdolor</code>, al tomar los valores 1, 2, 3 y 4, la categoría de referencia es <code>tdolor=1</code> y aparecen coeficientes para <code>tdolor=2</code>, <code>tdolor=3</code> y <code>tdolor=4</code>.<a href="modelos-lineales-generalizados.html#fnref54" class="footnote-back">↩︎</a></p></li>
+<li id="fn55"><p><code>tdolor2</code> y <code>tdolor3</code> no son significativos.<a href="modelos-lineales-generalizados.html#fnref55" class="footnote-back">↩︎</a></p></li>
+<li id="fn56"><p>aunque el incremento fuese de 20 años (como se hizo en el ejemplo de regresión logística), por cada día que esté hospitalizado el más joven, el de 20 años más estará <span class="math inline">\(e^{\beta_2*20}=\)</span>
+1.0021 días.<a href="modelos-lineales-generalizados.html#fnref56" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelización-lineal.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelos-aditivos-generalizados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Ciencia_de_datos_con_r.pdf", "Ciencia_de_datos_con_r.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

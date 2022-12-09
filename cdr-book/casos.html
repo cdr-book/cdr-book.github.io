@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 2 Casos prácticos | Ciencia de datos con R</title>
+  <meta name="description" content="Falta" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 2 Casos prácticos | Ciencia de datos con R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Falta" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 2 Casos prácticos | Ciencia de datos con R" />
+  
+  <meta name="twitter:description" content="Falta" />
+  
+
+<meta name="author" content="Coordinadores" />
+
+
+<meta name="date" content="2022-08-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="geolocalización-y-visualizacion-de-datos-geográficos.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33KQ1S5ZCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-33KQ1S5ZCJ');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Ciencia de datos con <strong>R</strong></a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Datos geoespaciales</b></span></li>
+<li class="chapter" data-level="1" data-path="geolocalización-y-visualizacion-de-datos-geográficos.html"><a href="geolocalización-y-visualizacion-de-datos-geográficos.html"><i class="fa fa-check"></i><b>1</b> Geolocalización y visualizacion de datos geográficos</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="geolocalización-y-visualizacion-de-datos-geográficos.html"><a href="geolocalización-y-visualizacion-de-datos-geográficos.html#whats-so-great-about-geospatial-data"><i class="fa fa-check"></i><b>1.1</b> What’s so great about geospatial data?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="geolocalización-y-visualizacion-de-datos-geográficos.html"><a href="geolocalización-y-visualizacion-de-datos-geográficos.html#conceptos-clave"><i class="fa fa-check"></i><b>1.1.1</b> Conceptos clave</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="geolocalización-y-visualizacion-de-datos-geográficos.html"><a href="geolocalización-y-visualizacion-de-datos-geográficos.html#formatos"><i class="fa fa-check"></i><b>1.2</b> Formatos de datos espaciales</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="geolocalización-y-visualizacion-de-datos-geográficos.html"><a href="geolocalización-y-visualizacion-de-datos-geográficos.html#vec"><i class="fa fa-check"></i><b>1.2.1</b> Datos de vectores</a></li>
+<li class="chapter" data-level="1.2.2" data-path="geolocalización-y-visualizacion-de-datos-geográficos.html"><a href="geolocalización-y-visualizacion-de-datos-geográficos.html#raster"><i class="fa fa-check"></i><b>1.2.2</b> Datos ráster</a></li>
+<li class="chapter" data-level="1.2.3" data-path="geolocalización-y-visualizacion-de-datos-geográficos.html"><a href="geolocalización-y-visualizacion-de-datos-geográficos.html#CRS"><i class="fa fa-check"></i><b>1.2.3</b> Sistema de Referencia de Coordenadas (CRS)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="geolocalización-y-visualizacion-de-datos-geográficos.html"><a href="geolocalización-y-visualizacion-de-datos-geográficos.html#a-first-map"><i class="fa fa-check"></i><b>1.3</b> A first map</a></li>
+<li class="chapter" data-level="1.4" data-path="geolocalización-y-visualizacion-de-datos-geográficos.html"><a href="geolocalización-y-visualizacion-de-datos-geográficos.html#trabajando-con-mapas"><i class="fa fa-check"></i><b>1.4</b> Trabajando con mapas</a></li>
+<li class="chapter" data-level="1.5" data-path="geolocalización-y-visualizacion-de-datos-geográficos.html"><a href="geolocalización-y-visualizacion-de-datos-geográficos.html#dep-esp"><i class="fa fa-check"></i><b>1.5</b> Estadística espacial para datos georeferenciados</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="geolocalización-y-visualizacion-de-datos-geográficos.html"><a href="geolocalización-y-visualizacion-de-datos-geográficos.html#antes-de-continuar-dependencia-espacial"><i class="fa fa-check"></i><b>1.5.1</b> Antes de continuar… dependencia espacial</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="geolocalización-y-visualizacion-de-datos-geográficos.html"><a href="geolocalización-y-visualizacion-de-datos-geográficos.html#clasificación-de-datos-espaciales"><i class="fa fa-check"></i><b>1.6</b> Clasificación de datos espaciales</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="casos.html"><a href="casos.html"><i class="fa fa-check"></i><b>2</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="casos.html"><a href="casos.html#caso-2.-distribución-de-la-renta-por-municipios"><i class="fa fa-check"></i><b>2.1</b> Caso 2. Distribución de la renta por municipios</a></li>
+<li class="chapter" data-level="2.2" data-path="casos.html"><a href="casos.html#caso-3.-delitos-cometidos-en-valencia-en-el-año-2010"><i class="fa fa-check"></i><b>2.2</b> Caso 3. Delitos cometidos en Valencia en el año 2010</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://blog.uclm.es/tp-mbsba/"> Ciencia de datos con R </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ciencia de datos con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="casos" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Capítulo 2</span> Casos prácticos<a href="casos.html#casos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="caso-2.-distribución-de-la-renta-por-municipios" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Caso 2. Distribución de la renta por municipios<a href="casos.html#caso-2.-distribución-de-la-renta-por-municipios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Objetivos de aprendizaje</strong></p>
+<p>Esta sección presenta un caso de uso en el que aprenderemos a realizar
+las siguientes tareas básicas:</p>
+<ul>
+<li><p>Importar datos tabulares y datos espaciales.</p></li>
+<li><p>Realizar un tratamiento de limpieza de datos y cruzar tablas.</p></li>
+<li><p>Hacer mapas temáticos. Aprenderemos también algunas nociones básicas
+sobre cómo crear diferentes clases para un conjunto de datos
+continuo.</p></li>
+</ul>
+<p>Para ello, partiremos de dos ficheros:</p>
+<ol style="list-style-type: decimal">
+<li><p>Fichero <code>renta_municipio.csv</code>: Este fichero contiene información de
+la Renta Neta per cápita por municipios (en euros), distritos y
+secciones censales. Esta información se ha extraído del <a href="https://www.ine.es/experimental/atlas/experimental_atlas.htm">Atlas de
+distribución de renta de los
+hogares</a>
+proporcionado por el INE, y ha sido tratado previamente para adaptar
+la información al presente ejercicio.</p></li>
+<li><p>Fichero <code>municipios.gpkg</code>: Es un fichero que contiene datos
+espaciales (polígonos) de los municipios en España en el año 2019.
+Se ha extraído del Instituto Geográfico Nacional (IGN) usando el
+paquete <strong>mapSpain</strong>.</p></li>
+</ol>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="casos.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usaremos paquetes del tidyverse</span></span>
+<span id="cb45-2"><a href="casos.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb45-3"><a href="casos.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb45-4"><a href="casos.html#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="casos.html#cb45-5" aria-hidden="true" tabindex="-1"></a>renta <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/renta_municipio.csv&quot;</span>, <span class="at">na =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 55273 Columns: 6
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): Unidad
+## dbl (5): 2019, 2018, 2017, 2016, 2015
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="casos.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb47-2"><a href="casos.html#cb47-2" aria-hidden="true" tabindex="-1"></a>munis <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;data/municipios.gpkg&quot;</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="casos.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(renta)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 6
+##   Unidad                          `2019` `2018` `2017` `2016` `2015`
+##   &lt;chr&gt;                            &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 44001 Ababuj                        NA     NA     NA     NA     NA
+## 2 4400101 Ababuj distrito 01          NA     NA     NA     NA     NA
+## 3 4400101001 Ababuj sección 01001     NA     NA     NA     NA     NA
+## 4 40001 Abades                     11429  10731  10314   9816   9904
+## 5 4000101 Abades distrito 01       11429  10731  10314   9816   9904
+## 6 4000101001 Abades sección 01001  11429  10731  10314   9816   9904</code></pre>
+<p>Se puede comprobar que tenemos información para el periodo 2015-2019.
+Además, la columna <code>Unidad</code> contiene un literal con el municipio o
+sección correspondiente.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="casos.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(munis)</span></code></pre></div>
+<pre><code>## Simple feature collection with 6 features and 7 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -3.140179 ymin: 36.73817 xmax: -2.057058 ymax: 37.54579
+## Geodetic CRS:  ETRS89
+##   codauto ine.ccaa.name cpro ine.prov.name cmun      name LAU_CODE
+## 1      01     Andalucía   04       Almería  001      Abla    04001
+## 2      01     Andalucía   04       Almería  002  Abrucena    04002
+## 3      01     Andalucía   04       Almería  003      Adra    04003
+## 4      01     Andalucía   04       Almería  004 Albanchez    04004
+## 5      01     Andalucía   04       Almería  005 Alboloduy    04005
+## 6      01     Andalucía   04       Almería  006     Albox    04006
+##                             geom
+## 1 MULTIPOLYGON (((-2.775594 3...
+## 2 MULTIPOLYGON (((-2.787566 3...
+## 3 MULTIPOLYGON (((-3.051988 3...
+## 4 MULTIPOLYGON (((-2.181086 3...
+## 5 MULTIPOLYGON (((-2.572442 3...
+## 6 MULTIPOLYGON (((-2.128106 3...</code></pre>
+<p>El objeto <code>munis</code> contiene polígonos y varias columnas, entre ellas dos
+especialmente relevantes: <code>cpro</code> y <code>cmun</code>, que corresponden a los
+códigos de provincia y de municipio respectivamente. Podemos comprobar
+que este código también se encuentra en el dataset <code>renta</code>.</p>
+<p>Para comprobar que efectivamente disponemos de dos campos en común en
+los ficheros, que serán de vital importancia para posteriormente
+unirlos, se selecciona un municipio al azar, el municipio de Noblejas en
+la provincia de Toledo y comprobamos.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="casos.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Miramos un municipio: Noblejas</span></span>
+<span id="cb52-2"><a href="casos.html#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="casos.html#cb52-3" aria-hidden="true" tabindex="-1"></a>renta[<span class="fu">grep</span>(<span class="st">&quot;Noblejas&quot;</span>, renta<span class="sc">$</span>Unidad), ]</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 6
+##   Unidad                            `2019` `2018` `2017` `2016` `2015`
+##   &lt;chr&gt;                              &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 45115 Noblejas                     10591  10314   9751   9484   9124
+## 2 4511501 Noblejas distrito 01       11039  10717  10135   9711   9386
+## 3 4511501001 Noblejas sección 01001  11039  10717  10135   9711   9386
+## 4 4511502 Noblejas distrito 02       10276  10029   9475   9319   8938
+## 5 4511502001 Noblejas sección 02001  10276  10029   9475   9319   8938</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="casos.html#cb54-1" aria-hidden="true" tabindex="-1"></a>munis[<span class="fu">grep</span>(<span class="st">&quot;Noblejas&quot;</span>, munis<span class="sc">$</span>name), <span class="fu">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;cpro&quot;</span>, <span class="st">&quot;cmun&quot;</span>)]</span></code></pre></div>
+<pre><code>## Simple feature collection with 1 feature and 3 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -3.489824 ymin: 39.93003 xmax: -3.372611 ymax: 40.05017
+## Geodetic CRS:  ETRS89
+##          name cpro cmun                           geom
+## 4985 Noblejas   45  115 MULTIPOLYGON (((-3.44681 40...</code></pre>
+<p>En el caso de Noblejas, el código completo es <strong>45115</strong>. Sin embargo, en
+el caso de la tabla <code>renta</code>, debemos extraer ese valor del literal, ya
+que no tenemos este valor directamente, sino en combinación con otros
+valores (“<strong>45115 Noblejas</strong>”). Para conseguir extraer un campo adecuado
+para el cruce en la tabla <code>renta</code> que contenga únicamente el código
+numérico vamos a hacer la siguiente manipulación de datos:</p>
+<ul>
+<li><p>Para cada valor de la columna <code>Unidad</code>, dividiremos el texto usando
+los espacios como delimitadores (<code>"45115 Noblejas"</code> pasará a ser
+<code>c("45115", "Noblejas")</code>) y extraeremos el código como el primer
+valor del vector (<code>c("45115", "Noblejas")[1]</code> extrae el primer valor
+del vector, es decir, <code>"45115"</code>).</p></li>
+<li><p>Usaremos ese resultado para crear una nueva columna <code>codigo_ine</code> que
+usaremos como campo para realizar el cruce.</p></li>
+</ul>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="casos.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creo una función y la aplico a toda la columna</span></span>
+<span id="cb56-2"><a href="casos.html#cb56-2" aria-hidden="true" tabindex="-1"></a>extrae_codigo <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb56-3"><a href="casos.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>(<span class="fu">strsplit</span>(x, <span class="st">&quot; &quot;</span>))[<span class="dv">1</span>]</span>
+<span id="cb56-4"><a href="casos.html#cb56-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb56-5"><a href="casos.html#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="casos.html#cb56-6" aria-hidden="true" tabindex="-1"></a>renta<span class="sc">$</span>codigo_ine <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">as.character</span>(renta<span class="sc">$</span>Unidad), extrae_codigo)</span>
+<span id="cb56-7"><a href="casos.html#cb56-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-8"><a href="casos.html#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(renta[<span class="fu">c</span>(<span class="st">&quot;Unidad&quot;</span>, <span class="st">&quot;codigo_ine&quot;</span>)])</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   Unidad                          codigo_ine
+##   &lt;chr&gt;                           &lt;chr&gt;     
+## 1 44001 Ababuj                    44001     
+## 2 4400101 Ababuj distrito 01      4400101   
+## 3 4400101001 Ababuj sección 01001 4400101001
+## 4 40001 Abades                    40001     
+## 5 4000101 Abades distrito 01      4000101   
+## 6 4000101001 Abades sección 01001 4000101001</code></pre>
+<p>Ahora, es necesario crear la misma variable en <code>munis</code> para poder
+realizar el cruce:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="casos.html#cb58-1" aria-hidden="true" tabindex="-1"></a>munis<span class="sc">$</span>codigo_ine <span class="ot">&lt;-</span> <span class="fu">paste0</span>(munis<span class="sc">$</span>cpro, munis<span class="sc">$</span>cmun)</span>
+<span id="cb58-2"><a href="casos.html#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="casos.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(munis[, <span class="fu">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;codigo_ine&quot;</span>)])</span></code></pre></div>
+<pre><code>## Simple feature collection with 6 features and 2 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -3.140179 ymin: 36.73817 xmax: -2.057058 ymax: 37.54579
+## Geodetic CRS:  ETRS89
+##        name codigo_ine                           geom
+## 1      Abla      04001 MULTIPOLYGON (((-2.775594 3...
+## 2  Abrucena      04002 MULTIPOLYGON (((-2.787566 3...
+## 3      Adra      04003 MULTIPOLYGON (((-3.051988 3...
+## 4 Albanchez      04004 MULTIPOLYGON (((-2.181086 3...
+## 5 Alboloduy      04005 MULTIPOLYGON (((-2.572442 3...
+## 6     Albox      04006 MULTIPOLYGON (((-2.128106 3...</code></pre>
+<p>Ya estamos listos para realizar el cruce. Además, seleccionaremos sólo
+las columnas que vamos a usar, en este caso la del año 2019.</p>
+<p>Realice la unión de los objetos con la función <code>left_join()</code> y
+seleccione las variables <code>name</code>, <code>cpro</code>, <code>cmun</code>, <code>2019</code>. Guarde el
+resultado obtenido en un nuevo objeto llamado <code>munis_renta</code>.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="casos.html#cb60-1" aria-hidden="true" tabindex="-1"></a>munis_renta <span class="ot">&lt;-</span> munis <span class="sc">%&gt;%</span></span>
+<span id="cb60-2"><a href="casos.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(renta) <span class="sc">%&gt;%</span></span>
+<span id="cb60-3"><a href="casos.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name, cpro, cmun, <span class="st">`</span><span class="at">2019</span><span class="st">`</span>)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;codigo_ine&quot;</code></pre>
+<p><strong>Cuando crucemos datos espaciales con datos no espaciales en</strong> R<strong>, es
+importante que el primer dataset sea el que contiene los datos
+espaciales</strong>. Esto es así porque el objeto resultante “hereda” la clase
+del primer objeto.</p>
+<p>A modo de ejemplo, si realizáramos el proceso poniendo los datos
+espaciales en el lado derecho del join, los datos finales no serán
+espaciales:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="casos.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Miramos la clase de munis_renta</span></span>
+<span id="cb62-2"><a href="casos.html#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="casos.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(munis_renta) <span class="co"># Es un sf, por tanto espacial</span></span></code></pre></div>
+<pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
+<p>Una vez que tenemos los datos unidos podemos realizar algunos análisis
+básicos, como la realización de un histograma.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="casos.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb64-2"><a href="casos.html#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="casos.html#cb64-3" aria-hidden="true" tabindex="-1"></a>munis_renta <span class="sc">%&gt;%</span></span>
+<span id="cb64-4"><a href="casos.html#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb64-5"><a href="casos.html#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb64-6"><a href="casos.html#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number_auto</span>()) <span class="sc">+</span></span>
+<span id="cb64-7"><a href="casos.html#cb64-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>()) <span class="sc">+</span></span>
+<span id="cb64-8"><a href="casos.html#cb64-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb64-9"><a href="casos.html#cb64-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb64-10"><a href="casos.html#cb64-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Renta neta media por persona (€)&quot;</span></span>
+<span id="cb64-11"><a href="casos.html#cb64-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 1655 rows containing non-finite values (stat_bin).</code></pre>
+<div class="figure"><span style="display:block;" id="fig:basic"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/basic-1.png" alt="Histograma de la variable Renta neta media por persona (€) en 2019" width="672" />
+<p class="caption">
+Figura 2.1: Histograma de la variable Renta neta media por persona (€) en 2019
+</p>
+</div>
+<p>Se puede observar que la renta presenta una distribución Gamma con un
+gran número de municipios concentrados en zonas medias de renta y pocos
+municipios en tramos de rentas altas. Como se verá en el Ejercicio
+<a href="#exr:ex20"><strong>??</strong></a>, esta distribución va a afectar a la información que
+transmite el mapa.</p>
+<p>Realice un mapa de coropletas mostrando la distribución de la renta
+usando los valores brutos de renta sin modificar</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="casos.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(munis_renta) <span class="sc">+</span></span>
+<span id="cb67-2"><a href="casos.html#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Usamos geom_sf, y como aes() lo que queremos mostrar, en este caso, el</span></span>
+<span id="cb67-3"><a href="casos.html#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># color del polígono representa la renta. Vamos a retirar los bordes con</span></span>
+<span id="cb67-4"><a href="casos.html#cb67-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># color = NA</span></span>
+<span id="cb67-5"><a href="casos.html#cb67-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb67-6"><a href="casos.html#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb67-7"><a href="casos.html#cb67-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(</span>
+<span id="cb67-8"><a href="casos.html#cb67-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">big.mark =</span> <span class="st">&quot;.&quot;</span>,</span>
+<span id="cb67-9"><a href="casos.html#cb67-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimal.mark =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb67-10"><a href="casos.html#cb67-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">suffix =</span> <span class="st">&quot; €&quot;</span></span>
+<span id="cb67-11"><a href="casos.html#cb67-11" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb67-12"><a href="casos.html#cb67-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:maparenta1"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/maparenta1-1.png" alt="Renta neta media por persona en España (2019)" width="672" />
+<p class="caption">
+Figura 2.2: Renta neta media por persona en España (2019)
+</p>
+</div>
+<p>Este primer mapa (Fig. <a href="casos.html#fig:maparenta1">2.2</a>) no es demasiado
+informativo, por los siguientes motivos:</p>
+<ul>
+<li><p>Existe una serie de municipios para los que no tenemos datos.</p></li>
+<li><p>La escala de color no es la más adecuada.</p></li>
+<li><p>Dada la distribución de los datos, puede ser adecuado crear grupos
+de renta para que el mapa sea más interpretable.</p></li>
+</ul>
+<p>Elimine los municipios sin datos y a cambie la escala de color para ver
+si mejora la visualización de la variable Renta neta media por persona.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="casos.html#cb68-1" aria-hidden="true" tabindex="-1"></a>munis_renta_clean <span class="ot">&lt;-</span> munis_renta <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">2019</span><span class="st">`</span>))</span>
+<span id="cb68-2"><a href="casos.html#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="casos.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(munis_renta_clean) <span class="sc">+</span></span>
+<span id="cb68-4"><a href="casos.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb68-5"><a href="casos.html#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cambiamos la paleta de colores, vamos a usar una paleta denominada Inferno,</span></span>
+<span id="cb68-6"><a href="casos.html#cb68-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ya incluida en base R con hcl.colors</span></span>
+<span id="cb68-7"><a href="casos.html#cb68-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-8"><a href="casos.html#cb68-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Como son datos continuos, puedo usar Inferno</span></span>
+<span id="cb68-9"><a href="casos.html#cb68-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
+<span id="cb68-10"><a href="casos.html#cb68-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">colours =</span> <span class="fu">hcl.colors</span>(<span class="dv">20</span>, <span class="st">&quot;Inferno&quot;</span>, <span class="at">rev =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb68-11"><a href="casos.html#cb68-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(</span>
+<span id="cb68-12"><a href="casos.html#cb68-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">big.mark =</span> <span class="st">&quot;.&quot;</span>,</span>
+<span id="cb68-13"><a href="casos.html#cb68-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">decimal.mark =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb68-14"><a href="casos.html#cb68-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">suffix =</span> <span class="st">&quot; €&quot;</span></span>
+<span id="cb68-15"><a href="casos.html#cb68-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb68-16"><a href="casos.html#cb68-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb68-17"><a href="casos.html#cb68-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:maparenta2"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/maparenta2-1.png" alt="Renta neta media por persona en España (2019)" width="672" />
+<p class="caption">
+Figura 2.3: Renta neta media por persona en España (2019)
+</p>
+</div>
+<p>Este mapa (Fig. <a href="casos.html#fig:maparenta2">2.3</a>) proporciona algo más de
+información, y parece intuirse que las rentas más altas se encuentran en
+zonas de País Vasco, Madrid y Cataluña. Sin embargo, el hecho de que la
+distribución de los datos no sea normal está afectando a la
+visualización.</p>
+<p>Para intentar atajar este problema, se puede dividir los datos en
+clases, por ejemplo, cuartiles o deciles. Existen varios métodos de
+clasificación de datos, que en <strong>R</strong> se encuentran implementados en el
+paquete <strong>classInt</strong> <span class="citation">(<a href="#ref-R-classint" role="doc-biblioref">R. Bivand 2020</a>)</span>. A continuación se van a plantear
+diversos métodos de clasificación y se observará cómo la “historia” que
+cuenta el mapa varía en función de dichas clases. Se proponen siguientes
+métodos de clasificación:</p>
+<ul>
+<li><p><strong>El método de deciles</strong>: consiste en crear 10 categorías incluyendo
+el mismo número de registros en cada una de ellas.</p></li>
+<li><p><strong>El método de intervalos equivalentes</strong>: divide el rango de valores
+en un número de grupos definido. La distancia de todos los
+intervalos es idéntica, por lo que este método no tiene en cuenta la
+distribución de los registros.</p></li>
+<li><p><strong>El método de Fisher-Jenks</strong>: desarrollado específicamente para la
+clasificación de datos espaciales y su visualización en mapas.
+Produce agrupaciones de tal manera que los datos de cada grupo son
+“cercanas” entre sí y sustancialmente distintas de los valores de
+otros grupos.</p></li>
+</ul>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="casos.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classInt)</span>
+<span id="cb69-2"><a href="casos.html#cb69-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-3"><a href="casos.html#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co"># División en deciles</span></span>
+<span id="cb69-4"><a href="casos.html#cb69-4" aria-hidden="true" tabindex="-1"></a>deciles <span class="ot">&lt;-</span> <span class="fu">classIntervals</span>(munis_renta_clean<span class="sc">$</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb69-5"><a href="casos.html#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">&quot;quantile&quot;</span>, <span class="at">n =</span> <span class="dv">10</span></span>
+<span id="cb69-6"><a href="casos.html#cb69-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb69-7"><a href="casos.html#cb69-7" aria-hidden="true" tabindex="-1"></a>deciles</span></code></pre></div>
+<pre><code>## style: quantile
+##     [5898,8935.6)   [8935.6,9662.2)  [9662.2,10352.8)   [10352.8,10918) 
+##               656               656               655               654 
+##     [10918,11462)   [11462,11998.6) [11998.6,12651.4) [12651.4,13475.8) 
+##               655               658               656               655 
+## [13475.8,14618.4)   [14618.4,26367] 
+##               656               656</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="casos.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(deciles, <span class="at">pal =</span> <span class="fu">hcl.colors</span>(<span class="dv">20</span>, <span class="st">&quot;Inferno&quot;</span>), <span class="at">main =</span> <span class="st">&quot;Deciles&quot;</span>)</span></code></pre></div>
+<p><img src="Ciencia_de_datos_con_r_files/figure-html/classint-1.png" width="672" /></p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="casos.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tramos equidistantes en términos de renta</span></span>
+<span id="cb72-2"><a href="casos.html#cb72-2" aria-hidden="true" tabindex="-1"></a>equal <span class="ot">&lt;-</span> <span class="fu">classIntervals</span>(munis_renta_clean<span class="sc">$</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb72-3"><a href="casos.html#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">&quot;equal&quot;</span>, <span class="at">n =</span> <span class="dv">10</span></span>
+<span id="cb72-4"><a href="casos.html#cb72-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb72-5"><a href="casos.html#cb72-5" aria-hidden="true" tabindex="-1"></a>equal</span></code></pre></div>
+<pre><code>## style: equal
+##     [5898,7944.9)   [7944.9,9991.8)  [9991.8,12038.7) [12038.7,14085.6) 
+##               103              1510              2374              1637 
+## [14085.6,16132.5) [16132.5,18179.4) [18179.4,20226.3) [20226.3,22273.2) 
+##               702               161                52                14 
+## [22273.2,24320.1)   [24320.1,26367] 
+##                 3                 1</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="casos.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(equal, <span class="at">pal =</span> <span class="fu">hcl.colors</span>(<span class="dv">20</span>, <span class="st">&quot;Inferno&quot;</span>), <span class="at">main =</span> <span class="st">&quot;Equidistantes&quot;</span>)</span></code></pre></div>
+<p><img src="Ciencia_de_datos_con_r_files/figure-html/classint-2.png" width="672" /></p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="casos.html#cb75-1" aria-hidden="true" tabindex="-1"></a>fisher <span class="ot">&lt;-</span> <span class="fu">classIntervals</span>(munis_renta_clean<span class="sc">$</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb75-2"><a href="casos.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">&quot;fisher&quot;</span>,</span>
+<span id="cb75-3"><a href="casos.html#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fuerzo para mejorar la comparación entre métodos</span></span>
+<span id="cb75-4"><a href="casos.html#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">10</span></span>
+<span id="cb75-5"><a href="casos.html#cb75-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Warning in classIntervals(munis_renta_clean$`2019`, style = &quot;fisher&quot;, n = 10): N
+## is large, and some styles will run very slowly; sampling imposed</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="casos.html#cb77-1" aria-hidden="true" tabindex="-1"></a>fisher</span></code></pre></div>
+<pre><code>## style: fisher
+##       [5898,8835)       [8835,9884)      [9884,10868)     [10868,11787) 
+##               582               930              1048              1115 
+##     [11787,12778)   [12778,13913.5) [13913.5,15256.5)   [15256.5,17168) 
+##              1038               830               594               297 
+##   [17168,20678.5)   [20678.5,26367] 
+##               111                12</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="casos.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fisher,</span>
+<span id="cb79-2"><a href="casos.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">pal =</span> <span class="fu">hcl.colors</span>(<span class="dv">20</span>, <span class="st">&quot;Inferno&quot;</span>),</span>
+<span id="cb79-3"><a href="casos.html#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Fisher-Jenks&quot;</span></span>
+<span id="cb79-4"><a href="casos.html#cb79-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="Ciencia_de_datos_con_r_files/figure-html/classint-3.png" width="672" /></p>
+<p>Se puede observar lo siguiente:</p>
+<ul>
+<li><p>El último decil de renta se corresponde a un rango de entre 15.000 y
+25.000 €.</p></li>
+<li><p>El método por deciles proporciona unos grupos con valores de renta
+muy parecidos entre sí en los valores medios. Esto es debido a la
+propia distribución de la variable.</p></li>
+<li><p>El método de rangos equidistantes proporciona algunos grupos con un
+número muy reducido de municipios.</p></li>
+<li><p>El método de Fisher-Jenks puede proporcionar unas clases con unos
+rangos más apropiados para los tramos altos de renta.</p></li>
+</ul>
+<p><strong>Deciles</strong></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="casos.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracción de los valores de corte</span></span>
+<span id="cb80-2"><a href="casos.html#cb80-2" aria-hidden="true" tabindex="-1"></a>breaks_d <span class="ot">&lt;-</span> deciles<span class="sc">$</span>brks</span>
+<span id="cb80-3"><a href="casos.html#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-4"><a href="casos.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación de etiquetas básicas para cada clase</span></span>
+<span id="cb80-5"><a href="casos.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación de una función específica para crear etiquetas formateadas</span></span>
+<span id="cb80-6"><a href="casos.html#cb80-6" aria-hidden="true" tabindex="-1"></a>label_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb80-7"><a href="casos.html#cb80-7" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb80-8"><a href="casos.html#cb80-8" aria-hidden="true" tabindex="-1"></a>  eur <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">prettyNum</span>(<span class="fu">round</span>(x, <span class="dv">0</span>),</span>
+<span id="cb80-9"><a href="casos.html#cb80-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimal.mark =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb80-10"><a href="casos.html#cb80-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">big.mark =</span> <span class="st">&quot;.&quot;</span></span>
+<span id="cb80-11"><a href="casos.html#cb80-11" aria-hidden="true" tabindex="-1"></a>  ), <span class="st">&quot; €&quot;</span>)</span>
+<span id="cb80-12"><a href="casos.html#cb80-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-13"><a href="casos.html#cb80-13" aria-hidden="true" tabindex="-1"></a>  labels <span class="ot">&lt;-</span> <span class="fu">paste</span>(eur[<span class="sc">-</span>l], <span class="st">&quot;-&quot;</span>, eur[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb80-14"><a href="casos.html#cb80-14" aria-hidden="true" tabindex="-1"></a>  labels[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;&lt;&quot;</span>, eur[<span class="dv">1</span>])</span>
+<span id="cb80-15"><a href="casos.html#cb80-15" aria-hidden="true" tabindex="-1"></a>  labels[l <span class="sc">-</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;&gt;&quot;</span>, eur[l <span class="sc">-</span> <span class="dv">1</span>])</span>
+<span id="cb80-16"><a href="casos.html#cb80-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(labels)</span>
+<span id="cb80-17"><a href="casos.html#cb80-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb80-18"><a href="casos.html#cb80-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-19"><a href="casos.html#cb80-19" aria-hidden="true" tabindex="-1"></a>labels_d <span class="ot">&lt;-</span> <span class="fu">label_fun</span>(breaks_d)</span>
+<span id="cb80-20"><a href="casos.html#cb80-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-21"><a href="casos.html#cb80-21" aria-hidden="true" tabindex="-1"></a>munis_renta_clean<span class="sc">$</span>Deciles <span class="ot">&lt;-</span> <span class="fu">cut</span>(munis_renta_clean<span class="sc">$</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb80-22"><a href="casos.html#cb80-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> breaks_d,</span>
+<span id="cb80-23"><a href="casos.html#cb80-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> labels_d,</span>
+<span id="cb80-24"><a href="casos.html#cb80-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.lowest =</span> <span class="cn">TRUE</span></span>
+<span id="cb80-25"><a href="casos.html#cb80-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb80-26"><a href="casos.html#cb80-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-27"><a href="casos.html#cb80-27" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(munis_renta_clean) <span class="sc">+</span></span>
+<span id="cb80-28"><a href="casos.html#cb80-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cambio la variable a representar para crear el mapa</span></span>
+<span id="cb80-29"><a href="casos.html#cb80-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Deciles), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb80-30"><a href="casos.html#cb80-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cambio el scale, ya no es continua</span></span>
+<span id="cb80-31"><a href="casos.html#cb80-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">hcl.colors</span>(<span class="fu">length</span>(labels_d),</span>
+<span id="cb80-32"><a href="casos.html#cb80-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Inferno&quot;</span>,</span>
+<span id="cb80-33"><a href="casos.html#cb80-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">rev =</span> <span class="cn">TRUE</span></span>
+<span id="cb80-34"><a href="casos.html#cb80-34" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb80-35"><a href="casos.html#cb80-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:mapa-deciles"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/mapa-deciles-1.png" alt="Mapa por deciles de renta media por persona (2019)" width="672" />
+<p class="caption">
+Figura 2.4: Mapa por deciles de renta media por persona (2019)
+</p>
+</div>
+<p>El mapa de la Fig. <a href="casos.html#fig:mapa-deciles">2.4</a> ya permite observar patrones
+geográficos, donde se ve una clara diferencia entre la Comunidades
+Autónomas del Norte y las del Sur. Veamos una representación distinta
+usando otras clases diferentes.</p>
+<p><strong>Tramos equidistantes</strong></p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="casos.html#cb81-1" aria-hidden="true" tabindex="-1"></a>breaks_e <span class="ot">&lt;-</span> equal<span class="sc">$</span>brks</span>
+<span id="cb81-2"><a href="casos.html#cb81-2" aria-hidden="true" tabindex="-1"></a>labels_e <span class="ot">&lt;-</span> <span class="fu">label_fun</span>(breaks_e)</span>
+<span id="cb81-3"><a href="casos.html#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-4"><a href="casos.html#cb81-4" aria-hidden="true" tabindex="-1"></a>munis_renta_clean<span class="sc">$</span>Equal <span class="ot">&lt;-</span> <span class="fu">cut</span>(munis_renta_clean<span class="sc">$</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb81-5"><a href="casos.html#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> breaks_e,</span>
+<span id="cb81-6"><a href="casos.html#cb81-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> labels_e,</span>
+<span id="cb81-7"><a href="casos.html#cb81-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.lowest =</span> <span class="cn">TRUE</span></span>
+<span id="cb81-8"><a href="casos.html#cb81-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb81-9"><a href="casos.html#cb81-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-10"><a href="casos.html#cb81-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(munis_renta_clean) <span class="sc">+</span></span>
+<span id="cb81-11"><a href="casos.html#cb81-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cambiamos la variable que usamos para crear el mapa</span></span>
+<span id="cb81-12"><a href="casos.html#cb81-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Equal), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb81-13"><a href="casos.html#cb81-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">hcl.colors</span>(<span class="fu">length</span>(labels_e),</span>
+<span id="cb81-14"><a href="casos.html#cb81-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Inferno&quot;</span>,</span>
+<span id="cb81-15"><a href="casos.html#cb81-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">rev =</span> <span class="cn">TRUE</span></span>
+<span id="cb81-16"><a href="casos.html#cb81-16" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb81-17"><a href="casos.html#cb81-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:mapa-equal"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/mapa-equal-1.png" alt="Mapa por tramos de renta equidistantes de renta media por persona (2019)" width="672" />
+<p class="caption">
+Figura 2.5: Mapa por tramos de renta equidistantes de renta media por persona (2019)
+</p>
+</div>
+<p>El mapa de la Fig. <a href="casos.html#fig:mapa-equal">2.5</a>, sin embargo, se parece más al
+mapa de la Fig. <a href="casos.html#fig:maparenta2">2.3</a> con los datos sin clasificar,
+donde el peso visual se concentra más bien en los municipios con rentas
+mucho más altas que el resto (por encima de 18.000 €).</p>
+<p><strong>Fisher-Jenks</strong></p>
+<p>Véase a continuación el mismo mapa usando la clasificación Fisher-Jenks:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="casos.html#cb82-1" aria-hidden="true" tabindex="-1"></a>breaks_f <span class="ot">&lt;-</span> fisher<span class="sc">$</span>brks</span>
+<span id="cb82-2"><a href="casos.html#cb82-2" aria-hidden="true" tabindex="-1"></a>labels_f <span class="ot">&lt;-</span> <span class="fu">label_fun</span>(breaks_f)</span>
+<span id="cb82-3"><a href="casos.html#cb82-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-4"><a href="casos.html#cb82-4" aria-hidden="true" tabindex="-1"></a>munis_renta_clean<span class="sc">$</span><span class="st">`</span><span class="at">Fisher-Jenks</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">cut</span>(munis_renta_clean<span class="sc">$</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb82-5"><a href="casos.html#cb82-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> breaks_f,</span>
+<span id="cb82-6"><a href="casos.html#cb82-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> labels_f,</span>
+<span id="cb82-7"><a href="casos.html#cb82-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.lowest =</span> <span class="cn">TRUE</span></span>
+<span id="cb82-8"><a href="casos.html#cb82-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb82-9"><a href="casos.html#cb82-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-10"><a href="casos.html#cb82-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(munis_renta_clean) <span class="sc">+</span></span>
+<span id="cb82-11"><a href="casos.html#cb82-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cambiamos la variable que usamos para crear el mapa</span></span>
+<span id="cb82-12"><a href="casos.html#cb82-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="st">`</span><span class="at">Fisher-Jenks</span><span class="st">`</span>), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb82-13"><a href="casos.html#cb82-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">hcl.colors</span>(<span class="fu">length</span>(labels_f),</span>
+<span id="cb82-14"><a href="casos.html#cb82-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Inferno&quot;</span>,</span>
+<span id="cb82-15"><a href="casos.html#cb82-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">rev =</span> <span class="cn">TRUE</span></span>
+<span id="cb82-16"><a href="casos.html#cb82-16" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb82-17"><a href="casos.html#cb82-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:mapa-fisher"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/mapa-fisher-1.png" alt="Mapa por tramos según Fisher-Jenks" width="672" />
+<p class="caption">
+Figura 2.6: Mapa por tramos según Fisher-Jenks
+</p>
+</div>
+<p>En el mapa de la Fig. <a href="casos.html#fig:mapa-fisher">2.6</a> se puede observar de una
+manera más clara un clúster adicional de renta en la zona de Asturias y
+el norte de León. Además, gracias a la escala de colores puede intuirse
+que este clúster de renta no presenta valores tan altos como los
+observados en País Vasco o Madrid.</p>
+<p>En conclusión, en el momento de realizar una visualización de datos es
+importante conocer el dato a representar, así como entender algunas
+propiedades básicas de la distribución subyacente. También se ha podido
+observar que hay ciertas decisiones estéticas (datos continuos vs.
+agrupados, escala de colores) que tienen una influencia significativa en
+cómo se percibe la información representada. Es responsabilidad del
+investigador encargado de crear de la visualización el conocer todos
+estos factores y aplicarlos de manera conveniente.</p>
+</div>
+<div id="caso-3.-delitos-cometidos-en-valencia-en-el-año-2010" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Caso 3. Delitos cometidos en Valencia en el año 2010<a href="casos.html#caso-3.-delitos-cometidos-en-valencia-en-el-año-2010" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Las técnicas de análisis de patrones de puntos analizan la distribución
+de eventos geolocalizados que surgen al azar. La diferencia fundamental
+con otros análisis que comprenden también el uso de localizaciones (como
+las temperaturas mínimas medidas por estaciones meteorológicas) es que
+en este caso los puntos representan eventos conocidos y aleatorios (por
+ejemplo, los delitos ocurridos en una ciudad, accidentes de tráfico o
+incendios en una región). A diferencia de otros eventos, como el ejemplo
+de las temperaturas mínimas (Sección <a href="#tempmin"><strong>??</strong></a>), la ausencia de
+datos no se debe a la ausencia de medición (es decir, no existe una
+estación de monitoreo en ese lugar), si no a que no se ha producido el
+evento en dicha localización.</p>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Abrahart, Robert J., Stan Openshaw, Robert J. Abrahart, and Linda M. See, eds. 2000. <em>Geocomputation</em>. CRC Press. <a href="https://doi.org/10.4324/9780203305805">https://doi.org/10.4324/9780203305805</a>.
+</div>
+<div class="csl-entry">
+Baddeley, Adrian, and Rolf Turner. 2005. <span>“<span class="nocase">spatstat</span>: An <span>R</span> Package for Analyzing Spatial Point Patterns.”</span> <em>Journal of Statistical Software</em> 12 (6): 1–42. <a href="https://doi.org/10.18637/jss.v012.i06">https://doi.org/10.18637/jss.v012.i06</a>.
+</div>
+<div class="csl-entry">
+Bivand, Roger. 2020. <em><span class="nocase">classInt</span>: Choose Univariate Class Intervals</em>. <a href="https://CRAN.R-project.org/package=classInt">https://CRAN.R-project.org/package=classInt</a>.
+</div>
+<div class="csl-entry">
+Bivand, Roger S., Edzer Pebesma, and Virgilio Gomez-Rubio. 2013. <em>Applied Spatial Data Analysis with <span>R</span>, Second Edition</em>. Springer, NY. <a href="https://asdar-book.org/">https://asdar-book.org/</a>.
+</div>
+<div class="csl-entry">
+Bivand, Roger, and Gianfranco Piras. 2015. <span>“Comparing <span>Implementations</span> of <span>Estimation</span> <span>Methods</span> for <span>Spatial</span> <span>Econometrics</span>.”</span> <em>Journal of Statistical Software</em> 63 (18). <a href="https://doi.org/10.18637/jss.v063.i18">https://doi.org/10.18637/jss.v063.i18</a>.
+</div>
+<div class="csl-entry">
+Bivand, Roger, and David W. S. Wong. 2018. <span>“Comparing Implementations of Global and Local Indicators of Spatial Association.”</span> <em>TEST</em> 27 (3): 716–48. <a href="https://doi.org/10.1007/s11749-018-0599-x">https://doi.org/10.1007/s11749-018-0599-x</a>.
+</div>
+<div class="csl-entry">
+Cepicky, Jachym, and OpenGeoLabs. 2017. <span>“Shapefile Must Die!”</span> <a href="http://switchfromshapefile.org/">http://switchfromshapefile.org/</a>.
+</div>
+<div class="csl-entry">
+Cressie, Noel A. C. 1993. <em>Statistics for <span>Spatial</span> <span>Data</span></em>. Wiley <span>Series</span> in <span>Probability</span> and <span>Statistics</span>. Hoboken, NJ, USA: John Wiley &amp; Sons, Inc. <a href="https://doi.org/10.1002/9781119115151">https://doi.org/10.1002/9781119115151</a>.
+</div>
+<div class="csl-entry">
+Fernández Casal, Rubén, and Tomás Cotos Yáñez. 2022. <em>Estadística <span>Espacial</span> Con <span>R</span></em>. <a href="https://rubenfcasal.github.io/estadistica_espacial/">https://rubenfcasal.github.io/estadistica_espacial/</a>.
+</div>
+<div class="csl-entry">
+Getis, A. 1999. <em>Spatial Statistics</em>. Longley, P., Goodchild, M., Maguire, D. y Rhing, D. (Eds.) Geographical Information Systems.
+</div>
+<div class="csl-entry">
+Giraud, Timothée. 2022. <em><span class="nocase">mapsf</span>: Thematic Cartography</em>. <a href="https://CRAN.R-project.org/package=mapsf">https://CRAN.R-project.org/package=mapsf</a>.
+</div>
+<div class="csl-entry">
+Hernangómez, Diego. 2022a. <em><span class="nocase">giscoR</span>: Download Map Data from <span>GISCO</span> <span>API</span> - Eurostat</em> (version 0.3.1). <a href="https://doi.org/10.5281/zenodo.4317946">https://doi.org/10.5281/zenodo.4317946</a>.
+</div>
+<div class="csl-entry">
+———. 2022b. <em><span class="nocase">mapSpain</span>: Administrative Boundaries of <span>Spain</span></em> (version 0.5.0). <a href="https://doi.org/10.5281/zenodo.5366622">https://doi.org/10.5281/zenodo.5366622</a>.
+</div>
+<div class="csl-entry">
+Hijmans, Robert J. 2022a. <em><span class="nocase">raster</span>: Geographic Data Analysis and Modeling</em>. <a href="https://CRAN.R-project.org/package=raster">https://CRAN.R-project.org/package=raster</a>.
+</div>
+<div class="csl-entry">
+———. 2022b. <em><span class="nocase">terra</span>: Spatial Data Analysis</em>. <a href="https://CRAN.R-project.org/package=terra">https://CRAN.R-project.org/package=terra</a>.
+</div>
+<div class="csl-entry">
+Lovelace, Robin, Jakub Nowosad, and Jannes Münchow. 2019. <em>Geocomputation with <span>R</span></em>. Boca Raton: CRC Press, Taylor; Francis Group.
+</div>
+<div class="csl-entry">
+Montero, José María, Gema Fernández-Avilés, and Jorge Mateu. 2015. <em>Spatial and Spatio-Temporal Geostatistical Modeling and Kriging</em>. Wiley Series in Probability and Statistics. Chichester, West Sussex: Wiley.
+</div>
+<div class="csl-entry">
+Montero, José María, Gema Fernández-Avilés, Jorge Mateu, and Emilio Porcu. 2011. <span>“Geoestadística Espacial y Espacio-Temporal: Vino Nuevo, Cepas Viejas.”</span> In <em>Historia de La Probabilidad y La Estadística (<span>V</span>)</em>, edited by José María Riobóo Almanzor, Irene Riobóo Lestón, and A.H.E.P.E., 163–78. Santiago de Compostela, Spain: A.H.E.P.E.
+</div>
+<div class="csl-entry">
+Morales, Aurelio. 2012. <span>“Shapefiles vs bases de datos espaciales.”</span> <a href="https://mappinggis.com/2012/08/shapefiles-vs-bases-de-datos-espaciales/">https://mappinggis.com/2012/08/shapefiles-vs-bases-de-datos-espaciales/</a>.
+</div>
+<div class="csl-entry">
+Openshaw, Stan, and Christine Openshaw. 1997. <em>Artificial Intelligence in Geography</em>. Chichester ; New York: Wiley.
+</div>
+<div class="csl-entry">
+Pebesma, Edzer. 2004. <span>“Multivariable Geostatistics in <span>S</span>: The <span class="nocase">gstat</span> Package.”</span> <em>Computers &amp; Geosciences</em> 30: 683–91.
+</div>
+<div class="csl-entry">
+———. 2018. <span>“<span class="nocase">Simple Features for R: Standardized Support for Spatial Vector Data</span>.”</span> <em><span>The R Journal</span></em> 10 (1): 439–46. <a href="https://doi.org/10.32614/RJ-2018-009">https://doi.org/10.32614/RJ-2018-009</a>.
+</div>
+<div class="csl-entry">
+———. 2021a. <em><span class="nocase">sf</span>: Simple Features for r</em>. <a href="https://CRAN.R-project.org/package=sf">https://CRAN.R-project.org/package=sf</a>.
+</div>
+<div class="csl-entry">
+———. 2021b. <em><span class="nocase">stars</span>: Spatiotemporal Arrays, Raster and Vector Data Cubes</em>. <a href="https://CRAN.R-project.org/package=stars">https://CRAN.R-project.org/package=stars</a>.
+</div>
+<div class="csl-entry">
+Pebesma, Edzer, and Roger Bivand. 2021. <em><span class="nocase">sp</span>: Classes and Methods for Spatial Data</em>. <a href="https://CRAN.R-project.org/package=sp">https://CRAN.R-project.org/package=sp</a>.
+</div>
+<div class="csl-entry">
+Pebesma, Edzer, and Roger S. Bivand. 2005. <span>“Classes and Methods for Spatial Data in <span>R</span>.”</span> <em>R News</em> 5 (2): 9–13. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>.
+</div>
+<div class="csl-entry">
+Pizarro, Manuel, Diego Hernangómez, and Gema Fernández-Avilés. 2021. <em><span class="nocase">climaemet</span>: Climate <span>AEMET</span> Tools</em>. <a href="https://doi.org/10.5281/zenodo.5205573">https://doi.org/10.5281/zenodo.5205573</a>.
+</div>
+<div class="csl-entry">
+Rees, P, and I Turton. 1998. <span>“Guest <span>Editorial</span>.”</span> <em>Environment and Planning A: Economy and Space</em> 30 (10): 1835–38. <a href="https://doi.org/10.1068/a301835">https://doi.org/10.1068/a301835</a>.
+</div>
+<div class="csl-entry">
+Ribeiro Jr, Paulo J., Peter J. Diggle, Martin Schlather, Roger Bivand, and Brian Ripley. 2020. <em><span class="nocase">geoR</span>: Analysis of Geostatistical Data</em>. <a href="https://CRAN.R-project.org/package=geoR">https://CRAN.R-project.org/package=geoR</a>.
+</div>
+<div class="csl-entry">
+Schabenberger, Oliver, and Carol A. Gotway. 2005. <em>Statistical Methods for Spatial Data Analysis</em>. Texts in Statistical Science. Boca Raton: Chapman &amp; Hall/CRC.
+</div>
+<div class="csl-entry">
+Tennekes, Martijn. 2018. <span>“<span class="nocase">tmap</span>: Thematic Maps in <span>R</span>.”</span> <em>Journal of Statistical Software</em> 84 (6): 1–39. <a href="https://doi.org/10.18637/jss.v084.i06">https://doi.org/10.18637/jss.v084.i06</a>.
+</div>
+<div class="csl-entry">
+Tobler, W. R. 1970. <span>“A Computer Movie Simulating Urban Growth in the Detroit Region.”</span> <em>Economic Geography</em> 46 (June): 234. <a href="https://doi.org/10.2307/143141">https://doi.org/10.2307/143141</a>.
+</div>
+<div class="csl-entry">
+Walker, Kyle. 2021. <em><span class="nocase">crsuggest</span>: Obtain Suggested Coordinate Reference System Information for Spatial Data</em>.
+</div>
+<div class="csl-entry">
+Wickham, Hadley. 2016. <em><span class="nocase">ggplot2</span>: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div class="csl-entry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div class="csl-entry">
+Wickham, Hadley, Jim Hester, and Jennifer Bryan. 2022. <em><span class="nocase">readr</span>: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-R-classint" class="csl-entry">
+Bivand, Roger. 2020. <em><span class="nocase">classInt</span>: Choose Univariate Class Intervals</em>. <a href="https://CRAN.R-project.org/package=classInt">https://CRAN.R-project.org/package=classInt</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="geolocalización-y-visualizacion-de-datos-geográficos.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Ciencia_de_datos_con_r.pdf", "Ciencia_de_datos_con_r.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

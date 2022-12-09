@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Fundamentos de ciencia de datos con R</title>
+  <meta name="description" content="Falta hacer" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Fundamentos de ciencia de datos con R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Falta hacer" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Fundamentos de ciencia de datos con R" />
+  
+  <meta name="twitter:description" content="Falta hacer" />
+  
+
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero" />
+
+
+<meta name="date" content="2022-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="mineria-textos.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33KQ1S5ZCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-33KQ1S5ZCJ');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Ciencia de datos con <strong>R</strong></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html"><i class="fa fa-check"></i><b>1</b> Modelización de series temporales</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#conceptos-básicos"><i class="fa fa-check"></i><b>1.1</b> Conceptos básicos</a></li>
+<li class="chapter" data-level="1.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#modelos-arima"><i class="fa fa-check"></i><b>1.2</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="1.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#análisis-de-series-temporales-con-r"><i class="fa fa-check"></i><b>1.3</b> Análisis de series temporales con R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#identificación-o-especificación-del-modelo"><i class="fa fa-check"></i><b>1.3.1</b> Identificación o especificación del modelo</a></li>
+<li class="chapter" data-level="1.3.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#estimación-del-modelo"><i class="fa fa-check"></i><b>1.3.2</b> Estimación del modelo</a></li>
+<li class="chapter" data-level="1.3.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#diagnosis-validación-y-contrastación"><i class="fa fa-check"></i><b>1.3.3</b> Diagnosis, validación y contrastación</a></li>
+<li class="chapter" data-level="1.3.4" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#predicción"><i class="fa fa-check"></i><b>1.3.4</b> Predicción</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="mineria-textos.html"><a href="mineria-textos.html"><i class="fa fa-check"></i><b>2</b> Minería de textos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="mineria-textos.html"><a href="mineria-textos.html#introducción"><i class="fa fa-check"></i><b>2.1</b> Introducción</a></li>
+<li class="chapter" data-level="2.2" data-path="mineria-textos.html"><a href="mineria-textos.html#secCONCEPTOS"><i class="fa fa-check"></i><b>2.2</b> Conceptos y tareas fundamentales</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="mineria-textos.html"><a href="mineria-textos.html#preparación-de-los-datos"><i class="fa fa-check"></i><b>2.2.1</b> Preparación de los datos</a></li>
+<li class="chapter" data-level="2.2.2" data-path="mineria-textos.html"><a href="mineria-textos.html#secTOKEN"><i class="fa fa-check"></i><b>2.2.2</b> Segmentación del texto: tokenización</a></li>
+<li class="chapter" data-level="2.2.3" data-path="mineria-textos.html"><a href="mineria-textos.html#secESTILOM"><i class="fa fa-check"></i><b>2.2.3</b> Campos de aplicación de la minería de textos</a></li>
+<li class="chapter" data-level="2.2.4" data-path="mineria-textos.html"><a href="mineria-textos.html#minería-de-textos-en-r"><i class="fa fa-check"></i><b>2.2.4</b> Minería de textos en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="mineria-textos.html"><a href="mineria-textos.html#secSENTIM"><i class="fa fa-check"></i><b>2.3</b> Análisis de sentimientos</a></li>
+<li class="chapter" data-level="2.4" data-path="mineria-textos.html"><a href="mineria-textos.html#caso-de-aplicación"><i class="fa fa-check"></i><b>2.4</b> Caso de aplicación</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="mineria-textos.html"><a href="mineria-textos.html#declaración-institucional-del-estado-de-alarma-2020"><i class="fa fa-check"></i><b>2.4.1</b> Declaración institucional del estado de alarma 2020</a></li>
+<li class="chapter" data-level="2.4.2" data-path="mineria-textos.html"><a href="mineria-textos.html#segmentación-en-palabras-y-oraciones"><i class="fa fa-check"></i><b>2.4.2</b> Segmentación en palabras y oraciones</a></li>
+<li class="chapter" data-level="2.4.3" data-path="mineria-textos.html"><a href="mineria-textos.html#análisis-exploratorio"><i class="fa fa-check"></i><b>2.4.3</b> Análisis exploratorio</a></li>
+<li class="chapter" data-level="2.4.4" data-path="mineria-textos.html"><a href="mineria-textos.html#secSENTYEMO"><i class="fa fa-check"></i><b>2.4.4</b> Análisis de sentimientos y detección de emociones</a></li>
+<li class="chapter" data-level="2.4.5" data-path="mineria-textos.html"><a href="mineria-textos.html#n-gramas"><i class="fa fa-check"></i><b>2.4.5</b> <em>N-gramas</em></a></li>
+<li class="chapter" data-level="2.4.6" data-path="mineria-textos.html"><a href="mineria-textos.html#análisis-de-redes"><i class="fa fa-check"></i><b>2.4.6</b> Análisis de redes</a></li>
+<li class="chapter" data-level="" data-path="mineria-textos.html"><a href="mineria-textos.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="grafos.html"><a href="grafos.html"><i class="fa fa-check"></i><b>3</b> Análisis de grafos y redes sociales</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="grafos.html"><a href="grafos.html#introducción-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
+<li class="chapter" data-level="3.2" data-path="grafos.html"><a href="grafos.html#teoría-de-grafos"><i class="fa fa-check"></i><b>3.2</b> Teoría de grafos</a></li>
+<li class="chapter" data-level="3.3" data-path="grafos.html"><a href="grafos.html#elementos-de-un-grafo"><i class="fa fa-check"></i><b>3.3</b> Elementos de un grafo</a></li>
+<li class="chapter" data-level="3.4" data-path="grafos.html"><a href="grafos.html#el-paquete-igraph"><i class="fa fa-check"></i><b>3.4</b> El paquete <code>igraph</code></a></li>
+<li class="chapter" data-level="3.5" data-path="grafos.html"><a href="grafos.html#análisis-de-influencia-en-un-grafo-aplicado-a-redes-sociales"><i class="fa fa-check"></i><b>3.5</b> Análisis de influencia en un grafo aplicado a redes sociales</a></li>
+<li class="chapter" data-level="3.6" data-path="grafos.html"><a href="grafos.html#otras-utilidades-de-grafos"><i class="fa fa-check"></i><b>3.6</b> Otras utilidades de grafos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html"><i class="fa fa-check"></i><b>4</b> Aplicaciones webs interactivas con Shiny</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#introducción-2"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#partes-mínimas-de-una-aplicación-shiny-y-disposición-básica"><i class="fa fa-check"></i><b>4.2</b> Partes mínimas de una aplicación <code>Shiny</code> y disposición básica</a></li>
+<li class="chapter" data-level="4.3" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#diseño-de-una-aplicación-shiny"><i class="fa fa-check"></i><b>4.3</b> Diseño de una aplicación <code>Shiny</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#diseño-de-las-páginas-fluidpage"><i class="fa fa-check"></i><b>4.3.1</b> Diseño de las páginas: fluidPage()</a></li>
+<li class="chapter" data-level="4.3.2" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#segmentación-de-diseños-tabsetpanel-y-navlistpanel"><i class="fa fa-check"></i><b>4.3.2</b> Segmentación de diseños: tabsetPanel() y navlistPanel()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#elementos-para-entrada-de-datos"><i class="fa fa-check"></i><b>4.4</b> Elementos para entrada de datos</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#lectura-de-ficheros-de-datos"><i class="fa fa-check"></i><b>4.4.1</b> Lectura de ficheros de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#elementos-para-visualización-salida"><i class="fa fa-check"></i><b>4.5</b> Elementos para visualización (salida)</a></li>
+<li class="chapter" data-level="4.6" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#reactividad"><i class="fa fa-check"></i><b>4.6</b> Reactividad</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#conductores-reactivos-y-control-de-la-reactividad"><i class="fa fa-check"></i><b>4.6.1</b> Conductores reactivos y control de la reactividad</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#publicación-de-la-aplicación-en-la-web"><i class="fa fa-check"></i><b>4.7</b> Publicación de la aplicación en la web</a></li>
+<li class="chapter" data-level="4.8" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#extensiones-de-shiny"><i class="fa fa-check"></i><b>4.8</b> Extensiones de <code>Shiny</code></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://blog.uclm.es/tp-mbsba/"> Ciencia de datos con R </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fundamentos de ciencia de datos con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Fundamentos de ciencia de datos con R</h1>
+<p class="author"><em>Gema Fernández-Avilés y José-María Montero</em></p>
+<p class="date"><em>2022-12-02</em></p>
+</div>
+<div id="modelización-de-series-temporales" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Capítulo 1</span> Modelización de series temporales<a href="modelización-de-series-temporales.html#modelización-de-series-temporales" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Mª Carmen García Centeno</em></p>
+<div id="conceptos-básicos" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Conceptos básicos<a href="modelización-de-series-temporales.html#conceptos-básicos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El análisis de series temporales es muy útil para analizar tendencias y comportamiento de datos. Con dicho análisis, se tratará de obtener modelos que expliquen su dinámica y puedan utilizarse para predecir valores futuros y tomar decisiones de la forma más efectiva posible.</p>
+<p>Una serie temporal se puede definir como el conjunto de valores observados, en periodos consecutivos de tiempo de la misma amplitud, correspondientes a distintas variables aleatorias. Algunos conceptos claves sobre los que se fundamenta el análisis de series temporales son los siguientes:</p>
+<ol start="5" style="list-style-type: decimal">
+<li><p><strong>Función de autocorrelación parcial de un proceso estocástico (PACF)</strong>. Está formada por el conjunto de las correlaciones parciales obtenidas para los distintos valores de k. Así, para dos valores de una serie temporal <span class="math inline">\(Y_t\)</span> e <span class="math inline">\(Y_{t-k}\)</span>, mide la correlación existente entre ellos ajustada del efecto de los periodos intermedios (<span class="math inline">\(Y_{t-1},Y_{t-2},..., Y_{t-(k-1)}\)</span>).</p></li>
+<li><p><strong>Ergodicidad</strong>. Un proceso estocástico es ergódico cuando a partir de un determinado desfase temporal entre las variables, la relación existente entre ellas tiende a desaparecer. Es decir, las covarianzas y el coeficiente de correlación tienden a cero, (<span class="math inline">\(\lim\limits_{k \to \infty}\gamma(k)=0\)</span> y <span class="math inline">\(\lim\limits_{k \to \infty}\rho(k)=0\)</span>).</p></li>
+<li><p><strong>Ruido blanco</strong>. Es un proceso puramente aleatorio que se puede expresar de la siguiente forma:
+<span class="math display">\[Y_t=a_t\]</span>
+Se caracteriza por tener esperanza nula, varianza constante y covarianzas nulas. Es decir,
+<span class="math display">\[E(a_t)=0 \quad\forall t;  \quad E(a_t^2)=\sigma^2 \quad\forall t;\quad  E(a_ta_s)=0 \quad\forall t\neq s\]</span></p></li>
+</ol>
+</div>
+<div id="modelos-arima" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Modelos ARIMA<a href="modelización-de-series-temporales.html#modelos-arima" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una de las metodologías utilizadas para modelizar el comportamiento de las series temporales son los modelos ARIMA (AutoRegresive Integrated Moving Average) desarrollados por Box y Jenkins. Estos modelos tratan de captar la dinámica y la dependencia que existe entre los datos de una serie temporal, <span class="citation">(<a href="#ref-Hamilton1994" role="doc-biblioref"><strong>Hamilton1994?</strong></a>)</span>, <span class="citation">(<a href="#ref-Uriel2000" role="doc-biblioref"><strong>Uriel2000?</strong></a>)</span>, <span class="citation">(<a href="#ref-Cryer2008" role="doc-biblioref"><strong>Cryer2008?</strong></a>)</span>, <span class="citation">(<a href="#ref-Pemberton2011" role="doc-biblioref"><strong>Pemberton2011?</strong></a>)</span>, <span class="citation">(<a href="#ref-Minguez2011" role="doc-biblioref"><strong>Minguez2011?</strong></a>)</span>, <span class="citation">(<a href="#ref-Brockwell2016" role="doc-biblioref"><strong>Brockwell2016?</strong></a>)</span>, <span class="citation">(<a href="#ref-Shumway2017" role="doc-biblioref"><strong>Shumway2017?</strong></a>)</span>.</p>
+<p>En la modelización ARIMA se pueden destacar varias fases. La primera se centra en la <strong>identificación</strong> del modelo ARIMA más adecuado que ha podido generar los datos de la serie temporal. En ella, hay que decidir los órdenes del proceso tanto de la parte regular como de la estacional. Las funciones de autocorrelación simple (ACF) y parcial (PACF) desempeñan un papel clave en la identificación de estos órdenes. También en esta fase, es necesario comprobar si las series son estacionarias. En el caso de que no lo sean, se realizarán las transformaciones necesarias para convertirla en estacionaria. Las dos razones fundamentales por las cuales puede no ser estacionaria se deben a que la media o la varianza no se mantengan constantes. Si la serie no sea estacionaria en varianza, de las transformaciones posibles de Box-Cox se utilizará la transformación logarítmica. Si la serie no es estacionaria en media, puede ser debido a la existencia de tendencia o de estacionalidad. En el caso de tendencia se calcularán diferencias regulares (una o dos como máximo, según el tipo de tendencia lineal o no lineal, respectivamente) y en el caso de estacionalidad, se calculará una diferencia estacional como máximo para convertirla en estacionaria.</p>
+<p>Después de proponer el modelo en la segunda fase se procede a su <strong>estimación</strong>. En esta fase, se obtienen los valores de los parámetros correspondientes al modelo propuesto, así como, sus desviaciones típicas y los residuos del modelo. Posteriormente, en la fase de <strong>validación o diagnóstico</strong> se realizarñan, por un lado, los contrastes necesarios que permitan determinar si el modelo propuesto es adecuado o no. Y, por otro, comprobar si los residuos del modelo siguen un proceso ruido blanco o no. En el caso de que no lo sean será necesario corregir el modelo con la información proporcionada por los residuos hasta obtener un modelo cuyos residuos sean ruido blanco. Finalmente, se procederá a la utilización del modelo para <strong>predecir</strong>.</p>
+</div>
+<div id="análisis-de-series-temporales-con-r" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Análisis de series temporales con R<a href="modelización-de-series-temporales.html#análisis-de-series-temporales-con-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Las librerías necesarios en la modelización de series temporales con R son:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="modelización-de-series-temporales.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tseries)</span>
+<span id="cb1-2"><a href="modelización-de-series-temporales.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(astsa)</span>
+<span id="cb1-3"><a href="modelización-de-series-temporales.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
+<span id="cb1-4"><a href="modelización-de-series-temporales.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-5"><a href="modelización-de-series-temporales.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb1-6"><a href="modelización-de-series-temporales.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
+<span id="cb1-7"><a href="modelización-de-series-temporales.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-8"><a href="modelización-de-series-temporales.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>Posteriormente es necesario cargar los datos. Como se ha comentado en capítulos anteriores los datos pueden tener diferente formato (csv, Excel, etc.). En este caso, se utilizarán datos mensuales del INE (www.ine.es) correspondientes al IPC general en el periodo muestral comprendido entre enero de 2002 y marzo de 2022, en formato Excel. La fecha en la que se observan los datos está incluida en la primera columna de este fichero. Los datos se leerán de la siguiente forma:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="modelización-de-series-temporales.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(CDR)</span></span>
+<span id="cb2-2"><a href="modelización-de-series-temporales.html#cb2-2" aria-hidden="true" tabindex="-1"></a>ipc <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/ipc.xlsx&quot;</span>)</span></code></pre></div>
+<p>Si los datos se cargan sin fecha, para trabajar con series temporales es necesario ponerle la fecha. Por ejemplo, para series mensuales, el código sería:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="modelización-de-series-temporales.html#cb3-1" aria-hidden="true" tabindex="-1"></a>ipc_ts <span class="ot">&lt;-</span> <span class="fu">ts</span>(ipc<span class="sc">$</span>ipc, <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">2002</span>, <span class="dv">1</span>), <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">2022</span>, <span class="dv">3</span>), <span class="at">frequency =</span> <span class="dv">12</span>)</span></code></pre></div>
+<p>La representación gráfica de la serie original, puede ayudar a saber si la serie ha sido generada por un proceso estacionario o no. Para obtener este gráfico, se ejecutará el siguiente código:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="modelización-de-series-temporales.html#cb4-1" aria-hidden="true" tabindex="-1"></a>ipc<span class="sc">$</span>Time <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(ipc<span class="sc">$</span>Time)</span>
+<span id="cb4-2"><a href="modelización-de-series-temporales.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb4-3"><a href="modelización-de-series-temporales.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ipc,</span>
+<span id="cb4-4"><a href="modelización-de-series-temporales.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> ipc)</span>
+<span id="cb4-5"><a href="modelización-de-series-temporales.html#cb4-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="modelización-de-series-temporales.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="Ciencia_de_datos_con_r_files/figure-html/Serie_ipc-1.png" alt="Evolución del IPC. Perido muestral: Enero 2002 - Marzo 2022" width="60%" />
+<p class="caption">
+(#fig:Serie_ipc)Evolución del IPC. Perido muestral: Enero 2002 - Marzo 2022
+</p>
+</div>
+<p>También puede ayudar a determinar si la serie es estacionario o no, la descomposición en tendencia, componente estacional estacional, componente cíclico e irregular de la serie del IPC y su representación gráfica.
+</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="modelización-de-series-temporales.html#cb5-1" aria-hidden="true" tabindex="-1"></a>componentes_ts <span class="ot">&lt;-</span> <span class="fu">decompose</span>(ipc_ts)</span>
+<span id="cb5-2"><a href="modelización-de-series-temporales.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(componentes_ts)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot-decompose"></span>
+<img src="img/decompose.PNG" alt="Descomposición aditiva del IPC" width="60%" />
+<p class="caption">
+Figura 1.1: Descomposición aditiva del IPC
+</p>
+</div>
+<p>Tanto en el gráfico de la serie original del IPC como en su descomposición se aprecia que la serie tiene tendencia y componente estacional, por lo tanto, no es estacionaria en media. Tampoco lo es en varianza.</p>
+<p>Si una serie no es estacionaria ni en media ni en varianza, para evitar problemas de cálculo matemático, es necesario empezar corriguiendo la no estacionariedad en varianza y, posteriormente, la no estacionariedad en media.</p>
+<p>Las transformaciones de Box-Cox son las más utilizadas para corregir el problema de no estacionariedad en varianza. De todas estas transformaciones, la más habitual es el logaritmo. Así, para obtener la representación gráfica del logaritmo de <span class="math inline">\(Y_t\)</span>, se puede ejecutar el siguiente código:
+</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="modelización-de-series-temporales.html#cb6-1" aria-hidden="true" tabindex="-1"></a>logipc <span class="ot">&lt;-</span> <span class="fu">log10</span>(ipc_ts)</span>
+<span id="cb6-2"><a href="modelización-de-series-temporales.html#cb6-2" aria-hidden="true" tabindex="-1"></a>ts_logipc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">value =</span> logipc, <span class="at">Time =</span> <span class="fu">time</span>(logipc))</span>
+<span id="cb6-3"><a href="modelización-de-series-temporales.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb6-4"><a href="modelización-de-series-temporales.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ts_logipc,</span>
+<span id="cb6-5"><a href="modelización-de-series-temporales.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> logipc)</span>
+<span id="cb6-6"><a href="modelización-de-series-temporales.html#cb6-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="modelización-de-series-temporales.html#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lipc"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/lipc-1.png" alt="Logaritmo del IPC" width="60%" />
+<p class="caption">
+Figura 1.2: Logaritmo del IPC
+</p>
+</div>
+<p>Como se observa en el gráfico del logaritmo del IPC, la serie sigue sin ser estacionaria en media, ya que, tiene estacionalidad y una tendencia creciente. Para correguir la tendencia, se calculará una diferencia regular del logaritmo del IPC <span class="math inline">\((dlogipc_{t} = log(ipc_t) - log(ipc_{t-1})\)</span>. El código para calcular esta diferencia regulgar y su represenación gráfica es:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="modelización-de-series-temporales.html#cb7-1" aria-hidden="true" tabindex="-1"></a>dlogipc <span class="ot">&lt;-</span> <span class="fu">diff</span>(logipc, <span class="at">differences =</span> <span class="dv">1</span>)</span>
+<span id="cb7-2"><a href="modelización-de-series-temporales.html#cb7-2" aria-hidden="true" tabindex="-1"></a>ts_dlogipc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">value =</span> dlogipc, <span class="at">Time =</span> <span class="fu">time</span>(dlogipc))</span>
+<span id="cb7-3"><a href="modelización-de-series-temporales.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb7-4"><a href="modelización-de-series-temporales.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ts_dlogipc,</span>
+<span id="cb7-5"><a href="modelización-de-series-temporales.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> dlogipc)</span>
+<span id="cb7-6"><a href="modelización-de-series-temporales.html#cb7-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="modelización-de-series-temporales.html#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:g-dlipc"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/g-dlipc-1.png" alt="Diferencia regular del Logaritmo del IPC" width="60%" />
+<p class="caption">
+Figura 1.3: Diferencia regular del Logaritmo del IPC
+</p>
+</div>
+<p>Para correguir la estacionalidad, se calculará una diferencia estacional <span class="math inline">\((d12logipc_{t} = log(ipc_t) - log(ipc_{t-12})\)</span>. El código para calcular esta diferencia estacional y su represenación gráfica es:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="modelización-de-series-temporales.html#cb8-1" aria-hidden="true" tabindex="-1"></a>d12dlogipc <span class="ot">&lt;-</span> <span class="fu">diff</span>(dlogipc, <span class="dv">12</span>)</span>
+<span id="cb8-2"><a href="modelización-de-series-temporales.html#cb8-2" aria-hidden="true" tabindex="-1"></a>ts_d12dlogipc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">value =</span> d12dlogipc, <span class="at">Time =</span> <span class="fu">time</span>(d12dlogipc))</span>
+<span id="cb8-3"><a href="modelización-de-series-temporales.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ts_d12dlogipc, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> d12dlogipc)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="modelización-de-series-temporales.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-5"><a href="modelización-de-series-temporales.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:g-d12dlipc"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/g-d12dlipc-1.png" alt="Diferencia estacional de la diferencia regular del Logaritmo del IPC" width="60%" />
+<p class="caption">
+Figura 1.4: Diferencia estacional de la diferencia regular del Logaritmo del IPC
+</p>
+</div>
+<p>También, para comprobar si la serie es estacionaria en media o no, se puede utilizar el test de raíces unitarias de Dickey-Fuller. La hipótesis nula de este contraste implica la existencia de raíces unitarias y, por lo tanto, que la serie no es estacionaria, mientras que la hipótesis alternativa implica que sí es estacionaria. Si se realiza el test el test sobre la serie original (ipc_ts) y sobre la serie transformada del IPC (d12dLogIPC), se puede comprobar que esta última es la transformación estacionaria. El código utilizado para realizar este contraste es:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="modelización-de-series-temporales.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">adf.test</span>(ipc_ts)</span>
+<span id="cb9-2"><a href="modelización-de-series-temporales.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-3"><a href="modelización-de-series-temporales.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Augmented Dickey-Fuller Test</span></span>
+<span id="cb9-4"><a href="modelización-de-series-temporales.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-5"><a href="modelización-de-series-temporales.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  ipc_ts</span></span>
+<span id="cb9-6"><a href="modelización-de-series-temporales.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dickey-Fuller = -1.8396, Lag order = 6, p-value = 0.6433</span></span>
+<span id="cb9-7"><a href="modelización-de-series-temporales.html#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: stationary</span></span>
+<span id="cb9-8"><a href="modelización-de-series-temporales.html#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">adf.test</span>(d12dlogipc)</span>
+<span id="cb9-9"><a href="modelización-de-series-temporales.html#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-10"><a href="modelización-de-series-temporales.html#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Augmented Dickey-Fuller Test</span></span>
+<span id="cb9-11"><a href="modelización-de-series-temporales.html#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-12"><a href="modelización-de-series-temporales.html#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  d12dlogipc</span></span>
+<span id="cb9-13"><a href="modelización-de-series-temporales.html#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dickey-Fuller = -3.3727, Lag order = 6, p-value = 0.06002</span></span>
+<span id="cb9-14"><a href="modelización-de-series-temporales.html#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: stationary</span></span></code></pre></div>
+<p>Teniendo en cuenta el p-valor para los valores originales del IPC, para un nivel de significación del 5%, se acepta la hipótesis nula (y, por lo tanto, la serie no es estacionaria). Sin embargo, para la transformación estacionaria (d12dLogipc) se rechaza la <span class="math inline">\(H_0\)</span>. Por lo tanto, se puede concluir que dicha transformación la ha convertido en estacionaria.</p>
+<div id="identificación-o-especificación-del-modelo" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Identificación o especificación del modelo<a href="modelización-de-series-temporales.html#identificación-o-especificación-del-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Obtenida la transformación estacionaria, es necesario, calcular las funciones de autocorrelación simple (ACF) y parcial (PACF) estimadas. A partir de ellas se especificará el modelo más adecuado para la serie del IPC en el periodo muestral analizado.</p>
+<p>Los códigos R para ejecutar los comandos que permiten calcular la ACF y PACF de la transformación estacionaria del IPC, con 40 retardos, son respectivamente:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="modelización-de-series-temporales.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(<span class="fu">ts</span>(d12dlogipc, <span class="at">frequency =</span> <span class="dv">1</span>), <span class="at">lag.max =</span> <span class="dv">40</span>, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gacf-d12dlipc"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/gacf-d12dlipc-1.png" alt="ACF. Función de autocorrelación simple de d12dLogIPC" width="60%" />
+<p class="caption">
+Figura 1.5: ACF. Función de autocorrelación simple de d12dLogIPC
+</p>
+</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="modelización-de-series-temporales.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(<span class="fu">ts</span>(d12dlogipc, <span class="at">frequency =</span> <span class="dv">1</span>), <span class="at">lag.max =</span> <span class="dv">40</span>, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gpacf-d12dlipc"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/gpacf-d12dlipc-1.png" alt="PACF. Función de autocorrelación parcial de d12dLogIPC" width="60%" />
+<p class="caption">
+Figura 1.6: PACF. Función de autocorrelación parcial de d12dLogIPC
+</p>
+</div>
+<p>Conseguida la transformación estacionaria, estas funciones son muy útiles para identificar los ordenes p y q de los procesos puros autorregresivo (AR(p)), de móviles (MA(q)) o mixto ARMA(p,q) de la parte regular. Del mismo modo, se procederá con órdenes P y Q correspondientes a los modelos SAR(P), SMA(Q) o SARMA(P,Q) de la parte estacional (por ejemplo, en el caso de series mensuales, habría que fijarse en los coeficientes correspondientes a los retardos 12, 24, 36, etc. para identificar el modelo de la parte estacional). El comportamiento de estas funciones según el tipo de modelo es el siguiente:</p>
+<ul>
+<li><p>En un MA(q) o SMA(Q):</p>
+<ul>
+<li><p>La función de autocorrelación simple muestral (ACF) se anula para órdenes superiores a q (o de Q en el caso estacional). Es decir, solo los q primeros coeficientes son significativos (o Q en el caso estacional). El resto de los coeficientes son nulos (o estadísticamente nulos en el caso de la ACF muestral).</p></li>
+<li><p>La función de autocorrelación parcial muestral (PACF) decrece de forma exponencial o de forma sinusoidal hacía cero.</p></li>
+</ul></li>
+</ul>
+<p><strong>Ejemplo de la ACF y PAC teóricas, para un proceso estacionario (Yt), generado por un medias móviles de primer orden o MA(1)</strong>.</p>
+<p>La ecuación que describe la dinámica de un modelo MA(1) o ARMA(0,1) es:</p>
+<p><span class="math display">\[Y_t=a_t-\theta a_{t-1}=a_t(1-\theta L)\]</span></p>
+<p>Donde, <span class="math inline">\(L\)</span> es el operador de retardos y <span class="math inline">\(a_t\)</span> es un ruido blanco, es decir: <span class="math inline">\(E(a_t)=0 \;\forall t\)</span>; <span class="math inline">\(E(a_t^2)=\sigma^2 \; \forall t\)</span>; <span class="math inline">\(E(a_ta_s)=0 \quad\forall t\neq s\)</span>.</p>
+<p>Este modelo siempre es estacionario y para que sea invertible es necesario que las raíces del polinomio estén fuera del circulo unidad o lo que es lo mismo que <span class="math inline">\(|\theta|&lt;1\)</span>.</p>
+<p>La función de autocorrelación (ACF) es:</p>
+<p><span class="math display">\[
+\rho(k)=\left\{
+\begin{array}{ll}
+\frac{-\theta}{(1+\theta^2)} &amp; \text{si } k=1 \\
+0   &amp;  \text{}\forall k&gt;1
+\end{array}
+\right.
+\]</span></p>
+<p>La función de autocorrelación parcial (PACF) se obtiene de la siguiente forma:
+<span class="math display">\[
+\phi_{kk}=\frac{-\theta^k(1-\theta^2)}{1-\theta^{2(k+1)}}\quad \text {para} \quad k\geq 1
+\]</span></p>
+<ul>
+<li><p>En un AR(p) o SAR(P):</p>
+<ul>
+<li><p>La ACF decrece rápidamente de forma exponencial o sinusoidal hacia cero.</p></li>
+<li><p>La PACF se anula para órdenes superiores a p (o de P, en el caso estacional). Es decir, solo los p (o P en el caso estacional) primeros coeficientes son significativos. El resto de los coeficientes son nulos (o estadísticamente nulos si se analiza la PACF muestral).</p></li>
+</ul></li>
+</ul>
+<p><strong>Ejemplo de la ACF y PAC teóricas, para un proceso estacionario (Yt), generado por un autorregresivo de primer orden o AR(1)</strong>.</p>
+<p>La ecuación que describe la dinámica de un modelo AR(1) o ARMA(1,0) es:</p>
+<p><span class="math display">\[Y_t=\phi Y_{t-1}+ a_t\]</span></p>
+<p>O bien en forma polinómica: <span class="math inline">\(Y_t(1-\phi L)=a_t\)</span></p>
+<p>Donde, <span class="math inline">\(L\)</span> es el operador de retardos y <span class="math inline">\(a_t\)</span> es un ruido blanco.</p>
+<p>Este modelo siempre es invertible y para que sea estacionario es necesario que las raíces del polinomio de retardos estén fuera del circulo unidad o lo que es lo mismo que <span class="math inline">\(|\phi|&lt;1\)</span>.</p>
+<p>La función de autocorrelación (ACF) es:</p>
+<p><span class="math display">\[
+\rho(k)=\phi\rho(k-1)=\phi^k
+\]</span></p>
+<p>La PACF se obtiene de la siguiente forma:</p>
+<p><span class="math display">\[
+\phi_{kk}=\left\{
+\begin{array}{ll}
+\rho_1=\phi &amp; \text{si } k=1 \\
+0   &amp;  \text{}\forall k&gt;1
+\end{array}
+\right.
+\]</span></p>
+<ul>
+<li><p>En un ARMA(p,q) o SARMA(P,Q):</p>
+<ul>
+<li><p>La ACF tiene un comportamiento irregular en los q (o de Q en el caso estacional) coeficientes. A partir del orden q (o de Q en el caso estacional), se comporta como la de un AR(p) (o un SAR(P) en el caso estacional).</p></li>
+<li><p>La PACF tiene un comportamiento irregular en los p coeficientes (o de P en el caso estacional). A partir del orden p (o de orden P en el caso estacional), se comporta como la de un MA(q) (o de un SMA(Q) en el caso estacional).</p></li>
+</ul></li>
+</ul>
+<p><strong>Ejemplo de la ACF y PAC teóricas, para un proceso estacionario (Yt), que sigue un ARMA(1,1)</strong>.</p>
+<p>La ecuación que describe la dinámica de un modelo ARMA(1,1) es:</p>
+<p><span class="math inline">\(Y_t=\phi Y_{t-1}+ a_t-\theta a_{t-1}\)</span> o bien en forma polinómica, <span class="math inline">\(Y_t(1-\phi L)=(1-\theta L)a_t\)</span></p>
+<p>Donde, <span class="math inline">\(L\)</span> es el operador de retardos y <span class="math inline">\(a_t\)</span> es un ruido blanco.</p>
+<p>Para que sea estacionario es necesario que las raíces del polinomio de la parte autorregresiva estén fuera del círculo unidad (o que <span class="math inline">\(|\phi|&lt;1\)</span>).</p>
+<p>Para que sea invertible es necesario que las raíces del polinomio de las medias móviles estén fuera del círculo unidad (o que <span class="math inline">\(|\theta |&lt;1\)</span>).</p>
+<p>Además, es necesario que no existan raíces comunes, es decir, <span class="math inline">\(\phi \neq \theta\)</span>.</p>
+<p>La ACF es igual a:</p>
+<p><span class="math display">\[
+\rho(k)=\left\{
+\begin{array}{ll}
+\frac{(1-\phi\theta)(\phi-\theta)}{1+\theta^2-2\phi\theta} &amp; \text{si } k=1 \\
+\phi\rho(k-1)   &amp;  \text{}\forall k&gt;1
+\end{array}
+\right.
+\]</span></p>
+<p>La función de autocorrelación parcial (FACP) se obtiene:</p>
+<p><span class="math display">\[
+\begin{array}{l}
+\phi_{11}=\rho_1 \\
+\\
+\phi_{22}=\frac{\begin{vmatrix} 1&amp;\rho_1 \\ \rho_1 &amp;\rho_2\end{vmatrix}}{{\begin{vmatrix} 1&amp;\rho_1 \\ \rho_1 &amp;1\end{vmatrix}}}=\frac{\rho_2-\rho_1^2}{1-\rho_1^2}\\
+\\
+\phi_{33}=\frac{\begin{vmatrix} 1&amp;\rho_1&amp;\rho_1 \\ \rho_1 &amp;1&amp;\rho_2\\\rho_2 &amp;\rho_1&amp;\rho_3\end{vmatrix}}{{\begin{vmatrix} 1&amp;\rho_1&amp;\rho_2 \\ \rho_1 &amp;1&amp;\rho_1\\\rho_2 &amp;\rho_1&amp;1 \end{vmatrix}}}=\frac{\rho_1^3-\rho_1\rho_2(2-\rho_2)+\rho_3(1-\rho_1^2)}{1-\rho_2^2-2\rho_1^2(1-\rho_2)}\\
+\\
+\vdots
+\end{array}
+\]</span></p>
+<p>Tendiendo en cuenta lo anterior, en el caso concreto del IPC, si se analiza el comportamiento de las ACF y PACF muestrales obtenidas para la transformación estacionaria, el modelo ARIMA sería un ARIMA(1,1,0)(0,1,1)12 o SARIMA(1,1,0)(0,1,1).</p>
+</div>
+<div id="estimación-del-modelo" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Estimación del modelo<a href="modelización-de-series-temporales.html#estimación-del-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para estimar los parámetros del modelo, ya que, el modelo es no lineal, se utiliza un procedimiento iterativo de estimación no lineal. El código en R que permite obtener las estimaciones de los parámetros y sus desviaciones típicas correspondiente al modelo propuesto es:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="modelización-de-series-temporales.html#cb12-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">arima</span>(ipc_ts, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb12-2"><a href="modelización-de-series-temporales.html#cb12-2" aria-hidden="true" tabindex="-1"></a>modelo</span>
+<span id="cb12-3"><a href="modelización-de-series-temporales.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-4"><a href="modelización-de-series-temporales.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb12-5"><a href="modelización-de-series-temporales.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; arima(x = ipc_ts, order = c(1, 1, 0), seasonal = c(0, 1, 1))</span></span>
+<span id="cb12-6"><a href="modelización-de-series-temporales.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-7"><a href="modelización-de-series-temporales.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb12-8"><a href="modelización-de-series-temporales.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          ar1     sma1</span></span>
+<span id="cb12-9"><a href="modelización-de-series-temporales.html#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       0.4665  -0.8302</span></span>
+<span id="cb12-10"><a href="modelización-de-series-temporales.html#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; s.e.  0.0701   0.0860</span></span>
+<span id="cb12-11"><a href="modelización-de-series-temporales.html#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-12"><a href="modelización-de-series-temporales.html#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sigma^2 estimated as 0.1082:  log likelihood = -77.76,  aic = 161.51</span></span></code></pre></div>
+</div>
+<div id="diagnosis-validación-y-contrastación" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Diagnosis, validación y contrastación<a href="modelización-de-series-temporales.html#diagnosis-validación-y-contrastación" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En la metodología ARIMA desarrollada por Box y Jenkins es necesario determinar si el modelo propuesto es correcto o no y si se ajusta o no, correctamente, a los datos de la muestra. Para ello, fundamentalmente, es necesario comprobar que:</p>
+<ol style="list-style-type: decimal">
+<li>Los parámetros del modelo cumplen con las condiciones de estacionariedad e invertibilidad.</li>
+</ol>
+<p>El modelo estimado para el IPC, es estacionario e invertible, ya que, el AR(1) estimado para la parte regular es invertible y como el parámetro estimado es <span class="math inline">\(|0.4665| &lt;1\)</span>, también es estacionario. La parte estacional sigue un SMA(1) que es estacionario y como el parámetro estimado <span class="math inline">\(|-0.8302|&lt;1\)</span>, también es invertible.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Los parámetros estimados son estadísticamente significativos.</li>
+</ol>
+<p>Para comprobar si los parámetros son estadísticamente significativos o no. O también, para comprobar si se ha sobreparametrizado o infraparametrizado, se realiza un contraste de significatividad individual para cada uno de ellos. Por ejemplo, para el parámetro del AR(1) sería:
+<span class="math display">\[
+\begin{array}{l}
+H_0:\phi=0 \\
+H_1:\phi\neq 0
+\end{array}
+\]</span></p>
+<p>Para realizar el contraste se utiliza el estadístico <span class="math inline">\(t\)</span> que sigue una distribución t-Student con <span class="math inline">\((n-k)\)</span> grados de libertad. Este estadístico t se calcula dividiendo el valor estimado del parámetro entre su correspondiente error estándar. En concreto para los parámetros estimados de este modelo sería:</p>
+<p><span class="math display">\[
+t=\frac{0,4675}{0,0701} = 6,669 \quad y\quad |t|=|\frac{-0,8302}{0,0860}|=9,653
+\]</span></p>
+<p>Como, para un nivel de significación del 5% y los grados de libertad, el valor de la t-Student es aproximadamente 1,96, se rechaza la <span class="math inline">\(H_0\)</span> y, por lo tanto, son estadísticamente distintos de cero.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Los residuos del modelo son ruido blanco.</li>
+</ol>
+<p>En la fase de validación es necesario comprobar que los residuos del modelo estimado son consistentes con el supuesto de ruido blanco. El siguiente código R, permite obtener los residuos,
+</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="modelización-de-series-temporales.html#cb13-1" aria-hidden="true" tabindex="-1"></a>residuos <span class="ot">&lt;-</span> <span class="fu">residuals</span>(modelo)</span>
+<span id="cb13-2"><a href="modelización-de-series-temporales.html#cb13-2" aria-hidden="true" tabindex="-1"></a>ts_residuos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">value =</span> residuos, <span class="at">Time =</span> <span class="fu">time</span>(residuos))</span>
+<span id="cb13-3"><a href="modelización-de-series-temporales.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ts_residuos, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> residuos)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="modelización-de-series-temporales.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb13-5"><a href="modelización-de-series-temporales.html#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gresiduos"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/gresiduos-1.png" alt="Gráfico de los residuos" width="60%" />
+<p class="caption">
+Figura 1.7: Gráfico de los residuos
+</p>
+</div>
+<p>Para contrastar que los residuos están incorrelacionados y que se comportan como un ruido blanco, se puede utilizar el estadístico de Box-Ljung. En este caso concreto, su hipótesis nula, es que los primero 40 coeficientes de correlación son cero frente a la hipótesis alternativa de que no lo sean. Para un nivel de significación del 5%, se acepta <span class="math inline">\(H_0\)</span>, ya que, el p-valor de la X-squared es igual a 0.5448. El código R para obtener el test de Box-Ljung es,</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="modelización-de-series-temporales.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Box.test</span>(residuos, <span class="at">type =</span> <span class="st">&quot;Ljung-Box&quot;</span>)</span>
+<span id="cb14-2"><a href="modelización-de-series-temporales.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-3"><a href="modelización-de-series-temporales.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Box-Ljung test</span></span>
+<span id="cb14-4"><a href="modelización-de-series-temporales.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-5"><a href="modelización-de-series-temporales.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  residuos</span></span>
+<span id="cb14-6"><a href="modelización-de-series-temporales.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; X-squared = 0.36682, df = 1, p-value = 0.5447</span></span></code></pre></div>
+<p>Además, se puede calcular ACF y PACF de los residuos para comprobar que están incorrelacionados. Los correlogramas obtenidos, con el código siguiente, muestran que los residuos son ruido blanco.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="modelización-de-series-temporales.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span>
+<span id="cb15-2"><a href="modelización-de-series-temporales.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(<span class="fu">ts</span>(residuos, <span class="at">frequency =</span> <span class="dv">1</span>), <span class="at">lag.max =</span> <span class="dv">40</span>)</span>
+<span id="cb15-3"><a href="modelización-de-series-temporales.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(<span class="fu">ts</span>(residuos, <span class="at">frequency =</span> <span class="dv">1</span>), <span class="at">lag.max =</span> <span class="dv">40</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:g-acf-pacf-residuos"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/g-acf-pacf-residuos-1.png" alt="ACF y PACF estimadas de los residuos" width="60%" />
+<p class="caption">
+Figura 1.8: ACF y PACF estimadas de los residuos
+</p>
+</div>
+<p>También se debe comprobar la capacidad de ajuste del modelo comparando los valores observados y estimados, utilizando el código R siguiente:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="modelización-de-series-temporales.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ipc_ts, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb16-2"><a href="modelización-de-series-temporales.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(ipc_ts <span class="sc">-</span> modelo<span class="sc">$</span>residuals, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:g-ajuste"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/g-ajuste-1.png" alt="Ajuste con el modelo estimado" width="60%" />
+<p class="caption">
+Figura 1.9: Ajuste con el modelo estimado
+</p>
+</div>
+<p>Los criterios de información como el AIC se pueden utilizar para comparar entre diferentes modelos cuál se ajusta mejor a los datos. Así, será mejor el modelo que tenga un menor valor del criterio de información utilizado.</p>
+</div>
+<div id="predicción" class="section level3 hasAnchor" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Predicción<a href="modelización-de-series-temporales.html#predicción" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Después de comprobar que el modelo es adecuado se puede utilizar para predecir. Para obtener 12 predicciones, sus correspondientes intervalos de predicción al 80% y 95% de confianza y su representación gráfica, con el modelo ARIMA estimado, el código R que se puede utilizar es:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="modelización-de-series-temporales.html#cb17-1" aria-hidden="true" tabindex="-1"></a>forecast<span class="sc">::</span><span class="fu">forecast</span>(modelo, <span class="at">h =</span> <span class="dv">12</span>)</span>
+<span id="cb17-2"><a href="modelización-de-series-temporales.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95</span></span>
+<span id="cb17-3"><a href="modelización-de-series-temporales.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Apr 2022       109.7116 109.2900 110.1332 109.0668 110.3564</span></span>
+<span id="cb17-4"><a href="modelización-de-series-temporales.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; May 2022       110.5926 109.8443 111.3410 109.4481 111.7371</span></span>
+<span id="cb17-5"><a href="modelización-de-series-temporales.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Jun 2022       111.1030 110.0714 112.1346 109.5253 112.6806</span></span>
+<span id="cb17-6"><a href="modelización-de-series-temporales.html#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Jul 2022       110.5518 109.2748 111.8289 108.5987 112.5050</span></span>
+<span id="cb17-7"><a href="modelización-de-series-temporales.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Aug 2022       110.7714 109.2787 112.2641 108.4885 113.0543</span></span>
+<span id="cb17-8"><a href="modelización-de-series-temporales.html#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sep 2022       111.0288 109.3435 112.7140 108.4515 113.6060</span></span>
+<span id="cb17-9"><a href="modelización-de-series-temporales.html#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Oct 2022       111.9631 110.1034 113.8228 109.1189 114.8073</span></span>
+<span id="cb17-10"><a href="modelización-de-series-temporales.html#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Nov 2022       112.1740 110.1540 114.1939 109.0847 115.2632</span></span>
+<span id="cb17-11"><a href="modelización-de-series-temporales.html#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dec 2022       112.3896 110.2209 114.5583 109.0728 115.7064</span></span>
+<span id="cb17-12"><a href="modelización-de-series-temporales.html#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Jan 2023       111.6049 109.2968 113.9130 108.0750 115.1349</span></span>
+<span id="cb17-13"><a href="modelización-de-series-temporales.html#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Feb 2023       111.6666 109.2270 114.1061 107.9355 115.3976</span></span>
+<span id="cb17-14"><a href="modelización-de-series-temporales.html#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Mar 2023       112.5012 109.9369 115.0656 108.5794 116.4231</span></span>
+<span id="cb17-15"><a href="modelización-de-series-temporales.html#cb17-15" aria-hidden="true" tabindex="-1"></a>predicciones <span class="ot">&lt;-</span> forecast<span class="sc">::</span><span class="fu">forecast</span>(modelo, <span class="at">h =</span> <span class="dv">12</span>)</span>
+<span id="cb17-16"><a href="modelización-de-series-temporales.html#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(predicciones)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:prediccion"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/prediccion-1.png" alt="Predicciones con el modelo ARIMA(1,1,0)(0,1,1)12 estimado" width="60%" />
+<p class="caption">
+Figura 1.10: Predicciones con el modelo ARIMA(1,1,0)(0,1,1)12 estimado
+</p>
+</div>
+<div class="infobox_resume">
+<p><strong>RESUMEN</strong></p>
+<p>Los modelos univariantes de series temporales ARIMA son muy útiles para proponer el modelo que mejor capte la dinámica de una serie temporal. Fundamentalmente, se pueden utilizar para predicir y la toma de decisiones.</p>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="mineria-textos.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Ciencia_de_datos_con_r.pdf", "Ciencia_de_datos_con_r.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

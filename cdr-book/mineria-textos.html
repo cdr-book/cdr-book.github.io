@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 2 Minería de textos | Fundamentos de ciencia de datos con R</title>
+  <meta name="description" content="Falta hacer" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 2 Minería de textos | Fundamentos de ciencia de datos con R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Falta hacer" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 2 Minería de textos | Fundamentos de ciencia de datos con R" />
+  
+  <meta name="twitter:description" content="Falta hacer" />
+  
+
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero" />
+
+
+<meta name="date" content="2022-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="modelización-de-series-temporales.html"/>
+<link rel="next" href="grafos.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33KQ1S5ZCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-33KQ1S5ZCJ');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Ciencia de datos con <strong>R</strong></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html"><i class="fa fa-check"></i><b>1</b> Modelización de series temporales</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#conceptos-básicos"><i class="fa fa-check"></i><b>1.1</b> Conceptos básicos</a></li>
+<li class="chapter" data-level="1.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#modelos-arima"><i class="fa fa-check"></i><b>1.2</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="1.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#análisis-de-series-temporales-con-r"><i class="fa fa-check"></i><b>1.3</b> Análisis de series temporales con R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#identificación-o-especificación-del-modelo"><i class="fa fa-check"></i><b>1.3.1</b> Identificación o especificación del modelo</a></li>
+<li class="chapter" data-level="1.3.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#estimación-del-modelo"><i class="fa fa-check"></i><b>1.3.2</b> Estimación del modelo</a></li>
+<li class="chapter" data-level="1.3.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#diagnosis-validación-y-contrastación"><i class="fa fa-check"></i><b>1.3.3</b> Diagnosis, validación y contrastación</a></li>
+<li class="chapter" data-level="1.3.4" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#predicción"><i class="fa fa-check"></i><b>1.3.4</b> Predicción</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="mineria-textos.html"><a href="mineria-textos.html"><i class="fa fa-check"></i><b>2</b> Minería de textos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="mineria-textos.html"><a href="mineria-textos.html#introducción"><i class="fa fa-check"></i><b>2.1</b> Introducción</a></li>
+<li class="chapter" data-level="2.2" data-path="mineria-textos.html"><a href="mineria-textos.html#secCONCEPTOS"><i class="fa fa-check"></i><b>2.2</b> Conceptos y tareas fundamentales</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="mineria-textos.html"><a href="mineria-textos.html#preparación-de-los-datos"><i class="fa fa-check"></i><b>2.2.1</b> Preparación de los datos</a></li>
+<li class="chapter" data-level="2.2.2" data-path="mineria-textos.html"><a href="mineria-textos.html#secTOKEN"><i class="fa fa-check"></i><b>2.2.2</b> Segmentación del texto: tokenización</a></li>
+<li class="chapter" data-level="2.2.3" data-path="mineria-textos.html"><a href="mineria-textos.html#secESTILOM"><i class="fa fa-check"></i><b>2.2.3</b> Campos de aplicación de la minería de textos</a></li>
+<li class="chapter" data-level="2.2.4" data-path="mineria-textos.html"><a href="mineria-textos.html#minería-de-textos-en-r"><i class="fa fa-check"></i><b>2.2.4</b> Minería de textos en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="mineria-textos.html"><a href="mineria-textos.html#secSENTIM"><i class="fa fa-check"></i><b>2.3</b> Análisis de sentimientos</a></li>
+<li class="chapter" data-level="2.4" data-path="mineria-textos.html"><a href="mineria-textos.html#caso-de-aplicación"><i class="fa fa-check"></i><b>2.4</b> Caso de aplicación</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="mineria-textos.html"><a href="mineria-textos.html#declaración-institucional-del-estado-de-alarma-2020"><i class="fa fa-check"></i><b>2.4.1</b> Declaración institucional del estado de alarma 2020</a></li>
+<li class="chapter" data-level="2.4.2" data-path="mineria-textos.html"><a href="mineria-textos.html#segmentación-en-palabras-y-oraciones"><i class="fa fa-check"></i><b>2.4.2</b> Segmentación en palabras y oraciones</a></li>
+<li class="chapter" data-level="2.4.3" data-path="mineria-textos.html"><a href="mineria-textos.html#análisis-exploratorio"><i class="fa fa-check"></i><b>2.4.3</b> Análisis exploratorio</a></li>
+<li class="chapter" data-level="2.4.4" data-path="mineria-textos.html"><a href="mineria-textos.html#secSENTYEMO"><i class="fa fa-check"></i><b>2.4.4</b> Análisis de sentimientos y detección de emociones</a></li>
+<li class="chapter" data-level="2.4.5" data-path="mineria-textos.html"><a href="mineria-textos.html#n-gramas"><i class="fa fa-check"></i><b>2.4.5</b> <em>N-gramas</em></a></li>
+<li class="chapter" data-level="2.4.6" data-path="mineria-textos.html"><a href="mineria-textos.html#análisis-de-redes"><i class="fa fa-check"></i><b>2.4.6</b> Análisis de redes</a></li>
+<li class="chapter" data-level="" data-path="mineria-textos.html"><a href="mineria-textos.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="grafos.html"><a href="grafos.html"><i class="fa fa-check"></i><b>3</b> Análisis de grafos y redes sociales</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="grafos.html"><a href="grafos.html#introducción-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
+<li class="chapter" data-level="3.2" data-path="grafos.html"><a href="grafos.html#teoría-de-grafos"><i class="fa fa-check"></i><b>3.2</b> Teoría de grafos</a></li>
+<li class="chapter" data-level="3.3" data-path="grafos.html"><a href="grafos.html#elementos-de-un-grafo"><i class="fa fa-check"></i><b>3.3</b> Elementos de un grafo</a></li>
+<li class="chapter" data-level="3.4" data-path="grafos.html"><a href="grafos.html#el-paquete-igraph"><i class="fa fa-check"></i><b>3.4</b> El paquete <code>igraph</code></a></li>
+<li class="chapter" data-level="3.5" data-path="grafos.html"><a href="grafos.html#análisis-de-influencia-en-un-grafo-aplicado-a-redes-sociales"><i class="fa fa-check"></i><b>3.5</b> Análisis de influencia en un grafo aplicado a redes sociales</a></li>
+<li class="chapter" data-level="3.6" data-path="grafos.html"><a href="grafos.html#otras-utilidades-de-grafos"><i class="fa fa-check"></i><b>3.6</b> Otras utilidades de grafos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html"><i class="fa fa-check"></i><b>4</b> Aplicaciones webs interactivas con Shiny</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#introducción-2"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#partes-mínimas-de-una-aplicación-shiny-y-disposición-básica"><i class="fa fa-check"></i><b>4.2</b> Partes mínimas de una aplicación <code>Shiny</code> y disposición básica</a></li>
+<li class="chapter" data-level="4.3" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#diseño-de-una-aplicación-shiny"><i class="fa fa-check"></i><b>4.3</b> Diseño de una aplicación <code>Shiny</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#diseño-de-las-páginas-fluidpage"><i class="fa fa-check"></i><b>4.3.1</b> Diseño de las páginas: fluidPage()</a></li>
+<li class="chapter" data-level="4.3.2" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#segmentación-de-diseños-tabsetpanel-y-navlistpanel"><i class="fa fa-check"></i><b>4.3.2</b> Segmentación de diseños: tabsetPanel() y navlistPanel()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#elementos-para-entrada-de-datos"><i class="fa fa-check"></i><b>4.4</b> Elementos para entrada de datos</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#lectura-de-ficheros-de-datos"><i class="fa fa-check"></i><b>4.4.1</b> Lectura de ficheros de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#elementos-para-visualización-salida"><i class="fa fa-check"></i><b>4.5</b> Elementos para visualización (salida)</a></li>
+<li class="chapter" data-level="4.6" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#reactividad"><i class="fa fa-check"></i><b>4.6</b> Reactividad</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#conductores-reactivos-y-control-de-la-reactividad"><i class="fa fa-check"></i><b>4.6.1</b> Conductores reactivos y control de la reactividad</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#publicación-de-la-aplicación-en-la-web"><i class="fa fa-check"></i><b>4.7</b> Publicación de la aplicación en la web</a></li>
+<li class="chapter" data-level="4.8" data-path="aplicaciones-webs-interactivas-con-shiny.html"><a href="aplicaciones-webs-interactivas-con-shiny.html#extensiones-de-shiny"><i class="fa fa-check"></i><b>4.8</b> Extensiones de <code>Shiny</code></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://blog.uclm.es/tp-mbsba/"> Ciencia de datos con R </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fundamentos de ciencia de datos con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mineria-textos" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Capítulo 2</span> Minería de textos<a href="mineria-textos.html#mineria-textos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Víctor Casero, Ángela Celis y María Lozano Zahonero<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
+<div id="introducción" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Introducción<a href="mineria-textos.html#introducción" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En la actualidad, entre el 80 % y el 90 % de los datos que se generan diariamente son datos no estructurados (vistos en el capítulo <span class="math inline">\(\ref{datos-no-sql}\)</span>). Un ejemplo típico de datos no estructurados son los textos, desde los comentarios o mensajes de las redes sociales, reseñas, blogs y microblogs, chats o whatsapp hasta las noticias periodísticas, los discursos políticos o las obras literarias. En consecuencia, aprender a procesar y analizar datos exige aprender a procesar y analizar textos.</p>
+<p>Los textos precisan, sin embargo, un tratamiento especial. A diferencia de la mayoría de los datos que se tratan en este libro, que son datos estructurados, los datos textuales requieren que se les otorgue un orden y estructura para su manejo y análisis con el software <code>R</code>. Además, al utilizar un lenguaje natural –es decir, un idioma como, por ejemplo, el español, el chino o el inglés–, los textos no pueden ser procesados directamente por un ordenador. Es preciso ‘traducirlos’ antes a un lenguaje formal que los ordenadores puedan entender.</p>
+<p>La <strong>minería de textos</strong> (en inglés, <em>text mining</em>), también conocida como <strong>análisis de textos</strong> (en inglés, <em>text analysis</em>), puede definirse como el proceso para detectar, extraer, clasificar, analizar y visualizar la información no explícita que contienen los textos, transformando los datos textuales en datos estructurados y el lenguaje natural en lenguaje formal a fin de determinar, después, de manera automática patrones recurrentes y desviaciones en los mismos. La minería de textos utiliza muchas técnicas y métodos diferentes, la mayor parte de los cuales proceden del <strong>procesamiento del lenguaje natural</strong> (PLN), un ámbito de la inteligencia artificial que se ocupa de la comunicación entre los seres humanos y las máquinas mediante el tratamiento computacional del lenguaje humano.</p>
+<p>Este capítulo constituye una primera aproximación a la minería de textos con <code>R</code>. Su objetivo es proporcionar un marco teórico y aplicado básico de este ámbito. Para ello, en el segundo apartado, se presentan los conceptos y fases fundamentales de la minería de textos, mencionando algunos paquetes de <code>R</code> que permiten realizar análisis textuales de distintos tipos. El tercer apartado está dedicado al análisis de sentimientos, que constituye uno de los campos de la minería de textos de mayor desarrollo en la actualidad. Cierra el capítulo un caso práctico, en el que se aplica y se amplía lo estudiado anteriormente. Unas útiles referencias sobre el tema son <span class="citation">(<a href="#ref-fradejas" role="doc-biblioref"><strong>fradejas?</strong></a>)</span> y <span class="citation">(<a href="#ref-jockers2014" role="doc-biblioref"><strong>jockers2014?</strong></a>)</span>.</p>
+</div>
+<div id="secCONCEPTOS" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Conceptos y tareas fundamentales<a href="mineria-textos.html#secCONCEPTOS" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Lo primero que se necesita para hacer un análisis de textos son los textos. Esta afirmación podría parecer banal, pero no lo es. El volumen de textos en circulación es ingente, pero, en la mayor parte de los casos, es necesario realizar una serie de operaciones complejas para poder extraer y recopilar los datos textuales que se quiere analizar. Es también difícil muchas veces acceder después a estos datos ya que los textos pueden presentar formatos muy heterogéneos, no siempre interpretables o fáciles de convertir en un formato interpretable. Baste pensar, por ejemplo, en una nota escrita a mano. Dado que este capítulo es una primera aproximación a la minería de textos, se parte del supuesto de que el texto o textos están disponibles ya en un fichero, denominado <strong>corpus</strong>, legible por <code>R</code>. En este contexto, <em>corpus</em> es la colección de textos con el mismo origen, por ejemplo, el <em>corpus</em> de las obras de un autor, que para poder manejarse requieren metadatos con detalles adicionales.</p>
+<div id="preparación-de-los-datos" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Preparación de los datos<a href="mineria-textos.html#preparación-de-los-datos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Una vez constituido el corpus, la primera fase es la <strong>preparación de los datos</strong>. Los textos suelen contener un cierto grado de ‘suciedad’, es decir, elementos que alteran o impiden el análisis. De una buena ‘limpieza’ inicial, dependerá en gran parte la validez de los resultados que se obtengan. Entre las operaciones de ‘limpieza’ generales figuran una serie de transformaciones cuya finalidad es evitar el recuento incorrecto de palabras como el cambio de mayúsculas por minúsculas y la eliminación de los signos de puntuación, los números y los espacios en blanco en exceso.</p>
+<p>La siguiente operación de preparación, que tiene un importante peso en el análisis, es la eliminación de las <strong>stopwords</strong> o <strong>palabras vacías</strong>. En la lengua no todas las palabras tienen el mismo tipo de significado. Las palabras con significado léxico, como <em>mesa</em> o <em>corpus</em>, son palabras a las que corresponde un concepto que se puede definir o explicar. Otras palabras, sin embargo, son palabras funcionales, cuyo contenido es puramente gramatical. Son palabras como el artículo <em>el</em>, la preposición <em>de</em> o la conjunción <em>o</em>: se puede explicar cómo se usan, pero no definirlas asociándolas a un concepto porque carecen de contenido léxico-semántico.</p>
+<p>Las palabras vacías son, con gran diferencia respecto de las palabras léxicas, las más frecuentes de la lengua, pero, dado su escaso o nulo significado léxico, en los análisis de tipo semántico, como el análisis de sentimientos o el modelado de temas, carecen de valor informativo, por lo que es conveniente eliminarlas. No es aconsejable eliminarlas, sin embargo, en otros tipos de análisis, como los análisis estilométricos, donde tienen un importante valor informativo como se verá en el apartado <a href="mineria-textos.html#secESTILOM">2.2.3</a>. Las palabras vacías pertenecen a clases cerradas, es decir a clases de palabras con un número de elementos limitado, finito. Es posible confeccionar, por tanto, listas de palabras vacías para permitir su eliminación. En el caso aplicado, se aprenderá a usar estas listas y se podrá apreciar con detalle la diferente información que proporciona una tabla de frecuencias con y sin palabras vacías.</p>
+</div>
+<div id="secTOKEN" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Segmentación del texto: tokenización<a href="mineria-textos.html#secTOKEN" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La segunda fase de la minería de textos consiste en la <strong>segmentación del texto</strong>, denominada también <strong>tokenización</strong>. El texto se divide en <strong>token</strong>, secuencias de texto con valor informativo. De esta manera, se pasa del lenguaje natural a un lenguaje formal comprensible por el software, dándole formato de ‘vector’ o ‘tabla’. Así se pueden aplicar algunas de las herramientas que se utilizan con datos numéricos para manejar el texto y obtener resúmenes y visualizaciones que muestren la información no explícita contenida en él en forma de patrones recurrentes.</p>
+<p>Generalmente, los <em>token</em> son <strong>palabras</strong>, es decir, secuencias de caracteres entre dos espacios en blanco y/o signos de puntuación, pero pueden ser también <strong>oraciones</strong>, <strong>líneas</strong>, <strong>párrafos</strong> o <strong>n-gramas</strong>. Como se verá en el caso aplicado, un primer análisis del significado consiste en eliminar las palabras vacías y obtener las frecuencias<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> de las palabras con valor informativo para responder a la pregunta ‘¿Qué se dice?’ <span class="citation">(<a href="#ref-silge2017" role="doc-biblioref"><strong>silge2017?</strong></a>)</span>.</p>
+<p><strong><em>N-gramas</em></strong><br />
+El análisis puede proseguir estudiando la frecuencia de los <strong>n-gramas</strong>, secuencias de <em>n</em> palabras consecutivas en el mismo orden. Se tienen así bigramas o 2-gramas (secuencias de dos palabras), trigramas o 3-trigramas (secuencias de tres palabras), etc. El estudio de los <em>n-gramas</em> responde al principio de Firth: ‘You shall know a word by the company it keeps’ <span class="citation">(<a href="#ref-firth" role="doc-biblioref"><strong>firth?</strong></a>)</span>. Este principio es el fundamento del llamado <strong>análisis de colocaciones</strong>: para conocer el significado de una palabra es preciso conocer las palabras con las que aparece, el contexto relevante. En un sentido amplio, el análisis de colocaciones consiste en examinar los contextos izquierdo y/o derecho de una palabra. La segmentación en <em>n-gramas</em> permite tener en cuenta este contexto relevante que indicará, por ejemplo, que <em>banco</em> es con toda probabilidad un asiento en las secuencias <em>banco de madera</em> o <em>banco en la terraza</em>, pero no lo es en secuencias como <em>banco de peces</em>, <em>banco de arena</em>, <em>banco de inversiones</em>, <em>banco de datos</em> o <em>banco de pruebas</em>. La división en <em>n-gramas</em> permitirá también considerar en el análisis, al menos hasta cierto punto, el peso de la ambigüedad, la negación o el distinto significado que pueden tener las palabras según el ámbito temático. Por ejemplo, la forma <em>larga</em> no tiene el mismo significado en los bigramas <em>falda larga</em>, <em>mano larga</em> y <em>cara larga</em>, ni tiene tampoco el mismo valor informativo en <em>es larga</em> / <em>no es larga</em> o en <em>de larga experiencia</em> (valor positivo) y en <em>se me hizo larga</em> (valor negativo). En el caso aplicado, se verá en la práctica la segmentación en <em>n-gramas</em> y cómo la visualización de redes contribuye a complementar el análisis.</p>
+<p><strong><em>Stemming</em> y lematización</strong><br />
+La tokenización se puede refinar mediante el <em>stemming</em>, o reducción de las palabras ‘flexionadas’ a su raíz, y la lematización, o extracción del lema de cada palabra. Un ejemplo de <em>stemming</em> sería reducir las palabras <em>texto</em>, <em>textos</em>, <em>textual</em> y <em>textuales</em>, que <code>R</code> cuenta como cuatro palabras diferentes, a la raíz ‘text’. El <em>stemming</em> puede proporcionar un recuento más preciso en algunos casos, pero en otros, al eliminar los sufijos de las palabras, puede crear confusión. Además, como en el ejemplo anterior, las raíces pueden no coincidir con palabras existentes, lo que hace que sean difíciles de interpretar y resulten extrañas si se visualizan en nubes de palabras. Con la lematización se reducen las formas flexionadas de una misma palabra al lema, que es la forma que encabeza la entrada de la palabra en el diccionario. Por ejemplo, si se quiere buscar el significado de la palabra <em>niñas</em> no se encontrará como tal sino bajo el lema <em>niño</em> y si se quiere buscar <em>iremos</em> se tendrá que buscar el lema <em>ir</em>. En el caso anterior, la lematización reduciría las formas <em>texto</em>, <em>textos</em>, <em>textual</em> y <em>textuales</em> a dos lemas: <em>texto</em> y <em>textual</em>. La lematización evita la dispersión de significado en varias formas, pero a veces es compleja y puede conducir a la pérdida de información pertinente.</p>
+</div>
+<div id="secESTILOM" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Campos de aplicación de la minería de textos<a href="mineria-textos.html#secESTILOM" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La minería de textos tiene varios campos de aplicación. Entre ellos destacan tres: el <strong>análisis de sentimientos</strong>, el <strong>modelado de temas</strong> o <strong>tópicos</strong> y el <strong>análisis estilométrico</strong> o <strong>estilometría</strong>. El <em>análisis de sentimientos</em> se tratará con detalle en la sección <a href="mineria-textos.html#secSENTIM">2.3</a> y en el caso de aplicación (sección <a href="mineria-textos.html#secSENTYEMO">2.4.4</a>), mientras que el modelado de temas o tópicos, se ilustrará en el capítulo <span class="math inline">\(\ref{nlp-textil}\)</span>. Dadas las limitaciones del manual sólo se presentan brevemente el modelado de temas y la estilometría.</p>
+<p>El <strong>modelado de temas</strong> (en inglés, <em>topic modelling</em>), como su propio nombre indica, tiene por objeto identificar los temas principales sobre los que versa el texto haciendo uso de técnicas de clasificación no supervisada del campo del aprendizaje automático, como por ejemplo LDA (<em>Latent Dirichlet Allocation</em>).</p>
+<p>La <strong>estilometría</strong> es una aplicación de la minería de textos cuya finalidad consiste en determinar las relaciones existentes entre el estilo de los textos y los metadatos incluidos en ellos. Se utiliza principalmente en la atribución de autoría. El concepto base es el de <em>huella lingüística</em>, constituida por el conjunto de rasgos lingüísticos que caracterizan el estilo de un autor como un estilo individual y único y permiten identificarlo. Un punto clave es que, contrariamente a lo que podría pensarse, los rasgos que conforman en mayor medida la huella lingüística son los que tienen un mayor índice de frecuencia. La mayor parte de los enfoques utilizan el vector de las ‘palabras más frecuentes’ (MFW, por su sigla en inglés), que son, como se ha visto antes, las palabras vacías y no las palabras con significado léxico, para determinar el estilo de un autor. Esto es debido fundamentalmente a que las palabras vacías se usan de manera involuntaria e inconsciente, configurando de esta manera, sin ningún tipo de filtros racionales, una clave estilística idiosincrásica <span class="citation">(<a href="#ref-zahonero2020" role="doc-biblioref"><strong>zahonero2020?</strong></a>)</span>. De lo anterior se deduce fácilmente que en este tipo de análisis no deben eliminarse las palabras vacías.</p>
+<p>En la actualidad, el análisis estilométrico se usa en ámbitos muy dispares: desde la criminología o los servicios de inteligencia para identificar a los autores de mensajes o notas en casos de asesinatos, terrorismo, secuestro o acoso, por ejemplo, hasta el derecho civil o la literatura en cuestiones de derechos de autor o detección de plagio, entre muchas otras cuestiones.</p>
+</div>
+<div id="minería-de-textos-en-r" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Minería de textos en <code>R</code><a href="mineria-textos.html#minería-de-textos-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En <code>R</code> existen diversos paquetes y funciones que facilitan la minería de textos, entre los que destacan:</p>
+<ul>
+<li><p><code>tidytext</code>: con la filosofía del <code>tidyverse</code> puede combinarse con los conocidos paquetes <code>dplyr</code>, <code>broom</code>, <code>ggplot2</code>, etc. Se puede destacar la función <code>unnest_tokens()</code> que automatiza el proceso de tokenización y el almacenamiento en formato tidy en un único paso.</p></li>
+<li><p><code>tm</code>: destaca por tener soporte back-end de base de datos integrado, gestión avanzada de metadatos y soporte nativo para leer en varios formatos de archivo.</p></li>
+<li><p><code>tokenizers</code>: incluye tokenizadores de palabras, oraciones, párrafos, n-gramas, <em>tweets</em>, expresiones regulares, así como funciones para contar caracteres, palabras y oraciones, y para dividir textos más largos en documentos separados, cada uno con el mismo número de palabras.</p></li>
+<li><p><code>wordcloud</code>: permite visualizar <em>nubes de palabras</em>. Las palabras más frecuentes aparecen en mayor tamaño permitiendo de un vistazo obtener las palabras clave del texto.</p></li>
+<li><p><code>quanteda</code>: maneja matrices de documentos-términos y destaca en tareas cuantitativas como recuento de palabras o sílabas.</p></li>
+<li><p><code>syuzhet</code>: incluye distintas funciones que facilitan el análisis de textos, en particular el análisis de sentimientos de textos literarios.</p></li>
+<li><p><code>gutenbergr</code>: almacena las obras del proyecto Gutenberg<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>; muy útil si se quieren analizar textos literarios.</p></li>
+</ul>
+</div>
+</div>
+<div id="secSENTIM" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Análisis de sentimientos<a href="mineria-textos.html#secSENTIM" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El análisis de sentimientos (en inglés, <em>sentiment analysis</em>) es una aplicación de la minería de textos que tiene como finalidad la detección, extracción, clasificación, análisis y visualización de la dimensión subjetiva asociada a los temas o tópicos presentes en los textos. La dimensión subjetiva comprende no solo los sentimientos, sino también las emociones, sensaciones y estados afectivos y anímicos, así como las opiniones, creencias, percepciones, puntos de vista, actitudes, juicios y valoraciones. De ahí que reciba también el nombre de <em>minería de opinión</em> (en inglés, <em>opinion mining</em>) <span class="citation">(<a href="#ref-zahonero2020" role="doc-biblioref"><strong>zahonero2020?</strong></a>)</span>.</p>
+<p>El análisis de sentimientos asigna a esta dimensión subjetiva una polaridad, que puede ser positiva o negativa <span class="citation">(<a href="#ref-pang2008opinion" role="doc-biblioref"><strong>pang2008opinion?</strong></a>)</span>. Algunas técnicas añaden además una polaridad neutra. En algunos casos, el análisis de sentimientos se refina hasta llegar a las emociones básicas: este subcampo del análisis de sentimientos se conoce como <em>detección de emociones</em>.</p>
+<p>La primera aplicación del análisis de sentimientos fue la investigación de mercados. A partir del año 2000, se registra un crecimiento exponencial de textos como reseñas, chats, foros, blogs, microblogs o comentarios y mensajes de las redes sociales, en los que predomina la expresión de emociones y opiniones personales. Mediante el análisis de sentimientos se extrae de ellos información que permite conocer los gustos del consumidor y diseñar productos a su medida. Esta idea se extenderá después a otros ámbitos, en especial a aquellos en los que predomina la comunicación persuasiva como las campañas publicitarias o políticas. Recientemente, ha empezado a utilizarse también con fines predictivos y preventivos en muchas esferas: desde cuáles son los políticos, las empresas, las películas, canciones u obras literarias que obtendrán un mayor rendimiento, mejores resultados o más votos o ventas hasta cómo detectar y prevenir, por ejemplo, conductas suicidas mediante el análisis de mensajes en las redes sociales.</p>
+<p>En el análisis de sentimientos y la detección de emociones existen dos enfoques principales: el enfoque basado en el aprendizaje automático (<em>machine learning</em>), en el que se usan algoritmos de aprendizaje supervisado, y el enfoque semántico basado en diccionarios o lexicones. Este último enfoque es el que se verá en detalle en el caso aplicado.</p>
+<p>En <code>R</code> están implementados varios lexicones para el análisis de sentimientos. Dos de los más utilizados son <code>bing</code>, de Bing Liu y colaboradores <span class="citation">(<a href="#ref-liu2015sentiment" role="doc-biblioref"><strong>liu2015sentiment?</strong></a>)</span>, y <code>NRC</code>, de Saif Mohammad y Peter Turney, ambos incluidos tanto en el paquete <code>tidytext</code> como en <code>syuzhet</code> <span class="citation">(<a href="#ref-jockers2017" role="doc-biblioref"><strong>jockers2017?</strong></a>)</span>. Estos lexicones tienen en común que están basados en unigramas, es decir, en palabras sueltas, y que tienen como idioma original el inglés, si bien hay disponibles versiones traducidas automáticamente a distintas lenguas. La diferencia principal entre los dos lexicones es que <code>bing</code> clasifica las palabras de forma binaria en polaridad positiva/negativa, mientras que <code>NRC</code> además de la polaridad positiva/negativa permite detectar también ocho emociones básicas (<em>ira, miedo, anticipación, confianza, sorpresa, tristeza, alegría, asco</em>). En el caso aplicado se compararán ambos diccionarios. Como se verá, los resultados del análisis dependerán en buena medida del lexicón elegido, así como del idioma del texto y de si el lexicón se elaboró originalmente en ese idioma o es una versión traducida automáticamente de otra lengua.</p>
+</div>
+<div id="caso-de-aplicación" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Caso de aplicación<a href="mineria-textos.html#caso-de-aplicación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="declaración-institucional-del-estado-de-alarma-2020" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Declaración institucional del estado de alarma 2020<a href="mineria-textos.html#declaración-institucional-del-estado-de-alarma-2020" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La ‘Declaración institucional del presidente del gobierno sobre el estado de alarma en la crisis del coronavirus’ (en adelante, ‘la Declaración’), dada en La Moncloa el 13 de marzo de 2020 es el objeto de análisis. Ésta se puede encontrar en el paquete <code>CDR</code> que acompaña este libro.
+Se le van a aplicar las operaciones y técnicas mencionadas en la sección <a href="mineria-textos.html#secCONCEPTOS">2.2</a>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="mineria-textos.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/declaracion-estado-alarma.Rdata&quot;</span>)</span></code></pre></div>
+</div>
+<div id="segmentación-en-palabras-y-oraciones" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Segmentación en palabras y oraciones<a href="mineria-textos.html#segmentación-en-palabras-y-oraciones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Las primeras tareas del análisis son la preparación, limpieza y segmentación o tokenización de los textos. A continuación, se verá una segmentación en palabras individuales. La función <code>tokenize_words()</code> del paquete <code>tokenizers</code> prepara el texto convirtiéndolo a minúsculas, elimina todos los signos de puntuación y finalmente segmenta el texto en palabras.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="mineria-textos.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tokenizers)</span>
+<span id="cb19-2"><a href="mineria-textos.html#cb19-2" aria-hidden="true" tabindex="-1"></a>palabras <span class="ot">&lt;-</span> <span class="fu">tokenize_words</span>(declaracion)</span>
+<span id="cb19-3"><a href="mineria-textos.html#cb19-3" aria-hidden="true" tabindex="-1"></a>tokenizers<span class="sc">::</span><span class="fu">count_words</span>(declaracion)</span>
+<span id="cb19-4"><a href="mineria-textos.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 922</span></span></code></pre></div>
+<p>Con la última sentencia se obtiene la longitud de la Declaración, el número de palabras utilizadas: 922.</p>
+<p>La frecuencia de cada palabra se pueden obtener y presentar con el código de abajo.
+La primera sentencia crea la tabla de frecuencias,
+la tercera la transforma en el tipo <code>tibble</code>, creando la columna recuento,
+y ordena la tabla de forma descendente, de mayor a menor frecuencia.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="mineria-textos.html#cb20-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">table</span>(palabras[[<span class="dv">1</span>]])</span>
+<span id="cb20-2"><a href="mineria-textos.html#cb20-2" aria-hidden="true" tabindex="-1"></a>(tabla <span class="ot">&lt;-</span> tabla <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="mineria-textos.html#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">palabra =</span> <span class="fu">names</span>(tabla), <span class="at">recuento =</span> <span class="fu">as.numeric</span>(tabla)) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="mineria-textos.html#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(recuento)))</span>
+<span id="cb20-5"><a href="mineria-textos.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 390 × 3</span></span>
+<span id="cb20-6"><a href="mineria-textos.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    tabla       palabra recuento</span></span>
+<span id="cb20-7"><a href="mineria-textos.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;table[1d]&gt; &lt;chr&gt;      &lt;dbl&gt;</span></span>
+<span id="cb20-8"><a href="mineria-textos.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 43          de            43</span></span>
+<span id="cb20-9"><a href="mineria-textos.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 41          y             41</span></span>
+<span id="cb20-10"><a href="mineria-textos.html#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 35          la            35</span></span>
+<span id="cb20-11"><a href="mineria-textos.html#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 31          a             31</span></span>
+<span id="cb20-12"><a href="mineria-textos.html#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 26          los           26</span></span>
+<span id="cb20-13"><a href="mineria-textos.html#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 22          en            22</span></span>
+<span id="cb20-14"><a href="mineria-textos.html#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 20          que           20</span></span>
+<span id="cb20-15"><a href="mineria-textos.html#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 17          el            17</span></span>
+<span id="cb20-16"><a href="mineria-textos.html#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 14          al            14</span></span>
+<span id="cb20-17"><a href="mineria-textos.html#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 14          para          14</span></span>
+<span id="cb20-18"><a href="mineria-textos.html#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 380 more rows</span></span></code></pre></div>
+<p>En la primera fila de la salida se indican las dimensiones de la <code>tibble</code>, por lo que se puede ver que en esta Declaración hay 390 ‘palabras’ distintas (considera los números como palabras).</p>
+<p>El resultado son las palabras más utilizadas en el texto, que, como puede apreciarse, son palabras vacías. Esto no debería sorprender porque, como ya se ha visto, estas palabras son las más frecuentes. En el siguiente apartado, se verá cómo eliminarlas para obtener datos con valor informativo.</p>
+<p>Para otras formas de segmentar el texto (oraciones, párrafos, <em>tweets</em>, etc.): véase <code>?tokenize_words</code>. Por ejemplo, para segmentar en oraciones:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="mineria-textos.html#cb21-1" aria-hidden="true" tabindex="-1"></a>oraciones <span class="ot">&lt;-</span> <span class="fu">tokenize_sentences</span>(declaracion)</span>
+<span id="cb21-2"><a href="mineria-textos.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">count_sentences</span>(declaracion)</span>
+<span id="cb21-3"><a href="mineria-textos.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 44</span></span></code></pre></div>
+<p>Las tres primeras oraciones y la última se obtienen con el siguiente código.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="mineria-textos.html#cb22-1" aria-hidden="true" tabindex="-1"></a>oraciones[[<span class="dv">1</span>]][<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="co"># primeras 3 oraciones</span></span>
+<span id="cb22-2"><a href="mineria-textos.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Buenas tardes.&quot;                                                                                                                                                                                                                  </span></span>
+<span id="cb22-3"><a href="mineria-textos.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] &quot;Estimados compatriotas.&quot;                                                                                                                                                                                                         </span></span>
+<span id="cb22-4"><a href="mineria-textos.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] &quot;En el día de hoy, acabo de comunicar al Jefe del Estado la celebración, mañana, de un Consejo de Ministros extraordinario, para decretar el Estado de Alarma en todo nuestro país, en toda España, durante los próximos 15 días.&quot;</span></span>
+<span id="cb22-5"><a href="mineria-textos.html#cb22-5" aria-hidden="true" tabindex="-1"></a>oraciones[[<span class="dv">1</span>]][<span class="fu">count_sentences</span>(declaracion)] <span class="co"># última</span></span>
+<span id="cb22-6"><a href="mineria-textos.html#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Buenas tardes.&quot;</span></span></code></pre></div>
+<p>También podría medirse la longitud de cada oración, en número de palabras, típicamente para comparaciones con otros textos. Para ello se debe separar cada oración en palabras y con la función <code>sapply</code> se puede obtener la longitud de cada oración, que puede verse en la Figura <a href="mineria-textos.html#fig:longitudoraciones">2.1</a>.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="mineria-textos.html#cb23-1" aria-hidden="true" tabindex="-1"></a>palabras_oracion <span class="ot">&lt;-</span> <span class="fu">tokenize_words</span>(oraciones[[<span class="dv">1</span>]])</span>
+<span id="cb23-2"><a href="mineria-textos.html#cb23-2" aria-hidden="true" tabindex="-1"></a>longitud_o <span class="ot">&lt;-</span> <span class="fu">sapply</span>(palabras_oracion, length)</span>
+<span id="cb23-3"><a href="mineria-textos.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(longitud_o)</span>
+<span id="cb23-4"><a href="mineria-textos.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  2  2 39 33 33 32</span></span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:longitudoraciones"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/longitudoraciones-1.png" alt="Número de palabras en cada oración de la Declaración" width="60%" />
+<p class="caption">
+Figura 2.1: Número de palabras en cada oración de la Declaración
+</p>
+</div>
+</div>
+<div id="análisis-exploratorio" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Análisis exploratorio<a href="mineria-textos.html#análisis-exploratorio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Eliminación de palabras vacías</strong><br />
+Se va a hacer uso del paquete <code>stopwords</code> que contiene listas de <em>palabras vacías</em> en diferentes idiomas. Para el ejemplo se define una tabla con la misma estructura que la tabla de la Declaración con las 308 palabras vacías españolas que tiene el paquete:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="mineria-textos.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stopwords)</span>
+<span id="cb24-2"><a href="mineria-textos.html#cb24-2" aria-hidden="true" tabindex="-1"></a>tabla_stopwords <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">palabra =</span> <span class="fu">stopwords</span>(<span class="st">&quot;es&quot;</span>))</span></code></pre></div>
+<p>La siguiente sentencia ‘limpia’ la tabla de la Declaración quitando las palabras vacías españolas. Además, se hace uso de la función <code>kable</code> para una visualización más sofisticada de la tabla (con la longitud que se desee):</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="mineria-textos.html#cb25-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> tabla <span class="sc">|&gt;</span> <span class="fu">anti_join</span>(tabla_stopwords)</span>
+<span id="cb25-2"><a href="mineria-textos.html#cb25-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tabla[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ],</span>
+<span id="cb25-3"><a href="mineria-textos.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Palabras más frecuentes (sin palabras vacías)&quot;</span></span>
+<span id="cb25-4"><a href="mineria-textos.html#cb25-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<table>
+<caption>
+<span id="tab:tabla1">Tabla 2.1: </span>Palabras más frecuentes (sin palabras vacías)
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+tabla
+</th>
+<th style="text-align:left;">
+palabra
+</th>
+<th style="text-align:right;">
+recuento
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+virus
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+recursos
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+social
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+alarma
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+conjunto
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+emergencia
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+españa
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+semanas
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+va
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+cada
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+</tbody>
+</table>
+<p>El resultado, Tabla <a href="mineria-textos.html#tab:tabla1">2.1</a>, se puede considerar el primer análisis léxico con valor informativo: la palabra más frecuente es <em>virus</em>, seguida de <em>recursos</em> y <em>social</em>. Se podría ver que en total hay 319 palabras distintas.</p>
+<p>El método de eliminar palabras con el paquete <code>stopwords</code> no es perfecto. Por ejemplo, <em>va</em> y <em>cada</em> (posiciones 9 y 10 de la tabla) no son muy informativas. En estos casos, como se ha visto antes, se pueden utilizar listas de palabras vacías de otros paquetes como, por ejemplo <code>tidytext</code> o <code>tokenizers</code> o el listado en español propuesto por <span class="citation">(<a href="#ref-fradejas" role="doc-biblioref"><strong>fradejas?</strong></a>)</span>, o pueden confeccionarse listas <em>ad hoc</em>.</p>
+<p><strong>Nubes de palabras</strong><br />
+Una manera habitual de mostrar la información de forma visual es con las denominadas <em>nubes de palabras</em>, acudiendo a la función <code>wordcloud</code> del paquete con el mismo nombre. Al contener dicha función un componente aleatorio se fija con <code>set.seed()</code> (para la reproducibilidad del gráfico por parte del lector).</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="mineria-textos.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
+<span id="cb26-2"><a href="mineria-textos.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span>
+<span id="cb26-3"><a href="mineria-textos.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(tabla<span class="sc">$</span>palabra, tabla<span class="sc">$</span>recuento,</span>
+<span id="cb26-4"><a href="mineria-textos.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">max.words =</span> <span class="dv">50</span>, <span class="at">colors =</span> <span class="fu">rainbow</span>(<span class="dv">3</span>)</span>
+<span id="cb26-5"><a href="mineria-textos.html#cb26-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:nube-palabras"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/nube-palabras-1.png" alt="Nube de palabras más frecuentes de la Declaración" width="60%" />
+<p class="caption">
+Figura 2.2: Nube de palabras más frecuentes de la Declaración
+</p>
+</div>
+<p>El resultado se muestra en la Figura <a href="mineria-textos.html#fig:nube-palabras">2.2</a>. Como se puede observar, el tamaño de letra de la palabra, y en este caso también el color, están relacionados con su frecuencia.</p>
+</div>
+<div id="secSENTYEMO" class="section level3 hasAnchor" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Análisis de sentimientos y detección de emociones<a href="mineria-textos.html#secSENTYEMO" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Lexicón <code>bing</code></strong><br />
+El lexicón <code>bing</code>, como se ha visto en la sección <a href="mineria-textos.html#secSENTIM">2.3</a>, es uno de los repertorios léxicos para el análisis de sentimientos que se pueden encontrar en <code>R</code>. Es un diccionario de polaridad (positiva/negativa) cuyo idioma original es el inglés. Se puede obtener con la función <code>get_sentiments</code> del paquete <code>tidytext</code>. Contiene 2005 palabras positivas y 4781 palabras negativas, por lo que hay un marcado sesgo hacia la polaridad negativa.</p>
+<p>Para ilustrar el uso de <code>bing</code>, se ha traducido al inglés (automáticamente) la Declaración. A continuación se carga el texto y se genera el objeto <code>tabla</code> replicando el procedimiento descrito arriba de preparación, limpieza, segmentación en palabras, eliminación de palabras vacías (obviamente, en idioma inglés).</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="mineria-textos.html#cb27-1" aria-hidden="true" tabindex="-1"></a>declaracion_EN <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">read_lines</span>(<span class="st">&quot;data/EN-declaracion-estado-alarma.txt&quot;</span>), <span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb27-2"><a href="mineria-textos.html#cb27-2" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">tokenize_words</span>(declaracion_EN)[[<span class="dv">1</span>]])</span>
+<span id="cb27-3"><a href="mineria-textos.html#cb27-3" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb27-4"><a href="mineria-textos.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">word =</span> <span class="fu">names</span>(tabla),</span>
+<span id="cb27-5"><a href="mineria-textos.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">recuento =</span> <span class="fu">as.numeric</span>(tabla)</span>
+<span id="cb27-6"><a href="mineria-textos.html#cb27-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-7"><a href="mineria-textos.html#cb27-7" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> tabla <span class="sc">|&gt;</span></span>
+<span id="cb27-8"><a href="mineria-textos.html#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(<span class="fu">tibble</span>(<span class="at">word =</span> <span class="fu">stopwords</span>(<span class="st">&quot;en&quot;</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb27-9"><a href="mineria-textos.html#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(recuento))</span></code></pre></div>
+<p>Los sentimientos positivos de la Declaración se pueden obtener con:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="mineria-textos.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb28-2"><a href="mineria-textos.html#cb28-2" aria-hidden="true" tabindex="-1"></a>pos <span class="ot">&lt;-</span> <span class="fu">get_sentiments</span>(<span class="st">&quot;bing&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="mineria-textos.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(sentiment <span class="sc">==</span> <span class="st">&quot;positive&quot;</span>)</span>
+<span id="cb28-4"><a href="mineria-textos.html#cb28-4" aria-hidden="true" tabindex="-1"></a>pos_EN <span class="ot">&lt;-</span> tabla <span class="sc">|&gt;</span> <span class="fu">semi_join</span>(pos)</span>
+<span id="cb28-5"><a href="mineria-textos.html#cb28-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(pos_EN)</span></code></pre></div>
+<p>Análogamente, se pueden obtener los sentimientos negativos. Las siete palabras más frecuentes de cada tipo que aparecen en la Declaración se presentan conjuntamente en la Tabla <a href="mineria-textos.html#tab:tablaBingNRC">2.2</a>.</p>
+<p><strong>Lexicón NRC</strong><br />
+Para poder observar las similitudes y diferencias en el análisis según el lexicón elegido, se aplica también NRC a la Declaración (véase la Tabla <a href="mineria-textos.html#tab:tablaBingNRC">2.2</a>).</p>
+<table>
+<caption>
+<span id="tab:tablaBingNRC">Tabla 2.2: </span>Palabras más frecuentes de la Declaración utilizando <code>bing</code> y <code>NRC</code>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+positivas bing
+</th>
+<th style="text-align:right;">
+fr
+</th>
+<th style="text-align:left;">
+negativas bing
+</th>
+<th style="text-align:right;">
+fr
+</th>
+<th style="text-align:left;">
+positivas NRC
+</th>
+<th style="text-align:right;">
+fr
+</th>
+<th style="text-align:left;">
+negativas NRC
+</th>
+<th style="text-align:right;">
+fr
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+extraordinary
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+virus
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+resources
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+virus
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+protect
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+alarm
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+extraordinary
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+alarm
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+work
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+emergency
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+protect
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+emergency
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+vulnerable
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+maximum
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+government
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+decisive
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+difficult
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+public
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+discipline
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+hard
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+council
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+avoid
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adequate
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+unfortunately
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+combat
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>Con el léxico NRC pueden detectarse emociones. La misma palabra puede tener asociada distintas emociones/sentimientos. En la Figura <a href="mineria-textos.html#fig:barNRC">2.3</a> se puede observar la dispar frecuencia de palabras de cada tipo:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="mineria-textos.html#cb29-1" aria-hidden="true" tabindex="-1"></a>emo <span class="ot">&lt;-</span> <span class="fu">get_sentiments</span>(<span class="st">&quot;nrc&quot;</span>)</span>
+<span id="cb29-2"><a href="mineria-textos.html#cb29-2" aria-hidden="true" tabindex="-1"></a>emo <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(sentiment)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="mineria-textos.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> sentiment), <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:barNRC"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/barNRC-1.png" alt="Gráfico de barras con la frecuencia de las emociones del lexicón NRC" width="60%" />
+<p class="caption">
+Figura 2.3: Gráfico de barras con la frecuencia de las emociones del lexicón NRC
+</p>
+</div>
+<p>El análisis de sentimientos y la detección de emociones de la Declaración mediante NRC se puede realizar con el siguiente código en el que se obtiene la tabla de frecuencias por emociones y sentimientos:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="mineria-textos.html#cb30-1" aria-hidden="true" tabindex="-1"></a>emo_tab <span class="ot">&lt;-</span> tabla <span class="sc">|&gt;</span> <span class="fu">inner_join</span>(emo)</span>
+<span id="cb30-2"><a href="mineria-textos.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(emo_tab, <span class="at">n =</span> <span class="dv">7</span>)</span>
+<span id="cb30-3"><a href="mineria-textos.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 3</span></span>
+<span id="cb30-4"><a href="mineria-textos.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   word          recuento sentiment</span></span>
+<span id="cb30-5"><a href="mineria-textos.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;    </span></span>
+<span id="cb30-6"><a href="mineria-textos.html#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 virus                9 negative </span></span>
+<span id="cb30-7"><a href="mineria-textos.html#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 resources            7 joy      </span></span>
+<span id="cb30-8"><a href="mineria-textos.html#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 resources            7 positive </span></span>
+<span id="cb30-9"><a href="mineria-textos.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 resources            7 trust    </span></span>
+<span id="cb30-10"><a href="mineria-textos.html#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 extraordinary        6 positive </span></span>
+<span id="cb30-11"><a href="mineria-textos.html#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 alarm                4 fear     </span></span>
+<span id="cb30-12"><a href="mineria-textos.html#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 alarm                4 negative</span></span></code></pre></div>
+<p>Como se ha mencionado antes, algunas palabras tienen asociados distintos sentimientos, por ejemplo, <em>resources</em>. La información de la tabla se puede visualizar bien con gráfico de barras (Figura <a href="mineria-textos.html#fig:emobarras">2.4</a>) bien con nubes de palabras (Figura <a href="mineria-textos.html#fig:emonube">2.5</a>).</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="mineria-textos.html#cb31-1" aria-hidden="true" tabindex="-1"></a>emo_tab <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="mineria-textos.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(sentiment) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="mineria-textos.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sentiment, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="mineria-textos.html#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="fu">aes</span>(<span class="at">fill =</span> sentiment), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="mineria-textos.html#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> n), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.25</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:emobarras"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/emobarras-1.png" alt="Frecuencia de emociones de la Declaración utilizando NRC" width="60%" />
+<p class="caption">
+Figura 2.4: Frecuencia de emociones de la Declaración utilizando NRC
+</p>
+</div>
+<p>Entre las distintas opciones para dibujar nubes de palabras para el análisis de sentimientos es interesante la que se obtiene con el paquete <code>syuzhet</code> dado que permite visualizar las palabras agrupadas por emociones. Su obtención requiere distintos pasos en los que primero las palabras se agrupan por emoción, y después se organizan en una <em>matriz de documentos</em> con la función <code>TermDocumentMatrix</code> del paquete <code>tm</code>. Finalmente la función <code>comparison.cloud</code> permite visualizar el gráfico (tiene distintos argumentos opcionales que admiten distintas posibilidades). En el ejemplo que figura a continuación solo se han escogido tres emociones<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="mineria-textos.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(syuzhet)</span>
+<span id="cb32-2"><a href="mineria-textos.html#cb32-2" aria-hidden="true" tabindex="-1"></a>palabras_EN2 <span class="ot">&lt;-</span> <span class="fu">get_tokens</span>(declaracion_EN)</span>
+<span id="cb32-3"><a href="mineria-textos.html#cb32-3" aria-hidden="true" tabindex="-1"></a>emo_tab2 <span class="ot">&lt;-</span> <span class="fu">get_nrc_sentiment</span>(palabras_EN2, <span class="at">lang =</span> <span class="st">&quot;english&quot;</span>)</span>
+<span id="cb32-4"><a href="mineria-textos.html#cb32-4" aria-hidden="true" tabindex="-1"></a>emo_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb32-5"><a href="mineria-textos.html#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(palabras_EN2[emo_tab2<span class="sc">$</span>anger <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">collapse =</span> <span class="st">&quot; &quot;</span>),</span>
+<span id="cb32-6"><a href="mineria-textos.html#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(palabras_EN2[emo_tab2<span class="sc">$</span>anticipation <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">collapse =</span> <span class="st">&quot; &quot;</span>),</span>
+<span id="cb32-7"><a href="mineria-textos.html#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(palabras_EN2[emo_tab2<span class="sc">$</span>disgust <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">collapse =</span> <span class="st">&quot; &quot;</span>)</span>
+<span id="cb32-8"><a href="mineria-textos.html#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-9"><a href="mineria-textos.html#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tm)</span>
+<span id="cb32-10"><a href="mineria-textos.html#cb32-10" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">Corpus</span>(<span class="fu">VectorSource</span>(emo_vec))</span>
+<span id="cb32-11"><a href="mineria-textos.html#cb32-11" aria-hidden="true" tabindex="-1"></a>TDM <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">TermDocumentMatrix</span>(corpus))</span>
+<span id="cb32-12"><a href="mineria-textos.html#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(TDM) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;anger&quot;</span>, <span class="st">&quot;anticipation&quot;</span>, <span class="st">&quot;disgust&quot;</span>)</span>
+<span id="cb32-13"><a href="mineria-textos.html#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb32-14"><a href="mineria-textos.html#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="fu">comparison.cloud</span>(TDM,</span>
+<span id="cb32-15"><a href="mineria-textos.html#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">random.order =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb32-16"><a href="mineria-textos.html#cb32-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;firebrick&quot;</span>, <span class="st">&quot;forestgreen&quot;</span>, <span class="st">&quot;orange3&quot;</span>),</span>
+<span id="cb32-17"><a href="mineria-textos.html#cb32-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">title.size =</span> <span class="fl">1.5</span>, <span class="at">scale =</span> <span class="fu">c</span>(<span class="fl">3.5</span>, <span class="dv">1</span>), <span class="at">rot.per =</span> <span class="dv">0</span></span>
+<span id="cb32-18"><a href="mineria-textos.html#cb32-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:emonube"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/emonube-1.png" alt="Nube de palabras de tres emociones NRC seleccionadas" width="60%" />
+<p class="caption">
+Figura 2.5: Nube de palabras de tres emociones NRC seleccionadas
+</p>
+</div>
+</div>
+<div id="n-gramas" class="section level3 hasAnchor" number="2.4.5">
+<h3><span class="header-section-number">2.4.5</span> <em>N-gramas</em><a href="mineria-textos.html#n-gramas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El siguiente código muestra la obtención de <em>n-gramas</em> con <code>tokenizers</code>.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="mineria-textos.html#cb33-1" aria-hidden="true" tabindex="-1"></a>bigramas <span class="ot">&lt;-</span> <span class="fu">tokenize_ngrams</span>(declaracion,</span>
+<span id="cb33-2"><a href="mineria-textos.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">2</span>,</span>
+<span id="cb33-3"><a href="mineria-textos.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">stopwords =</span> tabla_stopwords<span class="sc">$</span>palabra</span>
+<span id="cb33-4"><a href="mineria-textos.html#cb33-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-5"><a href="mineria-textos.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bigramas[[<span class="dv">1</span>]], <span class="at">n =</span> <span class="dv">3</span>)</span>
+<span id="cb33-6"><a href="mineria-textos.html#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;buenas tardes&quot;          &quot;tardes estimados&quot;       &quot;estimados compatriotas&quot;</span></span>
+<span id="cb33-7"><a href="mineria-textos.html#cb33-7" aria-hidden="true" tabindex="-1"></a>trigramas <span class="ot">&lt;-</span> <span class="fu">tokenize_ngrams</span>(declaracion,</span>
+<span id="cb33-8"><a href="mineria-textos.html#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">3</span>,</span>
+<span id="cb33-9"><a href="mineria-textos.html#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">stopwords =</span> tabla_stopwords<span class="sc">$</span>palabra</span>
+<span id="cb33-10"><a href="mineria-textos.html#cb33-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-11"><a href="mineria-textos.html#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(trigramas[[<span class="dv">1</span>]], <span class="at">n =</span> <span class="dv">3</span>)</span>
+<span id="cb33-12"><a href="mineria-textos.html#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;buenas tardes estimados&quot;       &quot;tardes estimados compatriotas&quot;</span></span>
+<span id="cb33-13"><a href="mineria-textos.html#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] &quot;estimados compatriotas día&quot;</span></span></code></pre></div>
+<p>Se ha procedido a eliminar de los bigramas y trigramas aquellas combinaciones con al menos una palabra vacía (<em>stopword</em>).</p>
+<p>Se procede ahora a obtener los bigramas con <code>tidytext</code>. Para el resto de <em>n-gramas</em> el procedimiento es análogo haciendo las modificaciones oportunas.
+En el último paso se ordenan por frecuencia (de mayor a menor):</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="mineria-textos.html#cb34-1" aria-hidden="true" tabindex="-1"></a>declara2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">texto =</span> declaracion)</span>
+<span id="cb34-2"><a href="mineria-textos.html#cb34-2" aria-hidden="true" tabindex="-1"></a>bigramas <span class="ot">&lt;-</span> declara2 <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="mineria-textos.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(bigram, texto, <span class="at">token =</span> <span class="st">&quot;ngrams&quot;</span>, <span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb34-4"><a href="mineria-textos.html#cb34-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(bigram, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb34-5"><a href="mineria-textos.html#cb34-5" aria-hidden="true" tabindex="-1"></a>bigramas[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ]</span>
+<span id="cb34-6"><a href="mineria-textos.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 2</span></span>
+<span id="cb34-7"><a href="mineria-textos.html#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bigram         n</span></span>
+<span id="cb34-8"><a href="mineria-textos.html#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;      &lt;int&gt;</span></span>
+<span id="cb34-9"><a href="mineria-textos.html#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 todos los      6</span></span>
+<span id="cb34-10"><a href="mineria-textos.html#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 de la          5</span></span>
+<span id="cb34-11"><a href="mineria-textos.html#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 de los         5</span></span>
+<span id="cb34-12"><a href="mineria-textos.html#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 del estado     5</span></span>
+<span id="cb34-13"><a href="mineria-textos.html#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 estado de      5</span></span></code></pre></div>
+<p>Una forma de eliminar las palabras vacías:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="mineria-textos.html#cb35-1" aria-hidden="true" tabindex="-1"></a>bigramas_limpios <span class="ot">&lt;-</span> bigramas <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="mineria-textos.html#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(bigram, <span class="fu">c</span>(<span class="st">&quot;word1&quot;</span>, <span class="st">&quot;word2&quot;</span>), <span class="at">sep =</span> <span class="st">&quot; &quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="mineria-textos.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>word1 <span class="sc">%in%</span> tabla_stopwords<span class="sc">$</span>palabra) <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="mineria-textos.html#cb35-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>word2 <span class="sc">%in%</span> tabla_stopwords<span class="sc">$</span>palabra) <span class="sc">|&gt;</span></span>
+<span id="cb35-5"><a href="mineria-textos.html#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(bigram, word1, word2, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span>
+<span id="cb35-6"><a href="mineria-textos.html#cb35-6" aria-hidden="true" tabindex="-1"></a>bigramas_limpios[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ]</span>
+<span id="cb35-7"><a href="mineria-textos.html#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 2</span></span>
+<span id="cb35-8"><a href="mineria-textos.html#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bigram                       n</span></span>
+<span id="cb35-9"><a href="mineria-textos.html#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                    &lt;int&gt;</span></span>
+<span id="cb35-10"><a href="mineria-textos.html#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 autoridades sanitarias       2</span></span>
+<span id="cb35-11"><a href="mineria-textos.html#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 buenas tardes                2</span></span>
+<span id="cb35-12"><a href="mineria-textos.html#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 disciplina social            2</span></span>
+<span id="cb35-13"><a href="mineria-textos.html#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 haga falta                   2</span></span>
+<span id="cb35-14"><a href="mineria-textos.html#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 ministros extraordinario     2</span></span></code></pre></div>
+<p><strong>Significado y contexto</strong><br />
+Como se ha visto en la sección <a href="mineria-textos.html#secTOKEN">2.2.2</a>, con los <em>n-gramas</em> se puede hacer un análisis de colocaciones para extraer los distintos significados y valores informativos a partir del contexto. En este caso, se puede ver cómo la palabra <em>atender</em> cambia de sentido cuando va precedida de <em>no</em> o <em>sin</em>. A continuación, se filtran los bigramas cuya primera palabra es <em>no</em>:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="mineria-textos.html#cb36-1" aria-hidden="true" tabindex="-1"></a>bigramas_no <span class="ot">&lt;-</span> bigramas <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="mineria-textos.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(bigram, <span class="fu">c</span>(<span class="st">&quot;word1&quot;</span>, <span class="st">&quot;word2&quot;</span>), <span class="at">sep =</span> <span class="st">&quot; &quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb36-3"><a href="mineria-textos.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(word1 <span class="sc">==</span> <span class="st">&quot;no&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb36-4"><a href="mineria-textos.html#cb36-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(word1, word2, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-5"><a href="mineria-textos.html#cb36-5" aria-hidden="true" tabindex="-1"></a>bigramas_no</span>
+<span id="cb36-6"><a href="mineria-textos.html#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span id="cb36-7"><a href="mineria-textos.html#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   word1 word2       n</span></span>
+<span id="cb36-8"><a href="mineria-textos.html#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;</span></span>
+<span id="cb36-9"><a href="mineria-textos.html#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 no    atiende     1</span></span>
+<span id="cb36-10"><a href="mineria-textos.html#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 no    cabe        1</span></span>
+<span id="cb36-11"><a href="mineria-textos.html#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 no    es          1</span></span></code></pre></div>
+<p>Estos resultados se pueden utilizar para el análisis de sentimientos y la detección de emociones.</p>
+</div>
+<div id="análisis-de-redes" class="section level3 hasAnchor" number="2.4.6">
+<h3><span class="header-section-number">2.4.6</span> Análisis de redes<a href="mineria-textos.html#análisis-de-redes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se proporcionan las instrucciones para realizar un análisis básico de redes, utilizando los paquetes <code>igraph</code> y <code>ggraph</code>. Dada la corta extensión de la Declaración no es posible obtener conclusiones.
+En la figura <a href="mineria-textos.html#fig:figredes">2.6</a> se pueden ver los gráficos de redes de bigramas, tanto sin palabras vacías como con ellas.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="mineria-textos.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb37-2"><a href="mineria-textos.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggraph)</span>
+<span id="cb37-3"><a href="mineria-textos.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb37-4"><a href="mineria-textos.html#cb37-4" aria-hidden="true" tabindex="-1"></a>graf_bigramas_l <span class="ot">&lt;-</span> bigramas_limpios <span class="sc">|&gt;</span></span>
+<span id="cb37-5"><a href="mineria-textos.html#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(bigram, <span class="fu">c</span>(<span class="st">&quot;first&quot;</span>, <span class="st">&quot;second&quot;</span>), <span class="at">sep =</span> <span class="st">&quot; &quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb37-6"><a href="mineria-textos.html#cb37-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb37-7"><a href="mineria-textos.html#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">graph_from_data_frame</span>()</span>
+<span id="cb37-8"><a href="mineria-textos.html#cb37-8" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggraph</span>(graf_bigramas_l, <span class="at">layout =</span> <span class="st">&quot;fr&quot;</span>) <span class="sc">+</span></span>
+<span id="cb37-9"><a href="mineria-textos.html#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>() <span class="sc">+</span></span>
+<span id="cb37-10"><a href="mineria-textos.html#cb37-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="at">size =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb37-11"><a href="mineria-textos.html#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name))</span>
+<span id="cb37-12"><a href="mineria-textos.html#cb37-12" aria-hidden="true" tabindex="-1"></a>graf_bigramas <span class="ot">&lt;-</span> bigramas <span class="sc">|&gt;</span></span>
+<span id="cb37-13"><a href="mineria-textos.html#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(bigram, <span class="fu">c</span>(<span class="st">&quot;first&quot;</span>, <span class="st">&quot;second&quot;</span>), <span class="at">sep =</span> <span class="st">&quot; &quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb37-14"><a href="mineria-textos.html#cb37-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb37-15"><a href="mineria-textos.html#cb37-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">graph_from_data_frame</span>()</span>
+<span id="cb37-16"><a href="mineria-textos.html#cb37-16" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggraph</span>(graf_bigramas, <span class="at">layout =</span> <span class="st">&quot;fr&quot;</span>) <span class="sc">+</span></span>
+<span id="cb37-17"><a href="mineria-textos.html#cb37-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>() <span class="sc">+</span></span>
+<span id="cb37-18"><a href="mineria-textos.html#cb37-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="at">size =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb37-19"><a href="mineria-textos.html#cb37-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name))</span>
+<span id="cb37-20"><a href="mineria-textos.html#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb37-21"><a href="mineria-textos.html#cb37-21" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> g2</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:figredes"></span>
+<img src="Ciencia_de_datos_con_r_files/figure-html/figredes-1.png" alt="Redes de bigramas sin palabras vacías y con ellas" width="60%" />
+<p class="caption">
+Figura 2.6: Redes de bigramas sin palabras vacías y con ellas
+</p>
+</div>
+</div>
+<div id="resumen" class="section level3 unnumbered hasAnchor infobox_resume">
+<h3>Resumen<a href="mineria-textos.html#resumen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En este capítulo se ha introducido al lector en la minería de textos, en particular:</p>
+<ul>
+<li>Se han presentado los conceptos y tareas fundamentales de este ámbito, así como sus campos de aplicación principales.
+Se ha puesto de relieve la importancia de la preparación de los datos y su segmentación (a distintos niveles) para obtener buenos resultados, acordes con el objetivo de la investigación.</li>
+<li>Se ha mostrado el uso de <code>R</code> para el análisis de textos y de sentimientos.</li>
+<li>Se ha presentado un caso aplicado para ilustrar las técnicas de minería de textos.</li>
+<li>Se han mencionado otros análisis plausibles de minería de textos como la estilometría o el modelado de temas (véase el capítulo 58).</li>
+</ul>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Universidad de Castilla-La Mancha, Universidad de Castilla-La Mancha y Università di Roma Tor Vergata<a href="mineria-textos.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Frecuencias relativas si se comparan distintos textos. También será útil para ello obtener la tasa de riqueza léxica (TIR).<a href="mineria-textos.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Proyecto desarrollado por Michael Hart en 1971 para crear una biblioteca de libros electrónicos gratuitos, y accesibles en internet, a partir de libros en soporte físico, generalmente de dominio público. Cuenta con más de 50 000 libros.<a href="mineria-textos.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Se deja al lector el análisis de la Declaración con más emociones, en castellano, etc.<a href="mineria-textos.html#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelización-de-series-temporales.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="grafos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Ciencia_de_datos_con_r.pdf", "Ciencia_de_datos_con_r.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

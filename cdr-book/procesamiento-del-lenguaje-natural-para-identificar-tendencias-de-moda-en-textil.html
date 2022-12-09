@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Fundamentos de ciencia de datos con R</title>
+  <meta name="description" content="Falta" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Fundamentos de ciencia de datos con R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Falta" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Fundamentos de ciencia de datos con R" />
+  
+  <meta name="twitter:description" content="Falta" />
+  
+
+<meta name="author" content="Coordinadores" />
+
+
+<meta name="date" content="2022-10-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33KQ1S5ZCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-33KQ1S5ZCJ');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Ciencia de datos con <strong>R</strong></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="chapters/212058_cd_nlp_textil.html"><a href="#procesamiento-del-lenguaje-natural-para-identificar-tendencias-de-moda-en-textil"><i class="fa fa-check"></i><b>1</b> Procesamiento del lenguaje natural para identificar tendencias de moda en textil</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="chapters/212058_cd_nlp_textil.html"><a href="#prededicción-de-prendas-con-mejores-comentarios"><i class="fa fa-check"></i><b>1.1</b> Prededicción de prendas con mejores comentarios</a></li>
+<li class="chapter" data-level="1.2" data-path="chapters/212058_cd_nlp_textil.html"><a href="#bigram-analysis-and-visualization"><i class="fa fa-check"></i><b>1.2</b> Bigram Analysis and Visualization</a></li>
+<li class="chapter" data-level="1.3" data-path="chapters/212058_cd_nlp_textil.html"><a href="#network-visualization"><i class="fa fa-check"></i><b>1.3</b> Network Visualization:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://blog.uclm.es/tp-mbsba/"> Ciencia de datos con R </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fundamentos de ciencia de datos con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Fundamentos de ciencia de datos con R</h1>
+<p class="author"><em>Coordinadores</em></p>
+<p class="date"><em>2022-10-16</em></p>
+</div>
+<div id="procesamiento-del-lenguaje-natural-para-identificar-tendencias-de-moda-en-textil" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Capítulo 1</span> Procesamiento del lenguaje natural para identificar tendencias de moda en textil<a href="#procesamiento-del-lenguaje-natural-para-identificar-tendencias-de-moda-en-textil" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Ambrosio Nguema Ansue</em></p>
+<p>El modelado de temas es el nombre colectivo de las técnicas que ayudan a dividir los textos en temas, por lo que la determinación de los temas relevantes es parte del análisis. Como se trata de una técnica no supervisada, requiere muchas iteraciones.
+Las técnicas de PNL más novedosas podrían superar a los modelos temáticos en términos de precisión. Sin embargo, una gran ventaja de usar los temas extraídos del texto en una tarea posterior es que la contribución de cada tema (y otras características que tiene disponibles) en el modelo de predicción se analiza y visualiza fácilmente. Esto no solo es útil para usted, sino sobre todo para cualquiera a quien le esté explicando el modelo predictivo.
+Hay una serie de algoritmos para extraer temas de una colección de textos, pero la asignación latente de Dirichletes LDA uno de los algoritmos más populares porque es eficiente y da como resultado temas altamente interpretables. La interpretabilidad de los temas es una característica importante de un modelo de tema, ya que no solo queremos encontrar agrupaciones de palabras estadísticamente relevantes, también queremos poder etiquetar los temas identificados con un nombre de tema con el que otros puedan relacionarse. Como tal, el modelado de temas tiene algunas similitudes con las técnicas de agrupación como KMeans</p>
+<div id="prededicción-de-prendas-con-mejores-comentarios" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Prededicción de prendas con mejores comentarios<a href="#prededicción-de-prendas-con-mejores-comentarios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El conjunto <code>clothes</code> de datos de reseñas y calificaciones de ropa de comercio electrónico para mujeres contiene 23.486 entradas relacionadas con la edad y la revisión dada por el cliente y sus opiniones sobre la ropa de mujer de varios minoristas.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6     ✔ dplyr   1.0.9
+## ✔ tibble  3.1.8     ✔ stringr 1.4.0
+## ✔ tidyr   1.2.0     ✔ forcats 0.5.1
+## ✔ purrr   0.3.4     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>clothes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/clothes.txt&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p>El primer registro presenta la siguiente estructura la información.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(clothes)[<span class="dv">1</span>,]</span></code></pre></div>
+<pre><code>##    ID Age Title                                                Review Rating
+## 1 767  33  &lt;NA&gt; Absolutely wonderful - silky and sexy and comfortable      4
+##   Recommend Liked  Division     Dept     Class
+## 1         1     0 Initmates Intimate Intimates</code></pre>
+<p>Para ver qué Departamento obtiene el mayor porcentaje de revisiones/calificaciones.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(clothes<span class="sc">$</span>Dept))), </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>Var1, <span class="at">y =</span> Freq<span class="sc">*</span><span class="dv">100</span>)) <span class="sc">+</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Department Name&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Percentage of Reviews/Ratings (%)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">round</span>(Freq<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)), <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.25</span>) <span class="sc">+</span> </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Percentage of Reviews By Department&#39;</span>)</span></code></pre></div>
+<p><img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+La mayor proporción de las reseñas/calificaciones son para <code>Tops</code> y la menor para <code>Jackets</code>.</p>
+<p>En cuanto a las <strong>calificaciones por departamento</strong>, excluida la tendencia,
+ya que contiene una mezcla de ropa que puede encajar en las otras categorías del Departamento, el análisis se centra en 5 departamentos: <code>Bottoms</code>, <code>Dresses</code>, <code>Intimate</code>, y <code>Tops</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>phisto <span class="ot">&lt;-</span> clothes <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Dept), Dept <span class="sc">!=</span> <span class="st">&#39;Trend&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Dept =</span> <span class="fu">factor</span>(Dept)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Dept) <span class="sc">|&gt;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Rating) <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> n<span class="sc">/</span><span class="fu">sum</span>(n))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>phisto <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Rating, <span class="at">y =</span> perc<span class="sc">*</span><span class="dv">100</span>, <span class="at">fill =</span> Dept)) <span class="sc">+</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Dept) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&#39;Percentage of reviews (%)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">round</span>(perc<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)), <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">65</span>)) </span></code></pre></div>
+<p><img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>En cada Departamento, la calificación dominante otorgada es de 5 estrellas.
+<code>Jacket</code> tiene el mayor número de calificaciones de 5 estrellas de todos los departamentos aunque <code>Jacket</code> fue el que tuvo la menor cantidad de reseñas.</p>
+<p>Si se analizan los <strong>departamentos por edad</strong></p>
+<p>Veamos la popularidad de cada departamento por edad.
+Agrupé la edad en categorías (18-29, 30-39, 40-49, etc.)</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ages <span class="ot">&lt;-</span> clothes <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Age), <span class="sc">!</span><span class="fu">is.na</span>(Dept), Dept <span class="sc">!=</span> <span class="st">&#39;Trend&#39;</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(ID, Age, Dept) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Age_group =</span> <span class="fu">ifelse</span>(Age <span class="sc">&lt;</span> <span class="dv">30</span>, <span class="st">&#39;18-29&#39;</span>, <span class="fu">ifelse</span>(Age <span class="sc">&lt;</span> <span class="dv">40</span>, <span class="st">&#39;30-39&#39;</span>, <span class="fu">ifelse</span>(Age <span class="sc">&lt;</span> <span class="dv">50</span>, <span class="st">&#39;40-49&#39;</span>, <span class="fu">ifelse</span>(Age <span class="sc">&lt;</span> <span class="dv">60</span>, <span class="st">&#39;50-59&#39;</span>, <span class="fu">ifelse</span>(Age <span class="sc">&lt;</span> <span class="dv">70</span>, <span class="st">&#39;60-69&#39;</span>, <span class="fu">ifelse</span>(Age <span class="sc">&lt;</span> <span class="dv">80</span>, <span class="st">&#39;70-79&#39;</span>, <span class="fu">ifelse</span>(Age <span class="sc">&lt;</span> <span class="dv">90</span>, <span class="st">&#39;80-89&#39;</span>, <span class="st">&#39;90-99&#39;</span>)))))))) </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ages <span class="ot">&lt;-</span> ages <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Age_group =</span> <span class="fu">factor</span>(Age_group), <span class="at">Dept =</span> <span class="fu">factor</span>(Dept, <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">&#39;Tops&#39;</span>, <span class="st">&#39;Dresses&#39;</span>, <span class="st">&#39;Bottoms&#39;</span>, <span class="st">&#39;Intimate&#39;</span>, <span class="st">&#39;Jackets&#39;</span>))))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>ages <span class="sc">|&gt;</span> <span class="fu">filter</span>(Age <span class="sc">&lt;</span> <span class="dv">80</span>) <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Age_group) <span class="sc">|&gt;</span> <span class="fu">count</span>(Dept) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Dept, n, <span class="at">fill =</span> Age_group)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&#39;identity&#39;</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Age_group, <span class="at">scales =</span> <span class="st">&#39;free&#39;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&#39;Department&#39;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&#39;Number of Reviews&#39;</span>) <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> n), <span class="at">hjust =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(.<span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">+</span> <span class="fu">coord_flip</span>() </span></code></pre></div>
+<p><img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>La distribución del número de reseñas por Departamento (i.e. Tops con el mayor número de reseñas,
+vestidos con el segundo mayor número de reseñas, etc.)
+se mantienen dentro de cada uno de los grupos de edad mostrados.
+Las personas de 30 años dejaron la mayoría de las reseñas,
+seguidas por las personas de 40 y 50 años.
+Esto les da a las empresas una idea de quién es el grupo demográfico objetivo y
+qué tipo de ropa (camisas, vestidos) tienen demanda.</p>
+<p>Los grupos de edad 80-89 y 90-99, sin embargo,
+muestran una distribución diferente.
+Es posible que algunos de los revisores no estén escribiendo para su edad adecuada,
+pero eso es solo mi especulación.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ages <span class="sc">|&gt;</span> <span class="fu">filter</span>(Age <span class="sc">&gt;=</span> <span class="dv">80</span>) <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Age_group) <span class="sc">|&gt;</span> <span class="fu">count</span>(Dept) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Dept, n, <span class="at">fill =</span> Age_group)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&#39;identity&#39;</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Age_group, <span class="at">scales =</span> <span class="st">&#39;free&#39;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&#39;Department&#39;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&#39;Number of Reviews&#39;</span>) <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> n), <span class="at">hjust =</span> <span class="fl">1.2</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="bigram-analysis-and-visualization" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Bigram Analysis and Visualization<a href="#bigram-analysis-and-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para hacer un análisis de bigrama, se eliminan las entradas que no tienen reseñas.
+Hubo 845 revisiones NA, por lo que 845/23486 * 100 = 3,6 % de calificaciones no se tendrán en cuenta. Además, se combinó el título con la reseña para reunir todas las palabras en una sola sección.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>clothesr <span class="ot">&lt;-</span> clothes <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Review))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>notitle <span class="ot">&lt;-</span> clothesr <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(Title)) <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>Title)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>wtitle <span class="ot">&lt;-</span> clothesr <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Title)) <span class="sc">|&gt;</span> <span class="fu">unite</span>(Review, <span class="fu">c</span>(Title, Review), <span class="at">sep =</span> <span class="st">&#39; &#39;</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>main <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(notitle, wtitle)</span></code></pre></div>
+<p>Se ordenan las palabras vacías y se eliminan los dígitos. Se agrupan las palabras de acuerdo con sus calificaciones y se trazaron los 10 bigramas más comunes para cada calificación.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bigramming <span class="ot">&lt;-</span> <span class="cf">function</span>(data){</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  cbigram <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="fu">unnest_tokens</span>(bigram, Review, <span class="at">token =</span> <span class="st">&#39;ngrams&#39;</span>, <span class="at">n =</span> <span class="dv">2</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  cbigram_sep <span class="ot">&lt;-</span> cbigram <span class="sc">|&gt;</span> <span class="fu">separate</span>(bigram, <span class="fu">c</span>(<span class="st">&#39;first&#39;</span>, <span class="st">&#39;second&#39;</span>), <span class="at">sep =</span> <span class="st">&#39; &#39;</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  cbigram2 <span class="ot">&lt;-</span> cbigram_sep <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span>first <span class="sc">%in%</span> stop_words<span class="sc">$</span>word, <span class="sc">!</span>second <span class="sc">%in%</span> stop_words<span class="sc">$</span>word, <span class="sc">!</span><span class="fu">str_detect</span>(first, <span class="st">&#39;</span><span class="sc">\\</span><span class="st">d&#39;</span>), <span class="sc">!</span><span class="fu">str_detect</span>(second, <span class="st">&#39;</span><span class="sc">\\</span><span class="st">d&#39;</span>)) <span class="sc">|&gt;</span> <span class="fu">unite</span>(bigram, <span class="fu">c</span>(first, second), <span class="at">sep =</span> <span class="st">&#39; &#39;</span>) </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(cbigram2)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>top_bigrams <span class="ot">&lt;-</span> <span class="fu">bigramming</span>(main) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Rating =</span> <span class="fu">factor</span>(Rating, levels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">1</span>))) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">bigram =</span> <span class="fu">factor</span>(bigram, <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(bigram)))) <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Rating) <span class="sc">|&gt;</span> <span class="fu">count</span>(bigram, <span class="at">sort=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">top_n</span>(<span class="dv">10</span>, n) <span class="sc">|&gt;</span> <span class="fu">ungroup</span>() </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>top_bigrams  <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(bigram, n, <span class="at">fill =</span> Rating)) <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Rating, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">scales =</span> <span class="st">&#39;free&#39;</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&#39;frequency&#39;</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&#39;Most Common Bigrams (By Ratings)&#39;</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="Ciencia_de_datos_con_r_files/figure-html/bigrama-1.png" width="672" /></p>
+<p>No hace falta decir que hay frases positivas para las calificaciones más altas
+y frases negativas para las calificaciones más bajas.
+La frase “agujeros para los brazos” aparece en las reseñas de 2,3 estrellas,
+lo que podría referirse a una falta de ajuste. Centrémonos en las reseñas de 5 estrellas
+y las reseñas de 1 estrella para analizar lo bueno o lo malo de las prendas.</p>
+</div>
+<div id="network-visualization" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Network Visualization:<a href="#network-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Primero, hagamos una visualización en red de las reseñas de 5 estrellas.
+Para hacerlo, usaremos las bibliotecas igraph y ggraph para mostrar una red que resalta
+las palabras compartidas dentro de los bigramas más comunes.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggraph)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;igraph&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     as_data_frame, groups, union</code></pre>
+<pre><code>## The following objects are masked from &#39;package:purrr&#39;:
+## 
+##     compose, simplify</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     crossing</code></pre>
+<pre><code>## The following object is masked from &#39;package:tibble&#39;:
+## 
+##     as_data_frame</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     decompose, spectrum</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     union</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fiverating <span class="ot">&lt;-</span> main <span class="sc">|&gt;</span> <span class="fu">filter</span>(Rating <span class="sc">==</span> <span class="dv">5</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>onerating <span class="ot">&lt;-</span> main <span class="sc">|&gt;</span> <span class="fu">filter</span>(Rating <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>five <span class="ot">&lt;-</span> <span class="fu">bigramming</span>(fiverating) <span class="sc">|&gt;</span> <span class="fu">count</span>(bigram, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>one <span class="ot">&lt;-</span> <span class="fu">bigramming</span>(onerating) <span class="sc">|&gt;</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(bigram, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>graph_five <span class="ot">&lt;-</span> five <span class="sc">|&gt;</span> </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(bigram, <span class="fu">c</span>(<span class="st">&#39;first&#39;</span>,<span class="st">&#39;second&#39;</span>), <span class="at">sep =</span> <span class="st">&#39; &#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">70</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">graph_from_data_frame</span>()</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>graph_one <span class="ot">&lt;-</span> one <span class="sc">|&gt;</span> </span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(bigram, <span class="fu">c</span>(<span class="st">&#39;first&#39;</span>,<span class="st">&#39;second&#39;</span>), <span class="at">sep =</span> <span class="st">&#39; &#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">graph_from_data_frame</span>()</span></code></pre></div>
+<p>Red para 1 estrella:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11111</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(graph_one, <span class="at">layout =</span> <span class="st">&quot;fr&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>() <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="at">color =</span> <span class="st">&#39;aquamarine1&#39;</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">vjust =</span> <span class="fl">1.1</span>, <span class="at">hjust =</span> <span class="fl">1.1</span>) <span class="sc">+</span> </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">18</span>)) <span class="sc">+</span> </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 18 rows containing non-finite values (stat_edge_link).</code></pre>
+<pre><code>## Warning: Removed 31 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 31 rows containing missing values (geom_text).</code></pre>
+<p><img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Red para 5 estrellas:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">55555</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(graph_five, <span class="at">layout =</span> <span class="st">&quot;fr&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>() <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="at">color =</span> <span class="st">&#39;aquamarine1&#39;</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">vjust =</span> <span class="fl">1.1</span>, <span class="at">hjust =</span> <span class="fl">1.1</span>) <span class="sc">+</span> </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">18</span>)) <span class="sc">+</span> </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 42 rows containing non-finite values (stat_edge_link).</code></pre>
+<pre><code>## Warning: Removed 40 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 40 rows containing missing values (geom_text).</code></pre>
+<p><img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>A continuación, se lleva a cabo la nube de Palabras para 1 estrella</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud2)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud2</span>(one <span class="sc">|&gt;</span> <span class="fu">filter</span>(n<span class="sc">&gt;</span><span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">sqrt</span>(n)), <span class="at">size =</span> .<span class="dv">4</span>)</span></code></pre></div>
+<div id="htmlwidget-c85215dee30b1d2500ec" style="width:672px;height:480px;" class="wordcloud2 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c85215dee30b1d2500ec">{"x":{"word":["poor quality","cold water","cute top","beautiful dress","feels cheap","lay flat","maternity top","poor fit","sale price","usual size","cute online","dry clean","odd fit","potato sack","quality control","quality material","short waisted","arm holes","bad quality","body type","extra fabric","extremely disappointed","horrible fit","local retailer","love retailer","real life","retailer tops","shirt runs","weird fit"],"freq":[6.557438524302,3.74165738677394,3.16227766016838,3,3,3,3,2.82842712474619,2.82842712474619,2.82842712474619,2.64575131106459,2.64575131106459,2.64575131106459,2.64575131106459,2.64575131106459,2.64575131106459,2.64575131106459,2.44948974278318,2.44948974278318,2.44948974278318,2.44948974278318,2.44948974278318,2.44948974278318,2.44948974278318,2.44948974278318,2.44948974278318,2.44948974278318,2.44948974278318,2.44948974278318],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":10.9798970639475,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<p>Y para 5 estrellas</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud2</span>(five <span class="sc">|&gt;</span> <span class="fu">filter</span>(n<span class="sc">&gt;</span><span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">sqrt</span>(n)), <span class="at">size =</span> .<span class="dv">4</span>)</span></code></pre></div>
+<div id="htmlwidget-c4354dfda0790dcf9f3f" style="width:672px;height:480px;" class="wordcloud2 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c4354dfda0790dcf9f3f">{"x":{"word":["love love","fit perfectly","fits perfectly","highly recommend","super cute","usual size","super soft","absolutely love","skinny jeans","fits true","beautiful dress","perfect fit","light weight","regular size","normal size","super comfortable","summer dress","super flattering","perfect length","local retailer","super comfy","sale price","fit perfect","runs true","fits perfect","cute top","form fitting","perfect summer","flattering fit","typically wear","local store","retailer tops","size medium","beautiful top","dress fits","green color","spring summer","arm holes","fits tts","broad shoulders","absolutely beautiful","petite size","cami underneath","pleasantly surprised","gorgeous dress","denim jacket","retailer store","soft fabric","summer top","blue color","body type","beautiful color","fall winter","xs petite","medium fit","figure flattering","top love","tank top","nice weight","perfect dress","fit true","nice quality","size xs","extremely comfortable","dress love","loose fitting","pencil skirt","absolutely gorgeous","beautiful sweater","bathing suit","tank underneath","flattering cut","layering piece","medium fits","retailer dresses","soft comfortable","tiny bit","xs fit","incredibly soft","dress runs","jean jacket","cute dress","loose fit","low cut","extremely flattering","drapes beautifully","fits beautifully","pink color","dress online","navy blue","regular xs","sweater coat","drapes nicely","hot summer","regular length","top fits","wear size","athletic build","body types","fit tts","nice touch","nude bra","previous reviewer","quality fabric","runs tts","xs fits","perfect fall","versatile piece","dry clean","favorite dress","flattering dress","run true","warm weather","white jeans","fits nicely","hard time","machine washable","petite sizes","fabric feels","medium weight","black pants","larger size","lovely dress","dress fit","lovely top","red color","sweater dress","beautiful colors","flip flops","soft material","summer days","wine color","bit loose","pear shaped","petite frame","petite xs","wardrobe staple","casual dress","flattering love","fun dress","eye catching","gorgeous top","nice fit","short torso","sleeve length","beautiful blouse","black leggings","comfortable dress","date night","lace detail","maxi dress","perfect top","perfect weight","previous reviews","slip underneath","swing dress","usual xs","bit snug","real life","strapless bra","white top","wide leg","casual top","cream color","hourglass figure","jeans love","short waisted","soft comfy","summer staple","comfortable flattering","cute love","incredibly flattering","pretty top","size xl","tee shirt","bit tight","black dress","elastic waist","pretty true","received compliments","top runs","versatile dress","beautiful detail","beautiful piece","comfortable fit","fall dress","hourglass shape","orange color","perfect amount","running errands","xxs petite","basic tee","blue motif","dark grey","faux fur","favorite retailer","flows nicely","grey color","hangs nicely","incredibly comfortable","length hits","neutral color","nice top","olive green","pretty dress","relaxed fit","shirt underneath","size larger","time finding","absolutely stunning","beautiful design","beautiful skirt","bra straps","cooler weather","excellent quality","hangs beautifully","leather jacket","nice fabric","post baby","tall boots","typical size","unique design","usual medium","xs regular","ankle length","beautiful fabric","byron lars","coral color","extra fabric","fit beautifully","medium petite","mid rise","natural waist","petite fit","petite sizing","recommend sizing","transition piece","waist band","absolutely perfect","comfortable love","easy breezy","favorite jeans","flattering top","fun top","hand wash","knee length","pilcro jeans","quality material","retailer clothes","statement piece","swing top","upper arms","wear xs","absolutely adore","ag jeans","bell sleeves","cute shirt","floral pattern","hot weather","polka dots","pretty color","skin tone","statement necklace","warmer weather","beautiful love","dress pants","dress perfect","ivory color","jeans fit","jeans shorts","lovely sweater","navy color","previous reviewers","absolutely adorable","amp amp","beautiful print","bit short","black jeans","bought size","cozy sweater","dark blue","dress size","fit love","fit nicely","highly recommended","holiday party","looser fit","neck line","nice drape","nice length","perfect spring","pilcro pants","regular bra","size fit","size fits","soft cotton","sweater love","tracy reese","white blouse","white shirt","beautiful shirt","boiled wool","bridal shower","casual wear","cute comfy","dark gray","fit fine","love wearing","nice flow","pear shape","perfect love","picture online","soft love","summer day","tad bit","top online","transitional piece","white pants","added bonus","ankle boots","bit sheer","black tights","bottom half","comfortable fabric","comfy love","dress beautiful","easily dressed","easy dress","fall sweater","favorite top","feet tall","hei hei","lays nicely","months ago","pants fit","pencil skirts","polka dot","price tag","received tons","rib cage","skinny pants","slightly loose","slightly sheer","store yesterday","summer nights","summer wardrobe","versatile top","beautiful details","beautiful soft","black motif","boyfriend jeans","bra underneath","color love","comfortable material","cute detail","cute skirt","deal breaker","holding horses","hot days","jacket love","light airy","nice soft","numerous compliments","peasant top","petite length","pictures online","retailer size","reviewer mentioned","run slightly","runs slightly","shirt fits","shorter length","staple piece","stunning dress","summer pants","sweater jacket","totally worth","unique dress","unique piece","weeks ago","worn casually","yoga pants","beige color","bright colors","business casual","casual day","classic retailer","cold water","cold weather","comfy top","dark navy","dress justice","dress makes","extra length","extremely soft","fall top","fall wardrobe","falls nicely","feel comfortable","flowy top","huge fan","light blue","light grey","light sweater","linen pants","mid thigh","months pregnant","moss color","muffin top","nice surprise","perfect sweater","received lots","regular fit","regular medium","retailer purchases","reviewers mentioned","shirt dress","shirt love","swing style","thicker fabric","top fit","vibrant colors","adorable dress","adorable top","beautiful lace","beautiful quality","bit boxy","bit shorter","black color","bra size","bra strap","bust line","camisole underneath","cloth stone","cute sweater","dress hits","fall colors","favorite sweater","feminine touch","finally found","fits fine","floral print","free shipping","gorgeous color","gray color","larger chest","length sleeves","love pilcro","low rise","material feels","meadow rue","nice color","nice detail","online photo","originally bought","pants love","peach color","perfect white","pretty blouse","soft light","special occasion","summer wedding","tee love","top heavy","top underneath","vegan leather","waisted jeans","wide legs","amazing dress","beautiful flattering","belly button","bit pricey","blue green","blue jeans","bright red","burnt orange","bust size","comfortable wearing","curvy figure","cute casual","cute summer","cute tee","denim shirt","favorite pair","favorite purchases","flattering comfortable","late summer","line shape","lovely soft","mid section","mock neck","model shot","narrow shoulders","nice addition","nice shape","normal bra","pale skin","perfect color","previous review","ran true","retailer clothing","retailer purchase","short waist","simply beautiful","skirt fits","skirt love","slim fit","spring dress","summer tank","surprisingly flattering","sweater underneath","thick material","top portion","weight sweater","ag stevie","beautiful pattern","bit wide","black friday","color combination","color combo","comfortable soft","comfortable stylish","comfortable top","cowl neck","fall weather","feel beautiful","feels soft","flat sandals","flattering shape","hem falls","light fabric","lighter weight","medium size","nice details","online photos","online picture","purple color","rich color","size love","sky blue","sleep pants","slimming effect","soft cozy","soft sweater","stretchy material","tad tight","tunic length","upper body","usual retailer","white button","white color","white dress","add bulk","awesome dress","baby weight","beautiful unique","bigger size","black lace","black top","black white","body skimming","button detail","casual summer","chest size","closet staple","customer service","cut outs","darker color","dress comfortable","dress looked","fabric love","fabulous dress","fall season","favorite purchase","favorite summer","feel pretty","feels amazing","flattering style","flows beautifully","gorgeous print","gorgeous skirt","gorgeous sweater","holiday season","looked amazing","lounge pants","love retailer","machine wash","maeve tops","maxi dresses","midi length","moss green","nice light","perfect pair","perfect shirt","perfect size","perfect tee","perfect winter","petite fits","pretty love","recently purchased","rehearsal dinner","rise jeans","sale rack","size chart","skin tight","slightly tight","soft warm","stop thinking","super easy","swing dresses","thin material","unique style","waist line","wear medium","white tank","white tee","write reviews","absolutely loved","amazingly soft","ankle jeans","arm length","bathing suits","beautiful comfortable","beautiful embroidery","beautiful fit","beautiful shade","bit low","black tank","bottom hem","boxy shape","brown color","burgundy color","comfy casual","cropped pants","cute fit","cute pants","dark denim","dark jeans","dark wash","dress cute","dry cleaning","easily dress","fall spring","favorite pants","favorite shirt","fits pretty","fits wonderfully","flare jeans","fun summer","hot humid","immediately drawn","love ag","lovely color","material makes","mid calf","nice dress","nice stretch","nice summer","peplum top","peplum tops","perfect casual","perfect denim","perfect lightweight","perfect piece","pilcro denim","purchased size","received numerous","reviewer noted","sales associate","season dress","short sleeve","short sleeves","sleeves hit","sleeves rolled","soft knit","straight leg","stretchy fabric","suggest sizing","summer months","super cozy","sweater fits","sweater knit","tall girls","wear heels","white denim","amazing fit","amazing quality","appears online","baby doll","beautiful beautiful","bit lower","blue version","boho chic","casual office","comfortable jeans","cool weather","cute comfortable","dark green","darling dress","day dress","denim skirt","dress bought","dress ran","dress yesterday","drop waist","easy fit","everyday dress","fall days","faux leather","fingers crossed","fits comfortably","gold color","gorgeous colors","hang dry","heavier weight","jean shorts","jeans leggings","jeans pants","lace top","layer underneath","leg pants","light material","lovely fabric","maternity dress","maternity top","mid weight","multiple compliments","nice material","nice pair","nice skirt","originally purchased","perfectly love","plum color","pretty colors","pretty short","recommend wearing","scoop neck","shift dress","shirt runs","simple top","skinny jean","slightly oversized","slim pants","soft flattering","soft stretchy","substantial fabric","summer fall","summer tee","super happy","sweater material","teal color","top perfect","true size","wear mine","weight fabric","white background","white version","winter dress","wonderfully soft"],"freq":[22.248595461287,19.6468827043885,19.4679223339318,18.411952639522,18.3575597506858,16.7630546142402,16.6433169770932,16.2788205960997,15.9373774505092,13.856406460551,13.5646599662505,12.8840987267251,12.7279220613579,12.5299640861417,12.369316876853,11.9582607431014,11.6619037896906,11.4017542509914,11.3137084989848,11.1803398874989,11.1803398874989,11,10.6770782520313,10.4403065089106,10.3923048454133,10.3440804327886,10.1980390271856,10,9.9498743710662,9.8488578017961,9.74679434480896,9.53939201416946,9.48683298050514,9.32737905308882,9.2736184954957,9.21954445729289,9.21954445729289,9.16515138991168,9.16515138991168,9.1104335791443,8.94427190999916,8.94427190999916,8.88819441731559,8.77496438739212,8.71779788708135,8.66025403784439,8.66025403784439,8.60232526704263,8.54400374531753,8.48528137423857,8.48528137423857,8.42614977317636,8.36660026534076,8.36660026534076,8.30662386291807,8.24621125123532,8.24621125123532,8.12403840463596,8.06225774829855,8.06225774829855,8,8,7.87400787401181,7.81024967590665,7.54983443527075,7.54983443527075,7.54983443527075,7.48331477354788,7.48331477354788,7.41619848709566,7.41619848709566,7.34846922834953,7.34846922834953,7.34846922834953,7.34846922834953,7.34846922834953,7.34846922834953,7.28010988928052,7.21110255092798,7.14142842854285,7.14142842854285,7.07106781186548,7.07106781186548,7.07106781186548,7,6.92820323027551,6.92820323027551,6.92820323027551,6.85565460040104,6.85565460040104,6.85565460040104,6.85565460040104,6.78232998312527,6.78232998312527,6.78232998312527,6.78232998312527,6.78232998312527,6.70820393249937,6.70820393249937,6.70820393249937,6.70820393249937,6.70820393249937,6.70820393249937,6.6332495807108,6.6332495807108,6.6332495807108,6.557438524302,6.557438524302,6.48074069840786,6.48074069840786,6.48074069840786,6.48074069840786,6.48074069840786,6.48074069840786,6.40312423743285,6.40312423743285,6.40312423743285,6.40312423743285,6.32455532033676,6.32455532033676,6.2449979983984,6.2449979983984,6.2449979983984,6.16441400296898,6.16441400296898,6.16441400296898,6.16441400296898,6.08276253029822,6.08276253029822,6.08276253029822,6.08276253029822,6.08276253029822,6,6,6,6,6,5.91607978309962,5.91607978309962,5.91607978309962,5.8309518948453,5.8309518948453,5.8309518948453,5.8309518948453,5.8309518948453,5.74456264653803,5.74456264653803,5.74456264653803,5.74456264653803,5.74456264653803,5.74456264653803,5.74456264653803,5.74456264653803,5.74456264653803,5.74456264653803,5.74456264653803,5.74456264653803,5.65685424949238,5.65685424949238,5.65685424949238,5.65685424949238,5.65685424949238,5.56776436283002,5.56776436283002,5.56776436283002,5.56776436283002,5.56776436283002,5.56776436283002,5.56776436283002,5.47722557505166,5.47722557505166,5.47722557505166,5.47722557505166,5.47722557505166,5.47722557505166,5.3851648071345,5.3851648071345,5.3851648071345,5.3851648071345,5.3851648071345,5.3851648071345,5.3851648071345,5.29150262212918,5.29150262212918,5.29150262212918,5.29150262212918,5.29150262212918,5.29150262212918,5.29150262212918,5.29150262212918,5.29150262212918,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.19615242270663,5.09901951359278,5.09901951359278,5.09901951359278,5.09901951359278,5.09901951359278,5.09901951359278,5.09901951359278,5.09901951359278,5.09901951359278,5.09901951359278,5.09901951359278,5.09901951359278,5.09901951359278,5.09901951359278,5.09901951359278,5,5,5,5,5,5,5,5,5,5,5,5,5,5,4.89897948556636,4.89897948556636,4.89897948556636,4.89897948556636,4.89897948556636,4.89897948556636,4.89897948556636,4.89897948556636,4.89897948556636,4.89897948556636,4.89897948556636,4.89897948556636,4.89897948556636,4.89897948556636,4.89897948556636,4.79583152331272,4.79583152331272,4.79583152331272,4.79583152331272,4.79583152331272,4.79583152331272,4.79583152331272,4.79583152331272,4.79583152331272,4.79583152331272,4.79583152331272,4.69041575982343,4.69041575982343,4.69041575982343,4.69041575982343,4.69041575982343,4.69041575982343,4.69041575982343,4.69041575982343,4.69041575982343,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.58257569495584,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.47213595499958,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.35889894354067,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.24264068711928,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4.12310562561766,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.87298334620742,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.74165738677394,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.60555127546399,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.46410161513775,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554,3.3166247903554],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":3.23615933982356,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<!-- ## Latent Dirchlet Allocation (LDA) on Trend reviews: -->
+<!-- Volvamos a las 118 revisiones en el Departamento de Tendencias que habíamos ignorado.  -->
+<!-- Usamos el enfoque de modelado de temas de Latent Dirchlet Allocation (LDA)  -->
+<!-- para tener una idea de las características clave de estas revisiones. -->
+<!-- Ajustamos un modelo LDA usando muestreo de Gibbs. Elegí k = 5 para los 5 departamentos de Bottoms, -->
+<!-- Dresses, Intimate, Jackets y Tops. Se muestran las 5 palabras principales de cada tema. -->
+<!-- ```{r} -->
+<!-- library(topicmodels) -->
+<!-- library(tm) -->
+<!-- library(LDAvis) -->
+<!-- trend_count <- main |> filter(Dept == 'Trend') |> unnest_tokens(word, Review) |> anti_join(stop_words, by = 'word') |> filter(!str_detect(word, '\\d')) |> count(ID, word, sort = TRUE) |> ungroup() -->
+<!-- trend_dtm <- trend_count |> cast_dtm(ID, word, n) -->
+<!-- trendy <- tidy(LDA(trend_dtm, k = 5, method = 'GIBBS', control = list(seed = 4444, alpha = 1)), matrix = 'beta') -->
+<!-- top_trendy <- trendy |> group_by(topic) |> top_n(5, beta) |> ungroup() |> arrange(topic, desc(beta)) -->
+<!-- top_trendy |> mutate(term = reorder(term, beta)) |>   ggplot(aes(term, beta, fill = factor(topic))) + geom_col(show.legend = FALSE) +   facet_wrap(~ topic, scales = "free") + ggtitle('LDA Analysis (k = 5)') + coord_flip() -->
+<!-- ``` -->
+<!-- Curiosamente, la falda y los jeans, la chaqueta, la blusa y el vestido (Tema 2-5)  -->
+<!-- se separaron en diferentes temas. Eso es similar a la estructura de los departamentos  -->
+<!-- (Parte inferior, Chaquetas, Tops y Vestidos) -->
+<!-- . Entonces, LDA pudo encontrar esta estructura sin ningún conocimiento de las revisiones pertenecientes  -->
+<!-- a departamentos específicos. Las palabras asociadas con la sección Íntimos (por ejemplo, sostén, camisola)  -->
+<!-- no aparecieron y podrían implicar que la ropa interior no suele exhibirse en el departamento de Tendencias. -->
+<!-- El tema 1 constaba de las palabras "amor", "tela", "vestir", "ajuste" y "largo":  -->
+<!--   estas palabras pueden describir lo que a los clientes les encantó (o no les encantó) del producto. Las otras palabras en cada uno de los temas pueden informarme qué palabras se agrupan con top, vestido, falda o chaqueta. -->
+<p>Los puntos clave del análisis anterior de este conjunto de datos son:</p>
+<ul>
+<li><p>Las reseñas de 5 estrellas son dominantes en cada departamento y las chaquetas tienen la proporción más alta de todos los departamento.</p></li>
+<li><p>Los clientes de entre 30 y 40 años dejan la mayoría de las reseñas.
+El ajuste, la comodidad/calidad del material, la estética de la prenda influyen en la calificación</p></li>
+<li><p>Al realizar análisis de datos exploratorios y análisis de bigramas,
+las empresas pueden concentrarse en lo que funciona y lo que no. Conocer la demografía de los revisores puede informar las decisiones de marketing (por ejemplo, anuncios en línea en los sitios más visitados por personas de 30 y 40 años). Seleccionar artículos que tengan telas flexibles y cómodas puede conducir a una mayor satisfacción del cliente. Un mayor número de críticas positivas se convierte en una forma de publicidad y
+puede conducir a mayores ventas.</p></li>
+</ul>
+<!-- LDA es útil en situaciones en las que tiene revisiones sin marcar  -->
+<!-- que tienen una estructura inherente. En nuestro caso, el departamento de Tendencias tenía una mezcla -->
+<!-- de prendas de todos los demás departamentos. Sin leer todas las reseñas, puedo usar LDA  -->
+<!-- para tener una idea de los datos. A partir de este análisis, puedo ver que las reseñas se centran en vestidos, blusas y faldas, así como en chaquetas y jeans, así como en las palabras que se agrupan con ellos. -->
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Ciencia_de_datos_con_r.pdf", "Ciencia_de_datos_con_r.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 18 Modelos mixtos | Fundamentos de ciencia de datos con R</title>
+  <meta name="description" content="Falta hacer" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 18 Modelos mixtos | Fundamentos de ciencia de datos con R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Falta hacer" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 18 Modelos mixtos | Fundamentos de ciencia de datos con R" />
+  
+  <meta name="twitter:description" content="Falta hacer" />
+  
+
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero" />
+
+
+<meta name="date" content="2022-12-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="modelos-aditivos-generalizados.html"/>
+<link rel="next" href="modelos-sparse-y-métodos-penalizados-de-regresión.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33KQ1S5ZCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-33KQ1S5ZCJ');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Ciencia de datos con <strong>R</strong></a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Fundamentos y ‘tool-kit’ de la ciencia de datos</b></span></li>
+<li class="chapter" data-level="1" data-path="ciencia-datos.html"><a href="ciencia-datos.html"><i class="fa fa-check"></i><b>1</b> ¿Es la Ciencia de datos una Ciencia?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ciencia-datos.html"><a href="ciencia-datos.html#ciencia"><i class="fa fa-check"></i><b>1.1</b> ¿Qué se entiende por Ciencia?</a></li>
+<li class="chapter" data-level="1.2" data-path="ciencia-datos.html"><a href="ciencia-datos.html#qué-es-la-ciencia-de-datos"><i class="fa fa-check"></i><b>1.2</b> ¿Qué es la Ciencia de Datos?</a></li>
+<li class="chapter" data-level="1.3" data-path="ciencia-datos.html"><a href="ciencia-datos.html#lo-científico-de-la-ciencia-de-datos"><i class="fa fa-check"></i><b>1.3</b> Lo científico de la Ciencia de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="metodología.html"><a href="metodología.html"><i class="fa fa-check"></i><b>2</b> Metodología para la Ciencia de datos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="metodología.html"><a href="metodología.html#preliminares"><i class="fa fa-check"></i><b>2.1</b> Preliminares</a></li>
+<li class="chapter" data-level="2.2" data-path="metodología.html"><a href="metodología.html#principales-metodologías-en-ciencia-de-datos"><i class="fa fa-check"></i><b>2.2</b> Principales metodologías en Ciencia de datos</a></li>
+<li class="chapter" data-level="2.3" data-path="metodología.html"><a href="metodología.html#met-crisp-dm"><i class="fa fa-check"></i><b>2.3</b> CRISP-DM para Ciencia de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch-110003.html"><a href="ch-110003.html"><i class="fa fa-check"></i><b>3</b> R para ciencia de datos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ch-110003.html"><a href="ch-110003.html#introducción"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
+<li class="chapter" data-level="3.2" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-bases"><i class="fa fa-check"></i><b>3.2</b> La sesión de R</a></li>
+<li class="chapter" data-level="3.3" data-path="ch-110003.html"><a href="ch-110003.html#instalación-de-r"><i class="fa fa-check"></i><b>3.3</b> Instalación de R</a></li>
+<li class="chapter" data-level="3.4" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-proyectos"><i class="fa fa-check"></i><b>3.4</b> Trabajar con proyectos de RStudio</a></li>
+<li class="chapter" data-level="3.5" data-path="ch-110003.html"><a href="ch-110003.html#manipulación-de-datos-con-r"><i class="fa fa-check"></i><b>3.5</b> Manipulación de datos con R</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-estructuras"><i class="fa fa-check"></i><b>3.5.1</b> Estructuras y tipos de datos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-importacion"><i class="fa fa-check"></i><b>3.5.2</b> Importación de datos</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ch-110003.html"><a href="ch-110003.html#exportación-y-archivos-de-datos-de-r"><i class="fa fa-check"></i><b>3.5.3</b> Exportación y archivos de datos de R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-tidyverse"><i class="fa fa-check"></i><b>3.6</b> Organización de datos con el <em>tidyverse</em></a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ch-110003.html"><a href="ch-110003.html#el-tidyverse-y-su-flujo-de-trabajo"><i class="fa fa-check"></i><b>3.6.1</b> El <em>tidyverse</em> y su flujo de trabajo</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ch-110003.html"><a href="ch-110003.html#transformación-de-datos-con-dplyr"><i class="fa fa-check"></i><b>3.6.2</b> Transformación de datos con <code>dplyr</code></a></li>
+<li class="chapter" data-level="3.6.3" data-path="ch-110003.html"><a href="ch-110003.html#combinación-de-datos"><i class="fa fa-check"></i><b>3.6.3</b> Combinación de datos</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ch-110003.html"><a href="ch-110003.html#reorganización-de-datos"><i class="fa fa-check"></i><b>3.6.4</b> Reorganización de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><i class="fa fa-check"></i><b>4</b> Gestión y operación de datos con bases de datos relacionales</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#introducción-1"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#concepto-de-base-de-datos"><i class="fa fa-check"></i><b>4.2</b> Concepto de Base de datos</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#gestión-de-los-datos-en-una-base-o-repositorio-de-datos"><i class="fa fa-check"></i><b>4.2.1</b> Gestión de los datos en una base o repositorio de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#el-lenguaje-estructurado-de-consulta-sql"><i class="fa fa-check"></i><b>4.3</b> El Lenguaje Estructurado de Consulta (SQL)</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#sql-como-lenguaje-de-definición-de-datos-ldd"><i class="fa fa-check"></i><b>4.3.1</b> SQL como Lenguaje de Definición de Datos (LDD)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#sql-como-lenguaje-de-manipulación-de-datos-lmd"><i class="fa fa-check"></i><b>4.3.2</b> SQL como Lenguaje de Manipulación de Datos (LMD)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#sql-como-lenguaje-de-administración-de-datos-lad"><i class="fa fa-check"></i><b>4.3.3</b> SQL como Lenguaje de Administración de Datos (LAD)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#usando-bases-de-datos-desde-r"><i class="fa fa-check"></i><b>4.4</b> Usando bases de datos desde R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#conexión-a-una-base-de-datos"><i class="fa fa-check"></i><b>4.4.1</b> Conexión a una base de datos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#operaciones-de-lectura-selección-read-de-datos"><i class="fa fa-check"></i><b>4.4.2</b> Operaciones de lectura / selección (<em>read</em>) de datos</a></li>
+<li class="chapter" data-level="4.4.3" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#operaciones-de-inserción-create-y-actualización-update-de-datos"><i class="fa fa-check"></i><b>4.4.3</b> Operaciones de inserción (<em>create</em>) y actualización (<em>update</em>) de datos</a></li>
+<li class="chapter" data-level="4.4.4" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#operaciones-de-borrado-de-datos-delete"><i class="fa fa-check"></i><b>4.4.4</b> Operaciones de Borrado de datos (<em>delete</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datos-no-sql.html"><a href="datos-no-sql.html"><i class="fa fa-check"></i><b>5</b> Gestión y operación de datos masivos (BigData) con bases de datos NoSQL</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="datos-no-sql.html"><a href="datos-no-sql.html#introducción-al-big-data"><i class="fa fa-check"></i><b>5.1</b> Introducción al Big Data</a></li>
+<li class="chapter" data-level="5.2" data-path="datos-no-sql.html"><a href="datos-no-sql.html#VsBigData"><i class="fa fa-check"></i><b>5.2</b> Las V’s del Big Data</a></li>
+<li class="chapter" data-level="5.3" data-path="datos-no-sql.html"><a href="datos-no-sql.html#fuentes-de-datos-en-entornos-big-data"><i class="fa fa-check"></i><b>5.3</b> Fuentes de Datos en entornos Big Data</a></li>
+<li class="chapter" data-level="5.4" data-path="datos-no-sql.html"><a href="datos-no-sql.html#bases-de-datos-relacionales-vs.-nosql"><i class="fa fa-check"></i><b>5.4</b> Bases de datos Relacionales vs. NoSQL</a></li>
+<li class="chapter" data-level="5.5" data-path="datos-no-sql.html"><a href="datos-no-sql.html#bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5</b> Bases de datos NoSQL</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="datos-no-sql.html"><a href="datos-no-sql.html#definición-de-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5.1</b> Definición de bases de datos NoSQL</a></li>
+<li class="chapter" data-level="5.5.2" data-path="datos-no-sql.html"><a href="datos-no-sql.html#necesidades-no-cubiertas-por-las-bases-de-datos-relacionales"><i class="fa fa-check"></i><b>5.5.2</b> Necesidades no cubiertas por las bases de datos relacionales</a></li>
+<li class="chapter" data-level="5.5.3" data-path="datos-no-sql.html"><a href="datos-no-sql.html#tipos-de-almacenamiento-en-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5.3</b> Tipos de almacenamiento en bases de datos NoSQL</a></li>
+<li class="chapter" data-level="5.5.4" data-path="datos-no-sql.html"><a href="datos-no-sql.html#limitaciones-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5.4</b> Limitaciones de las bases de datos NoSQL</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="datos-no-sql.html"><a href="datos-no-sql.html#ejemplo-de-integración-de-una-base-de-datos-nosql-y-análisis-de-datos-en-r"><i class="fa fa-check"></i><b>5.6</b> Ejemplo de integración de una base de datos NoSQL y análisis de datos en R</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="datos-no-sql.html"><a href="datos-no-sql.html#introMongo"><i class="fa fa-check"></i><b>5.6.1</b> Introducción a MongoDB</a></li>
+<li class="chapter" data-level="5.6.2" data-path="datos-no-sql.html"><a href="datos-no-sql.html#paquetesCaso"><i class="fa fa-check"></i><b>5.6.2</b> Plataforma tecnológica para el caso práctico</a></li>
+<li class="chapter" data-level="5.6.3" data-path="datos-no-sql.html"><a href="datos-no-sql.html#conexionMongo"><i class="fa fa-check"></i><b>5.6.3</b> Conexión y acceso a MongoDB desde R</a></li>
+<li class="chapter" data-level="5.6.4" data-path="datos-no-sql.html"><a href="datos-no-sql.html#consultaViajes"><i class="fa fa-check"></i><b>5.6.4</b> Obtención de datos en R desde MongoDB</a></li>
+<li class="chapter" data-level="5.6.5" data-path="datos-no-sql.html"><a href="datos-no-sql.html#analisisViajes"><i class="fa fa-check"></i><b>5.6.5</b> Analizando datos de MongoDB en R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="id_120007-informes.html"><a href="id_120007-informes.html"><i class="fa fa-check"></i><b>6</b> Informes reproducibles con R-markdown -&gt; Quarto</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="id_120007-informes.html"><a href="id_120007-informes.html#introducción-2"><i class="fa fa-check"></i><b>6.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="id_120007-informes.html"><a href="id_120007-informes.html#por-qué-informes-reproducibles"><i class="fa fa-check"></i><b>6.1.1</b> ¿Por qué informes reproducibles?</a></li>
+<li class="chapter" data-level="6.1.2" data-path="id_120007-informes.html"><a href="id_120007-informes.html#markdown-r-markdown-y-rstudio"><i class="fa fa-check"></i><b>6.1.2</b> Markdown, R Markdown y RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="id_120007-informes.html"><a href="id_120007-informes.html#documentos-r-markdown"><i class="fa fa-check"></i><b>6.2</b> Documentos R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="id_120007-informes.html"><a href="id_120007-informes.html#encabezado-yaml-y-configuración"><i class="fa fa-check"></i><b>6.2.1</b> Encabezado YAML y configuración</a></li>
+<li class="chapter" data-level="6.2.2" data-path="id_120007-informes.html"><a href="id_120007-informes.html#formateado-de-texto"><i class="fa fa-check"></i><b>6.2.2</b> Formateado de texto</a></li>
+<li class="chapter" data-level="6.2.3" data-path="id_120007-informes.html"><a href="id_120007-informes.html#inclusión-de-código"><i class="fa fa-check"></i><b>6.2.3</b> Inclusión de código</a></li>
+<li class="chapter" data-level="6.2.4" data-path="id_120007-informes.html"><a href="id_120007-informes.html#opciones-de-los-bloques-de-código-chunks"><i class="fa fa-check"></i><b>6.2.4</b> Opciones de los bloques de código (<em>chunks</em>)</a></li>
+<li class="chapter" data-level="6.2.5" data-path="id_120007-informes.html"><a href="id_120007-informes.html#editor-visual"><i class="fa fa-check"></i><b>6.2.5</b> Editor visual</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="id_120007-informes.html"><a href="id_120007-informes.html#otros-formatos"><i class="fa fa-check"></i><b>6.3</b> Otros formatos</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>7</b> Git y GitHub en R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="github.html"><a href="github.html#qué-es-git"><i class="fa fa-check"></i><b>7.1</b> ¿Qué es Git?</a></li>
+<li class="chapter" data-level="7.2" data-path="github.html"><a href="github.html#qué-es-github"><i class="fa fa-check"></i><b>7.2</b> ¿Qué es GitHub?</a></li>
+<li class="chapter" data-level="7.3" data-path="github.html"><a href="github.html#por-qué-usar-git-y-github"><i class="fa fa-check"></i><b>7.3</b> ¿Por qué usar Git y GitHub?</a></li>
+<li class="chapter" data-level="7.4" data-path="github.html"><a href="github.html#configuración"><i class="fa fa-check"></i><b>7.4</b> Configuración</a></li>
+<li class="chapter" data-level="7.5" data-path="github.html"><a href="github.html#configurar-git"><i class="fa fa-check"></i><b>7.5</b> Configurar git</a></li>
+<li class="chapter" data-level="7.6" data-path="github.html"><a href="github.html#workflow"><i class="fa fa-check"></i><b>7.6</b> Workflow</a></li>
+</ul></li>
+<li class="part"><span><b>II Manipulación de datos con R. Técnicas y herramientas</b></span></li>
+<li class="chapter" data-level="8" data-path="id_120006-aed.html"><a href="id_120006-aed.html"><i class="fa fa-check"></i><b>8</b> Análisis exploratorio de datos</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#introducción-3"><i class="fa fa-check"></i><b>8.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#el-cuarterto-de-anscombe"><i class="fa fa-check"></i><b>8.1.1</b> El cuarterto de Anscombe</a></li>
+<li class="chapter" data-level="8.1.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#conceptos-generales"><i class="fa fa-check"></i><b>8.1.2</b> Conceptos generales</a></li>
+<li class="chapter" data-level="8.1.3" data-path="id_120006-aed.html"><a href="id_120006-aed.html#componentes-de-un-gráfico-y-su-representación-en-r"><i class="fa fa-check"></i><b>8.1.3</b> Componentes de un gráfico y su representación en R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#id_120006-aeduni"><i class="fa fa-check"></i><b>8.2</b> Análisis exploratorio de una característica</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cualitativas"><i class="fa fa-check"></i><b>8.2.1</b> Variables cualitativas</a></li>
+<li class="chapter" data-level="8.2.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cuantitativas"><i class="fa fa-check"></i><b>8.2.2</b> Variables cuantitativas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="id_120006-aed.html"><a href="id_120006-aed.html#id_120006-aedmulti"><i class="fa fa-check"></i><b>8.3</b> Análisis exploratorio de varias características</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cualitativas-1"><i class="fa fa-check"></i><b>8.3.1</b> Variables cualitativas</a></li>
+<li class="chapter" data-level="8.3.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cuantitativas-1"><i class="fa fa-check"></i><b>8.3.2</b> Variables cuantitativas</a></li>
+<li class="chapter" data-level="8.3.3" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cualitativas-y-cuantitativas"><i class="fa fa-check"></i><b>8.3.3</b> Variables cualitativas y cuantitativas</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Preparación de datos: evaluación de la calidad de los datos. Integración, limpieza y transformación</b></span></li>
+<li class="chapter" data-level="9" data-path="DGDQM.html"><a href="DGDQM.html"><i class="fa fa-check"></i><b>9</b> Gobierno y gestión de calidad de Datos</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="DGDQM.html"><a href="DGDQM.html#introducción-4"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="DGDQM.html"><a href="DGDQM.html#concepto-de-gobierno-de-datos"><i class="fa fa-check"></i><b>9.2</b> Concepto de Gobierno de datos</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="DGDQM.html"><a href="DGDQM.html#beneficiosDG"><i class="fa fa-check"></i><b>9.2.1</b> Beneficios del Gobierno de Datos</a></li>
+<li class="chapter" data-level="9.2.2" data-path="DGDQM.html"><a href="DGDQM.html#artefactosDG"><i class="fa fa-check"></i><b>9.2.2</b> Artefactos de un sistema de Gobierno de Datos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="DGDQM.html"><a href="DGDQM.html#marcos-y-metodologías-existentes-de-gobierno-de-datos"><i class="fa fa-check"></i><b>9.3</b> Marcos y metodologías existentes de Gobierno de Datos</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="DGDQM.html"><a href="DGDQM.html#modelo-alarcos-de-mejora-de-datos-mamd"><i class="fa fa-check"></i><b>9.3.1</b> Modelo Alarcos de Mejora de Datos (MAMD)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="DGDQM.html"><a href="DGDQM.html#gestión-de-calidad-de-datos"><i class="fa fa-check"></i><b>9.4</b> Gestión de calidad de datos</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="DGDQM.html"><a href="DGDQM.html#medición-de-calidad-de-datos-vs-perfilado-de-datos"><i class="fa fa-check"></i><b>9.4.1</b> Medición de calidad de datos vs perfilado de datos</a></li>
+<li class="chapter" data-level="9.4.2" data-path="DGDQM.html"><a href="DGDQM.html#mejora-de-datos"><i class="fa fa-check"></i><b>9.4.2</b> Mejora de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="id_130009.html"><a href="id_130009.html"><i class="fa fa-check"></i><b>10</b> Integración y limpieza de datos</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="id_130009.html"><a href="id_130009.html#introducción-5"><i class="fa fa-check"></i><b>10.1</b> Introducción</a></li>
+<li class="chapter" data-level="10.2" data-path="id_130009.html"><a href="id_130009.html#problemas-de-calidad-de-datos"><i class="fa fa-check"></i><b>10.2</b> Problemas de calidad de datos</a></li>
+<li class="chapter" data-level="10.3" data-path="id_130009.html"><a href="id_130009.html#niveles-inadecuados-de-completitud-valores-missing"><i class="fa fa-check"></i><b>10.3</b> Niveles inadecuados de completitud: Valores <em>missing</em></a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="id_130009.html"><a href="id_130009.html#visualización"><i class="fa fa-check"></i><b>10.3.1</b> Visualización</a></li>
+<li class="chapter" data-level="10.3.2" data-path="id_130009.html"><a href="id_130009.html#imputacion"><i class="fa fa-check"></i><b>10.3.2</b> Técnicas de Imputación</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="id_130009.html"><a href="id_130009.html#mejorando-la-exactitud-y-la-precisión-eliminación-del-ruido-estadístico"><i class="fa fa-check"></i><b>10.4</b> Mejorando la exactitud y la precisión: eliminación del ruido estadístico</a></li>
+<li class="chapter" data-level="10.5" data-path="id_130009.html"><a href="id_130009.html#integración-de-datos"><i class="fa fa-check"></i><b>10.5</b> Integración de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="id_130010.html"><a href="id_130010.html"><i class="fa fa-check"></i><b>11</b> Feature Selection and Engineering</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="id_130010.html"><a href="id_130010.html#introducción-6"><i class="fa fa-check"></i><b>11.1</b> Introducción</a></li>
+<li class="chapter" data-level="11.2" data-path="id_130010.html"><a href="id_130010.html#feature-selection-selección-de-variables"><i class="fa fa-check"></i><b>11.2</b> <em>Feature Selection</em> (Selección de variables)</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="id_130010.html"><a href="id_130010.html#métodos-de-selección-tipo-filtro"><i class="fa fa-check"></i><b>11.2.1</b> Métodos de selección tipo Filtro</a></li>
+<li class="chapter" data-level="11.2.2" data-path="id_130010.html"><a href="id_130010.html#métodos-de-selección-de-variables-tipo-wrapper"><i class="fa fa-check"></i><b>11.2.2</b> Métodos de selección de variables tipo <em>wrapper</em></a></li>
+<li class="chapter" data-level="11.2.3" data-path="id_130010.html"><a href="id_130010.html#métodos-de-selección-tipo-embedded"><i class="fa fa-check"></i><b>11.2.3</b> Métodos de selección tipo Embedded</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="id_130010.html"><a href="id_130010.html#transformaciones-de-escala-y-de-la-distribución-de-la-variable-objetivo"><i class="fa fa-check"></i><b>11.3</b> Transformaciones de escala y de la distribución de la variable objetivo</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="id_130010.html"><a href="id_130010.html#id_31"><i class="fa fa-check"></i><b>11.3.1</b> Transformaciones de la variable objetivo</a></li>
+<li class="chapter" data-level="11.3.2" data-path="id_130010.html"><a href="id_130010.html#escalado-de-datos"><i class="fa fa-check"></i><b>11.3.2</b> Escalado de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="id_130010.html"><a href="id_130010.html#feature-engineering"><i class="fa fa-check"></i><b>11.4</b> <em>Feature engineering</em></a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="id_130010.html"><a href="id_130010.html#binning"><i class="fa fa-check"></i><b>11.4.1</b> <em>Binning</em></a></li>
+<li class="chapter" data-level="11.4.2" data-path="id_130010.html"><a href="id_130010.html#codificación"><i class="fa fa-check"></i><b>11.4.2</b> Codificación</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="id_130010.html"><a href="id_130010.html#reducción-de-dimensionalidad"><i class="fa fa-check"></i><b>11.5</b> Reducción de dimensionalidad</a></li>
+<li class="chapter" data-level="11.6" data-path="id_130010.html"><a href="id_130010.html#otras-transformaciones"><i class="fa fa-check"></i><b>11.6</b> Otras transformaciones</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="id_130010.html"><a href="id_130010.html#particionado-de-datos"><i class="fa fa-check"></i><b>11.6.1</b> Particionado de datos</a></li>
+<li class="chapter" data-level="11.6.2" data-path="id_130010.html"><a href="id_130010.html#técnicas-para-manejar-datos-no-balanceados"><i class="fa fa-check"></i><b>11.6.2</b> Técnicas para manejar datos no balanceados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="id_130010.html"><a href="id_130010.html#métodos-de-remuestreo"><i class="fa fa-check"></i><b>11.6.3</b> Métodos de remuestreo</a></li>
+<li class="chapter" data-level="11.6.4" data-path="id_130010.html"><a href="id_130010.html#ajuste-de-hiperparámetros"><i class="fa fa-check"></i><b>11.6.4</b> Ajuste de hiperparámetros</a></li>
+<li class="chapter" data-level="11.6.5" data-path="id_130010.html"><a href="id_130010.html#evaluación-de-modelos"><i class="fa fa-check"></i><b>11.6.5</b> Evaluación de modelos</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Técnicas de modelización estadísticas avanzadas</b></span></li>
+<li class="chapter" data-level="12" data-path="Funda-probab.html"><a href="Funda-probab.html"><i class="fa fa-check"></i><b>12</b> Fundamentos de probabilidad</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="Funda-probab.html"><a href="Funda-probab.html#introducción-a-la-probabilidad"><i class="fa fa-check"></i><b>12.1</b> Introducción a la probabilidad</a></li>
+<li class="chapter" data-level="12.2" data-path="Funda-probab.html"><a href="Funda-probab.html#probabilidad-elementos-básicos-definición-y-teoremas"><i class="fa fa-check"></i><b>12.2</b> Probabilidad: elementos básicos, definición y teoremas</a></li>
+<li class="chapter" data-level="12.3" data-path="Funda-probab.html"><a href="Funda-probab.html#variable-aleatoria-y-su-distribución-tipos-de-variables-aleatorias"><i class="fa fa-check"></i><b>12.3</b> Variable aleatoria y su distribución: tipos de variables aleatorias</a></li>
+<li class="chapter" data-level="12.4" data-path="Funda-probab.html"><a href="Funda-probab.html#modelos-de-distribución-de-probabilidad"><i class="fa fa-check"></i><b>12.4</b> Modelos de distribución de probabilidad</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="Funda-probab.html"><a href="Funda-probab.html#modelos-discretos"><i class="fa fa-check"></i><b>12.4.1</b> Modelos discretos</a></li>
+<li class="chapter" data-level="12.4.2" data-path="Funda-probab.html"><a href="Funda-probab.html#modelos-continuos"><i class="fa fa-check"></i><b>12.4.2</b> Modelos continuos</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="Funda-probab.html"><a href="Funda-probab.html#tcl"><i class="fa fa-check"></i><b>12.5</b> Teorema central del límite (TCL)</a></li>
+<li class="chapter" data-level="12.6" data-path="Funda-probab.html"><a href="Funda-probab.html#ejemplo-de-distribuciones-usando-r"><i class="fa fa-check"></i><b>12.6</b> Ejemplo de distribuciones usando <strong>R</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="Fundainfer.html"><a href="Fundainfer.html"><i class="fa fa-check"></i><b>13</b> Fundamentos de Inferencia Estadística</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="Fundainfer.html"><a href="Fundainfer.html#introinfer"><i class="fa fa-check"></i><b>13.1</b> Introducción a la Inferencia Estadística</a></li>
+<li class="chapter" data-level="13.2" data-path="Fundainfer.html"><a href="Fundainfer.html#mas"><i class="fa fa-check"></i><b>13.2</b> Muestreo aleatorio simple</a></li>
+<li class="chapter" data-level="13.3" data-path="Fundainfer.html"><a href="Fundainfer.html#estimpuntual"><i class="fa fa-check"></i><b>13.3</b> Estimación puntual</a></li>
+<li class="chapter" data-level="13.4" data-path="Fundainfer.html"><a href="Fundainfer.html#estimintervalos"><i class="fa fa-check"></i><b>13.4</b> Estimación por intervalos</a></li>
+<li class="chapter" data-level="13.5" data-path="Fundainfer.html"><a href="Fundainfer.html#contrhip"><i class="fa fa-check"></i><b>13.5</b> Contrastes de hipótesis</a></li>
+<li class="chapter" data-level="13.6" data-path="Fundainfer.html"><a href="Fundainfer.html#pobnormales"><i class="fa fa-check"></i><b>13.6</b> Inferencia estadística paramétrica sobre poblaciones normales</a></li>
+<li class="chapter" data-level="13.7" data-path="Fundainfer.html"><a href="Fundainfer.html#ejemplopobnorm"><i class="fa fa-check"></i><b>13.7</b> Inferencia sobre poblaciones normales con <strong>R</strong></a></li>
+<li class="chapter" data-level="13.8" data-path="Fundainfer.html"><a href="Fundainfer.html#contrnormalidad"><i class="fa fa-check"></i><b>13.8</b> Inferencia estadística no paramétrica: contrastes de normalidad</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="muestreo.html"><a href="muestreo.html"><i class="fa fa-check"></i><b>14</b> Métodos de muestreo y remuestreo</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="muestreo.html"><a href="muestreo.html#introducción-al-muestreo"><i class="fa fa-check"></i><b>14.1</b> Introducción al muestreo</a></li>
+<li class="chapter" data-level="14.2" data-path="muestreo.html"><a href="muestreo.html#muestreo-aleatorio-simple-1"><i class="fa fa-check"></i><b>14.2</b> Muestreo aleatorio simple</a></li>
+<li class="chapter" data-level="14.3" data-path="muestreo.html"><a href="muestreo.html#muestestra"><i class="fa fa-check"></i><b>14.3</b> Muestreo estratificado</a></li>
+<li class="chapter" data-level="14.4" data-path="muestreo.html"><a href="muestreo.html#otros-tipos-de-muestreo-probabilístico"><i class="fa fa-check"></i><b>14.4</b> Otros tipos de muestreo probabilístico</a></li>
+<li class="chapter" data-level="14.5" data-path="muestreo.html"><a href="muestreo.html#técnicas-de-remuestreo-bootstrap."><i class="fa fa-check"></i><b>14.5</b> Técnicas de remuestreo: Bootstrap.</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="modelización-lineal.html"><a href="modelización-lineal.html"><i class="fa fa-check"></i><b>15</b> Modelización lineal</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="modelización-lineal.html"><a href="modelización-lineal.html#modelización"><i class="fa fa-check"></i><b>15.1</b> Modelización</a></li>
+<li class="chapter" data-level="15.2" data-path="modelización-lineal.html"><a href="modelización-lineal.html#procedimiento-de-modelización"><i class="fa fa-check"></i><b>15.2</b> Procedimiento de modelización</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="modelización-lineal.html"><a href="modelización-lineal.html#Bondad"><i class="fa fa-check"></i><b>15.2.1</b> Estimación del modelo</a></li>
+<li class="chapter" data-level="15.2.2" data-path="modelización-lineal.html"><a href="modelización-lineal.html#validación-del-modelo"><i class="fa fa-check"></i><b>15.2.2</b> Validación del modelo</a></li>
+<li class="chapter" data-level="15.2.3" data-path="modelización-lineal.html"><a href="modelización-lineal.html#interpretación-de-los-coeficientes"><i class="fa fa-check"></i><b>15.2.3</b> Interpretación de los coeficientes</a></li>
+<li class="chapter" data-level="15.2.4" data-path="modelización-lineal.html"><a href="modelización-lineal.html#predicción"><i class="fa fa-check"></i><b>15.2.4</b> Predicción</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="modelización-lineal.html"><a href="modelización-lineal.html#procedimiento-con-r-la-función-lm"><i class="fa fa-check"></i><b>15.3</b> Procedimiento con R: la función <code>lm</code></a></li>
+<li class="chapter" data-level="15.4" data-path="modelización-lineal.html"><a href="modelización-lineal.html#Casos"><i class="fa fa-check"></i><b>15.4</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="modelización-lineal.html"><a href="modelización-lineal.html#estimación-de-los-coeficientes"><i class="fa fa-check"></i><b>15.4.1</b> Estimación de los coeficientes</a></li>
+<li class="chapter" data-level="15.4.2" data-path="modelización-lineal.html"><a href="modelización-lineal.html#validación"><i class="fa fa-check"></i><b>15.4.2</b> Validación</a></li>
+<li class="chapter" data-level="15.4.3" data-path="modelización-lineal.html"><a href="modelización-lineal.html#interpretación-de-los-coeficientes-1"><i class="fa fa-check"></i><b>15.4.3</b> Interpretación de los coeficientes</a></li>
+<li class="chapter" data-level="15.4.4" data-path="modelización-lineal.html"><a href="modelización-lineal.html#predicción-1"><i class="fa fa-check"></i><b>15.4.4</b> Predicción</a></li>
+<li class="chapter" data-level="15.4.5" data-path="modelización-lineal.html"><a href="modelización-lineal.html#nuevo-ajuste-con-logozone"><i class="fa fa-check"></i><b>15.4.5</b> Nuevo ajuste con <code>log(Ozone)</code></a></li>
+<li class="chapter" data-level="15.4.6" data-path="modelización-lineal.html"><a href="modelización-lineal.html#coeficientes-de-variables-categóricas"><i class="fa fa-check"></i><b>15.4.6</b> Coeficientes de variables categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="modelización-lineal.html"><a href="modelización-lineal.html#comentarios-finales"><i class="fa fa-check"></i><b>15.5</b> Comentarios finales</a>
+<ul>
+<li class="chapter" data-level="" data-path="modelización-lineal.html"><a href="modelización-lineal.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html"><i class="fa fa-check"></i><b>16</b> Modelos lineales generalizados</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#motivación"><i class="fa fa-check"></i><b>16.1</b> Motivación</a></li>
+<li class="chapter" data-level="16.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#modelo-y-sus-componentes"><i class="fa fa-check"></i><b>16.2</b> Modelo y sus componentes</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#función-enlace"><i class="fa fa-check"></i><b>16.2.1</b> Función enlace </a></li>
+<li class="chapter" data-level="16.2.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#glms-en-r"><i class="fa fa-check"></i><b>16.2.2</b> GLMs en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#regresión-logística"><i class="fa fa-check"></i><b>16.3</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#procedimiento-de-ajuste"><i class="fa fa-check"></i><b>16.3.1</b> Procedimiento de ajuste</a></li>
+<li class="chapter" data-level="16.3.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#adecuación-del-modelo"><i class="fa fa-check"></i><b>16.3.2</b> Adecuación del modelo</a></li>
+<li class="chapter" data-level="16.3.3" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#SECCinterp"><i class="fa fa-check"></i><b>16.3.3</b> Interpretación de resultados</a></li>
+<li class="chapter" data-level="16.3.4" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#predicción.-curva-roc-y-auc"><i class="fa fa-check"></i><b>16.3.4</b> Predicción. Curva ROC y AUC</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#regresión-de-poisson"><i class="fa fa-check"></i><b>16.4</b> Regresión de Poisson</a></li>
+<li class="chapter" data-level="16.5" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#casos-prácticos"><i class="fa fa-check"></i><b>16.5</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ejemplos-de-regresión-logística"><i class="fa fa-check"></i><b>16.5.1</b> Ejemplos de regresión logística</a></li>
+<li class="chapter" data-level="16.5.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ejemplo-de-regresión-de-poisson"><i class="fa fa-check"></i><b>16.5.2</b> Ejemplo de regresión de Poisson</a></li>
+<li class="chapter" data-level="" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#resumen-1"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html"><i class="fa fa-check"></i><b>17</b> Modelos aditivos generalizados</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#introducción-7"><i class="fa fa-check"></i><b>17.1</b> Introducción</a></li>
+<li class="chapter" data-level="17.2" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#splines-con-penalizaciones"><i class="fa fa-check"></i><b>17.2</b> Splines con penalizaciones</a></li>
+<li class="chapter" data-level="17.3" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#aspectos-metodológicos"><i class="fa fa-check"></i><b>17.3</b> Aspectos metodológicos</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#estimación-de-los-paraámetros-del-modelo"><i class="fa fa-check"></i><b>17.3.1</b> Estimación de los paraámetros del modelo</a></li>
+<li class="chapter" data-level="17.3.2" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#inferencia-sobre-las-funciones-suaves"><i class="fa fa-check"></i><b>17.3.2</b> Inferencia sobre las funciones suaves</a></li>
+<li class="chapter" data-level="17.3.3" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#suavizado-mutidimensional-y-para-datos-no-gaussianos"><i class="fa fa-check"></i><b>17.3.3</b> Suavizado mutidimensional y para datos no Gaussianos</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#la-función-gam-del-paquete-mgcv"><i class="fa fa-check"></i><b>17.4</b> La función <code>gam</code> del paquete <code>mgcv</code></a></li>
+<li class="chapter" data-level="17.5" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#casos-prácticos-1"><i class="fa fa-check"></i><b>17.5</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-unidimensional-con-fossil"><i class="fa fa-check"></i><b>17.5.1</b> Modelo unidimensional con <code>fossil</code></a></li>
+<li class="chapter" data-level="17.5.2" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-aditivo-con-airquality"><i class="fa fa-check"></i><b>17.5.2</b> Modelo aditivo con <code>airquality</code></a></li>
+<li class="chapter" data-level="17.5.3" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-semiparamétrico-con-onions"><i class="fa fa-check"></i><b>17.5.3</b> Modelo semiparamétrico con <code>onions</code></a></li>
+<li class="chapter" data-level="17.5.4" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-aditivo-generalizado-y-multidimensional-con-smacker"><i class="fa fa-check"></i><b>17.5.4</b> Modelo aditivo generalizado y multidimensional, con <code>smacker</code></a></li>
+<li class="chapter" data-level="" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#resumen-2"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html"><i class="fa fa-check"></i><b>18</b> Modelos mixtos</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#conceptos-básicos"><i class="fa fa-check"></i><b>18.1</b> Conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#tipo-y-estructura-de-los-datos"><i class="fa fa-check"></i><b>18.1.1</b> Tipo y estructura de los datos</a></li>
+<li class="chapter" data-level="18.1.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#efectos-fijos-o-aleatorios"><i class="fa fa-check"></i><b>18.1.2</b> ¿Efectos fijos o aleatorios?</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#formulación-del-modelo-con-efectos-aleatorios-o-modelos-mixtos"><i class="fa fa-check"></i><b>18.2</b> Formulación del modelo con efectos aleatorios o modelos mixtos</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#formulación-general"><i class="fa fa-check"></i><b>18.2.1</b> Formulación general</a></li>
+<li class="chapter" data-level="18.2.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#inferencia-y-selección-del-modelo"><i class="fa fa-check"></i><b>18.2.2</b> Inferencia y selección del modelo</a></li>
+<li class="chapter" data-level="18.2.3" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#diagnosis-del-modelo"><i class="fa fa-check"></i><b>18.2.3</b> Diagnosis del modelo</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#funciones-de-r-para-ajustar-modelos-mixtos"><i class="fa fa-check"></i><b>18.3</b> Funciones de <code>R</code> para ajustar modelos mixtos</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#la-función-lmer"><i class="fa fa-check"></i><b>18.3.1</b> La función <code>lmer()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#caso-práctico"><i class="fa fa-check"></i><b>18.4</b> Caso práctico</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#modelo-con-ordenada-en-el-origen-aleatoria"><i class="fa fa-check"></i><b>18.4.1</b> Modelo con ordenada en el origen aleatoria</a></li>
+<li class="chapter" data-level="18.4.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#modelo-con-pendiente-aleatoria"><i class="fa fa-check"></i><b>18.4.2</b> Modelo con pendiente aleatoria</a></li>
+<li class="chapter" data-level="18.4.3" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#cómo-construir-el-modelo-en-la-práctica"><i class="fa fa-check"></i><b>18.4.3</b> ¿Cómo construir el modelo en la práctica?</a></li>
+<li class="chapter" data-level="" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#resumen-3"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html"><i class="fa fa-check"></i><b>19</b> Modelos sparse y métodos penalizados de regresión</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#introducción-8"><i class="fa fa-check"></i><b>19.1</b> Introducción</a></li>
+<li class="chapter" data-level="19.2" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#selección-del-mejor-subconjunto"><i class="fa fa-check"></i><b>19.2</b> Selección del mejor subconjunto</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#ejemplo-sueldo-de-jugadores-de-béisbol"><i class="fa fa-check"></i><b>19.2.1</b> Ejemplo: Sueldo de jugadores de béisbol</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#selección-stepwise"><i class="fa fa-check"></i><b>19.3</b> Selección <em>Stepwise</em></a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#forward-stepwise"><i class="fa fa-check"></i><b>19.3.1</b> Forward stepwise</a></li>
+<li class="chapter" data-level="19.3.2" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#backward-stepwise"><i class="fa fa-check"></i><b>19.3.2</b> Backward stepwise</a></li>
+<li class="chapter" data-level="19.3.3" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#ejemplo-sueldo-de-jugadores-de-béisbol-1"><i class="fa fa-check"></i><b>19.3.3</b> Ejemplo: Sueldo de jugadores de béisbol</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#métodos-shrinkage"><i class="fa fa-check"></i><b>19.4</b> Métodos Shrinkage</a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#regresión-ridge"><i class="fa fa-check"></i><b>19.4.1</b> Regresión ridge</a></li>
+<li class="chapter" data-level="19.4.2" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#selección-del-parámetro-de-tuneado"><i class="fa fa-check"></i><b>19.4.2</b> Selección del parámetro de tuneado</a></li>
+<li class="chapter" data-level="19.4.3" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#regresión-lasso"><i class="fa fa-check"></i><b>19.4.3</b> Regresión Lasso</a></li>
+<li class="chapter" data-level="19.4.4" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#elastic-net"><i class="fa fa-check"></i><b>19.4.4</b> Elastic net </a></li>
+<li class="chapter" data-level="" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#resumen-4"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html"><i class="fa fa-check"></i><b>20</b> Modelización de series temporales</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#conceptos-básicos-1"><i class="fa fa-check"></i><b>20.1</b> Conceptos básicos</a></li>
+<li class="chapter" data-level="20.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#modelos-arima"><i class="fa fa-check"></i><b>20.2</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="20.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#análisis-de-series-temporales-con-r"><i class="fa fa-check"></i><b>20.3</b> Análisis de series temporales con R</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#identificación-o-especificación-del-modelo"><i class="fa fa-check"></i><b>20.3.1</b> Identificación o especificación del modelo</a></li>
+<li class="chapter" data-level="20.3.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#estimación-del-modelo"><i class="fa fa-check"></i><b>20.3.2</b> Estimación del modelo</a></li>
+<li class="chapter" data-level="20.3.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#diagnosis-validación-y-contrastación"><i class="fa fa-check"></i><b>20.3.3</b> Diagnosis, validación y contrastación</a></li>
+<li class="chapter" data-level="20.3.4" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#predicción-2"><i class="fa fa-check"></i><b>20.3.4</b> Predicción</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliografía.html"><a href="bibliografía.html"><i class="fa fa-check"></i>Bibliografía</a></li>
+<li class="chapter" data-level="21" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html"><i class="fa fa-check"></i><b>21</b> Análisis de tablas de contingencia</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-9"><i class="fa fa-check"></i><b>21.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#motiv"><i class="fa fa-check"></i><b>21.1.1</b> Motivación</a></li>
+<li class="chapter" data-level="21.1.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#notac"><i class="fa fa-check"></i><b>21.1.2</b> Notación</a></li>
+<li class="chapter" data-level="21.1.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#diseños-experimentales-o-procedimientos-de-muestreo-que-dan-lugar-a-una-tabla-de-contingencia"><i class="fa fa-check"></i><b>21.1.3</b> Diseños experimentales o procedimientos de muestreo que dan lugar a una tabla de contingencia</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-de-independencia-en-tablas-2times-2"><i class="fa fa-check"></i><b>21.2</b> Contraste de independencia en tablas <span class="math inline">\((2\times 2)\)</span></a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-10"><i class="fa fa-check"></i><b>21.2.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.2.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#plantgen"><i class="fa fa-check"></i><b>21.2.2</b> Planteamiento general del contraste exacto de independencia</a></li>
+<li class="chapter" data-level="21.2.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#algoritmo"><i class="fa fa-check"></i><b>21.2.3</b> Algoritmo para la realización del contraste exacto de independencia</a></li>
+<li class="chapter" data-level="21.2.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-de-independencia-diseño-tipo-1"><i class="fa fa-check"></i><b>21.2.4</b> Contraste de independencia: Diseño Tipo 1</a></li>
+<li class="chapter" data-level="21.2.5" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#dise"><i class="fa fa-check"></i><b>21.2.5</b> Contraste de independencia: Diseños Tipo 2 y Tipo 3</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-de-independencia-en-tablas-rtimes-c"><i class="fa fa-check"></i><b>21.3</b> Contraste de independencia en tablas <span class="math inline">\(R\times C\)</span></a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#IntroRxC"><i class="fa fa-check"></i><b>21.3.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.3.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contaprox"><i class="fa fa-check"></i><b>21.3.2</b> Contrastes aproximados</a></li>
+<li class="chapter" data-level="21.3.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-aproximado-con-corrección-de-continuidad-1"><i class="fa fa-check"></i><b>21.3.3</b> Contraste aproximado con corrección de continuidad</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas"><i class="fa fa-check"></i><b>21.4</b> Medidas de asociación en tablas <span class="math inline">\(2\times 2\)</span></a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-11"><i class="fa fa-check"></i><b>21.4.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.4.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#la-hatq-de-yule"><i class="fa fa-check"></i><b>21.4.2</b> La <span class="math inline">\(\hat{Q}\)</span> de Yule</a></li>
+<li class="chapter" data-level="21.4.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#otras-medidas-de-asociación-para-tablas-2times-2"><i class="fa fa-check"></i><b>21.4.3</b> Otras medidas de asociación para tablas <span class="math inline">\(2\times 2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas-de-asociación-en-tablas-rtimes-c"><i class="fa fa-check"></i><b>21.5</b> Medidas de asociación en tablas <span class="math inline">\(R\times C\)</span></a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-12"><i class="fa fa-check"></i><b>21.5.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.5.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas-derivadas-del-estadístico-chi-cuadrado"><i class="fa fa-check"></i><b>21.5.2</b> Medidas derivadas del estadístico Chi-cuadrado</a></li>
+<li class="chapter" data-level="21.5.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas-basadas-en-la-reducción-proporcional-del-error-lambda-de-goodman-y-kruskal"><i class="fa fa-check"></i><b>21.5.3</b> Medidas basadas en la reducción proporcional del error: <span class="math inline">\(\lambda\)</span> de Goodman y Kruskal</a></li>
+<li class="chapter" data-level="21.5.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#determinación-de-las-fuentes-de-asociación"><i class="fa fa-check"></i><b>21.5.4</b> Determinación de las fuentes de asociación</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contrastes-de-independencia-en-tablas-multidimensionales"><i class="fa fa-check"></i><b>21.6</b> Contrastes de independencia en tablas multidimensionales</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="correspondencias.html"><a href="correspondencias.html"><i class="fa fa-check"></i><b>22</b> Análisis de correspondencias</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="correspondencias.html"><a href="correspondencias.html#introducción-13"><i class="fa fa-check"></i><b>22.1</b> Introducción</a></li>
+<li class="chapter" data-level="22.2" data-path="correspondencias.html"><a href="correspondencias.html#metodología-del-análisis-de-correspondencias"><i class="fa fa-check"></i><b>22.2</b> Metodología del análisis de correspondencias</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="correspondencias.html"><a href="correspondencias.html#proyecciones-fila-columna-y-simétrica"><i class="fa fa-check"></i><b>22.2.1</b> Proyecciones fila, columna y simétrica</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="correspondencias.html"><a href="correspondencias.html#ejemplos-de-análisis-de-correspondencias-con-r"><i class="fa fa-check"></i><b>22.3</b> Ejemplos de análisis de correspondencias con <strong>R</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html"><i class="fa fa-check"></i><b>23</b> Análisis conjunto</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html#introducción-conceptos-clave-y-tipos-de-análisis"><i class="fa fa-check"></i><b>23.1</b> Introducción, conceptos clave y tipos de análisis</a></li>
+<li class="chapter" data-level="23.2" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html#aplicación-del-análisis-conjunto-etapas"><i class="fa fa-check"></i><b>23.2</b> Aplicación del Análisis Conjunto (etapas):</a></li>
+<li class="chapter" data-level="23.3" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html#ejemplo-utilizando-r"><i class="fa fa-check"></i><b>23.3</b> Ejemplo utilizando R:</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>24</b> Análisis discriminante</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#introducción-14"><i class="fa fa-check"></i><b>24.1</b> Introducción</a></li>
+<li class="chapter" data-level="24.2" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#tipos-de-análisis-discriminantes"><i class="fa fa-check"></i><b>24.2</b> Tipos de análisis discriminantes:</a></li>
+<li class="chapter" data-level="24.3" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#ejemplos"><i class="fa fa-check"></i><b>24.3</b> Ejemplos:</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html"><i class="fa fa-check"></i><b>25</b> Árboles de clasificación y regresión </a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#introducción-15"><i class="fa fa-check"></i><b>25.1</b> Introducción </a></li>
+<li class="chapter" data-level="25.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#aprendizaje-con-árboles-de-decisión"><i class="fa fa-check"></i><b>25.2</b> Aprendizaje con árboles de decisión</a></li>
+<li class="chapter" data-level="25.3" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#cómo-se-va-dividiendo-el-árbol"><i class="fa fa-check"></i><b>25.3</b> ¿Cómo se va dividiendo el árbol? </a>
+<ul>
+<li class="chapter" data-level="25.3.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#impureza-de-gini"><i class="fa fa-check"></i><b>25.3.1</b> Impureza de Gini</a></li>
+<li class="chapter" data-level="25.3.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#entropía"><i class="fa fa-check"></i><b>25.3.2</b> Entropía </a></li>
+<li class="chapter" data-level="25.3.3" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#ganancia-de-información"><i class="fa fa-check"></i><b>25.3.3</b> Ganancia de información</a></li>
+<li class="chapter" data-level="25.3.4" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#suma-residual-de-cuadrados-mínima"><i class="fa fa-check"></i><b>25.3.4</b> Suma residual de cuadrados mínima</a></li>
+</ul></li>
+<li class="chapter" data-level="25.4" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#sobreajuste"><i class="fa fa-check"></i><b>25.4</b> Sobreajuste </a></li>
+<li class="chapter" data-level="25.5" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#cuánto-debe-crecer-un-árbol"><i class="fa fa-check"></i><b>25.5</b> ¿Cuánto debe crecer un árbol? </a>
+<ul>
+<li class="chapter" data-level="25.5.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#la-parada-temprana"><i class="fa fa-check"></i><b>25.5.1</b> La parada temprana </a></li>
+<li class="chapter" data-level="25.5.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#la-poda"><i class="fa fa-check"></i><b>25.5.2</b> La poda </a></li>
+</ul></li>
+<li class="chapter" data-level="25.6" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#el-algoritmo-id3-para-la-construcción-de-un-árbol-de-decisión"><i class="fa fa-check"></i><b>25.6</b> El algoritmo ID3 para la construcción de un árbol de decisión</a></li>
+<li class="chapter" data-level="25.7" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#procedimiento-con-r-la-funcion-rpart"><i class="fa fa-check"></i><b>25.7</b> Procedimiento con R: la funcion <code>rpart</code></a></li>
+<li class="chapter" data-level="25.8" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#aplicaciones-de-los-árboles-de-decisión"><i class="fa fa-check"></i><b>25.8</b> Aplicaciones de los árboles de decisión</a>
+<ul>
+<li class="chapter" data-level="25.8.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#el-caso-de-negocio"><i class="fa fa-check"></i><b>25.8.1</b> El caso de negocio</a></li>
+<li class="chapter" data-level="25.8.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#árbol-de-clasificación-para-determinar-la-intención-de-compra"><i class="fa fa-check"></i><b>25.8.2</b> Árbol de clasificación para determinar la intención de compra</a></li>
+<li class="chapter" data-level="25.8.3" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#árbol-de-regresión-para-estimar-el-número-de-días-hospitalizado"><i class="fa fa-check"></i><b>25.8.3</b> Árbol de regresión para estimar el número de días hospitalizado</a></li>
+<li class="chapter" data-level="" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#resumen-5"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html"><i class="fa fa-check"></i><b>26</b> Máquinas de Vector Soporte</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#introducción-16"><i class="fa fa-check"></i><b>26.1</b> Introducción</a></li>
+<li class="chapter" data-level="26.2" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#algoritmo-svm-para-clasificación-binaria"><i class="fa fa-check"></i><b>26.2</b> Algoritmo SVM para clasificación binaria</a></li>
+<li class="chapter" data-level="26.3" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#y-si-tengo-más-de-dos-clases"><i class="fa fa-check"></i><b>26.3</b> ¿Y si tengo más de dos clases?</a></li>
+<li class="chapter" data-level="26.4" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#truco-del-kernel-tratando-con-la-no-linearidad"><i class="fa fa-check"></i><b>26.4</b> Truco del Kernel: Tratando con la no linearidad</a>
+<ul>
+<li class="chapter" data-level="26.4.1" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#algunos-kernels-populares"><i class="fa fa-check"></i><b>26.4.1</b> Algunos kernels populares</a></li>
+</ul></li>
+<li class="chapter" data-level="26.5" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#procedimiento-con-r-la-funcion-svm"><i class="fa fa-check"></i><b>26.5</b> Procedimiento con R: la funcion <code>svm</code></a></li>
+<li class="chapter" data-level="26.6" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#aplicación-de-un-modelo-svm-radial-con-ajuste-automático-en-r"><i class="fa fa-check"></i><b>26.6</b> Aplicación de un modelo SVM Radial con ajuste automático en R</a>
+<ul>
+<li class="chapter" data-level="26.6.1" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#importancia-de-las-variables"><i class="fa fa-check"></i><b>26.6.1</b> Importancia de las variables</a></li>
+<li class="chapter" data-level="" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#resumen-6"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html"><i class="fa fa-check"></i><b>27</b> Clasificador k-vecinos más próximos</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#introducción-17"><i class="fa fa-check"></i><b>27.1</b> Introducción</a></li>
+<li class="chapter" data-level="27.2" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#decisiones-a-tener-en-cuenta"><i class="fa fa-check"></i><b>27.2</b> Decisiones a tener en cuenta</a>
+<ul>
+<li class="chapter" data-level="27.2.1" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#función-de-distancia-a-utilizar"><i class="fa fa-check"></i><b>27.2.1</b> Función de distancia a utilizar</a></li>
+<li class="chapter" data-level="27.2.2" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#número-de-vecinos-k-seleccionados"><i class="fa fa-check"></i><b>27.2.2</b> Número de vecinos (k) seleccionados</a></li>
+</ul></li>
+<li class="chapter" data-level="27.3" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#procedimiento-con-r-la-funcion-knn"><i class="fa fa-check"></i><b>27.3</b> Procedimiento con R: la funcion knn</a></li>
+<li class="chapter" data-level="27.4" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#aplicación-del-modelo-knn-en-r"><i class="fa fa-check"></i><b>27.4</b> Aplicación del modelo KNN en R</a>
+<ul>
+<li class="chapter" data-level="" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#resumen-7"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="naive-bayes.html"><a href="naive-bayes.html"><i class="fa fa-check"></i><b>28</b> Naive Bayes</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="naive-bayes.html"><a href="naive-bayes.html#introducción-18"><i class="fa fa-check"></i><b>28.1</b> Introducción</a></li>
+<li class="chapter" data-level="28.2" data-path="naive-bayes.html"><a href="naive-bayes.html#teorema-de-bayes"><i class="fa fa-check"></i><b>28.2</b> Teorema de Bayes</a></li>
+<li class="chapter" data-level="28.3" data-path="naive-bayes.html"><a href="naive-bayes.html#el-algoritmo-naive-bayes"><i class="fa fa-check"></i><b>28.3</b> El algoritmo Naive Bayes</a></li>
+<li class="chapter" data-level="28.4" data-path="naive-bayes.html"><a href="naive-bayes.html#procedimiento-con-r-la-funcion-naive_bayes"><i class="fa fa-check"></i><b>28.4</b> Procedimiento con R: la funcion <code>naive_bayes</code></a></li>
+<li class="chapter" data-level="28.5" data-path="naive-bayes.html"><a href="naive-bayes.html#aplicación-del-modelo-naive-bayes"><i class="fa fa-check"></i><b>28.5</b> Aplicación del modelo Naive Bayes</a>
+<ul>
+<li class="chapter" data-level="" data-path="naive-bayes.html"><a href="naive-bayes.html#resumen-8"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html"><i class="fa fa-check"></i><b>29</b> Bagging. Random Forest </a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#introducción-metodos-de-ensamble"><i class="fa fa-check"></i><b>29.1</b> Introducción: Metodos de Ensamble</a></li>
+<li class="chapter" data-level="29.2" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#bagging"><i class="fa fa-check"></i><b>29.2</b> Bagging</a></li>
+<li class="chapter" data-level="29.3" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#procedimiento-con-r-la-función-bagging"><i class="fa fa-check"></i><b>29.3</b> Procedimiento con R: la función <code>bagging</code> </a></li>
+<li class="chapter" data-level="29.4" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#implementando-bagging-en-r"><i class="fa fa-check"></i><b>29.4</b> Implementando bagging en R</a>
+<ul>
+<li class="chapter" data-level="29.4.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#interpretación-de-variables-en-el-bagging"><i class="fa fa-check"></i><b>29.4.1</b> Interpretación de variables en el bagging</a></li>
+</ul></li>
+<li class="chapter" data-level="29.5" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#random-forest"><i class="fa fa-check"></i><b>29.5</b> Random Forest</a>
+<ul>
+<li class="chapter" data-level="29.5.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#número-de-árboles-k"><i class="fa fa-check"></i><b>29.5.1</b> Número de árboles (<span class="math inline">\(K\)</span>)</a></li>
+<li class="chapter" data-level="29.5.2" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#número-de-variables-a-considerar-mtry"><i class="fa fa-check"></i><b>29.5.2</b> Número de variables a considerar (<span class="math inline">\(mtry\)</span>)</a></li>
+<li class="chapter" data-level="29.5.3" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#complejidad-de-los-árboles"><i class="fa fa-check"></i><b>29.5.3</b> Complejidad de los árboles</a></li>
+<li class="chapter" data-level="29.5.4" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#esquema-de-muestreo"><i class="fa fa-check"></i><b>29.5.4</b> Esquema de muestreo</a></li>
+<li class="chapter" data-level="29.5.5" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#regla-de-división"><i class="fa fa-check"></i><b>29.5.5</b> Regla de división</a></li>
+</ul></li>
+<li class="chapter" data-level="29.6" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#procedimiento-con-r-la-función-randomforest"><i class="fa fa-check"></i><b>29.6</b> Procedimiento con R: la función <code>randomForest</code></a></li>
+<li class="chapter" data-level="29.7" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#aplicación-del-modelo-random-forest-en-r"><i class="fa fa-check"></i><b>29.7</b> Aplicación del modelo Random Forest en R</a>
+<ul>
+<li class="chapter" data-level="29.7.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#aplicación-del-random-forest"><i class="fa fa-check"></i><b>29.7.1</b> Aplicación del Random Forest</a></li>
+<li class="chapter" data-level="" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#resumen-9"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html"><i class="fa fa-check"></i><b>30</b> Boosting. XGBoost.</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#introducción.-boosting."><i class="fa fa-check"></i><b>30.1</b> Introducción. Boosting.</a></li>
+<li class="chapter" data-level="30.2" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#gradient-boosting"><i class="fa fa-check"></i><b>30.2</b> Gradient Boosting</a>
+<ul>
+<li class="chapter" data-level="30.2.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#hiperparámetros-del-modelo-gradient-boosting"><i class="fa fa-check"></i><b>30.2.1</b> Hiperparámetros del modelo gradient boosting</a></li>
+<li class="chapter" data-level="30.2.2" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#estrategia-de-ajuste-de-hiperparametros"><i class="fa fa-check"></i><b>30.2.2</b> Estrategia de ajuste de hiperparametros</a></li>
+</ul></li>
+<li class="chapter" data-level="30.3" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#procedimiento-con-r-la-funcion-gbm"><i class="fa fa-check"></i><b>30.3</b> Procedimiento con R: la funcion <code>gbm</code></a></li>
+<li class="chapter" data-level="30.4" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#aplicación-del-modelo-gbm-en-r"><i class="fa fa-check"></i><b>30.4</b> Aplicación del modelo GBM en R</a>
+<ul>
+<li class="chapter" data-level="30.4.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#gbm-con-ajuste-automático"><i class="fa fa-check"></i><b>30.4.1</b> GBM con ajuste automático</a></li>
+</ul></li>
+<li class="chapter" data-level="30.5" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#extreme-gradient-boosting-xgb"><i class="fa fa-check"></i><b>30.5</b> eXtreme Gradient Boosting (XGB)</a>
+<ul>
+<li class="chapter" data-level="30.5.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#hiperparametros-del-modelo-xgboost"><i class="fa fa-check"></i><b>30.5.1</b> Hiperparametros del modelo XGBoost</a></li>
+</ul></li>
+<li class="chapter" data-level="30.6" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#procedimiento-con-r-la-funcion-xgboost"><i class="fa fa-check"></i><b>30.6</b> Procedimiento con R: la funcion <code>xgboost</code></a></li>
+<li class="chapter" data-level="30.7" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#aplicación-del-módelo-xgboost-en-r"><i class="fa fa-check"></i><b>30.7</b> Aplicación del módelo XGBoost en R</a>
+<ul>
+<li class="chapter" data-level="30.7.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#xgboost-y-ajuste-automático"><i class="fa fa-check"></i><b>30.7.1</b> XGBoost y ajuste automático</a></li>
+<li class="chapter" data-level="" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#resumen-10"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://blog.uclm.es/tp-mbsba/"> Ciencia de datos con R </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fundamentos de ciencia de datos con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modelos-mixtos" class="section level1 hasAnchor" number="18">
+<h1><span class="header-section-number">Capítulo 18</span> Modelos mixtos<a href="modelos-mixtos.html#modelos-mixtos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>María Durbán y Víctor Casero</em></p>
+<div id="conceptos-básicos" class="section level2 hasAnchor" number="18.1">
+<h2><span class="header-section-number">18.1</span> Conceptos básicos<a href="modelos-mixtos.html#conceptos-básicos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los modelos mixtos (MMs) para variables de respuesta continuas son
+modelos estadísticos en los que los residuos siguen una distribución
+Normal pero puede que no sean independientes o no tengan varianza
+constante. Son necesarios en muchas situaciones, sobre todo en
+experimentos donde se realiza algún tipo de muestreo:</p>
+<ol style="list-style-type: decimal">
+<li>Estudios con datos agrupados, como por ejemplo, alumnos en una
+clase, individuos en una ciudad.</li>
+<li>Estudios longitudinales o de medidas repetidas, donde un individuo
+es medido repetidamente a lo largo del tiempo o bajo condiciones
+distintas.</li>
+</ol>
+<p>Este tipo de estudios se pueden encontrar en diferentes áreas como la
+Medicina, Biología, Ciencias Experimentales y Sociales.</p>
+<div id="tipo-y-estructura-de-los-datos" class="section level3 hasAnchor" number="18.1.1">
+<h3><span class="header-section-number">18.1.1</span> Tipo y estructura de los datos<a href="modelos-mixtos.html#tipo-y-estructura-de-los-datos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La estructura de los datos con la que se trabaja es el factor
+determinante para saber si se han de utilizar modelos mixtos, y en su
+caso, qué tipo de modelo.</p>
+<p><strong>Datos jerárquicos (o agrupados)</strong></p>
+<p>En este tipo de datos la variable dependiente (de respuesta, de interés)
+se mide una sola vez en cada individuo (la unidad de análisis), y los
+individuos está agrupados (o anidados) en unidades mayores. Muchos tipos
+de datos tienen una estructura jerárquica: alumnos en escuelas, personas
+en municipios, pacientes en hospitales, plantas en una parcela…</p>
+<p>Las jerarquías son una forma de representar la relación de dependencia
+que hay entre los individuos y los grupos a los que pertenecen. Por
+ejemplo, supóngase que se quiere hacer un estudio sobre el tiempo de
+recuperación en pacientes hospitalizados por COVID-19 en diferentes
+hospitales. Se tiene la siguiente estructura con dos niveles:</p>
+<ul>
+<li>Muchos individuos en el nivel <span class="math inline">\(1\)</span> (pacientes)</li>
+<li>Agrupados en unas pocas unidades en el nivel <span class="math inline">\(2\)</span> (hospitales)</li>
+</ul>
+<p><img src="img/Presentacion1.png" width="60%" style="display: block; margin: auto;" />
+Las estructuras multinivel pueden aparecer también como consecuencia del
+diseño del estudio que se está llevando a cabo. Por ejemplo, una
+encuesta sobre el estado de salud puede dar lugar a un diseño a tres
+niveles: primero se muestrean regiones, luego distritos y después
+individuos.</p>
+<p>En cada nivel de la jerarquía se pueden medir variables. Algunas estarán
+medidas en su nivel <em>natural</em>, por ejemplo, en el nivel del hospital se
+podría medir el tamaño, y al nivel de los pacientes se podría medir su
+situación socio-económica. Además, se pueden mover las variables de un
+nivel a otro mediante agregación o desagregación:</p>
+<ul>
+<li><strong>Agregación</strong>: La variable al nivel más bajo se mueve a un nivel
+más alto, por ejemplo, se pueden asociar a cada hospital la media
+del nivel socioeconómico de sus pacientes.</li>
+<li><strong>Desagregación</strong>: Mover las variables a un nivel más bajo, por
+ejemplo, asignarle a cada paciente una variable que indique el
+tamaño de su hospital de referencia.</li>
+</ul>
+<p><strong>Medidas repetidas y datos longitudinales</strong></p>
+<p>En este tipo de datos la variable dependiente se mide más de una vez a
+un mismo individuo <span class="citation">(<a href="#ref-Singer03" role="doc-biblioref"><strong>Singer03?</strong></a>)</span>. Por ejemplo, se miden los niveles de
+glucosa de un enfermo antes y después de haberle inyectado insulina.
+Este tipo de datos también puede ser considerados como datos multinivel
+(o jerárquicos) donde el Nivel 2 representa a los individuos y el Nivel
+1 representa a las diferentes medidas tomadas. Dado que las medidas se
+toman a un mismo individuo, es probable que dichas medidas no sean
+independientes, por lo que utilizar un modelo lineal ordinario no sería
+apropiado.</p>
+<p><img src="img/Presentacion3.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Por <strong>datos longitudinales</strong>, se entienden datos en los que la variable
+dependiente se ha medido en distintos instantes de tiempo en cada una de
+las unidades de análisis. En algunos casos, cuando la variable
+dependiente se mide a lo largo del tiempo, puede ser difícil identificar
+si los datos son medidas repetidas o datos longitudinales. Desde el
+punto de vista del análisis de los datos mediante MMs esta distinción no
+es un elemento crítico. Lo importante es que en ambos tipos de datos la
+variable dependiente se ha medido repetidas veces en la misma unidad de
+análisis, y que por tanto las observaciones estarán correlacionadas.</p>
+</div>
+<div id="efectos-fijos-o-aleatorios" class="section level3 hasAnchor" number="18.1.2">
+<h3><span class="header-section-number">18.1.2</span> ¿Efectos fijos o aleatorios?<a href="modelos-mixtos.html#efectos-fijos-o-aleatorios" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En un modelo mixto la clave se encuentra en la distinción entre efectos
+fijos y aleatorios <span class="citation">(<a href="#ref-Snijers03" role="doc-biblioref"><strong>Snijers03?</strong></a>)</span>. Esto es importante porque la inferencia y
+el análisis de ambos efectos es distinta.</p>
+<p>Los <strong>efectos fijos</strong> son variables en las cuales el investigador ha
+incluido sólo los niveles (o tratamientos) que son de su interés. Por
+ejemplo, en un experimento se puede estar interesados en comparar dos
+grupos, uno al que se le aplica un tratamiento y otro de control. En
+este caso, el objetivo del estudio compara los grupos y no interesa
+generalizar los resultados a otros tratamientos que podrían haber sido
+incluidos. Otro ejemplo sería el caso en el que se hace un encuesta y se
+eligen 10 ciudades. Si sólo interesan los resultados para esas 10
+ciudades y no se quieren generalizar los resultados al resto de ciudades
+que podrían haber sido seleccionadas, la variable ‘ciudad’ será un
+efecto fijo. Si se eligen las ciudades de forma aleatoria de una
+población grande de ciudades se consideraría la variable ‘ciudad’ como
+un <strong>efecto aleatorio</strong>.</p>
+<p>Una cantidad se considera aleatoria cuando cambia sobre las unidades de
+una población. Cuando un efecto en un modelo estadístico es considerado
+aleatorio, se está asumiendo que se quieren extraer conclusiones sobre
+la población de la cual se han elegido las unidades observadas, y no se
+tiene interés en esas unidades en particular. En este contexto se habla
+de <em>intercambiabilidad</em>, en el sentido de que se podría cambiar una
+unidad de la muestra por otra de la población y sería indiferente. Este
+es el caso de los factores de agrupamiento o diseño, como son los
+bloques en un experimento agrícola, o los días cuando un experimento se
+lleva a cabo en días distintos, o un técnico de laboratorio cuando hay
+varios haciendo el experimento; también lo serían los sujetos en un
+diseño de medidas repetidas o las localizaciones donde se recogen
+muestras en un río, si el objetivo es generalizar a todo el río.</p>
+<p>Los métodos estándar utilizados para construir tests e intervalos de
+confianza para los efectos fijos, no son válidos para los efectos
+aleatorios, pues los efectos observados son sólo una muestra de todos
+los posibles efectos.</p>
+<p>La clave para distinguir, estadísticamente hablando, entre efectos fijos
+y aleatorios es si los niveles de la variable se pueden interpretar como
+extraídos de una población con una cierta distribución de probabilidad.
+En el caso de un efecto fijo, normalmente interesará comparar los
+resultados de la variable dependiente para los distintos niveles de la
+variable explicativa, es decir, interesará la diferencia entre las
+medias. En el caso de efectos aleatorios, no interesa específicamente
+comparar si las medias son distintas, sino cómo el efecto aleatorio
+explica la variabilidad en la variable dependiente. Por lo tanto, para
+que un efecto pueda considerarse aleatorio, es necesario que la variable
+dependiente presente cierta variabilidad no explicada asociada con las
+unidades del efecto aleatorio.</p>
+<p>La siguiente tabla puede ayudar ayudar a determinar si un efecto es fijo
+o aleatorio</p>
+<p><img src="img/efectos.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Por ejemplo, en un estudio sobre satisfacción en el trabajo (variable
+dependiente) de los empleados (unidades observadas) de un cierto número
+de empresas (efecto aleatorio), si el nivel de satisfacción de los
+empleados de unas empresas es mayor que el de otras y el investigador no
+lo tiene en cuenta, habrá una cierta variabilidad residual asociada con
+el efecto ‘empresa’. Si esta variabilidad fuera próxima a cero, no sería
+necesario incluir el efecto aleatorio asociado con la empresa.</p>
+<p><strong>¿Por qué hay que utilizar modelos mixtos?</strong></p>
+<p>Cuando las observaciones están agrupadas en niveles o siguen una cierta
+jerarquía, las unidades se ven afectados por el grupo al que pertenecen.
+Las jerarquías (o niveles) permiten representar la relación de
+dependencia entre los individuos y los grupos a los que pertenecen. Los
+alumnos que están en una misma escuela se parecen más entre sí que si se
+hubieran seleccionado aleatoriamente de entre toda la población de
+alumnos. Los modelos mixtos permiten tener en cuenta que las
+observaciones no son independientes.</p>
+</div>
+</div>
+<div id="formulación-del-modelo-con-efectos-aleatorios-o-modelos-mixtos" class="section level2 hasAnchor" number="18.2">
+<h2><span class="header-section-number">18.2</span> Formulación del modelo con efectos aleatorios o modelos mixtos<a href="modelos-mixtos.html#formulación-del-modelo-con-efectos-aleatorios-o-modelos-mixtos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El nombre de <em>modelos mixtos lineales</em> viene del hecho de que estos
+modelos son lineales en los parámetros, y en las covariables, y pueden
+implicar efectos fijos o aleatorios. Son, por lo tanto, una extensión de
+los modelos lineales de regresión.</p>
+<div id="formulación-general" class="section level3 hasAnchor" number="18.2.1">
+<h3><span class="header-section-number">18.2.1</span> Formulación general<a href="modelos-mixtos.html#formulación-general" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La formulación general de un modelo mixto tiene la siguiente forma:
+<span class="math display">\[ y = X \beta + Z u + \epsilon, \quad u\sim N(0, G), \quad \epsilon \sim N(0, R)\]</span>
+donde</p>
+<ul>
+<li><span class="math inline">\(X\)</span> es una matriz <span class="math inline">\(n \times k\)</span> (<span class="math inline">\(k\)</span> es el número de efectos fijos)</li>
+<li><span class="math inline">\(Z\)</span> es una matriz <span class="math inline">\(n \times p\)</span> (<span class="math inline">\(p\)</span> es el número de efectos
+aleatorios)</li>
+<li><span class="math inline">\(\beta\)</span> es el vector de efectos fijos y <span class="math inline">\(u\)</span> el de efectos aleatorios</li>
+<li><span class="math inline">\(G\)</span> es la matriz de varianzas-covarianzas de los efectos aleatorios,
+con dimensión <span class="math inline">\(p \times p\)</span></li>
+<li><span class="math inline">\(R\)</span> es la matriz de varianzas-covarianzas del error</li>
+</ul>
+<div id="estimación-de-beta-y-u" class="section level4 hasAnchor" number="18.2.1.1">
+<h4><span class="header-section-number">18.2.1.1</span> Estimación de <span class="math inline">\(\beta\)</span> y <span class="math inline">\(u\)</span><a href="modelos-mixtos.html#estimación-de-beta-y-u" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Se hace mediante las llamadas <strong>ecuaciones de Henderson</strong> <span class="citation">(<a href="#ref-Henderson1953" role="doc-biblioref"><strong>Henderson1953?</strong></a>)</span>. Permiten
+obtener el mejor estimador lineal insesgado de <span class="math inline">\(X\beta\)</span> y el mejor
+predictor lineal insesgado de <span class="math inline">\(u\)</span>. Se obtienen maximizando la densidad
+conjunta de <span class="math inline">\(y\)</span> y <span class="math inline">\(u\)</span>:
+<span class="math display">\[f(y, u) = f(y | u)f(u), \quad y | u \sim
+    N(X\beta + Zu, R)\quad u\sim N(0, G).\]</span>
+Derivando con respecto a <span class="math inline">\(\beta\)</span> y <span class="math inline">\(u\)</span> se obtienen las ecuaciones de
+Henderson cuya solución es:
+<span class="math display">\[\begin{eqnarray*}
+\hat \beta = \left ( X^\prime V^{-1} X \right )^{-1}X^\prime V^{-1} y \\
+\hat u = G Z^\prime V^{-1} (y -X \hat \beta),
+\end{eqnarray*}\]</span>
+donde <span class="math inline">\(V = Z G Z^\prime + R\)</span>. Pero, <span class="math inline">\(V\)</span> depende de los parámetros de la
+varianza en el modelo que forman parte de <span class="math inline">\(G\)</span> y <span class="math inline">\(R\)</span> y que es necesario
+estimar, como se muestra a continuación.</p>
+</div>
+<div id="estimación-de-los-componentes-de-la-varianza" class="section level4 hasAnchor" number="18.2.1.2">
+<h4><span class="header-section-number">18.2.1.2</span> Estimación de los componentes de la varianza<a href="modelos-mixtos.html#estimación-de-los-componentes-de-la-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Los métodos más comunes para la estimación de los parámetros de las
+matrices de covarianza son: Máxima verosimilitud (ML) o Máxima
+verosimilitid restringida (REML). No existe una solución cerrada para los estimadores, y se hace de forma
+numérica o mediante algoritmos iterativos. REML tiene en cuenta los grados de libertad utilizados para estimar los
+efectos fijos en el modelo. Si <span class="math inline">\(n\)</span> es pequeño, REML dará mejores
+estimaciones que ML, si <span class="math inline">\(n\)</span> es grande, no habrá prácticamente ninguna
+diferencia. El método preferido es REML.</p>
+</div>
+</div>
+<div id="inferencia-y-selección-del-modelo" class="section level3 hasAnchor" number="18.2.2">
+<h3><span class="header-section-number">18.2.2</span> Inferencia y selección del modelo<a href="modelos-mixtos.html#inferencia-y-selección-del-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="contrastes-de-hipótesis-para-los-efectos-fijos-beta" class="section level4 hasAnchor" number="18.2.2.1">
+<h4><span class="header-section-number">18.2.2.1</span> Contrastes de hipótesis para los efectos fijos, <span class="math inline">\(\beta\)</span><a href="modelos-mixtos.html#contrastes-de-hipótesis-para-los-efectos-fijos-beta" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Utilizando la distribución aproximada:
+<span class="math display">\[\hat \beta \sim N \left ( \beta, \underbrace{(X^\prime \hat V^{-1} X )^{-1}}_{Var(\hat \beta)} \right )\]</span></p>
+<ul>
+<li>Si se contrastan parámetros individuales se acudirá al t-test para
+un solo efecto,</li>
+<li>Si se contrastan un conjunto de parámetros se acudirá al F-test para
+más de un efecto,</li>
+<li>También se pueden comparar modelos usando el test de la razón de
+verosimilitud, LRT por sus siglas en inglés (ojo! hay que utilizar ML para estimar los parámetros de la varianza)
+<span class="math display" id="eq:LRT">\[\begin{equation}
+LRT = -2\left [ ln(l_{H_0})- ln(l_{H_1}) \right ]\approx \chi^2_{df}.
+\tag{18.1}
+\end{equation}\]</span></li>
+</ul>
+</div>
+<div id="contrastes-de-hipótesis-para-los-parámetros-de-varianza" class="section level4 hasAnchor" number="18.2.2.2">
+<h4><span class="header-section-number">18.2.2.2</span> Contrastes de hipótesis para los parámetros de varianza<a href="modelos-mixtos.html#contrastes-de-hipótesis-para-los-parámetros-de-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Al usar el test LRT <a href="modelos-mixtos.html#eq:LRT">(18.1)</a> se ha de tener en cuenta
+que la distribución asintótica del estadístico del test depende de si el
+valor del parámetro bajo la hipótesis nula (<span class="math inline">\(H_0\)</span>) está en la frontera del
+espacio paramétrico (es decir si se está testando si el parámetro de
+varianza es cero o no):</p>
+<ul>
+<li><p><strong>Caso 1</strong>: El valor de los parámetros de varianza bajo la <span class="math inline">\(H_0\)</span> no
+están en la frontera del espacio paramétrico (por ejemplo, al
+contrastar que los parámetros de varianza de dos efectos aleatorios
+son iguales o no). En ese caso se utiliza el test normalmente.</p></li>
+<li><p><strong>Caso 2</strong>: El valor de los parámetros de varianza bajo la <span class="math inline">\(H_0\)</span>
+están en la frontera del espacio paramétrico (por ejemplo, si se
+quiere contrastar que la varianza del efecto aleatorio es cero o
+no). La distribución asintótica del estadístico del test es una
+mixtura entre <span class="math inline">\(\chi^2_p\)</span> y <span class="math inline">\(\chi^2_{p-1}\)</span>,
+concretamente <span class="math inline">\(0.5 \chi^2_p + 0.5\chi^2_{p-1}\)</span>,
+donde <span class="math inline">\(p\)</span> es el número de parámetros de la varianza que se hacen
+cero bajo la <span class="math inline">\(H_0\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div id="diagnosis-del-modelo" class="section level3 hasAnchor" number="18.2.3">
+<h3><span class="header-section-number">18.2.3</span> Diagnosis del modelo<a href="modelos-mixtos.html#diagnosis-del-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En el caso de modelos mixtos se ha de verificar la hipótesis de
+normalidad tanto para los residuos al nivel más bajo (medidas repetidas
+en los raíles) como para los efectos aleatorios (raíles), y también las
+de independencia (en su caso).</p>
+<p>En el caso de los modelos mixtos, se utilizan los residuos
+condicionales, estos son la diferencia entre los valores observados y el
+valor predicho condicional:
+<span class="math display">\[\hat\epsilon = y-X \hat \beta -Z \hat u. \]</span>
+Estos residuos tienden a estar correlados y sus varianzas pueden cambiar
+de un grupo a otro, aunque en el verdadero modelo los residuos sean
+incorrelados y con varianza constante. Para solucionar este problema se
+pueden escalar los residuos por sus desviaciones estándar (o las
+estimaciones de éstas), dando lugar a los <em>residuos estandarizados</em> (si
+las desviaciones estándar son conocidas), o a los <em>residuos studentizados</em> (si son desconocidas y se utilizan estimaciones de las
+mismas). Con estos residuos se hace un análisis similar al caso de
+modelos de regresión lineal.</p>
+<p>Además se tendrá que comprobar la hipótesis de normalidad de los efectos
+aleatorios</p>
+</div>
+</div>
+<div id="funciones-de-r-para-ajustar-modelos-mixtos" class="section level2 hasAnchor" number="18.3">
+<h2><span class="header-section-number">18.3</span> Funciones de <code>R</code> para ajustar modelos mixtos<a href="modelos-mixtos.html#funciones-de-r-para-ajustar-modelos-mixtos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hay varios paquetes de <code>R</code> para el ajuste de modelos mixtos. Los más usados son <code>nlme</code> y <code>lme4</code>. El segundo es una versión del primero que
+incluye modelos más generales, y mejora los gráficos. A continuación se
+describe la función principal del paquete <code>lme4</code>.</p>
+<div id="la-función-lmer" class="section level3 hasAnchor" number="18.3.1">
+<h3><span class="header-section-number">18.3.1</span> La función <code>lmer()</code><a href="modelos-mixtos.html#la-función-lmer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Esta función permite el uso de efectos aleatorios anidados y de errores
+correlados o heterocedásticos dentro de los grupos. En general para
+definir un modelo mixto se necesita especificar la estructura de la
+media y de la parte aleatoria del modelo, incluidos los factores de
+agrupamiento, así como la estructura de correlación (si la hay).</p>
+<p>También se puede especificar el método de estimación: ‘’REML’’ o ‘’ML’’.</p>
+<p>La parte aleatoria del modelo se incluye entre paréntesis en la ecuación y <span class="math inline">\(|\)</span> separa las variables de agrupamiento de las
+predictoras, si no hay variables predictoras para la parte aleatoria se pondría un 1.</p>
+<p>La función <code>VarCorr()</code> aplicada a un objeto <code>lmer</code> da información sobre la estructura de componentes
+de varianza.</p>
+</div>
+</div>
+<div id="caso-práctico" class="section level2 hasAnchor" number="18.4">
+<h2><span class="header-section-number">18.4</span> Caso práctico<a href="modelos-mixtos.html#caso-práctico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En esta sección se verá como construir diferentes modelos con efectos aleatorios según a qué nivel estén medidas las variables explicativas y se terminará dando una guía sobre como construir estos modelos en la práctica. Los datos con los que se va a trabajar se encuentran en el dataframe <code>Hsb82</code> del paquete <code>mlmRev</code> y provienen de un estudio titulado <em>High School and Beyond</em>. Los datos corresponden a 7185 estudiantes repartidos en 160 escuelas,
+el número de alumnos por escuela varía entre 14 y 67.
+La variable de interés, <code>mAch</code> es el nivel estandarizado alcanzado en
+matemáticas. Una cuestión inicial que se puede plantear es si el nivel socioeconómico (<code>cses</code>)
+del alumno predice las diferencias en el nivel de matemáticas. Para ello
+se ajustaría el modelo:
+<span class="math display">\[y_j = \beta_0 + \beta_1x_j + \epsilon_j, \]</span>
+este modelo ignora que los alumnos provienen de distintos centros (por
+eso solo aparece el subíndice j que es el que representa a las unidades
+de nivel más bajo, en este caso a los alumnos).</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="modelos-mixtos.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlmRev)</span>
+<span id="cb207-2"><a href="modelos-mixtos.html#cb207-2" aria-hidden="true" tabindex="-1"></a>multi0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mAch <span class="sc">~</span> cses, <span class="at">data =</span> Hsb82)</span>
+<span id="cb207-3"><a href="modelos-mixtos.html#cb207-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(multi0)</span>
+<span id="cb207-4"><a href="modelos-mixtos.html#cb207-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb207-5"><a href="modelos-mixtos.html#cb207-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb207-6"><a href="modelos-mixtos.html#cb207-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; lm(formula = mAch ~ cses, data = Hsb82)</span></span>
+<span id="cb207-7"><a href="modelos-mixtos.html#cb207-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb207-8"><a href="modelos-mixtos.html#cb207-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
+<span id="cb207-9"><a href="modelos-mixtos.html#cb207-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Min       1Q   Median       3Q      Max </span></span>
+<span id="cb207-10"><a href="modelos-mixtos.html#cb207-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -17.8660  -5.1165   0.2966   5.3880  14.8705 </span></span>
+<span id="cb207-11"><a href="modelos-mixtos.html#cb207-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb207-12"><a href="modelos-mixtos.html#cb207-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb207-13"><a href="modelos-mixtos.html#cb207-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb207-14"><a href="modelos-mixtos.html#cb207-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 12.74785    0.07933  160.69   &lt;2e-16 ***</span></span>
+<span id="cb207-15"><a href="modelos-mixtos.html#cb207-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; cses         2.19117    0.12010   18.24   &lt;2e-16 ***</span></span>
+<span id="cb207-16"><a href="modelos-mixtos.html#cb207-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb207-17"><a href="modelos-mixtos.html#cb207-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb207-18"><a href="modelos-mixtos.html#cb207-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb207-19"><a href="modelos-mixtos.html#cb207-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 6.725 on 7183 degrees of freedom</span></span>
+<span id="cb207-20"><a href="modelos-mixtos.html#cb207-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.04429,    Adjusted R-squared:  0.04415 </span></span>
+<span id="cb207-21"><a href="modelos-mixtos.html#cb207-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; F-statistic: 332.8 on 1 and 7183 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div>
+<p>La ordenada en el origen es 12.75 y la pendiente 2.19, lo que indica que
+por cada unidad que aumenta el nivel socio-económico, la puntuación del
+test aumenta en 2.19 unidades, además se puede ver que el coeficiente es
+significativo.</p>
+<p>Supóngase que ocurre esta situación:</p>
+<p><img src="img/rectas1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Los alumnos de la escuela A sacan, en promedio, mejores notas que las
+que le asignaría el modelo ajustado, con la escuela B ocurre lo
+contrario. El gráfico indica que la ordenada en el origen no debería ser
+la misma para todos los centros, sino que debería ser distinta para
+distintos centros. Es decir, el valor predicho debe ajustarse hacia
+arriba o abajo, eso se puede conseguir permitiendo que cada escuela
+tenga su propia ordenada en el origen:
+<span class="math display">\[y_{ij} = \beta_{0i} + \beta_1x_{ij} + \epsilon_{ij}\]</span></p>
+<p>Este modelo es similar al anterior añadiendo el subíndice <span class="math inline">\(i\)</span> para
+identificar el centro al que pertenece cada alumno. En realidad, se
+utiliza una variable categórica con tantas categorías como escuelas.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="modelos-mixtos.html#cb208-1" aria-hidden="true" tabindex="-1"></a>multi1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mAch <span class="sc">~</span> cses <span class="sc">+</span> school, <span class="at">data =</span> Hsb82)</span></code></pre></div>
+<p>Se está considerando a las escuelas como un efecto fijo y no aleatorio,
+es decir, implícitamente se está suponiendo que solo interesan estas
+escuelas en particular.</p>
+<p>Las situación se pueden complicar más, es posible que el efecto del nivel
+socio-económico sea distinto para cada centro, es decir, que un aumento
+de una unidad en ese nivel puede dar lugar a un aumento distinto en la
+nota del test en cada centro. En la Figura <a href="modelos-mixtos.html#fig:rectas2">18.1</a> se ve como la
+pendiente de la recta para la escuela C es distinta a las dos
+anteriores.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rectas2"></span>
+<img src="img/rectas2.png" alt="Ilustración de posibles escenarios para tres escuelas" width="60%" />
+<p class="caption">
+Figura 18.1: Ilustración de posibles escenarios para tres escuelas
+</p>
+</div>
+<p>El modelo que permite tener en cuenta esta situación es:
+<span class="math display">\[y_{ij} = \beta_{0i} + \beta_{1i}x_{ij} + \epsilon_{ij}\]</span>
+donde aparece ahora el sub-índice <span class="math inline">\(i\)</span> también en la pendiente, lo que indica que cada centro
+tiene una pendiente diferente.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="modelos-mixtos.html#cb209-1" aria-hidden="true" tabindex="-1"></a>multi2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mAch <span class="sc">~</span> cses <span class="sc">*</span> school, <span class="at">data =</span> Hsb82)</span></code></pre></div>
+<p>El código anterior generaría 159 coeficientes más que son los que se incluirían con
+la interacción. Pero no interesan en estas escuelas en
+concreto, sino la población de la que estas escuelas son una muestra.</p>
+<p>Con un modelo con efectos aleatorios se pueden contestar a preguntas como: ¿Cuales
+son las causas de esta variabilidad? ¿Qué variables pueden explicarla?</p>
+<div id="modelo-con-ordenada-en-el-origen-aleatoria" class="section level3 hasAnchor" number="18.4.1">
+<h3><span class="header-section-number">18.4.1</span> Modelo con ordenada en el origen aleatoria<a href="modelos-mixtos.html#modelo-con-ordenada-en-el-origen-aleatoria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Es el modelo mixto más sencillo. Se considera que los datos tienen
+una estructura con dos niveles, los alumnos están en el nivel 1 y están
+agrupados en escuelas, nivel 2. Se va a empezar suponiendo que no se
+dispone de ninguna variable explicativa, y que por lo tanto nuestro
+único interés es la diferencia entre las notas medias del test de
+matemáticas entre los distintos centros.</p>
+<p>Los dos niveles del modelo son:
+<span class="math display">\[\text{Nivel 1: } y_{ij} = \mu_{i} + \epsilon_{ij}\]</span></p>
+<ul>
+<li>El subíndice <span class="math inline">\(j\)</span> corresponde a individuos y el <span class="math inline">\(i\)</span> a escuelas, si se
+considera a las escuelas como un efecto aleatorio,</li>
+<li><span class="math inline">\(\beta_{0i}\)</span> (la media de cada escuela) vendría dada por:
+<span class="math display">\[\text{Nivel 2: } \mu_{i} = \beta_{0} + u_{i},\]</span></li>
+<li><span class="math inline">\(\beta_{0}\)</span> es la media de todos los alumnos,</li>
+<li><span class="math inline">\(u_{i}\)</span> es la desviación de la media de la escuela <span class="math inline">\(i\)</span> de la media
+de todas las escuelas.</li>
+</ul>
+<p>Poniendo las dos ecuaciones juntas:
+<span class="math display" id="eq:b0aleat">\[\begin{equation}
+y_{ij} = \beta_{0} + u_{i} + \epsilon_{ij}, \quad i = 1, \ldots, m, \quad j = 1, \ldots n_m
+\tag{18.2}
+\end{equation}\]</span></p>
+<ul>
+<li>La media de <span class="math inline">\(y\)</span> para el grupo <span class="math inline">\(i\)</span> es <span class="math inline">\(\beta_0 + u_i\)</span>,</li>
+<li>Los residuos a nivel individual <span class="math inline">\(\epsilon_{ij}\)</span> son la diferencia
+entre el valor de la variable respuesta del individuo <span class="math inline">\(j\)</span> y la media
+del grupo al que pertenece,</li>
+<li><span class="math inline">\(u_i\sim N( 0, \sigma^2_i )\)</span>, <span class="math inline">\(\epsilon_{ij}\sim N(0, \sigma^2 )\)</span>, y
+ambos son independientes, es decir, las observaciones que provienen
+de distintas escuelas son independientes.</li>
+</ul>
+<p>En el ejemplo de las escuelas:</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="modelos-mixtos.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb210-2"><a href="modelos-mixtos.html#cb210-2" aria-hidden="true" tabindex="-1"></a>Modelo0 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(mAch <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> school), <span class="at">data =</span> Hsb82)</span>
+<span id="cb210-3"><a href="modelos-mixtos.html#cb210-3" aria-hidden="true" tabindex="-1"></a>Modelo0</span>
+<span id="cb210-4"><a href="modelos-mixtos.html#cb210-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Linear mixed model fit by REML [&#39;lmerMod&#39;]</span></span>
+<span id="cb210-5"><a href="modelos-mixtos.html#cb210-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Formula: mAch ~ 1 + (1 | school)</span></span>
+<span id="cb210-6"><a href="modelos-mixtos.html#cb210-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Data: Hsb82</span></span>
+<span id="cb210-7"><a href="modelos-mixtos.html#cb210-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; REML criterion at convergence: 47116.79</span></span>
+<span id="cb210-8"><a href="modelos-mixtos.html#cb210-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Random effects:</span></span>
+<span id="cb210-9"><a href="modelos-mixtos.html#cb210-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Groups   Name        Std.Dev.</span></span>
+<span id="cb210-10"><a href="modelos-mixtos.html#cb210-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  school   (Intercept) 2.935   </span></span>
+<span id="cb210-11"><a href="modelos-mixtos.html#cb210-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Residual             6.257   </span></span>
+<span id="cb210-12"><a href="modelos-mixtos.html#cb210-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Number of obs: 7185, groups:  school, 160</span></span>
+<span id="cb210-13"><a href="modelos-mixtos.html#cb210-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fixed Effects:</span></span>
+<span id="cb210-14"><a href="modelos-mixtos.html#cb210-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)  </span></span>
+<span id="cb210-15"><a href="modelos-mixtos.html#cb210-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       12.64</span></span></code></pre></div>
+<ul>
+<li>La media total estimada es 12.64,</li>
+<li>La media para la escuela <span class="math inline">\(i\)</span> es: 12.64<span class="math inline">\(+ \hat u_i\)</span>, donde <span class="math inline">\(\hat u_i\)</span>
+es el efecto aleatorio de la escuela.</li>
+</ul>
+<p>Para obtener los valores predichos de los efectos aleatorios se utiliza
+la función <code>ranef()</code>.</p>
+<p>El siguiente
+gráfico permite ver los efectos aleatorios junto con sus intervalos de
+confianza (las escuelas han sido ordenadas atendiendo a su media para
+apreciar mejor la variabilidad entre las mismas).</p>
+<p>Se dibujan los efectos aleatorios para ver si siguen una distribución
+Normal, para eso se ha de ajustar el modelo con la función <code>lmer()</code>:</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="modelos-mixtos.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)</span>
+<span id="cb211-2"><a href="modelos-mixtos.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqmath</span>(<span class="fu">ranef</span>(Modelo0, <span class="at">condVar =</span> <span class="cn">TRUE</span>))<span class="sc">$</span>school</span></code></pre></div>
+<p><img src="Ciencia_de_datos_con_r_files/figure-html/unnamed-chunk-106-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Una primera aproximación para contrastar si hay o no diferencias entre
+los grupos sería calcular el intervalo de confianza para <span class="math inline">\(\sigma_u\)</span>:</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="modelos-mixtos.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(Modelo0)</span>
+<span id="cb212-2"><a href="modelos-mixtos.html#cb212-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 2.5 %    97.5 %</span></span>
+<span id="cb212-3"><a href="modelos-mixtos.html#cb212-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; .sig01       2.594729  3.315880</span></span>
+<span id="cb212-4"><a href="modelos-mixtos.html#cb212-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; .sigma       6.154803  6.361786</span></span>
+<span id="cb212-5"><a href="modelos-mixtos.html#cb212-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 12.156289 13.117121</span></span></code></pre></div>
+<p>el intervalo no contiene al cero, pero la forma más correcta de hacerlo
+sería utilizando el test LRT <a href="modelos-mixtos.html#eq:LRT">(18.1)</a> para:
+<span class="math display">\[\begin{array}{ll}
+H_0: \quad \sigma^2_u = 0 \Rightarrow y_{ij} = \beta_0 + \epsilon_{ij} \\
+H_1: \quad \sigma^2_u\neq 0 \Rightarrow y_{ij} = \beta_0 + u_i + \epsilon_{ij}.
+\end{array}\]</span>
+El resultado del test en este caso se compara con el valor de una
+mixtura de distribuciones Chi-cuadrado <span class="math inline">\(0.5 \chi^2_0 + 0.5\chi^2_1\)</span>.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="modelos-mixtos.html#cb213-1" aria-hidden="true" tabindex="-1"></a>Modelo_NULL <span class="ot">&lt;-</span> <span class="fu">lm</span>(mAch <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> Hsb82)</span>
+<span id="cb213-2"><a href="modelos-mixtos.html#cb213-2" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">logLik</span>(Modelo_NULL, <span class="at">REML =</span> T) <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">logLik</span>(Modelo0, <span class="at">REML =</span> T)</span>
+<span id="cb213-3"><a href="modelos-mixtos.html#cb213-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">pchisq</span>(test, <span class="at">df =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">lower.tail =</span> F))</span>
+<span id="cb213-4"><a href="modelos-mixtos.html#cb213-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 9.320673e-217</span></span></code></pre></div>
+<p>Conclusión: el efecto aleatorio es necesario en el modelo.</p>
+<p>El siguiente paso sería introducir las variables explicativas, ya estén
+al nivel 1 o al 2.</p>
+<div id="variables-explicativas-en-el-nivel-1-individuos" class="section level4 hasAnchor" number="18.4.1.1">
+<h4><span class="header-section-number">18.4.1.1</span> Variables explicativas en el Nivel <span class="math inline">\(1\)</span> (individuos)<a href="modelos-mixtos.html#variables-explicativas-en-el-nivel-1-individuos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Como la variable explicativa está medida al Nivel 1, se introduce en la
+ecuación del Nivel 1:</p>
+<ul>
+<li><span class="math inline">\(\text{Nivel 1:}\quad y_{ij} = \mu_{i} + \beta_1x_{ij} + \epsilon_{ij}\)</span></li>
+<li><span class="math inline">\(\text{Nivel 2:} \quad \mu_{i} = \beta_0 + u_i\)</span></li>
+</ul>
+<p>Si <span class="math inline">\(x\)</span> es una variable continua, este modelo asume que la pendiente de
+la recta es la misma para todas las escuelas (por eso <span class="math inline">\(\beta_1\)</span> no lleva
+el subíndice <span class="math inline">\(i\)</span>). Poniendo las dos ecuaciones juntas:
+<span class="math display">\[y_{ij} = \underbrace{\beta_0 + \beta_1x_{ij}}_{\text{efectos fijos}} +
+\underbrace{u_{i} + \epsilon_{ij}}_{\text{efectos aleatorios}}\]</span></p>
+<p>En este modelo, la relación global entre <span class="math inline">\(y\)</span> y <span class="math inline">\(x\)</span> viene representada
+por la línea recta con ordenada en el origen <span class="math inline">\(\beta_0\)</span> y pendiente
+<span class="math inline">\(\beta_1\)</span>. Sin embargo, la ordenada en el origen para una determinada
+escuela <span class="math inline">\(i\)</span> viene dada por <span class="math inline">\(\beta_0 + u_i\)</span>. Será mayor o menor que que la
+ordenada en el origen global <span class="math inline">\(\beta_0\)</span> por una cantidad <span class="math inline">\(u_i\)</span>. Aunque la
+ordenada en el origen varía de grupo a grupo, la pendiente es la misma
+para todos los grupos. Todas las líneas rectas ajustadas para cada grupo
+son paralelas.</p>
+<p>En el ejemplo de las escuelas, se introduce como variable explicativa
+<code>cses</code> (nivel socioeconómico centrado):</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="modelos-mixtos.html#cb214-1" aria-hidden="true" tabindex="-1"></a>Modelo1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(mAch <span class="sc">~</span> cses <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> school), <span class="at">data =</span> Hsb82)</span>
+<span id="cb214-2"><a href="modelos-mixtos.html#cb214-2" aria-hidden="true" tabindex="-1"></a>Modelo1</span>
+<span id="cb214-3"><a href="modelos-mixtos.html#cb214-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Linear mixed model fit by REML [&#39;lmerMod&#39;]</span></span>
+<span id="cb214-4"><a href="modelos-mixtos.html#cb214-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Formula: mAch ~ cses + (1 | school)</span></span>
+<span id="cb214-5"><a href="modelos-mixtos.html#cb214-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Data: Hsb82</span></span>
+<span id="cb214-6"><a href="modelos-mixtos.html#cb214-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; REML criterion at convergence: 46724</span></span>
+<span id="cb214-7"><a href="modelos-mixtos.html#cb214-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Random effects:</span></span>
+<span id="cb214-8"><a href="modelos-mixtos.html#cb214-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Groups   Name        Std.Dev.</span></span>
+<span id="cb214-9"><a href="modelos-mixtos.html#cb214-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  school   (Intercept) 2.945   </span></span>
+<span id="cb214-10"><a href="modelos-mixtos.html#cb214-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Residual             6.084   </span></span>
+<span id="cb214-11"><a href="modelos-mixtos.html#cb214-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Number of obs: 7185, groups:  school, 160</span></span>
+<span id="cb214-12"><a href="modelos-mixtos.html#cb214-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fixed Effects:</span></span>
+<span id="cb214-13"><a href="modelos-mixtos.html#cb214-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)         cses  </span></span>
+<span id="cb214-14"><a href="modelos-mixtos.html#cb214-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      12.636        2.191</span></span></code></pre></div>
+<p>Ahora se tienen dos efectos fijos:
+<span class="math display">\[\begin{array}{l}
+\hat \beta_0 = 12.64\\
+\hat \beta_1 = 2.19\\
+\end{array}\]</span></p>
+<p><span class="math inline">\(\hat \beta_0\)</span> es la nota media para alumnos con nivel socieconómico
+medio (la variable está centrada). La recta media vendría dada por:
+<span class="math display">\[E[y | cses] = 12.64 + 2.19~cses\]</span></p>
+<p>Para comprobar si la variable <code>cses</code> es significativa se utiliza el
+test LRT <a href="modelos-mixtos.html#eq:LRT">(18.1)</a>. Primero se tienen que
+ajustar de nuevo los modelos que se quieren comparar usando máxima
+verosimilitud (en vez de REML). Si se utiliza la función <code>lmer()</code> para
+ajustar el modelo no es necesario reajustar con ML pues la función anova
+lo hará automáticamente, mientras que si se usa la función <code>lme()</code> sí será necesario hacerlo.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="modelos-mixtos.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(Modelo0, Modelo1)</span>
+<span id="cb215-2"><a href="modelos-mixtos.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Data: Hsb82</span></span>
+<span id="cb215-3"><a href="modelos-mixtos.html#cb215-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Models:</span></span>
+<span id="cb215-4"><a href="modelos-mixtos.html#cb215-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo0: mAch ~ 1 + (1 | school)</span></span>
+<span id="cb215-5"><a href="modelos-mixtos.html#cb215-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo1: mAch ~ cses + (1 | school)</span></span>
+<span id="cb215-6"><a href="modelos-mixtos.html#cb215-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         npar   AIC   BIC logLik deviance Chisq Df Pr(&gt;Chisq)    </span></span>
+<span id="cb215-7"><a href="modelos-mixtos.html#cb215-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo0    3 47122 47142 -23558    47116                        </span></span>
+<span id="cb215-8"><a href="modelos-mixtos.html#cb215-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo1    4 46728 46756 -23360    46720 395.4  1  &lt; 2.2e-16 ***</span></span>
+<span id="cb215-9"><a href="modelos-mixtos.html#cb215-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb215-10"><a href="modelos-mixtos.html#cb215-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<p>Por lo tanto, el nivel socioeconómico afecta a los resultados escolares.
+Comparado con el modelo sin la variable explicativa (Modelo0), la
+inclusión del nivel socio-económico (Modelo1), ha reducido la
+variabilidad a nivel del alumno en un 2.8% ((6.257
+- 6.084)/6.257 = 0.028)</p>
+</div>
+<div id="variables-explicativas-en-el-nivel-2-grupos" class="section level4 hasAnchor" number="18.4.1.2">
+<h4><span class="header-section-number">18.4.1.2</span> Variables explicativas en el Nivel <span class="math inline">\(2\)</span> (grupos)<a href="modelos-mixtos.html#variables-explicativas-en-el-nivel-2-grupos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Si las variable explicativas son medidas al Nivel 2:
+<span class="math display">\[\begin{array}{l}
+\text{Nivel 1:}\quad y_{ij} = \mu_{i} + \epsilon_{ij} \\
+\text{Nivel 2:}\quad \mu_{i} = \beta_0 + \beta_{2}s_{i} + u_{i}\\
+\\
+y_{ij} = \underbrace{\beta_0 + \beta_2s_{i}}_{\text{efectos fijos}}+\underbrace{u_{i} + \epsilon_{ij}}_{\text{efectos aleatorios}}\\
+\end{array}\]</span></p>
+<p>En nuestro ejemplo, la variable utilizada es <code>sector</code> (público o
+privado):
+<span class="math display">\[mAch = \beta_0 + \beta_2~sector + u_{i} + \epsilon_{ij}\]</span></p>
+<p>Se ajusta el modelo usando la función <code>lmer()</code></p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="modelos-mixtos.html#cb216-1" aria-hidden="true" tabindex="-1"></a>Modelo2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(mAch <span class="sc">~</span> sector <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> school), <span class="at">data =</span> Hsb82)</span>
+<span id="cb216-2"><a href="modelos-mixtos.html#cb216-2" aria-hidden="true" tabindex="-1"></a>Modelo2</span>
+<span id="cb216-3"><a href="modelos-mixtos.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Linear mixed model fit by REML [&#39;lmerMod&#39;]</span></span>
+<span id="cb216-4"><a href="modelos-mixtos.html#cb216-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Formula: mAch ~ sector + (1 | school)</span></span>
+<span id="cb216-5"><a href="modelos-mixtos.html#cb216-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Data: Hsb82</span></span>
+<span id="cb216-6"><a href="modelos-mixtos.html#cb216-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; REML criterion at convergence: 47080.13</span></span>
+<span id="cb216-7"><a href="modelos-mixtos.html#cb216-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Random effects:</span></span>
+<span id="cb216-8"><a href="modelos-mixtos.html#cb216-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Groups   Name        Std.Dev.</span></span>
+<span id="cb216-9"><a href="modelos-mixtos.html#cb216-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  school   (Intercept) 2.584   </span></span>
+<span id="cb216-10"><a href="modelos-mixtos.html#cb216-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Residual             6.257   </span></span>
+<span id="cb216-11"><a href="modelos-mixtos.html#cb216-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Number of obs: 7185, groups:  school, 160</span></span>
+<span id="cb216-12"><a href="modelos-mixtos.html#cb216-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fixed Effects:</span></span>
+<span id="cb216-13"><a href="modelos-mixtos.html#cb216-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    (Intercept)  sectorCatholic  </span></span>
+<span id="cb216-14"><a href="modelos-mixtos.html#cb216-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         11.393           2.805</span></span></code></pre></div>
+<p><span class="math display">\[E[y | sector] = 11.39 + 2.8~sector\]</span>
+o equivalentemente
+<span class="math display">\[\begin{array}{l}
+E[y | sector = 0] = 11.39\\
+E[y | sector = 1] = 11.39 + 2.8 = 14.19\\
+\end{array}\]</span>
+La nota de un alumno en una escuela privada se espera que sea 2.8 unidades
+mayor que la de un alumno en una escuela pública (se puede generalizar
+puse se asume que las escuelas son un efecto aleatorio). La varianza del
+efecto aleatorio de nivel 2 <span class="math inline">\(\sigma^2_u\)</span> ha
+descendido:<span class="math inline">\((2.935^2-2.584^2)/2.935^2 =\)</span> <span class="math inline">\(0.22\)</span>, es decir que se ha reducido en
+un <span class="math inline">\(22 \%\)</span> la variabilidad no explicada entre los centros al introducir
+la variable sector.</p>
+<p>Para contrastar si la variable sector es significativa se usa de nuevo el test LRT:</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="modelos-mixtos.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(Modelo0, Modelo2)</span>
+<span id="cb217-2"><a href="modelos-mixtos.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Data: Hsb82</span></span>
+<span id="cb217-3"><a href="modelos-mixtos.html#cb217-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Models:</span></span>
+<span id="cb217-4"><a href="modelos-mixtos.html#cb217-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo0: mAch ~ 1 + (1 | school)</span></span>
+<span id="cb217-5"><a href="modelos-mixtos.html#cb217-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo2: mAch ~ sector + (1 | school)</span></span>
+<span id="cb217-6"><a href="modelos-mixtos.html#cb217-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         npar   AIC   BIC logLik deviance  Chisq Df Pr(&gt;Chisq)    </span></span>
+<span id="cb217-7"><a href="modelos-mixtos.html#cb217-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo0    3 47122 47142 -23558    47116                         </span></span>
+<span id="cb217-8"><a href="modelos-mixtos.html#cb217-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo2    4 47087 47115 -23540    47079 36.705  1  1.374e-09 ***</span></span>
+<span id="cb217-9"><a href="modelos-mixtos.html#cb217-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb217-10"><a href="modelos-mixtos.html#cb217-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<p>Por lo tanto, el hecho de que la escuela sea pública o privada influye
+en el resultado académico de los alumnos.</p>
+</div>
+</div>
+<div id="modelo-con-pendiente-aleatoria" class="section level3 hasAnchor" number="18.4.2">
+<h3><span class="header-section-number">18.4.2</span> Modelo con pendiente aleatoria<a href="modelos-mixtos.html#modelo-con-pendiente-aleatoria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En este tipo de modelos se supone que la relación entre la variable
+respuesta y las variables explicativas va a ser distinta para las
+distintas unidades de nivel 2, es decir, la relación puede cambiar de un
+centro a otro. Por ejemplo, el efecto del nivel socioeconómico en las
+notas puede ser distinto en distintos centros, de modo que se puede
+relajar el modelo anterior, en el que la pendiente era la misma para
+todos los grupos, permitiendo que la pendiente varíe aleatoriamente
+entre los grupos.
+<span class="math display">\[\begin{array}{ll}
+\text{Nivel 1:} &amp;\quad y_{ij} = \mu_i + \beta_{1i}x_{ij} + \epsilon_{ij} \\
+\text{Nivel 2:} &amp; \quad \mu_i = \beta_0 + u_{i}\\
+&amp; \quad \beta_{1i} = \beta_{1} + v_{i} \\
+\end{array}\]</span>
+Poniendo las dos ecuaciones juntas:
+<span class="math display">\[y_{ij} = \underbrace{\beta_0 + \beta_{1}x_{ij}}_{\text{efectos
+fijos}} +
+\underbrace{u_{i} + v_{i}x_{ij} + \epsilon_{ij}}_{\text{efectos aleatorios}}, \quad  \left (\begin{array}{c} u_{i}\\ v_{i}\\
+  \end{array}\right ) \sim N(0, G_{i}) \quad G_{i} = \left
+( \begin{array}{cc}
+\sigma^2_{u} &amp;\\
+\sigma_{uv}&amp; \sigma^2_{v}\\
+\end{array}\right ), \]</span></p>
+<p>donde <span class="math inline">\(\sigma_{uv}\)</span> es la covarianza entre las ordenadas en el
+origen de los grupos y las pendientes. Un valor positivo de la
+covarianza implica que grupos con un valor del efecto de grupo <span class="math inline">\(u_i\)</span>
+elevado, tienden a tener valores elevados de <span class="math inline">\(v_i\)</span>, o equivalentemente,
+centros con ordenada en el origen alta, tienen pendiente alta.</p>
+<p>El modelo en <code>R</code> sería:</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="modelos-mixtos.html#cb218-1" aria-hidden="true" tabindex="-1"></a>Modelo3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(mAch <span class="sc">~</span> cses <span class="sc">+</span> (cses <span class="sc">|</span> school), <span class="at">data =</span> Hsb82)</span>
+<span id="cb218-2"><a href="modelos-mixtos.html#cb218-2" aria-hidden="true" tabindex="-1"></a>Modelo3</span>
+<span id="cb218-3"><a href="modelos-mixtos.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Linear mixed model fit by REML [&#39;lmerMod&#39;]</span></span>
+<span id="cb218-4"><a href="modelos-mixtos.html#cb218-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Formula: mAch ~ cses + (cses | school)</span></span>
+<span id="cb218-5"><a href="modelos-mixtos.html#cb218-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Data: Hsb82</span></span>
+<span id="cb218-6"><a href="modelos-mixtos.html#cb218-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; REML criterion at convergence: 46714.23</span></span>
+<span id="cb218-7"><a href="modelos-mixtos.html#cb218-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Random effects:</span></span>
+<span id="cb218-8"><a href="modelos-mixtos.html#cb218-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Groups   Name        Std.Dev. Corr</span></span>
+<span id="cb218-9"><a href="modelos-mixtos.html#cb218-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  school   (Intercept) 2.9464       </span></span>
+<span id="cb218-10"><a href="modelos-mixtos.html#cb218-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           cses        0.8331   0.02</span></span>
+<span id="cb218-11"><a href="modelos-mixtos.html#cb218-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Residual             6.0581       </span></span>
+<span id="cb218-12"><a href="modelos-mixtos.html#cb218-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Number of obs: 7185, groups:  school, 160</span></span>
+<span id="cb218-13"><a href="modelos-mixtos.html#cb218-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fixed Effects:</span></span>
+<span id="cb218-14"><a href="modelos-mixtos.html#cb218-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)         cses  </span></span>
+<span id="cb218-15"><a href="modelos-mixtos.html#cb218-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      12.636        2.193</span></span></code></pre></div>
+<p>El efecto del nivel socieconómico en la escuela <span class="math inline">\(i\)</span> se estima como
+<span class="math inline">\(2.19 + \hat u_i\)</span>, y la varianza de las pendientes entre escuelas es
+<span class="math inline">\(0.833^2 = 0.694\)</span>. Para la <em>escuela promedio</em> se predice un aumento de
+<span class="math inline">\(2.19\)</span> en la puntuación cuando el nivel socioeconómico aumenta en una
+unidad.</p>
+<p>Ahora se tienen los siguientes parámetros de la varianza:
+<span class="math display">\[\hat \sigma^2_{u} = 8.68\quad \hat \sigma^2_{v} = 0.694\quad
+\hat \sigma_{uv} = \rho \sigma_{u} \sigma_{v} = 0.051\quad
+\hat \sigma^2 = 36.7\]</span>
+La varianza de ordenada en el origen estimada, <span class="math inline">\(8.68\)</span> se interpreta como
+la variabilidad entre las escuelas para un nivel socioeconómico medio.</p>
+<p>El parámetro de covarianza estimado es <span class="math inline">\(\sigma_{uv}=0.051\)</span>, por lo que se puede plantear si es necesario o no.</p>
+<p>Para comprobarlo, el contraste de hipótesis sería: En este caso
+<span class="math display">\[H_0:
+\sigma_{uv} = 0 \quad \text{ y } \quad H_1: \sigma_{uv}\neq 0\]</span></p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="modelos-mixtos.html#cb219-1" aria-hidden="true" tabindex="-1"></a>Modelo3<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lmer</span>(ses <span class="sc">~</span> cses <span class="sc">+</span> (cses <span class="sc">||</span> school), <span class="at">data =</span> Hsb82)</span></code></pre></div>
+<p>Cuando se quiere que haya un efecto aleatorio para la ordenada en el
+origen y para la pendiente pero que sean incorrelados en la función
+solo hay que poner doble barra en vez
+de simple.</p>
+<p>En este caso no es necesario utilizar la mixtura de <span class="math inline">\(\chi^2\)</span> para <span class="math inline">\(H_0:\)</span>
+<span class="math inline">\(\sigma_{uv} = 0\)</span>, pues <span class="math inline">\(\sigma_{uv}\)</span> puede tomar cualquier valor.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="modelos-mixtos.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(Modelo3<span class="fl">.1</span>, Modelo3)</span>
+<span id="cb220-2"><a href="modelos-mixtos.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Data: Hsb82</span></span>
+<span id="cb220-3"><a href="modelos-mixtos.html#cb220-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Models:</span></span>
+<span id="cb220-4"><a href="modelos-mixtos.html#cb220-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo3.1: ses ~ cses + ((1 | school) + (0 + cses | school))</span></span>
+<span id="cb220-5"><a href="modelos-mixtos.html#cb220-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo3: mAch ~ cses + (cses | school)</span></span>
+<span id="cb220-6"><a href="modelos-mixtos.html#cb220-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           npar     AIC     BIC logLik deviance Chisq Df Pr(&gt;Chisq)</span></span>
+<span id="cb220-7"><a href="modelos-mixtos.html#cb220-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo3.1    5 -226164 -226129 113087  -226174                    </span></span>
+<span id="cb220-8"><a href="modelos-mixtos.html#cb220-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo3      6   46723   46764 -23355    46711     0  1          1</span></span></code></pre></div>
+<p>Por lo tanto se puede suponer que la covarianza es 0.</p>
+<p>El siguiente paso sería contrastar si es necesario que las rectas tengan
+pendientes diferentes, es decir, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma^2_v = 0\)</span>, <span class="math inline">\(H_1\)</span>:
+<span class="math inline">\(\sigma^2_v&gt;0\)</span>, en este caso sí se necesita la aproximación:</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="modelos-mixtos.html#cb221-1" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">logLik</span>(Modelo1, <span class="at">REML =</span> T) <span class="sc">+</span></span>
+<span id="cb221-2"><a href="modelos-mixtos.html#cb221-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="sc">*</span> <span class="fu">logLik</span>(Modelo3<span class="fl">.1</span>, <span class="at">REML =</span> T)</span>
+<span id="cb221-3"><a href="modelos-mixtos.html#cb221-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">pchisq</span>(test, <span class="at">df =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">lower.tail =</span> F))</span>
+<span id="cb221-4"><a href="modelos-mixtos.html#cb221-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<p>Por lo tanto la pendiente es diferente en las distintas escuelas.</p>
+<p>Además, se puede usar algún criterio de información para comparar los
+modelos:</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="modelos-mixtos.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(<span class="fu">logLik</span>(Modelo3))</span>
+<span id="cb222-2"><a href="modelos-mixtos.html#cb222-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 46726.23</span></span>
+<span id="cb222-3"><a href="modelos-mixtos.html#cb222-3" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(<span class="fu">logLik</span>(Modelo3<span class="fl">.1</span>))</span>
+<span id="cb222-4"><a href="modelos-mixtos.html#cb222-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -226113.6</span></span>
+<span id="cb222-5"><a href="modelos-mixtos.html#cb222-5" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(<span class="fu">logLik</span>(Modelo1))</span>
+<span id="cb222-6"><a href="modelos-mixtos.html#cb222-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 46732</span></span></code></pre></div>
+<p>A veces la covariable media a nivel 2 (a nivel de grupo, en este caso
+escuelas) puede explicar tanto la variabilidad de la ordenada en el
+origen como la pendiente:
+<span class="math display">\[\begin{array}{ll}
+  \text{Nivel 1:} &amp;\quad y_{ij}=\mu_i+\beta_{1i}x_{ij}+\epsilon_{ij} \\
+\text{Nivel 2:} &amp; \quad \mu_i=\beta_0+\beta_{2i}s_i+u_{i}\\
+&amp; \quad \beta_{1i}=\beta_{1}+\beta_{3i}s_i +v_{i} \\
+\end{array}\]</span>
+<span class="math display">\[y_{ij} = \underbrace{\beta_0 +\beta_1x_{ij} \beta_2s_{i}+\beta_3 x_{ij}:s_i}_{\text{efectos fijos}} +
+\underbrace{u_{i} +v_ix_{ij}+ \epsilon_{ij}}_{\text{efectos aleatorios}}\]</span>
+Al introducir la variable medida al nivel 2, la parte fija se modifica
+(con respecto al Modelo 3) pero no la parte aleatoria:</p>
+<ul>
+<li><span class="math inline">\(\beta_2\)</span> indica si los centros privados son diferentes de los
+públicos en cuanto a su nota media.</li>
+<li><span class="math inline">\(\beta_3\)</span> indica si los centros privados difieren de los públicos en
+cuanto a la relación entre el nivel socio-económico y la puntuación.</li>
+</ul>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="modelos-mixtos.html#cb223-1" aria-hidden="true" tabindex="-1"></a>Modelo4 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(mAch <span class="sc">~</span> cses <span class="sc">*</span> sector <span class="sc">+</span> (cses <span class="sc">||</span> school),</span>
+<span id="cb223-2"><a href="modelos-mixtos.html#cb223-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> Hsb82</span>
+<span id="cb223-3"><a href="modelos-mixtos.html#cb223-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb223-4"><a href="modelos-mixtos.html#cb223-4" aria-hidden="true" tabindex="-1"></a>Modelo4</span>
+<span id="cb223-5"><a href="modelos-mixtos.html#cb223-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Linear mixed model fit by REML [&#39;lmerMod&#39;]</span></span>
+<span id="cb223-6"><a href="modelos-mixtos.html#cb223-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Formula: mAch ~ cses * sector + ((1 | school) + (0 + cses | school))</span></span>
+<span id="cb223-7"><a href="modelos-mixtos.html#cb223-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Data: Hsb82</span></span>
+<span id="cb223-8"><a href="modelos-mixtos.html#cb223-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; REML criterion at convergence: 46648.85</span></span>
+<span id="cb223-9"><a href="modelos-mixtos.html#cb223-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Random effects:</span></span>
+<span id="cb223-10"><a href="modelos-mixtos.html#cb223-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Groups   Name        Std.Dev.</span></span>
+<span id="cb223-11"><a href="modelos-mixtos.html#cb223-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  school   (Intercept) 2.5971  </span></span>
+<span id="cb223-12"><a href="modelos-mixtos.html#cb223-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  school.1 cses        0.5182  </span></span>
+<span id="cb223-13"><a href="modelos-mixtos.html#cb223-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Residual             6.0580  </span></span>
+<span id="cb223-14"><a href="modelos-mixtos.html#cb223-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Number of obs: 7185, groups:  school, 160</span></span>
+<span id="cb223-15"><a href="modelos-mixtos.html#cb223-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fixed Effects:</span></span>
+<span id="cb223-16"><a href="modelos-mixtos.html#cb223-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         (Intercept)                 cses       sectorCatholic  </span></span>
+<span id="cb223-17"><a href="modelos-mixtos.html#cb223-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              11.393                2.784                2.805  </span></span>
+<span id="cb223-18"><a href="modelos-mixtos.html#cb223-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; cses:sectorCatholic  </span></span>
+<span id="cb223-19"><a href="modelos-mixtos.html#cb223-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              -1.346</span></span></code></pre></div>
+<p>Los centros privados tienen una nota media más alta que los públicos
+(2.81), y tienen una pendiente más suave que la de los centros públicos
+(-1.35). En un colegio privado la mejora de la nota con respecto al
+nivel socio-económico es más lenta que un colegio público.</p>
+</div>
+<div id="cómo-construir-el-modelo-en-la-práctica" class="section level3 hasAnchor" number="18.4.3">
+<h3><span class="header-section-number">18.4.3</span> ¿Cómo construir el modelo en la práctica?<a href="modelos-mixtos.html#cómo-construir-el-modelo-en-la-práctica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Se ajusta el modelo con todos los efectos fijos y aleatorios
+posibles</li>
+</ol>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="modelos-mixtos.html#cb224-1" aria-hidden="true" tabindex="-1"></a>Modelo5 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(mAch <span class="sc">~</span> cses <span class="sc">*</span> sector <span class="sc">+</span> (cses <span class="sc">|</span> school), <span class="at">data =</span> Hsb82)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Se contrasta qué efectos aleatorios son significativos, sin mover
+los efectos fijos</li>
+</ol>
+<p>Primero se ve si la covarianza entre efectos fijos y aleatorios es cero
+o no:</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="modelos-mixtos.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se ajusta el modelo con covarianza = 0</span></span>
+<span id="cb225-2"><a href="modelos-mixtos.html#cb225-2" aria-hidden="true" tabindex="-1"></a>Modelo5<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lmer</span>(ses <span class="sc">~</span> cses <span class="sc">*</span> sector <span class="sc">+</span> (cses <span class="sc">||</span> school),</span>
+<span id="cb225-3"><a href="modelos-mixtos.html#cb225-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> Hsb82</span>
+<span id="cb225-4"><a href="modelos-mixtos.html#cb225-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb225-5"><a href="modelos-mixtos.html#cb225-5" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(Modelo5<span class="fl">.1</span>, Modelo5)</span>
+<span id="cb225-6"><a href="modelos-mixtos.html#cb225-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Data: Hsb82</span></span>
+<span id="cb225-7"><a href="modelos-mixtos.html#cb225-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Models:</span></span>
+<span id="cb225-8"><a href="modelos-mixtos.html#cb225-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo5.1: ses ~ cses * sector + ((1 | school) + (0 + cses | school))</span></span>
+<span id="cb225-9"><a href="modelos-mixtos.html#cb225-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo5: mAch ~ cses * sector + (cses | school)</span></span>
+<span id="cb225-10"><a href="modelos-mixtos.html#cb225-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           npar     AIC     BIC logLik deviance Chisq Df Pr(&gt;Chisq)</span></span>
+<span id="cb225-11"><a href="modelos-mixtos.html#cb225-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo5.1    7 -220069 -220021 110042  -220083                    </span></span>
+<span id="cb225-12"><a href="modelos-mixtos.html#cb225-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo5      8   46650   46705 -23317    46634     0  1          1</span></span></code></pre></div>
+<p>Como lo es, no se tendría que contrastar nada más, los efectos
+aleatorios son los que se han incluido en el Modelo5. Si no hubiera sido
+significativa se continuaría testando si la pendiente aleatoria es
+significativa y si la ordenada en el origen lo es.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Una vez elegidos los efectos aleatorios (que se mantienen),
+se eligen los efectos fijos:</li>
+</ol>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="modelos-mixtos.html#cb226-1" aria-hidden="true" tabindex="-1"></a>Modelo6 <span class="ot">&lt;-</span> <span class="fu">update</span>(Modelo5, . <span class="sc">~</span> . <span class="sc">-</span> cses<span class="sc">:</span>sector)</span>
+<span id="cb226-2"><a href="modelos-mixtos.html#cb226-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(Modelo6, Modelo5)</span>
+<span id="cb226-3"><a href="modelos-mixtos.html#cb226-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Data: Hsb82</span></span>
+<span id="cb226-4"><a href="modelos-mixtos.html#cb226-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Models:</span></span>
+<span id="cb226-5"><a href="modelos-mixtos.html#cb226-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo6: mAch ~ cses + sector + (cses | school)</span></span>
+<span id="cb226-6"><a href="modelos-mixtos.html#cb226-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo5: mAch ~ cses * sector + (cses | school)</span></span>
+<span id="cb226-7"><a href="modelos-mixtos.html#cb226-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         npar   AIC   BIC logLik deviance  Chisq Df Pr(&gt;Chisq)    </span></span>
+<span id="cb226-8"><a href="modelos-mixtos.html#cb226-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo6    7 46678 46726 -23332    46664                         </span></span>
+<span id="cb226-9"><a href="modelos-mixtos.html#cb226-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Modelo5    8 46650 46705 -23317    46634 29.983  1  4.358e-08 ***</span></span>
+<span id="cb226-10"><a href="modelos-mixtos.html#cb226-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb226-11"><a href="modelos-mixtos.html#cb226-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<p>Como la interacción es significativa ya no se tendría que hacer ningún
+test más y este sería el modelo final</p>
+</div>
+<div id="resumen-3" class="section level3 unnumbered hasAnchor infobox_resume">
+<h3>Resumen<a href="modelos-mixtos.html#resumen-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En este capítulo se han introducido los modelos mixtos o modelos con efectos aleatorios, en particular:</p>
+<ul>
+<li>Se han dado las claves para distinguir entre efectos fijos y aleatorios.</li>
+<li>Se ha presentado la formulación del modelo y se han dado las claves para llevar a cabo la estimación del mismo.</li>
+<li>Se han explicado las etapas del proceso a seguir para el ajuste de este tipo de modelos.</li>
+<li>Se ha mostrado el uso de <code>R</code> para ajustar estos modelos.</li>
+<li>Se ha ilustrado el análisis de modelos multinivel como caso particular de un modelo con efectos aleatorios.</li>
+</ul>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelos-aditivos-generalizados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelos-sparse-y-métodos-penalizados-de-regresión.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Ciencia_de_datos_con_r.pdf", "Ciencia_de_datos_con_r.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 6 Informes reproducibles con R-markdown -&gt; Quarto | Fundamentos de ciencia de datos con R</title>
+  <meta name="description" content="Falta hacer" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 6 Informes reproducibles con R-markdown -&gt; Quarto | Fundamentos de ciencia de datos con R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Falta hacer" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 6 Informes reproducibles con R-markdown -&gt; Quarto | Fundamentos de ciencia de datos con R" />
+  
+  <meta name="twitter:description" content="Falta hacer" />
+  
+
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero" />
+
+
+<meta name="date" content="2022-12-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="datos-no-sql.html"/>
+<link rel="next" href="github.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33KQ1S5ZCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-33KQ1S5ZCJ');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Ciencia de datos con <strong>R</strong></a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Fundamentos y ‘tool-kit’ de la ciencia de datos</b></span></li>
+<li class="chapter" data-level="1" data-path="ciencia-datos.html"><a href="ciencia-datos.html"><i class="fa fa-check"></i><b>1</b> ¿Es la Ciencia de datos una Ciencia?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ciencia-datos.html"><a href="ciencia-datos.html#ciencia"><i class="fa fa-check"></i><b>1.1</b> ¿Qué se entiende por Ciencia?</a></li>
+<li class="chapter" data-level="1.2" data-path="ciencia-datos.html"><a href="ciencia-datos.html#qué-es-la-ciencia-de-datos"><i class="fa fa-check"></i><b>1.2</b> ¿Qué es la Ciencia de Datos?</a></li>
+<li class="chapter" data-level="1.3" data-path="ciencia-datos.html"><a href="ciencia-datos.html#lo-científico-de-la-ciencia-de-datos"><i class="fa fa-check"></i><b>1.3</b> Lo científico de la Ciencia de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="metodología.html"><a href="metodología.html"><i class="fa fa-check"></i><b>2</b> Metodología para la Ciencia de datos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="metodología.html"><a href="metodología.html#preliminares"><i class="fa fa-check"></i><b>2.1</b> Preliminares</a></li>
+<li class="chapter" data-level="2.2" data-path="metodología.html"><a href="metodología.html#principales-metodologías-en-ciencia-de-datos"><i class="fa fa-check"></i><b>2.2</b> Principales metodologías en Ciencia de datos</a></li>
+<li class="chapter" data-level="2.3" data-path="metodología.html"><a href="metodología.html#met-crisp-dm"><i class="fa fa-check"></i><b>2.3</b> CRISP-DM para Ciencia de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch-110003.html"><a href="ch-110003.html"><i class="fa fa-check"></i><b>3</b> R para ciencia de datos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ch-110003.html"><a href="ch-110003.html#introducción"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
+<li class="chapter" data-level="3.2" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-bases"><i class="fa fa-check"></i><b>3.2</b> La sesión de R</a></li>
+<li class="chapter" data-level="3.3" data-path="ch-110003.html"><a href="ch-110003.html#instalación-de-r"><i class="fa fa-check"></i><b>3.3</b> Instalación de R</a></li>
+<li class="chapter" data-level="3.4" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-proyectos"><i class="fa fa-check"></i><b>3.4</b> Trabajar con proyectos de RStudio</a></li>
+<li class="chapter" data-level="3.5" data-path="ch-110003.html"><a href="ch-110003.html#manipulación-de-datos-con-r"><i class="fa fa-check"></i><b>3.5</b> Manipulación de datos con R</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-estructuras"><i class="fa fa-check"></i><b>3.5.1</b> Estructuras y tipos de datos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-importacion"><i class="fa fa-check"></i><b>3.5.2</b> Importación de datos</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ch-110003.html"><a href="ch-110003.html#exportación-y-archivos-de-datos-de-r"><i class="fa fa-check"></i><b>3.5.3</b> Exportación y archivos de datos de R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ch-110003.html"><a href="ch-110003.html#id_110003-tidyverse"><i class="fa fa-check"></i><b>3.6</b> Organización de datos con el <em>tidyverse</em></a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ch-110003.html"><a href="ch-110003.html#el-tidyverse-y-su-flujo-de-trabajo"><i class="fa fa-check"></i><b>3.6.1</b> El <em>tidyverse</em> y su flujo de trabajo</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ch-110003.html"><a href="ch-110003.html#transformación-de-datos-con-dplyr"><i class="fa fa-check"></i><b>3.6.2</b> Transformación de datos con <code>dplyr</code></a></li>
+<li class="chapter" data-level="3.6.3" data-path="ch-110003.html"><a href="ch-110003.html#combinación-de-datos"><i class="fa fa-check"></i><b>3.6.3</b> Combinación de datos</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ch-110003.html"><a href="ch-110003.html#reorganización-de-datos"><i class="fa fa-check"></i><b>3.6.4</b> Reorganización de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><i class="fa fa-check"></i><b>4</b> Gestión y operación de datos con bases de datos relacionales</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#introducción-1"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#concepto-de-base-de-datos"><i class="fa fa-check"></i><b>4.2</b> Concepto de Base de datos</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#gestión-de-los-datos-en-una-base-o-repositorio-de-datos"><i class="fa fa-check"></i><b>4.2.1</b> Gestión de los datos en una base o repositorio de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#el-lenguaje-estructurado-de-consulta-sql"><i class="fa fa-check"></i><b>4.3</b> El Lenguaje Estructurado de Consulta (SQL)</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#sql-como-lenguaje-de-definición-de-datos-ldd"><i class="fa fa-check"></i><b>4.3.1</b> SQL como Lenguaje de Definición de Datos (LDD)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#sql-como-lenguaje-de-manipulación-de-datos-lmd"><i class="fa fa-check"></i><b>4.3.2</b> SQL como Lenguaje de Manipulación de Datos (LMD)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#sql-como-lenguaje-de-administración-de-datos-lad"><i class="fa fa-check"></i><b>4.3.3</b> SQL como Lenguaje de Administración de Datos (LAD)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#usando-bases-de-datos-desde-r"><i class="fa fa-check"></i><b>4.4</b> Usando bases de datos desde R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#conexión-a-una-base-de-datos"><i class="fa fa-check"></i><b>4.4.1</b> Conexión a una base de datos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#operaciones-de-lectura-selección-read-de-datos"><i class="fa fa-check"></i><b>4.4.2</b> Operaciones de lectura / selección (<em>read</em>) de datos</a></li>
+<li class="chapter" data-level="4.4.3" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#operaciones-de-inserción-create-y-actualización-update-de-datos"><i class="fa fa-check"></i><b>4.4.3</b> Operaciones de inserción (<em>create</em>) y actualización (<em>update</em>) de datos</a></li>
+<li class="chapter" data-level="4.4.4" data-path="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html"><a href="gestión-y-operación-de-datos-con-bases-de-datos-relacionales.html#operaciones-de-borrado-de-datos-delete"><i class="fa fa-check"></i><b>4.4.4</b> Operaciones de Borrado de datos (<em>delete</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datos-no-sql.html"><a href="datos-no-sql.html"><i class="fa fa-check"></i><b>5</b> Gestión y operación de datos masivos (BigData) con bases de datos NoSQL</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="datos-no-sql.html"><a href="datos-no-sql.html#introducción-al-big-data"><i class="fa fa-check"></i><b>5.1</b> Introducción al Big Data</a></li>
+<li class="chapter" data-level="5.2" data-path="datos-no-sql.html"><a href="datos-no-sql.html#VsBigData"><i class="fa fa-check"></i><b>5.2</b> Las V’s del Big Data</a></li>
+<li class="chapter" data-level="5.3" data-path="datos-no-sql.html"><a href="datos-no-sql.html#fuentes-de-datos-en-entornos-big-data"><i class="fa fa-check"></i><b>5.3</b> Fuentes de Datos en entornos Big Data</a></li>
+<li class="chapter" data-level="5.4" data-path="datos-no-sql.html"><a href="datos-no-sql.html#bases-de-datos-relacionales-vs.-nosql"><i class="fa fa-check"></i><b>5.4</b> Bases de datos Relacionales vs. NoSQL</a></li>
+<li class="chapter" data-level="5.5" data-path="datos-no-sql.html"><a href="datos-no-sql.html#bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5</b> Bases de datos NoSQL</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="datos-no-sql.html"><a href="datos-no-sql.html#definición-de-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5.1</b> Definición de bases de datos NoSQL</a></li>
+<li class="chapter" data-level="5.5.2" data-path="datos-no-sql.html"><a href="datos-no-sql.html#necesidades-no-cubiertas-por-las-bases-de-datos-relacionales"><i class="fa fa-check"></i><b>5.5.2</b> Necesidades no cubiertas por las bases de datos relacionales</a></li>
+<li class="chapter" data-level="5.5.3" data-path="datos-no-sql.html"><a href="datos-no-sql.html#tipos-de-almacenamiento-en-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5.3</b> Tipos de almacenamiento en bases de datos NoSQL</a></li>
+<li class="chapter" data-level="5.5.4" data-path="datos-no-sql.html"><a href="datos-no-sql.html#limitaciones-de-las-bases-de-datos-nosql"><i class="fa fa-check"></i><b>5.5.4</b> Limitaciones de las bases de datos NoSQL</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="datos-no-sql.html"><a href="datos-no-sql.html#ejemplo-de-integración-de-una-base-de-datos-nosql-y-análisis-de-datos-en-r"><i class="fa fa-check"></i><b>5.6</b> Ejemplo de integración de una base de datos NoSQL y análisis de datos en R</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="datos-no-sql.html"><a href="datos-no-sql.html#introMongo"><i class="fa fa-check"></i><b>5.6.1</b> Introducción a MongoDB</a></li>
+<li class="chapter" data-level="5.6.2" data-path="datos-no-sql.html"><a href="datos-no-sql.html#paquetesCaso"><i class="fa fa-check"></i><b>5.6.2</b> Plataforma tecnológica para el caso práctico</a></li>
+<li class="chapter" data-level="5.6.3" data-path="datos-no-sql.html"><a href="datos-no-sql.html#conexionMongo"><i class="fa fa-check"></i><b>5.6.3</b> Conexión y acceso a MongoDB desde R</a></li>
+<li class="chapter" data-level="5.6.4" data-path="datos-no-sql.html"><a href="datos-no-sql.html#consultaViajes"><i class="fa fa-check"></i><b>5.6.4</b> Obtención de datos en R desde MongoDB</a></li>
+<li class="chapter" data-level="5.6.5" data-path="datos-no-sql.html"><a href="datos-no-sql.html#analisisViajes"><i class="fa fa-check"></i><b>5.6.5</b> Analizando datos de MongoDB en R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="id_120007-informes.html"><a href="id_120007-informes.html"><i class="fa fa-check"></i><b>6</b> Informes reproducibles con R-markdown -&gt; Quarto</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="id_120007-informes.html"><a href="id_120007-informes.html#introducción-2"><i class="fa fa-check"></i><b>6.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="id_120007-informes.html"><a href="id_120007-informes.html#por-qué-informes-reproducibles"><i class="fa fa-check"></i><b>6.1.1</b> ¿Por qué informes reproducibles?</a></li>
+<li class="chapter" data-level="6.1.2" data-path="id_120007-informes.html"><a href="id_120007-informes.html#markdown-r-markdown-y-rstudio"><i class="fa fa-check"></i><b>6.1.2</b> Markdown, R Markdown y RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="id_120007-informes.html"><a href="id_120007-informes.html#documentos-r-markdown"><i class="fa fa-check"></i><b>6.2</b> Documentos R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="id_120007-informes.html"><a href="id_120007-informes.html#encabezado-yaml-y-configuración"><i class="fa fa-check"></i><b>6.2.1</b> Encabezado YAML y configuración</a></li>
+<li class="chapter" data-level="6.2.2" data-path="id_120007-informes.html"><a href="id_120007-informes.html#formateado-de-texto"><i class="fa fa-check"></i><b>6.2.2</b> Formateado de texto</a></li>
+<li class="chapter" data-level="6.2.3" data-path="id_120007-informes.html"><a href="id_120007-informes.html#inclusión-de-código"><i class="fa fa-check"></i><b>6.2.3</b> Inclusión de código</a></li>
+<li class="chapter" data-level="6.2.4" data-path="id_120007-informes.html"><a href="id_120007-informes.html#opciones-de-los-bloques-de-código-chunks"><i class="fa fa-check"></i><b>6.2.4</b> Opciones de los bloques de código (<em>chunks</em>)</a></li>
+<li class="chapter" data-level="6.2.5" data-path="id_120007-informes.html"><a href="id_120007-informes.html#editor-visual"><i class="fa fa-check"></i><b>6.2.5</b> Editor visual</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="id_120007-informes.html"><a href="id_120007-informes.html#otros-formatos"><i class="fa fa-check"></i><b>6.3</b> Otros formatos</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>7</b> Git y GitHub en R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="github.html"><a href="github.html#qué-es-git"><i class="fa fa-check"></i><b>7.1</b> ¿Qué es Git?</a></li>
+<li class="chapter" data-level="7.2" data-path="github.html"><a href="github.html#qué-es-github"><i class="fa fa-check"></i><b>7.2</b> ¿Qué es GitHub?</a></li>
+<li class="chapter" data-level="7.3" data-path="github.html"><a href="github.html#por-qué-usar-git-y-github"><i class="fa fa-check"></i><b>7.3</b> ¿Por qué usar Git y GitHub?</a></li>
+<li class="chapter" data-level="7.4" data-path="github.html"><a href="github.html#configuración"><i class="fa fa-check"></i><b>7.4</b> Configuración</a></li>
+<li class="chapter" data-level="7.5" data-path="github.html"><a href="github.html#configurar-git"><i class="fa fa-check"></i><b>7.5</b> Configurar git</a></li>
+<li class="chapter" data-level="7.6" data-path="github.html"><a href="github.html#workflow"><i class="fa fa-check"></i><b>7.6</b> Workflow</a></li>
+</ul></li>
+<li class="part"><span><b>II Manipulación de datos con R. Técnicas y herramientas</b></span></li>
+<li class="chapter" data-level="8" data-path="id_120006-aed.html"><a href="id_120006-aed.html"><i class="fa fa-check"></i><b>8</b> Análisis exploratorio de datos</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#introducción-3"><i class="fa fa-check"></i><b>8.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#el-cuarterto-de-anscombe"><i class="fa fa-check"></i><b>8.1.1</b> El cuarterto de Anscombe</a></li>
+<li class="chapter" data-level="8.1.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#conceptos-generales"><i class="fa fa-check"></i><b>8.1.2</b> Conceptos generales</a></li>
+<li class="chapter" data-level="8.1.3" data-path="id_120006-aed.html"><a href="id_120006-aed.html#componentes-de-un-gráfico-y-su-representación-en-r"><i class="fa fa-check"></i><b>8.1.3</b> Componentes de un gráfico y su representación en R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#id_120006-aeduni"><i class="fa fa-check"></i><b>8.2</b> Análisis exploratorio de una característica</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cualitativas"><i class="fa fa-check"></i><b>8.2.1</b> Variables cualitativas</a></li>
+<li class="chapter" data-level="8.2.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cuantitativas"><i class="fa fa-check"></i><b>8.2.2</b> Variables cuantitativas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="id_120006-aed.html"><a href="id_120006-aed.html#id_120006-aedmulti"><i class="fa fa-check"></i><b>8.3</b> Análisis exploratorio de varias características</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cualitativas-1"><i class="fa fa-check"></i><b>8.3.1</b> Variables cualitativas</a></li>
+<li class="chapter" data-level="8.3.2" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cuantitativas-1"><i class="fa fa-check"></i><b>8.3.2</b> Variables cuantitativas</a></li>
+<li class="chapter" data-level="8.3.3" data-path="id_120006-aed.html"><a href="id_120006-aed.html#variables-cualitativas-y-cuantitativas"><i class="fa fa-check"></i><b>8.3.3</b> Variables cualitativas y cuantitativas</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Preparación de datos: evaluación de la calidad de los datos. Integración, limpieza y transformación</b></span></li>
+<li class="chapter" data-level="9" data-path="DGDQM.html"><a href="DGDQM.html"><i class="fa fa-check"></i><b>9</b> Gobierno y gestión de calidad de Datos</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="DGDQM.html"><a href="DGDQM.html#introducción-4"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="DGDQM.html"><a href="DGDQM.html#concepto-de-gobierno-de-datos"><i class="fa fa-check"></i><b>9.2</b> Concepto de Gobierno de datos</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="DGDQM.html"><a href="DGDQM.html#beneficiosDG"><i class="fa fa-check"></i><b>9.2.1</b> Beneficios del Gobierno de Datos</a></li>
+<li class="chapter" data-level="9.2.2" data-path="DGDQM.html"><a href="DGDQM.html#artefactosDG"><i class="fa fa-check"></i><b>9.2.2</b> Artefactos de un sistema de Gobierno de Datos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="DGDQM.html"><a href="DGDQM.html#marcos-y-metodologías-existentes-de-gobierno-de-datos"><i class="fa fa-check"></i><b>9.3</b> Marcos y metodologías existentes de Gobierno de Datos</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="DGDQM.html"><a href="DGDQM.html#modelo-alarcos-de-mejora-de-datos-mamd"><i class="fa fa-check"></i><b>9.3.1</b> Modelo Alarcos de Mejora de Datos (MAMD)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="DGDQM.html"><a href="DGDQM.html#gestión-de-calidad-de-datos"><i class="fa fa-check"></i><b>9.4</b> Gestión de calidad de datos</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="DGDQM.html"><a href="DGDQM.html#medición-de-calidad-de-datos-vs-perfilado-de-datos"><i class="fa fa-check"></i><b>9.4.1</b> Medición de calidad de datos vs perfilado de datos</a></li>
+<li class="chapter" data-level="9.4.2" data-path="DGDQM.html"><a href="DGDQM.html#mejora-de-datos"><i class="fa fa-check"></i><b>9.4.2</b> Mejora de datos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="id_130009.html"><a href="id_130009.html"><i class="fa fa-check"></i><b>10</b> Integración y limpieza de datos</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="id_130009.html"><a href="id_130009.html#introducción-5"><i class="fa fa-check"></i><b>10.1</b> Introducción</a></li>
+<li class="chapter" data-level="10.2" data-path="id_130009.html"><a href="id_130009.html#problemas-de-calidad-de-datos"><i class="fa fa-check"></i><b>10.2</b> Problemas de calidad de datos</a></li>
+<li class="chapter" data-level="10.3" data-path="id_130009.html"><a href="id_130009.html#niveles-inadecuados-de-completitud-valores-missing"><i class="fa fa-check"></i><b>10.3</b> Niveles inadecuados de completitud: Valores <em>missing</em></a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="id_130009.html"><a href="id_130009.html#visualización"><i class="fa fa-check"></i><b>10.3.1</b> Visualización</a></li>
+<li class="chapter" data-level="10.3.2" data-path="id_130009.html"><a href="id_130009.html#imputacion"><i class="fa fa-check"></i><b>10.3.2</b> Técnicas de Imputación</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="id_130009.html"><a href="id_130009.html#mejorando-la-exactitud-y-la-precisión-eliminación-del-ruido-estadístico"><i class="fa fa-check"></i><b>10.4</b> Mejorando la exactitud y la precisión: eliminación del ruido estadístico</a></li>
+<li class="chapter" data-level="10.5" data-path="id_130009.html"><a href="id_130009.html#integración-de-datos"><i class="fa fa-check"></i><b>10.5</b> Integración de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="id_130010.html"><a href="id_130010.html"><i class="fa fa-check"></i><b>11</b> Feature Selection and Engineering</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="id_130010.html"><a href="id_130010.html#introducción-6"><i class="fa fa-check"></i><b>11.1</b> Introducción</a></li>
+<li class="chapter" data-level="11.2" data-path="id_130010.html"><a href="id_130010.html#feature-selection-selección-de-variables"><i class="fa fa-check"></i><b>11.2</b> <em>Feature Selection</em> (Selección de variables)</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="id_130010.html"><a href="id_130010.html#métodos-de-selección-tipo-filtro"><i class="fa fa-check"></i><b>11.2.1</b> Métodos de selección tipo Filtro</a></li>
+<li class="chapter" data-level="11.2.2" data-path="id_130010.html"><a href="id_130010.html#métodos-de-selección-de-variables-tipo-wrapper"><i class="fa fa-check"></i><b>11.2.2</b> Métodos de selección de variables tipo <em>wrapper</em></a></li>
+<li class="chapter" data-level="11.2.3" data-path="id_130010.html"><a href="id_130010.html#métodos-de-selección-tipo-embedded"><i class="fa fa-check"></i><b>11.2.3</b> Métodos de selección tipo Embedded</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="id_130010.html"><a href="id_130010.html#transformaciones-de-escala-y-de-la-distribución-de-la-variable-objetivo"><i class="fa fa-check"></i><b>11.3</b> Transformaciones de escala y de la distribución de la variable objetivo</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="id_130010.html"><a href="id_130010.html#id_31"><i class="fa fa-check"></i><b>11.3.1</b> Transformaciones de la variable objetivo</a></li>
+<li class="chapter" data-level="11.3.2" data-path="id_130010.html"><a href="id_130010.html#escalado-de-datos"><i class="fa fa-check"></i><b>11.3.2</b> Escalado de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="id_130010.html"><a href="id_130010.html#feature-engineering"><i class="fa fa-check"></i><b>11.4</b> <em>Feature engineering</em></a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="id_130010.html"><a href="id_130010.html#binning"><i class="fa fa-check"></i><b>11.4.1</b> <em>Binning</em></a></li>
+<li class="chapter" data-level="11.4.2" data-path="id_130010.html"><a href="id_130010.html#codificación"><i class="fa fa-check"></i><b>11.4.2</b> Codificación</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="id_130010.html"><a href="id_130010.html#reducción-de-dimensionalidad"><i class="fa fa-check"></i><b>11.5</b> Reducción de dimensionalidad</a></li>
+<li class="chapter" data-level="11.6" data-path="id_130010.html"><a href="id_130010.html#otras-transformaciones"><i class="fa fa-check"></i><b>11.6</b> Otras transformaciones</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="id_130010.html"><a href="id_130010.html#particionado-de-datos"><i class="fa fa-check"></i><b>11.6.1</b> Particionado de datos</a></li>
+<li class="chapter" data-level="11.6.2" data-path="id_130010.html"><a href="id_130010.html#técnicas-para-manejar-datos-no-balanceados"><i class="fa fa-check"></i><b>11.6.2</b> Técnicas para manejar datos no balanceados</a></li>
+<li class="chapter" data-level="11.6.3" data-path="id_130010.html"><a href="id_130010.html#métodos-de-remuestreo"><i class="fa fa-check"></i><b>11.6.3</b> Métodos de remuestreo</a></li>
+<li class="chapter" data-level="11.6.4" data-path="id_130010.html"><a href="id_130010.html#ajuste-de-hiperparámetros"><i class="fa fa-check"></i><b>11.6.4</b> Ajuste de hiperparámetros</a></li>
+<li class="chapter" data-level="11.6.5" data-path="id_130010.html"><a href="id_130010.html#evaluación-de-modelos"><i class="fa fa-check"></i><b>11.6.5</b> Evaluación de modelos</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Técnicas de modelización estadísticas avanzadas</b></span></li>
+<li class="chapter" data-level="12" data-path="Funda-probab.html"><a href="Funda-probab.html"><i class="fa fa-check"></i><b>12</b> Fundamentos de probabilidad</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="Funda-probab.html"><a href="Funda-probab.html#introducción-a-la-probabilidad"><i class="fa fa-check"></i><b>12.1</b> Introducción a la probabilidad</a></li>
+<li class="chapter" data-level="12.2" data-path="Funda-probab.html"><a href="Funda-probab.html#probabilidad-elementos-básicos-definición-y-teoremas"><i class="fa fa-check"></i><b>12.2</b> Probabilidad: elementos básicos, definición y teoremas</a></li>
+<li class="chapter" data-level="12.3" data-path="Funda-probab.html"><a href="Funda-probab.html#variable-aleatoria-y-su-distribución-tipos-de-variables-aleatorias"><i class="fa fa-check"></i><b>12.3</b> Variable aleatoria y su distribución: tipos de variables aleatorias</a></li>
+<li class="chapter" data-level="12.4" data-path="Funda-probab.html"><a href="Funda-probab.html#modelos-de-distribución-de-probabilidad"><i class="fa fa-check"></i><b>12.4</b> Modelos de distribución de probabilidad</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="Funda-probab.html"><a href="Funda-probab.html#modelos-discretos"><i class="fa fa-check"></i><b>12.4.1</b> Modelos discretos</a></li>
+<li class="chapter" data-level="12.4.2" data-path="Funda-probab.html"><a href="Funda-probab.html#modelos-continuos"><i class="fa fa-check"></i><b>12.4.2</b> Modelos continuos</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="Funda-probab.html"><a href="Funda-probab.html#tcl"><i class="fa fa-check"></i><b>12.5</b> Teorema central del límite (TCL)</a></li>
+<li class="chapter" data-level="12.6" data-path="Funda-probab.html"><a href="Funda-probab.html#ejemplo-de-distribuciones-usando-r"><i class="fa fa-check"></i><b>12.6</b> Ejemplo de distribuciones usando <strong>R</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="Fundainfer.html"><a href="Fundainfer.html"><i class="fa fa-check"></i><b>13</b> Fundamentos de Inferencia Estadística</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="Fundainfer.html"><a href="Fundainfer.html#introinfer"><i class="fa fa-check"></i><b>13.1</b> Introducción a la Inferencia Estadística</a></li>
+<li class="chapter" data-level="13.2" data-path="Fundainfer.html"><a href="Fundainfer.html#mas"><i class="fa fa-check"></i><b>13.2</b> Muestreo aleatorio simple</a></li>
+<li class="chapter" data-level="13.3" data-path="Fundainfer.html"><a href="Fundainfer.html#estimpuntual"><i class="fa fa-check"></i><b>13.3</b> Estimación puntual</a></li>
+<li class="chapter" data-level="13.4" data-path="Fundainfer.html"><a href="Fundainfer.html#estimintervalos"><i class="fa fa-check"></i><b>13.4</b> Estimación por intervalos</a></li>
+<li class="chapter" data-level="13.5" data-path="Fundainfer.html"><a href="Fundainfer.html#contrhip"><i class="fa fa-check"></i><b>13.5</b> Contrastes de hipótesis</a></li>
+<li class="chapter" data-level="13.6" data-path="Fundainfer.html"><a href="Fundainfer.html#pobnormales"><i class="fa fa-check"></i><b>13.6</b> Inferencia estadística paramétrica sobre poblaciones normales</a></li>
+<li class="chapter" data-level="13.7" data-path="Fundainfer.html"><a href="Fundainfer.html#ejemplopobnorm"><i class="fa fa-check"></i><b>13.7</b> Inferencia sobre poblaciones normales con <strong>R</strong></a></li>
+<li class="chapter" data-level="13.8" data-path="Fundainfer.html"><a href="Fundainfer.html#contrnormalidad"><i class="fa fa-check"></i><b>13.8</b> Inferencia estadística no paramétrica: contrastes de normalidad</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="muestreo.html"><a href="muestreo.html"><i class="fa fa-check"></i><b>14</b> Métodos de muestreo y remuestreo</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="muestreo.html"><a href="muestreo.html#introducción-al-muestreo"><i class="fa fa-check"></i><b>14.1</b> Introducción al muestreo</a></li>
+<li class="chapter" data-level="14.2" data-path="muestreo.html"><a href="muestreo.html#muestreo-aleatorio-simple-1"><i class="fa fa-check"></i><b>14.2</b> Muestreo aleatorio simple</a></li>
+<li class="chapter" data-level="14.3" data-path="muestreo.html"><a href="muestreo.html#muestestra"><i class="fa fa-check"></i><b>14.3</b> Muestreo estratificado</a></li>
+<li class="chapter" data-level="14.4" data-path="muestreo.html"><a href="muestreo.html#otros-tipos-de-muestreo-probabilístico"><i class="fa fa-check"></i><b>14.4</b> Otros tipos de muestreo probabilístico</a></li>
+<li class="chapter" data-level="14.5" data-path="muestreo.html"><a href="muestreo.html#técnicas-de-remuestreo-bootstrap."><i class="fa fa-check"></i><b>14.5</b> Técnicas de remuestreo: Bootstrap.</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="modelización-lineal.html"><a href="modelización-lineal.html"><i class="fa fa-check"></i><b>15</b> Modelización lineal</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="modelización-lineal.html"><a href="modelización-lineal.html#modelización"><i class="fa fa-check"></i><b>15.1</b> Modelización</a></li>
+<li class="chapter" data-level="15.2" data-path="modelización-lineal.html"><a href="modelización-lineal.html#procedimiento-de-modelización"><i class="fa fa-check"></i><b>15.2</b> Procedimiento de modelización</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="modelización-lineal.html"><a href="modelización-lineal.html#Bondad"><i class="fa fa-check"></i><b>15.2.1</b> Estimación del modelo</a></li>
+<li class="chapter" data-level="15.2.2" data-path="modelización-lineal.html"><a href="modelización-lineal.html#validación-del-modelo"><i class="fa fa-check"></i><b>15.2.2</b> Validación del modelo</a></li>
+<li class="chapter" data-level="15.2.3" data-path="modelización-lineal.html"><a href="modelización-lineal.html#interpretación-de-los-coeficientes"><i class="fa fa-check"></i><b>15.2.3</b> Interpretación de los coeficientes</a></li>
+<li class="chapter" data-level="15.2.4" data-path="modelización-lineal.html"><a href="modelización-lineal.html#predicción"><i class="fa fa-check"></i><b>15.2.4</b> Predicción</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="modelización-lineal.html"><a href="modelización-lineal.html#procedimiento-con-r-la-función-lm"><i class="fa fa-check"></i><b>15.3</b> Procedimiento con R: la función <code>lm</code></a></li>
+<li class="chapter" data-level="15.4" data-path="modelización-lineal.html"><a href="modelización-lineal.html#Casos"><i class="fa fa-check"></i><b>15.4</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="modelización-lineal.html"><a href="modelización-lineal.html#estimación-de-los-coeficientes"><i class="fa fa-check"></i><b>15.4.1</b> Estimación de los coeficientes</a></li>
+<li class="chapter" data-level="15.4.2" data-path="modelización-lineal.html"><a href="modelización-lineal.html#validación"><i class="fa fa-check"></i><b>15.4.2</b> Validación</a></li>
+<li class="chapter" data-level="15.4.3" data-path="modelización-lineal.html"><a href="modelización-lineal.html#interpretación-de-los-coeficientes-1"><i class="fa fa-check"></i><b>15.4.3</b> Interpretación de los coeficientes</a></li>
+<li class="chapter" data-level="15.4.4" data-path="modelización-lineal.html"><a href="modelización-lineal.html#predicción-1"><i class="fa fa-check"></i><b>15.4.4</b> Predicción</a></li>
+<li class="chapter" data-level="15.4.5" data-path="modelización-lineal.html"><a href="modelización-lineal.html#nuevo-ajuste-con-logozone"><i class="fa fa-check"></i><b>15.4.5</b> Nuevo ajuste con <code>log(Ozone)</code></a></li>
+<li class="chapter" data-level="15.4.6" data-path="modelización-lineal.html"><a href="modelización-lineal.html#coeficientes-de-variables-categóricas"><i class="fa fa-check"></i><b>15.4.6</b> Coeficientes de variables categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="modelización-lineal.html"><a href="modelización-lineal.html#comentarios-finales"><i class="fa fa-check"></i><b>15.5</b> Comentarios finales</a>
+<ul>
+<li class="chapter" data-level="" data-path="modelización-lineal.html"><a href="modelización-lineal.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html"><i class="fa fa-check"></i><b>16</b> Modelos lineales generalizados</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#motivación"><i class="fa fa-check"></i><b>16.1</b> Motivación</a></li>
+<li class="chapter" data-level="16.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#modelo-y-sus-componentes"><i class="fa fa-check"></i><b>16.2</b> Modelo y sus componentes</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#función-enlace"><i class="fa fa-check"></i><b>16.2.1</b> Función enlace </a></li>
+<li class="chapter" data-level="16.2.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#glms-en-r"><i class="fa fa-check"></i><b>16.2.2</b> GLMs en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#regresión-logística"><i class="fa fa-check"></i><b>16.3</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#procedimiento-de-ajuste"><i class="fa fa-check"></i><b>16.3.1</b> Procedimiento de ajuste</a></li>
+<li class="chapter" data-level="16.3.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#adecuación-del-modelo"><i class="fa fa-check"></i><b>16.3.2</b> Adecuación del modelo</a></li>
+<li class="chapter" data-level="16.3.3" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#SECCinterp"><i class="fa fa-check"></i><b>16.3.3</b> Interpretación de resultados</a></li>
+<li class="chapter" data-level="16.3.4" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#predicción.-curva-roc-y-auc"><i class="fa fa-check"></i><b>16.3.4</b> Predicción. Curva ROC y AUC</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#regresión-de-poisson"><i class="fa fa-check"></i><b>16.4</b> Regresión de Poisson</a></li>
+<li class="chapter" data-level="16.5" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#casos-prácticos"><i class="fa fa-check"></i><b>16.5</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ejemplos-de-regresión-logística"><i class="fa fa-check"></i><b>16.5.1</b> Ejemplos de regresión logística</a></li>
+<li class="chapter" data-level="16.5.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ejemplo-de-regresión-de-poisson"><i class="fa fa-check"></i><b>16.5.2</b> Ejemplo de regresión de Poisson</a></li>
+<li class="chapter" data-level="" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#resumen-1"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html"><i class="fa fa-check"></i><b>17</b> Modelos aditivos generalizados</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#introducción-7"><i class="fa fa-check"></i><b>17.1</b> Introducción</a></li>
+<li class="chapter" data-level="17.2" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#splines-con-penalizaciones"><i class="fa fa-check"></i><b>17.2</b> Splines con penalizaciones</a></li>
+<li class="chapter" data-level="17.3" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#aspectos-metodológicos"><i class="fa fa-check"></i><b>17.3</b> Aspectos metodológicos</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#estimación-de-los-paraámetros-del-modelo"><i class="fa fa-check"></i><b>17.3.1</b> Estimación de los paraámetros del modelo</a></li>
+<li class="chapter" data-level="17.3.2" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#inferencia-sobre-las-funciones-suaves"><i class="fa fa-check"></i><b>17.3.2</b> Inferencia sobre las funciones suaves</a></li>
+<li class="chapter" data-level="17.3.3" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#suavizado-mutidimensional-y-para-datos-no-gaussianos"><i class="fa fa-check"></i><b>17.3.3</b> Suavizado mutidimensional y para datos no Gaussianos</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#la-función-gam-del-paquete-mgcv"><i class="fa fa-check"></i><b>17.4</b> La función <code>gam</code> del paquete <code>mgcv</code></a></li>
+<li class="chapter" data-level="17.5" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#casos-prácticos-1"><i class="fa fa-check"></i><b>17.5</b> Casos prácticos</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-unidimensional-con-fossil"><i class="fa fa-check"></i><b>17.5.1</b> Modelo unidimensional con <code>fossil</code></a></li>
+<li class="chapter" data-level="17.5.2" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-aditivo-con-airquality"><i class="fa fa-check"></i><b>17.5.2</b> Modelo aditivo con <code>airquality</code></a></li>
+<li class="chapter" data-level="17.5.3" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-semiparamétrico-con-onions"><i class="fa fa-check"></i><b>17.5.3</b> Modelo semiparamétrico con <code>onions</code></a></li>
+<li class="chapter" data-level="17.5.4" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#modelo-aditivo-generalizado-y-multidimensional-con-smacker"><i class="fa fa-check"></i><b>17.5.4</b> Modelo aditivo generalizado y multidimensional, con <code>smacker</code></a></li>
+<li class="chapter" data-level="" data-path="modelos-aditivos-generalizados.html"><a href="modelos-aditivos-generalizados.html#resumen-2"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html"><i class="fa fa-check"></i><b>18</b> Modelos mixtos</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#conceptos-básicos"><i class="fa fa-check"></i><b>18.1</b> Conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#tipo-y-estructura-de-los-datos"><i class="fa fa-check"></i><b>18.1.1</b> Tipo y estructura de los datos</a></li>
+<li class="chapter" data-level="18.1.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#efectos-fijos-o-aleatorios"><i class="fa fa-check"></i><b>18.1.2</b> ¿Efectos fijos o aleatorios?</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#formulación-del-modelo-con-efectos-aleatorios-o-modelos-mixtos"><i class="fa fa-check"></i><b>18.2</b> Formulación del modelo con efectos aleatorios o modelos mixtos</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#formulación-general"><i class="fa fa-check"></i><b>18.2.1</b> Formulación general</a></li>
+<li class="chapter" data-level="18.2.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#inferencia-y-selección-del-modelo"><i class="fa fa-check"></i><b>18.2.2</b> Inferencia y selección del modelo</a></li>
+<li class="chapter" data-level="18.2.3" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#diagnosis-del-modelo"><i class="fa fa-check"></i><b>18.2.3</b> Diagnosis del modelo</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#funciones-de-r-para-ajustar-modelos-mixtos"><i class="fa fa-check"></i><b>18.3</b> Funciones de <code>R</code> para ajustar modelos mixtos</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#la-función-lmer"><i class="fa fa-check"></i><b>18.3.1</b> La función <code>lmer()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#caso-práctico"><i class="fa fa-check"></i><b>18.4</b> Caso práctico</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#modelo-con-ordenada-en-el-origen-aleatoria"><i class="fa fa-check"></i><b>18.4.1</b> Modelo con ordenada en el origen aleatoria</a></li>
+<li class="chapter" data-level="18.4.2" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#modelo-con-pendiente-aleatoria"><i class="fa fa-check"></i><b>18.4.2</b> Modelo con pendiente aleatoria</a></li>
+<li class="chapter" data-level="18.4.3" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#cómo-construir-el-modelo-en-la-práctica"><i class="fa fa-check"></i><b>18.4.3</b> ¿Cómo construir el modelo en la práctica?</a></li>
+<li class="chapter" data-level="" data-path="modelos-mixtos.html"><a href="modelos-mixtos.html#resumen-3"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html"><i class="fa fa-check"></i><b>19</b> Modelos sparse y métodos penalizados de regresión</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#introducción-8"><i class="fa fa-check"></i><b>19.1</b> Introducción</a></li>
+<li class="chapter" data-level="19.2" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#selección-del-mejor-subconjunto"><i class="fa fa-check"></i><b>19.2</b> Selección del mejor subconjunto</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#ejemplo-sueldo-de-jugadores-de-béisbol"><i class="fa fa-check"></i><b>19.2.1</b> Ejemplo: Sueldo de jugadores de béisbol</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#selección-stepwise"><i class="fa fa-check"></i><b>19.3</b> Selección <em>Stepwise</em></a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#forward-stepwise"><i class="fa fa-check"></i><b>19.3.1</b> Forward stepwise</a></li>
+<li class="chapter" data-level="19.3.2" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#backward-stepwise"><i class="fa fa-check"></i><b>19.3.2</b> Backward stepwise</a></li>
+<li class="chapter" data-level="19.3.3" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#ejemplo-sueldo-de-jugadores-de-béisbol-1"><i class="fa fa-check"></i><b>19.3.3</b> Ejemplo: Sueldo de jugadores de béisbol</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#métodos-shrinkage"><i class="fa fa-check"></i><b>19.4</b> Métodos Shrinkage</a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#regresión-ridge"><i class="fa fa-check"></i><b>19.4.1</b> Regresión ridge</a></li>
+<li class="chapter" data-level="19.4.2" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#selección-del-parámetro-de-tuneado"><i class="fa fa-check"></i><b>19.4.2</b> Selección del parámetro de tuneado</a></li>
+<li class="chapter" data-level="19.4.3" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#regresión-lasso"><i class="fa fa-check"></i><b>19.4.3</b> Regresión Lasso</a></li>
+<li class="chapter" data-level="19.4.4" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#elastic-net"><i class="fa fa-check"></i><b>19.4.4</b> Elastic net </a></li>
+<li class="chapter" data-level="" data-path="modelos-sparse-y-métodos-penalizados-de-regresión.html"><a href="modelos-sparse-y-métodos-penalizados-de-regresión.html#resumen-4"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html"><i class="fa fa-check"></i><b>20</b> Modelización de series temporales</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#conceptos-básicos-1"><i class="fa fa-check"></i><b>20.1</b> Conceptos básicos</a></li>
+<li class="chapter" data-level="20.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#modelos-arima"><i class="fa fa-check"></i><b>20.2</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="20.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#análisis-de-series-temporales-con-r"><i class="fa fa-check"></i><b>20.3</b> Análisis de series temporales con R</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#identificación-o-especificación-del-modelo"><i class="fa fa-check"></i><b>20.3.1</b> Identificación o especificación del modelo</a></li>
+<li class="chapter" data-level="20.3.2" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#estimación-del-modelo"><i class="fa fa-check"></i><b>20.3.2</b> Estimación del modelo</a></li>
+<li class="chapter" data-level="20.3.3" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#diagnosis-validación-y-contrastación"><i class="fa fa-check"></i><b>20.3.3</b> Diagnosis, validación y contrastación</a></li>
+<li class="chapter" data-level="20.3.4" data-path="modelización-de-series-temporales.html"><a href="modelización-de-series-temporales.html#predicción-2"><i class="fa fa-check"></i><b>20.3.4</b> Predicción</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliografía.html"><a href="bibliografía.html"><i class="fa fa-check"></i>Bibliografía</a></li>
+<li class="chapter" data-level="21" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html"><i class="fa fa-check"></i><b>21</b> Análisis de tablas de contingencia</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-9"><i class="fa fa-check"></i><b>21.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#motiv"><i class="fa fa-check"></i><b>21.1.1</b> Motivación</a></li>
+<li class="chapter" data-level="21.1.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#notac"><i class="fa fa-check"></i><b>21.1.2</b> Notación</a></li>
+<li class="chapter" data-level="21.1.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#diseños-experimentales-o-procedimientos-de-muestreo-que-dan-lugar-a-una-tabla-de-contingencia"><i class="fa fa-check"></i><b>21.1.3</b> Diseños experimentales o procedimientos de muestreo que dan lugar a una tabla de contingencia</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-de-independencia-en-tablas-2times-2"><i class="fa fa-check"></i><b>21.2</b> Contraste de independencia en tablas <span class="math inline">\((2\times 2)\)</span></a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-10"><i class="fa fa-check"></i><b>21.2.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.2.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#plantgen"><i class="fa fa-check"></i><b>21.2.2</b> Planteamiento general del contraste exacto de independencia</a></li>
+<li class="chapter" data-level="21.2.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#algoritmo"><i class="fa fa-check"></i><b>21.2.3</b> Algoritmo para la realización del contraste exacto de independencia</a></li>
+<li class="chapter" data-level="21.2.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-de-independencia-diseño-tipo-1"><i class="fa fa-check"></i><b>21.2.4</b> Contraste de independencia: Diseño Tipo 1</a></li>
+<li class="chapter" data-level="21.2.5" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#dise"><i class="fa fa-check"></i><b>21.2.5</b> Contraste de independencia: Diseños Tipo 2 y Tipo 3</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-de-independencia-en-tablas-rtimes-c"><i class="fa fa-check"></i><b>21.3</b> Contraste de independencia en tablas <span class="math inline">\(R\times C\)</span></a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#IntroRxC"><i class="fa fa-check"></i><b>21.3.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.3.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contaprox"><i class="fa fa-check"></i><b>21.3.2</b> Contrastes aproximados</a></li>
+<li class="chapter" data-level="21.3.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contraste-aproximado-con-corrección-de-continuidad-1"><i class="fa fa-check"></i><b>21.3.3</b> Contraste aproximado con corrección de continuidad</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas"><i class="fa fa-check"></i><b>21.4</b> Medidas de asociación en tablas <span class="math inline">\(2\times 2\)</span></a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-11"><i class="fa fa-check"></i><b>21.4.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.4.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#la-hatq-de-yule"><i class="fa fa-check"></i><b>21.4.2</b> La <span class="math inline">\(\hat{Q}\)</span> de Yule</a></li>
+<li class="chapter" data-level="21.4.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#otras-medidas-de-asociación-para-tablas-2times-2"><i class="fa fa-check"></i><b>21.4.3</b> Otras medidas de asociación para tablas <span class="math inline">\(2\times 2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas-de-asociación-en-tablas-rtimes-c"><i class="fa fa-check"></i><b>21.5</b> Medidas de asociación en tablas <span class="math inline">\(R\times C\)</span></a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#introducción-12"><i class="fa fa-check"></i><b>21.5.1</b> Introducción</a></li>
+<li class="chapter" data-level="21.5.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas-derivadas-del-estadístico-chi-cuadrado"><i class="fa fa-check"></i><b>21.5.2</b> Medidas derivadas del estadístico Chi-cuadrado</a></li>
+<li class="chapter" data-level="21.5.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#medidas-basadas-en-la-reducción-proporcional-del-error-lambda-de-goodman-y-kruskal"><i class="fa fa-check"></i><b>21.5.3</b> Medidas basadas en la reducción proporcional del error: <span class="math inline">\(\lambda\)</span> de Goodman y Kruskal</a></li>
+<li class="chapter" data-level="21.5.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#determinación-de-las-fuentes-de-asociación"><i class="fa fa-check"></i><b>21.5.4</b> Determinación de las fuentes de asociación</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#contrastes-de-independencia-en-tablas-multidimensionales"><i class="fa fa-check"></i><b>21.6</b> Contrastes de independencia en tablas multidimensionales</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="correspondencias.html"><a href="correspondencias.html"><i class="fa fa-check"></i><b>22</b> Análisis de correspondencias</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="correspondencias.html"><a href="correspondencias.html#introducción-13"><i class="fa fa-check"></i><b>22.1</b> Introducción</a></li>
+<li class="chapter" data-level="22.2" data-path="correspondencias.html"><a href="correspondencias.html#metodología-del-análisis-de-correspondencias"><i class="fa fa-check"></i><b>22.2</b> Metodología del análisis de correspondencias</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="correspondencias.html"><a href="correspondencias.html#proyecciones-fila-columna-y-simétrica"><i class="fa fa-check"></i><b>22.2.1</b> Proyecciones fila, columna y simétrica</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="correspondencias.html"><a href="correspondencias.html#ejemplos-de-análisis-de-correspondencias-con-r"><i class="fa fa-check"></i><b>22.3</b> Ejemplos de análisis de correspondencias con <strong>R</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html"><i class="fa fa-check"></i><b>23</b> Análisis conjunto</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html#introducción-conceptos-clave-y-tipos-de-análisis"><i class="fa fa-check"></i><b>23.1</b> Introducción, conceptos clave y tipos de análisis</a></li>
+<li class="chapter" data-level="23.2" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html#aplicación-del-análisis-conjunto-etapas"><i class="fa fa-check"></i><b>23.2</b> Aplicación del Análisis Conjunto (etapas):</a></li>
+<li class="chapter" data-level="23.3" data-path="análisis-conjunto.html"><a href="análisis-conjunto.html#ejemplo-utilizando-r"><i class="fa fa-check"></i><b>23.3</b> Ejemplo utilizando R:</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>24</b> Análisis discriminante</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#introducción-14"><i class="fa fa-check"></i><b>24.1</b> Introducción</a></li>
+<li class="chapter" data-level="24.2" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#tipos-de-análisis-discriminantes"><i class="fa fa-check"></i><b>24.2</b> Tipos de análisis discriminantes:</a></li>
+<li class="chapter" data-level="24.3" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#ejemplos"><i class="fa fa-check"></i><b>24.3</b> Ejemplos:</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html"><i class="fa fa-check"></i><b>25</b> Árboles de clasificación y regresión </a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#introducción-15"><i class="fa fa-check"></i><b>25.1</b> Introducción </a></li>
+<li class="chapter" data-level="25.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#aprendizaje-con-árboles-de-decisión"><i class="fa fa-check"></i><b>25.2</b> Aprendizaje con árboles de decisión</a></li>
+<li class="chapter" data-level="25.3" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#cómo-se-va-dividiendo-el-árbol"><i class="fa fa-check"></i><b>25.3</b> ¿Cómo se va dividiendo el árbol? </a>
+<ul>
+<li class="chapter" data-level="25.3.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#impureza-de-gini"><i class="fa fa-check"></i><b>25.3.1</b> Impureza de Gini</a></li>
+<li class="chapter" data-level="25.3.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#entropía"><i class="fa fa-check"></i><b>25.3.2</b> Entropía </a></li>
+<li class="chapter" data-level="25.3.3" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#ganancia-de-información"><i class="fa fa-check"></i><b>25.3.3</b> Ganancia de información</a></li>
+<li class="chapter" data-level="25.3.4" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#suma-residual-de-cuadrados-mínima"><i class="fa fa-check"></i><b>25.3.4</b> Suma residual de cuadrados mínima</a></li>
+</ul></li>
+<li class="chapter" data-level="25.4" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#sobreajuste"><i class="fa fa-check"></i><b>25.4</b> Sobreajuste </a></li>
+<li class="chapter" data-level="25.5" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#cuánto-debe-crecer-un-árbol"><i class="fa fa-check"></i><b>25.5</b> ¿Cuánto debe crecer un árbol? </a>
+<ul>
+<li class="chapter" data-level="25.5.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#la-parada-temprana"><i class="fa fa-check"></i><b>25.5.1</b> La parada temprana </a></li>
+<li class="chapter" data-level="25.5.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#la-poda"><i class="fa fa-check"></i><b>25.5.2</b> La poda </a></li>
+</ul></li>
+<li class="chapter" data-level="25.6" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#el-algoritmo-id3-para-la-construcción-de-un-árbol-de-decisión"><i class="fa fa-check"></i><b>25.6</b> El algoritmo ID3 para la construcción de un árbol de decisión</a></li>
+<li class="chapter" data-level="25.7" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#procedimiento-con-r-la-funcion-rpart"><i class="fa fa-check"></i><b>25.7</b> Procedimiento con R: la funcion <code>rpart</code></a></li>
+<li class="chapter" data-level="25.8" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#aplicaciones-de-los-árboles-de-decisión"><i class="fa fa-check"></i><b>25.8</b> Aplicaciones de los árboles de decisión</a>
+<ul>
+<li class="chapter" data-level="25.8.1" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#el-caso-de-negocio"><i class="fa fa-check"></i><b>25.8.1</b> El caso de negocio</a></li>
+<li class="chapter" data-level="25.8.2" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#árbol-de-clasificación-para-determinar-la-intención-de-compra"><i class="fa fa-check"></i><b>25.8.2</b> Árbol de clasificación para determinar la intención de compra</a></li>
+<li class="chapter" data-level="25.8.3" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#árbol-de-regresión-para-estimar-el-número-de-días-hospitalizado"><i class="fa fa-check"></i><b>25.8.3</b> Árbol de regresión para estimar el número de días hospitalizado</a></li>
+<li class="chapter" data-level="" data-path="árboles-de-clasificación-y-regresión.html"><a href="árboles-de-clasificación-y-regresión.html#resumen-5"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html"><i class="fa fa-check"></i><b>26</b> Máquinas de Vector Soporte</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#introducción-16"><i class="fa fa-check"></i><b>26.1</b> Introducción</a></li>
+<li class="chapter" data-level="26.2" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#algoritmo-svm-para-clasificación-binaria"><i class="fa fa-check"></i><b>26.2</b> Algoritmo SVM para clasificación binaria</a></li>
+<li class="chapter" data-level="26.3" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#y-si-tengo-más-de-dos-clases"><i class="fa fa-check"></i><b>26.3</b> ¿Y si tengo más de dos clases?</a></li>
+<li class="chapter" data-level="26.4" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#truco-del-kernel-tratando-con-la-no-linearidad"><i class="fa fa-check"></i><b>26.4</b> Truco del Kernel: Tratando con la no linearidad</a>
+<ul>
+<li class="chapter" data-level="26.4.1" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#algunos-kernels-populares"><i class="fa fa-check"></i><b>26.4.1</b> Algunos kernels populares</a></li>
+</ul></li>
+<li class="chapter" data-level="26.5" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#procedimiento-con-r-la-funcion-svm"><i class="fa fa-check"></i><b>26.5</b> Procedimiento con R: la funcion <code>svm</code></a></li>
+<li class="chapter" data-level="26.6" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#aplicación-de-un-modelo-svm-radial-con-ajuste-automático-en-r"><i class="fa fa-check"></i><b>26.6</b> Aplicación de un modelo SVM Radial con ajuste automático en R</a>
+<ul>
+<li class="chapter" data-level="26.6.1" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#importancia-de-las-variables"><i class="fa fa-check"></i><b>26.6.1</b> Importancia de las variables</a></li>
+<li class="chapter" data-level="" data-path="máquinas-de-vector-soporte.html"><a href="máquinas-de-vector-soporte.html#resumen-6"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html"><i class="fa fa-check"></i><b>27</b> Clasificador k-vecinos más próximos</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#introducción-17"><i class="fa fa-check"></i><b>27.1</b> Introducción</a></li>
+<li class="chapter" data-level="27.2" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#decisiones-a-tener-en-cuenta"><i class="fa fa-check"></i><b>27.2</b> Decisiones a tener en cuenta</a>
+<ul>
+<li class="chapter" data-level="27.2.1" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#función-de-distancia-a-utilizar"><i class="fa fa-check"></i><b>27.2.1</b> Función de distancia a utilizar</a></li>
+<li class="chapter" data-level="27.2.2" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#número-de-vecinos-k-seleccionados"><i class="fa fa-check"></i><b>27.2.2</b> Número de vecinos (k) seleccionados</a></li>
+</ul></li>
+<li class="chapter" data-level="27.3" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#procedimiento-con-r-la-funcion-knn"><i class="fa fa-check"></i><b>27.3</b> Procedimiento con R: la funcion knn</a></li>
+<li class="chapter" data-level="27.4" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#aplicación-del-modelo-knn-en-r"><i class="fa fa-check"></i><b>27.4</b> Aplicación del modelo KNN en R</a>
+<ul>
+<li class="chapter" data-level="" data-path="clasificador-k-vecinos-más-próximos.html"><a href="clasificador-k-vecinos-más-próximos.html#resumen-7"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="naive-bayes.html"><a href="naive-bayes.html"><i class="fa fa-check"></i><b>28</b> Naive Bayes</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="naive-bayes.html"><a href="naive-bayes.html#introducción-18"><i class="fa fa-check"></i><b>28.1</b> Introducción</a></li>
+<li class="chapter" data-level="28.2" data-path="naive-bayes.html"><a href="naive-bayes.html#teorema-de-bayes"><i class="fa fa-check"></i><b>28.2</b> Teorema de Bayes</a></li>
+<li class="chapter" data-level="28.3" data-path="naive-bayes.html"><a href="naive-bayes.html#el-algoritmo-naive-bayes"><i class="fa fa-check"></i><b>28.3</b> El algoritmo Naive Bayes</a></li>
+<li class="chapter" data-level="28.4" data-path="naive-bayes.html"><a href="naive-bayes.html#procedimiento-con-r-la-funcion-naive_bayes"><i class="fa fa-check"></i><b>28.4</b> Procedimiento con R: la funcion <code>naive_bayes</code></a></li>
+<li class="chapter" data-level="28.5" data-path="naive-bayes.html"><a href="naive-bayes.html#aplicación-del-modelo-naive-bayes"><i class="fa fa-check"></i><b>28.5</b> Aplicación del modelo Naive Bayes</a>
+<ul>
+<li class="chapter" data-level="" data-path="naive-bayes.html"><a href="naive-bayes.html#resumen-8"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html"><i class="fa fa-check"></i><b>29</b> Bagging. Random Forest </a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#introducción-metodos-de-ensamble"><i class="fa fa-check"></i><b>29.1</b> Introducción: Metodos de Ensamble</a></li>
+<li class="chapter" data-level="29.2" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#bagging"><i class="fa fa-check"></i><b>29.2</b> Bagging</a></li>
+<li class="chapter" data-level="29.3" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#procedimiento-con-r-la-función-bagging"><i class="fa fa-check"></i><b>29.3</b> Procedimiento con R: la función <code>bagging</code> </a></li>
+<li class="chapter" data-level="29.4" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#implementando-bagging-en-r"><i class="fa fa-check"></i><b>29.4</b> Implementando bagging en R</a>
+<ul>
+<li class="chapter" data-level="29.4.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#interpretación-de-variables-en-el-bagging"><i class="fa fa-check"></i><b>29.4.1</b> Interpretación de variables en el bagging</a></li>
+</ul></li>
+<li class="chapter" data-level="29.5" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#random-forest"><i class="fa fa-check"></i><b>29.5</b> Random Forest</a>
+<ul>
+<li class="chapter" data-level="29.5.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#número-de-árboles-k"><i class="fa fa-check"></i><b>29.5.1</b> Número de árboles (<span class="math inline">\(K\)</span>)</a></li>
+<li class="chapter" data-level="29.5.2" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#número-de-variables-a-considerar-mtry"><i class="fa fa-check"></i><b>29.5.2</b> Número de variables a considerar (<span class="math inline">\(mtry\)</span>)</a></li>
+<li class="chapter" data-level="29.5.3" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#complejidad-de-los-árboles"><i class="fa fa-check"></i><b>29.5.3</b> Complejidad de los árboles</a></li>
+<li class="chapter" data-level="29.5.4" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#esquema-de-muestreo"><i class="fa fa-check"></i><b>29.5.4</b> Esquema de muestreo</a></li>
+<li class="chapter" data-level="29.5.5" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#regla-de-división"><i class="fa fa-check"></i><b>29.5.5</b> Regla de división</a></li>
+</ul></li>
+<li class="chapter" data-level="29.6" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#procedimiento-con-r-la-función-randomforest"><i class="fa fa-check"></i><b>29.6</b> Procedimiento con R: la función <code>randomForest</code></a></li>
+<li class="chapter" data-level="29.7" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#aplicación-del-modelo-random-forest-en-r"><i class="fa fa-check"></i><b>29.7</b> Aplicación del modelo Random Forest en R</a>
+<ul>
+<li class="chapter" data-level="29.7.1" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#aplicación-del-random-forest"><i class="fa fa-check"></i><b>29.7.1</b> Aplicación del Random Forest</a></li>
+<li class="chapter" data-level="" data-path="bagging.-random-forest.html"><a href="bagging.-random-forest.html#resumen-9"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html"><i class="fa fa-check"></i><b>30</b> Boosting. XGBoost.</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#introducción.-boosting."><i class="fa fa-check"></i><b>30.1</b> Introducción. Boosting.</a></li>
+<li class="chapter" data-level="30.2" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#gradient-boosting"><i class="fa fa-check"></i><b>30.2</b> Gradient Boosting</a>
+<ul>
+<li class="chapter" data-level="30.2.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#hiperparámetros-del-modelo-gradient-boosting"><i class="fa fa-check"></i><b>30.2.1</b> Hiperparámetros del modelo gradient boosting</a></li>
+<li class="chapter" data-level="30.2.2" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#estrategia-de-ajuste-de-hiperparametros"><i class="fa fa-check"></i><b>30.2.2</b> Estrategia de ajuste de hiperparametros</a></li>
+</ul></li>
+<li class="chapter" data-level="30.3" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#procedimiento-con-r-la-funcion-gbm"><i class="fa fa-check"></i><b>30.3</b> Procedimiento con R: la funcion <code>gbm</code></a></li>
+<li class="chapter" data-level="30.4" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#aplicación-del-modelo-gbm-en-r"><i class="fa fa-check"></i><b>30.4</b> Aplicación del modelo GBM en R</a>
+<ul>
+<li class="chapter" data-level="30.4.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#gbm-con-ajuste-automático"><i class="fa fa-check"></i><b>30.4.1</b> GBM con ajuste automático</a></li>
+</ul></li>
+<li class="chapter" data-level="30.5" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#extreme-gradient-boosting-xgb"><i class="fa fa-check"></i><b>30.5</b> eXtreme Gradient Boosting (XGB)</a>
+<ul>
+<li class="chapter" data-level="30.5.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#hiperparametros-del-modelo-xgboost"><i class="fa fa-check"></i><b>30.5.1</b> Hiperparametros del modelo XGBoost</a></li>
+</ul></li>
+<li class="chapter" data-level="30.6" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#procedimiento-con-r-la-funcion-xgboost"><i class="fa fa-check"></i><b>30.6</b> Procedimiento con R: la funcion <code>xgboost</code></a></li>
+<li class="chapter" data-level="30.7" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#aplicación-del-módelo-xgboost-en-r"><i class="fa fa-check"></i><b>30.7</b> Aplicación del módelo XGBoost en R</a>
+<ul>
+<li class="chapter" data-level="30.7.1" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#xgboost-y-ajuste-automático"><i class="fa fa-check"></i><b>30.7.1</b> XGBoost y ajuste automático</a></li>
+<li class="chapter" data-level="" data-path="boosting.-xgboost..html"><a href="boosting.-xgboost..html#resumen-10"><i class="fa fa-check"></i>Resumen</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://blog.uclm.es/tp-mbsba/"> Ciencia de datos con R </a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fundamentos de ciencia de datos con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="id_120007-informes" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Capítulo 6</span> Informes reproducibles con R-markdown -&gt; Quarto<a href="id_120007-informes.html#id_120007-informes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Emilio L. Cano</em></p>
+<div id="introducción-2" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Introducción<a href="id_120007-informes.html#introducción-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="por-qué-informes-reproducibles" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> ¿Por qué informes reproducibles?<a href="id_120007-informes.html#por-qué-informes-reproducibles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El resultado final de nuestro proyecto de análisis de datos terminará
+comunicándose a distintos niveles, tanto <em>aguas arriba</em> como <em>aguas
+abajo</em>. Esta comunicación es “la última milla” del flujo de análisis que se
+esquematizaba en la figura <a href="#fig:flujods"><strong>??</strong></a>. Vamos a llamar genéricamente
+“informes” a cualquiera de estos resultados que se pueden producir en
+distintos formatos de destino. Estos informes estarán compuestos de múltiples elementos como
+texto, gráficos, resultados numéricos, tablas, etc. Además, es posible que haya
+que generarlos en distintos formatos como la web, documentos imprimibles o
+presentaciones. Finalmente, con una alta probabilidad varias personas
+intervendrán en el proceso, y la <strong>trazabilidad</strong> (reproducibilidad) del análisis
+mejorará el proyecto de forma global. Esta situación se esquematiza en la
+figura <a href="id_120007-informes.html#fig:problem2">6.1</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:problem2"></span>
+<img src="img/problem2.png" alt="Esquema del proceso de información de análisis de datos" width="80%" />
+<p class="caption">
+Figura 6.1: Esquema del proceso de información de análisis de datos
+</p>
+</div>
+<p>La forma de abordar el problema es típicamente con un enfoque <em>corta-pega</em>,
+en el que primero se realiza todo el análisis de datos con el software
+estadístico y después se utilizan
+los resultados del análisis como base de un informe escrito, posiblemente
+con algunas iteraciones del proceso si el proyecto tiene cierta envergadura.
+El software estadístico suele incluir formas de generar resultados listos
+para integrar en un informe, pero siempre bajo este paradigma de incluir el
+resultado a posteriori <span class="citation">(<a href="#ref-leisch2002sweave" role="doc-biblioref"><strong>leisch2002sweave?</strong></a>)</span>.</p>
+<p>Este enfoque provoca inconsistencias (por ejemplo entre unos grupos y otros,
+entre diferentes analistas, etc.), errores, contenidos desactualizados o no
+reproducibles, especialmente en la ejecución de software, simulaciones, etc.
+Además, cada vez que hay que hacer un cambio, hay que hacerlo en muchos
+sitios, con la consiguiente pérdida de tiempo y posibles errores.</p>
+<p>El enfoque de la <strong>investigación reproducible</strong><a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> supera muchos de los obstáculos a la
+hora de preparar informes de análisis de datos. El objetivo es
+unir instrucciones para análisis de datos con datos experimentales de forma que
+los resultados se puedan volver a obtener, entender mejor y verificar.</p>
+<p>Un concepto muy relacionado que utilizamos en R es la programación
+“literaria”<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>, mediante la cual combinamos un lenguaje de programación como R con documentación de todo tipo (por ejemplo comentarios en el
+código).</p>
+<p>Con el enfoque de la investigación reproducible, lo que hacemos es darle la vuelta
+al enfoque <em>corta-pega</em>, de forma que se escribe el informe a la vez que se realiza
+el análisis, incrustando el código dentro del propio informe. Obviamente es necesario
+un sistema que consolide el informe con los resultados del código, y esto es lo
+que nos permite R y RStudio mediante archivos R Markdown.</p>
+<p>El flujo de trabajo sería el siguiente (véase la figura <a href="id_120007-informes.html#fig:workflow">6.2</a>): los contenidos se encuentran en ficheros
+de código. Estos ficheros fuente, se compilan y producen los materiales en los
+formatos necesarios. Los cambios se hacen una vez, y todos los materiales son
+actualizados adecuadamente.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:workflow"></span>
+<img src="img/workflow2.png" alt="Flujo de trabajo reproducible" width="80%" />
+<p class="caption">
+Figura 6.2: Flujo de trabajo reproducible
+</p>
+</div>
+<p>Las ventajas de utilizar un enfoque reproducible se pueden resumir en:</p>
+<ul>
+<li><p>Si el mismo analista tiene que volver al análisis en el futuro, los
+resultados se pueden volver a obtener de nuevo fácil y comprensiblemente.</p></li>
+<li><p>En el caso de que en el proyecto participen más analistas, toda la explicación
+está a mano.</p></li>
+<li><p>Cualquier cambio en un punto del análisis (por ejemplo, añadir una
+variable a un modelo) se puede realizar de una sola vez y los cambios
+en los resultados y gráficos se actualizarán automáticamente.</p></li>
+<li><p>Los resultados se pueden verificar por terceros en caso necesario. Un
+caso paradigmático fue el escándalo de los ensayos de cáncer en Duke en 2011<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>.
+No obstante es un tema que cada vez se demanda más en otros campos
+fuera de la investigación clínica (por ejemplo en publicaciones de
+cualquier tipo).</p></li>
+</ul>
+<p>A continuación nos centraremos en el enfoque reproducible. Para el otro enfoque,
+simplemente copie los resultados de la consola y los gráficos de la pestaña <em>Plots</em>
+del panel inferior derecho en su editor de textos favorito.</p>
+</div>
+<div id="markdown-r-markdown-y-rstudio" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Markdown, R Markdown y RStudio<a href="id_120007-informes.html#markdown-r-markdown-y-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Markdown es un tipo de ficheros de texto pensado para que se pueda leer bajo
+cualquier circunstancia, con una sintaxis muy simple que permite leerlo
+directamente por las personas, o ser convertido por un ordenador
+en otro formato más elaborado, como por ejemplo HTML
+(página web) o Microsoft Word. En RStudio, se pueden crear ficheros <strong>R Markdown</strong>
+utilizando esta sintaxis para
+las explicaciones de nuestro análisis, e incluir dentro “trozos” (<em>chunks</em>) de
+código de forma que al generar el informe, el resultado de ese código queda
+incluido en el documento de salida. Así, si una vez terminado el informe se nos ha olvidado,
+por ejemplo,
+incluir un gráfico, sólo tenemos que añadir las líneas de código que lo crean y
+volver a generar el informe.</p>
+<p>Para poder utilizar las capacidades de R Markdown, necesitamos tener instalado
+el paquete <code>knitr</code> <span class="citation">(<a href="#ref-xie2017dynamic" role="doc-biblioref"><strong>xie2017dynamic?</strong></a>)</span>, que utiliza también otros paquetes como <code>rmarkdown</code>.
+Aunque <code>knitr</code> no forma parte del <em>tidyverse</em>, sí es un enfoque moderno de R
+que vino a hacer más fácil la generación de documentos que se hacía en R base
+con la función <code>Sweave</code> <span class="citation">(<a href="#ref-leisch2002sweave" role="doc-biblioref"><strong>leisch2002sweave?</strong></a>)</span>.</p>
+<p>Para crear un nuevo documento R Markdown en RStudio, seleccionamos <em>R Markdown …</em> (1) en el
+icono de nuevo archivo (2) de la barra de herramientas o en el menú <em>File</em> (3), véase la figura <a href="id_120007-informes.html#fig:rsmd1">6.3</a>. Entonces
+se abre el cuadro de diálogo <em>New R Markdown</em> de la figura <a href="id_120007-informes.html#fig:rsmd2">6.4</a>. Vemos que hay varios
+tipos de archivos que se pueden crear (1), que producirán formatos diferentes: <em>Document</em> (documento),
+<em>Presentation</em> (Presentación de diapositivas), <em>Shiny</em> (Aplicación web interactiva) y <em>From Template</em>
+(usando plantilla). De momento vamos a centrarnos en los documentos. Podemos crear un archivo R Markdown
+vacío (2) si no queremos que nos cree la estructura. Para que se cree con una estructura mínima,
+se necesita un título del documento (3) y un autor (4), que después se podrán cambiar. También seleccionaremos un formato de salida por defecto (5), que puede ser HTML (para ver en el navegador), PDF, o Word. Esto también se podrá cambiar después, por lo que la forma más eficiente de trabajar es empezar con HTML, cuya previsualización es más rápida, y cuando tengamos el resultado final generar el archivo en el formato deseado.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd1"></span>
+<img src="img/rsmd1.png" alt="Crear nuevo documento R Markdown" width="100%" />
+<p class="caption">
+Figura 6.3: Crear nuevo documento R Markdown
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd2"></span>
+<img src="img/rsmd2.png" alt="Cuadro de diálogo nuevo archivo R Markdown" width="100%" />
+<p class="caption">
+Figura 6.4: Cuadro de diálogo nuevo archivo R Markdown
+</p>
+</div>
+<p>Una vez hacemos clic en el botón <em>OK</em> de la ventana <em>New R Markdown</em>, figura <a href="id_120007-informes.html#fig:rsmd2">6.4</a> (6), se abre en
+el editor de RStudio un archivo R Markdown con una estructura básica a modo de plantilla, véase la figura
+<a href="id_120007-informes.html#fig:rsmd3">6.5</a>. Los elementos principales de un archivo R Markdown aparecen en esta plantilla:</p>
+<ul>
+<li><p>Encabezado YAML (1): Constituyen la configuración del documento, y controlan sobre todo las opciones de salida, cómo será el resultado. Este encabezado se encuentra entre dos líneas con tres guiones (<code>---</code>),
+donde se expresan las opciones como <code>opcion: valor</code>, y estos valores además se pueden anidar.</p></li>
+<li><p>Texto formateado (2): Con una sintaxis muy sencilla, podemos dar formato al texto, como negritas, listas, etc.</p></li>
+<li><p>Fragmentos de código (<em>chunks</em>) (3): Al generar el documento, se ejecutará el código dentro de estos
+fragmentos, y en el documento resultante se mostrará el resultado. En cada fragmento de código al situar el ratón sobre ellos aparecen tres botones que nos sirven para configurar las opciones del chunk, ejecutar todos los chunks anteriores y ejecutar el chunk actual.</p></li>
+</ul>
+<p>La barra de herramientas del editor ofrece nuevas opciones:</p>
+<ul>
+<li><p>El botón <em>Knit</em> (tejer) (4) “renderiza” el documento R Markdown produciendo el archivo de salida configurado. Se puede desplegar un menú para cambiar el formato de salida y otras opciones.</p></li>
+<li><p>El botón de opciones (5) permite realizar algunos ajustes generales de entrada y salida.</p></li>
+<li><p>El botón <em>Insert</em> (6) nos permite insertar un nuevo fragmento de código. Se pueden insertar fragmentos
+de otros lenguajes diferentes a R, pero en este libro no lo haremos.</p></li>
+<li><p>Con las flechas de navegación (7) podemos movernos entre los <em>chunks</em> del
+documento. También
+podemos usar el selector de esquema (8) para ir a un fragmento de código o
+apartado concreto del documento.</p></li>
+<li><p>Desde el menú <em>Run</em> (9) se puede ejecutar el código de los distintos <em>chunks</em>.</p></li>
+<li><p>El menú <em>Publish</em> nos permitiría publicar el documento en algún servicio como <a href="https://rpubs.com"><em>RPubs</em></a> (10)</p></li>
+<li><p>El botón <em>Outline</em> (11) muestra un esquema para navegar por el documento (12), donde aparecerán los encabezados formateados con Markdown.</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd3"></span>
+<img src="img/rsmd3.png" alt="Estructura de un documento R Markdown y opciones del editor" width="100%" />
+<p class="caption">
+Figura 6.5: Estructura de un documento R Markdown y opciones del editor
+</p>
+</div>
+<p>Para generar el documento, guardamos el documento en cualquier carpeta de nuestro
+proyecto y utilizamos el icono de
+“bordado” (<em>knit</em>). Si en vez de pulsarlo directamente hacemos clic en el
+triángulo de la derecha, podemos seleccionar el formato de salida (html, pdf o Word).
+El formato PDF requieren tener instalada una
+distribución del sistema de edición libre LaTeX<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.
+El archivo de destino, con extensión .html, .pdf o .docx según el caso,
+quedará guardado en la carpeta donde se encuentre el archivo R Markdown.
+Dependiendo de las opciones configuradas, el archivo se abrirá automáticamente
+en una ventana nueva de RStudio (por defecto: véase la figura <a href="id_120007-informes.html#fig:rsmd4">6.6</a>),
+o en la pestaña <em>Viewer</em> del panel inferior derecho, o en el visor de pdf
+integrado en RStudio (pdf). Para poder abrir archivos .docx será necesario tener
+instalado Microsoft Word o algún otro programa que pueda abrirlo, como LibreOffice.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd4"></span>
+<img src="img/rsmd4.png" alt="Visualización del informne en formato HTML generado con R Markdown" width="100%" />
+<p class="caption">
+Figura 6.6: Visualización del informne en formato HTML generado con R Markdown
+</p>
+</div>
+<p>Podemos compilar el informe cuantas veces queramos con el icono <em>knit</em> (bordado).
+Para trabajo en curso, se recomienda ir previsualizando en formato HTML, y una vez
+sea definitivo generar el formato de destino final. Para la conversión de
+formatos RStudio integra la aplicación
+<a href="https://pandoc.org">pandoc</a>.</p>
+<p>Hay una guía rápida de
+Markdown (<em>Markdown Quick Reference</em>) disponible en el menú de ayuda de RStudio, así como enlaces a dos
+<em>Cheatsheets</em>: <em>R Markdown Cheatsheet</em> y <em>R Markdown Reference Guide</em>. Esta última es
+la más completa y donde encontraremos todas las opciones disponibles. En los siguientes
+apartados repasaremos las opciones más habituales que cubren un amplio
+abanico de proyectos.</p>
+</div>
+</div>
+<div id="documentos-r-markdown" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Documentos R Markdown<a href="id_120007-informes.html#documentos-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="encabezado-yaml-y-configuración" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Encabezado YAML y configuración<a href="id_120007-informes.html#encabezado-yaml-y-configuración" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Las opciones de configuración del documento se establecen en este encabezamiento.
+Generalmente no tendremos que preocuparnos de este encabezamiento, ya que
+se crea automáticamente al crear el documento, y se va
+actualizando a medida que cambiamos opciones, como veremos a continuación.
+No obstante está bien conocer su funcionamiento por si modificamos
+alguna opción (por ejemplo el título del documento), o necesitamos añadir
+opciones que no están en los menús de RStudio.</p>
+<p>Al crear el documento con la plantilla, se nos ha creado el siguiente
+encabezado:</p>
+<pre><code>---
+title: &quot;Untitled&quot;
+output: html_document
+---</code></pre>
+<p>Si hubiéramos introducido texto en la casilla “<em>Author</em>” (ver figura <a href="id_120007-informes.html#fig:rsmd2">6.4</a>)
+al crear el documento, tendríamos dos líneas más, como en la figura <a href="id_120007-informes.html#fig:rsmd4">6.6</a>:</p>
+<pre><code>---
+title: &quot;Untitled&quot;
+author: &quot;Emilio L. Cano&quot;
+date: &quot;6/29/2020&quot;
+output: html_document
+---</code></pre>
+<p>Los elementos <code>title</code>, <code>author</code> y <code>date</code> (título, autor y fecha)
+son cadenas de texto que aparecerán al principio del documento
+de salida. Estos valores es posible que queramos modificarlos
+a posteriori, pero debemos cuidar que estén entre comillas para evitar
+posibles errores. El elemento <code>output</code> indica el formato de salida.
+También podemos modificarlo nosotros, pero no hace falta porque si
+queremos un formato de destino distinto basta ir al menú <em>Knit</em> y
+elegirlo. Por ejemplo, si elegimos <em>Word</em>, se añadirá
+como formato de salida <code>word_document</code>.</p>
+</div>
+<div id="formateado-de-texto" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Formateado de texto<a href="id_120007-informes.html#formateado-de-texto" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Incluir títulos, énfasis en el texto y listas
+es muy sencillo, y a menudo no necesitamos nada más para realizar un informe.
+En el sencillo informe que se crea con la plantilla ya vemos algunas opciones:</p>
+<ul>
+<li><p>Los encabezados se crean poniendo al principio de la línea tantos símbolos
+almohadilla (<code>##</code>) como nivel de título queramos (dos almohadilla, apartado, tres
+almohadillas, subapartado, etc.) Una almohadilla sería para el título del
+informe, si no se especificara en el encabezado.</p></li>
+<li><p>Para poner texto en <strong>negrita</strong>, lo rodeamos con dos asteriscos a cada lado: <code>**negrita**</code>.</p></li>
+<li><p>Para poner texto en formato monoespaciado, tipo código, lo rodeamos de acentos
+graves (<em>backticks</em>)</p></li>
+<li><p>Los enlaces se crean automáticamente si tenemos una url completa.</p></li>
+</ul>
+<p>Existen otras opciones sencillas, que podemos ver en la <em>Markdown Quick Reference</em>
+del menú <em>Help</em> (figura <a href="id_120007-informes.html#fig:rsmd5">6.7</a>):</p>
+<ul>
+<li><p>Cursiva rodeando el texto con un solo asterisco a cada lado (o guión bajo)</p></li>
+<li><p>Listas poniendo al principio de la línea un asterisco, guión o signo más</p></li>
+<li><p>Listas ordenadas poniendo un número y un punto al principio de la línea.</p></li>
+<li><p>Enlaces con texto + link como: <code>[texto](url)</code></p></li>
+<li><p>Imágenes de cualquier tipo como: <code>![](ruta_a_la_imagen)</code></p></li>
+<li><p>Superíndices y subíndices</p></li>
+<li><p>Ecuaciones en formato <code>LaTeX</code></p></li>
+<li><p>Tablas</p></li>
+<li><p>Saltos de línea</p></li>
+<li><p>Saltos de página</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd5"></span>
+<img src="img/rsmd5.png" alt="Ayuda para formato Markdown" width="100%" />
+<p class="caption">
+Figura 6.7: Ayuda para formato Markdown
+</p>
+</div>
+<p>Con estas opciones se cubren las necesidades de la práctica totalidad de
+proyectos de análisis. No obstante, dependiendo del formato de salida se
+pueden añadir otras opciones de formato.</p>
+<div class="infobox">
+<p><strong>Usar plantilla de Word distinta</strong></p>
+<p>RStudio genera los informes usando una plantilla predeterminada.
+Para personalizar archivos HTML, podemos incluir hojas de estilo CSS.
+Para personalizar archivos PDF, podemos incluir archivos .sty o incluir
+encabezados. Para personalizar archivos Word, podemos usar un documento
+de referencia, por ejemnplo con encabezados y pies de página, colores corporativos,
+tipos de letra, etc. Bastará con indicarlo en el encabezado del documento:</p>
+<pre><code>---
+title: &quot;Informe&quot;
+output:
+  word_document:
+    reference_docx: plantilla_corporativa.docx
+---</code></pre>
+<p>La mejor forma de crear la plantilla es partir de un informe generado desde RStudio,
+cambiarle los estilos y añadir los elementos necesarios. En el siguiente enlace
+se describe el proceso:</p>
+<p><a href="https://rmarkdown.rstudio.com/articles_docx.html" class="uri">https://rmarkdown.rstudio.com/articles_docx.html</a></p>
+</div>
+<p>Vamos a ver algunas opciones que tenemos al generar un informe R Markdown.
+Ya hemos comentado que el formato de salida se puede elegir en el menú <em>Knitr</em>
+si hacemos clic en el triángulo en vez de en el icono, véase la figura <a href="id_120007-informes.html#fig:rsmd6">6.8</a> (1). Aquí podemos elegir entre los tres formatos (HTML, PDF, Word) (2). La opción
+<em>Knit with Parameters</em> (3) permite renderizar el informe dando valores a los parámetros
+que definamos en el encabezado YAML para utilizarlos en los chunks de código.
+En el submenú <code>Knit Directory</code> (4) podemos decidir cuál será el directorio de trabajo
+del documento al renderizarlo. Por defecto, es la carpeta donde se encuentre el
+archivo .Rmd. Se puede cambiar al directorio de trabajo. Esto afecta sobre todo
+a las expresiones que utilicen el directorio de trabajo, por ejemplo para importar
+ficheros de datos. Por último, <em>Clear Knitr Cache</em> (5) limpia la “caché”, en el caso
+de que hayamos configurado en algún chunk, o globalmente, que los resultados se
+guarden temporalmente y evitar que se ejecuten cada vez que pulsamos en <em>knit</em>.
+Esto es conveniente cuando estamos haciendo cambios en otra parte del documento, y hay
+chunks que ya han producido un resultado que no va a cambiar, sobre todo si tarda
+mucho en ejecutarse (por ejemplo un cálculo complejo, o un gráfico muy sofisticado).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd6"></span>
+<img src="img/rsmd6.png" alt="Opciones de renderizado de documento RMarkdown" width="100%" />
+<p class="caption">
+Figura 6.8: Opciones de renderizado de documento RMarkdown
+</p>
+</div>
+<p>En cuanto al menú de formato (figura <a href="id_120007-informes.html#fig:rsmd7">6.9</a>) al acceder (1) tenemos
+una serie de opciones:</p>
+<ul>
+<li><p>El destino de la previsualización (2). Por defecto es en una ventana independiente,
+pero si lo cambiamos como en la figura a <em>Viewer Pane</em>, el formato HTML se muestra
+en la pestaña <em>Viewer</em> del panel inferior derecho. También podemos elegir no
+abrir previsualización alguna. Siempre podemos ir al la pestaña <em>Files</em> del panel
+inferior derecho y abrir el archivo generado en el navegador (.html), Word (.docx)
+o visor de PDF (.pdf).</p></li>
+<li><p>Forma de previsualizar ecuaciones (3), en el caso de que se utilicen ecuaciones y fórmulas en formato LaTeX.</p></li>
+<li><p>Forma de ver el output de los chunks (4). Veremos a continuación que el código
+de un chunk lo podemos ejecutar igual que hacíamos en los scripts. Con esta opción
+decidimos si la salida se verá debajo del chunk en el propio editor (por defecto) o
+en la consola, al estilo de los scripts.</p></li>
+<li><p>Expandir o contraer el output (5) y eliminar el output (6). Estas opciones se
+aplican a los outputs que se hayan generado debajo de cada chunk, y también
+se pueden ejecutar individualmente con los botones que aparecen arriba a la izquierda
+de cada fragmento de output.</p></li>
+<li><p>Editar las opciones del documento de destino (7). Se abre el cuadro de diálogo
+de la figura <a href="id_120007-informes.html#fig:rsmd8">6.10</a> en el que se pueden configurar algunas opciones comunes
+a todos los documentos, y otras específicas.</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd7"></span>
+<img src="img/rsmd7.png" alt="Opciones de formato del documento R Markdown" width="100%" />
+<p class="caption">
+Figura 6.9: Opciones de formato del documento R Markdown
+</p>
+</div>
+<p>Al abrir el cuadro de diálogo de opciones de salida (figura <a href="id_120007-informes.html#fig:rsmd8">6.10</a>),
+podemos seleccionar el formato específico (1). En los tres casos tendremos tres
+grupos de opciones: <em>General</em>, <em>Figures</em> y <em>Advanced</em>. En cuanto a las opciones de la pestaña <em>General</em> podemos:</p>
+<ul>
+<li><p>Incluir tabla de contenidos (3). Crea un índice después del título del informe.</p></li>
+<li><p>Elegir la profundidad de la tabla de contenidos (4)</p></li>
+<li><p>Elegir el estilo para resaltar el código (5)</p></li>
+<li><p>Aplicar un tema (6) y una hoja de estilos CSS (7). Estas opciones son exclusivas
+de la salida HTML.</p></li>
+<li><p>Numerar los encabezados (8). No disponible en Word (aunque se puede hacer con un
+reference_docx).</p></li>
+<li><p>Forma de mostrar las tablas de datos (9). Esta opción también es exclusiva de la
+salida HTML.</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd8"></span>
+<img src="img/rsmd8.png" alt="Opciones generales de salida HTML" width="100%" />
+<p class="caption">
+Figura 6.10: Opciones generales de salida HTML
+</p>
+</div>
+<p>En las opciones del grupo <em>Figures</em> tenemos:</p>
+<ul>
+<li><p>Ancho y alto de las figuras (en pulgadas) por defecto (1). Se pueden cambiar
+en cada chunk, como veremos después. La configuración por defecto para Word
+produce figuras de baja resolución, por lo que yo recomiendo cambiarlas</p></li>
+<li><p>Renderizar las figuras con títulos (<em>captions</em>). Permite referenciar las figuras
+dentro del documento por su numeración.</p></li>
+<li><p>Recortar imágenes PDF (3). Solo disponible para la salida en PDF.</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd9"></span>
+<img src="img/rsmd9.png" alt="Opciones de figuras documentos PDF" width="100%" />
+<p class="caption">
+Figura 6.11: Opciones de figuras documentos PDF
+</p>
+</div>
+<p>Entre las opciones avanzadas (figura <a href="id_120007-informes.html#fig:rsmd10">6.12</a>), en ficheros HTML, por defecto se crea un archivo “autocontenido”, es decir que todas las imágenes y estilos van en un único archivo .html. Si se desmarca la opción (1) las imágenes y otros archivos se guardan en carpetas.La única opción
+común a los tres formatos es la de mantener el fichero Markdown (2) en el directorio
+después de generar el archivo de destino. Para entender esta opción, ten en cuenta
+que el flujo de trabajo de R Markdown es:</p>
+<pre><code>.Rmd -&gt; .md -&gt; .docx | .html | (.tex -&gt; pdf)</code></pre>
+<p>Es decir, al hacer <em>Knit</em>, se ejecuta el código de los chunks y se crea un archivo .md, y es este archivo el que se transforma en otro formato de destino.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd10"></span>
+<img src="img/rsmd10.png" alt="Opciones avanzadas documentos HTML" width="100%" />
+<p class="caption">
+Figura 6.12: Opciones avanzadas documentos HTML
+</p>
+</div>
+<p>Cuando cambiamos cualquiera de las opciones explicadas, estas opciones se añaden
+al encabezado YAML del documento. Después podemos cambiarlas ahí directamente
+sin necesidad de abrir de nuevo la ventana de configuración. También las podemos
+pegar desde otro archivo que sepamos funciona como nos gusta, o mejor aún crear
+una plantilla a nuestro gusto para usarla en nuestros proyectos.</p>
+</div>
+<div id="inclusión-de-código" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Inclusión de código<a href="id_120007-informes.html#inclusión-de-código" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se pueden crear archivos R Markdown sin incluir nada de código, simplemente
+para crear documentos editables fácilmente. Sin embargo, la verdadera potencia
+de R Markdown es la posibilidad de incluir código de R (y también de otros
+lenguajes) en los documentos. Como ya se avazó, el código se incluye, principalmente,
+en forma de <em>chunks</em> o bloques de código.</p>
+<p>Un <em>chunk</em> consta de unos marcadores
+de inicio y final del <em>chunk</em>, entre los cuales se insertan expresiones de R que se
+ejecutarán al generar el documento de salida. El marcador de inicio son tres
+símbolos de acento grave (<em>backticks</em>, <code>`</code> ) seguidos de unas llaves con la letra r
+dentro. Opcionalmente, en el marcador de inicio se puede añadir un identificador del chunk
+y algunas opciones separadas por comas en forma de pares <code>opcion=valor</code>. El marcador de cierre del <em>chunk</em> son de nuevo
+tres acentos graves, sin más.</p>
+<p>El <em>chunk</em> que se muestra a continuación tiene como identificador “ejemplo”,
+y como opciones “echo=FALSE, fig.align=‘center’”, lo que indica que el código
+no se mostrará en el informe final y que el gráfico producido se alineará en el centro
+del texto.</p>
+<pre><code> ```{r ejemplo, echo=FALSE, fig.align=&#39;center&#39;}
+ plot(cars)
+ ```</code></pre>
+<p>En todo caso, no tenemos que escribir los marcadores de inicio y final, ya que
+tenemos el atajo de teclado <code>CTRL+ALT+I</code> que lo hace por nosotros, o,
+alternativamente, el icono <em>Insert</em> de la barra de herramientas del
+editor (ver figura <a href="id_120007-informes.html#fig:rsmd3">6.5</a> (6)) .
+Una vez tenemos el cursor dentro de un chunk, podemos ejecutar una expresión
+como si estuviéramos en un script (<code>CTRL+ENTER</code>), o el chunk completo
+(<code>MAYUS+CTRL+ENTER</code>).</p>
+<p>En la plantilla que se crea al crear un nuevo archivo R Markdown, podemos
+ver que se crea un bloque con el identificador <code>setup</code>. Este bloque
+es conveniente por ejemplo para cargar los paquetes que se van a configurar
+u opciones para aplicar en todo el documento.</p>
+<p>A veces es necesario incluir algún resultado de R en medio del texto
+y no como un bloque. En esos casos podemos insertar un bloque en línea
+poniendo, dentro de dos acentos graves, la letra <code>r</code> como primer carácter,
+y después una expresión de R que se pueda “imprimir” como cadena de texto:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb69-1"><a href="id_120007-informes.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="in">`r expresion_de_R `</span>    </span></code></pre></div>
+<div class="infobox">
+<p><strong>Informes parametrizables</strong></p>
+<p>En la figura <a href="id_120007-informes.html#fig:rsmd6">6.8</a> vimos que había una opción para renderizar
+con parámetros. Esta opción es muy útil para informes automatizados que pueden
+cambiar dependiendo de algún valor, por ejemplo del fichero de datos, la fecha,
+o cualquier otro valor. Estos parámetros se crean como elementos del encabezado
+de la forma:</p>
+<pre><code>params:
+  parametro: valor</code></pre>
+<p>que después se pueden usar en los chunks de código como <code>params$parametro</code>.
+La verdadera potencia de esta característica es cuando renderizamos el documento
+desde un script en el que los parámetros son resultados de algún tipo de
+operación en los datos (por ejemplo, un informe de análisis de inventario solo de una
+tienda donde se han producido roturas de stock el día x).
+En vez de utilizar el botóh <em>Knit</em>, en estos casos usamos la función <code>render</code>,
+una de cuyas opciones es <code>params</code>, donde le pasaríamos los parámetros en forma
+de lista cuyos elementos tienen el nombre de los parámetros.</p>
+</div>
+</div>
+<div id="opciones-de-los-bloques-de-código-chunks" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> Opciones de los bloques de código (<em>chunks</em>)<a href="id_120007-informes.html#opciones-de-los-bloques-de-código-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Al renderizar un informe que contiene chunks sin configurar ninguna opción,
+por defecto mostrará en el informe el código de entrada y las salidas
+(textos y gráficos) así como todos los mensajes que se pueden producir.
+Por defecto, si se produce un error el proceso se detiene y no se genera
+el archivo de destino. Este comportamiento, y otras muchas opciones,
+se pueden configurar en el encabezado del chunk. Volvamos al
+informe creado con la plantilla, figura <a href="id_120007-informes.html#fig:rsmd11">6.13</a>. Fijémonos
+primero en el segundo chunk (1), que no tiene ninguna opción configurada,
+solamente una etiqueta, que nos sirve entre otras cosas para navegar
+por los chunks con el selector de la parte inferior (2). Por defecto,
+se imprimen en el informe tanto las entradas (código) como las salidas.
+Sin embargo en el tercer bloque (3) se ha configurado la opción <code>echo=FALSE</code>,
+lo que hace que no se muestre el código, pero sí el resultado, en este caso
+un gráfico. El primer bloque de código tenía configurada la opción <code>include=FALSE</code> (4),
+lo que indica que no queremos que el informe incluya ninguna entrada ni salida de
+ese chunk. En este bloque lo que se ha hecho es configurar el documento
+para que, por defecto, los chunks sí muestren el código (que es lo que ha hecho
+el segundo chunk al no tener configurada otra cosa). Con expresiones como la
+del primer chunk (5) se pueden configurar las opciones por defecto de todos
+los chunks del documento:</p>
+<pre><code>knitr::opts_chunk$set(opcion=valor)</code></pre>
+<p>aunque después se puede cambiar en cualquier chunk añadiendo al encabezado
+<code>opcion=otro_valor</code>. En la parte superior derecha de los chunks tenemos también
+unos botones (6) con los que podemos ejecutar el chunk entero (equivalente a
+pulsar <code>CTRL+MAYÚS+ENTER</code>), o todos los chunks anteriores. También tenemos un
+icono de opciones de chunk que abre un pequeño cuadro para las configuraciones
+más habituales: lo que queremos mostrar (1), si queremos o no mostrar <em>warnings</em> (2),
+o mensajes (3), o el ancho y/o alto de las figuras creadas en el chunk (4).
+A medida que vamos cambiando cosas, el encabezado del chunk se va actualizando.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd11"></span>
+<img src="img/rsmd11.png" alt="Opciones de los chunks en el documento" width="100%" />
+<p class="caption">
+Figura 6.13: Opciones de los chunks en el documento
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd14"></span>
+<img src="img/rsmd14.png" alt="Opciones de un chunk con el botón de opciones" width="100%" />
+<p class="caption">
+Figura 6.14: Opciones de un chunk con el botón de opciones
+</p>
+</div>
+<p>Una característica muy cómoda es usar la ayuda contextual dentro del
+encabezado del chunk. Si empezamos a escribir, o pulsamos <code>CTRL+ESPACIO</code>, se
+muestran las opciones disponibles (figura <a href="id_120007-informes.html#fig:rsmd12">6.15</a>), y al seleccionar una opción, si tiene
+varias opciones aparecen también para seleccionar (figura <a href="id_120007-informes.html#fig:rsmd13">6.16</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd12"></span>
+<img src="img/rsmd12.png" alt="Opciones de chunk" width="100%" />
+<p class="caption">
+Figura 6.15: Opciones de chunk
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsmd13"></span>
+<img src="img/rsmd13.png" alt="Seleccionar valor de opción de chunk" width="100%" />
+<p class="caption">
+Figura 6.16: Seleccionar valor de opción de chunk
+</p>
+</div>
+<p>Las opciones comentadas son las más habituales y se utilizan en prácticamente cualquier
+proyecto. No obstante, el nivel de personalización es inmenso, y solo vamos a comentar
+algunas opciones más:</p>
+<ul>
+<li><p>Las que empiezan por <code>fig.xx</code> se usan para controlar cómo se muestran las figuras.
+Además del ancho y alto de la imagen (el tamaño de la imagen en sí) se puede
+configurar la alineación (<code>fig.align</code>) y el ancho que ocupa en el texto (<code>out.width</code>).</p></li>
+<li><p>La opción <code>results</code> se utiliza para controlar cómo se muestran las salidas.</p></li>
+<li><p>La opción <code>cache</code> se utiliza para evitar ejecutar siempre el chunk (guarda resultados).</p></li>
+<li><p>La opción <code>comment</code> sustituye los caracteres por defecto que preceden las líneas del output (<code>##</code>).</p></li>
+<li><p>La opción <code>error</code> evita que se detenga la renderización del documento si se produce un error (lo mostrará en el output pero seguirá con el siguiente chunk)</p></li>
+</ul>
+<p>Para ver la lista completa de opciones, accede a la <em>R Markdown reference guide</em>
+que está disponible en el menú <em>Help/Cheatsheets</em>.</p>
+<p>Además de las opciones de los chunks, se pueden configurar opciones
+del propio paquete <code>knitr</code>. Por ejemplo, la opción <code>root.dir</code> se puede
+configurar en un documento para indicar cuál será el directorio de
+trabajo en el que se renderiza el documento, por ejemplo:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="id_120007-informes.html#cb72-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_knit<span class="sc">$</span><span class="fu">set</span>(<span class="at">root.dir =</span> <span class="st">&quot;F:</span><span class="sc">\\</span><span class="st">&quot;</span>)</span></code></pre></div>
+<p>La lista completa de opciones se puede encontrar en el siguiente enlace:
+<a href="https://yihui.org/knitr/options/#package_options" class="uri">https://yihui.org/knitr/options/#package_options</a></p>
+</div>
+<div id="editor-visual" class="section level3 hasAnchor" number="6.2.5">
+<h3><span class="header-section-number">6.2.5</span> Editor visual<a href="id_120007-informes.html#editor-visual" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Desde la versión 1.4 de RStudio, disponemos de un editor visual que nos permite
+ir viendo en tiempo real el texto formateado, con lo que no tenemos
+que estar generando el output continuamente para ver “cómo queda”. Podemos
+cambiar entre el editor de texto plano y el editor visual con el icono que
+aparece en la parte superior derecha del editor, véase la figura <a href="id_120007-informes.html#fig:rsvm">6.17</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsvm"></span>
+<img src="img/rsvm.png" alt="RStudio Visual markdown editor" width="80%" />
+<p class="caption">
+Figura 6.17: RStudio Visual markdown editor
+</p>
+</div>
+<p>El formato se puede ir dando de tres formas distintas:</p>
+<ul>
+<li>Mediante los menús del propio editor.</li>
+<li>Escribiendo directamente el formato markdown, y se va formateando solo.</li>
+<li>“Llamando” a las distintas opciones simplemente pulsando la tecla <code>/</code> y buscando
+lo que queramos hacer.</li>
+</ul>
+<p>Consulta el documento <a href="https://rstudio.github.io/visual-markdown-editing/#/">Visual R Markdown</a> para
+conocer todas las opciones.</p>
+</div>
+</div>
+<div id="otros-formatos" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Otros formatos<a href="id_120007-informes.html#otros-formatos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El formato R Markdown es solo uno de los que se pueden utilizar
+para aplicar la reproducibilidad que motiva esta unidad. En R base
+se pueden crear archivos <code>Sweave</code>, con sintaxis $ $ para la
+narrativa y bloques de código R. También es posible crear archivos R HTML,
+con la narrativa en HTML. Los identificadores de los bloques son ligeramente
+distintos, así como las opciones disponibles, aunque la filosofía es la misma.
+R Markdown ha ido desplazando estos otros formatos al ser más versátil (puede
+generar cualquiera de los otros formatos, y además otros como Word).</p>
+<p>En cuanto a los formatos de salida, hay una cantidad de opciones muy interesante
+que queda fuera de los objetivos de este libro. Se relacionan a continuación
+algunos de ellos, se puede consultar el libro de <span class="citation">(<a href="#ref-xie2019r" role="doc-biblioref"><strong>xie2019r?</strong></a>)</span> para
+ver detalles.</p>
+<ul>
+<li><p><strong>Notebooks</strong>: Es un tipo especial de salida HTML, más indicado cuando
+se quieren ir probando cosas y viendo el resultado.</p></li>
+<li><p><strong>Presentaciones</strong>: Es posible crear presentaciones PowerPoint y usar una plantilla,
+como vimos con los documentos de Word. Se utiliza una sintaxis muy sencilla
+y se puede incluir código y resultados igual que en un informe. Otros formatos de
+presentaciones son ioslides, slidify o xaringan (HTML) y beamer (LaTeX).</p></li>
+<li><p><strong>Tableros</strong> (<em>dashboards</em>): Pueden ser estáticos, usando el paquete <code>flexdashboard</code>,
+útiles para comunicar resultados en un par de pantallazos.</p></li>
+<li><p><strong>Shiny</strong>: Aplicaciones web interactivas que responden a inputs del usuario (<em>reactive</em>)</p></li>
+<li><p><strong>Websites</strong>: Websites sencillos con páginas enlazadas en el mismo directorio.</p></li>
+<li><p><strong>Blog</strong>: Con el paquete <code>blogdown</code> se pueden generar sitios web completos al estilo de un blog con páginas.</p></li>
+<li><p><strong>Libros</strong>: Con el paquete <code>bookdown</code> se pueden crear libros en varios formatos. El material de este libro está creado de esta manera.</p></li>
+<li><p><strong>Tutoriales</strong>: Es una nueva característica de RStudio 1.3, se pueden crear documentos interactivos con preguntas y navegación.</p></li>
+<li><p><strong>Tufte Handouts</strong>: Un tipo especial de documento con anotaciones al margen
+que comunica muy bien.</p></li>
+</ul>
+<p>Por último, añadir que se pueden incluir en los informes tablas formateadas de calidad. Para ello, se debe utilizar alguna función que formatee la tabla de acuerdo al formato de salida (HTML, PDF, Word), y configurar la opción <code>results</code> del <em>chunk</em> como <code>'asis'</code>. Muchas de estas funciones preparan automáticamente el formato según el formato de salida que se está generando.
+Por ejemplo, el siguiente chunk generaría una tabla en cualquiera de los formatos de salida usando la función <code>kable</code> del paquete <code>nitr</code>:</p>
+<pre><code> ```{r ejemplo, echo=FALSE, results=&#39;asis&#39;}
+ knitr::kable(head(cars))
+ ```
+ </code></pre>
+<p>Hay otros paquetes con multitud de opciones de formato y presentación para las tablas como <code>xtable</code>, <code>flextable</code> o <code>kableExtra</code></p>
+<div class="infobox_resume">
+<p><strong>RESUMEN</strong></p>
+<ul>
+<li>En la comunicación de resultados, es esencial que sigamos un enfoque reproducible.</li>
+<li>R Markdown es el formato más versátil para crear informes reproducibles que
+permitan una trazabilidad de los análisis.</li>
+<li>RStudio permite trabajar eficientemente con R Markdown a través de ayuda y opciones.</li>
+<li>La narrativa del informe se escribe en Markdown, con una sintaxis extremadamente sencilla.</li>
+<li>El código se puede incluir en forma de bloques (<em>chunks</em>) o en línea.</li>
+<li>El encabezado del <em>chunk</em> puede incluir opciones de configuración para personalizar
+la forma en que se ejecutará y mostrará en el informe.</li>
+<li>Los informes R Markdown se pueden generar en formatos HTML, PDF y Word.</li>
+<li>Hay otros formatos más elaborados que merece la pena explorar.</li>
+</ul>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="6">
+<li id="fn6"><p>The goal of reproducible research is to tie specific instructions to data
+analysis and experimental data so that reports can be recreated, better
+understood and verified <span class="citation">(<a href="#ref-rrtaskview" role="doc-biblioref"><strong>rrtaskview?</strong></a>)</span>.<a href="id_120007-informes.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>Literate programming is a methodology that combines a programming language with
+a documentation language <span class="citation">(<a href="#ref-knuth1984literate" role="doc-biblioref"><strong>knuth1984literate?</strong></a>)</span>.<a href="id_120007-informes.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p> <a href="http://www.nytimes.com/2011/07/08/health/research/08genes.html" class="uri">http://www.nytimes.com/2011/07/08/health/research/08genes.html</a><a href="id_120007-informes.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>Se puede instalar una distribución
+ligera de LaTeX con el paquete <code>tinytex</code>, ejecutando <code>tinytex::install_tinytex()</code>
+habiendo instalado el paquete.<a href="id_120007-informes.html#fnref9" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="datos-no-sql.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="github.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Ciencia_de_datos_con_r.pdf", "Ciencia_de_datos_con_r.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
