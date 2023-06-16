@@ -7,7 +7,7 @@
 <title>Capítulo 18 Modelos mixtos | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="\(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Carlos III de Madrid  18.1 Conceptos básicos Los modelos mixtos (MM) para variables de respuesta continuas son modelos estadísticos en...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 18 Modelos mixtos | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,8 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
@@ -205,7 +204,7 @@ tamaño de su hospital de referencia.</li>
 <span class="header-section-number">18.1.1.2</span> Medidas repetidas y datos longitudinales<a class="anchor" aria-label="anchor" href="#medidas-repetidas-y-datos-longitudinales"><i class="fas fa-link"></i></a>
 </h4>
 <p>En este tipo de datos, la variable dependiente se mide más de una vez en
-un mismo individuo <span class="citation">(<a href="referncias.html#ref-Singer03">Singer and Willet 2003</a>)</span>. Por ejemplo, se miden los niveles de
+un mismo individuo <span class="citation">(<a href="referncias.html#ref-Singer03" role="doc-biblioref">Singer and Willet 2003</a>)</span>. Por ejemplo, se miden los niveles de
 glucosa de un enfermo antes y después de haberle inyectado insulina.
 Este tipo de datos también puede ser considerado como datos multinivel
 (o jerárquicos) donde el nivel 2 representa a los individuos y el nivel
@@ -230,7 +229,7 @@ análisis, y que, por tanto, las observaciones no son independientes.</p>
 <span class="header-section-number">18.1.2</span> ¿Efectos fijos o aleatorios?<a class="anchor" aria-label="anchor" href="#efectos-fijos-o-aleatorios"><i class="fas fa-link"></i></a>
 </h3>
 <p>En un modelo mixto la clave se encuentra en la distinción entre efectos
-fijos y aleatorios <span class="citation">(<a href="referncias.html#ref-Snijers03">Snijers 2003</a>)</span>. Esto es importante porque la inferencia y
+fijos y aleatorios <span class="citation">(<a href="referncias.html#ref-Snijers03" role="doc-biblioref">Snijers 2003</a>)</span>. Esto es importante porque la inferencia y
 el análisis de ambos efectos es distinta.</p>
 <p>Los <strong>efectos fijos</strong> son variables en las cuales el investigador ha
 incluido sólo los niveles (o tratamientos) que son de su interés. Por
@@ -335,7 +334,7 @@ con dimensión <span class="math inline">\(p \times p\)</span>.</li>
 <h4>
 <span class="header-section-number">18.2.1.1</span> Estimación de <span class="math inline">\(\boldsymbol{\beta}\)</span> y <span class="math inline">\(\boldsymbol{u}\)</span><a class="anchor" aria-label="anchor" href="#estimaci%C3%B3n-de-boldsymbolbeta-y-boldsymbolu"><i class="fas fa-link"></i></a>
 </h4>
-<p>Se hace mediante las llamadas <strong>ecuaciones de Henderson</strong> <span class="citation">(<a href="referncias.html#ref-Henderson1953">Henderson 1953</a>)</span>. Permiten
+<p>Se hace mediante las llamadas <strong>ecuaciones de Henderson</strong> <span class="citation">(<a href="referncias.html#ref-Henderson1953" role="doc-biblioref">Henderson 1953</a>)</span>. Permiten
 obtener el mejor estimador lineal insesgado de <span class="math inline">\(\boldsymbol{\beta}\)</span> y el mejor
 predictor lineal insesgado de <span class="math inline">\(\boldsymbol{u}\)</span>. Se obtienen maximizando la densidad
 conjunta de <span class="math inline">\(\boldsymbol{y}\)</span> y <span class="math inline">\(\boldsymbol{u}\)</span>:

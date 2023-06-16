@@ -7,7 +7,7 @@
 <title>Capítulo 2 Metodología en ciencia de datos | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Gema Fernández-Avilés\(^{a}\) y Ramón A. Carrasco\(^{b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Complutense de Madrid  2.1 Preliminares En el Cap. 1 se puso de manifiesto...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 2 Metodología en ciencia de datos | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,8 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
@@ -139,12 +138,12 @@
 <span class="header-section-number">2.1</span> Preliminares<a class="anchor" aria-label="anchor" href="#preliminares"><i class="fas fa-link"></i></a>
 </h2>
 <p>En el Cap. <a href="ciencia-datos.html#ciencia-datos">1</a> se puso de manifiesto que el método científico es el elemento
-que define la ciencia. <span class="citation">M. Bunge (<a href="referncias.html#ref-Bunge_2018">2018</a>)</span>, al hablar del método científico, lo define como: “un procedimiento para
+que define la ciencia. <span class="citation">M. Bunge (<a href="referncias.html#ref-Bunge_2018" role="doc-biblioref">2018</a>)</span>, al hablar del método científico, lo define como: “un procedimiento para
 tratar un conjunto de problemas. Cada clase de problemas requiere un conjunto de métodos o
 técnicas especiales. Los problemas del conocimiento, a diferencia de los del lenguaje o los de
 la acción, requieren la invención o la aplicación de procedimientos especiales adecuados para
 los varios estadios del tratamiento de los problemas…”. De acuerdo con su concepción del
-<strong>método</strong>, <span class="citation">M. Bunge (<a href="referncias.html#ref-Bunge_2018">2018</a>)</span> destaca ocho operaciones en la aplicación de este:
+<strong>método</strong>, <span class="citation">M. Bunge (<a href="referncias.html#ref-Bunge_2018" role="doc-biblioref">2018</a>)</span> destaca ocho operaciones en la aplicación de este:
 </p>
 <ol style="list-style-type: lower-roman">
 <li><p>Enunciar preguntas bien formuladas y verosímilmente fecundas.</p></li>
@@ -167,13 +166,13 @@ comprometan cuestiones concretas ni tampoco ocurrencias sin fundamento visible.<
 mejor de los casos, como parcialmente verdadera.</p></li>
 <li><p>Preguntarse por qué la respuesta es como es y no de otra manera.</p></li>
 </ol>
-<p>Sin embargo, de acuerdo con <span class="citation">José María Montero (<a href="referncias.html#ref-Montero_1997">1997</a>)</span>, estas reglas no son definitivas ni infalibles y necesitan de
+<p>Sin embargo, de acuerdo con <span class="citation">José María Montero (<a href="referncias.html#ref-Montero_1997" role="doc-biblioref">1997</a>)</span>, estas reglas no son definitivas ni infalibles y necesitan de
 ulterior perfeccionamiento, que se llevará a cabo a lo largo de la investigación científica. Además,
 las reglas del método científico no son autosuficientes, necesitan apoyarse en la inteligencia y
 creatividad humanas.</p>
 <p>En resumen, es el tratamiento sistemático de los problemas, de la forma descrita, y no la certeza
 de los resultados obtenidos o la utilización de las técnicas muy concretas y específicas, el que
-garantiza el carácter científico de las conclusiones <span class="citation">Cancelo (<a href="referncias.html#ref-cancelo_1991">1997</a>)</span>. La ciencia de los datos, como no podía ser
+garantiza el carácter científico de las conclusiones <span class="citation">Cancelo (<a href="referncias.html#ref-cancelo_1991" role="doc-biblioref">1997</a>)</span>. La ciencia de los datos, como no podía ser
 de otra forma, proporciona una serie de metodologías que guían el trabajo de los científicos de
 datos. Las principales metodologías se presentan a continuación.</p>
 </div>
@@ -197,7 +196,7 @@ conocimiento en los que se aplica la ciencia de datos.</p>
 <p>Por su amplio uso, destacan tres metodologías:</p>
 <ol style="list-style-type: lower-roman">
 <li><p>Obtención de conocimiento en bases de datos (Knowledge Discovery in Databases-<strong>KDD</strong>), propuesta
-por <span class="citation">Fayyad et al. (<a href="referncias.html#ref-fayyad_1996">1996</a>)</span> e inspirada en un trabajo previo de <span class="citation">Brachman and Anand (<a href="referncias.html#ref-brachman_1994">1994</a>)</span>, fue
+por <span class="citation">Fayyad et al. (<a href="referncias.html#ref-fayyad_1996" role="doc-biblioref">1996</a>)</span> e inspirada en un trabajo previo de <span class="citation">Brachman and Anand (<a href="referncias.html#ref-brachman_1994" role="doc-biblioref">1994</a>)</span>, fue
 la primera metodología aceptada por la comunidad científica. Se trata
 del primer intento serio de sistematizar el proceso conocido hoy día como ciencia de datos y en
 aquellos tiempos como conocimiento basado en bases de datos, pues se centraba en la minería
@@ -207,12 +206,12 @@ de datos.</p></li>
 por el Instituto SAS en 2012. Se define como el proceso de selección, exploración y modelización de grandes
 bases de datos para descubrir patrones de negocio desconocidos.</p></li>
 <li><p><strong>CRISP-DM</strong>, acrónimo en inglés de <em>Cross Industry Standard Process for Data Mining</em>, planteada
-inicialmente en 1996, publicada formalmente en <span class="citation">Chapman et al. (<a href="referncias.html#ref-chapman_2000">2000a</a>)</span> y mantenida durante varios años por
+inicialmente en 1996, publicada formalmente en <span class="citation">Chapman et al. (<a href="referncias.html#ref-chapman_2000" role="doc-biblioref">2000a</a>)</span> y mantenida durante varios años por
 la compañía SPSS, posteriormente adquirida por IBM, que se ha encargado de mantenerla y
 refinarla hasta la actualidad. Esta metodología define una secuencia flexible de
 seis fases que permiten la construcción e implementación de un modelo de minería de datos para
 ser utilizado en un entorno real, que contribuya a respaldar la toma de decisiones de negocio.
-Se considera la metodología más utilizada en la actualidad (<span class="citation">Azevedo and Santos (<a href="referncias.html#ref-azevedo_2008">2008</a>)</span> y <span class="citation">Shafique and Qaiser (<a href="referncias.html#ref-shafique_2014">2014</a>)</span>, entre otros) y
+Se considera la metodología más utilizada en la actualidad (<span class="citation">Azevedo and Santos (<a href="referncias.html#ref-azevedo_2008" role="doc-biblioref">2008</a>)</span> y <span class="citation">Shafique and Qaiser (<a href="referncias.html#ref-shafique_2014" role="doc-biblioref">2014</a>)</span>, entre otros) y
 se describe en la siguiente sección.</p></li>
 </ol>
 </div>
@@ -323,7 +322,7 @@ todas las propuestas en la literatura, mediante el lenguaje <strong>R</strong>.<
 </h3>
 <ul>
 <li><p>El método científico es el elemento clave en la definición de ciencia.</p></li>
-<li><p><span class="citation">M. Bunge (<a href="referncias.html#ref-Bunge_2018">2018</a>)</span> establece una serie de reglas y características para la correcta aplicación de la metodología científica. En un proyecto de ciencia de datos es muy importante la metodología, pues proporciona al
+<li><p><span class="citation">M. Bunge (<a href="referncias.html#ref-Bunge_2018" role="doc-biblioref">2018</a>)</span> establece una serie de reglas y características para la correcta aplicación de la metodología científica. En un proyecto de ciencia de datos es muy importante la metodología, pues proporciona al
 científico de datos una estrategia y un marco en el que trabajar. Entre ellas destaca
 el CRISP-DM como la más aceptada y utilizada por las empresas y científicos.</p></li>
 <li><p>El CRISP-DM se basa en la organización flexible de seis pilares: entendimiento del negocio, compresión de los

@@ -7,7 +7,7 @@
 <title>Capítulo 14 Muestreo y remuestreo | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Mª Leticia Meseguer Santamaría\(^{a}\) y Manuel Vargas Vargas\(^{a}\) \(^{a}\) Universidad de Castilla-La Mancha  14.1 Introducción al muestreo Muchas investigaciones científicas abordan el...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 14 Muestreo y remuestreo | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,8 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
@@ -145,7 +144,7 @@
 <p>Se define <strong>muestra</strong> como un subconjunto de la población, que será utilizado para caracterizar la distribución poblacional y <strong>unidad muestral</strong> a cada individuo de la muestra. Si la muestra tiene la misma distribución que la población, se dice que es <strong>representativa</strong>, mientras que en caso contrario se denomina <strong>sesgada</strong>.</p>
 <p>Siempre será preferible un método de muestreo que proporcione muestras representativas, característica ligada a la forma de seleccionar la muestra y al tamaño de ésta. Así, siempre que sea posible, se recomienda utilizar un <strong>muestreo probabilístico</strong>, basado en la selección aleatoria de la muestra (conociéndose, por tanto, la probabilidad de que cada individuo salga seleccionado), lo que permite extender los resultados a toda la población, cuantificando posibles sesgos y detallando un error máximo dentro de un nivel de confianza seleccionado al inicio del proceso.</p>
 <p>No siempre será posible utilizar un muestreo probabilístico, por lo que existe una colección de métodos de muestreo no probabilístico (conveniencia, bola de nieve, cuotas, etc.), que no se detallarán en este capítulo. La característica común a todos ellos es que los resultados obtenidos de la muestra no se deben extrapolar a la población, ya que no está garantizada la representatividad.</p>
-<p>En el resto del capítulo se presentarán brevemente los métodos de muestreo probabilístico más usuales. Para mayor detalle, se pueden consultar las referencias <span class="citation">Chaudhuri and Stenger (<a href="referncias.html#ref-ChaudhuriStenger2005">2005</a>)</span>, <span class="citation">Arnab (<a href="referncias.html#ref-Arnab2017">2017</a>)</span> o <span class="citation">C. Wu and Thompson (<a href="referncias.html#ref-WuThompson2020">2020</a>)</span>.</p>
+<p>En el resto del capítulo se presentarán brevemente los métodos de muestreo probabilístico más usuales. Para mayor detalle, se pueden consultar las referencias <span class="citation">Chaudhuri and Stenger (<a href="referncias.html#ref-ChaudhuriStenger2005" role="doc-biblioref">2005</a>)</span>, <span class="citation">Arnab (<a href="referncias.html#ref-Arnab2017" role="doc-biblioref">2017</a>)</span> o <span class="citation">C. Wu and Thompson (<a href="referncias.html#ref-WuThompson2020" role="doc-biblioref">2020</a>)</span>.</p>
 </div>
 <div id="MAS" class="section level2" number="14.2">
 <h2>

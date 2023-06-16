@@ -7,7 +7,7 @@
 <title>Capítulo 27 Naive Bayes | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Ramón A. Carrasco\(^{a}\) e Itzcóatl Bueno\(^{b,a}\) \(^{a}\)Universidad Complutense de Madrid \(^{b}\)Instituto Nacional de Estadística  27.1 Introducción Naive Bayes es un algoritmo de...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 27 Naive Bayes | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,8 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
@@ -359,7 +358,7 @@ P(No|\ell) = P(Soleado|No)\cdot P(Fuerte|No) \cdot P (Débil|No) \cdot P(No) = \
 <h2>
 <span class="header-section-number">27.4</span> Procedimiento con <strong>R</strong>: la función <code>naive_bayes()</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-la-funci%C3%B3n-naive_bayes"><i class="fas fa-link"></i></a>
 </h2>
-<p>En el paquete <code>naivebayes</code> de R se encuentra la función <code><a href="https://majkamichal.github.io/naivebayes//reference/naive_bayes.html">naive_bayes()</a></code> que se utiliza para entrenar un modelo <em>Naive Bayes</em>:</p>
+<p>En el paquete <code>naivebayes</code> de R se encuentra la función <code>naive_bayes()</code> que se utiliza para entrenar un modelo <em>Naive Bayes</em>:</p>
 <div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">naive_bayes</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, prior <span class="op">=</span> <span class="va">...</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <ul>
@@ -398,38 +397,38 @@ P(No|\ell) = P(Soleado|No)\cdot P(Fuerte|No) \cdot P (Débil|No) \cdot P(No) = \
 <span>                                   number <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># se muestra la salida del modelo</span></span>
 <span><span class="va">model</span></span></code></pre></div>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="cap-naive-bayes.html#cb379-1" tabindex="-1"></a>Naive Bayes </span>
-<span id="cb379-2"><a href="cap-naive-bayes.html#cb379-2" tabindex="-1"></a></span>
-<span id="cb379-3"><a href="cap-naive-bayes.html#cb379-3" tabindex="-1"></a><span class="dv">558</span> samples</span>
-<span id="cb379-4"><a href="cap-naive-bayes.html#cb379-4" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
-<span id="cb379-5"><a href="cap-naive-bayes.html#cb379-5" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span> </span>
-<span id="cb379-6"><a href="cap-naive-bayes.html#cb379-6" tabindex="-1"></a></span>
-<span id="cb379-7"><a href="cap-naive-bayes.html#cb379-7" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
-<span id="cb379-8"><a href="cap-naive-bayes.html#cb379-8" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold) </span>
-<span id="cb379-9"><a href="cap-naive-bayes.html#cb379-9" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ... </span>
-<span id="cb379-10"><a href="cap-naive-bayes.html#cb379-10" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
-<span id="cb379-11"><a href="cap-naive-bayes.html#cb379-11" tabindex="-1"></a></span>
-<span id="cb379-12"><a href="cap-naive-bayes.html#cb379-12" tabindex="-1"></a>  usekernel  Accuracy   Kappa    </span>
-<span id="cb379-13"><a href="cap-naive-bayes.html#cb379-13" tabindex="-1"></a>  <span class="cn">FALSE</span>      <span class="fl">0.8512662</span>  <span class="fl">0.7026716</span></span>
-<span id="cb379-14"><a href="cap-naive-bayes.html#cb379-14" tabindex="-1"></a>   <span class="cn">TRUE</span>      <span class="fl">0.8512338</span>  <span class="fl">0.7025165</span></span>
-<span id="cb379-15"><a href="cap-naive-bayes.html#cb379-15" tabindex="-1"></a></span>
-<span id="cb379-16"><a href="cap-naive-bayes.html#cb379-16" tabindex="-1"></a>Tuning parameter <span class="st">'fL'</span> was held constant at a value of <span class="dv">0</span></span>
-<span id="cb379-17"><a href="cap-naive-bayes.html#cb379-17" tabindex="-1"></a>Tuning parameter</span>
-<span id="cb379-18"><a href="cap-naive-bayes.html#cb379-18" tabindex="-1"></a> <span class="st">'adjust'</span> was held constant at a value of <span class="dv">1</span></span>
-<span id="cb379-19"><a href="cap-naive-bayes.html#cb379-19" tabindex="-1"></a>Accuracy was used to select the optimal model using the largest value.</span>
-<span id="cb379-20"><a href="cap-naive-bayes.html#cb379-20" tabindex="-1"></a>The final values used <span class="cf">for</span> the model were fL <span class="ot">=</span> <span class="dv">0</span>, usekernel <span class="ot">=</span> <span class="cn">FALSE</span> and adjust <span class="ot">=</span> <span class="fl">1.</span></span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="cap-naive-bayes.html#cb379-1" aria-hidden="true" tabindex="-1"></a>Naive Bayes </span>
+<span id="cb379-2"><a href="cap-naive-bayes.html#cb379-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb379-3"><a href="cap-naive-bayes.html#cb379-3" aria-hidden="true" tabindex="-1"></a><span class="dv">558</span> samples</span>
+<span id="cb379-4"><a href="cap-naive-bayes.html#cb379-4" aria-hidden="true" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
+<span id="cb379-5"><a href="cap-naive-bayes.html#cb379-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span> </span>
+<span id="cb379-6"><a href="cap-naive-bayes.html#cb379-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb379-7"><a href="cap-naive-bayes.html#cb379-7" aria-hidden="true" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
+<span id="cb379-8"><a href="cap-naive-bayes.html#cb379-8" aria-hidden="true" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold) </span>
+<span id="cb379-9"><a href="cap-naive-bayes.html#cb379-9" aria-hidden="true" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ... </span>
+<span id="cb379-10"><a href="cap-naive-bayes.html#cb379-10" aria-hidden="true" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
+<span id="cb379-11"><a href="cap-naive-bayes.html#cb379-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb379-12"><a href="cap-naive-bayes.html#cb379-12" aria-hidden="true" tabindex="-1"></a>  usekernel  Accuracy   Kappa    </span>
+<span id="cb379-13"><a href="cap-naive-bayes.html#cb379-13" aria-hidden="true" tabindex="-1"></a>  <span class="cn">FALSE</span>      <span class="fl">0.8512662</span>  <span class="fl">0.7026716</span></span>
+<span id="cb379-14"><a href="cap-naive-bayes.html#cb379-14" aria-hidden="true" tabindex="-1"></a>   <span class="cn">TRUE</span>      <span class="fl">0.8512338</span>  <span class="fl">0.7025165</span></span>
+<span id="cb379-15"><a href="cap-naive-bayes.html#cb379-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb379-16"><a href="cap-naive-bayes.html#cb379-16" aria-hidden="true" tabindex="-1"></a>Tuning parameter <span class="st">'fL'</span> was held constant at a value of <span class="dv">0</span></span>
+<span id="cb379-17"><a href="cap-naive-bayes.html#cb379-17" aria-hidden="true" tabindex="-1"></a>Tuning parameter</span>
+<span id="cb379-18"><a href="cap-naive-bayes.html#cb379-18" aria-hidden="true" tabindex="-1"></a> <span class="st">'adjust'</span> was held constant at a value of <span class="dv">1</span></span>
+<span id="cb379-19"><a href="cap-naive-bayes.html#cb379-19" aria-hidden="true" tabindex="-1"></a>Accuracy was used to select the optimal model using the largest value.</span>
+<span id="cb379-20"><a href="cap-naive-bayes.html#cb379-20" aria-hidden="true" tabindex="-1"></a>The final values used <span class="cf">for</span> the model were fL <span class="ot">=</span> <span class="dv">0</span>, usekernel <span class="ot">=</span> <span class="cn">FALSE</span> and adjust <span class="ot">=</span> <span class="fl">1.</span></span></code></pre></div>
 <p>Los resultados del proceso de entrenamiento muestran que, en este caso, es indiferente indicar el argumento <code>usekernel</code> como FALSE o TRUE, los resultados de precisión son equivalentes. El resumen del modelo muestra que la precisión media obtenida durante la validación cruzada alcanza el 85,1%, lo cual indica que el modelo ajusta bastante bien la intención de compra de nuevos clientes.</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="cap-naive-bayes.html#cb380-1" tabindex="-1"></a><span class="fu">confusionMatrix</span>(model)</span>
-<span id="cb380-2"><a href="cap-naive-bayes.html#cb380-2" tabindex="-1"></a>Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold) Confusion Matrix </span>
-<span id="cb380-3"><a href="cap-naive-bayes.html#cb380-3" tabindex="-1"></a></span>
-<span id="cb380-4"><a href="cap-naive-bayes.html#cb380-4" tabindex="-1"></a>(entries are percentual average cell counts across resamples)</span>
-<span id="cb380-5"><a href="cap-naive-bayes.html#cb380-5" tabindex="-1"></a> </span>
-<span id="cb380-6"><a href="cap-naive-bayes.html#cb380-6" tabindex="-1"></a>          Reference</span>
-<span id="cb380-7"><a href="cap-naive-bayes.html#cb380-7" tabindex="-1"></a>Prediction    S    N</span>
-<span id="cb380-8"><a href="cap-naive-bayes.html#cb380-8" tabindex="-1"></a>         S <span class="fl">41.8</span>  <span class="fl">6.6</span></span>
-<span id="cb380-9"><a href="cap-naive-bayes.html#cb380-9" tabindex="-1"></a>         N  <span class="fl">8.2</span> <span class="fl">43.4</span></span>
-<span id="cb380-10"><a href="cap-naive-bayes.html#cb380-10" tabindex="-1"></a>                            </span>
-<span id="cb380-11"><a href="cap-naive-bayes.html#cb380-11" tabindex="-1"></a> <span class="fu">Accuracy</span> (average) <span class="sc">:</span> <span class="fl">0.8513</span></span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="cap-naive-bayes.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(model)</span>
+<span id="cb380-2"><a href="cap-naive-bayes.html#cb380-2" aria-hidden="true" tabindex="-1"></a>Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold) Confusion Matrix </span>
+<span id="cb380-3"><a href="cap-naive-bayes.html#cb380-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-4"><a href="cap-naive-bayes.html#cb380-4" aria-hidden="true" tabindex="-1"></a>(entries are percentual average cell counts across resamples)</span>
+<span id="cb380-5"><a href="cap-naive-bayes.html#cb380-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb380-6"><a href="cap-naive-bayes.html#cb380-6" aria-hidden="true" tabindex="-1"></a>          Reference</span>
+<span id="cb380-7"><a href="cap-naive-bayes.html#cb380-7" aria-hidden="true" tabindex="-1"></a>Prediction    S    N</span>
+<span id="cb380-8"><a href="cap-naive-bayes.html#cb380-8" aria-hidden="true" tabindex="-1"></a>         S <span class="fl">41.8</span>  <span class="fl">6.6</span></span>
+<span id="cb380-9"><a href="cap-naive-bayes.html#cb380-9" aria-hidden="true" tabindex="-1"></a>         N  <span class="fl">8.2</span> <span class="fl">43.4</span></span>
+<span id="cb380-10"><a href="cap-naive-bayes.html#cb380-10" aria-hidden="true" tabindex="-1"></a>                            </span>
+<span id="cb380-11"><a href="cap-naive-bayes.html#cb380-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">Accuracy</span> (average) <span class="sc">:</span> <span class="fl">0.8513</span></span></code></pre></div>
 <p>En la matriz de confusión del modelo se observa para cada celda el promedio porcentual entre remuestreos. Así, se observa que en media el modelo predice mejor cuando un cliente no va a comprar el nuevo producto que cuando sí lo hace, aunque no con mucha diferencia (menos de un 2%). En ambos casos, las clasificaciones erróneas no suponen ni el 10%.</p>
 <div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">resample</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>

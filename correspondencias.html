@@ -7,7 +7,7 @@
 <title>Capítulo 35 Análisis de correspondencias | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Román Mínguez Salido\(^{a}\) y Manuel Vargas Vargas\(^{a}\) \(^{a}\) Universidad de Castilla-La Mancha  35.1 Introducción El análisis de correspondencias es un método gráfico descriptivo de...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 35 Análisis de correspondencias | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,8 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
@@ -196,7 +195,7 @@
 </table></div>
 <p>Cada fila representa el <strong>perfil condicional</strong> del nivel <span class="math inline">\(A_i\)</span>, siendo la última el <strong>perfil marginal</strong> del factor <span class="math inline">\(A\)</span>. Igualmente, cada columna representa el <strong>perfil condicional</strong> del nivel <span class="math inline">\(B_j\)</span>, siendo la última el <strong>perfil marginal</strong> del factor <span class="math inline">\(B\)</span>.</p>
 <p>Como se vió en el Cap. <a href="tablas-contingencia.html#tablas-contingencia">23</a>, si los factores fueran independientes, el <strong>valor esperado</strong> en cada casilla sería <span class="math inline">\(E_{ij}=\frac{n_{i.}n_{.j}}{N}\)</span>, por lo que la diferencia tipificada, <span class="math inline">\(r_{ij}=\frac{n_{ij}- E_{ij}}{\sqrt{E_{ij}}}\)</span> es una medida de asociación entre las modalidades <span class="math inline">\(A_i\)</span> y <span class="math inline">\(B_j\)</span>. La matriz formada por estos “residuos estandarizados” (véase sección 23.5.4), <em><span class="math inline">\(R=\lbrace r_{ij} \rbrace\)</span></em> resume la asociación entre los atributos, y es el objetivo básico del análisis de correspondencias; básicamente, se realiza una proyección de las filas y columnas de la tabla de frecuencias relativas (transformadas) para obtener las coordenadas en ejes cuantitativos, representables en la forma habitual como diagramas de puntos.</p>
-<p>Para un estudio en profundidad de esta técnica pueden consultarse <span class="citation">Greenacre (<a href="referncias.html#ref-Greenacre2008">2008</a>)</span> (en español) o <span class="citation">Beh and Lombardo (<a href="referncias.html#ref-BehLombardo2014">2014</a>)</span>. En el resto del capítulo se hará una breve exposición de la metodología y se ejemplificará con el análisis de dos tablas de contingencia.</p>
+<p>Para un estudio en profundidad de esta técnica pueden consultarse <span class="citation">Greenacre (<a href="referncias.html#ref-Greenacre2008" role="doc-biblioref">2008</a>)</span> (en español) o <span class="citation">Beh and Lombardo (<a href="referncias.html#ref-BehLombardo2014" role="doc-biblioref">2014</a>)</span>. En el resto del capítulo se hará una breve exposición de la metodología y se ejemplificará con el análisis de dos tablas de contingencia.</p>
 </div>
 <div id="metodología-del-análisis-de-correspondencias" class="section level2" number="35.2">
 <h2>
@@ -217,7 +216,7 @@
 {d(\textbf{a}_i , \textbf{a}_{i'})= \sqrt {(a_{i1}-a_{i'1})^2+(a_{i2}-a_{i'2})^2} \approx d_{ii'}} \\ {d(\textbf{b}_j , \textbf{b}_{j'})= \sqrt {(b_{j1}-b_{j'1})^2+(b_{j2}-b_{j'2})^2} \approx d_{jj'}} \\ \textbf{a'}_i * \textbf{b}_j \approx r_{ij} \end{array}
 \end{equation}\]</span></p>
 <p>Con las coordenadas contenidas en las matrices <strong>A</strong> y <strong>B</strong>, es posible <em>“visualizar”</em> la posición relativa de cada factor en las nuevas dimensiones. Esta estructura permite ver, tanto las <em>“distancias”</em> que hay entre los niveles de cada factor (mediante la distancia de representación en el plano), como las <em>“asociaciones</em>” entre niveles de ambos factores (ya que mientras más asociación haya, más cerca se representarán en el plano).</p>
-<p>Para resolver el problema de estimación de las matrices <strong>A</strong> y <strong>B</strong>, se busca una descomposición de la matriz de <span class="math inline">\(\textbf{R}= \lbrace r_{ij} \rbrace\)</span> en valores singulares. Según la importancia que se de al ajuste de uno de los perfiles o a la matriz de residuos, se tienen diferentes métodos de selección, llamados <strong>normalizaciones</strong>, que pueden consultarse en <span class="citation">Greenacre (<a href="referncias.html#ref-Greenacre2008">2008</a>)</span>.</p>
+<p>Para resolver el problema de estimación de las matrices <strong>A</strong> y <strong>B</strong>, se busca una descomposición de la matriz de <span class="math inline">\(\textbf{R}= \lbrace r_{ij} \rbrace\)</span> en valores singulares. Según la importancia que se de al ajuste de uno de los perfiles o a la matriz de residuos, se tienen diferentes métodos de selección, llamados <strong>normalizaciones</strong>, que pueden consultarse en <span class="citation">Greenacre (<a href="referncias.html#ref-Greenacre2008" role="doc-biblioref">2008</a>)</span>.</p>
 <div id="proyecciones-fila-columna-y-simétrica" class="section level3" number="35.2.1">
 <h3>
 <span class="header-section-number">35.2.1</span> Proyecciones fila, columna y simétrica<a class="anchor" aria-label="anchor" href="#proyecciones-fila-columna-y-sim%C3%A9trica"><i class="fas fa-link"></i></a>

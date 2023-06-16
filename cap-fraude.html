@@ -7,7 +7,7 @@
 <title>Capítulo 60 Detección de fraude de tarjetas de crédito | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Pedro Albarracín García  60.1 Introducción En un informe publicado en diciembre de 2021 por Nilson Report (https://nilsonreport.com/upload/content_promo/NilsonReport_Issue1209.pdf), se informó de...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 60 Detección de fraude de tarjetas de crédito | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,8 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
@@ -319,7 +318,7 @@ submuestreo del dataset siguiendo los siguientes pasos:</p>
 <div class="sourceCode" id="cb854"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">undersampled_creditcard</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/unbalanced/man/ubBalance.html">ubBalance</a></span><span class="op">(</span><span class="va">creditcard_X</span>, <span class="va">creditcard</span><span class="op">$</span><span class="va">Class</span>, type<span class="op">=</span><span class="st">'ubUnder'</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Proportion of positives after ubUnder : 50 % of 984 observations</span></span>
-<span><span class="va">undersampled_combined</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html">cbind</a></span><span class="op">(</span><span class="va">undersampled_creditcard</span><span class="op">$</span><span class="va">X</span>,   </span>
+<span><span class="va">undersampled_combined</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">undersampled_creditcard</span><span class="op">$</span><span class="va">X</span>,   </span>
 <span>                               <span class="va">undersampled_creditcard</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">undersampled_combined</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">undersampled_combined</span><span class="op">)</span> <span class="op">==</span> <span class="st">"undersampled_creditcard$Y"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Class"</span></span>
@@ -396,49 +395,49 @@ indica que será de tipo “binomial”.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Deviance Residuals: </span></span>
 <span><span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span></span>
-<span><span class="co">#&gt; -5.6665  -0.2824  -0.0100   0.0207   2.8822  </span></span>
+<span><span class="co">#&gt; -1.5541  -0.1782   0.0000   0.0000   3.3888  </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;             Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
-<span><span class="co">#&gt; (Intercept) -3.07010    0.27924 -10.995  &lt; 2e-16 ***</span></span>
-<span><span class="co">#&gt; V1          -0.11097    0.09205  -1.206 0.227989    </span></span>
-<span><span class="co">#&gt; V2           0.01988    0.11120   0.179 0.858113    </span></span>
-<span><span class="co">#&gt; V3          -0.05131    0.10141  -0.506 0.612875    </span></span>
-<span><span class="co">#&gt; V4           0.73337    0.14655   5.004  5.6e-07 ***</span></span>
-<span><span class="co">#&gt; V5           0.06131    0.12566   0.488 0.625621    </span></span>
-<span><span class="co">#&gt; V6          -0.25720    0.18061  -1.424 0.154428    </span></span>
-<span><span class="co">#&gt; V7           0.04104    0.14351   0.286 0.774892    </span></span>
-<span><span class="co">#&gt; V8          -0.59200    0.17242  -3.433 0.000596 ***</span></span>
-<span><span class="co">#&gt; V9           0.09649    0.25616   0.377 0.706430    </span></span>
-<span><span class="co">#&gt; V10         -0.36799    0.23336  -1.577 0.114816    </span></span>
-<span><span class="co">#&gt; V11          0.17731    0.17308   1.024 0.305633    </span></span>
-<span><span class="co">#&gt; V12         -0.42350    0.18651  -2.271 0.023165 *  </span></span>
-<span><span class="co">#&gt; V13         -0.46607    0.17870  -2.608 0.009105 ** </span></span>
-<span><span class="co">#&gt; V14         -0.60792    0.16403  -3.706 0.000210 ***</span></span>
-<span><span class="co">#&gt; V15         -0.20302    0.19558  -1.038 0.299246    </span></span>
-<span><span class="co">#&gt; V16         -0.05732    0.24961  -0.230 0.818359    </span></span>
-<span><span class="co">#&gt; V17          0.03321    0.17355   0.191 0.848234    </span></span>
-<span><span class="co">#&gt; V18         -0.02035    0.27096  -0.075 0.940146    </span></span>
-<span><span class="co">#&gt; V19         -0.17014    0.21817  -0.780 0.435475    </span></span>
-<span><span class="co">#&gt; V20          0.20927    0.21526   0.972 0.330979    </span></span>
-<span><span class="co">#&gt; V21         -0.17569    0.24956  -0.704 0.481436    </span></span>
-<span><span class="co">#&gt; V22          0.37758    0.26040   1.450 0.147059    </span></span>
-<span><span class="co">#&gt; V23         -0.13444    0.13370  -1.006 0.314618    </span></span>
-<span><span class="co">#&gt; V24          0.10680    0.35270   0.303 0.762037    </span></span>
-<span><span class="co">#&gt; V25          0.01945    0.35147   0.055 0.955869    </span></span>
-<span><span class="co">#&gt; V26         -0.24275    0.39213  -0.619 0.535882    </span></span>
-<span><span class="co">#&gt; V27         -0.44250    0.33671  -1.314 0.188780    </span></span>
-<span><span class="co">#&gt; V28          1.01477    0.78764   1.288 0.197619    </span></span>
+<span><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)   </span></span>
+<span><span class="co">#&gt; (Intercept)   0.13277    1.62081   0.082  0.93471   </span></span>
+<span><span class="co">#&gt; V1          -10.16466    4.14244  -2.454  0.01414 * </span></span>
+<span><span class="co">#&gt; V2            9.92651    4.08833   2.428  0.01518 * </span></span>
+<span><span class="co">#&gt; V3          -23.95129    9.50395  -2.520  0.01173 * </span></span>
+<span><span class="co">#&gt; V4           15.65199    5.75859   2.718  0.00657 **</span></span>
+<span><span class="co">#&gt; V5          -16.35394    6.53594  -2.502  0.01234 * </span></span>
+<span><span class="co">#&gt; V6           -6.06917    2.25913  -2.687  0.00722 **</span></span>
+<span><span class="co">#&gt; V7          -31.07144   12.40824  -2.504  0.01228 * </span></span>
+<span><span class="co">#&gt; V8            6.23448    2.83950   2.196  0.02812 * </span></span>
+<span><span class="co">#&gt; V9          -16.15734    6.24416  -2.588  0.00966 **</span></span>
+<span><span class="co">#&gt; V10         -37.44063   14.46013  -2.589  0.00962 **</span></span>
+<span><span class="co">#&gt; V11          26.22151   10.11499   2.592  0.00953 **</span></span>
+<span><span class="co">#&gt; V12         -46.92783   18.16360  -2.584  0.00978 **</span></span>
+<span><span class="co">#&gt; V13           0.19265    0.28429   0.678  0.49798   </span></span>
+<span><span class="co">#&gt; V14         -49.12923   18.80355  -2.613  0.00898 **</span></span>
+<span><span class="co">#&gt; V15          -1.03184    0.43742  -2.359  0.01833 * </span></span>
+<span><span class="co">#&gt; V16         -43.64101   17.03238  -2.562  0.01040 * </span></span>
+<span><span class="co">#&gt; V17         -78.84821   30.87240  -2.554  0.01065 * </span></span>
+<span><span class="co">#&gt; V18         -29.25816   11.52421  -2.539  0.01112 * </span></span>
+<span><span class="co">#&gt; V19           9.68638    3.79255   2.554  0.01065 * </span></span>
+<span><span class="co">#&gt; V20           5.23863    2.20505   2.376  0.01751 * </span></span>
+<span><span class="co">#&gt; V21           7.06688    2.49069   2.837  0.00455 **</span></span>
+<span><span class="co">#&gt; V22           0.71537    0.40820   1.753  0.07968 . </span></span>
+<span><span class="co">#&gt; V23          -0.82654    0.29222  -2.828  0.00468 **</span></span>
+<span><span class="co">#&gt; V24          -0.65786    0.54123  -1.216  0.22417   </span></span>
+<span><span class="co">#&gt; V25           1.76627    0.80186   2.203  0.02761 * </span></span>
+<span><span class="co">#&gt; V26           0.02523    0.56788   0.044  0.96456   </span></span>
+<span><span class="co">#&gt; V27           9.41649    3.33780   2.821  0.00478 **</span></span>
+<span><span class="co">#&gt; V28           6.15618    2.34266   2.628  0.00859 **</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     Null deviance: 1092.40  on 787  degrees of freedom</span></span>
-<span><span class="co">#&gt; Residual deviance:  254.81  on 759  degrees of freedom</span></span>
-<span><span class="co">#&gt; AIC: 312.81</span></span>
+<span><span class="co">#&gt; Residual deviance:  179.97  on 759  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 237.97</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Number of Fisher Scoring iterations: 9</span></span></code></pre></div>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 19</span></span></code></pre></div>
 <p>Con el modelo ya entrenado, se realizan las predicciones para los datos
 del conjunto de testing, utilizando para ello la función “predict()”.
 Los parámetros son simples: el primero es el modelo o clasificador que
@@ -452,8 +451,8 @@ variable dependiente.</p>
 <div class="sourceCode" id="cb861"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fraud_prob</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/predict.html">predict</a></span><span class="op">(</span><span class="va">undersampledModel</span>, type <span class="op">=</span> <span class="st">"response"</span>, newdata <span class="op">=</span> <span class="va">test</span><span class="op">[</span>,<span class="op">-</span><span class="fl">29</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html">head</a></span><span class="op">(</span><span class="va">fraud_prob</span><span class="op">)</span></span>
-<span><span class="co">#&gt;        620       2171       2342       2934       5051       6109 </span></span>
-<span><span class="co">#&gt; 0.04012917 0.22457711 0.01231549 0.09225823 0.23155212 0.99999667</span></span></code></pre></div>
+<span><span class="co">#&gt;        1428        3286        3488        4922        6109        6720 </span></span>
+<span><span class="co">#&gt; 0.061932387 0.001207266 0.010887549 0.387159249 1.000000000 1.000000000</span></span></code></pre></div>
 <p>La visualización del vector con las predicciones puede parecer algo
 confusa, por lo que, a menudo, es preciso realizar una conversión de
 esas predicciones en valores 0 y 1, dependiendo del rango de valores a
@@ -478,8 +477,8 @@ observaciones.</p>
 <span><span class="va">confusionMatrix</span></span>
 <span><span class="co">#&gt;    y_pred</span></span>
 <span><span class="co">#&gt;      0  1</span></span>
-<span><span class="co">#&gt;   0 97  1</span></span>
-<span><span class="co">#&gt;   1 11 87</span></span></code></pre></div>
+<span><span class="co">#&gt;   0 96  2</span></span>
+<span><span class="co">#&gt;   1  8 90</span></span></code></pre></div>
 
 </div>
 </div>

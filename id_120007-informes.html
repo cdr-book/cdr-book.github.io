@@ -7,7 +7,7 @@
 <title>Capítulo 44 Informes reproducibles con R Markdown y Quarto | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Emilio L. Cano Universidad Rey Juan Carlos  44.1 ¿Por qué informes reproducibles?  El resultado final de un proyecto de análisis de datos terminará comunicándose a distintos niveles, tanto aguas...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 44 Informes reproducibles con R Markdown y Quarto | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,8 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
@@ -157,7 +156,7 @@ los resultados del análisis como base de un informe escrito, posiblemente
 con algunas iteraciones del proceso si el proyecto tiene cierta envergadura.
 El software estadístico comercial suele incluir formas de generar resultados listos
 para integrar en un informe, pero habitualmente bajo este paradigma de incluir el
-resultado a posteriori <span class="citation">(<a href="referncias.html#ref-leisch2002sweave">Leisch 2002</a>)</span>.</p>
+resultado a posteriori <span class="citation">(<a href="referncias.html#ref-leisch2002sweave" role="doc-biblioref">Leisch 2002</a>)</span>.</p>
 <p>Esta forma de trabajar genera un alto coste de mantenimiento (debido a la regeneración manual del informe) a la vez que
 provoca inconsistencias (por ejemplo entre unos grupos y otros,
 entre diferentes analistas, etc.), errores, contenidos desactualizados o no
@@ -165,13 +164,13 @@ reproducibles. Este enfoque es propenso a fallos de organización y gestión de 
 vulnerabilidades especialmente en la ejecución de software, simulaciones, etc.
 Además, cada vez que hay que hacer un cambio, hay que hacerlo en muchos
 sitios, con la consiguiente pérdida de tiempo y posibles errores.</p>
-<p>El enfoque de la <strong>investigación reproducible</strong><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;El objetivo de la investigación reproducible es vincular instrucciones específicas a los análisis y datos experimentales, de modo que los informes puedan recrearse entendidos mejor y verificados. &lt;span class="citation"&gt;(&lt;a href="referncias.html#ref-rrtaskview"&gt;Kuhn 2019&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>229</sup></a> supera muchos de los obstáculos a la
+<p>El enfoque de la <strong>investigación reproducible</strong><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;El objetivo de la investigación reproducible es vincular instrucciones específicas a los análisis y datos experimentales, de modo que los informes puedan recrearse entendidos mejor y verificados. &lt;span class="citation"&gt;(&lt;a href="referncias.html#ref-rrtaskview" role="doc-biblioref"&gt;Kuhn 2019&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>229</sup></a> supera muchos de los obstáculos a la
 hora de preparar informes de análisis de datos. El objetivo es
 unir instrucciones para análisis de datos con datos experimentales de forma que
 los resultados se puedan volver a obtener automáticamente, entender mejor y verificar.</p>
 <p>
 Un concepto muy relacionado que se utiliza en <strong>R</strong> es la <strong>programación
-literaria</strong><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La programación literaria es una metodología que combina un lenguaje de programación con un lenguaje de documentación &lt;span class="citation"&gt;(&lt;a href="referncias.html#ref-knuth1984literate"&gt;Knuth 1984&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>230</sup></a>, mediante la cual se combina un lenguaje de programación como <strong>R</strong> con documentación de todo tipo (por ejemplo comentarios en el
+literaria</strong><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La programación literaria es una metodología que combina un lenguaje de programación con un lenguaje de documentación &lt;span class="citation"&gt;(&lt;a href="referncias.html#ref-knuth1984literate" role="doc-biblioref"&gt;Knuth 1984&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>230</sup></a>, mediante la cual se combina un lenguaje de programación como <strong>R</strong> con documentación de todo tipo (por ejemplo comentarios en el
 código fuente o inclusión de ficheros <em>readme</em>).</p>
 <p>Con el enfoque de la investigación reproducible, lo que se hace es darle la vuelta
 al enfoque <em>corta-pega</em>, de forma que se escribe el informe a la vez que se realiza
@@ -219,10 +218,10 @@ incluir un gráfico, sólo hay que añadir las líneas de código que lo crean y
 volver a generar el informe.</p>
 <p><strong>R Markdown</strong> ha evolucionado a un nuevo formato denominado <strong>Quarto</strong><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://quarto.org" class="uri"&gt;https://quarto.org&lt;/a&gt;&lt;/p&gt;'><sup>234</sup></a>, que extiende aún más la funcionalidad de Markdown y está pensado para ser usado con otros lenguajes de programación. En esencia, y a los efectos de este capítulo, hay pocas diferencias.</p>
 <p>Para poder utilizar las capacidades de <strong>R Markdown</strong> y <strong>Quarto</strong>, es necesario tener instalado
-el paquete <code>knitr</code> <span class="citation">(<a href="referncias.html#ref-xie2017dynamic">Xie 2017</a>)</span>, que utiliza también otros paquetes como <code>rmarkdown</code>.
+el paquete <code>knitr</code> <span class="citation">(<a href="referncias.html#ref-xie2017dynamic" role="doc-biblioref">Xie 2017</a>)</span>, que utiliza también otros paquetes como <code>rmarkdown</code>.
 Aunque <code>knitr</code> no forma parte del <code>tidyverse</code>, sí es un enfoque moderno de <strong>R</strong>
 que vino a hacer más fácil la generación de documentos que se hacía en <strong>R</strong> base
-con la función <code>Sweave</code> <span class="citation">(<a href="referncias.html#ref-leisch2002sweave">Leisch 2002</a>)</span>. Para usar <strong>Quarto</strong> se necesita también el paquete <code>quarto</code> <span class="citation">(<a href="referncias.html#ref-R-quarto">Allaire 2022</a>)</span> y tener instalado el software <strong>quarto</strong> en el ordenador<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La instalación es trivial para cualquier sistema desde la web de quarto, &lt;a href="https://quarto.org" class="uri"&gt;https://quarto.org&lt;/a&gt;.&lt;/p&gt;'><sup>235</sup></a>.</p>
+con la función <code>Sweave</code> <span class="citation">(<a href="referncias.html#ref-leisch2002sweave" role="doc-biblioref">Leisch 2002</a>)</span>. Para usar <strong>Quarto</strong> se necesita también el paquete <code>quarto</code> <span class="citation">(<a href="referncias.html#ref-R-quarto" role="doc-biblioref">Allaire 2022</a>)</span> y tener instalado el software <strong>quarto</strong> en el ordenador<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La instalación es trivial para cualquier sistema desde la web de quarto, &lt;a href="https://quarto.org" class="uri"&gt;https://quarto.org&lt;/a&gt;.&lt;/p&gt;'><sup>235</sup></a>.</p>
 <p>Para crear un nuevo documento <strong>Quarto</strong>, se selecciona <em>Quarto Document…</em> en el
 icono de nuevo archivo de la barra de herramientas o en el menú <em>File</em>. Entonces
 se abre el cuadro de diálogo <em>New Quarto Document</em>. Hay varios
@@ -444,7 +443,7 @@ como del mismo modo que se hace en un <em>script</em> (<code>CTRL+ENTER</code>),
 y no como un bloque. En esos casos se puede insertar un bloque en línea
 poniendo, entre dos tildes graves, la letra <code>r</code> como primer carácter,
 y después una expresión de <strong>R</strong> que se pueda “imprimir” como cadena de texto:</p>
-<div class="sourceCode" id="cb666"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb666-1"><a href="id_120007-informes.html#cb666-1" tabindex="-1"></a><span class="in">`r expresion_de_R `</span>    </span></code></pre></div>
+<div class="sourceCode" id="cb666"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb666-1"><a href="id_120007-informes.html#cb666-1" aria-hidden="true" tabindex="-1"></a><span class="in">`r expresion_de_R `</span>    </span></code></pre></div>
 <p></p>
 <p>Una opción muy interesante de los informes de <strong>Quarto</strong> es la parametrización.
 Esta opción es muy útil para informes automatizados que pueden
@@ -529,7 +528,7 @@ Figura 44.2: Ventas vs. % Empresas con banda ancha
 </p>
 </div>
 <p></p>
-<p>En cuanto a las tablas, igualmente el <em>chunk</em> que las crea debe tener una etiqueta. El título de la tabla en este caso lo proporcionará la propia función que la crea. A modo de ejemplo, el siguiente <em>chunk</em> crearía la Tabla <a href="id_120007-informes.html#tab:ch-120007-ref-tab">44.1</a> ya formateada con la función <code>flextable()</code> del paquete homónimo <span class="citation">(<a href="referncias.html#ref-R-flextable">Gohel and Skintzos 2022</a>)</span>, y en el texto se referenciaría como “<code>Tabla @tab-tic</code>”.</p>
+<p>En cuanto a las tablas, igualmente el <em>chunk</em> que las crea debe tener una etiqueta. El título de la tabla en este caso lo proporcionará la propia función que la crea. A modo de ejemplo, el siguiente <em>chunk</em> crearía la Tabla <a href="id_120007-informes.html#tab:ch-120007-ref-tab">44.1</a> ya formateada con la función <code>flextable()</code> del paquete homónimo <span class="citation">(<a href="referncias.html#ref-R-flextable" role="doc-biblioref">Gohel and Skintzos 2022</a>)</span>, y en el texto se referenciaría como “<code>Tabla @tab-tic</code>”.</p>
 <pre><code>```{r}
 #| label: "tab-tic"
 #| fig-cap: "Contaminación media NOx según tipo de estación"
@@ -545,93 +544,45 @@ contam_mad |&gt;
   set_caption("Contaminación media NOx según tipo de estación.") |&gt; 
   autofit()
 ```</code></pre>
-<template id="83b44d56-8a6d-41f6-89bc-837d7554aae8"><style>
-.tabwid table{
-  border-spacing:0px !important;
-  border-collapse:collapse;
-  line-height:1;
-  margin-left:auto;
-  margin-right:auto;
-  border-width: 0;
-  display: table;
-  border-color: transparent;
-  caption-side: top;
-}
-.tabwid-caption-bottom table{
-  caption-side: bottom;
-}
-.tabwid_left table{
-  margin-left:0;
-}
-.tabwid_right table{
-  margin-right:0;
-}
-.tabwid td {
-    padding: 0;
-}
-.tabwid a {
-  text-decoration: none;
-}
-.tabwid thead {
-    background-color: transparent;
-}
-.tabwid tfoot {
-    background-color: transparent;
-}
-.tabwid table tr {
-background-color: transparent;
-}
-.katex-display {
-    margin: 0 0 !important;
-}
-</style>
 <div class="tabwid">
-<style>.cl-37a70642{}.cl-379e8f80{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-37a1bbce{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-37a1bbd8{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-37a1d172{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-37a1d17c{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-37a1d17d{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-37a1d186{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-37a1d187{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-37a1d188{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-37a1d189{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-37a1d190{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-37a1d191{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-37a1d192{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-37a1d193{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-37a1d19a{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-379acd82{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}</style>
-<div class="inline-table"><table class="cl-37a70642">
-<caption>
-<span id="tab:ch-120007-ref-tab">Tabla 44.1: </span><span class="cl-379acd82">Contaminación media NOx según tipo de estación.</span>
+<style>.cl-2ea28b68{}.cl-2e95aaf6{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2e9a8706{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2e9a8710{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2e9ab91a{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab924{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab92e{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab92f{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab938{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab939{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab93a{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab942{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab943{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab94c{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab94d{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab956{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-2ea28b68">
+<caption style="display:table-caption;margin:0pt;text-align:center;border-bottom: 0.00pt solid transparent;border-top: 0.00pt solid transparent;border-left: 0.00pt solid transparent;border-right: 0.00pt solid transparent;padding-top:3pt;padding-bottom:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;">
+<span id="tab:ch-120007-ref-tab">Tabla 44.1: </span><span>Contaminación media NOx según tipo de estación.</span>
 </caption>
 
 <thead><tr style="overflow-wrap:break-word;">
-<td class="cl-37a1d172"><p class="cl-37a1bbce"><span class="cl-379e8f80">tipo</span></p></td>
-<td class="cl-37a1d17c"><p class="cl-37a1bbd8"><span class="cl-379e8f80">Media</span></p></td>
-<td class="cl-37a1d17d"><p class="cl-37a1bbd8"><span class="cl-379e8f80">n</span></p></td>
-<td class="cl-37a1d17c"><p class="cl-37a1bbd8"><span class="cl-379e8f80">Desv.Tip</span></p></td>
-<td class="cl-37a1d186"><p class="cl-37a1bbd8"><span class="cl-379e8f80">Perdidos</span></p></td>
+<th class="cl-2e9ab91a"><p class="cl-2e9a8706"><span class="cl-2e95aaf6">tipo</span></p></th>
+<th class="cl-2e9ab924"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">Media</span></p></th>
+<th class="cl-2e9ab92e"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">n</span></p></th>
+<th class="cl-2e9ab924"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">Desv.Tip</span></p></th>
+<th class="cl-2e9ab92f"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">Perdidos</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-37a1d187"><p class="cl-37a1bbce"><span class="cl-379e8f80">Fondo</span></p></td>
-<td class="cl-37a1d188"><p class="cl-37a1bbd8"><span class="cl-379e8f80">64.11108</span></p></td>
-<td class="cl-37a1d189"><p class="cl-37a1bbd8"><span class="cl-379e8f80">49,656</span></p></td>
-<td class="cl-37a1d188"><p class="cl-37a1bbd8"><span class="cl-379e8f80">61.48603</span></p></td>
-<td class="cl-37a1d190"><p class="cl-37a1bbd8"><span class="cl-379e8f80">70</span></p></td>
+<td class="cl-2e9ab938"><p class="cl-2e9a8706"><span class="cl-2e95aaf6">Fondo</span></p></td>
+<td class="cl-2e9ab939"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">64.11108</span></p></td>
+<td class="cl-2e9ab93a"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">49,656</span></p></td>
+<td class="cl-2e9ab939"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">61.48603</span></p></td>
+<td class="cl-2e9ab942"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">70</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-37a1d187"><p class="cl-37a1bbce"><span class="cl-379e8f80">Suburbanas</span></p></td>
-<td class="cl-37a1d188"><p class="cl-37a1bbd8"><span class="cl-379e8f80">32.87574</span></p></td>
-<td class="cl-37a1d189"><p class="cl-37a1bbd8"><span class="cl-379e8f80">12,414</span></p></td>
-<td class="cl-37a1d188"><p class="cl-37a1bbd8"><span class="cl-379e8f80">32.13426</span></p></td>
-<td class="cl-37a1d190"><p class="cl-37a1bbd8"><span class="cl-379e8f80">39</span></p></td>
+<td class="cl-2e9ab938"><p class="cl-2e9a8706"><span class="cl-2e95aaf6">Suburbanas</span></p></td>
+<td class="cl-2e9ab939"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">32.87574</span></p></td>
+<td class="cl-2e9ab93a"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">12,414</span></p></td>
+<td class="cl-2e9ab939"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">32.13426</span></p></td>
+<td class="cl-2e9ab942"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">39</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-37a1d191"><p class="cl-37a1bbce"><span class="cl-379e8f80">Tráfico</span></p></td>
-<td class="cl-37a1d192"><p class="cl-37a1bbd8"><span class="cl-379e8f80">81.27392</span></p></td>
-<td class="cl-37a1d193"><p class="cl-37a1bbd8"><span class="cl-379e8f80">33,104</span></p></td>
-<td class="cl-37a1d192"><p class="cl-37a1bbd8"><span class="cl-379e8f80">68.13974</span></p></td>
-<td class="cl-37a1d19a"><p class="cl-37a1bbd8"><span class="cl-379e8f80">83</span></p></td>
+<td class="cl-2e9ab943"><p class="cl-2e9a8706"><span class="cl-2e95aaf6">Tráfico</span></p></td>
+<td class="cl-2e9ab94c"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">81.27392</span></p></td>
+<td class="cl-2e9ab94d"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">33,104</span></p></td>
+<td class="cl-2e9ab94c"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">68.13974</span></p></td>
+<td class="cl-2e9ab956"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">83</span></p></td>
 </tr>
 </tbody>
 </table></div>
-</div></template><div class="flextable-shadow-host" id="ee05bbec-72df-4ce9-b63c-c0fc72b1bfe5"></div>
-<script>
-var dest = document.getElementById("ee05bbec-72df-4ce9-b63c-c0fc72b1bfe5");
-var template = document.getElementById("83b44d56-8a6d-41f6-89bc-837d7554aae8");
-var caption = template.content.querySelector("caption");
-var fantome = dest.attachShadow({mode: 'open'});
-var templateContent = template.content;
-fantome.appendChild(templateContent);
-</script>
+</div>
 </div>
 </div>
 <div id="otros-formatos" class="section level2" number="44.3">
@@ -649,7 +600,7 @@ distintos, así como las opciones disponibles, aunque la filosofía es la misma.
 generar cualquiera de los otros formatos, y además otros como .docx).</p>
 <p>En cuanto a los formatos de salida, hay una cantidad de opciones muy interesante
 que queda fuera de los objetivos de este libro. A continuación se relacionan
-algunos de ellos, si bien se puede consultar el libro de <span class="citation">Xie, Allaire, and Grolemund (<a href="referncias.html#ref-xie2019r">2019</a>)</span> y la documentación de <strong>Quarto</strong> para
+algunos de ellos, si bien se puede consultar el libro de <span class="citation">Xie, Allaire, and Grolemund (<a href="referncias.html#ref-xie2019r" role="doc-biblioref">2019</a>)</span> y la documentación de <strong>Quarto</strong> para
 ver detalles.</p>
 <ul>
 <li><p><strong>Notebooks</strong>: es un tipo especial de salida HTML, más indicado cuando

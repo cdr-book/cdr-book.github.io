@@ -153,7 +153,7 @@ tabla <- table(palabras[[1]])
 #>  8 el            17
 #>  9 al            14
 #> 10 para          14
-#> # … with 380 more rows
+#> # ℹ 380 more rows
 ```
 En la primera fila de la salida se indican las dimensiones de la `tibble`, por lo que se puede ver que en esta Declaración hay 390 "palabras" distintas (considera los números como palabras).
 
@@ -234,6 +234,8 @@ Table: (\#tab:mintex-MFW-tabla)Palabras más frecuentes (sin palabras vacías)
 |semanas    |        4|
 |va         |        4|
 |cada       |        3|
+
+
 
 El resultado, Tabla \@ref(tab:mintex-MFW-tabla), se puede considerar el primer análisis léxico con valor informativo: la palabra más frecuente es *virus*, seguida de *recursos* y *social*. Se podría ver que en total hay 319 palabras no vacías distintas.
 
@@ -330,10 +332,12 @@ emo |> ggplot(aes(sentiment)) +
   geom_bar(aes(fill=sentiment), show.legend = FALSE)
 ```
 
+
 <div class="figure" style="text-align: center">
-<img src="210045-mineria-textos_files/figure-html/mintex-barplot-NRC-1.png" alt="Gráfico de barras con la frecuencia de las emociones del lexicón NRC" width="60%" />
+<img src="img/text-emo1.png" alt="Gráfico de barras con la frecuencia de las emociones del lexicón NRC" width="60%" />
 <p class="caption">(\#fig:mintex-barplot-NRC)Gráfico de barras con la frecuencia de las emociones del lexicón NRC</p>
 </div>
+
 
 El análisis de sentimientos y la detección de emociones de la Declaración mediante NRC se puede realizar con el siguiente código, mediante el cual se obtiene la tabla de frecuencias por emociones y sentimientos:
 
@@ -341,17 +345,20 @@ El análisis de sentimientos y la detección de emociones de la Declaración med
 ```r
 emo_tab <- tabla |> inner_join(emo)
 head(emo_tab, n=7)
-#> # A tibble: 7 × 3
-#>   word          recuento sentiment
-#>   <chr>            <dbl> <chr>    
-#> 1 virus                9 negative 
-#> 2 resources            7 joy      
-#> 3 resources            7 positive 
-#> 4 resources            7 trust    
-#> 5 extraordinary        6 positive 
-#> 6 alarm                4 fear     
-#> 7 alarm                4 negative
+#> # A tibble: 7 x 3
+#> word recuento sentiment
+#> <chr> <dbl> <chr>
+#> 1 virus 9 negative
+#> 2 resources 7 joy
+#> 3 resources 7 positive
+#> 4 resources 7 trust
+#> 5 extraordinary 6 positive
+#> 6 alarm 4 fear
+#> 7 alarm 4 negative
 ```
+
+
+
 Como se ha mencionado antes, algunas palabras tienen asociados distintos sentimientos, por ejemplo, *resources*. La información de la tabla se puede visualizar bien con un gráfico de barras (Fig. \@ref(fig:mintex-emobarras)) bien con nubes de palabras (Fig. \@ref(fig:mintex-emonube)).
 
 
@@ -364,9 +371,11 @@ emo_tab |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="210045-mineria-textos_files/figure-html/mintex-emobarras-1.png" alt="Frecuencia de emociones de la Declaración utilizando NRC" width="60%" />
+<img src="img/text-emo2.png" alt="Frecuencia de emociones de la Declaración utilizando NRC" width="60%" />
 <p class="caption">(\#fig:mintex-emobarras)Frecuencia de emociones de la Declaración utilizando NRC</p>
 </div>
+
+
 Entre las distintas opciones para dibujar nubes de palabras\index{nubes de palabras} para el análisis de sentimientos es interesante la que se obtiene con el paquete `syuzhet` dado que permite visualizar las palabras agrupadas por emociones. Su obtención requiere distintos pasos en los que primero las palabras se agrupan por emoción y después se organizan en una **matriz de documentos**\index{matriz de documentos} con la función `TermDocumentMatrix()` del paquete `tm`. Finalmente la función `comparison.cloud()` permite visualizar el gráfico (tiene distintos argumentos opcionales que admiten distintas posibilidades). En el ejemplo que figura a continuación solo se han escogido tres emociones^[Se deja al lector el análisis de la Declaración con más emociones, en castellano, etc.]: 
 
 
@@ -389,10 +398,9 @@ comparison.cloud(TDM, random.order = FALSE,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="210045-mineria-textos_files/figure-html/mintex-emonube-1.png" alt="Nube de palabras de tres emociones NRC seleccionadas" width="80%" />
+<img src="img/text-emo3.png" alt="Nube de palabras de tres emociones NRC seleccionadas" width="80%" />
 <p class="caption">(\#fig:mintex-emonube)Nube de palabras de tres emociones NRC seleccionadas</p>
 </div>
-
 
 ### *$N$-gramas*
 

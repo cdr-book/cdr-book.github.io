@@ -7,7 +7,7 @@
 <title>Capítulo 46 Git y GitHub R | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Michal Kinel  46.1 ¿Qué es Git y GitHub? Git es un sistema de control de versiones distribuido, diseñado para registrar y rastrear los cambios realizados en un archivo o conjunto de archivos a lo...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 46 Git y GitHub R | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,8 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
@@ -139,13 +138,13 @@
 </h2>
 <p>Git es un sistema de control de versiones distribuido, diseñado para
 registrar y rastrear los cambios realizados en un archivo o conjunto de
-archivos a lo largo del tiempo <span class="citation">(<a href="referncias.html#ref-chacon2009">Chacon 2009</a>)</span>. Al utilizar Git, se pueden ver y
+archivos a lo largo del tiempo <span class="citation">(<a href="referncias.html#ref-chacon2009" role="doc-biblioref">Chacon 2009</a>)</span>. Al utilizar Git, se pueden ver y
 restaurar versiones anteriores de un archivo, así como fusionar cambios
 realizados por diferentes personas en una única versión actualizada.</p>
 <p>Por otro lado, GitHub es una plataforma de alojamiento de código online
 que utiliza Git como sistema de control de versiones subyacentes. Esta
 plataforma permite a los desarrolladores compartir y colaborar en
-proyectos de software, alojando el código fuente en la nube <span class="citation">(<a href="referncias.html#ref-astigarraga2022">Astigarraga and Cruz-Alonso 2022</a>)</span>. Además de
+proyectos de software, alojando el código fuente en la nube <span class="citation">(<a href="referncias.html#ref-astigarraga2022" role="doc-biblioref">Astigarraga and Cruz-Alonso 2022</a>)</span>. Además de
 alojar repositorios de Git, GitHub ofrece herramientas adicionales como
 seguimiento de problemas, solicitudes de extracción, y wiki de
 proyectos, lo que la hace una herramienta popular para el desarrollo de
@@ -272,7 +271,7 @@ electrónico de forma global en Git.</p>
 una cuenta en la página oficial de GitHub (<a href="https://github.com/join" class="uri">https://github.com/join</a>).
 Una vez que se haya creado la cuenta, se debe iniciar sesión en GitHub.</p></li>
 <li><p>Configurar la clave SSH (protocolo Secure Shell), una credencial de acceso para el protocolo de red que permite el acceso remoto a través de una conexión cifrada. Para autentificar las conexiones con GitHub de
-manera segura (véase <a href="https://happygitwithr.com/ssh-keys.html">capítulo 10</a> de <span class="citation">(<a href="referncias.html#ref-happygitwithr">Jenny Bryan 2021</a>)</span>), se recomienda configurar una clave SSH en el equipo y
+manera segura (véase <a href="https://happygitwithr.com/ssh-keys.html">capítulo 10</a> de <span class="citation">(<a href="referncias.html#ref-happygitwithr" role="doc-biblioref">Jenny Bryan 2021</a>)</span>), se recomienda configurar una clave SSH en el equipo y
 agregarla a la cuenta de GitHub. Para ello, se debe abrir la línea de
 comandos, Git Bash o la terminal de RStudio, y ejecutar los siguientes
 comandos:</p></li>
@@ -324,7 +323,7 @@ GitHub, también se puede utilizar la autentificación basada en token de
 acceso personal, PAT , de GitHub. Esta forma de autentificación es
 recomendada por GitHub como una forma segura de autentificar conexiones,
 especialmente cuando se trabaja con aplicaciones y herramientas que
-requieren acceso a repositorios de GitHub. Para más información sobre el token de aceso personal, PAT, consulte el <a href="https://happygitwithr.com/https-pat.html">capítulo 9</a> de <span class="citation">(<a href="referncias.html#ref-happygitwithr">Jenny Bryan 2021</a>)</span>.</p>
+requieren acceso a repositorios de GitHub. Para más información sobre el token de aceso personal, PAT, consulte el <a href="https://happygitwithr.com/https-pat.html">capítulo 9</a> de <span class="citation">(<a href="referncias.html#ref-happygitwithr" role="doc-biblioref">Jenny Bryan 2021</a>)</span>.</p>
 <p>A continuación, se describen los pasos para utilizar la autentificación
 basada en token de acceso personal de GitHub:</p>
 <ol style="list-style-type: decimal">
@@ -356,11 +355,11 @@ consola:</li>
 <code class="sourceCode R"><span><span class="fu">gitcreds</span><span class="fu">::</span><span class="fu"><a href="https://gitcreds.r-lib.org/reference/gitcreds_get.html">gitcreds_get</a></span><span class="op">(</span>use_cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>Si la autentificación fue correcta se generará una salida similar a la
 siguiente:</p>
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="github.html#cb707-1" tabindex="-1"></a> <span class="sc">&lt;</span>gitcreds<span class="sc">&gt;</span></span>
-<span id="cb707-2"><a href="github.html#cb707-2" tabindex="-1"></a>   protocol<span class="sc">:</span> https</span>
-<span id="cb707-3"><a href="github.html#cb707-3" tabindex="-1"></a>   host    <span class="sc">:</span> github.com</span>
-<span id="cb707-4"><a href="github.html#cb707-4" tabindex="-1"></a>   username<span class="sc">:</span> mi_usuario</span>
-<span id="cb707-5"><a href="github.html#cb707-5" tabindex="-1"></a>   password<span class="sc">:</span> <span class="er">&lt;</span><span class="sc">--</span> hidden <span class="sc">-</span><span class="ot">-&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="github.html#cb707-1" aria-hidden="true" tabindex="-1"></a> <span class="sc">&lt;</span>gitcreds<span class="sc">&gt;</span></span>
+<span id="cb707-2"><a href="github.html#cb707-2" aria-hidden="true" tabindex="-1"></a>   protocol<span class="sc">:</span> https</span>
+<span id="cb707-3"><a href="github.html#cb707-3" aria-hidden="true" tabindex="-1"></a>   host    <span class="sc">:</span> github.com</span>
+<span id="cb707-4"><a href="github.html#cb707-4" aria-hidden="true" tabindex="-1"></a>   username<span class="sc">:</span> mi_usuario</span>
+<span id="cb707-5"><a href="github.html#cb707-5" aria-hidden="true" tabindex="-1"></a>   password<span class="sc">:</span> <span class="er">&lt;</span><span class="sc">--</span> hidden <span class="sc">-</span><span class="ot">-&gt;</span></span></code></pre></div>
 <p>Una vez conectado RStudio y GitHub mediante SHH o PAT se puede proceder
 con la creación del repositorio en Git.</p>
 </div>
@@ -619,7 +618,7 @@ información como el autor del cambio, la fecha y la descripción del
 cambio.</p></li>
 </ul>
 <p>Para conocer más a fondo la mecánica de Git es muy recomendable el
-manual <span class="citation">(<a href="referncias.html#ref-chacon2009">Chacon 2009</a>)</span> o la hoja resumen proporcionada por GitHub,
+manual <span class="citation">(<a href="referncias.html#ref-chacon2009" role="doc-biblioref">Chacon 2009</a>)</span> o la hoja resumen proporcionada por GitHub,
 disponible en
 <a href="https://training.github.com/downloads/es_ES/github-git-cheat-sheet.pdf">https://training.github.com/downloads/es_ES/github-git-cheat-sheet.pdf</a>.</p>
 <div id="resumen-36" class="section level3 unnumbered infobox_resume">

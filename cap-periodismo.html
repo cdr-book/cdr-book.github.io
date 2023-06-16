@@ -7,7 +7,7 @@
 <title>Capítulo 51 Análisis electoral: de Rstudio a su periódico | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Borja Andrino Turón EL PAÍS   51.1 Motivación El uso de R en el entorno profesional ha llegado también a los periódicos. Cada vez es más habitual encontrar en los medios analistas de datos que lo...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 51 Análisis electoral: de Rstudio a su periódico | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,8 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
@@ -149,7 +148,7 @@
 <p>Los datos electorales no siempre son igual de accesibles. Los de las elecciones que dependen del Ministerio del Interior se publican en el portal <a href="https://infoelectoral.interior.gob.es/opencms/es/inicio/">Infoelectoral</a>. En el caso de las elecciones andaluzas, los resultados a nivel de mesa se han publicado en los portales de cada convocatoria, aunque pueden encontrarse entre los contenidos del libro para replicar estos análisis.</p>
 <p>En primer lugar se compondrá un diccionario de municipios que se usará para filtrar y agrupar los resultados por provincia. Primero se escrapeará de la web del INE la relación de códigos de provincia con la librería rvest. Se lee el código html de la página y se buscan los elementos table con clase miTabla. A continuación, se usa la función html_table para convertir las tres tablas en un objeto tibble. La información con los nombres de municipios y provincias se leerá en la web del INE.</p>
 <div class="sourceCode" id="cb761"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">CDR</span>, <span class="va">ggplot2</span>, <span class="va">dplyr</span>, <span class="va">rvest</span>, <span class="va">lubridate</span>, <span class="va">sf</span>, <span class="va">ggtext</span>, </span>
+<code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load</span><span class="op">(</span><span class="va">CDR</span>, <span class="va">ggplot2</span>, <span class="va">dplyr</span>, <span class="va">rvest</span>, <span class="va">lubridate</span>, <span class="va">sf</span>, <span class="va">ggtext</span>, </span>
 <span>               <span class="va">rio</span>, <span class="va">janitor</span>, <span class="va">here</span>, <span class="va">purrr</span>, <span class="va">stringr</span>, <span class="va">scales</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">url_provincias</span> <span class="op">&lt;-</span> </span>
@@ -159,7 +158,7 @@
 <span>  <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url_provincias</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table.miTabla"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">as_tibble</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span><span class="va">as_tibble</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>codigo_prov <span class="op">=</span> <span class="fl">1</span>, name_prov <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>codigo_prov <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_pad.html">str_pad</a></span><span class="op">(</span><span class="va">codigo_prov</span>, width <span class="op">=</span> <span class="fl">2</span>, pad <span class="op">=</span> <span class="st">"0"</span>, side <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -167,9 +166,9 @@
 <span>  <span class="st">"https://www.ine.es/daco/daco42/codmun/codmun20/20codmun.xlsx"</span></span>
 <span></span>
 <span><span class="va">cod_municipios</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://rstudio.github.io/reticulate/reference/import.html">import</a></span><span class="op">(</span><span class="va">url_municipios</span>, skip <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">import</span><span class="op">(</span><span class="va">url_municipios</span>, skip <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">clean_names</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>codigo_prov <span class="op">=</span> <span class="va">cpro</span>, </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html">transmute</a></span><span class="op">(</span>codigo_prov <span class="op">=</span> <span class="va">cpro</span>, </span>
 <span>            codigo_mun <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">"{codigo_prov}{cmun}"</span><span class="op">)</span>, </span>
 <span>            name_mun <span class="op">=</span> <span class="va">nombre</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">cod_provincias</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -203,7 +202,7 @@
 <span></span>
 <span><span class="va">datos_elecciones_validos</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">datos_elecciones_validos_total</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">datos_elecciones_validos_provs</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">datos_elecciones_validos_provs</span><span class="op">)</span></span></code></pre></div>
 <p>Ahora se calcula la suma de votos de cada bloque en cada convocatoria. En este caso, como cada fila tiene el dato de votos de un partido distinto no es necesaria la función distinct.</p>
 <div class="sourceCode" id="cb764"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">datos_bloques_total</span> <span class="op">&lt;-</span> </span>
@@ -220,7 +219,7 @@
 <span></span>
 <span><span class="va">datos_bloques</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">datos_bloques_total</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">datos_bloques_provs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">datos_bloques_provs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">datos_elecciones_validos</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>votos_bloque_pc <span class="op">=</span> <span class="va">votos_bloque</span> <span class="op">/</span> <span class="va">validos</span><span class="op">)</span></span></code></pre></div>
 <p>A continuación, se realiza el gráfico con los daton que se han calculado antes. Se definen los colores que representan a cada bloque, las fechas para poder etiquetar en el gráfico los ticks del eje x y se programa el gráfico.</p>

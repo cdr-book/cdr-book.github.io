@@ -7,7 +7,7 @@
 <title>Capítulo 58 Implementación de un sistema experto en el ámbito pediátrico | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Arturo Peralta\(^{a,b}\), José Ángel Olivas\(^{a}\) y Eusebio Angulo\(^{a}\) \(^{a}\)Universidad Internacional de Valencia, \(^{b}\)Universidad Internacional de la Rioja  58.1 Introducción  Sin...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 58 Implementación de un sistema experto en el ámbito pediátrico | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,8 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
@@ -149,7 +148,7 @@ Finalmente, se incluye una sencilla implementación en <strong>R</strong> del SE
 <span class="header-section-number">58.2</span> Marco teórico<a class="anchor" aria-label="anchor" href="#marco-te%C3%B3rico"><i class="fas fa-link"></i></a>
 </h2>
 <p>Un <strong>Sistema Experto (SE)</strong> es un programa de ordenador que trata de emular el comportamiento de una persona experta en un dominio de conocimiento específico ante un problema que se plantee en dicho dominio y cómo llega a su solución.</p>
-<p>La <strong>Ingeniería del Conocimiento</strong> se ocupa, entre otras cosas, del proceso de especificación, análisis y desarrollo de un sistema experto <span class="citation">(<a href="referncias.html#ref-MaMoCa2005">Martínez R. 2005</a>)</span>.</p>
+<p>La <strong>Ingeniería del Conocimiento</strong> se ocupa, entre otras cosas, del proceso de especificación, análisis y desarrollo de un sistema experto <span class="citation">(<a href="referncias.html#ref-MaMoCa2005" role="doc-biblioref">Martínez R. 2005</a>)</span>.</p>
 <p>Los principales componentes de un SE son:
 (i) La <strong>Base de Hechos (BH)</strong>, que contiene la definición del entorno sobre el que se van a resolver problemas. Hace el papel de “ojos” del SE.
 (ii) La <strong>Base de Conocimientos (BC)</strong>, que contiene la información del dominio específico, convenientemente representado, capaz de resolver problemas. También puede considerar la representación de incertidumbre.
@@ -169,24 +168,24 @@ Es por ello que las limitaciones de todo SE pueden ser que no conoce lo que cono
 <ol style="list-style-type: decimal">
 <li>Las <strong>reglas de producción</strong>: son la forma más extendida de representar el conocimiento, constan de Condiciones (Hipótesis) y Acciones (Conclusiones) y tienen la forma:</li>
 </ol>
-<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="cap-sist-exp.html#cb834-1" tabindex="-1"></a>    <span class="fu">Si</span> (If)</span>
-<span id="cb834-2"><a href="cap-sist-exp.html#cb834-2" tabindex="-1"></a>      Condición <span class="dv">1</span> </span>
-<span id="cb834-3"><a href="cap-sist-exp.html#cb834-3" tabindex="-1"></a>      y Condición <span class="dv">2</span> </span>
-<span id="cb834-4"><a href="cap-sist-exp.html#cb834-4" tabindex="-1"></a>      ... </span>
-<span id="cb834-5"><a href="cap-sist-exp.html#cb834-5" tabindex="-1"></a>      y Condición n</span>
-<span id="cb834-6"><a href="cap-sist-exp.html#cb834-6" tabindex="-1"></a>    <span class="fu">Entonces</span> (Then)</span>
-<span id="cb834-7"><a href="cap-sist-exp.html#cb834-7" tabindex="-1"></a>      Conclusión <span class="dv">1</span></span>
-<span id="cb834-8"><a href="cap-sist-exp.html#cb834-8" tabindex="-1"></a>      Conclusión <span class="dv">2</span></span>
-<span id="cb834-9"><a href="cap-sist-exp.html#cb834-9" tabindex="-1"></a>      ...</span>
-<span id="cb834-10"><a href="cap-sist-exp.html#cb834-10" tabindex="-1"></a>      y Conclusión m</span></code></pre></div>
+<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="cap-sist-exp.html#cb834-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Si</span> (If)</span>
+<span id="cb834-2"><a href="cap-sist-exp.html#cb834-2" aria-hidden="true" tabindex="-1"></a>      Condición <span class="dv">1</span> </span>
+<span id="cb834-3"><a href="cap-sist-exp.html#cb834-3" aria-hidden="true" tabindex="-1"></a>      y Condición <span class="dv">2</span> </span>
+<span id="cb834-4"><a href="cap-sist-exp.html#cb834-4" aria-hidden="true" tabindex="-1"></a>      ... </span>
+<span id="cb834-5"><a href="cap-sist-exp.html#cb834-5" aria-hidden="true" tabindex="-1"></a>      y Condición n</span>
+<span id="cb834-6"><a href="cap-sist-exp.html#cb834-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Entonces</span> (Then)</span>
+<span id="cb834-7"><a href="cap-sist-exp.html#cb834-7" aria-hidden="true" tabindex="-1"></a>      Conclusión <span class="dv">1</span></span>
+<span id="cb834-8"><a href="cap-sist-exp.html#cb834-8" aria-hidden="true" tabindex="-1"></a>      Conclusión <span class="dv">2</span></span>
+<span id="cb834-9"><a href="cap-sist-exp.html#cb834-9" aria-hidden="true" tabindex="-1"></a>      ...</span>
+<span id="cb834-10"><a href="cap-sist-exp.html#cb834-10" aria-hidden="true" tabindex="-1"></a>      y Conclusión m</span></code></pre></div>
 <p>Es la forma más extendida de representar el conocimiento. Ejemplo de Regla de producción:</p>
-<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="cap-sist-exp.html#cb835-1" tabindex="-1"></a>    Si </span>
-<span id="cb835-2"><a href="cap-sist-exp.html#cb835-2" tabindex="-1"></a>      ha fallado la bombilla </span>
-<span id="cb835-3"><a href="cap-sist-exp.html#cb835-3" tabindex="-1"></a>      y hay una de repuesto </span>
-<span id="cb835-4"><a href="cap-sist-exp.html#cb835-4" tabindex="-1"></a>      y está útil</span>
-<span id="cb835-5"><a href="cap-sist-exp.html#cb835-5" tabindex="-1"></a>    Entonces</span>
-<span id="cb835-6"><a href="cap-sist-exp.html#cb835-6" tabindex="-1"></a>      cambiar la bombilla por la de repuesto</span>
-<span id="cb835-7"><a href="cap-sist-exp.html#cb835-7" tabindex="-1"></a>      y seguir trabajando</span></code></pre></div>
+<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="cap-sist-exp.html#cb835-1" aria-hidden="true" tabindex="-1"></a>    Si </span>
+<span id="cb835-2"><a href="cap-sist-exp.html#cb835-2" aria-hidden="true" tabindex="-1"></a>      ha fallado la bombilla </span>
+<span id="cb835-3"><a href="cap-sist-exp.html#cb835-3" aria-hidden="true" tabindex="-1"></a>      y hay una de repuesto </span>
+<span id="cb835-4"><a href="cap-sist-exp.html#cb835-4" aria-hidden="true" tabindex="-1"></a>      y está útil</span>
+<span id="cb835-5"><a href="cap-sist-exp.html#cb835-5" aria-hidden="true" tabindex="-1"></a>    Entonces</span>
+<span id="cb835-6"><a href="cap-sist-exp.html#cb835-6" aria-hidden="true" tabindex="-1"></a>      cambiar la bombilla por la de repuesto</span>
+<span id="cb835-7"><a href="cap-sist-exp.html#cb835-7" aria-hidden="true" tabindex="-1"></a>      y seguir trabajando</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><p><strong>Memoria de trabajo</strong>: contiene una descripción del estado actual del mundo o entorno de la aplicación en cada paso del proceso de razonamiento.
 Esta descripción es un modelo que servirá para asociar los antecedentes de las reglas con las observaciones del mundo, con el objetivo de seleccionar o producir las acciones apropiadas. En el momento en que se cumplen todas las condiciones de una regla se produce el “disparo” de la misma, ejecutándose la acción. Esta operación alterará el contenido de la memoria de trabajo.</p></li>
@@ -197,7 +196,7 @@ Esta descripción es un modelo que servirá para asociar los antecedentes de las
 <h3>
 <span class="header-section-number">58.2.1</span> Razonamiento<a class="anchor" aria-label="anchor" href="#razonamiento"><i class="fas fa-link"></i></a>
 </h3>
-<p>El razonamiento se define como el proceso de obtención de inferencias o conclusiones a partir de unos hechos u observaciones reales o asumidos y de un conocimiento previo. La inferencia es el proceso por el que a partir de unos hechos conocidos se obtienen conclusiones acerca de otros desconocidos <span class="citation">(<a href="referncias.html#ref-Fleitas2017">Fleitas 2017</a>)</span> y Begu04. La realización de este tipo de procesamiento es llevada a cabo por el denominado <strong>motor de inferencia</strong>.</p>
+<p>El razonamiento se define como el proceso de obtención de inferencias o conclusiones a partir de unos hechos u observaciones reales o asumidos y de un conocimiento previo. La inferencia es el proceso por el que a partir de unos hechos conocidos se obtienen conclusiones acerca de otros desconocidos <span class="citation">(<a href="referncias.html#ref-Fleitas2017" role="doc-biblioref">Fleitas 2017</a>)</span> y Begu04. La realización de este tipo de procesamiento es llevada a cabo por el denominado <strong>motor de inferencia</strong>.</p>
 <p>El razonamiento automático ya se utilizaba en los 50 en juegos. En 1963 se presentó el sistema <em>“General Problem Solver”</em> capaz de hacer inferencias lógicas (Newel y Simon).</p>
 <p>Tipos de razonamiento en SE:</p>
 <ul>
@@ -287,7 +286,7 @@ Figura 58.2: Ciclo de razonamiento hacia delante
 </tr>
 </tbody>
 </table></div>
-<p>A partir del procesamiento de un total de 400 visitas médicas mediante un algoritmo de extracción de reglas de asociación como “Magnum Opus”, basado en la definición original de <span class="citation">Webb (<a href="referncias.html#ref-Webb2011">2011</a>)</span>, y mediante la aplicación del conocimiento de experto proporcionado por un panel de pediatras, se extrajeron un conjunto de reglas con suficiente calidad. A continuación, se muestra un ejemplo de un conjunto de reglas con <span class="math inline">\(10\)</span> de ellas.</p>
+<p>A partir del procesamiento de un total de 400 visitas médicas mediante un algoritmo de extracción de reglas de asociación como “Magnum Opus”, basado en la definición original de <span class="citation">Webb (<a href="referncias.html#ref-Webb2011" role="doc-biblioref">2011</a>)</span>, y mediante la aplicación del conocimiento de experto proporcionado por un panel de pediatras, se extrajeron un conjunto de reglas con suficiente calidad. A continuación, se muestra un ejemplo de un conjunto de reglas con <span class="math inline">\(10\)</span> de ellas.</p>
 <ul>
 <li><p>R1: Si Causa Ginecologica o Edad mayor de 12 años <span class="math inline">\(\rightarrow\)</span> Tiempo de Evolución mayor de 73h</p></li>
 <li><p>R2: Si Causa Ginecologica <span class="math inline">\(\rightarrow\)</span> Sexo Mujer</p></li>

@@ -7,7 +7,7 @@
 <title>Capítulo 12 Probabilidad | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Mª Leticia Meseguer Santamaría\(^{a}\) y Manuel Vargas Vargas\(^{a}\) \(^{a}\) Universidad de Castilla-La Mancha  12.1 Introducción a la probabilidad La incertidumbre es inevitable en muchos...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 12 Probabilidad | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,8 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
@@ -142,7 +141,7 @@
 <p>Producto de la <strong>incertidumbre</strong>, las decisiones que se toman (o la validez de los resultados que se obtienen) conllevan un <strong>riesgo</strong>, que puede concretarse en enunciados equivocados, modelos con escaso poder predictivo o decisiones con resultados no deseados. Sin embargo, no se prescinde de tomar decisiones en ambientes de incertidumbre, sino que se intenta evaluar y minimizar los riesgos asociados.</p>
 <p>Así pues, resulta importante poder “<strong>medir</strong>” la incertidumbre, es decir, cuantificar su magnitud y establecer reglas de medida que permitan su tratamiento –la estimación de riesgo– y ayuden a la toma de decisiones. La <strong>teoría de la probabilidad</strong> se puede entender como un ente que proporciona reglas de comportamiento que ayudan a conseguir los objetivos anteriores, siendo el campo de aplicación tan amplio que puede cubrir cualquier rama de las ciencias sociales, técnicas y naturales.</p>
 <p>El concepto de probabilidad apareció en la antiguedad, asociado a los juegos de azar, y se ha ido refinando y formalizando a lo largo de la historia. Sin embargo, la mayoría de las definiciones tradicionales presentan limitaciones que impiden su uso riguroso en cualquier situación. Aún así, siguen estando en el subconsciente colectivo, de forma que se entienden expresiones como “<em>es muy probable que llueva mañana</em>”, “<em>es improbable que me toque la lotería de Navidad</em>”, o “<em>es probable que se obtenga en breve una vacuna contra cierta enfermedad</em>”, cuando responden a conceptualizaciones diferentes y, en muchos casos, vagas e imprecisas.</p>
-<p>Aunque sigue habiendo debates filosóficos y epistemológicos sobre el concepto de probabilidad (véase, por ejemplo, <span class="citation">Hajek and Hitchcock (<a href="referncias.html#ref-Hajek2016">2016</a>)</span>), su uso generalizado en muchos campos científicos está más relacionado con el desarrollo de su carácter de <strong>medida de la incertidumbre</strong> que con un tratamiento matemático que permite su aplicación práctica (véase, por ejemplo, <span class="citation">Ross (<a href="referncias.html#ref-Ross2012">2012</a>)</span>, <span class="citation">Morin (<a href="referncias.html#ref-Morin2016">2016</a>)</span> o <span class="citation">Balakrishnan, Koutras, and Politis (<a href="referncias.html#ref-Balakrishnanetal2019">2019</a>)</span>). Es este enfoque el que se desarrolla sucintamente en este capítulo.</p>
+<p>Aunque sigue habiendo debates filosóficos y epistemológicos sobre el concepto de probabilidad (véase, por ejemplo, <span class="citation">Hajek and Hitchcock (<a href="referncias.html#ref-Hajek2016" role="doc-biblioref">2016</a>)</span>), su uso generalizado en muchos campos científicos está más relacionado con el desarrollo de su carácter de <strong>medida de la incertidumbre</strong> que con un tratamiento matemático que permite su aplicación práctica (véase, por ejemplo, <span class="citation">Ross (<a href="referncias.html#ref-Ross2012" role="doc-biblioref">2012</a>)</span>, <span class="citation">Morin (<a href="referncias.html#ref-Morin2016" role="doc-biblioref">2016</a>)</span> o <span class="citation">Balakrishnan, Koutras, and Politis (<a href="referncias.html#ref-Balakrishnanetal2019" role="doc-biblioref">2019</a>)</span>). Es este enfoque el que se desarrolla sucintamente en este capítulo.</p>
 </div>
 <div id="probabilidad-elementos-básicos-definición-y-teoremas" class="section level2" number="12.2">
 <h2>
@@ -166,7 +165,7 @@
 <span class="math inline">\(P \left( \underset {i}{\cup} S_i \right) = \underset{i}{\sum} P(S_i)\)</span>.</li>
 </ol></li>
 </ul>
-<p>Así, una probabilidad es una medida que cumple esta axiomática, asignando a cada suceso un número real (entre 0 y 1) que expresa el grado de creencia en la ocurrencia de dicho suceso, entendiendo que 0 indica que se cree que no ocurre nunca y 1 que ocurre seguramente (véase, por ejemplo <span class="citation">Finetti (<a href="referncias.html#ref-deFinetti2017">2017</a>)</span> para su fundamentación).</p>
+<p>Así, una probabilidad es una medida que cumple esta axiomática, asignando a cada suceso un número real (entre 0 y 1) que expresa el grado de creencia en la ocurrencia de dicho suceso, entendiendo que 0 indica que se cree que no ocurre nunca y 1 que ocurre seguramente (véase, por ejemplo <span class="citation">Finetti (<a href="referncias.html#ref-deFinetti2017" role="doc-biblioref">2017</a>)</span> para su fundamentación).</p>
 <p>Algunas consecuencias que se derivan de la axiomática de Kolmogorov de forma inmediata son:</p>
 <ul>
 <li><p><span class="math inline">\(P(\emptyset)=0\)</span>.</p></li>
@@ -228,7 +227,7 @@ F_X (x) = P(X \leq x).
 <h2>
 <span class="header-section-number">12.4</span> Modelos de distribución de probabilidad<a class="anchor" aria-label="anchor" href="#modelos-de-distribuci%C3%B3n-de-probabilidad"><i class="fas fa-link"></i></a>
 </h2>
-<p>En esta sección se presentan los modelos más utilizados en la práctica, distinguiendo entre modelos discretos y continuos, según la naturaleza de la v.a. Para una visión completa, se puede consultar, por ejemplo, <span class="citation">Johnson, Kemp, and Kotz (<a href="referncias.html#ref-JohnsonKempKotz2008">2008</a>)</span>.</p>
+<p>En esta sección se presentan los modelos más utilizados en la práctica, distinguiendo entre modelos discretos y continuos, según la naturaleza de la v.a. Para una visión completa, se puede consultar, por ejemplo, <span class="citation">Johnson, Kemp, and Kotz (<a href="referncias.html#ref-JohnsonKempKotz2008" role="doc-biblioref">2008</a>)</span>.</p>
 <div id="modelos-discretos" class="section level3" number="12.4.1">
 <h3>
 <span class="header-section-number">12.4.1</span> Modelos discretos<a class="anchor" aria-label="anchor" href="#modelos-discretos"><i class="fas fa-link"></i></a>

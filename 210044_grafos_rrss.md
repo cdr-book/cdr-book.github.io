@@ -172,7 +172,7 @@ El siguiente código se utiliza para mostrar el camino más corto entre los vér
 # Camino más corto entre el nodo 2 y el 5
 caminos <- get.shortest.paths(grafo, from = "2", to = "5")
 V(grafo)[caminos$vpath[[1]]]
-#> + 3/5 vertices, from 2a6bb3c:
+#> + 3/5 vertices, from 1bf6d87:
 #> [1] 2 4 5
 ```
 

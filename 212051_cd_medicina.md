@@ -71,15 +71,14 @@ El *dataset* sintético `datos_observacional` reproduce los datos de un hipotét
 
 ```
 #> # A tibble: 5 × 8
-#>      ID fecha_hospitalizacion sexo    edad comorbilidades         fecha…¹ exitus
-#>   <dbl> <dttm>                <chr>  <dbl> <chr>                  <chr>    <dbl>
-#> 1     1 2015-04-17 00:00:00   Mujer     76 1 o más comorbilidades 17/04/…      1
-#> 2     2 2015-03-21 00:00:00   Mujer     64 1 o más comorbilidades 31/03/…      0
-#> 3     3 2015-04-09 00:00:00   Hombre    65 1 o más comorbilidades 16/04/…      0
-#> 4     4 2015-04-04 00:00:00   Hombre    77 1 o más comorbilidades 13/04/…      0
-#> 5     5 2015-03-24 00:00:00   Mujer     66 1 o más comorbilidades 27/03/…      0
-#> # … with 1 more variable: fecha_exitus <dttm>, and abbreviated variable name
-#> #   ¹​fecha_alta
+#>      ID fecha_hospitalizacion sexo    edad comorbilidades      fecha_alta exitus
+#>   <dbl> <dttm>                <chr>  <dbl> <chr>               <chr>       <dbl>
+#> 1     1 2015-04-17 00:00:00   Mujer     76 1 o más comorbilid… 17/04/2020      1
+#> 2     2 2015-03-21 00:00:00   Mujer     64 1 o más comorbilid… 31/03/2020      0
+#> 3     3 2015-04-09 00:00:00   Hombre    65 1 o más comorbilid… 16/04/2020      0
+#> 4     4 2015-04-04 00:00:00   Hombre    77 1 o más comorbilid… 13/04/2020      0
+#> 5     5 2015-03-24 00:00:00   Mujer     66 1 o más comorbilid… 27/03/2020      0
+#> # ℹ 1 more variable: fecha_exitus <dttm>
 ```
 
 
@@ -180,6 +179,8 @@ knitr::kable(tab1,
   </tr>
 </tbody>
 </table>
+
+
 
 
 En la Tabla \@ref(tab:tabla1) y acorde a la bibliografía existente, se confirma el sesgo de selección a través del desequilibrio de la variable principal (`exitus`) en las variables `sexo`, `edad` y `comorbilidades`, evidenciado a través de la significación de éstas. Un argumento que motiva la aplicación, en este caso, de la técnica *propensity score* se fundamenta en la viabilidad de, por ejemplo, un modelo multivariante (como puede ser un modelo de predicción). La recogida de datos de un estudio observacional, como el de este ejemplo, normalmente viene dada por la disponibilidad de la población: sujetos ingresados en el Hospital por la enfermedad (en nuestro caso, coronavirus). Por tanto, esta muestra seleccionada recogerá pacientes con pronóstico más grave que la población general (mujer de mayor edad con una o más comorbilidades). 
@@ -294,6 +295,8 @@ knitr::kable(tab1_corregida,
   </tr>
 </tbody>
 </table>
+
+
 
 
 

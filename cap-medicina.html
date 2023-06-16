@@ -7,7 +7,7 @@
 <title>Capítulo 54 Análisis de datos en medicina | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Alberto M. Borobia\(^{a}\) y María Jiménez-González\(^{a}\) \(^{a}\)Hospital Universitario La Paz - IdiPAZ  54.1 Justificación La aplicación de la estadística en la investigación clínica ha sido...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 54 Análisis de datos en medicina | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,8 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
@@ -159,11 +158,11 @@
 <p>
 </p>
 <p>En la investigación clínica existen dos tipos de estudios: <em>estudios observacionales</em> y <em>ensayos clínicos</em>.</p>
-<p>Los ensayos clínicos aleatorios se definen como el diseño experimental óptimo para proporcionar evidencia, eficacia y seguridad de una intervención <span class="citation">(<a href="referncias.html#ref-Lium3164">X. Liu et al. 2020</a>)</span>. Los tratamientos estudiados o investigados son asignados aleatoriamente en grupos que garantizan que las diferencias en los resultados después del tratamiento reflejen los efectos del mismo <span class="citation">(<a href="referncias.html#ref-rosenbaum2005observational">Rosenbaum 2005</a>)</span>. Cuando estas condiciones ideales no son posibles (falta de recursos, financiación, tiempo, etc), se definen como estudios observacionales.</p>
+<p>Los ensayos clínicos aleatorios se definen como el diseño experimental óptimo para proporcionar evidencia, eficacia y seguridad de una intervención <span class="citation">(<a href="referncias.html#ref-Lium3164" role="doc-biblioref">X. Liu et al. 2020</a>)</span>. Los tratamientos estudiados o investigados son asignados aleatoriamente en grupos que garantizan que las diferencias en los resultados después del tratamiento reflejen los efectos del mismo <span class="citation">(<a href="referncias.html#ref-rosenbaum2005observational" role="doc-biblioref">Rosenbaum 2005</a>)</span>. Cuando estas condiciones ideales no son posibles (falta de recursos, financiación, tiempo, etc), se definen como estudios observacionales.</p>
 <p>Previo a la puesta en marcha de un ensayo clínico, es imprescindible la redacción de un <strong>Protocolo</strong> y un <strong>Plan de Análisis Estadístico (PAE)</strong>.</p>
 <ul>
-<li><p>El protocolo, elaborado por los investigadores del estudio, precisa y justifica los métodos y planes del proceso que se llevará a cabo en el ensayo clínico <span class="citation">(<a href="referncias.html#ref-rivera2020guidelines">Rivera et al. 2020</a>)</span>.</p></li>
-<li><p>El PAE detalla las características principales del eventual análisis estadístico de los datos, que deben describirse en la sección estadística del protocolo <span class="citation">(<a href="referncias.html#ref-lewis1999statistical">Lewis 1999</a>)</span>.</p></li>
+<li><p>El protocolo, elaborado por los investigadores del estudio, precisa y justifica los métodos y planes del proceso que se llevará a cabo en el ensayo clínico <span class="citation">(<a href="referncias.html#ref-rivera2020guidelines" role="doc-biblioref">Rivera et al. 2020</a>)</span>.</p></li>
+<li><p>El PAE detalla las características principales del eventual análisis estadístico de los datos, que deben describirse en la sección estadística del protocolo <span class="citation">(<a href="referncias.html#ref-lewis1999statistical" role="doc-biblioref">Lewis 1999</a>)</span>.</p></li>
 </ul>
 <p>Los documentos anteriormente mencionados, y el resto de directrices necesarias para un ensayo clínico, están regulados por la “Conferencia Internacional sobre armonización de requisitos técnicos para el registro de productos farmacéuticos para uso humano” (sus siglas ICH en inglés).</p>
 </div>
@@ -173,7 +172,7 @@
 </h3>
 <p>En el apartado anterior, se puso de manifiesto la importancia de lso ensayos clínicos aleatorizados. Sin embargo, la posible falta de recursos, financiación, tiempo o materiales, dificultan la puesta en marcha y realización de los mismos.</p>
 <p>En consecuencia, la puesta en práctica de la investigación puede no ser la ideal. Los estudios observacionales, sin embargo, son una herramienta elemental en circunstancias no tan óptimas, ya que permiten analizar e investigar (contra viento y marea).</p>
-<p>La limitación principal de los estudios observacionales es ue introducen sesgos en el análisis. Los ensayos clínicos tienen como principal objetivo eliminar el <strong>sesgo de selección</strong>: cuando los sujetos no son asignados aleatoriamente, por ejemplo, los resultados diferentes pueden reflejar estas diferencias iniciales en lugar de los efectos de los tratamientos <span class="citation">(<a href="referncias.html#ref-rosenbaum2005observational">Rosenbaum 2005</a>)</span>.</p>
+<p>La limitación principal de los estudios observacionales es ue introducen sesgos en el análisis. Los ensayos clínicos tienen como principal objetivo eliminar el <strong>sesgo de selección</strong>: cuando los sujetos no son asignados aleatoriamente, por ejemplo, los resultados diferentes pueden reflejar estas diferencias iniciales en lugar de los efectos de los tratamientos <span class="citation">(<a href="referncias.html#ref-rosenbaum2005observational" role="doc-biblioref">Rosenbaum 2005</a>)</span>.</p>
 <p>
 </p>
 </div>
@@ -189,15 +188,14 @@
 </h3>
 <p>El <em>dataset</em> sintético <code>datos_observacional</code> reproduce los datos de un hipotético estudio observacional sobre una enfermedad <strong>X</strong>. El objetivo del estudio es estudiar los factores de riesgo asociados a la mortalidad causada por esa enfermedad.</p>
 <pre><code>#&gt; # A tibble: 5 × 8
-#&gt;      ID fecha_hospitalizacion sexo    edad comorbilidades         fecha…¹ exitus
-#&gt;   &lt;dbl&gt; &lt;dttm&gt;                &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                  &lt;chr&gt;    &lt;dbl&gt;
-#&gt; 1     1 2015-04-17 00:00:00   Mujer     76 1 o más comorbilidades 17/04/…      1
-#&gt; 2     2 2015-03-21 00:00:00   Mujer     64 1 o más comorbilidades 31/03/…      0
-#&gt; 3     3 2015-04-09 00:00:00   Hombre    65 1 o más comorbilidades 16/04/…      0
-#&gt; 4     4 2015-04-04 00:00:00   Hombre    77 1 o más comorbilidades 13/04/…      0
-#&gt; 5     5 2015-03-24 00:00:00   Mujer     66 1 o más comorbilidades 27/03/…      0
-#&gt; # … with 1 more variable: fecha_exitus &lt;dttm&gt;, and abbreviated variable name
-#&gt; #   ¹​fecha_alta</code></pre>
+#&gt;      ID fecha_hospitalizacion sexo    edad comorbilidades      fecha_alta exitus
+#&gt;   &lt;dbl&gt; &lt;dttm&gt;                &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt;       &lt;dbl&gt;
+#&gt; 1     1 2015-04-17 00:00:00   Mujer     76 1 o más comorbilid… 17/04/2020      1
+#&gt; 2     2 2015-03-21 00:00:00   Mujer     64 1 o más comorbilid… 31/03/2020      0
+#&gt; 3     3 2015-04-09 00:00:00   Hombre    65 1 o más comorbilid… 16/04/2020      0
+#&gt; 4     4 2015-04-04 00:00:00   Hombre    77 1 o más comorbilid… 13/04/2020      0
+#&gt; 5     5 2015-03-24 00:00:00   Mujer     66 1 o más comorbilid… 27/03/2020      0
+#&gt; # ℹ 1 more variable: fecha_exitus &lt;dttm&gt;</code></pre>
 <p>En la literatura, se ha evidenciado que las mujeres de mayor edad y con una o más comorbilidades tienen más riesgo de fallecer (exitus) por la enfermedad <strong>XX</strong>. En investigación, la estructura de
 los resultados en un paper o en un informe estadístico, independientemente de la revista o PAE,
 comienza en el mismo punto: una tabla resumen de las características basales de la población
@@ -215,7 +213,7 @@ objeto de estudio El paquete <code>tableone</code> (sencillo juego de palabras) 
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># imprime la tabla</span></span>
-<span><span class="va">tab1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html">print</a></span><span class="op">(</span><span class="va">tab1</span>,</span>
+<span><span class="va">tab1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">tab1</span>,</span>
 <span>  showAllLevels <span class="op">=</span> <span class="cn">TRUE</span>, formatOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span>,</span>
 <span>  exact <span class="op">=</span> <span class="st">"stage"</span>, nonnormal <span class="op">=</span> <span class="va">nonnormal</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -360,7 +358,7 @@ No
 </tbody>
 </table></div>
 <p>En la Tabla <a href="cap-medicina.html#tab:tabla1">54.1</a> y acorde a la bibliografía existente, se confirma el sesgo de selección a través del desequilibrio de la variable principal (<code>exitus</code>) en las variables <code>sexo</code>, <code>edad</code> y <code>comorbilidades</code>, evidenciado a través de la significación de éstas. Un argumento que motiva la aplicación, en este caso, de la técnica <em>propensity score</em> se fundamenta en la viabilidad de, por ejemplo, un modelo multivariante (como puede ser un modelo de predicción). La recogida de datos de un estudio observacional, como el de este ejemplo, normalmente viene dada por la disponibilidad de la población: sujetos ingresados en el Hospital por la enfermedad (en nuestro caso, coronavirus). Por tanto, esta muestra seleccionada recogerá pacientes con pronóstico más grave que la población general (mujer de mayor edad con una o más comorbilidades).</p>
-<p>El paquete <code>MatchIt</code> integra las funciones principales para el ajuste de la técnica <em>propensity score</em>, concretamente la función <code><a href="https://kosukeimai.github.io/MatchIt/reference/matchit.html">matchit()</a></code> integra la teoría de <span class="citation">(<a href="referncias.html#ref-ho2007matching">D. E. Ho et al. 2007</a>)</span> para el emparejamiento óptimo de los grupos estudiados. Los argumentos más importantes de esta función son:
+<p>El paquete <code>MatchIt</code> integra las funciones principales para el ajuste de la técnica <em>propensity score</em>, concretamente la función <code><a href="https://kosukeimai.github.io/MatchIt/reference/matchit.html">matchit()</a></code> integra la teoría de <span class="citation">(<a href="referncias.html#ref-ho2007matching" role="doc-biblioref">D. E. Ho et al. 2007</a>)</span> para el emparejamiento óptimo de los grupos estudiados. Los argumentos más importantes de esta función son:
 - <code>formula</code>: modelo de regresión que estudia la relación entre la variable principal de estudio (exitus) con las variables sesgadas (sexo, edad y comorbilidades).
 - <code>method</code>: especifica el método de <em>matching</em>.
 - <code>distance</code>: especifica el método para la estimación del índice de propensión.</p>
@@ -383,7 +381,7 @@ No
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># se imprime en el objeto tab1_corregida</span></span>
-<span><span class="va">tab1_corregida</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html">print</a></span><span class="op">(</span><span class="va">tab1_corregida</span>,</span>
+<span><span class="va">tab1_corregida</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">tab1_corregida</span>,</span>
 <span>  showAllLevels <span class="op">=</span> <span class="cn">TRUE</span>, formatOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span>,</span>
 <span>  exact <span class="op">=</span> <span class="st">"stage"</span>, nonnormal <span class="op">=</span> <span class="va">nonnormal</span></span>
 <span><span class="op">)</span></span></code></pre></div>
