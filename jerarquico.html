@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 30 Análisis cluster: clusterización jerárquica | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="José-María Montero\(^{a}\) y Gema Fernández-Avilés\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  30.1 Introducción El origen de la actividad agrupatoria, hoy en día conocida como análisis...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta property="og:title" content="Capítulo 30 Análisis cluster: clusterización jerárquica | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="José-María Montero\(^{a}\) y Gema Fernández-Avilés\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  30.1 Introducción El origen de la actividad agrupatoria, hoy en día conocida como análisis...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 30 Análisis cluster: clusterización jerárquica | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="José-María Montero\(^{a}\) y Gema Fernández-Avilés\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  30.1 Introducción El origen de la actividad agrupatoria, hoy en día conocida como análisis...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="active" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referncias.html">Referncias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="jerarquico" class="section level1" number="30">
+<h1>
+<span class="header-section-number">Capítulo 30</span> Análisis cluster: clusterización jerárquica<a class="anchor" aria-label="anchor" href="#jerarquico"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>José-María Montero</em><span class="math inline">\(^{a}\)</span> y <em>Gema Fernández-Avilés</em><span class="math inline">\(^{a}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad de Castilla-La Mancha</p>
+<p></p>
+<div id="origen-cluster" class="section level2" number="30.1">
+<h2>
+<span class="header-section-number">30.1</span> Introducción<a class="anchor" aria-label="anchor" href="#origen-cluster"><i class="fas fa-link"></i></a>
+</h2>
+<p>El origen de la actividad agrupatoria, hoy en día conocida como análisis cluster o de conglomerados (AC), taxonomía numérica o reconocimiento de patrones, entre otras denominaciones, se remonta a tiempos de Aristóteles y su discípulo Teofrasto. Por tanto, tiene unas profundas raíces y hoy en día se aplica en todos los campos del saber. Se ha evitado la palabra “clasificación” porque existe una pequeña diferencia entre agrupación y clasificación. En la actividad clasificatoria se conoce el número de grupos y qué observaciones del conjunto de datos pertenecen a cada uno, siendo el objetivo clasificar nuevas observaciones en los grupos ya existentes. En la actividad agrupatoria, el número de grupos puede ser conocido (normalmente no lo es), pero no las observaciones que pertenecen a cada uno de ellos, siendo el objetivo la asignación de dichas observaciones a diferentes grupos. Este y el siguiente capítulo se centran en este último problema, al cual se hará referencia por su denominación más popular: AC.</p>
+<p>
+</p>
+<p>El AC está orientado a la síntesis de la información contenida en un conjunto de datos, normalmente una muestra relativa a objetos, individuos o, en general, elementos, definidos por una serie de características, con vistas a establecer una agrupación de los mismos en función de su mayor o menor homogeneidad. En otros términos, el AC trata de agrupar dichos elementos en grupos mutuamente excluyentes, de tal forma que los elementos de cada grupo sean lo más parecidos posible entre sí y lo más diferentes posible de los pertenecientes a otros grupos (Fig. <a href="jerarquico.html#fig:cluster-sim-ch27">30.1</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:cluster-sim-ch27"></span>
+<img src="160027-29_cluster_files/figure-html/cluster-sim-ch27-1.png" alt="Datos simulados que presentan clusters" width="60%"><p class="caption">
+Figura 30.1: Datos simulados que presentan clusters
+</p>
+</div>
+<p>Para llevar a cabo un AC, se deben tomar una serie de decisiones:</p>
+<ul>
+<li>Selección de las variables en función de las cuales se van a agrupar los elementos.</li>
+<li>Elección del tipo de distancia o medida de similitud que se va a utilizar para medir la disimilitud entre los elementos objeto de clasificación.</li>
+<li>Elección de la técnica para formar los grupos o conglomerados.</li>
+<li>Determinación del número óptimo de clusters (si no se determina a priori).</li>
+</ul>
+<p>En este capítulo se abordarán la primera y, sobre todo, la segunda cuestión, dejando las otras dos para el capítulo siguiente.</p>
+<p>Como ilustración práctica, se utilizará la base de datos <code>TIC2021</code> del paquete <code>CDR</code>, relativa a las estadísticas de uso de las TIC en la Unión Europea en 2021.</p>
+</div>
+<div id="selección-de-las-variables" class="section level2" number="30.2">
+<h2>
+<span class="header-section-number">30.2</span> Selección de las variables<a class="anchor" aria-label="anchor" href="#selecci%C3%B3n-de-las-variables"><i class="fas fa-link"></i></a>
+</h2>
+<p>La selección de las <span class="math inline">\(p\)</span> variables o características, <span class="math inline">\(\{X_1, X_2, ..., X_p\}\)</span>, en función de las cuales se va a proceder a la agrupación de los <span class="math inline">\(n\)</span> elementos disponibles es crucial, ya que determina la agrupación final, independientemente de los procedimientos técnicos utilizados. Una vez determinadas éstas, la información disponible, para los elementos objeto de agrupación, será:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:info-muestral">Tabla 30.1: </span> Información muestral</caption>
+<thead><tr class="header">
+<th align="center"></th>
+<th><span class="math inline">\(X_1\)</span></th>
+<th><span class="math inline">\(X_2\)</span></th>
+<th><span class="math inline">\(X_3\)</span></th>
+<th><span class="math inline">\(\cdots\)</span></th>
+<th><span class="math inline">\(X_p\)</span></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">Elemento <span class="math inline">\(1\)</span>
+</td>
+<td><span class="math inline">\(x_{11}\)</span></td>
+<td><span class="math inline">\(x_{12}\)</span></td>
+<td><span class="math inline">\(x_{13}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(x_{1p}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Elemento <span class="math inline">\(2\)</span>
+</td>
+<td><span class="math inline">\(x_{21}\)</span></td>
+<td><span class="math inline">\(x_{22}\)</span></td>
+<td><span class="math inline">\(x_{23}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(x_{2p}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Elemento <span class="math inline">\(3\)</span>
+</td>
+<td><span class="math inline">\(x_{31}\)</span></td>
+<td><span class="math inline">\(x_{32}\)</span></td>
+<td><span class="math inline">\(x_{33}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(x_{3p}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Elemento <span class="math inline">\(n\)</span>
+</td>
+<td><span class="math inline">\(x_{n1}\)</span></td>
+<td><span class="math inline">\(x_{n2}\)</span></td>
+<td><span class="math inline">\(x_{n3}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(x_{np}\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<p>En definitiva, la información de partida es una matriz <span class="math inline">\(\bf X_{\textit n\times \textit p}\)</span> donde cada elemento viene representado por un punto en el espacio <span class="math inline">\(p\)</span>-dimensional de variables, es decir, una matriz que proporciona los valores de las variables para cada elemento<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;También podría observarse &lt;span class="math inline"&gt;\(\bf X\)&lt;/span&gt; por columnas (la &lt;em&gt;j&lt;/em&gt;-ésima columna muestra los valores de la &lt;em&gt;j&lt;/em&gt;-ésima variable para cada elemento de la muestra). Aparentemente, no hay razón alguna para no poder agrupar las variables que describen cada elemento (cluster de variables en vez de elementos). &lt;/p&gt;'><sup>176</sup></a>.</p>
+<p>Una cuestión a tener en cuenta es el número de variables a considerar en el AC. La exclusión de variables relevantes generará una agrupación deficiente. La inclusión de variables irrelevantes complicará el proceso de agrupamiento sin procurar ganancias sustantivas. Dado que el miedo del investigador vendrá por el lado de la exclusión de variables relevantes, tenderá a incluir un número excesivo de variables (muchas de ellas correlacionadas). Por ello, se recomienda realizar previamente un ACP (véase Cap. <a href="acp.html#acp">32</a>), lo que reduce la dimensionalidad del problema, y llevar a cabo el AC a partir de las componentes principales retenidas (incorreladas, evitando así redundancias). La eliminación de información redundante es una cuestión importante en el proceso de clusterización, porque dicha información estaría sobreponderada en el resultado obtenido. Una solución menos drástica a este problema es la utilización de la distancia de Mahalanobis, que, como se verá posteriormente, corrige estas redundancias.</p>
+<p>
+Otra cuestión importante en este momento es decidir si las variables (o componentes principales en su caso) seleccionadas se utilizarán estandarizadas o no. No existe consenso sobre la cuestión, si bien se suele recomendar su estandarización para evitar consecuencias no deseadas derivadas de la distinta escala y/o unidades de medida. No obstante, autores tan relevantes como <span class="citation">Edelbrock (<a href="referncias.html#ref-edelbrock1979mixture">1979</a>)</span> y <span class="citation">S. Brian (<a href="referncias.html#ref-brian1993cluster">1993</a>)</span>, están en contra y proponen las siguientes alternativas: (<span class="math inline">\(i\)</span>) recategorizar todas las variables en variables binarias, y aplicar a éstas una distancia apropiada para ese tipo de medidas; <span class="math inline">\((ii)\)</span> realizar distintos AC con grupos de variables homogéneas (en cuanto a su métrica) y sintetizar después los diferentes resultados; y <span class="math inline">\((iii)\)</span> utilizar la distancia de Gower, que es aplicable con cualquier tipo de métrica.</p>
+</div>
+<div id="clusterdist" class="section level2" number="30.3">
+<h2>
+<span class="header-section-number">30.3</span> Elección de la distancia entre elementos<a class="anchor" aria-label="anchor" href="#clusterdist"><i class="fas fa-link"></i></a>
+</h2>
+<p>Una vez se dispone de la matriz de información <span class="math inline">\(\bf X_{\textit n\times \textit p}\)</span> , la segunda etapa en el AC consiste en la creación de una nueva matriz <span class="math inline">\(\bf D_{\textit n\times \textit n}\)</span> cuyos elementos <span class="math inline">\(\{d_{ij}\}\)</span> sean las distancias o disimilaridades entre los elementos objeto de agrupamiento.</p>
+<p>
+</p>
+<p>En caso de variables cuantitativas, la distancia entre dos elementos en un espacio de <span class="math inline">\(p\)</span> dimensiones, <span class="math inline">\(d({\bf x}_i;{\bf{x}}_{j})\)</span>, se define como una función que a cada dos puntos de <span class="math inline">\(\mathbb{R}^{p}\)</span> le asocia un número real y que verifica:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Si se cumple el cuarto requisito la función distancia suele llamarse distancia métrica.&lt;/p&gt;"><sup>177</sup></a></p>
+<ul>
+<li><p><span class="math inline">\(d({\bf x}_i;{\bf{x}}_{j}) \geq0\)</span>,</p></li>
+<li><p><span class="math inline">\(d({\bf x}_i;{\bf{x}}_{j})=0\)</span> si y sólo si <span class="math inline">\({\bf{x}}_{i}={\bf x}_{j}\)</span>,</p></li>
+<li><p><span class="math inline">\(d({\bf x}_i;{\bf{x}}_{j})=d({\bf x}_j;{\bf{x}}_{i})\)</span>,</p></li>
+<li><p><span class="math inline">\(d({\bf x}_i;{\bf{x}}_{j})+d({\bf x}_j;{\bf{x}}_{k}) \geq d({\bf x}_i;{\bf{x}}_{k}), \quad \forall{\bf{x}}_{k} \in \mathbb{R}^{p}\)</span>,</p></li>
+</ul>
+<p>Con variables cualitativas, la similitud entre dos elementos, <span class="math inline">\(s({\bf x}_i;{\bf{x}}_{j})\)</span>, es una función que a cada dos puntos de <span class="math inline">\(\mathbb{R}^{p}\)</span> le asocia un número real, y que verifica: </p>
+<ul>
+<li>
+<span class="math inline">\(s({\bf x}_i;{\bf{x}}_{j}) \leq s_0\)</span>, donde <span class="math inline">\(s_0\)</span> es un número real finito arbitrario (normalmente 1).</li>
+<li>
+<span class="math inline">\(s({\bf x}_i;{\bf{x}}_{j})=s_0\)</span> si y sólo si <span class="math inline">\({\bf{x}}_{i}={\bf x}_{j}\)</span>,</li>
+<li>
+<span class="math inline">\(s({\bf x}_i;{\bf{x}}_{j})=s({\bf x}_j;{\bf{x}}_{i})\)</span>,</li>
+<li>
+<span class="math inline">\(|s({\bf x}_i;{\bf{x}}_{j})+s({\bf x}_j;{\bf{x}}_{k})|s({\bf x}_i;{\bf{x}}_{k}) \geq d({\bf x}_i;{\bf{x}}_{j})s({\bf x}_j;{\bf{x}}_{k}) \quad \forall{\bf{x}}_{k}\in \mathbb{R}^{p}\)</span>.</li>
+</ul>
+<p>Son numerosas las formas de medir las distancias o similaridades entre dos elementos que satisfacen las condiciones expuestas. Las más populares son las siguientes:</p>
+<p><strong>Variables cuantitativas</strong></p>
+<ul>
+<li>
+<strong>Distancia euclídea.</strong> Se define como: <span class="math display">\[\begin{equation}
+d_{e}({\bf x}_i;{\bf{x}}_{j})=\sqrt{\sum_{k=1}^{p}\left(  x_{ik}-x_{jk}\right)  ^{2}}.
+\end{equation}\]</span>
+</li>
+</ul>
+<p>Ignora las unidades de medida de las variables y, en consecuencia, aunque es invariante a los cambios de origen, no lo es a los cambios de escala. También ignora las relaciones entre ellas. Resulta de utilidad con variables cuantitativas incorreladas y medidas en las mismas unidades. El cuadrado de la distancia euclídea también suele utilizarse como distancia. Para el conjunto de datos <code>TIC2021</code>, la distancia euclídea se obtiene ejecutando el siguiente código:</p>
+<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"TIC2021"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.sthda.com/english/rpkgs/factoextra">"factoextra"</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">TIC2021</span><span class="op">)</span> <span class="co"># estandariza las variables</span></span>
+<span><span class="va">d_euclidea</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/dist.html">get_dist</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">tic</span>, method <span class="op">=</span> <span class="st">"euclidea"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">d_euclidea</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+<span><span class="co">#&gt;          BE       BG       CZ       DK       DE</span></span>
+<span><span class="co">#&gt; BE 0.000000 6.421631 2.417212 1.870962 2.304686</span></span>
+<span><span class="co">#&gt; BG 6.421631 0.000000 4.616177 7.988106 4.871235</span></span>
+<span><span class="co">#&gt; CZ 2.417212 4.616177 0.000000 3.765714 1.366011</span></span>
+<span><span class="co">#&gt; DK 1.870962 7.988106 3.765714 0.000000 3.607589</span></span>
+<span><span class="co">#&gt; DE 2.304686 4.871235 1.366011 3.607589 0.000000</span></span></code></pre></div>
+<p>La Fig. <a href="jerarquico.html#fig:plot-dist-euclidea">30.2</a> muestra un <em>heatmap</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Un &lt;em&gt;heatmap&lt;/em&gt; es una representación visual de fácil lectura e interpretación basada en un código de colores, típica del análisis de páginas web. Normalmente proporciona un patrón visual en forma de”F”, que es el del seguimiento ocular de un sitio o plataforma tecnológica.&lt;/p&gt;"><sup>178</sup></a> de distancias euclídeas entre los países de la UE27 a partir de las estadísticas de uso de las TIC en 2021.</p>
+<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/dist.html">fviz_dist</a></span><span class="op">(</span>dist.obj <span class="op">=</span> <span class="va">d_euclidea</span>, lab_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:plot-dist-euclidea"></span>
+<img src="160027-29_cluster_files/figure-html/plot-dist-euclidea-1.png" alt="$Heatmap$ de  distancias euclídeas: datos `TIC2021` del paquete `CDR`" width="60%"><p class="caption">
+Figura 30.2: <span class="math inline">\(Heatmap\)</span> de distancias euclídeas: datos <code>TIC2021</code> del paquete <code>CDR</code>
+</p>
+</div>
+<p></p>
+<ul>
+<li>
+<strong>Distancia Manhattan o city block.</strong> Se define como: <span class="math display">\[\begin{equation}
+d_{MAN}({\bf x}_i;{\bf{x}}_{j})=\sum_{k=1}^{p}\left\vert x_{ik}-x_{jk}\right\vert.
+\end{equation}\]</span>
+</li>
+</ul>
+<p>Viene afectada por los cambios de escala en alguna de las variables y es menos sensible que la distancia euclídea a los valores extremos. Por ello, es recomendable cuando las variables son cuantitativas, con las mismas unidades de medida, sin relaciones entre ellas y con valores extremos.</p>
+<ul>
+<li>
+<strong>Distancia de Minkowski.</strong> Se define como: <span class="math display">\[\begin{equation}
+d_{MIN}({\bf x}_i;{\bf{x}}_{j})=\left(  \sum_{k=1}^{p}\left\vert x_{ik}-x_{jk}\right\vert
+^{\lambda}\right)  ^{\frac{1}{\lambda}}.
+\end{equation}\]</span>
+</li>
+</ul>
+<p>Las distancias euclídea y Manhattan son casos particulares de la distancia de Minkowski. En la distancia euclídea <span class="math inline">\(\lambda=2\)</span> y en la Manhattan <span class="math inline">\(\lambda=1.\)</span></p>
+<ul>
+<li>
+<strong>Norma del supremo o distancia de Chebychev.</strong> Su expresión es: <span class="math display">\[\begin{equation}
+d_{CHE}({\bf x}_i;{\bf{x}}_{j})=\max_{1\leq k\leq p}\sum_{k=1}^{p}\left\vert x_{ik}%
+-x_{jk}\right\vert.
+\end{equation}\]</span>
+</li>
+</ul>
+<p>Únicamente influye en ella la variable con los valores más extremos y, en este sentido, es muy sensible a los cambios de escala en una de las variables.</p>
+<p></p>
+<ul>
+<li>
+<strong>Distancia de Mahalanobis.</strong> Se define como: <span class="math display">\[\begin{equation}
+d_{MAH}=({\bf x}_i;{\bf{x}}_{j})=(\mathbf{x}_{i}-\mathbf{x}_{j})^{\prime}\mathbf{S}^{-1} (\mathbf{x}_{i}-\mathbf{x}_{j})
+\end{equation}\]</span>
+</li>
+</ul>
+<p></p>
+<p>Coincide con la distancia euclídea calculada sobre las componentes principales. Es invariante a cambios de origen y de escala (por tanto, la matriz de covarianzas entre las variables agrupadoras, <span class="math inline">\(\bf S\)</span>, se puede sustituir por su homónima de correlaciones, <span class="math inline">\(\bf R\)</span>). Además, tiene en cuenta, explícitamente, las correlaciones lineales que puedan existir entre las variables, corrigiendo así el efecto redundancia. Es, por tanto, una distancia apropiada cuando se trabaja con variables cuantitativas con relaciones aproximadamente lineales. Su principal desventaja es que <span class="math inline">\(\bf S\)</span> involucra, conjuntamente, a todos los elementos, y no únicamente, y de forma separada, a los elementos de cada cluster.</p>
+<ul>
+<li>
+<strong>Coeficiente de correlación de Pearson.</strong> Se define como:
+<span class="math display">\[\begin{equation}
+d_{P}({\bf x}_i;{\bf{x}}_{j})=\frac{\sum_{k=1}^{p}\left(  x_{ik}-\overline{x}_{i}\right)  \left(  x_{jk}-\overline{x}_{j}\right)  }{\sqrt{\sum_{k=1}%
+^{p}\left(  x_{ik}-\overline{x}_{i}\right)  ^{2}\sum_{k=1}^{p}\left(
+x_{jk}-\overline{x}_{j}\right)  ^{2}}}.
+\end{equation}\]</span>
+</li>
+</ul>
+<p>
+No es una distancia sino un indicador de similitud. Por tanto, valores altos indican elementos similares y valores bajos elementos distintos.</p>
+<p>Su campo de variación es <span class="math inline">\([-1,1]\)</span>, por lo que se toma su valor absoluto. Cuando las variables están centradas, se denomina coeficiente de congruencia o distancia coseno, puesto que coincide con el coseno formado por los vectores representativos de cada pareja de elementos. Tiene un inconveniente importante: un valor unitario no significa que los dos elementos sean iguales, puesto que también pueden obtenerse valores unitarios cuando los valores de las <span class="math inline">\(p\)</span> variables en uno de los elementos sean combinación lineal de los valores de las <span class="math inline">\(p\)</span> variables del otro.</p>
+<p>Se utiliza, en ocasiones, preferentemente con datos cuantitativos y con el algoritmo de distancia mínima. Los coeficientes de correlación por rangos de Kendall y Spearman se utilizan, también, en casos de variables ordinales.</p>
+<p>
+</p>
+<p>A efectos prácticos, cambiando el argumento <code>method</code> de la función <code>get_dist</code> (<code>euclidea</code>, <code>maximum</code>, <code>manhattan</code>, <code>minkowski</code>, <code>pearson</code>, <code>spearman</code>, <code>kendall</code>) se obtienen distintas matrices de distancias entre los elementos.</p>
+<p><strong>Variables cualitativas (dicotómicas)</strong></p>
+<p>En este caso, se pueden establecer distintas medidas de similaridad en base a la siguiente tabla de contingencia <span class="math inline">\(2\times 2\)</span>: </p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right"></th>
+<th align="left"></th>
+<th align="center">Elem. <span class="math inline">\(j\)</span>
+</th>
+<th align="center"></th>
+<th align="center"></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right"></td>
+<td align="left"></td>
+<td align="center">Presencia</td>
+<td align="center">Ausencia</td>
+<td align="center">Total</td>
+</tr>
+<tr class="even">
+<td align="right">Elem. <span class="math inline">\(i\)</span>
+</td>
+<td align="left">Presencia</td>
+<td align="center"><span class="math inline">\(n_{11}\)</span></td>
+<td align="center"><span class="math inline">\(n_{12}\)</span></td>
+<td align="center"><span class="math inline">\(n_{1\cdot}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="left">Ausencia</td>
+<td align="center"><span class="math inline">\(n_{21}\)</span></td>
+<td align="center"><span class="math inline">\(n_{22}\)</span></td>
+<td align="center"><span class="math inline">\(n_{2\cdot}\)</span></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="left">Total</td>
+<td align="center"><span class="math inline">\(n_{\cdot1}\)</span></td>
+<td align="center"><span class="math inline">\(n_{\cdot2}\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<p>A partir de la tabla anterior, la similaridad entre dos elementos se puede medir a partir de las coincidencias, ya sea de presencias y ausencias como de solo presencias.</p>
+<p>Entre las medidas de similaridad que involucran tanto presencias como ausencias comunes están:</p>
+<ul>
+<li>El <strong>coeficiente de coincidencias simple</strong>: <span class="math inline">\(c_{cs}=\frac{(n_{11} + n_{22})} {2}\)</span>
+</li>
+<li>El <strong>coeficiente de Rogers-Tanimoto</strong>: <span class="math inline">\(c_{RT}=\frac{(n_{11} + n_{22})} {2 (n_{11} + n_{22})+ n_{12}+n_{21}}\)</span>
+</li>
+</ul>
+<p>
+</p>
+<p>Estos dos coeficientes tienen una relación monotónica (si la distancia entre dos elementos es igual o superior a la distancia entre otros dos con una de las medidas, también lo es con la otra). Esto es importante, dado que algunos procedimientos de agrupación no se ven afectados por la medida utilizada siempre y cuando el ordenamiento establecido por ellas sea el mismo.</p>
+<p>Entre aquellas que identifican similaridad con presencias destacan:</p>
+<ul>
+<li><p>El <strong>coeficiente de Jacard</strong>: <span class="math inline">\(c_J=\frac{n_{11}} {n_{11} + n_{12}+ n_{21}}\)</span></p></li>
+<li><p>El <strong>coeficiente de Czekanowski</strong>: <span class="math inline">\(c_{C}=\frac{2 n_{11}} {2n_{11} + n_{12}+ n_{21}}\)</span></p></li>
+<li><p>El <strong>coeficiente de Sokal y Sneath</strong>: <span class="math inline">\(c_{SS}=\frac{n_{11} } {n_{11} + 2(n_{12}+n_{21})}\)</span></p></li>
+<li><p>El <strong>coeficiente de Russell y Rao</strong>: <span class="math inline">\(c_{RR}=\frac {n_{11}}{p}\)</span></p></li>
+</ul>
+<p>
+</p>
+<p>Los tres primeros coeficientes disfutan de la relación de monotonicidad en el sentido anteriormente apuntado, siendo las dos primeros las más utilizados en la práctica.</p>
+<p>También se usan como indicadores de similitud las medidas de asociación para tablas <span class="math inline">\(2\times2\)</span>, sobre todo <span class="math inline">\(Q\)</span> y <span class="math inline">\(\phi\)</span> (Sec. ref(medidas)).</p>
+<p></p>
+<p><strong>Variables cualitativas (politómicas)</strong></p>
+<p>Cuando todas las variables sean cualitativas y alguna sea politómica, se generan para estas ultimas tantas variables dicotómicas como categorías tienen, denotando con 1 la presencia y con 0 la ausencia.</p>
+<p><strong>Variables cuantitativas y cualitativas</strong></p>
+<p>Si las variables no son del mismo tipo, se utiliza la medida de similaridad de Gower: </p>
+<p><span class="math display">\[\begin{equation}
+    S_{ij}({\bf x}_i;{\bf{x}}_{j})=\frac{\sum_{k=1}^{p}s_{ij}}{\sum_{k=1}^{p}w_{ij}}
+    \end{equation}\]</span></p>
+<p>donde <span class="math inline">\(w_{ij}\)</span> vale siempre la unidad, salvo para variables binarias si los dos elementos presentan el valor cero. En cuanto al valor de <span class="math inline">\(S_{ij}\)</span>, se distinguen tres casos:</p>
+<ul>
+<li>Variables cualitativas de más de dos niveles: 1 si ambos elementos son iguales en la <em>k</em>-ésima variable; 0 si son diferentes.</li>
+<li>Variables dicotómicas: 1 si la variable considerada está presente en ambos elementos; 0 en los demás casos.</li>
+<li>Variables cuantitativas: <span class="math inline">\(1-\frac {|x_{ik}-x_{jk}|}{R_k}\)</span>, donde <span class="math inline">\(R\)</span> es el rango de la variable <em>k</em>.</li>
+</ul>
+<p>No es recomendable cuando las variables cuantitativas sean muy asimétricas. En este caso, hay dos procedimientos aproximados: <span class="math inline">\((i)\)</span> calcular medidas separadas para las variables cuantitativas y cualitativas y combinarlas estableciendo algún tipo de de ponderación; <span class="math inline">\((ii)\)</span> pasar las variables cuantitativas a cualitativas y utilizar las medidas propuestas para este tipo de variables.</p>
+</div>
+<div id="técnicas-de-agrupación-jerárquicas" class="section level2" number="30.4">
+<h2>
+<span class="header-section-number">30.4</span> Técnicas de agrupación jerárquicas<a class="anchor" aria-label="anchor" href="#t%C3%A9cnicas-de-agrupaci%C3%B3n-jer%C3%A1rquicas"><i class="fas fa-link"></i></a>
+</h2>
+<p> </p>
+<div id="introac" class="section level3" number="30.4.1">
+<h3>
+<span class="header-section-number">30.4.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introac"><i class="fas fa-link"></i></a>
+</h3>
+<p>Una vez se han seleccionado las variables en función de las cuales se van a agrupar los elementos disponibles en clusters o conglomerados, así como se ha decidido qué distancia utilizar para tal propósito, el siguiente paso del AC es la selección de un criterio o técnica de agrupamiento para formar los conglomerados. Dichas técnicas se pueden clasificar en <span class="math inline">\((i)\)</span> jerárquicas y <span class="math inline">\((ii)\)</span> no jerárquicas.</p>
+<div class="infobox">
+<p><strong>TÉCNICAS DE CLUSTERIZACIÓN</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Jerárquicas</strong>:
+<ul>
+<li>
+<em>Aglomerativas</em>:
+<ul>
+<li>Vecino más cercano o encadenamiento simple</li>
+<li>Vecino más lejano o encadenamiento completo</li>
+<li>Método de la distancia media</li>
+<li>Método de la distancia entre centroides</li>
+<li>Método de la mediana</li>
+<li>Método de Ward</li>
+<li>Encadenamiento intra-grupos</li>
+<li>Método flexible de Lance y Williams</li>
+</ul>
+</li>
+<li>
+<em>Divisivas</em>:
+<ul>
+<li>Vecino más cercano o encadenamiento simple</li>
+<li>Vecino más lejano o encadenamiento completo</li>
+<li>Método de la distancia media</li>
+<li>Método de la distancia entre centroides</li>
+<li>Método de la mediana</li>
+<li>Método de Ward</li>
+<li>Encadenamiento intra-grupos</li>
+<li>Análisis de la asociación</li>
+<li>Detector automático de interacciones</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<strong>No jerárquicas</strong>:
+<ul>
+<li>
+<em>Técnicas de reasignación</em>:
+<ul>
+<li>Basadas en centroides: Método de Forgy, <span class="math inline">\(k\)</span>-medias</li>
+<li>Basadas en medoides: <span class="math inline">\(k\)</span>-medoides, PAM, CLARA, CLARANS</li>
+<li>Basadas en medianas: <span class="math inline">\(k\)</span>-medianas</li>
+</ul>
+</li>
+<li>
+<em>Técnicas basadas en la densidad de elementos (mode-seeking)</em>:
+<ul>
+<li>Aproximación tipológica: Análisis modal, métodos TaxMap, de Fortin, de Gitman y Levine, de Catel y Coulter</li>
+<li>Aproximación probabilística: método de Wolf</li>
+<li>DBSCAN</li>
+</ul>
+</li>
+<li>
+<em>Otras técnicas no jerárquicas</em>
+<ul>
+<li>Métodos directos: <span class="math inline">\(block\)</span>-; bi; co-; <span class="math inline">\(two-mode\)</span> <span class="math inline">\(clustering\)</span>
+</li>
+<li>Métodos de reducción de la dimensionalidad: modelos
+<span class="math inline">\(Q\)</span>- y <span class="math inline">\(R\)</span>-factorial</li>
+<li>Clustering difuso</li>
+<li>Métodos basados en mixturas de modelos</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<p>Los procedimientos jerárquicos no particionan el conjunto de elementos de una sola vez, sino que realizan particiones sucesivas a distintos niveles de agrupamiento; es decir, establecen una jerarquía de clusters, de ahí su nombre. Forman los conglomerados, bien agrupando los elementos en grupos cada vez más grandes, fusionando grupos en cada paso, (jerárquicos aglomerativos), o bien desagregándolos en conglomerados cada vez más pequeños (jerárquicos divisivos).</p>
+<p>
+</p>
+<p>Las técnicas no jerárquicas se caracterizan porque <span class="math inline">\((i)\)</span> el número de clusters se suele determinar a priori; <span class="math inline">\((ii)\)</span> utilizan directamente los datos originales, si necesidad de calcular una matriz de distancias o similaridades; y <span class="math inline">\((iii)\)</span> los clusters resultantes no están anidados unos en otros, sino que están separados. La caja informativa proporciona un detalle mayor de la tipología de técnicas de agrupación que aborda el presente capítulo<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Elaboración propia en base a &lt;span class="citation"&gt;Kassambara (&lt;a href="referncias.html#ref-kassambara2017"&gt;2017&lt;/a&gt;)&lt;/span&gt;.
+&lt;/p&gt;'><sup>179</sup></a>. En lo que sigue, el objetivo son las técnicas jerárquicas, abordando las no jerárquicas en el Cap. <a href="no-jerarquico.html#no-jerarquico">31</a>.</p>
+</div>
+<div id="técnicas-jerárquicas-aglomerativas" class="section level3" number="30.4.2">
+<h3>
+<span class="header-section-number">30.4.2</span> Técnicas jerárquicas aglomerativas<a class="anchor" aria-label="anchor" href="#t%C3%A9cnicas-jer%C3%A1rquicas-aglomerativas"><i class="fas fa-link"></i></a>
+</h3>
+<p>Las técnicas jerárquicas aglomerativas, de amplia utilización, parten de tantos conglomerados como elementos y llegan a un único conglomerado final.</p>
+<p>Se parte de un conglomerado constituido por los dos elementos más próximos, de tal manera que en la segunda etapa el conglomerado formado actuará a modo de elemento (como si se tuviesen <span class="math inline">\(n-1\)</span> elementos). En la segunda etapa, de nuevo se agrupan de nuevo los dos elementos más cercanos, que pueden ser dos elementos simples o uno simple y otro compuesto (el conglomerado anterior); en el primer caso, se tendrían dos conglomerados (cada uno de ellos formado por dos elementos) y en el segundo, un conglomerado con tres elementos y otro con uno. Sea cual sea el caso, al final de la segunda etapa se tienen <span class="math inline">\(n-2\)</span> elementos, dos de los cuales son conglomerados. En las etapas siguientes se procede de idéntica manera: agrupación de los dos elementos (sean elementos simples o conglomerados formados en las etapas anteriores) más cercanos, y así sucesivamente hasta formar un único conglomerado integrado por todos los elementos. Es importante resaltar que un elemento, una vez forma parte de un conglomerado, ya no sale de él.</p>
+<p>La pregunta que surge en este momento es: en el proceso de agrupamiento descrito, ¿cómo se mide la distancia de un elemento a un conglomerado, o entre dos conglomerados?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;El criterio de inclusión de los elementos en dichos conglomerados citado en &lt;a href="jerarquico.html#origen-cluster"&gt;30.1&lt;/a&gt;.&lt;/p&gt;'><sup>180</sup></a> Los métodos más populares son los siguientes:</p>
+<ul>
+<li>
+<strong>Método del encadenamiento simple o vecino más cercano.</strong> </li>
+</ul>
+<p>Utiliza el criterio de “<em>la distancia mas cercana</em>”. Por tanto, <span class="math inline">\((i)\)</span> la distancia entre un elemento y un conglomerado es la menor de las distancias entre dicho elemento y cada uno de los elementos del conglomerado; <span class="math inline">\((ii)\)</span> la distancia entre dos conglomerados viene dada por la distancia entre sus dos elementos más cercanos. Una vez computada la matriz de distancias se seleccionan los conglomerados más cercanos.</p>
+<ul>
+<li>
+<strong>Método del encadenamiento completo o vecino más lejano.</strong> </li>
+</ul>
+<p>Funciona igual que el anterior, pero ahora el criterio es “<em>la distancia más lejana</em>”.</p>
+<p>Nótese que, mientras que con el método del vecino más cercano la distancia entre los elementos más próximos de un cluster es siempre menor que la distancia entre elementos de distintos clusters, con el criterio del vecino más lejano la distancia entre los dos elementos más alejados de un cluster es siempre menor que la distancia entre cualquiera de sus elementos y los elementos más alejados de los demás clusters. Nótese también que, mientras que el método del vecino más cercano tiende a separar a los individuos en menor medida que la indicada por sus disimilaridades iniciales (es espacio-contractivo), el criterio del vecino más lejano es espacio-dilatante, es decir, tiende a separar a los individuos en mayor medida que la indicada por sus disimilaridades iniciales <span class="citation">(<a href="referncias.html#ref-gallardoyvera2004">Gallardo-San Salvador and Vera-Vera 2004</a>)</span>.</p>
+<ul>
+<li>
+<strong>Método de la distancia media.</strong> </li>
+</ul>
+<p>Surge como una solución a la constricción o dilatación del espacio que provocan los dos métodos anteriores (por eso se dice que es espacio-conservativo y es muy utilizado), utilizando “<em>la distancia promedio</em>”, es decir, la distancia entre un elemento y un conglomerado es la media aritmética de las distancias de dicho elemento a cada uno de los elementos del conglomerado. En caso de dos conglomerados, la distancia entre ellos viene dada por el promedio aritmético de las distancias, dos a dos, tomándose un elemento de cada conglomerado. Igual que los dos métodos precedentes, es invariante a transformaciones monótonas de la distancia utilizada.</p>
+<p>En la Fig. <a href="jerarquico.html#fig:cluster-compara">30.3</a> se puede ver la constricción, dilatación y conservación del espacio que producen los métodos del vecino más cercano, más lejano y de la distancia media, respectivamente. En este caso se utiliza como representación gráfica el dendrograma (diagrama de árbol). En figuras posteriores se utilizarán otras alternativas al dendrograma, con el objetivo de mostrar las más populares. </p>
+<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">hc_simple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/hcut.html">hcut</a></span><span class="op">(</span><span class="va">tic</span>, k <span class="op">=</span> <span class="fl">3</span>, hc_method <span class="op">=</span> <span class="st">"single"</span><span class="op">)</span></span>
+<span><span class="va">hc_completo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/hcut.html">hcut</a></span><span class="op">(</span><span class="va">tic</span>, k <span class="op">=</span> <span class="fl">3</span>, hc_method <span class="op">=</span> <span class="st">"complete"</span><span class="op">)</span></span>
+<span><span class="va">hc_promedio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/hcut.html">hcut</a></span><span class="op">(</span><span class="va">tic</span>, k <span class="op">=</span> <span class="fl">3</span>, hc_method <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://patchwork.data-imaginist.com">"patchwork"</a></span><span class="op">)</span></span>
+<span><span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_dend.html">fviz_dend</a></span><span class="op">(</span><span class="va">hc_simple</span>, cex <span class="op">=</span> <span class="fl">0.5</span>, k <span class="op">=</span> <span class="fl">3</span>, main <span class="op">=</span> <span class="st">"Vecino más cercano"</span><span class="op">)</span></span>
+<span><span class="va">d2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_dend.html">fviz_dend</a></span><span class="op">(</span><span class="va">hc_completo</span>, cex <span class="op">=</span> <span class="fl">0.5</span>, k <span class="op">=</span> <span class="fl">3</span>, main <span class="op">=</span> <span class="st">"Vecino más lejano"</span><span class="op">)</span></span>
+<span><span class="va">d3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_dend.html">fviz_dend</a></span><span class="op">(</span><span class="va">hc_promedio</span>, cex <span class="op">=</span> <span class="fl">0.5</span>, k <span class="op">=</span> <span class="fl">3</span>, main <span class="op">=</span> <span class="st">"Distancia promedio"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">d1</span> <span class="op">+</span> <span class="va">d2</span> <span class="op">+</span> <span class="va">d3</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:cluster-compara"></span>
+<img src="160027-29_cluster_files/figure-html/cluster-compara-1.png" alt="Clusterización jerárquica con distancias euclídeas (dendrograma): métodos del vecino más cercano, vecino más lejano y distancia media" width="60%"><p class="caption">
+Figura 30.3: Clusterización jerárquica con distancias euclídeas (dendrograma): métodos del vecino más cercano, vecino más lejano y distancia media
+</p>
+</div>
+<ul>
+<li>
+<strong>Método de la distancia entre centroides.</strong> </li>
+</ul>
+<p>Según este método, la distancia entre dos grupos o conglomerados es la distancia entre sus centroides, entendiendo por centroide del grupo <span class="math inline">\(g\)</span>: <span class="math inline">\(c_{g}=\left(\overline{x}_{1g},\overline{x}_{2g},...,\overline{x}_{pg}\right),\)</span> donde <span class="math inline">\(\overline{x}_{jg}\)</span> es la media de la <span class="math inline">\(j\)</span>-ésima variable en dicho grupo.</p>
+<p>Igual que el método de la media, este método es también espacio-conservativo. Sin embargo, tiene la limitación de que cuando se agrupan dos conglomerados de diferente tamaño, el conglomerado resultante queda más cerca del conglomerado mayor y más alejado del menor, de forma proporcional a la diferencia de tamaños, lo que lleva a que a lo largo del proceso de clusterización se vayan perdiendo las propiedades de los conglomerados pequeños <span class="citation">(<a href="referncias.html#ref-gallardo2022">Gallardo San-Salvador 2022</a>)</span>.</p>
+<ul>
+<li><strong>Método de la mediana.</strong></li>
+</ul>
+<p> Viene a superar la limitación del método del centroide. Para ello, la estrategia natural es suponer que los grupos son de igual tamaño. Dicha estrategia se plasma en suponer que la distancia entre un elemento (o un conglomerado, <span class="math inline">\(k\)</span>) y el conglomerado formado por la agrupación de los conglomerados <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> viene dada por la mediana del triángulo formado por sus centroides (de ahí su nombre). Se trata de un método espacio conservativo, pero, igual que el método del centroide, no es invariante a transformaciones monótonas de la distancia utilizada.</p>
+<p>La Fig. <a href="jerarquico.html#fig:cluster-compara2">30.4</a>, un tanglegrama o diagrama de laberinto, muestra las agrupaciones producidas por los métodos del centroide y la mediana. En ella se puede observar como el método de la mediana corrije la limitación del método del centroide. index{método! de la mediana} index{método! del centroide}</p>
+<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://talgalili.github.io/dendextend/">"dendextend"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://svn.r-project.org/R-packages/trunk/cluster/">"cluster"</a></span><span class="op">)</span></span>
+<span><span class="va">hc_cent_dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">d_euclidea</span>, method <span class="op">=</span> <span class="st">"centroid"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">hc_med_dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">d_euclidea</span>, method <span class="op">=</span> <span class="st">"median"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="http://talgalili.github.io/dendextend/reference/tanglegram.html">tanglegram</a></span><span class="op">(</span><span class="va">hc_cent_dend</span>, <span class="va">hc_med_dend</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:cluster-compara2"></span>
+<img src="160027-29_cluster_files/figure-html/cluster-compara2-1.png" alt="Clusterización jerárquica con distancias euclídeas (tanglegrama): método del centroide vs. método de la mediana" width="60%"><p class="caption">
+Figura 30.4: Clusterización jerárquica con distancias euclídeas (tanglegrama): método del centroide vs. método de la mediana
+</p>
+</div>
+<ul>
+<li>
+<strong>Método de Ward.</strong> </li>
+</ul>
+<p>El método de Ward agrupa, en cada etapa, los dos clusters que producen el menor incremento de la varianza total intra-cluster: <span class="math inline">\(W=\sum_g\sum_{i \in g} (x_{ig}- \bar{x}_g)^{\prime} (x_{ig}- \bar{x}_g)\)</span>, donde <span class="math inline">\(\bar{x}_g\)</span> es el centroide del grupo <span class="math inline">\(g\)</span>. Así, los grupos formados no distorsionan los datos originales.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Específicamente, la propuesta de Ward es que la pérdida de información que se produce al integrar los distintos individuos en clusters sea la mínima posible.&lt;/p&gt;"><sup>181</sup></a> </p>
+<p>Es muy utilizado en la práctica, dado que tiene casi todas las ventajas del método de la media y suele ser más discriminatorio en la determinación de los niveles de agrupación. También suele crear conglomerados muy compactos de tamaño similar. Dado que el menor incremento de <span class="math inline">\(W\)</span> es proporcional a la distancia euclídea al cuadrado entre los centroides de los grupos fusionados, <span class="math inline">\(W\)</span> no es decreciente, solventándose los problemas de los otros métodos basados en centroides.</p>
+<p>La Fig. <a href="jerarquico.html#fig:plot-igraph">30.5</a>, muestra el filograma, diagrama filético en forma de árbol filogenético, generado por la librería <code>igraph</code> con el método de agrupación de Ward. </p>
+<div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://igraph.org">"igraph"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5665</span><span class="op">)</span></span>
+<span><span class="va">hc_ward</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/hcut.html">hcut</a></span><span class="op">(</span><span class="va">tic</span>, k <span class="op">=</span> <span class="fl">3</span>, hc_method <span class="op">=</span> <span class="st">"ward.D2"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_dend.html">fviz_dend</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="va">hc_ward</span>,</span>
+<span>  k <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"phylogenic"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:plot-igraph"></span>
+<img src="160027-29_cluster_files/figure-html/plot-igraph-1.png" alt="Clusterización jerárquica con distancias euclídeas al cuadrado (filograma): método de Ward" width="60%"><p class="caption">
+Figura 30.5: Clusterización jerárquica con distancias euclídeas al cuadrado (filograma): método de Ward
+</p>
+</div>
+<ul>
+<li>
+<strong>Método del encadenamiento intra-grupos.</strong> </li>
+</ul>
+<p>Según el método de la distancia promedio (o vinculación entre grupos) la distancia entre dos conglomerados se obtenía calculando las distancias de cada elemento de uno de los grupos con todos los del otro y computando, posteriormente, la media aritmética de dichas distancias. Con el método de la vinculación intra-grupos se computa la distancia media entre la totalidad de los elementos de los conglomerados susceptibles de agrupación, con independencia de si pertenecen al mismo conglomerado inicial o a distinto conglomerado. Por ejemplo: si un conglomerado está formado por los elementos <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span>, y otro por los elementos <span class="math inline">\(c\)</span> y <span class="math inline">\(d\)</span>, la distancia inter-grupos entre los dos conglomerados es:</p>
+<p><span class="math display">\[d_{inter-grupos}=\frac{d_{(a;c)}+d_{(a;d)}+d_{(b;c)}+d_{(b;d)}}{4}\]</span> mientras que la distancia intra-grupos vendrá dada por la media de las distancias entre los elementos <span class="math inline">\(a,b,c\)</span> y <span class="math inline">\(d\)</span>: <span class="math display">\[d_{intra-grupos}=\frac{d_{(a;b)}+d_{(a;c)}+d_{(a;d)}+d_{(b;c)}+d_{(b;d)}
+     +d_{(-c;d)}}{6}\]</span></p>
+<ul>
+<li>
+<strong>Método flexible de Lance y Williams.</strong> </li>
+</ul>
+<p>Calcula la distancia entre dos conglomerados (el primero formado por la unión de otros dos en la etapa previa) a partir de la siguiente expresión: <span class="math display">\[d_{\left(  g_{1}\cup g_{2}\right); g_{3}}=\alpha_{1}d_{(g_{1};g_{3})}
++\alpha_{2}d_{(g_{2};g_{3})}+\beta d_{(g_{1};g_{2})}+\gamma\left\vert
+d_{(g_{1};g_{2})}-d_{(g_{2};g_{2})}\right\vert,\]</span> donde <span class="math inline">\(\alpha_{1}+\alpha_{2}+\beta=1; \alpha_{1}=\alpha_{2};\beta&lt;1;\gamma=0\)</span>, si bien Lance y Williams sugieren adicionalmente un pequeño valor negativo de <span class="math inline">\(\beta\)</span>. Por ejemplo <span class="math inline">\(\beta =-0,25\)</span>.</p>
+<p>Los métodos anteriormente expuestos son casos particulares de éste. Denominando <span class="math inline">\(n_1\)</span>, <span class="math inline">\(n_2\)</span> y <span class="math inline">\(n_3\)</span> a los tamaños de los grupos <span class="math inline">\(g_1\)</span>, <span class="math inline">\(g_2\)</span> y <span class="math inline">\(g_3\)</span>, respectivamente, se tiene:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>Valores de <span class="math inline">\(\alpha_1\)</span>, <span class="math inline">\(\alpha_2\)</span>, <span class="math inline">\(\beta\)</span> y <span class="math inline">\(\gamma\)</span> para distintos procedimientos de agrupación</caption>
+<colgroup>
+<col width="38%">
+<col width="15%">
+<col width="15%">
+<col width="15%">
+<col width="15%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">Método</th>
+<th align="center"><span class="math inline">\(\alpha_1\)</span></th>
+<th align="center"><span class="math inline">\(\alpha_2\)</span></th>
+<th align="center"><span class="math inline">\(\beta\)</span></th>
+<th align="center"><span class="math inline">\(\gamma\)</span></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">Vecino más cercano</td>
+<td align="center">0,5</td>
+<td align="center">0,5</td>
+<td align="center">0</td>
+<td align="center">-0,5</td>
+</tr>
+<tr class="even">
+<td align="center">Vecino más lejano</td>
+<td align="center">0,5</td>
+<td align="center">0,5</td>
+<td align="center">0</td>
+<td align="center">0,5</td>
+</tr>
+<tr class="odd">
+<td align="center">Distancia media</td>
+<td align="center"><span class="math inline">\(\frac{n_1}{n_1+n_2}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_2}{n_1+n_2}\)</span></td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">Distancia entre centroides</td>
+<td align="center"><span class="math inline">\(\frac{n_1}{n_1+n_2}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_2}{n_1+n_2}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{-n_1 n_2} {(n_1+n_2)^2}\)</span></td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">Método de la mediana</td>
+<td align="center">0,5</td>
+<td align="center">0,5</td>
+<td align="center">-0,25</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">Ward</td>
+<td align="center"><span class="math inline">\(\frac {n_1+n_3} {n_1+n_2+n_3}\)</span></td>
+<td align="center"><span class="math inline">\(\frac {n_2+n_3} {n_1+n_2+n_3}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{-n_3} {n_1+n_2+n_3}\)</span></td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">Flexible</td>
+<td align="center"><span class="math inline">\(0,5(1-\beta)\)</span></td>
+<td align="center"><span class="math inline">\(0,5(1-\beta)\)</span></td>
+<td align="center"><span class="math inline">\(\beta\)</span></td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="técnicas-jerárquicas-divisivas" class="section level3" number="30.4.3">
+<h3>
+<span class="header-section-number">30.4.3</span> Técnicas jerárquicas divisivas <a class="anchor" aria-label="anchor" href="#t%C3%A9cnicas-jer%C3%A1rquicas-divisivas"><i class="fas fa-link"></i></a>
+</h3>
+<p>En este caso, la secuencia de acontecimientos es justo la inversa. Se parte de un único conglomerado formado por todos los elementos y se llega a <span class="math inline">\(n\)</span> conglomerados formados, cada uno de ellos, por un único elemento (a veces el proceso termina cuando se llega a un número de grupos preestablecido). Ahora bien, dado que ahora se trata de subividir conglomerados, es decir, de identificar los elementos más distantes, o menos similares, para separarlos del resto del conglomerado, la estrategia a seguir estará basada en maximizar las distancias (o minimizar las similitudes). En el proceso disociativo surge una cuestión importante: cuándo debe dejar de dividirse un cluster determinado y pasar a dividir otro, cuestión que se resuelve por el procedimiento propuesto por <span class="citation">MacNaughton-Smith et al. (<a href="referncias.html#ref-macnaughton_et_al1964">1964</a>)</span>. Las técnicas divisivas (también llamadas partitivas o disociativas), pueden ser monotéticas o politéticas. En el primer caso, las divisiones se basan en una sola característica o atributo. En el segundo, se tienen en cuenta todas. </p>
+<p>Las técnicas divisivas son menos populares que las aglomerativas. Sin embargo, la probabilidad de que lleven a decisiones equivocadas (debido a la variabilidad estadística de los datos) en las etapas iniciales del proceso, lo cual distorsionaría el resultado final del mismo, es menor que en las aglomerativas. En este sentido, los métodos partitivos, al partir del total de elementos, se consideran más seguros que los aglomerativos. Los métodos disociativos más populares son los siguientes:</p>
+<ul>
+<li>
+<strong>Método de la distancia promedio</strong> </li>
+</ul>
+<p>Dentro de las técnicas politéticas, entre las que se cuentan todas las vistas en la clusterización jerárquica aglomerativa, quizás la más popular es la que utiliza para la partición el método de la distancia promedio. Para ilustrarla, supóngase que se tienen 5 elementos y que su matriz de distancias es la siguiente:</p>
+<p><span class="math display">\[\bf X=\left(\begin{matrix} .&amp;.&amp;.&amp;.&amp;.\\
+8&amp;.&amp;.&amp;.&amp;.\\
+7&amp;4&amp;.&amp;.&amp;.\\
+6&amp;1&amp;4&amp;.&amp;.\\
+3&amp;4&amp;5&amp;4&amp;.
+\end {matrix}\right)\]</span></p>
+<p>En la primera etapa hay que dividir el grupo de cinco elementos en dos conglomerados. Hay <span class="math inline">\(2^{2n-1}-1\)</span> posibilidades, pero según el método de la distancia promedio, se calcula la distancia de cada elemento a los demás y se promedia, desgajándose el elemento con distancia promedio máxima. En este caso, se desgajaría el primer elemento, y en la segunda etapa se partiría de dos grupos: <span class="math inline">\(\{e_1 \}\)</span> y <span class="math inline">\(\{e_2, e_3, e_4, e_5\}\)</span>.</p>
+<p>A partir de la segunda etapa, se procede como sigue (véase Tabla <a href="jerarquico.html#tab:cluster1">30.2</a>):</p>
+<ul>
+<li>
+<span class="math inline">\((i)\)</span> Se calculan las (4) distancias promedio de cada elemento del conglomerado principal al elemento desgajado;</li>
+<li>
+<span class="math inline">\((ii)\)</span> Se calculan las (4) distancias promedio de cada elemento del conglomerado principal al resto de elementos del mismo;</li>
+<li>
+<span class="math inline">\((iii)\)</span> Se computan las diferencias <span class="math inline">\((i)-(ii)\)</span> para cada uno de los 4 elementos del conglomerado principal;</li>
+<li>
+<span class="math inline">\((iv)\)</span> De entre aquellos elementos del grupo principal en los que <span class="math inline">\((i)-(ii)&lt;0\)</span> se selecciona aquel para el cual es máxima. Tras esta segunda etapa los conglomerados son <span class="math inline">\(\{e_1, e_5\}\)</span> y <span class="math inline">\(\{e_2, e_3, e_4\}\)</span>.</li>
+</ul>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:cluster1">Tabla 30.2: </span> Distancias entre conglomerados: segunda etapa</caption>
+<colgroup>
+<col width="24%">
+<col width="26%">
+<col width="24%">
+<col width="24%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">Elemento</th>
+<th align="center">Distancia promedio al grupo desgajado <span class="math inline">\(\{e_1\}\)</span>
+</th>
+<th align="center">Distancia promedio al grupo principal</th>
+<th align="center">Diferencia</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\{e_2\}\)</span></td>
+<td align="center">8</td>
+<td align="center">3</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\{e_3\}\)</span></td>
+<td align="center">7</td>
+<td align="center">3</td>
+<td align="center">4</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\{e_4\}\)</span></td>
+<td align="center">6</td>
+<td align="center">3</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\{e_5\}\)</span></td>
+<td align="center">3</td>
+<td align="center">4,33</td>
+<td align="center">-1,33</td>
+</tr>
+</tbody>
+</table></div>
+<p>En las siguientes etapas se procede de igual manera, hasta que todas las diferencias sean positivas (en el caso que se considera, esto ocurre en la tercera etapa; véase Tabla <a href="jerarquico.html#tab:cluster2">30.3</a>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:cluster2">Tabla 30.3: </span> Distancias entre conglomerados: tercera etapa</caption>
+<colgroup>
+<col width="24%">
+<col width="26%">
+<col width="24%">
+<col width="24%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">Elemento</th>
+<th align="center">Distancia promedio al grupo desgajado <span class="math inline">\(\{e_1,e_5\}\)</span>
+</th>
+<th align="center">Distancia promedio al grupo principal</th>
+<th align="center">Diferencia</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\{e_2\}\)</span></td>
+<td align="center">6</td>
+<td align="center">2,5</td>
+<td align="center">3,5</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\{e_3\}\)</span></td>
+<td align="center">6</td>
+<td align="center">4</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\{e_4\}\)</span></td>
+<td align="center">5</td>
+<td align="center">2,5</td>
+<td align="center">2,5</td>
+</tr>
+</tbody>
+</table></div>
+<p>Cuando esto ocurre, es decir, cuando todos los elementos del conglomerado principal están más cerca de los demás que lo componen que de los del conglomerado disociado, se vuelve a iniciar el algoritmo, pero esta vez para cada uno de los dos conglomerados generados <span class="citation">(<a href="referncias.html#ref-macnaughton_et_al1964">MacNaughton-Smith et al. 1964</a>)</span>. En caso que nos ocupa, en <span class="math inline">\(\{e_1, e_5\}\)</span> la única partición posible es <span class="math inline">\(\{e_1\}\)</span>, <span class="math inline">\(\{e_5\}\)</span>. En <span class="math inline">\(\{e_2, e_3, e_4\}\)</span> se desgaja el elemento con mayor distancia promedio a los demás del grupo. Como <span class="math inline">\(\frac{d_{(2,3)}+ d_{(2,4)}}{2}=2,5\)</span>, <span class="math inline">\(\frac{d_{(3,2)}+ d_{(3,4)}}{2}=4\)</span> y <span class="math inline">\(\frac {d_{(4,2)} + d_{(4,3)}} {2}=2,5\)</span>, se desgaja <span class="math inline">\(\{e_3\}\)</span>.</p>
+<p>A continuación se aplica el algoritmo anteriormente expuesto a cada elemento del grupo principal <span class="math inline">\(\{e_2, e_4\}\)</span> y <span class="math inline">\(\{e_3\}\)</span> (Tabla <a href="jerarquico.html#tab:cluster3">30.4</a>) y, como todas las distancias son positivas, se divide <span class="math inline">\(\{e_2, e_4\}\)</span> en <span class="math inline">\(\{e_2 \}\)</span> y <span class="math inline">\(\{e_4\}\)</span>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:cluster3">Tabla 30.4: </span> Distancia entre conglomerados: etapa final</caption>
+<colgroup>
+<col width="24%">
+<col width="26%">
+<col width="24%">
+<col width="24%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">Elemento</th>
+<th align="center">Distancia promedio al grupo desgajado <span class="math inline">\(\{e_3\}\)</span>
+</th>
+<th align="center">Distancia promedio al grupo principal</th>
+<th align="center">Diferencia</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\{e_2\}\)</span></td>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\{e_4\}\)</span></td>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table></div>
+<p>El algoritmo DIvisive ANAlysis (DIANA) permite llevar a cabo la partición anterior utilizando el diámetro de los clusters para decidir el orden de partición clusters cuando se tienen varios con más de un elemento (véase capítulo 6 de <span class="citation">Kaufman and Rousseeuw (<a href="referncias.html#ref-kauf_1990">1990</a>)</span>). Proporciona <span class="math inline">\((i\)</span>) el coeficiente divisivo (véase <code><a href="https://rdrr.io/pkg/cluster/man/diana.html">?diana.object</a></code>), que mide la cantidad de estructura de agrupamiento encontrada; y <span class="math inline">\((ii\)</span>) la pancarta, una novedosa presentación gráfica (véase <code><a href="https://rdrr.io/pkg/cluster/man/plot.diana.html">?plot.diana</a></code>). </p>
+<p>Para el ejemplo de los datos <code>TIC</code>, DIANA proporciona el coeficiente divisivo (valores cercanos a 1 sugieren una estructura de agrupación fuerte), y el dendrograma, en este caso circular, representado en la Fig. <a href="jerarquico.html#fig:diana">30.6</a>.</p>
+<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">hc_diana</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cluster/man/diana.html">diana</a></span><span class="op">(</span><span class="va">tic</span>, metric <span class="op">=</span> <span class="st">"euclidea"</span><span class="op">)</span></span>
+<span><span class="va">hc_diana</span><span class="op">$</span><span class="va">dc</span></span>
+<span><span class="co">#&gt; [1] 0.8043393</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_dend.html">fviz_dend</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="va">hc_diana</span>,</span>
+<span>  k <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"circular"</span>,</span>
+<span>  ggtheme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:diana"></span>
+<img src="160027-29_cluster_files/figure-html/diana-1.png" alt="Clusterización jerárquica divisiva con DIANA" width="60%"><p class="caption">
+Figura 30.6: Clusterización jerárquica divisiva con DIANA
+</p>
+</div>
+<ul>
+<li>
+<strong>Análisis de la asociación</strong> </li>
+</ul>
+<p>En caso de que los elementos vengan caracterizados por variables cualitativas o factores dicotómicos, <span class="math inline">\(F_1,F_2,..., F_n\)</span> (si alguno fuese politómico, cada una de sus categorías se consideraría como un factor dicotómico), el método del análisis de la asociación (o suma de estadísticos chi-cuadrado) es una técnica monotética muy utilizada que procede como sigue: </p>
+<ul>
+<li>
+<span class="math inline">\((i)\)</span> Considérese <span class="math inline">\(F_1\)</span> y divídase el conjunto de elementos en dos grupos o categorías: uno con los elementos en los que <span class="math inline">\(F_1\)</span> esté presente y otro con aquellos en los que esté ausente. Hágase lo mismo con los demás factores.</li>
+<li>
+<span class="math inline">\((ii)\)</span> Constrúyanse las <span class="math inline">\(n\times(n-1)\)</span> tablas de contingencia <span class="math inline">\(2\times2\)</span> que cruzan cada factor con cada uno de los demás (véase Sec. <a href="tablas-contingencia.html#notac">23.1.1</a>).
+</li>
+</ul>
+<div class="inline-table"><table class="table table-sm"><tbody>
+<tr class="odd">
+<td align="right"></td>
+<td align="right"></td>
+<td align="center">Presencia</td>
+<td align="center">Factor <em>j</em>
+</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="right"></td>
+<td align="center">SI</td>
+<td align="center">NO</td>
+<td align="center"><strong>Total</strong></td>
+</tr>
+<tr class="odd">
+<td align="right">Presencia</td>
+<td align="right">SI</td>
+<td align="center"><span class="math inline">\(n_{11}\)</span></td>
+<td align="center"><span class="math inline">\(n_{21}\)</span></td>
+<td align="center"><span class="math inline">\(n_{1\cdot}\)</span></td>
+</tr>
+<tr class="even">
+<td align="right">Factor <em>i</em>
+</td>
+<td align="right">NO</td>
+<td align="center"><span class="math inline">\(n_{21}\)</span></td>
+<td align="center"><span class="math inline">\(n_{22}\)</span></td>
+<td align="center"><span class="math inline">\(n_{2\cdot}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="right"><strong>Total</strong></td>
+<td align="center"><span class="math inline">\(n_{\cdot1}\)</span></td>
+<td align="center"><span class="math inline">\(n_{\cdot2}\)</span></td>
+<td align="center"><strong>n</strong></td>
+</tr>
+</tbody></table></div>
+<p>donde <span class="math inline">\(i\neq j\)</span>.</p>
+<ul>
+<li>
+<span class="math inline">\((iii)\)</span> Calcúlese el estadístico chi-cuadrado (<span class="math inline">\(\chi_{ij}^2=\frac {n(n_{11}n_{22}-n_{12}n_{21})^2}{n_{1\cdot} n_{2\cdot}n_{\cdot1}n_{\cdot2}}\)</span> para una de dichas tablas (véase eígrafe <a href="tablas-contingencia.html#dise">23.2.4</a>) y compútese <span class="math inline">\(\sum_{i\neq j}\chi_{ij}^2\)</span>.</li>
+<li>
+<span class="math inline">\((iii)\)</span> Desgájese del conglomerado inicial en dos: uno con los elementos que contienen el factor con la máxima <span class="math inline">\(\sum_{i\neq j}\chi_{ij}^2\)</span> y otro con el resto de los elementos (donde dicho factor está ausente).</li>
+<li>
+<span class="math inline">\((iv)\)</span> Procédase así iterativamente.</li>
+</ul>
+<!-- Otras alternativas al criterio $\max \sum_{i\neq j}\chi_{ij}^2$ son: $\max \sqrt{\sum_{i\neq j}\chi_{ij}^2}$, $\max\sum_{i\neq j} (n_{11}n_{22}-n_{12}n_{21})^2$ y $\max\sum_{i\neq j} |n_{11}n_{22}-n_{12}n_{21}|$, entre otras. --><ul>
+<li>
+<strong>Método del detector automático de interacciones (AID)</strong> </li>
+</ul>
+<p>No es propiamente un método de AC, sino de la esfera de los modelos lineales de rango no completo. Sin embargo, se menciona, siquiera mínimamente, porque se utiliza en algunas ocasiones para combinar categorías de los factores utilizados con la finalidad de generar grupos que difieran lo más posible entre sí respecto de los valores de una variable dependiente medida en una escala métrica (con una escala proporcional o de intervalo) o ficticia (dicotómica con valores 0 y 1).
+Específicamente, el AID realiza divisiones secuenciales dicotómicas de la variable a explicar mediante un ANOVA, dividiendo inicialmente el conjunto de elementos objeto de agrupación en dos grupos según la variable que mejor explica las diferencias en el comportamiento a estudiar (en cada etapa se busca la partición que maximiza la varianza inter-grupos y minimiza la varianza intra-grupos); cada uno de los dos grupos formados se vuelve a subdividir de acuerdo con la variable que mejor explica las diferencias entre ellos; este proceso continúa hasta que el tamaño de los grupos dicotómicos alcanza un mínimo pre-establecido o hasta que las diferencias entre los valores medios de los grupos sean no significativas.</p>
+<p>En este algoritmo, el proceso de subdivisión del conjunto de elementos en grupos dicotómicos continúa hasta que se verifica algún criterio de parada.</p>
+<p>Las limitaciones más importantes del AID son las siguientes:</p>
+<ul>
+<li>Tiende a seleccionar como más explicativas las variables con mayor número de categorías. Por eso no conviene utilizarlo cuando las variables explicativas difieran mucho en el número de categorías.</li>
+<li>Las particiones resultantes dependen de la variable elegida en primer lugar, condicionando las sucesivas particiones.</li>
+<li>Su naturaleza exclusivamente dicotómica también es una limitación importante. Si se llevasen a cabo particiones con tres o más ramas producirían una mayor reducción de la varianza residual y, además, permitirían una mejor selección de otras variables.</li>
+</ul>
+<p>El AID basado en tablas de contingencia y el estadístico chi-cuadrado (CHAID) corrige la mayoría de estas limitaciones. Aunque inicialmente fue diseñado para variables categóricas, posteriormente se incluyó la posibilidad de trabajar con variables categóricas nominales, categóricas ordinales y continuas, permitiendo generar tanto árboles de decisión, para resolver problemas de clasificación, como árboles de regresión. Además, los nodos se pueden dividir en más de dos ramas.</p>
+<!-- **GEMA: DIANA** -->
+<!-- **diana se describe completamente en el capítulo 6 de Kaufman y Rousseeuw (1990). Probablemente sea único en el cálculo de una jerarquía divisiva, -->
+<!-- Además, diana proporciona (a) el coeficiente divisivo (ver diana.object ) que mide la cantidad de estructura de agrupamiento encontrada; y (b) la pancarta, una novedosa presentación gráfica (ver plot.diana ). -->
+<!-- El algoritmo diana construye una jerarquía de agrupaciones, comenzando con una agrupación grande que contiene todas las n observaciones. Los grupos se dividen hasta que cada grupo contiene solo una observación. -->
+<!-- En cada etapa,se selecciona el cluster con el mayor diámetro.(El diámetro de un cluster es la mayor disimilitud entre dos de sus observaciones). -->
+<!-- Para dividir el cluster seleccionado,el algoritmo busca primero su observación más dispar (es decir,la que tiene la mayor disimilitud media con las demás observaciones del cluster seleccionado).Esta observación inicia el "grupo de separación". En los pasos siguientes, el algoritmo reasigna las observaciones que están más cerca del "grupo escindido" que del "grupo antiguo". El resultado es una división del cluster seleccionado en dos nuevos clusters.** -->
+</div>
+</div>
+<div id="calidad-de-la-agrupación-y-número-de-clusters" class="section level2" number="30.5">
+<h2>
+<span class="header-section-number">30.5</span> Calidad de la agrupación y número de clusters<a class="anchor" aria-label="anchor" href="#calidad-de-la-agrupaci%C3%B3n-y-n%C3%BAmero-de-clusters"><i class="fas fa-link"></i></a>
+</h2>
+<div id="el-coeficiente-de-correlación-lineal-cofenético" class="section level3" number="30.5.1">
+<h3>
+<span class="header-section-number">30.5.1</span> El coeficiente de correlación lineal cofenético <a class="anchor" aria-label="anchor" href="#el-coeficiente-de-correlaci%C3%B3n-lineal-cofen%C3%A9tico"><i class="fas fa-link"></i></a>
+</h3>
+<p>Dado que las técnicas jerárquicas imponen una estructura sobre los datos y pueden producir distorsiones significativas en las relaciones entre los datos originales, una vez realizada la jerarquización de los elementos objeto de clusterización, surge la siguiente pregunta: ¿en qué medida la estructura final obtenida representa las similitudes o diferencias entre dichos objetos? En otros términos, ¿en qué medida el dendrograma representa la matriz de distancias o similitudes original?</p>
+<p>El coeficiente de correlación lineal cofenético da respuesta a dichas preguntas. Se define como el coeficiente de correlación lineal entre los <span class="math inline">\(n(n-1)\)</span> elementos del triangulo superior de la matriz de distancias o similitudes y sus homónimos en la matriz cofenética, <span class="math inline">\(\bf C\)</span>, cuyos elementos <span class="math inline">\(\{c_{ij}\}\)</span> son las distancias o similitudes entre los elementos <span class="math inline">\((i,j)\)</span> tras la aplicación de la técnica de jerarquización. Obviamente, se utilizará la técnica jerárquica que origine el mayor coeficiente.</p>
+<p>En el ejemplo TIC, el mayor coeficiente cofenético corresponde al método del promedio o del centroide, si bien el de las otras técnicas de agregación es bastante parecido.</p>
+<div class="sourceCode" id="cb427"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># comparación con la distancia euclidea: d_euclidea</span></span>
+<span><span class="va">cof_simp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">hc_simple</span><span class="op">)</span></span>
+<span><span class="va">cof_comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">hc_completo</span><span class="op">)</span></span>
+<span><span class="va">cof_prom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">hc_promedio</span><span class="op">)</span></span>
+<span><span class="va">cof_ward</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">hc_ward</span><span class="op">)</span></span>
+<span><span class="va">cof_dia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">hc_diana</span><span class="op">)</span></span>
+<span><span class="va">coef_cofeneticos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">d_euclidea</span>, <span class="va">cof_simp</span>, <span class="va">cof_comp</span>, <span class="va">cof_prom</span>, <span class="va">cof_ward</span>, <span class="va">cof_dia</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">coef_cofeneticos</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; d_euclidea   cof_simp   cof_comp   cof_prom   cof_ward    cof_dia </span></span>
+<span><span class="co">#&gt;       1.00       0.71       0.61       0.77       0.60       0.65</span></span></code></pre></div>
+</div>
+<div id="número-óptimo-de-clusters" class="section level3" number="30.5.2">
+<h3>
+<span class="header-section-number">30.5.2</span> Número óptimo de clusters <a class="anchor" aria-label="anchor" href="#n%C3%BAmero-%C3%B3ptimo-de-clusters"><i class="fas fa-link"></i></a>
+</h3>
+<p>Acabado el procedimiento de clusterización de los <span class="math inline">\(n\)</span> elementos disponibles, sea por un procedimiento jerárquico aglomerativo o divisivo, hay que tomar una decisión sobre el número de óptimo de clusters, <span class="math inline">\(k\)</span>. Esta decisión es ardua y requiere un delicado equilibrio. Valores grandes de <span class="math inline">\(k\)</span> pueden mejorar la homogeneidad de los clusters; sin embargo, se corre el riesgo de sobreajuste. Lo contrario ocurre con un <span class="math inline">\(k\)</span> pequeño.</p>
+<p>Para tomar esta decisión, además del sentido común y el conocimiento que se tenga del fenómeno en estudio, se puede echar mano de distintos procedimientos heurísticos:</p>
+<ul>
+<li><p>El primero se basa en el <strong>dendrograma</strong> y, en concreto, en la representación de las distintas etapas del algoritmo y las distancias a la que se producen las agrupaciones o particiones de los clusters. Para cada distancia, el dendrograma produce un número determinado de clusters que aumenta (o disminuye) con la misma. Por tanto, el número de clusters dependerá de la distancia a la que se corte el dendrograma (eje de ordenadas del dendrograma, <em>height</em>). Dicha distancia debería elegirse de tal forma que los conglomerados estuviesen bien determinados y fuesen interpretables. En las primeras etapas del proceso las distancias no varían mucho, pero en las etapas intermedias y, sobre todo, finales, las distancias aumentan mucho entre dos etapas consecutivas. Por ello, se suele cortar el dendrograma a la distancia a la cual las distancias entre dos etapas consecutivas del proceso empiecen a ser muy grandes, indicador de que los grupos empiezan a ser muy distintos.</p></li>
+<li>
+<p>Otra posibilidad es utilizar el <strong>gráfico de sedimentación</strong> (Sec. <a href="acp.html#numcomp">32.4</a>), que relaciona la variablidad entre clusters (eje de ordenadas) con el el número de clusters (eje de abscisas). Normalmente, decrece bruscamente al principio, y posteriormente más despacio, hasta llegar a la parte de sedimentación (el codo del gráfico), donde el decrecimiento es muy lento. Pues bien, el número óptimo de conglomerados es el correspondiente al codo o comienzo del área de sedimentación del gráfico.</p>
+<p>El algoritmo del gráfico de sedimentación es como sigue:</p>
+<ol style="list-style-type: decimal">
+<li>Clusterícese variando el número de grupos, <span class="math inline">\(k\)</span>, por ejemplo, de 1 a 10.</li>
+<li>Para cada valor de <span class="math inline">\(k\)</span>, compútese la suma de cuadrados intra-grupo (WSS).</li>
+<li>Trácese la gráfica de WSS vs. <span class="math inline">\(k\)</span>.</li>
+<li>Determínese el número óptimo de grupos.</li>
+</ol>
+<p>Con conjuntos de datos de tamaño pequeño a moderado, este proceso se puede realizar convenientemente con <code><a href="https://rdrr.io/pkg/factoextra/man/fviz_nbclust.html">factoextra::fviz_nbclust()</a></code>.</p>
+</li>
+<li>
+<p>Otra opción es el <em>ancho de silueta promedio</em>. El coeficiente o ancho de silueta compara, por cociente, la distancia media a elementos en el mismo grupo con la distancia media a elementos en otros grupos. </p>
+<p>Este método calcula el ancho de silueta promedio (<code>avg.sil.wid.</code>) de los elementos objeto de agrupación para diferentes valores de <span class="math inline">\(k\)</span>. Como un valor alto del ancho promedio indica una buena agrupación, el número óptimo de conglomerados es el que lo maximiza. El campo de variación del ancho de silueta es [-1, 1], donde 1 significa que los elementos están muy cerca de su propio cluster y lejos de otros clusters, mientras que -1 indica que están cerca de los clusters vecinos.</p>
+</li>
+</ul>
+<!-- El algoritmo es similar al del gráfico de sedimentación: --><p><!-- 1.  Realícese la clusterización variando el número de grupos, $k$, por ejemplo, de 1 a 10. -->
+<!-- 2.  Para cada $k$, calcúlese: $(i)$ Para cada observación $i$, la disimilitud promedio $a_i$ entre ella y todos los demás elementos del grupo al que pertenece; $(ii)$ la disimilitud promedio $d(i,C_j)$ entre ella y todos los elementos de los conglomerados $C_j$ a los que no pertenece. La menor $d(i,C_j)$ se denota como $b_i$, la disimilitud entre $i$ y su grupo "vecino", es decir, el más cercano al que no pertenece; $(iii)$ Finalmente, compútese el ancho de la silueta de la observación $i$ como $S_i=(b_i - a_i)/max(a_i,b_i)$. -->
+<!-- 3. Para cada $k$, compútese el promedio del ancho de silueta (avg.sil.wid.) de los elementos a agrupar. -->
+<!-- 4.  Trácese la gráfica de avg.sil vs. $k$. -->
+<!-- 5.  Determínese el número óptimo de grupos: aquel que corresponda al máximo de avg.sil.wid. --></p>
+<ul>
+<li>El <strong>criterio del gap (brecha)</strong>, similar al método del codo, tiene como finalidad encontrar la mayor diferencia o distancia entre los diferentes grupos de elementos que se van formando en el proceso de clusterización y que se representan normalmente en un dendrograma. Se computan las distancias de cada uno de los enlaces que forman el dendrograma y se observa cuál es la mayor de ellas. El máximo del gráfico de estas diferencias vs. el número de clusters indica el número óptimo de clusters. </li>
+</ul>
+<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_nbclust.html">fviz_nbclust</a></span><span class="op">(</span><span class="va">tic</span>,</span>
+<span>  FUN <span class="op">=</span> <span class="va">hcut</span>, method <span class="op">=</span> <span class="st">"wss"</span>,</span>
+<span>  k.max <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Elbow"</span><span class="op">)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_nbclust.html">fviz_nbclust</a></span><span class="op">(</span><span class="va">tic</span>,</span>
+<span>  FUN <span class="op">=</span> <span class="va">hcut</span>, method <span class="op">=</span> <span class="st">"silhouette"</span>,</span>
+<span>  k.max <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Silhouette"</span><span class="op">)</span></span>
+<span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_nbclust.html">fviz_nbclust</a></span><span class="op">(</span><span class="va">tic</span>,</span>
+<span>  FUN <span class="op">=</span> <span class="va">hcut</span>, method <span class="op">=</span> <span class="st">"gap_stat"</span>,</span>
+<span>  k.max <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Gap"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span> <span class="op">+</span> <span class="va">p3</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:plot-kresults-hc"></span>
+<img src="160027-29_cluster_files/figure-html/plot-kresults-hc-1.png" alt="Métodos heurísticos para la determinación del número óptimo de clusters" width="60%"><p class="caption">
+Figura 30.7: Métodos heurísticos para la determinación del número óptimo de clusters
+</p>
+</div>
+<ul>
+<li>Finalmente, el <strong>índice de Dunn</strong> es el cociente entre la mínima distancia inter-grupos y la máxima distancia intra-grupos. A mayor índice, mayor calidad de clusterización. </li>
+</ul>
+<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"clValid"</span><span class="op">)</span></span>
+<span><span class="va">cut2_hc_prom</span> <span class="op">&lt;-</span> <span class="fu">cutree</span><span class="op">(</span><span class="va">hc_promedio</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">cut3_hc_prom</span> <span class="op">&lt;-</span> <span class="fu">cutree</span><span class="op">(</span><span class="va">hc_promedio</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">cut4_hc_prom</span> <span class="op">&lt;-</span> <span class="fu">cutree</span><span class="op">(</span><span class="va">hc_promedio</span>, k <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">cut5_hc_prom</span> <span class="op">&lt;-</span> <span class="fu">cutree</span><span class="op">(</span><span class="va">hc_promedio</span>, k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/clValid/man/dunn.html">dunn</a></span><span class="op">(</span><span class="va">d_euclidea</span>, <span class="va">cut2_hc_prom</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.4465593</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/clValid/man/dunn.html">dunn</a></span><span class="op">(</span><span class="va">d_euclidea</span>, <span class="va">cut3_hc_prom</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.3751942</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/clValid/man/dunn.html">dunn</a></span><span class="op">(</span><span class="va">d_euclidea</span>, <span class="va">cut4_hc_prom</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.4074884</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/clValid/man/dunn.html">dunn</a></span><span class="op">(</span><span class="va">d_euclidea</span>, <span class="va">cut5_hc_prom</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.4366356</span></span></code></pre></div>
+<p>En el ejemplo TIC, el gráfico de sedimentación y criterio del <em>gap</em> indican un número óptimo de clusters de 3. El ancho de silueta alcanza su máximo con dos clusters, si bien la altura del gráfico para tres clusters es prácticamente la misma. Por ello, se opta por 3 clusters a pesar de que el índice de Dunn también se decanta por dos. El primero lo forman Rumanía, Bulgaria y Grecia, la franja sudeste de la UE27, que se caracteriza por tener los peores guarismos en dotación y uso de las TIC, tanto a nivel de hogar como de empresa. El segundo lo integran el resto de la franja este más las tres primeras economías de la Unión y Portugal. Tienen unos elevados porcentajes en todas las variables, pero no los mayores, que corresponden a los demás países de la UE27, el tercer conglomerado.</p>
+<p>Además de los procedimientos anteriores, hay otros, no tan populares, <span class="math inline">\((i)\)</span> basados en el contraste de hipótesis, suponiendo que los datos siguen alguna distribución multivariante (casi siempre la normal) o <span class="math inline">\((ii)\)</span> procedentes de la abstracción de procedimientos inherentes al análisis multivariante paramétrico; los detalles pueden verse en <span class="citation">Gallardo San-Salvador (<a href="referncias.html#ref-gallardo2022">2022</a>)</span>. El paquete <code>NbClust</code> de <strong>R</strong> contiene la función <code>NbClust()</code>, que calcula 30 índices para valorar el número óptimo de clusters.</p>
+<!-- Otra opción complementaria es echar mano de técnicas multivariantes como ANOVA y el análisis discriminante. El ANOVA se aplica a cada una de las variables para estimar las diferencias existentes entre los grupos finales. Si dichas diferencias no fueran significativas, dicha variable o factor debería ser eliminada del proceso de clusterización y proceder a una nueva clusterización con distinto número de grupos. Se trata, pues, de conocer hasta qué punto cada una de las variables o factores es de utilidad para diferenciar significativamente los elementos de cada conglomerado. Con el  análisis discriminante, se calcula el porcentaje de elementos asignados correctamente. En caso de que dicho porcentaje no sea satisfactorio, el investigador debe replantearse el proceso de clusterización realizado. -->
+</div>
+<div id="resumen-27" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-27"><i class="fas fa-link"></i></a>
+</h3>
+<p>El análisis cluster está orientado a la agrupación de un conjunto de elementos en grupos, en función de una serie de características, tal que los elementos de cada grupo sean lo más parecidos posible entre sí y lo más diferentes posible de los de otros grupos. Este proceso implica <span class="math inline">\((i)\)</span> la selección de las variables en función de las cuales se van a agrupar; <span class="math inline">\((ii)\)</span> la elección de la distancia o medida de similitud entre ellos; <span class="math inline">\((iii)\)</span> la elección de la técnica para formar los grupos; y <span class="math inline">\((iv)\)</span> la determinación del número óptimo de clusters, cuando sea menester. Estas son las cuestiones que se estudian en este capítulo, si bien, por cuestiones de espacio, en <span class="math inline">\((iii)\)</span> solo se abordan las técnicas de clusterización jerárquicas, estudiándose las no jerárquicas en el siguiente capítulo.</p>
+</div>
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></div>
+<div class="next"><a href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#jerarquico"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
+<li><a class="nav-link" href="#origen-cluster"><span class="header-section-number">30.1</span> Introducción</a></li>
+<li><a class="nav-link" href="#selecci%C3%B3n-de-las-variables"><span class="header-section-number">30.2</span> Selección de las variables</a></li>
+<li><a class="nav-link" href="#clusterdist"><span class="header-section-number">30.3</span> Elección de la distancia entre elementos</a></li>
+<li>
+<a class="nav-link" href="#t%C3%A9cnicas-de-agrupaci%C3%B3n-jer%C3%A1rquicas"><span class="header-section-number">30.4</span> Técnicas de agrupación jerárquicas</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#introac"><span class="header-section-number">30.4.1</span> Introducción</a></li>
+<li><a class="nav-link" href="#t%C3%A9cnicas-jer%C3%A1rquicas-aglomerativas"><span class="header-section-number">30.4.2</span> Técnicas jerárquicas aglomerativas</a></li>
+<li><a class="nav-link" href="#t%C3%A9cnicas-jer%C3%A1rquicas-divisivas"><span class="header-section-number">30.4.3</span> Técnicas jerárquicas divisivas </a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#calidad-de-la-agrupaci%C3%B3n-y-n%C3%BAmero-de-clusters"><span class="header-section-number">30.5</span> Calidad de la agrupación y número de clusters</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#el-coeficiente-de-correlaci%C3%B3n-lineal-cofen%C3%A9tico"><span class="header-section-number">30.5.1</span> El coeficiente de correlación lineal cofenético </a></li>
+<li><a class="nav-link" href="#n%C3%BAmero-%C3%B3ptimo-de-clusters"><span class="header-section-number">30.5.2</span> Número óptimo de clusters </a></li>
+<li><a class="nav-link" href="#resumen-27">Resumen</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

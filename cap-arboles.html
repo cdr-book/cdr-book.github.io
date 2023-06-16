@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 24 Árboles de clasificación y regresión | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="Ramón A. Carrasco\(^{a}\) e Itzcóatl Bueno\(^{b,a}\) \(^{a}\)Universidad Complutense de Madrid \(^{b}\)Instituto Nacional de Estadística  24.1 Introducción Los árboles de decisión son modelos que...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta property="og:title" content="Capítulo 24 Árboles de clasificación y regresión | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="Ramón A. Carrasco\(^{a}\) e Itzcóatl Bueno\(^{b,a}\) \(^{a}\)Universidad Complutense de Madrid \(^{b}\)Instituto Nacional de Estadística  24.1 Introducción Los árboles de decisión son modelos que...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 24 Árboles de clasificación y regresión | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="Ramón A. Carrasco\(^{a}\) e Itzcóatl Bueno\(^{b,a}\) \(^{a}\)Universidad Complutense de Madrid \(^{b}\)Instituto Nacional de Estadística  24.1 Introducción Los árboles de decisión son modelos que...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="active" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referncias.html">Referncias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="cap-arboles" class="section level1" number="24">
+<h1>
+<span class="header-section-number">Capítulo 24</span> Árboles de clasificación y regresión<a class="anchor" aria-label="anchor" href="#cap-arboles"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>Ramón A. Carrasco</em><span class="math inline">\(^{a}\)</span> e <em>Itzcóatl Bueno</em><span class="math inline">\(^{b,a}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad Complutense de Madrid
+<span class="math inline">\(^{b}\)</span>Instituto Nacional de Estadística</p>
+<p></p>
+<div id="intro_dectree" class="section level2" number="24.1">
+<h2>
+<span class="header-section-number">24.1</span> Introducción<a class="anchor" aria-label="anchor" href="#intro_dectree"><i class="fas fa-link"></i></a>
+</h2>
+<p>Los árboles de decisión son modelos que se utilizan principalmente para
+la resolución de problemas de clasificación, en los que hay que predecir
+las distintas categorías de la variable objetivo o dependiente, aunque
+también son aplicables a la predicción de valores numéricos de dicha
+variable objetivo, esto es, como modelos de regresión. De ahí que sean
+conocidos como árboles de clasificación y regresión (CART,
+Classification and Regression Trees). Algunos ejemplos de árboles de
+decisión son:</p>
+<ul>
+<li>
+<strong>Clasificación</strong>: en la medida que
+la variable objetivo debe ser categórica se podrían usar por ejemplo
+para tomar la decisión de qué empleados deberían de promocionar
+(variable con dos categorías: sí promocionar o no promocionar) en
+base a sus méritos, capacidades, edad, etc. Otro ejemplo podría ser
+su uso para decidir sí se juega o no un partido de tenis en base a
+la climatología prevista. Este ejemplo se muestra gráficamente en la
+Fig. <a href="cap-arboles.html#fig:dectree-plot">24.1</a>. En este último caso, el algoritmo que
+se utilice indicará la decisión a tomar en base a los registros
+climatológicos de los partidos que ya se hayan jugado. Así, si un
+determinado día se quiere jugar al tenis, se deberán tomar como
+variables de entrada las previsiones de Tipo de día (soleado,
+nublado o lluvioso), la fuerza del Viento y la Humedad. En caso de
+ser un día nublado, el algoritmo sugerirá que se juegue. En caso de
+ser soleado, comprobará el nivel de Humedad y, si no es muy elevada,
+recomendará que se juegue el partido. Lo mismo pasará si la
+previsión es de lluvia pero la fuerza del Viento prevista no es lo
+suficientemente intensa como para impedir el normal desarrollo del
+partido.</li>
+</ul>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:dectree-plot"></span>
+<img src="img/dectree_tenis.png" alt="Ejemplo de árbol de decisión." width="60%"><p class="caption">
+Figura 24.1: Ejemplo de árbol de decisión.
+</p>
+</div>
+<ul>
+<li>
+<strong>Regresión</strong>: siguiendo con el ejemplo
+del partido de tenis, también se puede aplicar un árbol de decisión
+para determinar cuántas horas jugar de acuerdo a las condiciones
+climatológicas. En la Fig. <a href="cap-arboles.html#fig:dectree-plot">24.1</a> se sustituirían la predicciones
+dicotómicas SI/NO por valores numéricos, como se muestra en la Fig. <a href="cap-arboles.html#fig:regtree-plot">24.2</a>. Por ejemplo, el algoritmo puede sugerir jugar 5 horas si el día está soleado pero la Humedad
+es del 30% de vapor de agua por <span class="math inline">\(m^3\)</span>, y 3,5 horas si está soleado
+pero la Humedad es del 80%. También puede decidir que si el día está
+nublado se jueguen 4 horas. O en caso de lluvia, podría decidir que
+el partido dure 0,75 horas si la fuerza del Viento es de 62km/h y
+1,15 horas si es de 27km/h.</li>
+</ul>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:regtree-plot"></span>
+<img src="img/tenis-tree-reg.png" alt="Ejemplo de árbol de regresión" width="60%"><p class="caption">
+Figura 24.2: Ejemplo de árbol de regresión
+</p>
+</div>
+<p> Como se ha comentado, CART es un término
+genérico para describir este tipo de algoritmos de árbol y también un
+nombre específico para el algoritmo original de
+<span class="citation">(<a href="referncias.html#ref-breiman1984classification">Breiman et al. 1984</a>)</span> de construcción de árboles de clasificación
+y regresión. Sin embargo, existen otros como el ID3 (Induction Decission
+Trees), o el C4.5 que está basado en el ID3. En la Tabla
+<a href="cap-arboles.html#tab:alg-dectree">24.1</a> se muestra una pequeña comparativa de estos tres
+algoritmos:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:alg-dectree">Tabla 24.1: </span> Características de los principales algoritmos de
+árboles de decisión.</caption>
+<colgroup>
+<col width="25%">
+<col width="25%">
+<col width="25%">
+<col width="25%">
+</colgroup>
+<thead><tr class="header">
+<th align="right">Algoritmo</th>
+<th align="left">Criterio de división</th>
+<th>Tipo de variables input</th>
+<th align="center">Estrategia de poda</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">ID3</td>
+<td align="left">Ganancia de información</td>
+<td>Solo categóricas</td>
+<td align="center">No poda</td>
+</tr>
+<tr class="even">
+<td align="right">CART</td>
+<td align="left">Índice de Gini</td>
+<td>Categóricas y numéricas</td>
+<td align="center">Poda basada en el coste de complejidad</td>
+</tr>
+<tr class="odd">
+<td align="right">C4.5</td>
+<td align="left">Ratio de ganancia</td>
+<td>Categóricas y numéricas</td>
+<td align="center">Poda basada en el error</td>
+</tr>
+</tbody>
+</table></div>
+<p>Los árboles de decisión tienen múltiples ventajas. Entre ellas destacan:</p>
+<ul>
+<li>Son fáciles de entender e interpretar. Su visualización clara
+permite interpretar la salida del modelo y entender su proceso como
+un conjunto de condicionantes.</li>
+<li>El mismo algoritmo incorporado en <code>R</code> (CART) es válido tanto para
+problemas de clasificación como de regresión y, por tanto, la
+variable objetivo puede ser continua o categórica. Respecto al resto
+de variables de entrada, las independientes, comentar que puede ser
+tanto categóricas como numéricas. Al contrario que ocurre con otros
+algoritmos, este último tipo de variables no requieren la
+estandarización, puesto que se basa en reglas y no en el cálculo de
+distancias entre observaciones.</li>
+<li>Tratan mejor que otros algoritmos el problema de la no linealidad.</li>
+<li>Respecto a los datos, hacen un tratamiento automático de valores
+ausentes (en la mayoría de los árboles de clasificación) y no se ven
+afectados con las observaciones atípicas.</li>
+</ul>
+<p>Sin embargo, también tienen ciertas desventajas:</p>
+<ul>
+<li>Son inestables ya que la inclusión de una nueva observación en la
+fase de entrenamiento obliga a reconstruirlo, pudiendo modificar la
+estructura del árbol final.</li>
+<li>No son recomendables en caso de grandes conjuntos de datos, puesto
+que el modelo entrenado puede estar sobreajustado. Este sobreajuste
+es el principal problema de los árboles de decisión, ya que modelos
+demasiados complejos pueden ajustar muy bien los datos observados,
+pero también pueden cometer muchos errores en la fase de predicción.
+Cuando esta circunstancia se da, el modelo ha aprendido los datos de
+entrenamiento pero no la generalidad del problema que es lo que
+normalmente se pretende. El sobreajuste da lugar también a una
+varianza elevada.</li>
+</ul>
+</div>
+<div id="procedimiento-con-r-la-función-rpart" class="section level2" number="24.2">
+<h2>
+<span class="header-section-number">24.2</span> Procedimiento con R: la función <code>rpart()</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-la-funci%C3%B3n-rpart"><i class="fas fa-link"></i></a>
+</h2>
+<p>En el paquete <code>rpart</code> de <strong>R</strong> se encuentra la función <code><a href="https://rdrr.io/pkg/rpart/man/rpart.html">rpart()</a></code> que se
+utiliza para entrenar un árbol de decisión:</p>
+<div class="sourceCode" id="cb341"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">rpart</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>
+<code>formula</code>: Refleja la relación entre la variable dependiente <span class="math inline">\(Y\)</span> y
+los predictores tal que <span class="math inline">\(Y \sim X_1 + ... + X_p\)</span>.</li>
+<li>
+<code>data</code>: Conjunto de datos con el que entrenar el árbol de acuerdo a
+la fórmula indicada.</li>
+</ul>
+</div>
+<div id="árboles-de-clasificación" class="section level2" number="24.3">
+<h2>
+<span class="header-section-number">24.3</span> Árboles de clasificación<a class="anchor" aria-label="anchor" href="#%C3%A1rboles-de-clasificaci%C3%B3n"><i class="fas fa-link"></i></a>
+</h2>
+<p>Formalmente, un árbol de decisión es un grafo acíclico (un grafo sin
+ciclos, siendo un ciclo un circuito completo) que se inicia en un <strong>nodo
+raíz</strong>, el cual se divide en <strong>ramas</strong>,
+también conocidas como <strong>aristas</strong>. De las ramas salen las
+<strong>hojas</strong>, también denominadas <strong>nodos</strong> Estos
+nodos pueden ser nodos finales o <strong>puntos de
+decisión</strong> (si de ellos no salen nuevas ramas
+con nuevos nodos) o no (de ellos salen nuevas ramas con nuevas hojas o
+nodos) y así hasta que todos los nodos sean puntos de decisión. En el
+ejemplo de la Fig. <a href="cap-arboles.html#fig:dectree-plot">24.1</a> el nodo raíz es la caja <em>Tipo
+de día</em>. Las ramas o aristas, son sus tres niveles o categorías:
+<em>Soleado</em>, <em>Nublado</em> o <em>Lluvia</em>. Cada una de estas ramas conecta con una
+nueva hoja o nodo: <em>Humedad</em> o <em>Viento</em> en los casos de soleado o
+lluvia, respectivamente. Sin embargo, en ese ejemplo, <em>Nublado</em>
+representa un nodo terminal, puesto que, llegado a ese punto, la salida
+que proporcionaría el árbol es <em>“Jugar al tenis”</em>. Este proceso se
+repite utilizando el conjunto de datos disponible en cada hoja,
+generándose una clasificación final cuando una hoja no tenga ramas
+nuevas, en cuyo caso recibe la denominación de nodo final. El objetivo
+es que el árbol sea lo más general y pequeño posible. Esto se consigue
+seleccionando, en cada paso, la variable que optimice la división de los
+datos en conjuntos homogéneos, de tal forma que se prediga mejor la
+clase objetivo.</p>
+<div id="cómo-se-va-formando-el-árbol-de-clasificación" class="section level3" number="24.3.1">
+<h3>
+<span class="header-section-number">24.3.1</span> ¿Cómo se va formando el árbol de clasificación? <a class="anchor" aria-label="anchor" href="#c%C3%B3mo-se-va-formando-el-%C3%A1rbol-de-clasificaci%C3%B3n"><i class="fas fa-link"></i></a>
+</h3>
+<p>Como ya se ha mencionado, en la construcción de un árbol de decisión se
+va dividiendo en nuevas ramas de forma recursiva, es decir, cada división
+está condicionada por las anteriores. El objetivo en cada hoja, es
+encontrar la variable más adecuada para dividir los datos de ese nodo en
+dos nuevas hojas, de tal forma que el error global entre la clase
+observada y la predicha por el árbol se minimice. Para la construcción
+de árboles de clasificación, el algoritmo CART utiliza la medida de
+impureza de Gini para generar las particiones, mientras que los
+algoritmos ID3 y C4.5 están basados en las de entropía.</p>
+<div id="impureza-de-gini" class="section level4" number="24.3.1.1">
+<h4>
+<span class="header-section-number">24.3.1.1</span> Impureza de Gini<a class="anchor" aria-label="anchor" href="#impureza-de-gini"><i class="fas fa-link"></i></a>
+</h4>
+<p>La <strong>Impureza de Gini</strong>, utilizada por el algoritmo CART, es una medida
+de la frecuencia con la que una observación elegida aleatoriamente del
+conjunto se asignaría a la clase errónea si se etiqueta al azar en una
+de las clases que se consideran. Formalmente, sea <span class="math inline">\(X\)</span> un conjunto de
+datos con <span class="math inline">\(\kappa\)</span> clases, y sea <span class="math inline">\(p_i\)</span> la probabilidad de que una
+observación pertenezca a la clase <span class="math inline">\(i\)</span>. La Impureza de Gini para <span class="math inline">\(X\)</span> se
+define como:</p>
+<span class="math display">\[\begin{equation}
+Gini(X) = 1 - \sum^{\kappa}_{i=1}{p^{2}_{i}}
+\end{equation}\]</span>
+<p>Como se ha comentado, a la hora de construir el árbol se selecciona el
+atributo con la menor impureza de Gini para dividir el conjunto de datos
+en el nodo en dos. Si un conjunto de datos <span class="math inline">\(X\)</span> se divide en un atributo
+<span class="math inline">\(\varphi\)</span> en dos subconjuntos <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span> con tamaños <span class="math inline">\(n_1\)</span> y <span class="math inline">\(n_2\)</span>,
+respectivamente, la impureza ponderada de Gini se define como:</p>
+<span class="math display">\[\begin{equation}
+Gini_{\varphi}(X) = \frac{n_1}{n}{Gini(X_{1})} + \frac{n_2}{n}{Gini(X_{2})}
+\end{equation}\]</span>
+<p>En el ejemplo de la Fig. <a href="cap-arboles.html#fig:dectree-plot">24.1</a> considérese la
+siguiente situación:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:data-imp-gini">Tabla 24.2: </span> Datos para decidir si se juega el partido</caption>
+<thead><tr class="header">
+<th>Día</th>
+<th align="center">Tipo de día</th>
+<th align="center">Humedad</th>
+<th align="center">Viento</th>
+<th align="center">Decisión</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="center">Soleado</td>
+<td align="center">Fuerte</td>
+<td align="center">Débil</td>
+<td align="center">NO</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="center">Soleado</td>
+<td align="center">Fuerte</td>
+<td align="center">Fuerte</td>
+<td align="center">NO</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="center">Lluvia</td>
+<td align="center">Fuerte</td>
+<td align="center">Débil</td>
+<td align="center">SI</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="center">Nublado</td>
+<td align="center">Fuerte</td>
+<td align="center">Débil</td>
+<td align="center">SI</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td align="center">Lluvia</td>
+<td align="center">Débil</td>
+<td align="center">Débil</td>
+<td align="center">SI</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td align="center">Lluvia</td>
+<td align="center">Débil</td>
+<td align="center">Fuerte</td>
+<td align="center">NO</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td align="center">Soleado</td>
+<td align="center">Fuerte</td>
+<td align="center">Débil</td>
+<td align="center">NO</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td align="center">Nublado</td>
+<td align="center">Débil</td>
+<td align="center">Fuerte</td>
+<td align="center">SI</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td align="center">Soleado</td>
+<td align="center">Débil</td>
+<td align="center">Débil</td>
+<td align="center">SI</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td align="center">Lluvia</td>
+<td align="center">Débil</td>
+<td align="center">Débil</td>
+<td align="center">SI</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td align="center">Soleado</td>
+<td align="center">Débil</td>
+<td align="center">Fuerte</td>
+<td align="center">SI</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td align="center">Nublado</td>
+<td align="center">Fuerte</td>
+<td align="center">Fuerte</td>
+<td align="center">SI</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td align="center">Nublado</td>
+<td align="center">Débil</td>
+<td align="center">Débil</td>
+<td align="center">SI</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td align="center">Lluvia</td>
+<td align="center">Fuerte</td>
+<td align="center">Fuerte</td>
+<td align="center">SI</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td align="center">Soleado</td>
+<td align="center">Fuerte</td>
+<td align="center">Fuerte</td>
+<td align="center">NO</td>
+</tr>
+</tbody>
+</table></div>
+<p>Para el <em>Tipo de día</em>, los datos se agruparían como muestra la Tabla
+<a href="cap-arboles.html#tab:data-td-imp-gini">24.3</a>, permitiendo el cálculo de la impureza de
+Gini para cada una de sus categorías.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:data-td-imp-gini">Tabla 24.3: </span> Días que se juega o no de acuerdo al <em>Tipo de
+día</em>
+</caption>
+<thead><tr class="header">
+<th>Tipo de día</th>
+<th align="center">SI</th>
+<th align="center">NO</th>
+<th align="center"># observaciones</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Soleado</td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td align="center">6</td>
+</tr>
+<tr class="even">
+<td>Nublado</td>
+<td align="center">4</td>
+<td align="center">0</td>
+<td align="center">4</td>
+</tr>
+<tr class="odd">
+<td>Lluvia</td>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">5</td>
+</tr>
+</tbody>
+</table></div>
+<p><span class="math display">\[\begin{equation*}
+Gini(Soleado) = 1 - \Bigl(\frac{2}{6}\Bigr)^{2} - \Bigl(\frac{4}{6}\Bigr)^{2} = 0,45
+\end{equation*}\]</span>
+<span class="math display">\[\begin{equation*}
+Gini(Nublado) = 1 - \Bigl(\frac{4}{4}\Bigr)^{2} = 0
+\end{equation*}\]</span>
+<span class="math display">\[\begin{equation*}
+Gini(Lluvia) = 1 - \Bigl(\frac{4}{5}\Bigr)^{2} - \Bigl(\frac{1}{5}\Bigr)^{2} = 0,32
+\end{equation*}\]</span></p>
+<p>Ahora, se calcula la suma ponderada de la impureza de Gini para la
+variable <em>Tipo de día</em>:</p>
+<span class="math display">\[\begin{equation*}
+Gini(\text{Tipo de día}) = 0,45\cdot\Bigl(\frac{6}{15}\Bigr) + 0\cdot\Bigl(\frac{4}{15}\Bigr) + 0,32\cdot\Bigl(\frac{5}{15}\Bigr) = 0,29
+\end{equation*}\]</span>
+<p>Del mismo modo, se puede calcular la impureza de Gini para el resto de
+variables. La Tabla <a href="cap-arboles.html#tab:hum-imp-gini">24.4</a> y la Tabla
+<a href="cap-arboles.html#tab:wind-imp-gini">24.5</a> presentan los resultados para <em>Humedad</em> y
+<em>Viento</em>, respectivamente.</p>
+<div class="inline-table"><table style="width:100%;" class="table table-sm">
+<caption>
+<span id="tab:hum-imp-gini">Tabla 24.4: </span> Impureza de Gini para las categorías de Humedad</caption>
+<colgroup>
+<col width="12%">
+<col width="6%">
+<col width="6%">
+<col width="24%">
+<col width="13%">
+<col width="13%">
+<col width="24%">
+</colgroup>
+<thead><tr class="header">
+<th>Humedad</th>
+<th align="center">SI</th>
+<th align="center">NO</th>
+<th align="center"># observaciones</th>
+<th align="center"><span class="math inline">\(p_{SI}\)</span></th>
+<th align="center"><span class="math inline">\(p_{NO}\)</span></th>
+<th align="center">Impureza de Gini</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Fuerte</td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center">8</td>
+<td align="center">0,50</td>
+<td align="center">0,50</td>
+<td align="center">0,50</td>
+</tr>
+<tr class="even">
+<td>Débil</td>
+<td align="center">6</td>
+<td align="center">1</td>
+<td align="center">7</td>
+<td align="center">0,86</td>
+<td align="center">0,14</td>
+<td align="center">0,76</td>
+</tr>
+</tbody>
+</table></div>
+<span class="math display">\[\begin{equation*}
+Gini(Humedad) = 0,5\cdot\Bigl(\frac{8}{15}\Bigr) + 0,76\cdot\Bigl(\frac{7}{15}\Bigr) = 0,62
+\end{equation*}\]</span>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:wind-imp-gini">Tabla 24.5: </span> Impureza de Gini para las categorías de Viento</caption>
+<colgroup>
+<col width="10%">
+<col width="6%">
+<col width="6%">
+<col width="24%">
+<col width="13%">
+<col width="13%">
+<col width="24%">
+</colgroup>
+<thead><tr class="header">
+<th>Viento</th>
+<th align="center">SI</th>
+<th align="center">NO</th>
+<th align="center"># observaciones</th>
+<th align="center"><span class="math inline">\(p_{SI}\)</span></th>
+<th align="center"><span class="math inline">\(p_{NO}\)</span></th>
+<th align="center">Impureza de Gini</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Fuerte</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">7</td>
+<td align="center">0,57</td>
+<td align="center">0,43</td>
+<td align="center">0,49</td>
+</tr>
+<tr class="even">
+<td>Débil</td>
+<td align="center">6</td>
+<td align="center">2</td>
+<td align="center">8</td>
+<td align="center">0,75</td>
+<td align="center">0,25</td>
+<td align="center">0,38</td>
+</tr>
+</tbody>
+</table></div>
+<span class="math display">\[\begin{equation*}
+Gini(Viento) = 0,49\cdot\Bigl(\frac{7}{15}\Bigr) + 0,38\cdot\Bigl(\frac{8}{15}\Bigr) = 0,43
+\end{equation*}\]</span>
+<p>En la Tabla <a href="cap-arboles.html#tab:features-imp-gini">24.6</a> se puede ver que la impureza de
+Gini para las tres variables incluidas en el ejemplo. La variable con la
+menor impureza de Gini, el <em>Tipo de día</em>, es la elegida para ser el nodo
+raíz del árbol de clasificación.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:features-imp-gini">Tabla 24.6: </span> Impureza de Gini para las variables de
+entrada</caption>
+<thead><tr class="header">
+<th>Variable</th>
+<th align="center">Impureza de Gini</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Tipo de día</td>
+<td align="center">0,29</td>
+</tr>
+<tr class="even">
+<td>Humedad</td>
+<td align="center">0,62</td>
+</tr>
+<tr class="odd">
+<td>Viento</td>
+<td align="center">0,43</td>
+</tr>
+</tbody>
+</table></div>
+<p>Al entrenar un árbol de decisión, se repite este proceso, y a la hora de
+dividir cada nodo, se elige el atributo que proporcione el menor
+<span class="math inline">\(Gini_{\varphi}(X)\)</span>.</p>
+<p>Para obtener la ganancia de información para una variable, las impurezas
+ponderadas de los nodos hijos se restan de la impureza del nodo padre.
+La ganancia de Gini para la variable X, <span class="math inline">\(\Delta Gini()\)</span>, se calcula
+así:</p>
+<span class="math display">\[\begin{equation}
+\Delta Gini(\varphi) =  Gini(X) - Gini_{\varphi}(X)
+\end{equation}\]</span>
+<p>Siguiendo el ejemplo del árbol de clasificación, para saber si se puede
+jugar al tenis o no, se tendría que obtener la impureza de Gini para el
+nodo <em>Humedad</em> o el nodo <em>Viento</em>. Repitiendo el proceso anteriormente
+mostrado, dado que el <em>Tipo de día</em> sea soleado, se obtienen los
+resultados de la Tabla <a href="cap-arboles.html#tab:sunfeat-imp-gini">24.7</a>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:sunfeat-imp-gini">Tabla 24.7: </span> Impureza de Gini para las variables en días
+soleados</caption>
+<thead><tr class="header">
+<th>Variable</th>
+<th align="center">Impureza de Gini</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Humedad</td>
+<td align="center">0,00</td>
+</tr>
+<tr class="even">
+<td>Viento</td>
+<td align="center">0,44</td>
+</tr>
+</tbody>
+</table></div>
+<p>Entonces, la ganancia de Gini para cada variable será:</p>
+<p>Puede observarse que la ganancia de información al dividir por <em>Humedad</em>
+es mayor que al hacerlo por <em>Viento</em>, por lo que el árbol se dividirá
+respecto a la <em>Humedad</em>, como se observó en la Fig.
+<a href="cap-arboles.html#fig:dectree-plot">24.1</a>.</p>
+</div>
+<div id="entropía" class="section level4" number="24.3.1.2">
+<h4>
+<span class="header-section-number">24.3.1.2</span> Entropía <a class="anchor" aria-label="anchor" href="#entrop%C3%ADa"><i class="fas fa-link"></i></a>
+</h4>
+<p>La entropía es un concepto matemático que mide la incertidumbre de una
+fuente de información, es decir, la varianza en los datos entre
+diferentes clases. Para cada nodo y su partición, la entropía se calcula
+como:</p>
+<span class="math display" id="eq:entropy">\[\begin{equation}
+E = -p_1\log_2 (p_1) - p_2\log_2 (p_2)
+\tag{24.1}
+\end{equation}\]</span>
+<p>donde <span class="math inline">\(p_1\)</span> y <span class="math inline">\(p_2\)</span> representan la probabilidad de pertenecer a cada una
+de las clases en ese nodo. En teoría de la información, la base
+logarítmica varía dependiendo de la aplicación, y con ella varía la
+unidad de medida. En este caso, la ganancia de información se obtiene
+como:</p>
+<span class="math display">\[\begin{equation}
+IG = E_{\varkappa} - E_{\varkappa + 1},
+\end{equation}\]</span>
+<p>donde <span class="math inline">\(E_\varkappa\)</span> representa la entropía en el nodo padre, mientras
+que <span class="math inline">\(E_{\varkappa+1}\)</span> es la entropía en el nodo que resulta de dividir
+el nodo padre. Entonces, siguiendo el ejemplo basado en los datos de la
+Tabla <a href="cap-arboles.html#tab:data-td-imp-gini">24.3</a> se tendría que la entropía en origen
+es:</p>
+<span class="math display">\[\begin{equation*}
+E = -\frac{10}{15}\log_2 \Bigl(\frac{10}{15}\Bigr) - \frac{5}{15}\log_2 \Bigl(\frac{5}{15}\Bigr) = 0,9183
+\end{equation*}\]</span>
+<p>Si se obtiene la entropía para cada variable, se determinará el nodo
+raíz para aquel que aporte una mayor ganancia de información. En el caso
+de la variable <em>Tipo de día</em> se calcula:</p>
+<p><span class="math display">\[\begin{equation*}
+E_{Soleado} = -\frac{2}{6}\log_2 \Bigl(\frac{2}{6}\Bigr) - \frac{4}{6}\log_2 \Bigl(\frac{4}{6}\Bigr) = 0,9183
+\end{equation*}\]</span>
+<span class="math display">\[\begin{equation*}
+E_{Nublado} = -\frac{4}{4}\log_2 \Bigl(\frac{4}{4}\Bigr) - \frac{0}{4}\log_2 \Bigl(\frac{0}{4}\Bigr) = 0
+\end{equation*}\]</span>
+<span class="math display">\[\begin{equation*}
+E_{Lluvia} = -\frac{4}{5}\log_2 \Bigl(\frac{4}{5}\Bigr) - \frac{1}{5}\log_2 \Bigl(\frac{1}{5}\Bigr) = 0,7219
+\end{equation*}\]</span></p>
+<p>Y por tanto:</p>
+<span class="math display">\[\begin{equation*}
+E_{\text{Tipo de día}} = \frac{6}{15}\cdot 0,9183 + \frac{4}{15}\cdot 0 + \frac{5}{15}\cdot 0,7219 = 0,608
+\end{equation*}\]</span>
+<p>Repitiendo el mismo procedimiento con las variables <em>Viento</em> y <em>Humedad</em>
+se puede comprobar que <span class="math inline">\(E(Viento) = 0,893\)</span> y <span class="math inline">\(E(Humedad) = 0,809\)</span>. A
+partir de esto se puede obtener la ganancia de información como:</p>
+<p><span class="math display">\[\begin{equation*}
+IG_{\text{Tipo de día}} = E - E_{\text{Tipo de día}} = 0,918 - 0,608 = 0,31
+\end{equation*}\]</span>
+<span class="math display">\[\begin{equation*}
+IG_{Viento} = E - E_{Viento} = 0,918 - 0,893 = 0,025
+\end{equation*}\]</span>
+<span class="math display">\[\begin{equation*}
+IG_{Humedad} = E - E_{Humedad} = 0,918 - 0,809 = 0,109
+\end{equation*}\]</span></p>
+<p>Se puede comprobar que la disminución de la aleatoriedad, o la ganancia
+de información, es mayor para la variable <em>Tipo de día</em> y por tanto se
+elige para ser el nodo raíz. Repitiendo este proceso se va construyendo
+el árbol hasta alcanzar los nodos terminales.</p>
+</div>
+</div>
+<div id="sobreajuste" class="section level3" number="24.3.2">
+<h3>
+<span class="header-section-number">24.3.2</span> Sobreajuste <a class="anchor" aria-label="anchor" href="#sobreajuste"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ya se ha comentado en la Sec. @ref(intro_dectree) que una de las
+principales desventajas de los árboles de decisión es su propensión a
+sobreajustar el modelo al conjunto de datos de entrenamiento y, por
+tanto, hay que prestar especial atención a la complejidad del modelo.
+Basándose en las observaciones utilizadas en la fase de entrenamiento,
+un árbol de decisión puede extraer los patrones presentes en el conjunto
+de observaciones de entrenamiento y ser muy preciso en el ajuste de
+dichas observaciones. Sin embargo, puede ocurrir que el árbol resultante
+no sea capaz de clasificar correctamente ni el conjunto de validación ni
+nuevas observaciones. Esta circunstancia puede ocurrir porque haya
+patrones no observados en los datos de entrenamiento que el modelo no es
+capaz de detectar, o porque la división de los datos entre entrenamiento
+y validación no se realizó correctamente siendo los datos de
+entrenamiento no representativos del conjunto de datos completo.
+Intentando que el árbol entrenado tenga la capacidad de aprender
+patrones muy complejos, se puede producir este sobreajuste materializado
+con árboles muy profundos. La forma de evitar el sobreajuste es
+controlar el crecimiento del árbol para evitar que se vuelva
+excesivamente complejo.</p>
+</div>
+<div id="cuánto-debe-crecer-un-árbol-de-clasificación" class="section level3" number="24.3.3">
+<h3>
+<span class="header-section-number">24.3.3</span> ¿Cuánto debe crecer un árbol de clasificación?<a class="anchor" aria-label="anchor" href="#cu%C3%A1nto-debe-crecer-un-%C3%A1rbol-de-clasificaci%C3%B3n"><i class="fas fa-link"></i></a>
+</h3>
+<p></p>
+<p>En cada paso de construcción del árbol se determina la variable óptima
+para realizar la división de las observaciones de un nodo padre en sus
+nodos hijos. La pregunta es: ¿cuándo se detiene?, ¿cuál es el criterio
+de parada? Por ejemplo, se puede utilizar como criterio de parada que el
+árbol alcance un tamaño o profundidad determinado, para que no sea
+excesivamente complejo y así no tengan lugar las consecuencias derivadas
+del sobreajuste.</p>
+<p>En consecuencia, se debe llegar a un equilibrio entre la profundidad y
+complejidad del árbol para optimizar la predicción de
+futuras observaciones. Este equilibrio se puede lograr siguiendo alguno
+de los siguientes enfoques: la parada temprana o la poda.</p>
+<div id="la-parada-temprana" class="section level4" number="24.3.3.1">
+<h4>
+<span class="header-section-number">24.3.3.1</span> La parada temprana<a class="anchor" aria-label="anchor" href="#la-parada-temprana"><i class="fas fa-link"></i></a>
+</h4>
+<p></p>
+<p>La parada temprana restringe el crecimiento del árbol, tanto de
+clasificación como de regresión, de forma explícita. Existen distintas
+maneras de establecer esta restricción al árbol, pero dos de las
+técnicas más populares son las de restringir la profundidad a un cierto
+nivel o la de establecer un número mínimo de observaciones permitidas en
+un nodo terminal. En el primer caso, el árbol deja de dividirse al
+llegar a cierta profundidad. Así, cuanto menos profundo sea el árbol,
+menos variación habrá en las predicciones que proporcione. Sin embargo,
+existe el riesgo de introducir mucho sesgo al modelo al no ser capaz de
+captar interacciones y patrones complejos en los datos. El segundo
+enfoque lo que provoca es que no se dividan nodos intermedios con pocas
+observaciones. En el caso extremo, si se permite que un nodo terminal
+sólo contuviese una observación esta actuaría como predicción. De este
+modo, los resultados probablemente no serían generalizables y tendrían
+mucha variabilidad. En el otro extremo, si se exigen un gran número de
+observaciones en el nodo terminal se reduce el número de divisiones y,
+por lo tanto, se reduce la varianza.</p>
+</div>
+<div id="la-poda" class="section level4" number="24.3.3.2">
+<h4>
+<span class="header-section-number">24.3.3.2</span> La poda<a class="anchor" aria-label="anchor" href="#la-poda"><i class="fas fa-link"></i></a>
+</h4>
+<p></p>
+<p>El otro enfoque es el de la poda que consiste en construir un árbol muy
+profundo y complejo y después podarlo para encontrar el subárbol óptimo.
+Este subárbol se obtiene utilizando un hiperparámetro de complejidad
+<span class="math inline">\((\zeta)\)</span> que penaliza la función objetivo de la partición por el número
+de nodos terminales del árbol <span class="math inline">\((\tau)\)</span>, es decir, se busca minimizar:</p>
+<span class="math display" id="eq:poda">\[\begin{equation}
+R_{\zeta}(\tau) = R(\tau) + \zeta|\tau|
+\tag{24.2}
+\end{equation}\]</span>
+<p>Donde <span class="math inline">\(R(\tau)\)</span> es el error total de entrenamiento de los nodos,
+<span class="math inline">\(|\tau|\)</span> es el número total de nodos y <span class="math inline">\(\zeta\)</span> es el hiperparámetro de
+complejidad. A medida que <span class="math inline">\(\zeta\)</span> aumenta, más ramas del árbol son
+podadas. Mientras que a valores más bajos, los modelos producidos son
+más complejos y en consecuencia más grandes. En conclusión, a medida que
+un árbol crece, el error de entrenamiento debe tener una reducción mayor
+que la penalización por la complejidad.</p>
+</div>
+</div>
+<div id="ejemplo-árbol-de-clasificación-para-determinar-la-intención-de-compra" class="section level3" number="24.3.4">
+<h3>
+<span class="header-section-number">24.3.4</span> Ejemplo: Árbol de clasificación para determinar la intención de compra<a class="anchor" aria-label="anchor" href="#ejemplo-%C3%A1rbol-de-clasificaci%C3%B3n-para-determinar-la-intenci%C3%B3n-de-compra"><i class="fas fa-link"></i></a>
+</h3>
+<p>A continuación se describe el caso que se va a resolver mediante modelos
+de clasificación tanto en este como en los siguientes capítulos. Existen
+diversas aserciones para definir Comercio Electrónico (CE). Entre ellas,
+la Organización para la Cooperación y el Desarrollo Económico (OCDE) lo
+define como el proceso de compra, venta o intercambio de bienes,
+servicios e información a través de redes de comunicación, comúnmente
+Internet. La clasificación más básica del CE se hace en base al tipo de
+entes que se relacionan: empresas (businesses, B), consumidores
+(consumers, C) y entes públicos (governments, G). De esta forma, una
+empresa de CE convencional suele ser B2B si vende a otras empresas, B2G
+si su relación comercial es con administraciones o B2C si vende a consumidores finales.</p>
+<p>En este caso, se puede considerar que la empresa “Beauty eSheep” lleva a
+cabo un CE de tipo B2C. Su producto estrella es una crema hidratante
+unisex, denominada internamente como “Crema Luxury”, con mucho éxito
+entre su clientela. A partir de este producto inicial, la empresa ha ido
+ofreciendo un catálogo de productos tanto de tanto de belleza como de
+bienestar y salud.</p>
+<p>Hace tiempo la empresa instauró una estrategia relacional, centrada en
+el cliente, de tal manera que ha ido recabando diversos datos sobre los
+mismos, incluidas las distintas compras que han realizado.</p>
+<p>Basándose en los datos recopilados para cada cliente, la empresa quiere
+realizar una campaña para impulsar la venta de tensiómetros digitales.
+La empresa tiene acceso a un stock muy flexible en fechas de envío de
+estos productos y el precio de los tensiómetros es muy bueno, por lo que
+se espera una buena rentabilidad en su venta.</p>
+<p>Por tanto, en este proyecto hay que identificar el público objetivo
+susceptible de comprar dicho producto para ofrecérselo a través de la
+plataforma de CE de la compañía, SMS y/o webmail durante el periodo que
+dura la campaña.</p>
+<p>La tabla con los datos integrados a nivel de cliente, incluyendo el
+consumo de los distintos productos de la empresa, es <strong>dp_ENTR</strong>,
+incluida en el paquete <code>CDR</code>, y que se resume en la Tabla
+<a href="cap-arboles.html#tab:dpentr">24.8</a>. Este ejemplo se va a replicar en el resto de
+capítulos de machine learning supervisado para clasificación.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:dpentr">Tabla 24.8: </span> Descripción de las variables del conjunto de datos
+<strong>dp_entr</strong>.</caption>
+<colgroup>
+<col width="26%">
+<col width="26%">
+<col width="47%">
+</colgroup>
+<thead><tr class="header">
+<th><em>COLUMNA</em></th>
+<th><em>TIPO</em></th>
+<th><em>DESCRIPCIÓN</em></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>CLS_PRO_pro13</td>
+<td>Factor</td>
+<td>Clase objetivo, es un indicador de si el cliente es consumidor de ese producto “Tensiómetro Digital” (‘S’) o no (‘N’)</td>
+</tr>
+<tr class="even">
+<td>ind_pro11</td>
+<td>Factor</td>
+<td>Indicador de si el cliente es consumidor del producto “Fragancia Luxury” (‘S’) o no (‘N’)</td>
+</tr>
+<tr class="odd">
+<td>ind_pro12</td>
+<td>Factor</td>
+<td>Indicador de si el cliente es consumidor del producto “Depiladora Eléctrica” (‘S’) o no (‘N’)</td>
+</tr>
+<tr class="even">
+<td>ind_pro14</td>
+<td>Factor</td>
+<td>Indicador de si el cliente es consumidor del producto “Crema Luxury” (‘S’) o no (‘N’)</td>
+</tr>
+<tr class="odd">
+<td>ind_pro15</td>
+<td>Factor</td>
+<td>Indicador de si el cliente es consumidor del producto “Smartwatch Fitness” (‘S’) o no (‘N’)</td>
+</tr>
+<tr class="even">
+<td>ind_pro16</td>
+<td>Factor</td>
+<td>Indicador de si el cliente es consumidor del producto “Kit Pesas Inteligentes” (‘S’) o no (‘N’)</td>
+</tr>
+<tr class="odd">
+<td>ind_pro17</td>
+<td>Factor</td>
+<td>Indicador de si el cliente es consumidor del producto “Estimulador Muscular” (‘S’) o no (‘N’)</td>
+</tr>
+<tr class="even">
+<td>importe_pro11</td>
+<td>Doble</td>
+<td>Importe neto global gastado por el cliente en ese producto en euros</td>
+</tr>
+<tr class="odd">
+<td>importe_pro12</td>
+<td>Doble</td>
+<td>Importe neto global gastado por el cliente en ese producto en euros</td>
+</tr>
+<tr class="even">
+<td>importe_pro14</td>
+<td>Doble</td>
+<td>Importe neto global gastado por el cliente en ese producto en euros</td>
+</tr>
+<tr class="odd">
+<td>importe_pro15</td>
+<td>Doble</td>
+<td>Importe neto global gastado por el cliente en ese producto en euros</td>
+</tr>
+<tr class="even">
+<td>importe_pro16</td>
+<td>Doble</td>
+<td>Importe neto global gastado por el cliente en ese producto en euros</td>
+</tr>
+<tr class="odd">
+<td>importe_pro17</td>
+<td>Doble</td>
+<td>Importe neto global gastado por el cliente en ese producto en euros</td>
+</tr>
+<tr class="even">
+<td>edad</td>
+<td>Entero</td>
+<td>Edad del cliente</td>
+</tr>
+<tr class="odd">
+<td>tamano_fam</td>
+<td>Entero</td>
+<td>Número de miembros de la unidad familiar a la que pertenece el cliente incluyéndolo a él mismo</td>
+</tr>
+<tr class="even">
+<td>anos_exp</td>
+<td>Entero</td>
+<td>Años de trabajo del cliente</td>
+</tr>
+<tr class="odd">
+<td>ingresos_ano</td>
+<td>Doble</td>
+<td>Ingresos anuales del cliente en euros</td>
+</tr>
+<tr class="even">
+<td>des_nivel_edu</td>
+<td>Factor</td>
+<td>Descripción del nivel de educación del cliente</td>
+</tr>
+</tbody>
+</table></div>
+<p>Se construye un árbol de clasificación
+utilizando el conjunto de entrenamiento, como se ha comentado, sin
+transformar (en su escala original) mediante el algoritmo CART
+implementado en el paquete <code>rpart</code> con Árboles de Regresión y Partición
+Recursiva (Recursive Partitioning and Regression Trees, RPART) que se
+puede usar tanto para regresión como para clasificación.</p>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="cap-arboles.html#cb342-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"CDR"</span>)</span>
+<span id="cb342-2"><a href="cap-arboles.html#cb342-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"reshape"</span>)</span>
+<span id="cb342-3"><a href="cap-arboles.html#cb342-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"caret"</span>)</span>
+<span id="cb342-4"><a href="cap-arboles.html#cb342-4" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rpart"</span>)</span>
+<span id="cb342-5"><a href="cap-arboles.html#cb342-5" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rpart.plot"</span>)</span>
+<span id="cb342-6"><a href="cap-arboles.html#cb342-6" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb342-7"><a href="cap-arboles.html#cb342-7" tabindex="-1"></a></span>
+<span id="cb342-8"><a href="cap-arboles.html#cb342-8" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"dp_entr"</span>)</span>
+<span id="cb342-9"><a href="cap-arboles.html#cb342-9" tabindex="-1"></a><span class="fu">head</span>(dp_entr)</span>
+<span id="cb342-10"><a href="cap-arboles.html#cb342-10" tabindex="-1"></a></span>
+<span id="cb342-11"><a href="cap-arboles.html#cb342-11" tabindex="-1"></a>    ind_pro11 ind_pro12 ind_pro14 ind_pro15 ind_pro16 ind_pro17 importe_pro11</span>
+<span id="cb342-12"><a href="cap-arboles.html#cb342-12" tabindex="-1"></a><span class="dv">1</span>           S         N         S         S         S         N           <span class="dv">157</span></span>
+<span id="cb342-13"><a href="cap-arboles.html#cb342-13" tabindex="-1"></a><span class="dv">497</span>         N         N         S         N         S         N             <span class="dv">0</span></span>
+<span id="cb342-14"><a href="cap-arboles.html#cb342-14" tabindex="-1"></a><span class="dv">265</span>         N         N         S         S         S         S             <span class="dv">0</span></span>
+<span id="cb342-15"><a href="cap-arboles.html#cb342-15" tabindex="-1"></a><span class="dv">534</span>         N         S         S         N         N         N             <span class="dv">0</span></span>
+<span id="cb342-16"><a href="cap-arboles.html#cb342-16" tabindex="-1"></a><span class="dv">415</span>         N         S         S         N         S         N             <span class="dv">0</span></span>
+<span id="cb342-17"><a href="cap-arboles.html#cb342-17" tabindex="-1"></a><span class="dv">298</span>         S         N         S         N         N         N           <span class="dv">115</span></span>
+<span id="cb342-18"><a href="cap-arboles.html#cb342-18" tabindex="-1"></a>    importe_pro12 importe_pro14 importe_pro15 importe_pro16 importe_pro17 edad</span>
+<span id="cb342-19"><a href="cap-arboles.html#cb342-19" tabindex="-1"></a><span class="dv">1</span>               <span class="dv">0</span>            <span class="dv">40</span>           <span class="dv">200</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">49</span></span>
+<span id="cb342-20"><a href="cap-arboles.html#cb342-20" tabindex="-1"></a><span class="dv">497</span>             <span class="dv">0</span>           <span class="dv">240</span>             <span class="dv">0</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">38</span></span>
+<span id="cb342-21"><a href="cap-arboles.html#cb342-21" tabindex="-1"></a><span class="dv">265</span>             <span class="dv">0</span>           <span class="dv">425</span>           <span class="dv">200</span>           <span class="dv">180</span>           <span class="dv">300</span>   <span class="dv">61</span></span>
+<span id="cb342-22"><a href="cap-arboles.html#cb342-22" tabindex="-1"></a><span class="dv">534</span>           <span class="dv">120</span>            <span class="dv">60</span>             <span class="dv">0</span>             <span class="dv">0</span>             <span class="dv">0</span>   <span class="dv">47</span></span>
+<span id="cb342-23"><a href="cap-arboles.html#cb342-23" tabindex="-1"></a><span class="dv">415</span>           <span class="dv">120</span>           <span class="dv">133</span>             <span class="dv">0</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">34</span></span>
+<span id="cb342-24"><a href="cap-arboles.html#cb342-24" tabindex="-1"></a><span class="dv">298</span>             <span class="dv">0</span>           <span class="dv">220</span>             <span class="dv">0</span>             <span class="dv">0</span>             <span class="dv">0</span>   <span class="dv">43</span></span>
+<span id="cb342-25"><a href="cap-arboles.html#cb342-25" tabindex="-1"></a>    tamano_fam anos_exp ingresos_ano des_nivel_edu CLS_PRO_pro13</span>
+<span id="cb342-26"><a href="cap-arboles.html#cb342-26" tabindex="-1"></a><span class="dv">1</span>            <span class="dv">4</span>       <span class="dv">24</span>        <span class="dv">30000</span>         MEDIO             S</span>
+<span id="cb342-27"><a href="cap-arboles.html#cb342-27" tabindex="-1"></a><span class="dv">497</span>          <span class="dv">2</span>       <span class="dv">12</span>        <span class="dv">53000</span>         MEDIO             N</span>
+<span id="cb342-28"><a href="cap-arboles.html#cb342-28" tabindex="-1"></a><span class="dv">265</span>          <span class="dv">4</span>       <span class="dv">37</span>       <span class="dv">172000</span>        BASICO             S</span>
+<span id="cb342-29"><a href="cap-arboles.html#cb342-29" tabindex="-1"></a><span class="dv">534</span>          <span class="dv">3</span>       <span class="dv">21</span>        <span class="dv">38000</span>         MEDIO             N</span>
+<span id="cb342-30"><a href="cap-arboles.html#cb342-30" tabindex="-1"></a><span class="dv">415</span>          <span class="dv">1</span>       <span class="dv">10</span>        <span class="dv">38000</span>        BASICO             N</span>
+<span id="cb342-31"><a href="cap-arboles.html#cb342-31" tabindex="-1"></a><span class="dv">298</span>          <span class="dv">2</span>       <span class="dv">18</span>        <span class="dv">60000</span>          ALTO             N</span>
+<span id="cb342-32"><a href="cap-arboles.html#cb342-32" tabindex="-1"></a></span>
+<span id="cb342-33"><a href="cap-arboles.html#cb342-33" tabindex="-1"></a>trControl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(</span>
+<span id="cb342-34"><a href="cap-arboles.html#cb342-34" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"cv"</span>,</span>
+<span id="cb342-35"><a href="cap-arboles.html#cb342-35" tabindex="-1"></a>  <span class="at">number =</span> <span class="dv">10</span>,</span>
+<span id="cb342-36"><a href="cap-arboles.html#cb342-36" tabindex="-1"></a>  <span class="at">classProbs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb342-37"><a href="cap-arboles.html#cb342-37" tabindex="-1"></a>  <span class="at">summaryFunction =</span> twoClassSummary</span>
+<span id="cb342-38"><a href="cap-arboles.html#cb342-38" tabindex="-1"></a>)</span></code></pre></div>
+<p>En primer lugar, se carga la librería necesaria para entrenar el modelo,
+así como los datos de compras de los clientes. En este caso se usa el
+método de remuestreo de validación cruzada con 10 folds, visto en el
+Cap. <a href="chap-feature.html#chap-feature">9</a>. A continuación, se determina la semilla
+aleatoria para que los resultados sean replicables, y se entrena el
+modelo.</p>
+<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="co"># se fija una semilla aleatoria</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># se entrena el modelo</span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/train.html">train</a></span><span class="op">(</span><span class="va">CLS_PRO_pro13</span> <span class="op">~</span> <span class="va">.</span>,  <span class="co"># . equivale a incluir todas las variables</span></span>
+<span>             data<span class="op">=</span><span class="va">dp_entr</span>,</span>
+<span>             method<span class="op">=</span><span class="st">"rpart"</span>,</span>
+<span>             metric<span class="op">=</span><span class="st">"ROC"</span>,</span>
+<span>             trControl<span class="op">=</span><span class="va">trControl</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="cap-arboles.html#cb344-1" tabindex="-1"></a>model</span>
+<span id="cb344-2"><a href="cap-arboles.html#cb344-2" tabindex="-1"></a></span>
+<span id="cb344-3"><a href="cap-arboles.html#cb344-3" tabindex="-1"></a>CART</span>
+<span id="cb344-4"><a href="cap-arboles.html#cb344-4" tabindex="-1"></a></span>
+<span id="cb344-5"><a href="cap-arboles.html#cb344-5" tabindex="-1"></a><span class="dv">558</span> samples</span>
+<span id="cb344-6"><a href="cap-arboles.html#cb344-6" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
+<span id="cb344-7"><a href="cap-arboles.html#cb344-7" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span></span>
+<span id="cb344-8"><a href="cap-arboles.html#cb344-8" tabindex="-1"></a></span>
+<span id="cb344-9"><a href="cap-arboles.html#cb344-9" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
+<span id="cb344-10"><a href="cap-arboles.html#cb344-10" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold)</span>
+<span id="cb344-11"><a href="cap-arboles.html#cb344-11" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ...</span>
+<span id="cb344-12"><a href="cap-arboles.html#cb344-12" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
+<span id="cb344-13"><a href="cap-arboles.html#cb344-13" tabindex="-1"></a></span>
+<span id="cb344-14"><a href="cap-arboles.html#cb344-14" tabindex="-1"></a>  cp          ROC        Sens       Spec</span>
+<span id="cb344-15"><a href="cap-arboles.html#cb344-15" tabindex="-1"></a>  <span class="fl">0.05017921</span>  <span class="fl">0.8172123</span>  <span class="fl">0.9214286</span>  <span class="fl">0.7026455</span></span>
+<span id="cb344-16"><a href="cap-arboles.html#cb344-16" tabindex="-1"></a>  <span class="fl">0.10394265</span>  <span class="fl">0.7559406</span>  <span class="fl">0.8386243</span>  <span class="fl">0.6914021</span></span>
+<span id="cb344-17"><a href="cap-arboles.html#cb344-17" tabindex="-1"></a>  <span class="fl">0.51971326</span>  <span class="fl">0.6347222</span>  <span class="fl">0.8564815</span>  <span class="fl">0.4129630</span></span>
+<span id="cb344-18"><a href="cap-arboles.html#cb344-18" tabindex="-1"></a></span>
+<span id="cb344-19"><a href="cap-arboles.html#cb344-19" tabindex="-1"></a>ROC was used to select the optimal model using the largest value.</span>
+<span id="cb344-20"><a href="cap-arboles.html#cb344-20" tabindex="-1"></a>The final value used <span class="cf">for</span> the model was cp <span class="ot">=</span> <span class="dv">0</span>.<span class="fl">05017921.</span></span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu">melt</span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">resample</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>show.legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:006-002-001RPARTRESULTS"></span>
+<img src="img/notune_rpart_boxplot.png" alt="Resultados del modelo durante la validación cruzada." width="60%"><p class="caption">
+Figura 24.3: Resultados del modelo durante la validación cruzada.
+</p>
+</div>
+<p>Los resultados de validación cruzada quedan recogidos en los boxplot,
+por lo que se puede ver los valores entre los que oscilan las
+principales medidas en los 10 folds del proceso de validación. Estas
+medidas (ROC, sensibilidad y especificidad) se definieron en el Cap.
+<a href="chap-feature.html#chap-feature">9</a>, y en el caso de árboles de clasificación se
+utilizan para medir la precisión del modelo. A continuación se muestra
+el árbol generado. Se puede observar que este árbol es muy sencillo, y
+por tanto es fácil obtener su interpretación. En primer lugar decide si
+un cliente que compra el <em>smartchwatch fitness</em> comprará el nuevo
+producto. En caso de no comprar el <em>smartchwatch fitness</em> (No a
+ind_pro15S=1), pero sí compra la <em>depiladora eléctrica</em> (Yes a
+ind_pro12S=1) sí comprará el <em>tensiómetro digital</em>. Si no compra ninguno
+de esos dos productos no comprará el nuevo producto.</p>
+<div class="sourceCode" id="cb346"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Gráfico del árbol obtenido</span></span>
+<span><span class="fu">rpart.plot</span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">finalModel</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:006-002-001RPARTRESULTS2"></span>
+<img src="img/notune_rpart_plot.png" alt="Árbol de clasificación sin ajuste automático de hiperparámetros." width="80%"><p class="caption">
+Figura 24.4: Árbol de clasificación sin ajuste automático de hiperparámetros.
+</p>
+</div>
+<p>Este modelo se puede mejorar ajustando automáticamente
+el hiperparámetro
+incluido en <code>rpart</code> para el entrenamiento de árboles de decisión. Los
+hiperparámetros son los valores utilizadas durante el proceso de
+entrenamiento en la configuración del modelo. Por consiguiente, primero
+es necesario conocer el hiperparámetro a optimizar en el algoritmo
+implementado en <strong>R</strong> que estemos usando. Esto se consigue mediante la
+siguiente instrucción incluida en el paquete <code>caret</code>:</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="cap-arboles.html#cb347-1" tabindex="-1"></a><span class="fu">modelLookup</span>(<span class="st">"rpart"</span>)</span>
+<span id="cb347-2"><a href="cap-arboles.html#cb347-2" tabindex="-1"></a></span>
+<span id="cb347-3"><a href="cap-arboles.html#cb347-3" tabindex="-1"></a>  model parameter                label forReg forClass probModel</span>
+<span id="cb347-4"><a href="cap-arboles.html#cb347-4" tabindex="-1"></a><span class="dv">1</span> rpart        cp Complexity Parameter   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span></code></pre></div>
+<p>El hiperparámetro a optimizar es la complejidad
+del árbol, <code>cp</code>, que es un hiperparámetro que se aplica en la fase de
+parada durante la construcción del árbol. Según se ha comentado, esta
+fase tiene como función principal evitar desarrollar divisiones que no
+valgan la pena. Se puede entender <code>cp</code> como la mejora mínima necesaria
+en cada nodo del modelo. Es necesario definir los valores de <code>cp</code> que se
+quieren evaluar con el objetivo de obtener su valor óptimo.</p>
+<div class="sourceCode" id="cb348"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Se especifica un rango de valores típicos para el hiperparámetro</span></span>
+<span><span class="va">tuneGrid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>cp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.01</span>,<span class="fl">0.05</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># se entrena el modelo</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/train.html">train</a></span><span class="op">(</span><span class="va">CLS_PRO_pro13</span> <span class="op">~</span> <span class="va">.</span>,</span>
+<span>             data<span class="op">=</span><span class="va">dp_entr</span>,</span>
+<span>             method<span class="op">=</span><span class="st">"rpart"</span>,</span>
+<span>             metric<span class="op">=</span><span class="st">"ROC"</span>,</span>
+<span>             trControl<span class="op">=</span><span class="va">trControl</span>,</span>
+<span>             tuneGrid<span class="op">=</span><span class="va">tuneGrid</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="cap-arboles.html#cb350-1" tabindex="-1"></a>model</span>
+<span id="cb350-2"><a href="cap-arboles.html#cb350-2" tabindex="-1"></a></span>
+<span id="cb350-3"><a href="cap-arboles.html#cb350-3" tabindex="-1"></a>CART</span>
+<span id="cb350-4"><a href="cap-arboles.html#cb350-4" tabindex="-1"></a></span>
+<span id="cb350-5"><a href="cap-arboles.html#cb350-5" tabindex="-1"></a><span class="dv">558</span> samples</span>
+<span id="cb350-6"><a href="cap-arboles.html#cb350-6" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
+<span id="cb350-7"><a href="cap-arboles.html#cb350-7" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span></span>
+<span id="cb350-8"><a href="cap-arboles.html#cb350-8" tabindex="-1"></a></span>
+<span id="cb350-9"><a href="cap-arboles.html#cb350-9" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
+<span id="cb350-10"><a href="cap-arboles.html#cb350-10" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold)</span>
+<span id="cb350-11"><a href="cap-arboles.html#cb350-11" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ...</span>
+<span id="cb350-12"><a href="cap-arboles.html#cb350-12" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
+<span id="cb350-13"><a href="cap-arboles.html#cb350-13" tabindex="-1"></a></span>
+<span id="cb350-14"><a href="cap-arboles.html#cb350-14" tabindex="-1"></a>  cp    ROC        Sens       Spec</span>
+<span id="cb350-15"><a href="cap-arboles.html#cb350-15" tabindex="-1"></a>  <span class="fl">0.01</span>  <span class="fl">0.8962254</span>  <span class="fl">0.8678571</span>  <span class="fl">0.8167989</span></span>
+<span id="cb350-16"><a href="cap-arboles.html#cb350-16" tabindex="-1"></a>  <span class="fl">0.02</span>  <span class="fl">0.8663454</span>  <span class="fl">0.9000000</span>  <span class="fl">0.7667989</span></span>
+<span id="cb350-17"><a href="cap-arboles.html#cb350-17" tabindex="-1"></a>  <span class="fl">0.03</span>  <span class="fl">0.8458097</span>  <span class="fl">0.9392857</span>  <span class="fl">0.7310847</span></span>
+<span id="cb350-18"><a href="cap-arboles.html#cb350-18" tabindex="-1"></a>  <span class="fl">0.04</span>  <span class="fl">0.8449381</span>  <span class="fl">0.9214286</span>  <span class="fl">0.7383598</span></span>
+<span id="cb350-19"><a href="cap-arboles.html#cb350-19" tabindex="-1"></a>  <span class="fl">0.05</span>  <span class="fl">0.8172123</span>  <span class="fl">0.9214286</span>  <span class="fl">0.7026455</span></span>
+<span id="cb350-20"><a href="cap-arboles.html#cb350-20" tabindex="-1"></a></span>
+<span id="cb350-21"><a href="cap-arboles.html#cb350-21" tabindex="-1"></a>ROC was used to select the optimal model using the largest value.</span>
+<span id="cb350-22"><a href="cap-arboles.html#cb350-22" tabindex="-1"></a>The final value used <span class="cf">for</span> the model was cp <span class="ot">=</span> <span class="dv">0</span>.<span class="fl">01.</span></span></code></pre></div>
+<p>De forma automática se construyen diversos árboles para cada uno de los
+valores explicitados del parámetro <code>cp</code>. Para cada uno de esos árboles
+se obtienen las correspondientes métricas de precisión: el área bajo la
+curva (denotada como ROC, por las siglas en inglés de <em>Receiver Operating
+Characteristic</em>), sensibilidad (Sens) y especificidad (Spec), todas ellas
+definidas en el Cap. <a href="chap-feature.html#chap-feature">9</a>. El valor ROC es el utilizado
+para la elección del valor óptimo de <code>cp</code>, por lo que se determina que
+finalmente el óptimo es <span class="math inline">\(cp=0,01\)</span> al maximizar el valor ROC alcanzando
+un 89,6%. Por tanto, ajustando el hiperparámetro se ha aumentado la
+precisión del modelo en casi un 8% respecto al 81,7% que tenía el modelo
+sin ajustar automáticamente el valor de <code>cp</code>.</p>
+<p>En la Fig. <a href="cap-arboles.html#fig:006-002-003RPARTRESULTS1">24.5</a> se puede ver el
+rendimiento de cada una de las métricas del árbol entrenado utilizando
+validación cruzada. Dicha figura se obtiene con la siguiente instrucción:</p>
+<div class="sourceCode" id="cb351"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu">melt</span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">resample</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span>show.legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:006-002-003RPARTRESULTS1"></span>
+<img src="img/tune_rpart_boxplot.png" alt="Resultados del modelo con ajuste automático durante la validación cruzada" width="60%"><p class="caption">
+Figura 24.5: Resultados del modelo con ajuste automático durante la validación cruzada
+</p>
+</div>
+<p>En la Fig. <a href="cap-arboles.html#fig:006002003RPARTPLOT2">24.6</a> se muestra el árbol generado.
+Dicha visualización se ha obtenido con el siguiente código:</p>
+<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Gráfico del árbol obtenido</span></span>
+<span><span class="fu">rpart.plot</span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">finalModel</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:006002003RPARTPLOT2"></span>
+<img src="img/classbigtree.png" alt="Árbol de clasificación con ajuste automático." width="80%"><p class="caption">
+Figura 24.6: Árbol de clasificación con ajuste automático.
+</p>
+</div>
+<p>Con el objetivo de aumentar la generalidad del árbol y facilitar su
+interpretación, se procede a reducir su tamaño podándolo. Para ello se
+establece que un nodo terminal tenga como mínimo 50 observaciones, dando
+lugar al árbol que se muestra en la Fig. <a href="cap-arboles.html#fig:PLOTCLASSPRUNEDTREE">24.7</a>.</p>
+<div class="sourceCode" id="cb353"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span><span class="va">prunedtree</span> <span class="op">&lt;-</span> <span class="fu">rpart</span><span class="op">(</span><span class="va">CLS_PRO_pro13</span> <span class="op">~</span> <span class="va">.</span>, data<span class="op">=</span><span class="va">dp_entr</span>,</span>
+<span>                    cp<span class="op">=</span> <span class="fl">0.01</span>, control <span class="op">=</span> <span class="fu">rpart.control</span><span class="op">(</span>minbucket <span class="op">=</span> <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">rpart.plot</span><span class="op">(</span><span class="va">prunedtree</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:PLOTCLASSPRUNEDTREE"></span>
+<img src="img/pruned_class_tree.png" alt="Árbol de clasificación con ajuste automático y podado." width="100%"><p class="caption">
+Figura 24.7: Árbol de clasificación con ajuste automático y podado.
+</p>
+</div>
+<p>El árbol ha reducido el número de nodos terminales, en tres de ellos el
+árbol predice que un cliente comprará el nuevo producto si:</p>
+<ol style="list-style-type: decimal">
+<li><p>Compra el <em>smartwatch fitness</em> (ind_pro15 = S - Yes) y la
+<em>depiladora eléctrica</em> (ind_pro12 = S - Yes).</p></li>
+<li><p>Compra el <em>smartwatch fitness</em> (ind_pro15 = S - Yes) y el
+<em>estimulador muscular</em> (ind_pro17 = S - Yes), pero no la <em>depiladora
+eléctrica</em> (ind_pro12 = S - No).</p></li>
+<li><p>No compra el <em>smartwatch fitness</em> (ind_pro15 = S - No), pero si la
+<em>depiladora eléctrica</em> (ind_pro12 = S - Yes).</p></li>
+</ol>
+<p>Sin embargo, dos nodos terminales predicen que el cliente no compra el
+nuevo producto si:</p>
+<ol style="list-style-type: decimal">
+<li><p>Compra el <em>smartwatch fitness</em> (ind_pro15 = S - Yes), pero no la
+<em>depiladora eléctrica</em> (ind_pro12 = S - No) ni el <em>estimulador
+muscular</em> (ind_pro17 = S - No).</p></li>
+<li><p>No compra el <em>smartwatch fitness</em> (ind_pro15 = S - No) ni la
+<em>depiladora eléctrica</em> (ind_pro12 = S - No).</p></li>
+</ol>
+</div>
+</div>
+<div id="árboles-de-regresión" class="section level2" number="24.4">
+<h2>
+<span class="header-section-number">24.4</span> Árboles de regresión <a class="anchor" aria-label="anchor" href="#%C3%A1rboles-de-regresi%C3%B3n"><i class="fas fa-link"></i></a>
+</h2>
+<p>Como se ha comentado, los árboles de decisión también pueden ser usados
+para resolver problemas de regresión. En este caso, la idea es que la
+predicción dada en cada hoja sea un valor numérico en lugar de un valor
+de una categoría. En la Tabla <a href="cap-arboles.html#tab:dataregtree">24.9</a> se muestran los
+datos para un problema de regresión equivalente al presentado en
+secciones anteriores para clasificación. Como ya se ha mencionado, la
+variable objetivo (<em>Horas jugadas</em>) ahora es continua en lugar de
+categórica, como ocurría en el ejemplo anterior con la variable
+<em>Decisión</em>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:dataregtree">Tabla 24.9: </span> Datos de Horas jugadas dada la climatología del día</caption>
+<thead><tr class="header">
+<th>Día</th>
+<th align="center">Tipo de día</th>
+<th align="center">Humedad</th>
+<th align="center">Viento</th>
+<th align="center">Horas jugadas</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="center">Soleado</td>
+<td align="center">Fuerte</td>
+<td align="center">Débil</td>
+<td align="center">2,3</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="center">Soleado</td>
+<td align="center">Fuerte</td>
+<td align="center">Fuerte</td>
+<td align="center">1,5</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="center">Lluvia</td>
+<td align="center">Fuerte</td>
+<td align="center">Débil</td>
+<td align="center">1,3</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="center">Nublado</td>
+<td align="center">Fuerte</td>
+<td align="center">Débil</td>
+<td align="center">2,4</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td align="center">Lluvia</td>
+<td align="center">Débil</td>
+<td align="center">Débil</td>
+<td align="center">1,9</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td align="center">Lluvia</td>
+<td align="center">Débil</td>
+<td align="center">Fuerte</td>
+<td align="center">2,4</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td align="center">Soleado</td>
+<td align="center">Fuerte</td>
+<td align="center">Débil</td>
+<td align="center">2,3</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td align="center">Nublado</td>
+<td align="center">Débil</td>
+<td align="center">Fuerte</td>
+<td align="center">2,2</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td align="center">Soleado</td>
+<td align="center">Débil</td>
+<td align="center">Débil</td>
+<td align="center">1,3</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td align="center">Lluvia</td>
+<td align="center">Débil</td>
+<td align="center">Débil</td>
+<td align="center">1,8</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td align="center">Soleado</td>
+<td align="center">Débil</td>
+<td align="center">Fuerte</td>
+<td align="center">1,2</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td align="center">Nublado</td>
+<td align="center">Fuerte</td>
+<td align="center">Fuerte</td>
+<td align="center">2,9</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td align="center">Nublado</td>
+<td align="center">Débil</td>
+<td align="center">Débil</td>
+<td align="center">2,2</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td align="center">Lluvia</td>
+<td align="center">Fuerte</td>
+<td align="center">Fuerte</td>
+<td align="center">1,5</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td align="center">Soleado</td>
+<td align="center">Fuerte</td>
+<td align="center">Fuerte</td>
+<td align="center">1,5</td>
+</tr>
+</tbody>
+</table></div>
+<p>Se pueden calcular medidas descriptivas de la variable respuesta, <em>Horas
+jugadas</em>, como la media, varianza, desviación típica y coeficiente de
+variación siendo estas:</p>
+<span class="math display" id="eq:mean-horas">\[\begin{equation}
+\bar{x}_{\text{Horas jugadas}} = \frac{1}{n}\sum{x} = 1,91
+\tag{24.3}
+\end{equation}\]</span>
+<span class="math display" id="eq:varhoras">\[\begin{equation}
+\sigma^{2}_{\text{Horas jugadas}} = \frac{\sum{(x-\bar{x}\Bigr)^{2}}}{n} = 0,25
+\tag{24.4}
+\end{equation}\]</span>
+<span class="math display" id="eq:sdhoras">\[\begin{equation}
+\sigma_{\text{Horas jugadas}} = \sqrt{\sigma^{2}} = 0,50
+\tag{24.5}
+\end{equation}\]</span>
+<span class="math display" id="eq:cvhoras">\[\begin{equation}
+CV_{\text{Horas jugadas}} = \frac{\sigma}{\bar{x}} = 0,26
+\tag{24.6}
+\end{equation}\]</span>
+<div id="cómo-se-va-formando-el-árbol-de-regresión" class="section level3" number="24.4.1">
+<h3>
+<span class="header-section-number">24.4.1</span> ¿Cómo se va formando el árbol de regresión? <a class="anchor" aria-label="anchor" href="#c%C3%B3mo-se-va-formando-el-%C3%A1rbol-de-regresi%C3%B3n"><i class="fas fa-link"></i></a>
+</h3>
+<p>Mientras que en los árboles de clasificación se utilizaba la entropía o
+la impureza de Gini para medir la homogeneidad de un nodo, en los
+árboles de regresión se utiliza como métrica la desviación típica
+<span class="math inline">\((\sigma)\)</span>. Por tanto, cuando se selecciona una variable para hacer la
+división, se calcula la desviación típica para cada una de las ramas, y
+se obtiene una media ponderada en función del número de elementos de
+cada una de ellas. Esta media ponderada se calcula del siguiente
+modo:</p>
+<span class="math display" id="eq:sigmavar">\[\begin{equation}
+\sigma_{X} = \sum_{r\in X}{P(r)\cdot\sigma_{r}}
+\tag{24.7}
+\end{equation}\]</span>
+<p>Donde X es la variable de la cual se quiere obtener la desviación típica
+y <span class="math inline">\(r\)</span> son las ramas que crecen desde este nodo. Para llevar a cabo la
+división, en primer lugar se debe calcular para cada nodo su desviación
+típica. A continuación, se seleccionan posibles variables para hacer la
+división y se obtiene su desviación típica. Para cada una de estas
+variables se calcula el decremento de la desviación, y se selecciona
+aquel que introduzca la mayor reducción.</p>
+<p>Por ejemplo, para los datos mostrados en la Tabla
+<a href="cap-arboles.html#tab:dataregtree">24.9</a>, la desviación típica es 0,50 Horas jugadas, como
+se calculó en la ecuación <a href="cap-arboles.html#eq:sdhoras">(24.5)</a>, y el árbol se construiría
+como se muestra a continuación. En primer lugar, se selecciona <em>Tipo de
+día</em>, <em>Humedad</em> y <em>Viento</em> como candidatos a nodo raíz y se obtiene su
+desviación típica tal que:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:sd-tipodia">Tabla 24.10: </span> Desviación típica en las ramas de la variable <em>Tipo
+de día</em>
+</caption>
+<thead><tr class="header">
+<th>Tipo de día</th>
+<th align="center"># observaciones</th>
+<th align="center"><span class="math inline">\(\sigma_{\text{Horas jugadas}}\)</span></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Soleado</td>
+<td align="center">6</td>
+<td align="center">0,45</td>
+</tr>
+<tr class="even">
+<td>Nublado</td>
+<td align="center">4</td>
+<td align="center">0,29</td>
+</tr>
+<tr class="odd">
+<td>Lluvia</td>
+<td align="center">5</td>
+<td align="center">0,38</td>
+</tr>
+</tbody>
+</table></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:sd-Humedad">Tabla 24.11: </span> Desviación típica en las ramas de la variable
+<em>Humedad</em>
+</caption>
+<thead><tr class="header">
+<th>Humedad</th>
+<th align="center"># observaciones</th>
+<th align="center"><span class="math inline">\(\sigma_{\text{Horas jugadas}}\)</span></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Fuerte</td>
+<td align="center">8</td>
+<td align="center">0,55</td>
+</tr>
+<tr class="even">
+<td>Débil</td>
+<td align="center">7</td>
+<td align="center">0,43</td>
+</tr>
+</tbody>
+</table></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:sd-Viento">Tabla 24.12: </span> Desviación típica en las ramas de la variable
+<em>Viento</em>
+</caption>
+<thead><tr class="header">
+<th>Viento</th>
+<th align="center"># observaciones</th>
+<th align="center"><span class="math inline">\(\sigma_{\text{Horas jugadas}}\)</span></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Fuerte</td>
+<td align="center">7</td>
+<td align="center">0,57</td>
+</tr>
+<tr class="even">
+<td>Débil</td>
+<td align="center">8</td>
+<td align="center">0,42</td>
+</tr>
+</tbody>
+</table></div>
+<p>A partir de las desviaciones típicas en las ramas de cada variable, se
+puede obtener la desviación típica de cada variable de acuerdo a la
+ecuación <a href="cap-arboles.html#eq:sigmavar">(24.7)</a>. Además, se calcula la reducción de
+desviación típica como la diferencia entre la desviación de la variable
+respuesta y la desviación si se divide el conjunto de datos en base a
+alguna de las variables. Tanto la desviación típica de cada variable
+como el decremento en la desviación que producen se muestran en la Tabla
+<a href="cap-arboles.html#tab:sdvars">24.13</a>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:sdvars">Tabla 24.13: </span> Desviación típica y decremento de desviación de cada
+variable</caption>
+<thead><tr class="header">
+<th>Variable</th>
+<th align="center"><span class="math inline">\(\sigma_{\text{Horas jugadas}}\)</span></th>
+<th align="center">Decremento</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Tipo de día</td>
+<td align="center">0,38</td>
+<td align="center">0,12</td>
+</tr>
+<tr class="even">
+<td>Humedad</td>
+<td align="center">0,49</td>
+<td align="center">0,00</td>
+</tr>
+<tr class="odd">
+<td>Viento</td>
+<td align="center">0,49</td>
+<td align="center">0,00</td>
+</tr>
+</tbody>
+</table></div>
+<p>Dado que la variable <em>Tipo de día</em> es la que produce una mayor reducción
+en la desviación típica, resulta elegida como nodo raíz. El árbol
+seguiría creciendo repitiendo este proceso. Por ejemplo, se muestra cuál
+sería la siguiente división desde la rama soleado que crece desde nodo
+<em>Tipo de día</em></p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:sd-sol-Humedad">Tabla 24.14: </span> Desviación típica en las ramas de la variable
+<em>Humedad</em> en días soleados</caption>
+<thead><tr class="header">
+<th>Humedad</th>
+<th align="center"># observaciones</th>
+<th align="center"><span class="math inline">\(\sigma_{\text{Horas jugadas}}\)</span></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Fuerte</td>
+<td align="center">4</td>
+<td align="center">0,4</td>
+</tr>
+<tr class="even">
+<td>Débil</td>
+<td align="center">2</td>
+<td align="center">0,05</td>
+</tr>
+</tbody>
+</table></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:sd-sol-Viento">Tabla 24.15: </span> Desviación típica en las ramas de la variable
+<em>Viento</em>
+</caption>
+<thead><tr class="header">
+<th>Viento</th>
+<th align="center"># observaciones</th>
+<th align="center"><span class="math inline">\(\sigma_{\text{Horas jugadas}}\)</span></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Fuerte</td>
+<td align="center">3</td>
+<td align="center">0,14</td>
+</tr>
+<tr class="even">
+<td>Débil</td>
+<td align="center">3</td>
+<td align="center">0,47</td>
+</tr>
+</tbody>
+</table></div>
+<p>En la Tabla <a href="cap-arboles.html#tab:sdvarssol">24.16</a> se muestra la desviación típica para
+cada variable así como la reducción de desviación que produce. Por
+tanto, la siguiente división se realizaría con la variable <em>Humedad</em>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:sdvarssol">Tabla 24.16: </span> Desviación típica y decremento de desviación de cada
+variable en la rama soleado</caption>
+<thead><tr class="header">
+<th>Variable</th>
+<th align="center"><span class="math inline">\(\sigma_{\text{Horas jugadas}}\)</span></th>
+<th align="center">Decremento</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Humedad</td>
+<td align="center">0,28</td>
+<td align="center">0,17</td>
+</tr>
+<tr class="even">
+<td>Viento</td>
+<td align="center">0,31</td>
+<td align="center">0,14</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="cuánto-debe-crecer-el-árbol-de-regresión" class="section level3" number="24.4.2">
+<h3>
+<span class="header-section-number">24.4.2</span> ¿Cuánto debe crecer el árbol de regresión? <a class="anchor" aria-label="anchor" href="#cu%C3%A1nto-debe-crecer-el-%C3%A1rbol-de-regresi%C3%B3n"><i class="fas fa-link"></i></a>
+</h3>
+<p>Como ocurría en los árboles de clasificación, es necesario establecer
+reglas que pongan fin al proceso de crecimiento del árbol. Además de los
+criterios de parada que se utilizan en árboles de clasificación (número
+de elementos mínimos en un nodo y nivel máximo del árbol), en árboles de
+regresión se detiene su crecimiento estableciendo un <em>threshold</em> (umbral
+de decisión) sobre el coeficiente de variación del nodo. En el ejemplo
+expuesto sobre Horas jugadas, se puede ver qué nodos podrían seguir
+creciendo si se establece que el árbol continúe creciendo en nodos con
+un coeficiente de variación de un 15% o más, y que tenga al menos 5
+observaciones en el nodo.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:cv-nodos">Tabla 24.17: </span> Medidas para decidir si el árbol sigue creciendo</caption>
+<thead><tr class="header">
+<th>Nodo padre</th>
+<th align="center">Rama</th>
+<th align="center">CV en nodo hijo</th>
+<th align="center"># observaciones</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Tipo de día</td>
+<td align="center">Nublado</td>
+<td align="center">11,80%</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td>Tipo de día</td>
+<td align="center">Lluvia</td>
+<td align="center">21,14%</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td>Humedad</td>
+<td align="center">Fuerte</td>
+<td align="center">21,04%</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td>Humedad</td>
+<td align="center">Débil</td>
+<td align="center">4,04%</td>
+<td align="center">2</td>
+</tr>
+</tbody>
+</table></div>
+<p>En este ejemplo, el árbol seguiría creciendo por la rama <em>Lluvia</em> donde
+habría que seleccionar la siguiente variable de división. En el resto de
+ramas, no se supera el número mínimo establecido de observaciones en el
+nodo, y en ocasiones tampoco se alcanza el coeficiente de variación
+mínimo. Por otra parte, en los árboles de regresión la poda se lleva a
+cabo del mismo modo que para árboles de clasificación. En la ecuación
+<a href="cap-arboles.html#eq:poda">(24.2)</a> se mediría el error de entrenamiento a través de la suma
+de los cuadrados de los errores (en inglés <em>Sum of Squared Estimate of
+Errors</em>, SSE), es decir:</p>
+<span class="math display" id="eq:regpoda">\[\begin{equation}
+SSE_{\zeta}(\tau) = SSE(\tau) + \zeta|\tau|
+\tag{24.8}
+\end{equation}\]</span>
+</div>
+<div id="árbol-de-regresión-para-estimar-el-número-de-días-de-hospitalización" class="section level3" number="24.4.3">
+<h3>
+<span class="header-section-number">24.4.3</span> Árbol de regresión para estimar el número de días de hospitalización<a class="anchor" aria-label="anchor" href="#%C3%A1rbol-de-regresi%C3%B3n-para-estimar-el-n%C3%BAmero-de-d%C3%ADas-de-hospitalizaci%C3%B3n"><i class="fas fa-link"></i></a>
+</h3>
+<p>En este ejemplo se utilizan los datos <code>cleveland</code>, contenidos en el
+paquete <code>CDR</code>, y que han sido utilizados en el Cap. <a href="cap-glm.html#cap-glm">16</a> para
+estimar la variable <em>dhosp</em>. El conjunto de datos contiene información
+sobre pacientes que llegan a un hospital con dolor de pecho y de los
+cuales se han recogido distintas características. Se pretende predecir
+el número de días de hospitalización que necesitará un paciente en base
+al resto de características observadas: si
+el paciente está diagnosticado de accidente coronario, su edad, su sexo,
+el tipo de dolor que padece y la depresión en el segmento ST inducida
+por ejercicio en relación al reposo.</p>
+<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># se cargan los datos</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"cleveland"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># se entrena el modelo</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">rpart</span><span class="op">(</span><span class="va">dhosp</span> <span class="op">~</span> <span class="va">diag</span> <span class="op">+</span> <span class="va">edad</span> <span class="op">+</span> <span class="va">sexo</span> <span class="op">+</span> <span class="va">tdolor</span> <span class="op">+</span> <span class="va">dep</span>,</span>
+<span>               data<span class="op">=</span><span class="va">cleveland</span>, method<span class="op">=</span><span class="st">"anova"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="cap-arboles.html#cb355-1" tabindex="-1"></a>model<span class="sc">$</span>cptable</span>
+<span id="cb355-2"><a href="cap-arboles.html#cb355-2" tabindex="-1"></a></span>
+<span id="cb355-3"><a href="cap-arboles.html#cb355-3" tabindex="-1"></a>          CP nsplit rel error    xerror       xstd</span>
+<span id="cb355-4"><a href="cap-arboles.html#cb355-4" tabindex="-1"></a><span class="dv">1</span> <span class="fl">0.37275022</span>      <span class="dv">0</span> <span class="fl">1.0000000</span> <span class="fl">1.0128283</span> <span class="fl">0.09213359</span></span>
+<span id="cb355-5"><a href="cap-arboles.html#cb355-5" tabindex="-1"></a><span class="dv">2</span> <span class="fl">0.01674747</span>      <span class="dv">1</span> <span class="fl">0.6272498</span> <span class="fl">0.6427926</span> <span class="fl">0.06048143</span></span>
+<span id="cb355-6"><a href="cap-arboles.html#cb355-6" tabindex="-1"></a><span class="dv">3</span> <span class="fl">0.01132433</span>      <span class="dv">4</span> <span class="fl">0.5770074</span> <span class="fl">0.6788431</span> <span class="fl">0.06681871</span></span>
+<span id="cb355-7"><a href="cap-arboles.html#cb355-7" tabindex="-1"></a><span class="dv">4</span> <span class="fl">0.01007684</span>      <span class="dv">6</span> <span class="fl">0.5543587</span> <span class="fl">0.6825792</span> <span class="fl">0.06505426</span></span>
+<span id="cb355-8"><a href="cap-arboles.html#cb355-8" tabindex="-1"></a><span class="dv">5</span> <span class="fl">0.01000000</span>      <span class="dv">7</span> <span class="fl">0.5442819</span> <span class="fl">0.6843192</span> <span class="fl">0.06514439</span></span></code></pre></div>
+<p>Se observa que para valores muy altos del hiperparámetro de complejidad,
+el SSE es muy elevado. Esto es, produce modelos muy sencillos pero con
+nula potencia predictiva. En el otro extremo, para <span class="math inline">\(\zeta=0,01\)</span> el SSE
+se minimiza hasta llegar a <span class="math inline">\(SSE=0,54\)</span>, por lo que el árbol se poda de
+acuerdo a la ecuación <a href="cap-arboles.html#eq:regpoda">(24.8)</a> con dicho valor de <span class="math inline">\(\zeta\)</span>. El
+resultado del modelo se muestra en el árbol de la Fig.
+<a href="cap-arboles.html#fig:dhosp-plot">24.8</a>. La interpretación de este árbol sería:</p>
+<ol style="list-style-type: decimal">
+<li><p>Si el paciente no tiene diagnóstico de accidente coronario, solo
+necesitará un día de hospitalización.</p></li>
+<li><p>En el caso de tener este diagnóstico, y una depresión mayor o igual
+a dos en el segmento ST inducida por ejercicio en relación al
+reposo, necesitará 2,8 días de hospitalización.</p></li>
+<li><p>En un último ejemplo, si la depresión en el segmento ST inducida por
+ejercicio en relación al reposo está entre 0,35 y 2 entonces el
+paciente necesitará 3,8 días de hospitalización. Si por el
+contrario, la depresión en el segmento ST inducida por ejercicio en
+relación al reposo es menor a 0,35, el número de días de
+hospitalización depende del sexo del paciente: los hombres
+necesitarán 3,2 días y las mujeres tan solo 1,9 días.</p></li>
+</ol>
+<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># se pinta el árbol obtenido</span></span>
+<span><span class="fu">rpart.plot</span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:dhosp-plot"></span>
+<img src="img/regtree_dhosp.png" alt="Árbol de regresión para predecir el número de días de hospitalización." width="80%"><p class="caption">
+Figura 24.8: Árbol de regresión para predecir el número de días de hospitalización.
+</p>
+</div>
+</div>
+<div id="árbol-de-regresión-para-la-predicción-del-precio-unitario-de-la-vivienda-en-madrid" class="section level3" number="24.4.4">
+<h3>
+<span class="header-section-number">24.4.4</span> Árbol de regresión para la predicción del precio unitario de la vivienda en Madrid<a class="anchor" aria-label="anchor" href="#%C3%A1rbol-de-regresi%C3%B3n-para-la-predicci%C3%B3n-del-precio-unitario-de-la-vivienda-en-madrid"><i class="fas fa-link"></i></a>
+</h3>
+<p>En este ejemplo se va a entrenar un árbol de regresión para predecir el
+precio unitario de la vivienda en Madrid. Para ello, se van a utilizar
+los datos de viviendas a la venta en Madrid publicadas en Idealista
+durante el año 2018. Estos datos están incluidos en el paquete
+<code>idealista18</code>. Para facilitar la interpretación del modelo, sólo se van
+a utilizar 8 de las variables incluidas en el conjunto de datos:
+superficie construida, número de dormitorios, número de baños, si tiene
+terraza, si tiene ascensor, si el precio incluye el parking, distancia
+al centro de Madrid y distancia a una parada de metro.</p>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="cap-arboles.html#cb357-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"idealista18"</span>)</span>
+<span id="cb357-2"><a href="cap-arboles.html#cb357-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"Madrid_Sale"</span>)</span>
+<span id="cb357-3"><a href="cap-arboles.html#cb357-3" tabindex="-1"></a></span>
+<span id="cb357-4"><a href="cap-arboles.html#cb357-4" tabindex="-1"></a>Madrid_Sale <span class="ot">&lt;-</span> Madrid_Sale <span class="sc">|&gt;</span></span>
+<span id="cb357-5"><a href="cap-arboles.html#cb357-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(UNITPRICE, CONSTRUCTEDAREA, ROOMNUMBER, BATHNUMBER,</span>
+<span id="cb357-6"><a href="cap-arboles.html#cb357-6" tabindex="-1"></a>         HASTERRACE,HASLIFT, ISPARKINGSPACEINCLUDEDINPRICE,</span>
+<span id="cb357-7"><a href="cap-arboles.html#cb357-7" tabindex="-1"></a>         DISTANCE_TO_CITY_CENTER, DISTANCE_TO_METRO)</span>
+<span id="cb357-8"><a href="cap-arboles.html#cb357-8" tabindex="-1"></a></span>
+<span id="cb357-9"><a href="cap-arboles.html#cb357-9" tabindex="-1"></a><span class="fu">head</span>(Madrid_Sale)</span>
+<span id="cb357-10"><a href="cap-arboles.html#cb357-10" tabindex="-1"></a></span>
+<span id="cb357-11"><a href="cap-arboles.html#cb357-11" tabindex="-1"></a>  UNITPRICE CONSTRUCTEDAREA ROOMNUMBER BATHNUMBER HASTERRACE HASLIFT</span>
+<span id="cb357-12"><a href="cap-arboles.html#cb357-12" tabindex="-1"></a><span class="dv">1</span>  <span class="fl">2680.851</span>              <span class="dv">47</span>          <span class="dv">1</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">1</span></span>
+<span id="cb357-13"><a href="cap-arboles.html#cb357-13" tabindex="-1"></a><span class="dv">2</span>  <span class="fl">4351.852</span>              <span class="dv">54</span>          <span class="dv">1</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">0</span></span>
+<span id="cb357-14"><a href="cap-arboles.html#cb357-14" tabindex="-1"></a><span class="dv">3</span>  <span class="fl">4973.333</span>              <span class="dv">75</span>          <span class="dv">2</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">0</span></span>
+<span id="cb357-15"><a href="cap-arboles.html#cb357-15" tabindex="-1"></a><span class="dv">4</span>  <span class="fl">5916.667</span>              <span class="dv">48</span>          <span class="dv">1</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">1</span></span>
+<span id="cb357-16"><a href="cap-arboles.html#cb357-16" tabindex="-1"></a><span class="dv">5</span>  <span class="fl">4560.000</span>              <span class="dv">50</span>          <span class="dv">0</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">0</span></span>
+<span id="cb357-17"><a href="cap-arboles.html#cb357-17" tabindex="-1"></a><span class="dv">6</span>  <span class="fl">3921.260</span>             <span class="dv">127</span>          <span class="dv">3</span>          <span class="dv">2</span>          <span class="dv">0</span>       <span class="dv">1</span></span>
+<span id="cb357-18"><a href="cap-arboles.html#cb357-18" tabindex="-1"></a>  ISPARKINGSPACEINCLUDEDINPRICE DISTANCE_TO_CITY_CENTER DISTANCE_TO_METRO</span>
+<span id="cb357-19"><a href="cap-arboles.html#cb357-19" tabindex="-1"></a><span class="dv">1</span>                             <span class="dv">0</span>               <span class="fl">8.0584293</span>         <span class="fl">0.8720746</span></span>
+<span id="cb357-20"><a href="cap-arboles.html#cb357-20" tabindex="-1"></a><span class="dv">2</span>                             <span class="dv">0</span>               <span class="fl">0.8763693</span>         <span class="fl">0.1163821</span></span>
+<span id="cb357-21"><a href="cap-arboles.html#cb357-21" tabindex="-1"></a><span class="dv">3</span>                             <span class="dv">0</span>               <span class="fl">0.9074793</span>         <span class="fl">0.1391088</span></span>
+<span id="cb357-22"><a href="cap-arboles.html#cb357-22" tabindex="-1"></a><span class="dv">4</span>                             <span class="dv">0</span>               <span class="fl">0.8454622</span>         <span class="fl">0.1442990</span></span>
+<span id="cb357-23"><a href="cap-arboles.html#cb357-23" tabindex="-1"></a><span class="dv">5</span>                             <span class="dv">0</span>               <span class="fl">1.2502313</span>         <span class="fl">0.3370982</span></span>
+<span id="cb357-24"><a href="cap-arboles.html#cb357-24" tabindex="-1"></a><span class="dv">6</span>                             <span class="dv">0</span>               <span class="fl">0.5417727</span>         <span class="fl">0.1614363</span></span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Se entrena el modelo</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/bethatkinson/rpart">"rpart"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rpart/man/rpart.html">rpart</a></span><span class="op">(</span><span class="va">UNITPRICE</span> <span class="op">~</span> <span class="va">.</span>, <span class="va">Madrid_Sale</span>, method <span class="op">=</span> <span class="st">"anova"</span><span class="op">)</span></span></code></pre></div>
+<p>Como en el ejemplo anterior, para <span class="math inline">\(\zeta=0,01\)</span> el SSE se minimiza hasta
+llegar a <span class="math inline">\(SSE=0,56\)</span>, por lo que el árbol se poda de acuerdo a la
+ecuación <a href="cap-arboles.html#eq:regpoda">(24.8)</a> con dicho valor de <span class="math inline">\(\zeta\)</span>. El resultado del
+modelo se muestra en el árbol de la Fig. <a href="cap-arboles.html#fig:idealista-treeplot">24.9</a>.
+La interpretación de este árbol sería:</p>
+<ol style="list-style-type: decimal">
+<li><p>Si una vivienda con ascensor se encuentra a menos de 3,2km del
+centro de Madrid y a menos de 0,46km de una estación de Metro, el
+precio unitario predicho para esa vivienda será de 5.248€/<span class="math inline">\(m^{2}\)</span>.</p></li>
+<li><p>Si una vivienda se encuentra a más de 3,2km del centro de Madrid y
+no tiene ascensor, el precio unitario predicho será de
+2.160€/<span class="math inline">\(m^{2}\)</span>.</p></li>
+<li><p>Si una vivienda se encuentra a menos de 3,2km del centro de Madrid y
+a más de 0,46km de una estación de Metro, el precio unitario
+predicho para esa vivienda será de 3.873€/<span class="math inline">\(m^{2}\)</span>.</p></li>
+</ol>
+<div class="sourceCode" id="cb359"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># se pinta el árbol obtenido</span></span>
+<span><span class="fu">rpart.plot</span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:idealista-treeplot"></span>
+<img src="img/regtree_idealista.png" alt="Árbol de regresión para predecir el precio unitario de las viviendas en Madrid." width="80%"><p class="caption">
+Figura 24.9: Árbol de regresión para predecir el precio unitario de las viviendas en Madrid.
+</p>
+</div>
+</div>
+<div id="resumen-21" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-21"><i class="fas fa-link"></i></a>
+</h3>
+<p>En este capítulo se introduce al lector en los árboles de decisión para
+clasificación y regresión, en particular:</p>
+<ul>
+<li>Se presenta la lógica para la construcción de árboles de decisión,
+ya sean de regresión o clasificación.</li>
+<li>Se contemplan diferentes medidas con las que el árbol decide avanzar
+hacia un nuevo punto de decisión.</li>
+<li>Se presentan los conceptos de sobreajuste y complejidad del árbol,
+así como la forma de controlarlos.</li>
+<li>Se muestra el uso de <strong>R</strong> para la clasificación de clases binarias y
+para la predicción de variables respuesta numéricas en casos
+aplicados.</li>
+</ul>
+</div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></div>
+<div class="next"><a href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cap-arboles"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="nav-link" href="#intro_dectree"><span class="header-section-number">24.1</span> Introducción</a></li>
+<li><a class="nav-link" href="#procedimiento-con-r-la-funci%C3%B3n-rpart"><span class="header-section-number">24.2</span> Procedimiento con R: la función rpart()</a></li>
+<li>
+<a class="nav-link" href="#%C3%A1rboles-de-clasificaci%C3%B3n"><span class="header-section-number">24.3</span> Árboles de clasificación</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#c%C3%B3mo-se-va-formando-el-%C3%A1rbol-de-clasificaci%C3%B3n"><span class="header-section-number">24.3.1</span> ¿Cómo se va formando el árbol de clasificación? </a></li>
+<li><a class="nav-link" href="#sobreajuste"><span class="header-section-number">24.3.2</span> Sobreajuste </a></li>
+<li><a class="nav-link" href="#cu%C3%A1nto-debe-crecer-un-%C3%A1rbol-de-clasificaci%C3%B3n"><span class="header-section-number">24.3.3</span> ¿Cuánto debe crecer un árbol de clasificación?</a></li>
+<li><a class="nav-link" href="#ejemplo-%C3%A1rbol-de-clasificaci%C3%B3n-para-determinar-la-intenci%C3%B3n-de-compra"><span class="header-section-number">24.3.4</span> Ejemplo: Árbol de clasificación para determinar la intención de compra</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#%C3%A1rboles-de-regresi%C3%B3n"><span class="header-section-number">24.4</span> Árboles de regresión </a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#c%C3%B3mo-se-va-formando-el-%C3%A1rbol-de-regresi%C3%B3n"><span class="header-section-number">24.4.1</span> ¿Cómo se va formando el árbol de regresión? </a></li>
+<li><a class="nav-link" href="#cu%C3%A1nto-debe-crecer-el-%C3%A1rbol-de-regresi%C3%B3n"><span class="header-section-number">24.4.2</span> ¿Cuánto debe crecer el árbol de regresión? </a></li>
+<li><a class="nav-link" href="#%C3%A1rbol-de-regresi%C3%B3n-para-estimar-el-n%C3%BAmero-de-d%C3%ADas-de-hospitalizaci%C3%B3n"><span class="header-section-number">24.4.3</span> Árbol de regresión para estimar el número de días de hospitalización</a></li>
+<li><a class="nav-link" href="#%C3%A1rbol-de-regresi%C3%B3n-para-la-predicci%C3%B3n-del-precio-unitario-de-la-vivienda-en-madrid"><span class="header-section-number">24.4.4</span> Árbol de regresión para la predicción del precio unitario de la vivienda en Madrid</a></li>
+<li><a class="nav-link" href="#resumen-21">Resumen</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

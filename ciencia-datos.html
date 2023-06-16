@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 1 ¿Es la ciencia de datos una ciencia? | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="Gema Fernández-Avilés1 Universidad de Castilla-La Mancha  1.1 ¿Qué se entiende por ciencia? No es posible determinar si la ciencia de datos es una ciencia sin previamente consensuar la definición...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta property="og:title" content="Capítulo 1 ¿Es la ciencia de datos una ciencia? | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="Gema Fernández-Avilés1 Universidad de Castilla-La Mancha  1.1 ¿Qué se entiende por ciencia? No es posible determinar si la ciencia de datos es una ciencia sin previamente consensuar la definición...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 1 ¿Es la ciencia de datos una ciencia? | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="Gema Fernández-Avilés1 Universidad de Castilla-La Mancha  1.1 ¿Qué se entiende por ciencia? No es posible determinar si la ciencia de datos es una ciencia sin previamente consensuar la definición...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="active" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referncias.html">Referncias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ciencia-datos" class="section level1" number="1">
+<h1>
+<span class="header-section-number">Capítulo 1</span> ¿Es la ciencia de datos una ciencia?<a class="anchor" aria-label="anchor" href="#ciencia-datos"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>Gema Fernández-Avilés<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Quisiera agradecer a Bilal Laouah y a José-María Montero los comentarios realizados durante el desarrollo de este capítulo.&lt;/p&gt;"><sup>1</sup></a></em></p>
+<p>Universidad de Castilla-La Mancha</p>
+<div id="ciencia" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> ¿Qué se entiende por ciencia?<a class="anchor" aria-label="anchor" href="#ciencia"><i class="fas fa-link"></i></a>
+</h2>
+<p>No es posible determinar si la ciencia de datos es una ciencia sin
+previamente consensuar la definición de ciencia. La palabra <em>ciencia</em>
+deriva del latín (<em>scientia</em>), que deriva a su vez del verbo latino
+<em>scire</em> (saber). En este sentido, <span class="citation">Mario. Bunge (<a href="referncias.html#ref-Bunge_2004">2004</a>)</span> distingue dos categorías
+fundamentales de conocimiento: el vulgar y el científico.
+El conocimiento vulgar se adquiere de manera cotidiana a partir de percepciones y
+sensaciones individuales, apoyándose en la evidencia (pruebas) y el sentido común.
+Este tipo de conocimiento constituye la base sobre la que se sustenta el
+conocimiento científico, que se enriquece al verificar, con la ayuda
+de un método, la validez de las observaciones realizadas. Se adquiere,
+por tanto, de forma consciente, deliberada y metódica. Puede ser
+sometido a prueba y, llegado el caso, ser superado <span class="citation">José María Montero (<a href="referncias.html#ref-Montero_1997">1997</a>)</span>.</p>
+<p> </p>
+<p>Una definición generalmente aceptada de ciencia es la propuesta por
+<span class="citation">Blaug (<a href="referncias.html#ref-Blaug_1980">1980</a>)</span>: “ciencia es el cuerpo de proposiciones sintéticas acerca
+del mundo real que es susceptible, al menos en principio, de falsaciones
+por medio de la observación empírica, ya que excluye la posibilidad de
+que ciertos acontecimientos se produzcan. Así pues, la ciencia se
+caracteriza por su método de formulación de proposiciones contrastables,
+y no por su contenido, ni por su pretensión de certeza en el
+conocimiento; si alguna certeza proporciona la ciencia, esta será más
+bien la certeza de la ignorancia.”</p>
+<p>Si bien esta definición está encuadrada dentro del enfoque del falsacionismo de
+Karl Popper (para el cual las teorías son conjeturas, hipótesis generales que permiten explicar fenómenos), introduce la palabra clave de la discusión planteada, el <strong>método</strong>, y
+más concretamente, el <strong>método científico</strong>.</p>
+<p>La palabra <em>método</em> procede del latín <em>methodus</em>”*, y esta del griego
+<span class="math inline">\(\mu \varepsilon \theta o \delta 0 \varsigma\)</span>, que quiere decir
+“<strong>el camino a seguir para ir más allá</strong>”. Es, pues, un procedimiento
+para conseguir algo; y como el fin que busca la ciencia es la verdad, el
+método científico es el camino mediante el cual las ciencias pueden
+llegar a encontrar sus respectivas verdades. El método científico es,
+por tanto, el conjunto de procedimientos por medio de los cuales se
+adquieren conocimientos rigurosos, ciertos y seguros acerca de un
+objeto. El método científico ha de recorrerse siguiendo cuatro fases
+<span class="citation">(<a href="referncias.html#ref-cancelo_1991">Cancelo 1997</a>)</span>: (<span class="math inline">\(i\)</span>) inventario previo de los fenómenos o de los hechos
+significativos no rutinarios; (<span class="math inline">\(ii\)</span>) planteamiento de un tema problemático
+que hace necesaria una explicación; (<span class="math inline">\(iii\)</span>) ideación de conjeturas
+tendentes a darla, y (<span class="math inline">\(iv\)</span>) tratamiento de las diversas hipótesis hasta
+que sólo una se mantenga.</p>
+<p>Por tanto, aunque no hay acuerdo a la hora de dar una definición exacta
+de ciencia, sí lo hay a la hora de aceptar el método
+científico como el elemento que define la ciencia: “el método científico y
+la finalidad a la cual se aplica (el conocimiento objetivo del mundo)
+constituyen la entera diferencia que existe entre la ciencia y la
+no-ciencia […]. El método científico es un rasgo característico de la
+ciencia, tanto de la pura como de la aplicada: donde no hay método
+científico no hay ciencia”, <span class="citation">Mario. Bunge (<a href="referncias.html#ref-Bunge_2004">2004</a>)</span>. “Una ciencia es una disciplina
+que utiliza el método científico con la finalidad de hallar estructuras
+generales (leyes).” <span class="citation">José María Montero (<a href="referncias.html#ref-Montero_1997">1997</a>)</span>.</p>
+<p>Dado que la utilización del método científico es la piedra angular alrededor de la cual se articula el concepto de ciencia, a continuación se aborda la cuestión de si, en base a lo anterior, la ciencia de datos es o no una ciencia. No obstante, previamente, se abordará la cuestión de qué se entiende por ciencia de datos”</p>
+</div>
+<div id="qué-es-la-ciencia-de-datos" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> ¿Qué es la ciencia de datos?<a class="anchor" aria-label="anchor" href="#qu%C3%A9-es-la-ciencia-de-datos"><i class="fas fa-link"></i></a>
+</h2>
+<p> </p>
+<p>La Ciencia de datos es una disciplina emergente donde, a diferencia de
+otros saberes como, por ejemplo, las ciencias matemáticas, el corpus o
+la acumulación de conocimiento se ha generado en un lapso de tiempo
+relativamente corto (y de una forma muy intensa), y no a lo largo de
+siglos de historia. Su inicio data de la década de 1970,
+aunque ya el término <strong>análisis de datos</strong>, acuñado por J. Tukey en 1962 en su artículo
+<em>The Future of Data Analysis</em> <span class="citation">(<a href="referncias.html#ref-tukey_1962">Tukey 1962</a>)</span>
+se puede considerar como un precedente del término <strong>ciencia de datos</strong>.
+En dicho artículo, Tukey definió, por primera vez, el análisis de datos como:
+“procedimientos para analizar datos, técnicas
+para interpretar los resultados de dichos procedimientos, formas de
+planificar la recopilación de datos para hacer su análisis más fácil,
+más preciso o acertado, y toda la maquinaria y los resultados de las
+estadísticas matemáticas que se aplican al análisis de datos”
+<span class="citation">(<a href="referncias.html#ref-tukey_1962">Tukey 1962</a>)</span>. A partir de este momento, toda una serie de
+acontecimientos fueron consolidando el término <strong>ciencia de datos</strong>
+como una nueva disciplina. Una breve descripción de los acontecimientos
+se muestran en la Fig. (<a href="ciencia-datos.html#fig:time-line-ds">1.1</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:time-line-ds"></span>
+<img src="img/time-line-ds6.png" alt="Línea del tiempo de la ciencia de datos. Elaboración propia" width="100%"><p class="caption">
+Figura 1.1: Línea del tiempo de la ciencia de datos. Elaboración propia
+</p>
+</div>
+<p>La ciencia de datos implica la limpieza, la agregación y la manipulación
+de datos recabados de la web, de teléfonos inteligentes, de clientes,
+de pacientes, de sensores o de encuestas, entre otras fuentes, para
+llevar a cabo un análisis de datos avanzado de los mismos,
+así como su modelización, para ayudar a detectar patrones,
+tendencias, comportamientos y, por tanto, facilitar
+la toma de decisiones. El crecimiento acelerado del volumen de fuentes
+de datos y, posteriormente, de datos, ha hecho que la ciencia de datos
+sea uno de los campos de más rápido desarrollo en todas las industrias.
+Como resultado, no sorprende que surgiera la nueva profesión del
+<strong>científico de datos</strong>, para ayudar a comprender y a analizar los volúmenes
+masivos de datos que se acumulaban en ese momento, trabajo que fue
+calificado como el “trabajo más sexy del siglo XXI” por
+<span class="citation">T. H. Davenport and Patil (<a href="referncias.html#ref-hbr_2012">2012</a>)</span>.</p>
+<p>
+</p>
+<p>La ciencia de datos es, por tanto, una disciplina
+relativamente nueva que combina la estadística, las matemáticas, la
+informática y la programación, para obtener valor de los datos.</p>
+<p>Se utiliza en una amplia variedad de campos, como la astronomía, la
+medicina, la economía, el marketing, las finanzas, la biología, la
+industria, etc. Esta naturaleza transdisciplinaria de la ciencia de
+datos añade cierta complejidad a su caracterización pues, como se ha
+avanzado, siendo una única disciplina, subsume en su ejercicio otras
+disciplinas como las ciencias matemáticas y la estadística y la ciencia
+de la computación, que a su vez son aplicadas a un amplio rango de
+dominios de manera integral. La ciencia de datos se sirve de los métodos
+formales de las matemática y de las aplicaciones prácticas e
+ingenieriles de las ciencias de la computación para la generación de
+conocimiento y para la resolución de problemas prácticos en múltiples
+campos. Esta ubicuidad la sitúa, transversalmente,
+entre los saberes de primer orden. En otras palabras,
+la ciencia de datos va adoptando los paradigmas, modelos, teorías o
+constructos propios del campo sustantivo en el que se ejerce, de forma
+que para resolver alguna problemática sobre personas, puede recurrir
+al corpus relativo de la psicología o de la sociología, y para
+profundizar sobre alguna condición de salud, puede hacer lo propio con
+la medicina o la biología, por mencionar algunos ejemplos.</p>
+</div>
+<div id="lo-científico-de-la-ciencia-de-datos" class="section level2" number="1.3">
+<h2>
+<span class="header-section-number">1.3</span> Lo científico de la ciencia de datos<a class="anchor" aria-label="anchor" href="#lo-cient%C3%ADfico-de-la-ciencia-de-datos"><i class="fas fa-link"></i></a>
+</h2>
+<p>En la Sec. <a href="ciencia-datos.html#ciencia">1.1</a> se manifestó que un aspecto fundamental de
+la ciencia es que utiliza el método científico con la finalidad de
+hallar estructuras generales (principios y leyes) con capacidad
+predictiva y comprobable (en el sentido amplio del término). Es por ello que el marco general de la
+<strong>metodología científica</strong> ha sido bien fundamentado a lo largo de las
+últimas décadas gracias a las contribuciones de diferentes teóricos de
+la ciencia (<span class="citation">Chalmers et al. (<a href="referncias.html#ref-chalmers_2000">2000</a>)</span>, <span class="citation">Mario. Bunge (<a href="referncias.html#ref-Bunge_2004">2004</a>)</span>, <span class="citation">Díez and Moulines (<a href="referncias.html#ref-Diez_Moulines_1999">2008</a>)</span>). Por otra
+parte, las ciencias se clasifican, según el objeto de estudio <span class="citation">(<a href="referncias.html#ref-Bunge_2018">M. Bunge 2018</a>)</span>,
+en:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Las ciencias empíricas emplean una aproximación
+hipotético-inductivo-deductiva y amplían el conocimiento. Las
+ciencias formales se fundamentan en la deducción y explicitan el
+saber, pero no lo amplían. Ejemplo de ciencia empírica es la
+biología, mientras que la lógica lo es de la ciencia formal.
+&lt;/p&gt;"><sup>2</sup></a> empíricas y formales. Dado que la ciencia de datos
+subsume diferentes disciplinas y se aplica a diferentes campos, puede
+tener características tanto de las ciencias empíricas como de las
+formales.</p>
+<p>Si se analiza el conjunto de saberes científicos se aprecia que tienen
+en común una serie de características <span class="citation">(<a href="referncias.html#ref-Bunge_2018">M. Bunge 2018</a>)</span>. Por tanto, la
+pregunta fundamental en este punto es: ¿comparte la ciencia de datos
+estas características? De ser satisfechas, conferirían a la ciencia de
+datos el estatuto de ciencia que comparten otros saberes científicos:</p>
+<ol style="list-style-type: lower-roman">
+<li><p>La actividad científica es <strong>metódica</strong>. Es decir, utiliza un método, se caracteriza
+por proceder de manera ordenada y planificada. Esta estructuración
+le otorga solidez y consistencia. En ciencia de datos también se
+actúa de manera metódica, a través de diferentes metodologías, como
+<em>Knowledge Discovery in Databases</em> (KDD), <em>Sample, Explore, Modify,
+Model, Assess</em> (SEMMA) y <em>CRoss-Industry Standard Process for Data
+Mining</em> (CRISP-DM), tal y como se expone en el Cap.
+<a href="metodologia.html#metodologia">2</a>.</p></li>
+<li><p>El conocimiento científico <strong>se fundamenta en hechos</strong>. En general,
+los científicos disponen de diferentes instrumentos para observar y
+registrar la realidad sobre la que conjeturan. Esta labor también
+la realizan los científicos de datos, quienes cuentan con un
+elevado número de instrumentos y metodologías para la recolección
+de datos. Tal es el caso de los cuestionarios, escalas
+psicométricas o datos transaccionales producidos por diferentes
+tecnologías.</p></li>
+<li><p>El saber científico es implica que las
+afirmaciones científicas puedan ser <strong>contrastadas</strong> a través de los
+hechos. En ciencia de datos, esto también sucede, ya que, estadísticamente, los
+resultados a los que se llega no están ligados a la subjetividad
+del analista, sino a la objetividad de los datos y a las técnicas
+estadísticas de contrastación.</p></li>
+<li><p>La ciencia es una actividad que <strong>trasciende los hechos</strong>. Es
+decir, la ciencia parte de evidencias empíricas que tienden a ser
+superadas, puesto que la explotación de las mismas suele generar
+nuevas evidencias que, a su vez, pueden contribuir a crear nuevos
+marcos teóricos explicativos o a ampliar los existentes. La ciencia
+de datos puede ejercerse en el mismo sentido. Por ejemplo, la
+construcción de un recomendador, como Netflix, parte de ciertos
+datos, pero su uso genera nuevos <em>inputs</em> comportamentales que pueden
+ser empleados para optimizar su sustrato algorítmico.</p></li>
+<li><p>La investigación científica se caracteriza también por ser una
+<strong>actividad analítica</strong>. Es decir, tiende a descomponer los
+problemas en sus partes constitutivas. Cabe observar que la
+consecuencia de ello es que no se pueda hablar de una ciencia
+general, sino de especializaciones. Naturalmente, la especialización
+también existe en esta disciplina; por eso, cuando la ciencia de
+datos se aplica intensivamente en recursos humanos, por ejemplo, es
+posible hablar de <em>Human Resource Analytics</em>. Lo mismo ocurre en
+Economía, con el <em>Business Analytics</em>, y así en un sinfín de
+disciplinas.</p></li>
+<li><p>La ciencia es <strong>comunicable</strong> y, para ello, se sirve de sistemas
+representacionales lógico-formales. Este atributo también se
+aprecia en la ciencia de datos, puesto que los resultados tienden a
+ser compartidos a través de diferentes estrategias, entre ellas, la
+visualización de datos.</p></li>
+</ol>
+<p>La ciencia, sin embargo, no sólo puede describirse mediante sus
+características constitutivas, sino también <strong>funcionalmente</strong> <span class="citation">(<a href="referncias.html#ref-Hempel_2005">Hempel 2005</a>)</span>.
+De hecho, las características anteriormente citadas son
+las que posibilitan las funciones <strong>descriptiva</strong>, <strong>explicativa</strong> y
+<strong>predictiva</strong>.</p>
+<ol style="list-style-type: lower-roman">
+<li><p>La primera, la <strong>descriptiva</strong>, permite recabar información sobre el
+suceso que se analiza para tratar de conocerlo en mayor profundidad
+y detalle. En ciencia de datos, usualmente, una de las primeras
+tareas consiste en describir el conjunto de datos para conocer en
+detalle sus características, es decir, el número de variables, el
+número de observaciones, los valores nulos, etc. Esta tarea se
+conoce como “comprensión de los datos” en la metodología
+CRIPS-DM (véase Sec. <a href="metodologia.html#met-crisp-dm">2.3</a>.</p></li>
+<li><p>La segunda, la <strong>explicativa</strong>, determina cómo se relacionan los
+fenómenos que se observan. En general, cuando un científico de
+datos emplea un modelo de regresión lineal, lo que hace es
+establecer una relación explicativa entre la variable dependiente y
+las independientes. Esta parte se
+conoce como “modelado” en la metodología CRIPS-DM
+(véase Sec. <a href="metodologia.html#met-crisp-dm">2.3</a>).</p></li>
+<li><p>La tercera, la <strong>predictiva</strong>, permite anticipar ciertos eventos en
+el tiempo o en el espacio. Tal es el caso de los científicos de
+datos que ejercen su labor en el ámbito comercial y emplean, por
+ejemplo, el análisis de series temporales para pronosticar las
+ventas futuras y poder realizar una planificación del
+aprovisionamiento de existencias con mayor eficiencia. Esta parte
+está incluida en la fase de “validación” en la metodología CRIPS-DM
+(véase Sec. <a href="metodologia.html#met-crisp-dm">2.3</a>).</p></li>
+</ol>
+<p>A la luz de lo expuesto hasta aquí, se puede sostener, sin lugar a dudas,
+que la ciencia de datos emplea el método científico y comparte las
+principales funciones de la ciencia. Ahora bien, la ciencia de datos no
+puede entenderse plenamente sin presuponer las disciplinas en las que se
+aplica. Por tanto, uno de los interrogantes que deberán resolver los
+futuros profesionales es si la ciencia de datos es un saber de primer
+orden, que lidia directamente con la realidad, como la física o la
+química, o si, por el contrario, es un saber de segundo orden, es decir,
+una suerte de disciplina que se sirve de otros saberes para desplegarlos
+y actualizarlos.</p>
+<div id="resumen" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>Para determinar si la ciencia de datos es, realmente, una ciencia en
+primer lugar se debe consensuar la definición de ciencia, que va
+íntimamente ligada a la definición de método científico.</p></li>
+<li><p>Las ciencias tienen en común una serie de características, que deben ser satisfechas
+por la ciencia de datos para adquirir el estatus de ciencia.</p></li>
+<li><p>Dado que la ciencia de datos emplea el método científico y comparte las
+principales funciones de la ciencia, se concluye que la ciencia de datos
+es una ciencia.</p></li>
+</ul>
+</div>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html">Prefacio</a></div>
+<div class="next"><a href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ciencia-datos"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="nav-link" href="#ciencia"><span class="header-section-number">1.1</span> ¿Qué se entiende por ciencia?</a></li>
+<li><a class="nav-link" href="#qu%C3%A9-es-la-ciencia-de-datos"><span class="header-section-number">1.2</span> ¿Qué es la ciencia de datos?</a></li>
+<li>
+<a class="nav-link" href="#lo-cient%C3%ADfico-de-la-ciencia-de-datos"><span class="header-section-number">1.3</span> Lo científico de la ciencia de datos</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#resumen">Resumen</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
