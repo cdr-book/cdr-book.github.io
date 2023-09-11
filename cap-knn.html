@@ -4,24 +4,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Capítulo 26 Clasificador k-vecinos más próximos | Fundamentos de ciencia de datos con R</title>
+<title>Capítulo 26 Clasificador \(k\)-vecinos más próximos | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
-<meta name="description" content="Ramón A. Carrasco\(^{a}\) e Itzcóatl Bueno\(^{b,a}\) \(^{a}\)Universidad Complutense de Madrid \(^{b}\)Instituto Nacional de Estadística  26.1 Introducción El k-vecinos más próximos (KNN, por sus...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
-<meta property="og:title" content="Capítulo 26 Clasificador k-vecinos más próximos | Fundamentos de ciencia de datos con R">
+<meta name="description" content="Ramón A. Carrasco\(^{a}\), Itzcóatl Bueno\(^{b,a}\) y José-María Montero\(^{c}\) \(^{a}\)Universidad Complutense de Madrid\(^{b}\)Instituto Nacional de Estadística\(^{c}\)Universidad de...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta property="og:title" content="Capítulo 26 Clasificador \(k\)-vecinos más próximos | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
-<meta property="og:description" content="Ramón A. Carrasco\(^{a}\) e Itzcóatl Bueno\(^{b,a}\) \(^{a}\)Universidad Complutense de Madrid \(^{b}\)Instituto Nacional de Estadística  26.1 Introducción El k-vecinos más próximos (KNN, por sus...">
+<meta property="og:description" content="Ramón A. Carrasco\(^{a}\), Itzcóatl Bueno\(^{b,a}\) y José-María Montero\(^{c}\) \(^{a}\)Universidad Complutense de Madrid\(^{b}\)Instituto Nacional de Estadística\(^{c}\)Universidad de...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Capítulo 26 Clasificador k-vecinos más próximos | Fundamentos de ciencia de datos con R">
-<meta name="twitter:description" content="Ramón A. Carrasco\(^{a}\) e Itzcóatl Bueno\(^{b,a}\) \(^{a}\)Universidad Complutense de Madrid \(^{b}\)Instituto Nacional de Estadística  26.1 Introducción El k-vecinos más próximos (KNN, por sus...">
+<meta name="twitter:title" content="Capítulo 26 Clasificador \(k\)-vecinos más próximos | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="Ramón A. Carrasco\(^{a}\), Itzcóatl Bueno\(^{b,a}\) y José-María Montero\(^{c}\) \(^{a}\)Universidad Complutense de Madrid\(^{b}\)Instituto Nacional de Estadística\(^{c}\)Universidad de...">
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
-<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -33,7 +34,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -76,13 +77,13 @@
 <li class="book-part">Machine learning supervisado</li>
 <li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
-<li><a class="active" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="active" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
-<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
 <li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
 <li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
@@ -108,18 +109,15 @@
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
 <li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
-<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
-<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
-<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -129,67 +127,93 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="cap-knn" class="section level1" number="26">
 <h1>
-<span class="header-section-number">Capítulo 26</span> Clasificador k-vecinos más próximos<a class="anchor" aria-label="anchor" href="#cap-knn"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Capítulo 26</span> Clasificador <span class="math inline">\(k\)</span>-vecinos más próximos<a class="anchor" aria-label="anchor" href="#cap-knn"><i class="fas fa-link"></i></a>
 </h1>
-<p><em>Ramón A. Carrasco</em><span class="math inline">\(^{a}\)</span> e <em>Itzcóatl Bueno</em><span class="math inline">\(^{b,a}\)</span></p>
-<p><span class="math inline">\(^{a}\)</span>Universidad Complutense de Madrid
-<span class="math inline">\(^{b}\)</span>Instituto Nacional de Estadística</p>
+<p><em>Ramón A. Carrasco</em><span class="math inline">\(^{a}\)</span>, <em>Itzcóatl Bueno</em><span class="math inline">\(^{b,a}\)</span> y <em>José-María Montero</em><span class="math inline">\(^{c}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad Complutense de Madrid<br><span class="math inline">\(^{b}\)</span>Instituto Nacional de Estadística<br><span class="math inline">\(^{c}\)</span>Universidad de Castilla-La Mancha</p>
 <div id="introducción-12" class="section level2" number="26.1">
 <h2>
 <span class="header-section-number">26.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-12"><i class="fas fa-link"></i></a>
 </h2>
-<p>El k-vecinos más próximos (KNN, por sus siglas en inglés <em>k-Nearest Neighbors</em>) es un algoritmo de aprendizaje no paramétrico. Un algoritmo no paramétrico no presupone la forma concreta del modelo a entrenar, siendo más flexible. Sin embargo, esto se consigue a costa de necesitar más datos de entrenamiento y siendo más lentos que los algoritmos paramétricos. Al contrario que otros algoritmos de aprendizaje que permiten deshacerse de los datos de entrenamiento una vez se entrena el modelo, el modelo KNN guarda las observaciones de entrenamiento en memoria. Esto es, al incorporar una nueva observación <em><span class="math inline">\(x\)</span></em>, el algoritmo KNN encuentra las <span class="math inline">\(k\)</span> observaciones del conjunto de datos de entrenamiento más similares a la nueva y proporciona la clase mayoritaria (en el caso de clasificación) o el valor medio (en el caso de regresión).</p>
-<p>El número de casos (<span class="math inline">\(k\)</span>) a utilizar para clasificar las nuevas observaciones es un parámetro crucial para este algoritmo <span class="citation">(<a href="referncias.html#ref-james2013introduction" role="doc-biblioref">G. James et al. 2013</a>)</span>. Si, por ejemplo, <span class="math inline">\(k=3\)</span>, el modelo KNN utilizará las tres observaciones más similares (vecinos) al nuevo caso para clasificarlo. Es recomendable probar distintos valores de <span class="math inline">\(k\)</span> para conseguir el mejor ajuste del modelo, y por tanto, es conveniente evitar valores extremos de <span class="math inline">\(k\)</span>. Si se establece un valor muy bajo de <span class="math inline">\(k\)</span> aumentará el sesgo y llevará a clasificaciones erróneas. Mientras que valores muy elevados de <span class="math inline">\(k\)</span> harán que el algoritmo sea computacionalmente costoso y además tampoco será un buen clasificador. Además, también se recomienda establecer valores impares de <span class="math inline">\(k\)</span> para evitar puntos muertos estadísticos (empate entre categorías) y un resultado no válido.</p>
+<p>El <em>k</em>-vecinos más próximos (KNN, por sus siglas en inglés <em>k-nearest neighbors</em>) es un algoritmo de aprendizaje no paramétrico. Los algoritmos no paramétricos no presuponen la forma concreta del modelo a entrenar, lo que les dota de una enorme flexibilidad. Sin embargo, como contrapartida, necesitan más datos de entrenamiento, lo que de traduce en que son más lentos que los algoritmos paramétricos. Al contrario que otros algoritmos de aprendizaje que permiten deshacerse de los datos de entrenamiento una vez se entrena el modelo, el modelo KNN guarda las observaciones de entrenamiento en memoria. Esto es, al incorporar una nueva observación <span class="math inline">\({\bf{x}}_j\)</span>, el algoritmo KNN encuentra las <span class="math inline">\(k\)</span> observaciones del conjunto de datos de entrenamiento más parecidas a la nueva y proporciona como salida (predicción) la clase de la variable respuesta a la que pertenecen la mayor parte de las <em>k</em> observaciones (cuando se trata de un problema de clasificación) o el valor medio de la variable respuesta en dichas <span class="math inline">\(k\)</span> observaciones (en el caso de que el problema sea de regresión).</p>
+<p>El número de casos (<span class="math inline">\(k\)</span>) a utilizar para clasificar las nuevas observaciones es un parámetro crucial en este algoritmo <span class="citation">(<a href="cap-fraude.html#ref-james2013introduction">G. James et al. 2013</a>)</span>. Si, por ejemplo, <span class="math inline">\(k=3\)</span>, el modelo KNN utiliza las tres observaciones más parecidas (vecinas) al nuevo caso para clasificarlo. Es recomendable probar distintos valores de <span class="math inline">\(k\)</span> para conseguir el mejor ajuste del modelo. No obstante, es conveniente evitar valores extremos de <span class="math inline">\(k\)</span> porque valores muy bajos de <span class="math inline">\(k\)</span> aumentarán la variabilidad y conducirán a clasificaciones erróneas, mientras que valores muy elevados de <span class="math inline">\(k\)</span> harán que el algoritmo sea computacionalmente costoso y, además, tampoco llevarán a buenas clasificaciones (por ejemplo, en le caso de regresión, si el valor de <span class="math inline">\(k\)</span> está cerca del número de observaciones, la predicción para cualquier observación nueva siempre será un valor muy cercano a la media de la variable respuesta en el conjunto de datos de entrenamiento). Además, también se recomienda establecer valores impares de <span class="math inline">\(k\)</span> para evitar, en el caso clasificatorio, puntos muertos estadísticos (empate entre categorías de la variable respuesta, con lo cual no se puede decidir cual es la mayoritaria).</p>
+<p>A modo de ejemplo, en la Fig. <a href="cap-knn.html#fig:knn-ejemplo">26.1</a>, tanto con <span class="math inline">\(k=3\)</span> como con <span class="math inline">\(k=7\)</span> la nueva observación se clasifica en la categoría roja, puesto que esta es la mayoritaria en ambos casos.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:knn-ejemplo"></span>
 <img src="img/knn.png" alt="Ejemplo de k-vecinos más próximos." width="60%"><p class="caption">
 Figura 26.1: Ejemplo de k-vecinos más próximos.
 </p>
 </div>
-<p>La escala de las variables puede impactar en el resultado del modelo KNN. Por ello, el conjunto de datos debe escalarse para que aquellas variables con unidades de medida grandes no tengan más importancia en el cálculo que otras con magnitudes menores. Así se reduce la importancia de las variables debido a sus unidades de medida y se estandariza la varianza.</p>
-<p>Pese a que el modelo KNN es fácil de entender y generalmente preciso, almacenar el conjunto de datos de entrenamiento, así como calcular la distancia entre cada nueva observación a clasificar y las observaciones del conjunto de datos, supone la necesidad de recursos computacionales altos. Esto implica que cuanto mayor es la cantidad de observaciones en el conjunto de datos, mayor es el tiempo para la ejecución de una sola predicción, y, por tanto, esto puede dar lugar a tiempos de procesamiento lentos. Por este motivo, no se recomienda el uso del algoritmo KNN cuando se dispone de conjuntos de datos muy grandes. Otra desventaja a tener en cuenta es la dificultad de aplicar KNN a conjuntos de datos con un gran número de variables, puesto que calcular las distancias entre observaciones con múltiples dimensiones también incrementará la necesidad de recursos computacionales y podría dificultar que se clasifique de forma precisa.</p>
+<p>La escala de las variables puede desvirtuar el resultado del modelo KNN. Por ello, el conjunto de datos debe escalarse para que las variables con unidades de medida grandes no tengan más importancia en el cálculo de la similitud entre las observaciones que las que tienen magnitudes menores. De esta manera desaparece el efecto “escala” o “unidades de medida” y se estandariza la varianza.</p>
+<p>Pese a que el modelo KNN es fácil de entender y generalmente preciso, almacenar el conjunto de datos de entrenamiento, así como calcular la distancia entre cada nueva observación a clasificar y las observaciones del conjunto de datos, exige elevados recursos computacionales. Esto implica que cuanto mayor es la cantidad de observaciones en el conjunto de datos, mayor es el tiempo de ejecución para obtener una única predicción,lo cual puede dar lugar a tiempos de procesamiento grandes. Por este motivo, no se recomienda el uso del algoritmo KNN con conjuntos de datos muy grandes. Otra desventaja a tener en cuenta es la dificultad de aplicar KNN a conjuntos de datos con un gran número de variables, puesto que calcular las distancias entre observaciones con múltiples dimensiones también incrementa la necesidad de recursos computacionales y podría dificultar la obtención de clasificaciones y predicciones (en el caso de que la variable respuesta sea numérica) precisas.</p>
 </div>
 <div id="decisiones-a-tener-en-cuenta" class="section level2" number="26.2">
 <h2>
 <span class="header-section-number">26.2</span> Decisiones a tener en cuenta<a class="anchor" aria-label="anchor" href="#decisiones-a-tener-en-cuenta"><i class="fas fa-link"></i></a>
 </h2>
-<p>La elección de la función de distancia, así como el número de vecinos <span class="math inline">\(k\)</span> son decisiones que debe tomar el investigador antes de ejecutar el algoritmo. Siendo este último el hiperparámetro del modelo que la función <code><a href="https://rdrr.io/pkg/caret/man/modelLookup.html">modelLookup()</a></code> de <code>caret</code> nos devuelve considerando que es primordial ajustarlo:</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="cap-knn.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modelLookup</span>(<span class="st">"knn"</span>)</span>
-<span id="cb369-2"><a href="cap-knn.html#cb369-2" aria-hidden="true" tabindex="-1"></a>  model parameter      label forReg forClass probModel</span>
-<span id="cb369-3"><a href="cap-knn.html#cb369-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   knn         k <span class="co">#Neighbors   TRUE     TRUE      TRUE</span></span></code></pre></div>
+<p>La elección de la función de distancia, así como el número de vecinos, <span class="math inline">\(k\)</span>, son decisiones que debe tomar el investigador antes de ejecutar el algoritmo. Este último es el hiperparámetro del modelo, cuyo valor devuelve la función <code><a href="https://rdrr.io/pkg/caret/man/modelLookup.html">modelLookup()</a></code> de <code>caret</code>:</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="cap-knn.html#cb375-1" tabindex="-1"></a><span class="fu">modelLookup</span>(<span class="st">"knn"</span>)</span>
+<span id="cb375-2"><a href="cap-knn.html#cb375-2" tabindex="-1"></a>  model parameter      label forReg forClass probModel</span>
+<span id="cb375-3"><a href="cap-knn.html#cb375-3" tabindex="-1"></a><span class="dv">1</span>   knn         k <span class="co">#Neighbors   TRUE     TRUE      TRUE</span></span></code></pre></div>
 <div id="función-de-distancia-a-utilizar" class="section level3" number="26.2.1">
 <h3>
 <span class="header-section-number">26.2.1</span> Función de distancia a utilizar<a class="anchor" aria-label="anchor" href="#funci%C3%B3n-de-distancia-a-utilizar"><i class="fas fa-link"></i></a>
 </h3>
-<p>El modelo KNN determina la cercanía entre dos observaciones a través de una función de distancia. Generalmente, se utilizan la distancia euclídea, mostrada en la ecuación <a href="cap-knn.html#eq:dist-eu">(26.1)</a>, y la distancia de Manhattan, mostrada en la ecuación <a href="cap-knn.html#eq:dist-man">(26.2)</a>. Otras funciones de distancia, como las presentadas en el Cap. <a href="#cap-cluster"><strong>??</strong></a>, también pueden ser utilizadas para el entrenamiento de este algoritmo.</p>
-<p><span class="math display" id="eq:dist-eu">\[\begin{equation}
-d(x_i,x_k)=\sqrt{\sum_{j=1}^{p}{(x_i^{(j)}-x_k^{(j)})^2}}
-\tag{26.1}
-\end{equation}\]</span></p>
-<p><span class="math display" id="eq:dist-man">\[\begin{equation}
-d(x_i,x_k)=\sum_{j=1}^{p}{|x_i^{(j)}-x_k^{(j)}|}
-\tag{26.2}
-\end{equation}\]</span></p>
-<p>En el caso de querer incluir tanto variables cuantitativas como variables cualitativas en el cálculo de la distancia, el coeficiente de disimilitud de Gower es la función de distancia más popular para esta situación. El coeficiente de disimilitud de Gower se define como:</p>
-<p><span class="math display">\[\begin{equation}
-d(i,j) = \frac{\sum^{p}_{k=1}{\omega_k \delta^{(k)}_{ij}d^(k)_{ij}}}{\omega_k \delta^{(k)}_{ij}}
-\end{equation}\]</span></p>
-<p>El coeficiente de Gower es una media ponderada de las distancias <span class="math inline">\(d^{(k)}_{ij}\)</span> con ponderaciones <span class="math inline">\(\omega_{k}\delta_{ij}^{(k)}\)</span>.</p>
+<p>El grado de “vecindad” entre dos observaciones con predictores cuantitativos se mide a través de una función de distancia. En el proceso de entrenamiento del algoritmo KNN, generalmente se utiliza la distancia euclídea, mostrada en la ecuación <a href="#eq:dist-eu">(<strong>??</strong>)</a>, o la distancia de Manhattan, que puede verse en la ecuación <a href="#eq:dist-man">(<strong>??</strong>)</a>. En caso de que haya predictores cuantitativos y cualitativos (o solo cualitativos) el coeficiente de Gower es una buena opción (ecuación <a href="#eq:dist-Gow">(<strong>??</strong>)</a>). No obstante, también pueden untilizarse otras funciones de distancia. Un buen número de ellas puede verse en el Cap. <a href="#cap-cluster"><strong>??</strong></a>.</p>
+<p>Sean dos observaciones <span class="math inline">\(p\)</span>-dimensionales, <span class="math inline">\({\bf{x}}_r\)</span> y <span class="math inline">\({\bf{x}}_s\)</span>:</p>
+<ul>
+<li>
+<strong>Distancia euclídea.</strong> Se define como: <span class="math display">\[\begin{equation}
+(\#eq:dist-eu)
+d_{e}({\bf x}_r;{\bf{x}}_{s})=\sqrt{\sum_{k=1}^{p}\left(  x_{rk}-x_{sk}\right)  ^{2}}.
+\end{equation}\]</span>
+</li>
+</ul>
+<p>Ignora las unidades de medida de las variables y, en consecuencia, aunque es invariante a los cambios de origen, no lo es a los cambios de escala. También ignora las relaciones entre ellas. Resulta de utilidad con variables cuantitativas incorreladas y medidas en las mismas unidades.</p>
+<ul>
+<li>
+<strong>Distancia Manhattan</strong> o <strong>city block.</strong> Se define como: <span class="math display">\[\begin{equation} (\#eq:dist-man) d_{MAN}({\bf x}_r;{\bf{x}}_{s})=\sum_{k=1}^{p}\left\vert x_{rk}-x_{sk}\right\vert.
+  \end{equation}\]</span>
+</li>
+</ul>
+<p>Le afectan las diferentes escalas de las variables y es menos sensible que la distancia euclídea a los valores extremos. Por ello, es recomendable cuando las variables son cuantitativas, con las mismas unidades de medida (o escaladas), sin relaciones entre ellas y con valores extremos.</p>
+<ul>
+<li><p>Si no todas las variables son cuantitativas, se utiliza la <strong>medida de similaridad de Gower</strong>: <span class="math display">\[\begin{equation} (\#eq:dist-Gow) S_{rs}({\bf x}_r;{\bf{x}}_{s})=\frac{\sum_{k=1}^{p}s_{rs}}{\sum_{k=1}^{p}w_{rs}},
+  \end{equation}\]</span>
+donde <span class="math inline">\(w_{rs}\)</span> vale siempre la unidad, salvo para variables binarias si los dos elementos presentan el valor cero. En cuanto al valor de <span class="math inline">\(S_{rs}\)</span>, se distinguen tres casos:</p></li>
+<li><p>Variables cualitativas de más de dos niveles: 1 si ambos elementos son iguales en la <em>k</em>-ésima variable; 0 si son diferentes.</p></li>
+<li><p>Variables dicotómicas: 1 si la variable considerada está presente en ambos elementos; 0 en los demás casos.</p></li>
+<li><p>Variables cuantitativas: <span class="math inline">\(1-\frac {|x_{ik}-x_{jk}|}{R_k}\)</span>, donde <span class="math inline">\(R\)</span> es el rango de la variable <em>k</em>.</p></li>
+</ul>
+<p>No es recomendable cuando las variables cuantitativas sean muy asimétricas. En este caso, hay dos procedimientos aproximados: <span class="math inline">\((i)\)</span> calcular medidas separadas para las variables cuantitativas y cualitativas y combinarlas estableciendo algún tipo de de ponderación (véase Cap. <a href="#cap-cluster"><strong>??</strong></a>); <span class="math inline">\((ii)\)</span> pasar las variables cuantitativas a cualitativas y utilizar las medidas propuestas para este tipo de variables (véase también Cap. <a href="#cap-cluster"><strong>??</strong></a>).</p>
+<!-- \begin{equation} -->
+<!-- d(x_i,x_k)=\sqrt{\sum_{j=1}^{p}{(x_i^{(j)}-x_k^{(j)})^2}} -->
+<!-- (\#eq:dist-eu) -->
+<!-- \end{equation} -->
+<!-- \begin{equation} -->
+<!-- d(x_i,x_k)=\sum_{j=1}^{p}{|x_i^{(j)}-x_k^{(j)}|} -->
+<!-- (\#eq:dist-man) -->
+<!-- \end{equation} -->
+<!-- En el caso de querer incluir tanto variables cuantitativas como variables cualitativas en el cálculo de la distancia, el coeficiente de disimilitud de Gower\index{distancia!de Gower} es la función de distancia más popular para esta situación. El coeficiente de disimilitud de Gower se define como: -->
+<!-- \begin{equation} -->
+<!-- d(i,j) = \frac{\sum^{p}_{k=1}{\omega_k \delta^{(k)}_{ij}d^(k)_{ij}}}{\omega_k \delta^{(k)}_{ij}} -->
+<!-- \end{equation} -->
+<!-- El coeficiente de Gower es una media ponderada de las distancias $d^{(k)}_{ij}$ con ponderaciones $\omega_{k}\delta_{ij}^{(k)}$. -->
 </div>
 <div id="número-de-vecinos-k-seleccionados" class="section level3" number="26.2.2">
 <h3>
 <span class="header-section-number">26.2.2</span> Número de vecinos (k) seleccionados<a class="anchor" aria-label="anchor" href="#n%C3%BAmero-de-vecinos-k-seleccionados"><i class="fas fa-link"></i></a>
 </h3>
-<p>Como se ha reiterado, la elección de cuántos vecinos (<span class="math inline">\(k\)</span>) intervienen en el ajuste del algoritmo es determinante para su rendimiento. Si se escogen demasiado pocos vecinos, se producirá sobreajuste en el modelo. En el extremo en el que sólo se utilizará un vecino (<span class="math inline">\(k=1\)</span>), la predicción se basará en la observación con la menor distancia al elemento a clasificar. Por otro lado, un número alto de vecinos (<span class="math inline">\(k\)</span>) hace que el modelo no ajuste bien al tener en cuenta un vecindario más grande. En este sentido, en el caso extremo de elegir todas las observaciones como vecinos más próximos (<span class="math inline">\(k=n\)</span>), se obtendrá el valor medio (en el caso de la regresión) o la clase mayoritaria (en el caso de la clasificación) como valor predicho para todas las observaciones del conjunto de entrenamiento.</p>
-<p>No existe una regla general para la elección óptima de <span class="math inline">\(k\)</span>, puesto que en gran medida dependerá del conjunto de datos utilizado. Cuando el conjunto de datos tiene pocas variables que no aporten información, valores pequeños de <span class="math inline">\(k\)</span> tienden a funcionar mejor. Cuantas más variables sin importancia se incluyen en el conjunto de datos, mayor deberá ser el valor de <span class="math inline">\(k\)</span> para suavizar su efecto.</p>
+<p>Como ya se ha avanzado, la elección del número de vecinos (<span class="math inline">\(k\)</span>) intervienen en el ajuste del algoritmo es determinante para su rendimiento. Si se escogen demasiado pocos vecinos, se producirá sobreajuste en el modelo. En el caso extremo en el que solo se utilizase un vecino (<span class="math inline">\(k=1\)</span>), la predicción se basará únicamente en la observación con la menor distancia al elemento a clasificar. Por otro lado, un número alto de vecinos hace que el modelo no ajuste bien al tener en cuenta un vecindario demasiado grande. En este sentido, en el caso extremo de considerar como vecinas todas las observaciones disponibles (<span class="math inline">\(k=n\)</span>), la predicción siempre será (sea cual sea la nueva observación) será el valor medio de la variable respuesta en el conjunto de datos (en el caso de la regresión) o la clase mayoritaria de la variable respuesta en dicho conjunto (en el caso de la clasificación).</p>
+<p>No existe una regla general para la elección óptima de <span class="math inline">\(k\)</span>, puesto que en gran medida dependerá del conjunto de datos utilizado. Cuando el conjunto de datos tiene pocas variables que no aporten información, valores pequeños de <span class="math inline">\(k\)</span> tienden a funcionar mejor. Cuantas más variables sin importancia se incluyen en el conjunto predictores, mayor deberá ser el valor de <span class="math inline">\(k\)</span> para suavizar su efecto, es decir, para reducir el ruido que incorporan dichas variables, que no aportan información nueva para mejorar el modelo.</p>
 </div>
 </div>
 <div id="procedimiento-con-r-la-función-knn" class="section level2" number="26.3">
 <h2>
 <span class="header-section-number">26.3</span> Procedimiento con <strong>R</strong>: la función <code>knn()</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-la-funci%C3%B3n-knn"><i class="fas fa-link"></i></a>
 </h2>
-<p>En el paquete <code>class</code> de R se encuentra la función <code>knn()</code> que se utiliza para entrenar el modelo k-vecinos más próximos:</p>
-<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
+<p>En el paquete <code>class</code> de <strong>R</strong> se encuentra la función <code>knn()</code> que se utiliza para entrenar el modelo <em>k</em>-vecinos más próximos:</p>
+<div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knn</span><span class="op">(</span><span class="va">train</span>, <span class="va">test</span>, <span class="va">cl</span>, k <span class="op">=</span> <span class="fl">1</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
@@ -206,111 +230,113 @@ d(i,j) = \frac{\sum^{p}_{k=1}{\omega_k \delta^{(k)}_{ij}d^(k)_{ij}}}{\omega_k \d
 <h2>
 <span class="header-section-number">26.4</span> Aplicación del modelo KNN en R<a class="anchor" aria-label="anchor" href="#aplicaci%C3%B3n-del-modelo-knn-en-r"><i class="fas fa-link"></i></a>
 </h2>
-<p>En este ejemplo se entrena un modelo KNN para clasificar qué clientes comprarán el <em>tensiómetro digital</em> teniendo en cuenta sus características y el resto de sus compras. Este conjunto de datos está incluido en el paquete <code>CDR</code> con el nombre <code>dp_entr_NUM</code>. En este conjunto de datos todas las variables son cuantitativas (excepto la clase objetivo) pero dichas variables tienen distintas escalas de medida (euros, años, unidades, etc.) por lo que es necesario indicar en la función <code><a href="https://rdrr.io/pkg/caret/man/trainControl.html">trainControl()</a></code> que se haga un preprocesamiento para estandarizar las variables. Además, se define como método de remuestreo la validación cruzada, como la presentada en el Cap. <a href="chap-feature.html#chap-feature">9</a>, con 10 folds.</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="cap-knn.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"CDR"</span>)</span>
-<span id="cb371-2"><a href="cap-knn.html#cb371-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"class"</span>)</span>
-<span id="cb371-3"><a href="cap-knn.html#cb371-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"caret"</span>)</span>
-<span id="cb371-4"><a href="cap-knn.html#cb371-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"reshape"</span>)</span>
-<span id="cb371-5"><a href="cap-knn.html#cb371-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb371-6"><a href="cap-knn.html#cb371-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb371-7"><a href="cap-knn.html#cb371-7" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(dp_entr_NUM)</span>
-<span id="cb371-8"><a href="cap-knn.html#cb371-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb371-9"><a href="cap-knn.html#cb371-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dp_entr_NUM)</span>
-<span id="cb371-10"><a href="cap-knn.html#cb371-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb371-11"><a href="cap-knn.html#cb371-11" aria-hidden="true" tabindex="-1"></a>  ind_pro11 ind_pro12 ind_pro14 ind_pro15 ind_pro16 ind_pro17 des_nivel_edu.ALTO</span>
-<span id="cb371-12"><a href="cap-knn.html#cb371-12" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">0</span>                  <span class="dv">0</span></span>
-<span id="cb371-13"><a href="cap-knn.html#cb371-13" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>         <span class="dv">0</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">0</span>                  <span class="dv">0</span></span>
-<span id="cb371-14"><a href="cap-knn.html#cb371-14" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>         <span class="dv">0</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">1</span>                  <span class="dv">0</span></span>
-<span id="cb371-15"><a href="cap-knn.html#cb371-15" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">0</span>         <span class="dv">0</span>         <span class="dv">0</span>                  <span class="dv">0</span></span>
-<span id="cb371-16"><a href="cap-knn.html#cb371-16" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">0</span>                  <span class="dv">0</span></span>
-<span id="cb371-17"><a href="cap-knn.html#cb371-17" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>         <span class="dv">1</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">0</span>         <span class="dv">0</span>         <span class="dv">0</span>                  <span class="dv">1</span></span>
-<span id="cb371-18"><a href="cap-knn.html#cb371-18" aria-hidden="true" tabindex="-1"></a>  des_nivel_edu.BASICO des_nivel_edu.MEDIO importe_pro11 importe_pro12 importe_pro14</span>
-<span id="cb371-19"><a href="cap-knn.html#cb371-19" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>                    <span class="dv">0</span>                   <span class="dv">1</span>           <span class="dv">157</span>             <span class="dv">0</span>            <span class="dv">40</span></span>
-<span id="cb371-20"><a href="cap-knn.html#cb371-20" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>                    <span class="dv">0</span>                   <span class="dv">1</span>             <span class="dv">0</span>             <span class="dv">0</span>           <span class="dv">240</span></span>
-<span id="cb371-21"><a href="cap-knn.html#cb371-21" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>                    <span class="dv">1</span>                   <span class="dv">0</span>             <span class="dv">0</span>             <span class="dv">0</span>           <span class="dv">425</span></span>
-<span id="cb371-22"><a href="cap-knn.html#cb371-22" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>                    <span class="dv">0</span>                   <span class="dv">1</span>             <span class="dv">0</span>           <span class="dv">120</span>            <span class="dv">60</span></span>
-<span id="cb371-23"><a href="cap-knn.html#cb371-23" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>                    <span class="dv">1</span>                   <span class="dv">0</span>             <span class="dv">0</span>           <span class="dv">120</span>           <span class="dv">133</span></span>
-<span id="cb371-24"><a href="cap-knn.html#cb371-24" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>                    <span class="dv">0</span>                   <span class="dv">0</span>           <span class="dv">115</span>             <span class="dv">0</span>           <span class="dv">220</span></span>
-<span id="cb371-25"><a href="cap-knn.html#cb371-25" aria-hidden="true" tabindex="-1"></a>  importe_pro15 importe_pro16 importe_pro17 edad tamano_fam anos_exp ingresos_ano CLS_PRO_pro13</span>
-<span id="cb371-26"><a href="cap-knn.html#cb371-26" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>           <span class="dv">200</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">49</span>          <span class="dv">4</span>       <span class="dv">24</span>        <span class="dv">30000</span>             S</span>
-<span id="cb371-27"><a href="cap-knn.html#cb371-27" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>             <span class="dv">0</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">38</span>          <span class="dv">2</span>       <span class="dv">12</span>        <span class="dv">53000</span>             N</span>
-<span id="cb371-28"><a href="cap-knn.html#cb371-28" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>           <span class="dv">200</span>           <span class="dv">180</span>           <span class="dv">300</span>   <span class="dv">61</span>          <span class="dv">4</span>       <span class="dv">37</span>       <span class="dv">172000</span>             S</span>
-<span id="cb371-29"><a href="cap-knn.html#cb371-29" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>             <span class="dv">0</span>             <span class="dv">0</span>             <span class="dv">0</span>   <span class="dv">47</span>          <span class="dv">3</span>       <span class="dv">21</span>        <span class="dv">38000</span>             N</span>
-<span id="cb371-30"><a href="cap-knn.html#cb371-30" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>             <span class="dv">0</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">34</span>          <span class="dv">1</span>       <span class="dv">10</span>        <span class="dv">38000</span>             N</span>
-<span id="cb371-31"><a href="cap-knn.html#cb371-31" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>             <span class="dv">0</span>             <span class="dv">0</span>             <span class="dv">0</span>   <span class="dv">43</span>          <span class="dv">2</span>       <span class="dv">18</span>        <span class="dv">60000</span>             N</span>
-<span id="cb371-32"><a href="cap-knn.html#cb371-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb371-33"><a href="cap-knn.html#cb371-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb371-34"><a href="cap-knn.html#cb371-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Definimos un método de remuestreo</span></span>
-<span id="cb371-35"><a href="cap-knn.html#cb371-35" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(</span>
-<span id="cb371-36"><a href="cap-knn.html#cb371-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"repeatedcv"</span>,</span>
-<span id="cb371-37"><a href="cap-knn.html#cb371-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">number =</span> <span class="dv">10</span>,</span>
-<span id="cb371-38"><a href="cap-knn.html#cb371-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">repeats =</span> <span class="dv">5</span>,</span>
-<span id="cb371-39"><a href="cap-knn.html#cb371-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">classProbs =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb371-40"><a href="cap-knn.html#cb371-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">preProcOptions =</span> <span class="fu">list</span>(<span class="st">"center"</span>),</span>
-<span id="cb371-41"><a href="cap-knn.html#cb371-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">summaryFunction =</span> twoClassSummary</span>
-<span id="cb371-42"><a href="cap-knn.html#cb371-42" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>Antes de obtener el modelo definitivo, es necesario la selección del número óptimo de vecinos <span class="math inline">\(k\)</span> entrenando distintos modelos variando dicho hiperparámetro. Para facilitar este trabajo arduo, en el paquete <code>caret</code> de <strong>R</strong> se puede definir una red de posibles valores sobre los que evaluar el modelo KNN y que de forma automática se determine el valor que mejor rendimiento proporcione. A continuación se definen los posibles valores de <span class="math inline">\(k\)</span> que se quieren evaluar.</p>
-<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
+<p>Para llevar a cabo la aplicación en la que se centra esta sección se retoma el ejemplo expuesto en los dos capítulos precedentes relativo a la empresa “Beauty eSheep”, que pretende vender tensiómetros digitales, obteniéndose las predicciones sobre si el cliente comprará o no un tensiómetro en función de una serie de características del cliente (en este caso, todas ellas cuantitativas) que actúan como variables predictoras y que se encuentran, junto con la variable respuesta, en el conjunto de datos `<code>dp_entr_NUM</code>, incluido en el paquete <code>CDR</code>, y que se resume en la Tabla <a href="cap-arboles.html#tab:dpentr">24.8</a>.</p>
+<p>Dado que todas las variables predictoras son cuantitativas y que tienen distintas escalas de medida (euros, años, unidades, etc.) es necesario indicar en la función <code><a href="https://rdrr.io/pkg/caret/man/trainControl.html">trainControl()</a></code> que se haga un preprocesamiento para estandarizarlas. Además, se define como método de validación (con remuestreo) el de validación cruzada con 10 grupos con repetición (véase Cap. <a href="chap-herramientas.html#chap-herramientas">10</a>.</p>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="cap-knn.html#cb377-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"CDR"</span>)</span>
+<span id="cb377-2"><a href="cap-knn.html#cb377-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"class"</span>)</span>
+<span id="cb377-3"><a href="cap-knn.html#cb377-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"caret"</span>)</span>
+<span id="cb377-4"><a href="cap-knn.html#cb377-4" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"reshape"</span>)</span>
+<span id="cb377-5"><a href="cap-knn.html#cb377-5" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb377-6"><a href="cap-knn.html#cb377-6" tabindex="-1"></a></span>
+<span id="cb377-7"><a href="cap-knn.html#cb377-7" tabindex="-1"></a><span class="fu">data</span>(dp_entr_NUM)</span>
+<span id="cb377-8"><a href="cap-knn.html#cb377-8" tabindex="-1"></a></span>
+<span id="cb377-9"><a href="cap-knn.html#cb377-9" tabindex="-1"></a><span class="fu">head</span>(dp_entr_NUM)</span>
+<span id="cb377-10"><a href="cap-knn.html#cb377-10" tabindex="-1"></a></span>
+<span id="cb377-11"><a href="cap-knn.html#cb377-11" tabindex="-1"></a>  ind_pro11 ind_pro12 ind_pro14 ind_pro15 ind_pro16 ind_pro17 des_nivel_edu.ALTO</span>
+<span id="cb377-12"><a href="cap-knn.html#cb377-12" tabindex="-1"></a><span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">0</span>                  <span class="dv">0</span></span>
+<span id="cb377-13"><a href="cap-knn.html#cb377-13" tabindex="-1"></a><span class="dv">2</span>         <span class="dv">0</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">0</span>                  <span class="dv">0</span></span>
+<span id="cb377-14"><a href="cap-knn.html#cb377-14" tabindex="-1"></a><span class="dv">3</span>         <span class="dv">0</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">1</span>                  <span class="dv">0</span></span>
+<span id="cb377-15"><a href="cap-knn.html#cb377-15" tabindex="-1"></a><span class="dv">4</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">0</span>         <span class="dv">0</span>         <span class="dv">0</span>                  <span class="dv">0</span></span>
+<span id="cb377-16"><a href="cap-knn.html#cb377-16" tabindex="-1"></a><span class="dv">5</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">1</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">0</span>                  <span class="dv">0</span></span>
+<span id="cb377-17"><a href="cap-knn.html#cb377-17" tabindex="-1"></a><span class="dv">6</span>         <span class="dv">1</span>         <span class="dv">0</span>         <span class="dv">1</span>         <span class="dv">0</span>         <span class="dv">0</span>         <span class="dv">0</span>                  <span class="dv">1</span></span>
+<span id="cb377-18"><a href="cap-knn.html#cb377-18" tabindex="-1"></a>  des_nivel_edu.BASICO des_nivel_edu.MEDIO importe_pro11 importe_pro12 importe_pro14</span>
+<span id="cb377-19"><a href="cap-knn.html#cb377-19" tabindex="-1"></a><span class="dv">1</span>                    <span class="dv">0</span>                   <span class="dv">1</span>           <span class="dv">157</span>             <span class="dv">0</span>            <span class="dv">40</span></span>
+<span id="cb377-20"><a href="cap-knn.html#cb377-20" tabindex="-1"></a><span class="dv">2</span>                    <span class="dv">0</span>                   <span class="dv">1</span>             <span class="dv">0</span>             <span class="dv">0</span>           <span class="dv">240</span></span>
+<span id="cb377-21"><a href="cap-knn.html#cb377-21" tabindex="-1"></a><span class="dv">3</span>                    <span class="dv">1</span>                   <span class="dv">0</span>             <span class="dv">0</span>             <span class="dv">0</span>           <span class="dv">425</span></span>
+<span id="cb377-22"><a href="cap-knn.html#cb377-22" tabindex="-1"></a><span class="dv">4</span>                    <span class="dv">0</span>                   <span class="dv">1</span>             <span class="dv">0</span>           <span class="dv">120</span>            <span class="dv">60</span></span>
+<span id="cb377-23"><a href="cap-knn.html#cb377-23" tabindex="-1"></a><span class="dv">5</span>                    <span class="dv">1</span>                   <span class="dv">0</span>             <span class="dv">0</span>           <span class="dv">120</span>           <span class="dv">133</span></span>
+<span id="cb377-24"><a href="cap-knn.html#cb377-24" tabindex="-1"></a><span class="dv">6</span>                    <span class="dv">0</span>                   <span class="dv">0</span>           <span class="dv">115</span>             <span class="dv">0</span>           <span class="dv">220</span></span>
+<span id="cb377-25"><a href="cap-knn.html#cb377-25" tabindex="-1"></a>  importe_pro15 importe_pro16 importe_pro17 edad tamano_fam anos_exp ingresos_ano CLS_PRO_pro13</span>
+<span id="cb377-26"><a href="cap-knn.html#cb377-26" tabindex="-1"></a><span class="dv">1</span>           <span class="dv">200</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">49</span>          <span class="dv">4</span>       <span class="dv">24</span>        <span class="dv">30000</span>             S</span>
+<span id="cb377-27"><a href="cap-knn.html#cb377-27" tabindex="-1"></a><span class="dv">2</span>             <span class="dv">0</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">38</span>          <span class="dv">2</span>       <span class="dv">12</span>        <span class="dv">53000</span>             N</span>
+<span id="cb377-28"><a href="cap-knn.html#cb377-28" tabindex="-1"></a><span class="dv">3</span>           <span class="dv">200</span>           <span class="dv">180</span>           <span class="dv">300</span>   <span class="dv">61</span>          <span class="dv">4</span>       <span class="dv">37</span>       <span class="dv">172000</span>             S</span>
+<span id="cb377-29"><a href="cap-knn.html#cb377-29" tabindex="-1"></a><span class="dv">4</span>             <span class="dv">0</span>             <span class="dv">0</span>             <span class="dv">0</span>   <span class="dv">47</span>          <span class="dv">3</span>       <span class="dv">21</span>        <span class="dv">38000</span>             N</span>
+<span id="cb377-30"><a href="cap-knn.html#cb377-30" tabindex="-1"></a><span class="dv">5</span>             <span class="dv">0</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">34</span>          <span class="dv">1</span>       <span class="dv">10</span>        <span class="dv">38000</span>             N</span>
+<span id="cb377-31"><a href="cap-knn.html#cb377-31" tabindex="-1"></a><span class="dv">6</span>             <span class="dv">0</span>             <span class="dv">0</span>             <span class="dv">0</span>   <span class="dv">43</span>          <span class="dv">2</span>       <span class="dv">18</span>        <span class="dv">60000</span>             N</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Definimos un método de remuestreo</span></span>
+<span><span class="va">cv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/trainControl.html">trainControl</a></span><span class="op">(</span></span>
+<span>  method <span class="op">=</span> <span class="st">"repeatedcv"</span>,</span>
+<span>  number <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  repeats <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  classProbs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  preProcOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"center"</span><span class="op">)</span>,</span>
+<span>  summaryFunction <span class="op">=</span> <span class="va">twoClassSummary</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>En cuanto a la selección del hiperparámetro <span class="math inline">\(k\)</span>, en el paquete <code>caret</code> de <strong>R</strong> se puede definir una red de posibles valores sobre los que evaluar el modelo KNN, determinándose automáticamente el valor que mejor rendimiento proporciona. A continuación se definen los posibles valores de <span class="math inline">\(k\)</span> que se quieren evaluar.</p>
+<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Definimos la red de posibles valores del hiperparámetro</span></span>
 <span><span class="va">hyper_grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">15</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">50</span>,<span class="fl">75</span>,<span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Una vez se que se ha definido tanto el método de remuestreo como la red de posibles valores del hiperparámetro se puede entrenar el modelo:</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="cap-knn.html#cb373-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb373-2"><a href="cap-knn.html#cb373-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
-<span id="cb373-3"><a href="cap-knn.html#cb373-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Se entrena el modelo ajustando el hiperparámetro óptimo</span></span>
-<span id="cb373-4"><a href="cap-knn.html#cb373-4" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
-<span id="cb373-5"><a href="cap-knn.html#cb373-5" aria-hidden="true" tabindex="-1"></a>  CLS_PRO_pro13 <span class="sc">~</span> .,</span>
-<span id="cb373-6"><a href="cap-knn.html#cb373-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dp_entr_NUM,</span>
-<span id="cb373-7"><a href="cap-knn.html#cb373-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"knn"</span>,</span>
-<span id="cb373-8"><a href="cap-knn.html#cb373-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">trControl =</span> cv,</span>
-<span id="cb373-9"><a href="cap-knn.html#cb373-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">tuneGrid =</span> hyper_grid,</span>
-<span id="cb373-10"><a href="cap-knn.html#cb373-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">"ROC"</span></span>
-<span id="cb373-11"><a href="cap-knn.html#cb373-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb373-12"><a href="cap-knn.html#cb373-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb373-13"><a href="cap-knn.html#cb373-13" aria-hidden="true" tabindex="-1"></a>model</span>
-<span id="cb373-14"><a href="cap-knn.html#cb373-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb373-15"><a href="cap-knn.html#cb373-15" aria-hidden="true" tabindex="-1"></a>k<span class="sc">-</span>Nearest Neighbors</span>
-<span id="cb373-16"><a href="cap-knn.html#cb373-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb373-17"><a href="cap-knn.html#cb373-17" aria-hidden="true" tabindex="-1"></a><span class="dv">558</span> samples</span>
-<span id="cb373-18"><a href="cap-knn.html#cb373-18" aria-hidden="true" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
-<span id="cb373-19"><a href="cap-knn.html#cb373-19" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span></span>
-<span id="cb373-20"><a href="cap-knn.html#cb373-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb373-21"><a href="cap-knn.html#cb373-21" aria-hidden="true" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
-<span id="cb373-22"><a href="cap-knn.html#cb373-22" aria-hidden="true" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold, repeated <span class="dv">5</span> times)</span>
-<span id="cb373-23"><a href="cap-knn.html#cb373-23" aria-hidden="true" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ...</span>
-<span id="cb373-24"><a href="cap-knn.html#cb373-24" aria-hidden="true" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
-<span id="cb373-25"><a href="cap-knn.html#cb373-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb373-26"><a href="cap-knn.html#cb373-26" aria-hidden="true" tabindex="-1"></a>  k    ROC        Sens       Spec</span>
-<span id="cb373-27"><a href="cap-knn.html#cb373-27" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>  <span class="fl">0.6584524</span>  <span class="fl">0.6466402</span>  <span class="fl">0.6702646</span></span>
-<span id="cb373-28"><a href="cap-knn.html#cb373-28" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>  <span class="fl">0.6769109</span>  <span class="fl">0.6179101</span>  <span class="fl">0.6131217</span></span>
-<span id="cb373-29"><a href="cap-knn.html#cb373-29" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>  <span class="fl">0.6828893</span>  <span class="fl">0.6216402</span>  <span class="fl">0.6496561</span></span>
-<span id="cb373-30"><a href="cap-knn.html#cb373-30" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>  <span class="fl">0.6851087</span>  <span class="fl">0.6404233</span>  <span class="fl">0.6394709</span></span>
-<span id="cb373-31"><a href="cap-knn.html#cb373-31" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>  <span class="fl">0.6951129</span>  <span class="fl">0.6540212</span>  <span class="fl">0.6666138</span></span>
-<span id="cb373-32"><a href="cap-knn.html#cb373-32" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>  <span class="fl">0.6914664</span>  <span class="fl">0.6216402</span>  <span class="fl">0.6543386</span></span>
-<span id="cb373-33"><a href="cap-knn.html#cb373-33" aria-hidden="true" tabindex="-1"></a>    <span class="dv">7</span>  <span class="fl">0.6982592</span>  <span class="fl">0.6252381</span>  <span class="fl">0.6953439</span></span>
-<span id="cb373-34"><a href="cap-knn.html#cb373-34" aria-hidden="true" tabindex="-1"></a>    <span class="dv">8</span>  <span class="fl">0.6974556</span>  <span class="fl">0.6281481</span>  <span class="fl">0.6960053</span></span>
-<span id="cb373-35"><a href="cap-knn.html#cb373-35" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9</span>  <span class="fl">0.6992229</span>  <span class="fl">0.6159524</span>  <span class="fl">0.7117725</span></span>
-<span id="cb373-36"><a href="cap-knn.html#cb373-36" aria-hidden="true" tabindex="-1"></a>   <span class="dv">10</span>  <span class="fl">0.6994133</span>  <span class="fl">0.6037037</span>  <span class="fl">0.7052910</span></span>
-<span id="cb373-37"><a href="cap-knn.html#cb373-37" aria-hidden="true" tabindex="-1"></a>   <span class="dv">15</span>  <span class="fl">0.6875879</span>  <span class="fl">0.5749206</span>  <span class="fl">0.7232011</span></span>
-<span id="cb373-38"><a href="cap-knn.html#cb373-38" aria-hidden="true" tabindex="-1"></a>   <span class="dv">20</span>  <span class="fl">0.6731477</span>  <span class="fl">0.5722751</span>  <span class="fl">0.7010582</span></span>
-<span id="cb373-39"><a href="cap-knn.html#cb373-39" aria-hidden="true" tabindex="-1"></a>   <span class="dv">30</span>  <span class="fl">0.6752986</span>  <span class="fl">0.5529630</span>  <span class="fl">0.7024603</span></span>
-<span id="cb373-40"><a href="cap-knn.html#cb373-40" aria-hidden="true" tabindex="-1"></a>   <span class="dv">50</span>  <span class="fl">0.6890259</span>  <span class="fl">0.5163757</span>  <span class="fl">0.7605556</span></span>
-<span id="cb373-41"><a href="cap-knn.html#cb373-41" aria-hidden="true" tabindex="-1"></a>   <span class="dv">75</span>  <span class="fl">0.6852886</span>  <span class="fl">0.5092593</span>  <span class="fl">0.7670106</span></span>
-<span id="cb373-42"><a href="cap-knn.html#cb373-42" aria-hidden="true" tabindex="-1"></a>  <span class="dv">100</span>  <span class="fl">0.6719378</span>  <span class="fl">0.5049471</span>  <span class="fl">0.7820106</span></span>
-<span id="cb373-43"><a href="cap-knn.html#cb373-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb373-44"><a href="cap-knn.html#cb373-44" aria-hidden="true" tabindex="-1"></a>ROC was used to select the optimal model using the largest value.</span>
-<span id="cb373-45"><a href="cap-knn.html#cb373-45" aria-hidden="true" tabindex="-1"></a>The final value used <span class="cf">for</span> the model was k <span class="ot">=</span> <span class="fl">10.</span></span></code></pre></div>
-<p>En la Fig. <a href="cap-knn.html#fig:006-002-102KNNKCHOOSING3">26.2</a> se observa que el número óptimo de vecinos es <span class="math inline">\(k=10\)</span>, donde se alcanza el rendimiento óptimo del modelo.</p>
-<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">bestTune</span><span class="op">)</span>,col<span class="op">=</span><span class="st">"red"</span>,linetype<span class="op">=</span><span class="st">"dashed"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Una vez se que se ha definido tanto el método de validación repetida con remuestreo como la red de posibles valores del hiperparámetro se procede a entrenar el modelo:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;En la salida del modelo, &lt;code&gt;Sens&lt;/code&gt;(sensibilidad) responde a la pregunta: ¿cuándo en realidad es un SÍ, cuál es el porcentaje de aciertos del clasificador? Su expresión es &lt;span class="math inline"&gt;\(Sensibilidad=\frac{VP}{VP+FN}\)&lt;/span&gt;, donde &lt;span class="math inline"&gt;\(VP\)&lt;/span&gt; es un verdadero positivos (un cliente que compró el tensiómetro digital es clasificado como comprador) y &lt;span class="math inline"&gt;\(FN\)&lt;/span&gt; un falso negativo (un cliente que lo compró es clasificado como no que no lo compró) (véase Cap. @ref(chap-herramientas para mejor entendimiento de estos conceptos). Por consiguiente, la sensibilidad es una medida de la probabilidad de que un cliente que compró el tensiómetro sea clasificado correctamente. &lt;code&gt;Spc&lt;/code&gt;(especificidad) es el porcentaje de verdaderos negativos respecto de todo lo que debería haber sido clasificado como negativo. Su expresión es &lt;span class="math inline"&gt;\(\frac{FP}{FP+VN}\)&lt;/span&gt;, donde &lt;span class="math inline"&gt;\(FP\)&lt;/span&gt; es un falso positivo (un cliente no compró el tensiómetro y, sin embargo, fue clasificado como comprador) y &lt;span class="math inline"&gt;\(VN\)&lt;/span&gt; es un verdadero negativo (un cliente no compró el tensiómetro y fue clasificado correctamente). Su complementario, la 1-especificidad (&lt;span class="math inline"&gt;\(\frac{FP}{FP+VN}\)&lt;/span&gt;) es, básicamente, una medida de la frecuencia (relativa) con la que se producirá una falsa alarma, o la frecuencia con la que un caso real negativo (no compra del tensiómetro) se clasifique como positivo (compra del producto). La curva ROC es la que surge de graficar la sensibilidad (tasa de verdaderos positivos) frente a la tasa de falsos positivos (1-especificidad).&lt;/p&gt;'><sup>187</sup></a></p>
+<div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span><span class="co"># Se entrena el modelo ajustando el hiperparámetro óptimo</span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/train.html">train</a></span><span class="op">(</span></span>
+<span>  <span class="va">CLS_PRO_pro13</span> <span class="op">~</span> <span class="va">.</span>,</span>
+<span>  data <span class="op">=</span> <span class="va">dp_entr_NUM</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"knn"</span>,</span>
+<span>  trControl <span class="op">=</span> <span class="va">cv</span>,</span>
+<span>  tuneGrid <span class="op">=</span> <span class="va">hyper_grid</span>,</span>
+<span>  metric <span class="op">=</span> <span class="st">"ROC"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="cap-knn.html#cb381-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
+<span id="cb381-2"><a href="cap-knn.html#cb381-2" tabindex="-1"></a>model</span>
+<span id="cb381-3"><a href="cap-knn.html#cb381-3" tabindex="-1"></a></span>
+<span id="cb381-4"><a href="cap-knn.html#cb381-4" tabindex="-1"></a>k<span class="sc">-</span>Nearest Neighbors</span>
+<span id="cb381-5"><a href="cap-knn.html#cb381-5" tabindex="-1"></a></span>
+<span id="cb381-6"><a href="cap-knn.html#cb381-6" tabindex="-1"></a><span class="dv">558</span> samples</span>
+<span id="cb381-7"><a href="cap-knn.html#cb381-7" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
+<span id="cb381-8"><a href="cap-knn.html#cb381-8" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span></span>
+<span id="cb381-9"><a href="cap-knn.html#cb381-9" tabindex="-1"></a></span>
+<span id="cb381-10"><a href="cap-knn.html#cb381-10" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
+<span id="cb381-11"><a href="cap-knn.html#cb381-11" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold, repeated <span class="dv">5</span> times)</span>
+<span id="cb381-12"><a href="cap-knn.html#cb381-12" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ...</span>
+<span id="cb381-13"><a href="cap-knn.html#cb381-13" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
+<span id="cb381-14"><a href="cap-knn.html#cb381-14" tabindex="-1"></a></span>
+<span id="cb381-15"><a href="cap-knn.html#cb381-15" tabindex="-1"></a>  k    ROC        Sens       Spec</span>
+<span id="cb381-16"><a href="cap-knn.html#cb381-16" tabindex="-1"></a>    <span class="dv">1</span>  <span class="fl">0.6584524</span>  <span class="fl">0.6466402</span>  <span class="fl">0.6702646</span></span>
+<span id="cb381-17"><a href="cap-knn.html#cb381-17" tabindex="-1"></a>    <span class="dv">2</span>  <span class="fl">0.6769109</span>  <span class="fl">0.6179101</span>  <span class="fl">0.6131217</span></span>
+<span id="cb381-18"><a href="cap-knn.html#cb381-18" tabindex="-1"></a>    <span class="dv">3</span>  <span class="fl">0.6828893</span>  <span class="fl">0.6216402</span>  <span class="fl">0.6496561</span></span>
+<span id="cb381-19"><a href="cap-knn.html#cb381-19" tabindex="-1"></a>    <span class="dv">4</span>  <span class="fl">0.6851087</span>  <span class="fl">0.6404233</span>  <span class="fl">0.6394709</span></span>
+<span id="cb381-20"><a href="cap-knn.html#cb381-20" tabindex="-1"></a>    <span class="dv">5</span>  <span class="fl">0.6951129</span>  <span class="fl">0.6540212</span>  <span class="fl">0.6666138</span></span>
+<span id="cb381-21"><a href="cap-knn.html#cb381-21" tabindex="-1"></a>    <span class="dv">6</span>  <span class="fl">0.6914664</span>  <span class="fl">0.6216402</span>  <span class="fl">0.6543386</span></span>
+<span id="cb381-22"><a href="cap-knn.html#cb381-22" tabindex="-1"></a>    <span class="dv">7</span>  <span class="fl">0.6982592</span>  <span class="fl">0.6252381</span>  <span class="fl">0.6953439</span></span>
+<span id="cb381-23"><a href="cap-knn.html#cb381-23" tabindex="-1"></a>    <span class="dv">8</span>  <span class="fl">0.6974556</span>  <span class="fl">0.6281481</span>  <span class="fl">0.6960053</span></span>
+<span id="cb381-24"><a href="cap-knn.html#cb381-24" tabindex="-1"></a>    <span class="dv">9</span>  <span class="fl">0.6992229</span>  <span class="fl">0.6159524</span>  <span class="fl">0.7117725</span></span>
+<span id="cb381-25"><a href="cap-knn.html#cb381-25" tabindex="-1"></a>   <span class="dv">10</span>  <span class="fl">0.6994133</span>  <span class="fl">0.6037037</span>  <span class="fl">0.7052910</span></span>
+<span id="cb381-26"><a href="cap-knn.html#cb381-26" tabindex="-1"></a>   <span class="dv">15</span>  <span class="fl">0.6875879</span>  <span class="fl">0.5749206</span>  <span class="fl">0.7232011</span></span>
+<span id="cb381-27"><a href="cap-knn.html#cb381-27" tabindex="-1"></a>   <span class="dv">20</span>  <span class="fl">0.6731477</span>  <span class="fl">0.5722751</span>  <span class="fl">0.7010582</span></span>
+<span id="cb381-28"><a href="cap-knn.html#cb381-28" tabindex="-1"></a>   <span class="dv">30</span>  <span class="fl">0.6752986</span>  <span class="fl">0.5529630</span>  <span class="fl">0.7024603</span></span>
+<span id="cb381-29"><a href="cap-knn.html#cb381-29" tabindex="-1"></a>   <span class="dv">50</span>  <span class="fl">0.6890259</span>  <span class="fl">0.5163757</span>  <span class="fl">0.7605556</span></span>
+<span id="cb381-30"><a href="cap-knn.html#cb381-30" tabindex="-1"></a>   <span class="dv">75</span>  <span class="fl">0.6852886</span>  <span class="fl">0.5092593</span>  <span class="fl">0.7670106</span></span>
+<span id="cb381-31"><a href="cap-knn.html#cb381-31" tabindex="-1"></a>  <span class="dv">100</span>  <span class="fl">0.6719378</span>  <span class="fl">0.5049471</span>  <span class="fl">0.7820106</span></span>
+<span id="cb381-32"><a href="cap-knn.html#cb381-32" tabindex="-1"></a></span>
+<span id="cb381-33"><a href="cap-knn.html#cb381-33" tabindex="-1"></a>ROC was used to select the optimal model using the largest value.</span>
+<span id="cb381-34"><a href="cap-knn.html#cb381-34" tabindex="-1"></a>The final value used <span class="cf">for</span> the model was k <span class="ot">=</span> <span class="fl">10.</span></span></code></pre></div>
+<p>En los resultados mostrados, para cada valor de <span class="math inline">\(k\)</span> se toman 10 muestras con 500 observaciones en el conjunto de entrenamiento y 50 en el de test. Dichas 500 y 50 observaciones van rotando de modelo a modelo para tener 10 distintos. Los valores ROC, Sens y Spec que aparecen en los resultados son la media de los obtenidos en esos 10 modelos.</p>
+<p>Tanto en los resultados mostrados como en la Fig. <a href="cap-knn.html#fig:006-002-102KNNKCHOOSING3">26.2</a>, se observa que el número óptimo de vecinos es <span class="math inline">\(k=10\)</span>, número de vecinos para el cual se alcanza el rendimiento óptimo del modelo (el mayor valor de la área bajo la curva ROC, cuyo acrónimo es AUC). Una vez determinado el número de vecinos óptimos, el modelo seleccionado utiliza todos los datos (en este caso <span class="math inline">\(550=500+50\)</span>) para clasificar una nueva observación.</p>
+<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">bestTune</span><span class="op">)</span>,col<span class="op">=</span><span class="st">"red"</span>,linetype<span class="op">=</span><span class="st">"dashed"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:006-002-102KNNKCHOOSING3"></span>
 <img src="img/knn-tune-k.png" alt="Número óptimo de vecinos (k)." width="60%"><p class="caption">
 Figura 26.2: Número óptimo de vecinos (k).
 </p>
 </div>
-<p>El boxplot de los resultados obtenidos durante el proceso de validación cruzada muestra que el AUC del modelo oscila entre un 60% y un 85% aproximadamente.</p>
-<div class="sourceCode" id="cb375"><pre class="downlit sourceCode r">
+<p>El boxplot de los resultados obtenidos durante el proceso de validación cruzada (Fig. <a href="cap-knn.html#fig:006-002-102KNNRESULTS3">26.3</a>) muestra que el AUC del modelo oscila entre un 60% y un 85% aproximadamente.</p>
+<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">resample</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>show.legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
@@ -320,27 +346,60 @@ Figura 26.2: Número óptimo de vecinos (k).
 Figura 26.3: Resultados obtenidos durante el proceso de validación cruzada.
 </p>
 </div>
-<p>El modelo se resiente en su rendimiento al tener dificultades en predecir correctamente la clase positiva, más concretamente se puede observar en la Fig. <a href="cap-knn.html#fig:006-002-102KNNRESULTS3">26.3</a> que la sensibilidad oscila entre el 40% y el 75%; resultados ligeramente peores que los que obtiene al predecir observaciones de la clase negativa, los cuales oscilan entre el 50% y el 85%.</p>
-<div id="resumen-23" class="section level3 unnumbered infobox_resume">
-<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-23"><i class="fas fa-link"></i></a>
+<p>El modelo se resiente en su rendimiento al tener dificultades en clasificar correctamente la clase positiva; más concretamente se puede observar en la Fig. <a href="cap-knn.html#fig:006-002-102KNNRESULTS3">26.3</a> que la sensibilidad oscila entre el 40% y el 75%, resultados ligeramente peores que los que obtienen al clasificar observaciones de la clase negativa, los cuales oscilan entre el 50% y el 85%.</p>
+<p>La matriz de confusión para <span class="math inline">\(k=10\)</span>, así como las medidas que se derivan de ella, se presentan en los siguientes resultados:</p>
+<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/caret/man/confusionMatrix.html">confusionMatrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>, <span class="va">dp_entr_NUM</span><span class="op">$</span><span class="va">CLS_PRO_pro13</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="cap-knn.html#cb385-1" tabindex="-1"></a>Confusion Matrix and Statistics</span>
+<span id="cb385-2"><a href="cap-knn.html#cb385-2" tabindex="-1"></a></span>
+<span id="cb385-3"><a href="cap-knn.html#cb385-3" tabindex="-1"></a>          Reference</span>
+<span id="cb385-4"><a href="cap-knn.html#cb385-4" tabindex="-1"></a>Prediction   S   N</span>
+<span id="cb385-5"><a href="cap-knn.html#cb385-5" tabindex="-1"></a>         S <span class="dv">186</span>  <span class="dv">65</span></span>
+<span id="cb385-6"><a href="cap-knn.html#cb385-6" tabindex="-1"></a>         N  <span class="dv">93</span> <span class="dv">214</span></span>
+<span id="cb385-7"><a href="cap-knn.html#cb385-7" tabindex="-1"></a>                                          </span>
+<span id="cb385-8"><a href="cap-knn.html#cb385-8" tabindex="-1"></a>               Accuracy <span class="sc">:</span> <span class="fl">0.7168</span>          </span>
+<span id="cb385-9"><a href="cap-knn.html#cb385-9" tabindex="-1"></a>                 <span class="dv">95</span>% CI <span class="sc">:</span> (<span class="fl">0.6775</span>, <span class="fl">0.7539</span>)</span>
+<span id="cb385-10"><a href="cap-knn.html#cb385-10" tabindex="-1"></a>    No Information Rate <span class="sc">:</span> <span class="fl">0.5</span>             </span>
+<span id="cb385-11"><a href="cap-knn.html#cb385-11" tabindex="-1"></a>    P<span class="sc">-</span>Value [Acc <span class="sc">&gt;</span> NIR] <span class="sc">:</span> <span class="er">&lt;</span> <span class="fl">2e-16</span>         </span>
+<span id="cb385-12"><a href="cap-knn.html#cb385-12" tabindex="-1"></a>                                          </span>
+<span id="cb385-13"><a href="cap-knn.html#cb385-13" tabindex="-1"></a>                  Kappa <span class="sc">:</span> <span class="fl">0.4337</span>          </span>
+<span id="cb385-14"><a href="cap-knn.html#cb385-14" tabindex="-1"></a>                                          </span>
+<span id="cb385-15"><a href="cap-knn.html#cb385-15" tabindex="-1"></a> Mcnemar<span class="st">'s Test P-Value : 0.03171         </span></span>
+<span id="cb385-16"><a href="cap-knn.html#cb385-16" tabindex="-1"></a><span class="st">                                          </span></span>
+<span id="cb385-17"><a href="cap-knn.html#cb385-17" tabindex="-1"></a><span class="st">            Sensitivity : 0.6667          </span></span>
+<span id="cb385-18"><a href="cap-knn.html#cb385-18" tabindex="-1"></a><span class="st">            Specificity : 0.7670          </span></span>
+<span id="cb385-19"><a href="cap-knn.html#cb385-19" tabindex="-1"></a><span class="st">         Pos Pred Value : 0.7410          </span></span>
+<span id="cb385-20"><a href="cap-knn.html#cb385-20" tabindex="-1"></a><span class="st">         Neg Pred Value : 0.6971          </span></span>
+<span id="cb385-21"><a href="cap-knn.html#cb385-21" tabindex="-1"></a><span class="st">             Prevalence : 0.5000          </span></span>
+<span id="cb385-22"><a href="cap-knn.html#cb385-22" tabindex="-1"></a><span class="st">         Detection Rate : 0.3333          </span></span>
+<span id="cb385-23"><a href="cap-knn.html#cb385-23" tabindex="-1"></a><span class="st">   Detection Prevalence : 0.4498          </span></span>
+<span id="cb385-24"><a href="cap-knn.html#cb385-24" tabindex="-1"></a><span class="st">      Balanced Accuracy : 0.7168          </span></span>
+<span id="cb385-25"><a href="cap-knn.html#cb385-25" tabindex="-1"></a><span class="st">                                          </span></span>
+<span id="cb385-26"><a href="cap-knn.html#cb385-26" tabindex="-1"></a><span class="st">       '</span>Positive<span class="st">' Class : S  </span></span></code></pre></div>
+<p>donde la clase positiva es la compra del tensiómetro digital y la negativa la no compra de dicho producto.</p>
+<p>El valor predictivo positivo muestra que el modelo clasifica a 251 clientes como compradores del tensiometro digital, si bien solo el 74,10% de estas clasificaciones son correctas. El valor predictivo negativo indica que de los 307 clientes que el modelo predijo como no compradores, tan solo el 69,71% realmente los son (214 de ellos). Calculando ahora los porcentajes por columnas, la sensibilidad indica que el modelo ha sido capaz de clasificar correctamente al 66.67% de los clientes compradores del tensiometro, esto es a 186 de los 279 que figuran como compradores en el conjunto de entrenamiento. Por otro lado, la especificidad indica que el 76,7% de los clientes que en el conjunto de entrenamiento pertenecían a la clase negativa (no compradora del tensiómetro) han sido clasificados correctamente (214 de 279).</p>
+<div id="resumen-24" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-24"><i class="fas fa-link"></i></a>
 </h3>
-<p>En este capítulo se introduce al lector en el algoritmo de aprendizaje supervisado conocido como k-vecinos más próximos, destacando:</p>
+<p>En este capítulo se introduce al lector en el algoritmo de aprendizaje supervisado conocido como <em>k</em>-vecinos más próximos, destacando:</p>
 <ul>
-<li>Las decisiones a tener en cuenta antes de entrenar el modelo de k-vecinos más próximos.</li>
-<li>Se exponen algunas de las distancias más utilizadas para el entrenamiento de este modelo.</li>
-<li>Se especifican las ventajas y desventajas del número de vecinos a tener en cuenta.</li>
+<li>las decisiones a tener en cuenta antes de entrenar el modelo,</li>
+<li>las distancias más utilizadas en el entrenamiento del modelo,</li>
+<li>las ventajas y desventajas del número de vecinos a tener en cuenta en labores de clasificación o prediccion.</li>
 </ul>
 </div>
 
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></div>
 <div class="next"><a href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#cap-knn"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="nav-link" href="#cap-knn"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="nav-link" href="#introducci%C3%B3n-12"><span class="header-section-number">26.1</span> Introducción</a></li>
 <li>
 <a class="nav-link" href="#decisiones-a-tener-en-cuenta"><span class="header-section-number">26.2</span> Decisiones a tener en cuenta</a><ul class="nav navbar-nav">
@@ -350,7 +409,7 @@ Figura 26.3: Resultados obtenidos durante el proceso de validación cruzada.
 </li>
 <li><a class="nav-link" href="#procedimiento-con-r-la-funci%C3%B3n-knn"><span class="header-section-number">26.3</span> Procedimiento con R: la función knn()</a></li>
 <li>
-<a class="nav-link" href="#aplicaci%C3%B3n-del-modelo-knn-en-r"><span class="header-section-number">26.4</span> Aplicación del modelo KNN en R</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#resumen-23">Resumen</a></li></ul>
+<a class="nav-link" href="#aplicaci%C3%B3n-del-modelo-knn-en-r"><span class="header-section-number">26.4</span> Aplicación del modelo KNN en R</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#resumen-24">Resumen</a></li></ul>
 </li>
 </ul>
 
@@ -368,7 +427,7 @@ Figura 26.3: Resultados obtenidos durante el proceso de validación cruzada.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

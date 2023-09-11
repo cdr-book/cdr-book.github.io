@@ -6,22 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 41 Geoestadística | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
-<meta name="description" content="Gema Fernández-Avilés\(^{a}\) y José-María Montero\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  41.1 Introducción El término “geoestadística” apareció por primera vez en Matheron (1962), y...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="description" content="Gema Fernández-Avilés\(^{a}\) y José-María Montero\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  41.1 Introducción El término geoestadística apareció por primera vez en Matheron (1962), y en...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 41 Geoestadística | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
-<meta property="og:description" content="Gema Fernández-Avilés\(^{a}\) y José-María Montero\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  41.1 Introducción El término “geoestadística” apareció por primera vez en Matheron (1962), y...">
+<meta property="og:description" content="Gema Fernández-Avilés\(^{a}\) y José-María Montero\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  41.1 Introducción El término geoestadística apareció por primera vez en Matheron (1962), y en...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 41 Geoestadística | Fundamentos de ciencia de datos con R">
-<meta name="twitter:description" content="Gema Fernández-Avilés\(^{a}\) y José-María Montero\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  41.1 Introducción El término “geoestadística” apareció por primera vez en Matheron (1962), y...">
+<meta name="twitter:description" content="Gema Fernández-Avilés\(^{a}\) y José-María Montero\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  41.1 Introducción El término geoestadística apareció por primera vez en Matheron (1962), y en...">
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
-<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -33,7 +34,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -76,13 +77,13 @@
 <li class="book-part">Machine learning supervisado</li>
 <li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
-<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
-<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
 <li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
 <li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
@@ -108,18 +109,15 @@
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
 <li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
-<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
-<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
-<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -133,23 +131,23 @@
 </h1>
 <p><em>Gema Fernández-Avilés<span class="math inline">\(^{a}\)</span> y José-María Montero</em><span class="math inline">\(^{a}\)</span></p>
 <p><span class="math inline">\(^{a}\)</span>Universidad de Castilla-La Mancha</p>
-<div id="introducción-20" class="section level2" number="41.1">
+<div id="introducción-21" class="section level2" number="41.1">
 <h2>
-<span class="header-section-number">41.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-20"><i class="fas fa-link"></i></a>
+<span class="header-section-number">41.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-21"><i class="fas fa-link"></i></a>
 </h2>
-<p>El término “geoestadística” apareció por primera vez en <span class="citation">Matheron (<a href="referncias.html#ref-Matheron1962" role="doc-biblioref">1962</a>)</span>, y en él “geo” enfatiza la referencia a las Ciencias de la Tierra,
-extendiendo el ámbito de la estadística tradicional, cuyo objetivo es el uso de métodos probabilísticos-inferenciales<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Véanse Caps. &lt;a href="Funda-probab.html#Funda-probab"&gt;12&lt;/a&gt; y &lt;a href="Funda-probab.html#Funda-probab"&gt;12&lt;/a&gt;.&lt;/p&gt;'><sup>220</sup></a>, con la incorporación del componente geográfico. </p>
+<p>El término <strong>geoestadística</strong> apareció por primera vez en <span class="citation">Matheron (<a href="cap-fraude.html#ref-Matheron1962">1962</a>)</span>, y en él “geo” enfatiza la referencia a las Ciencias de la Tierra,
+extendiendo el ámbito de la estadística tradicional, cuyo objetivo es el uso de métodos probabilísticos-inferenciales,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Véanse Caps. &lt;a href="Funda-probab.html#Funda-probab"&gt;12&lt;/a&gt; y &lt;a href="Funda-probab.html#Funda-probab"&gt;12&lt;/a&gt;.&lt;/p&gt;'><sup>258</sup></a> con la incorporación del componente geográfico. </p>
 <p>La geoestadística estudia los fenómenos regionalizados, que son aquellos que: </p>
 <ul>
-<li>Se extienden en el espacio, siendo el dominio espacial, <span class="math inline">\(D\)</span>, continuo (se puede observar en cualquiera de sus puntos) y fijo (las ubicaciones observadas no son estocásticas; se seleccionan, por el procedimiento que sea, a juicio del investigador)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Los datos geoestadísticos son tan solo una parte de los datos espaciales: otra parte de ellos, son los datos “laticce”, poligonales o regionales, donde &lt;span class="math inline"&gt;\(D\)&lt;/span&gt; es discreto (códigos postales, provincias, regiones, países…) y las ubicaciones observadas no son estocásticas. De su estudio se suele encargar la econometría espacial (véase Cap. &lt;a href="cap-econom-esp.html#cap-econom-esp"&gt;42&lt;/a&gt;). También hay otro tipo de datos espaciales que surgen en dominios que pueden ser continuos o discretos, pero donde la selección de las ubicaciones observadas no depende del investigador (en este sentido &lt;span class="math inline"&gt;\(D\)&lt;/span&gt; es aleatorio). Se trata de los denominados procesos de puntos (véase Cap.&lt;a href="cap-pp.html#cap-pp"&gt;43&lt;/a&gt;).&lt;/p&gt;'><sup>221</sup></a>.</li>
+<li>Se extienden en el espacio, siendo el dominio espacial, <span class="math inline">\(D\)</span>, continuo (se puede observar en cualquiera de sus puntos) y fijo (las ubicaciones observadas, <span class="math inline">\({\bf s}_i, \hspace{0,1cm} i=1,2,...n\)</span>, no son estocásticas; se seleccionan, por el procedimiento que sea, a juicio del investigador)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Los datos geoestadísticos son tan sólo una parte de los datos espaciales: otra parte de ellos, son los datos “laticce”, poligonales o regionales, donde &lt;span class="math inline"&gt;\(D\)&lt;/span&gt; es discreto (códigos postales, provincias, regiones, países…) y las ubicaciones observadas no son estocásticas. De su estudio se suele encargar la econometría espacial (véase Cap. &lt;a href="cap-econom-esp.html#cap-econom-esp"&gt;42&lt;/a&gt;). También hay otro tipo de datos espaciales que surgen en dominios que pueden ser continuos o discretos, pero donde la selección de las ubicaciones observadas no depende del investigador (en este sentido &lt;span class="math inline"&gt;\(D\)&lt;/span&gt; es aleatorio). Se trata de los denominados procesos de puntos (véase Cap.&lt;a href="cap-pp.html#cap-pp"&gt;43&lt;/a&gt;).&lt;/p&gt;'><sup>259</sup></a>.</li>
 </ul>
 <ul>
 <li>Presentan una organización o estructura debida a la dependencia espacial existente. </li>
 </ul>
-<p>El objetivo fundamental de la geoestadística es sacar provecho de la dependencia espacial existente para llevar a cabo predicciones (interpolaciones) óptimas en ubicaciones o áreas de interés (en este sentido se habla de predicciones puntuales o por bloques, respectivamente), o la realización de mappings sobre todo el dominio o parte de él. Al ser <span class="math inline">\(D\)</span> continuo, no se puede hacer una representación exhaustiva del fenómeno, pero sí se puede reconstruir a partir de las observaciones disponibles. </p>
-<p>Las consecuencias de utilizar la estadística clásica, que no considera la dependencia espacial, cuando la hay, son muy graves y pueden verse en <span class="citation">José-Marı́a Montero, Fernández-Avilés, and Mateu (<a href="referncias.html#ref-montero2015spatial" role="doc-biblioref">2015</a>)</span>.</p>
+<p>El objetivo fundamental de la geoestadística es sacar provecho de la <strong>dependencia espacial</strong> existente para llevar a cabo predicciones (interpolaciones) óptimas en ubicaciones o áreas de interés (en este sentido se habla de predicciones puntuales o por bloques, respectivamente), o la realización de mappings sobre todo el dominio o parte de él. Al ser <span class="math inline">\(D\)</span> continuo, no se puede hacer una representación exhaustiva del fenómeno, pero sí se puede reconstruir a partir de las observaciones disponibles. </p>
+<p>Las consecuencias de utilizar la estadística clásica, que no considera la dependencia espacial, cuando la hay, son muy graves y pueden verse en <span class="citation">(<a href="#ref-montero_et_al2015"><strong>montero_et_al2015?</strong></a>)</span>.</p>
 <p>El ámbito de aplicación de la geoestadística es enorme: minería, industria petrolífera, geología, meteorología, control de la calidad del aire, ecología, epidemiología, salud pública, criminología, economía, etc. Así, por ejemplo, en el ámbito del control de la calidad del aire en las grandes urbes, la concentración de ozono en aire se mide en una serie de estaciones de seguimiento, y a partir de dichas mediciones se reproduce el comportamiento del proceso sobre toda la urbe.</p>
-<p>En conclusión, las dos partes del análisis geoestadístico son: el análisis estructural de la dependencia espacial y la predicción (que se suele acompañar del calificativo “<em>krigeada</em>”). Pero antes de estudiarlas, detengámonos en algunos preliminares.</p>
+<p>En conclusión, las dos partes del análisis geoestadístico son: el <strong>análisis estructural de la dependencia espacial</strong> y la <strong>predicción</strong> (que se suele acompañar del calificativo “<strong>krigeada</strong>”). Pero antes de estudiarlas, detengámonos en algunos preliminares.</p>
 <p>
 </p>
 </div>
@@ -157,14 +155,14 @@ extendiendo el ámbito de la estadística tradicional, cuyo objetivo es el uso d
 <h2>
 <span class="header-section-number">41.2</span> Preliminares<a class="anchor" aria-label="anchor" href="#preliminares-geo"><i class="fas fa-link"></i></a>
 </h2>
-<p>Dado que los procedimientos geoestadísticos no pueden ser aplicados directamente sobre los fenómenos regionalizados como tales, porque son realidades físicas, se necesita una descripción matemática de los mismos a la que puedan ser aplicados: la <em>variable regionalizada</em> (<em>v.r.</em>) o <em>regionalización</em>, definida en un espacio geográfico, y que se supone que mide y representa correctamente dicho fenómeno.</p>
+<p>Dado que los procedimientos geoestadísticos no pueden ser aplicados directamente sobre los fenómenos regionalizados como tales, porque son realidades físicas, se necesita una descripción matemática de los mismos a la que puedan ser aplicados: la <strong>variable regionalizada</strong> (<em>v.r.</em>) o <strong>regionalización</strong>, definida en un espacio geográfico, y que se supone que mide y representa correctamente dicho fenómeno.</p>
 <p>
 </p>
 <p>Formalmente, cuando <span class="math inline">\(\mathbf{s}\)</span> recorre <span class="math inline">\(D\)</span>, el conjunto <span class="math inline">\(z(\mathbf{s}), \mathbf{s}\in D,\)</span> se denomina <em>v.r.</em>, siendo <span class="math inline">\(z(\mathbf{s_i}), i=1,2,3,...\)</span> una colección de valores regionalizados. </p>
-<p>Desde la perspectiva probabilística, cada uno de los valores que toma <em>v.r.</em> puede interpretarse como el resultado de un mecanismo aleatorio, la variable aleatoria, <em>v.a.</em> (). Si se tomasen valores regionalizados en todos los puntos del dominio, <span class="math inline">\(D\)</span>, es decir, si se considerase <em>v.r.</em>, ésta podría ser vista como un conjunto infinitamente grande de <em>v.a.</em>, una en cada punto de <span class="math inline">\(D\)</span>, que se conoce como <em>función aleatoria</em> (<em>f.a.</em>), <em>proceso estocástico</em> o <em>campo aleatorio</em> espacial, <span class="math inline">\(Z(\mathbf{s}), \mathbf{s}\in D\)</span>, donde <span class="math inline">\(Z\)</span> representa el fenómeno de interés. Pues bien, <em>v.r.</em> se interpreta como una realización de una <em>f.a.</em> espacial, y esta es una decisión metodológica clave en geoestadística.</p>
+<p>Desde la perspectiva probabilística, cada uno de los valores que toma <em>v.r.</em> puede interpretarse como el resultado de un mecanismo aleatorio, la variable aleatoria, <em>v.a.</em> (). Si se tomasen valores regionalizados en todos los puntos del dominio, <span class="math inline">\(D\)</span>, es decir, si se considerase <em>v.r.</em>, ésta podría ser vista como un conjunto infinitamente grande de <em>v.a.</em>, una en cada punto de <span class="math inline">\(D\)</span>, que se conoce como <strong>función aleatoria</strong> (<em>f.a.</em>), <strong>proceso estocástico</strong> o <strong>campo aleatorio</strong> espacial, <span class="math inline">\(Z(\mathbf{s}), \mathbf{s}\in D\)</span>, donde <span class="math inline">\(Z\)</span> representa el fenómeno de interés. Pues bien, <em>v.r.</em> se interpreta como una realización de una <em>f.a.</em> espacial, y esta es una decisión metodológica clave en geoestadística.</p>
 <p>
 </p>
-<p>Es importante tener en cuenta que, <span class="math inline">\((i)\)</span> frecuentemente, <em>v.r.</em> es muy irregular a escala local, lo que impide su representación mediante una función determinista; y <span class="math inline">\((ii)\)</span> muestra cierta organización o estructura espacial. La interpretación de <em>v.r.</em> como una realización de una <em>f.a.</em> espacial permite considerar estos dos aspectos:</p>
+<p>Es importante tener en cuenta que <em>v.r.</em> <span class="math inline">\((i)\)</span> es, a menudo, muy irregular a escala local, lo que impide su representación mediante una función determinista; y <span class="math inline">\((ii)\)</span> muestra cierta organización o estructura espacial. La interpretación de <em>v.r.</em> como una realización de una <em>f.a.</em> espacial permite considerar estos dos aspectos:</p>
 <ul>
 <li><p>En cada localización <span class="math inline">\(\mathbf{s}\)</span>, <span class="math inline">\(Z(\mathbf{s})\)</span> es una <em>v.a.</em> (de ahí el aspecto errático).</p></li>
 <li><p>Para un conjunto de puntos dado, <span class="math inline">\({\mathbf{s}_1},{\mathbf{s}_2}, ..., {\mathbf{s}_k}\)</span>, las <em>v.a.</em> <span class="math inline">\(Z({\mathbf{s}_1}), Z({\mathbf{s}_2}), ..., Z({\mathbf{s}_k})\)</span> están ligadas por una red de correlaciones espaciales que son las responsables de la similitud en los valores que toman (de ahí el aspecto estructurado).</p></li>
@@ -172,14 +170,14 @@ extendiendo el ámbito de la estadística tradicional, cuyo objetivo es el uso d
 <p>Las <em>f.a.</em> <span class="math inline">\(Z(\mathbf{s})\)</span> pueden ser estacionarias (en sentido estricto o de segundo orden), intrínsecamente estacionarias o no estacionarias, y el hecho de que tengan uno u otro tipo de estacionariedad determina el análisis geoestadístico.</p>
 <p>
 </p>
-<p>Una <em>f.a.</em> espacial es <em>estrictamente estacionaria</em> si las familias de <em>v.a.</em> <span class="math inline">\(Z(\mathbf{s}_1),Z(\mathbf{s}_2),...,Z(\mathbf{s}_k)\)</span>, tienen la misma distribución de probabilidad conjunta que <span class="math inline">\(Z(\mathbf{s}_1+\mathbf{h}),Z(\mathbf{s}_2+\mathbf{h}),...,Z(\mathbf{s}_k+\mathbf{h})\)</span>, <span class="math inline">\(\forall k\)</span>, <span class="math inline">\(\forall \mathbf{s}_1, \mathbf{s}_2,...,\mathbf{s}_k\)</span> y <span class="math inline">\(\forall \mathbf{h} \in \mathbb{R}^d\)</span> (donde <span class="math inline">\(\mathbf{h}\)</span> es un vector de traslación), siempre que <span class="math inline">\(\mathbf{s}_1+\mathbf{h}, \mathbf{s}_2+\mathbf{h},...,\mathbf{s}_k+\mathbf{h}\in D\)</span>.
+<p>Una <em>f.a.</em> espacial es <strong>estrictamente estacionaria</strong> si las familias de <em>v.a.</em> <span class="math inline">\(Z(\mathbf{s}_1),Z(\mathbf{s}_2),...,Z(\mathbf{s}_k)\)</span>, tienen la misma distribución de probabilidad conjunta que <span class="math inline">\(Z(\mathbf{s}_1+\mathbf{h}),Z(\mathbf{s}_2+\mathbf{h}),...,Z(\mathbf{s}_k+\mathbf{h})\)</span>, <span class="math inline">\(\forall k\)</span>, <span class="math inline">\(\forall \mathbf{s}_1, \mathbf{s}_2,...,\mathbf{s}_k\)</span> y <span class="math inline">\(\forall \mathbf{h} \in \mathbb{R}^d\)</span> (donde <span class="math inline">\(\mathbf{h}\)</span> es un vector de traslación), siempre que <span class="math inline">\(\mathbf{s}_1+\mathbf{h}, \mathbf{s}_2+\mathbf{h},...,\mathbf{s}_k+\mathbf{h}\in D\)</span>.
 Es decir, la distribución de probabilidad conjunta de <span class="math inline">\(Z(\mathbf{s}_1+\mathbf{h}),Z(\mathbf{s}_2+\mathbf{h}),...,Z(\mathbf{s}_k+\mathbf{h})\)</span> no se ve afectada por una traslación <span class="math inline">\(\mathbf{h}\)</span>, y por tanto, ni ella, ni las funciones de densidad de dimensión inferior a <span class="math inline">\(k\)</span>, dependen de las localizaciones consideradas.</p>
-<p>La estacionariedad estricta es una condición muy restrictiva. Por ello, en la practica lo que se suele asumir es la <em>estacionariedad de segundo orden</em>, que limita la estacionariedad a los dos primeros momentos de la <em>f.a.</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;En geoestadística lineal el interés se centra en los dos primeros momentos de la &lt;em&gt;f.a.&lt;/em&gt;, por cual tan sólo es necesaria la estacionariedad de segundo orden. Es decir, la esperanza y la varianza existen, son constantes y no dependen de la localización &lt;span class="math inline"&gt;\(\mathbf{s}\)&lt;/span&gt;. La covarianza existe para cada par de &lt;em&gt;v.a.&lt;/em&gt; &lt;span class="math inline"&gt;\(Z(\mathbf{s})\)&lt;/span&gt; y &lt;span class="math inline"&gt;\(Z(\mathbf{s}+\mathbf{h})\)&lt;/span&gt; y sólo depende de &lt;span class="math inline"&gt;\(\mathbf{h}\)&lt;/span&gt;.&lt;/p&gt;'><sup>222</sup></a></p>
+<p>La estacionariedad estricta es una condición muy restrictiva. Por ello, en la practica lo que se suele asumir es la <strong>estacionariedad de segundo orden</strong>, que limita la estacionariedad a los dos primeros momentos de la <em>f.a.</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;En &lt;strong&gt;geoestadística lineal&lt;/strong&gt; el interés se centra en los dos primeros momentos de la &lt;em&gt;f.a.&lt;/em&gt;, por cual tan sólo es necesaria la estacionariedad de segundo orden. Es decir, la esperanza y la varianza existen, son constantes y no dependen de la localización &lt;span class="math inline"&gt;\(\mathbf{s}\)&lt;/span&gt;. La covarianza existe para cada par de &lt;em&gt;v.a.&lt;/em&gt; &lt;span class="math inline"&gt;\(Z(\mathbf{s})\)&lt;/span&gt; y &lt;span class="math inline"&gt;\(Z(\mathbf{s}+\mathbf{h})\)&lt;/span&gt; y sólo depende de &lt;span class="math inline"&gt;\(\mathbf{h}\)&lt;/span&gt;.&lt;/p&gt;'><sup>260</sup></a></p>
 <p>Si una <em>f.a.</em> es estrictamente estacionaria, también es estacionaria de segundo orden. Sin embargo, la relación inversa no tiene por qué ser cierta.</p>
-<p>La estacionariedad de segundo orden implica la existencia de la varianza de la <em>f.a.</em>, y deja fuera los fenómenos con infinita capacidad de variación. En este caso, si las diferencias <span class="math inline">\(Z(\mathbf{s}+\mathbf{h})-Z(\mathbf{s})\)</span> son estacionarias de segundo orden, se dice que la <em>f.a.</em> es <em>intrínsecamente estacionaria</em>.</p>
-<p>Aquellas <em>f.a.</em> cuya esperanza y/o varianza dependan de la localización (no son invariantes a las traslaciones) se denominan <em>no estacionarias</em>.</p>
+<p>La estacionariedad de segundo orden implica la existencia de la varianza de la <em>f.a.</em> y, por tanto, deja fuera los fenómenos con infinita capacidad de variación. En este caso, si las diferencias <span class="math inline">\(Z(\mathbf{s}+\mathbf{h})-Z(\mathbf{s})\)</span> son estacionarias de segundo orden, se dice que la <em>f.a.</em> es <strong>intrínsecamente estacionaria</strong>.</p>
+<p>Aquellas <em>f.a.</em> cuya esperanza y/o varianza dependan de la localización (no son invariantes a las traslaciones) se denominan <strong>no estacionarias</strong>.</p>
 <p>Salvo indicación de lo contrario, se asumirá la estacionariedad de segundo orden.</p>
-<p>Finalmente, unos breves comentarios sobre la importancia de la estacionariedad. Es imposible inferir la ley de probabilidad que gobierna la <em>f.a.</em> espacial a partir de una sola realización de la misma (una sola regionalización), pues sería como tener una muestra de tamaño 1. Pero en la práctica ese será el caso. Bueno, ni siquiera eso. Solo se dispondrá de una parte de la regionalización: la correspondiente a las localizaciones observadas. La solución a tan importante limitación es adoptar la hipótesis de estacionariedad u homogeneidad espacial. Es decir, sustituir la repetición de realizaciones de la <em>f.a.</em> espacial por repeticiones en el espacio; dicho de otra forma, suponer que los valores observados en distintas localizaciones de <span class="math inline">\(D\)</span> tienen las mismas características estadísticas y pueden ser considerados, en términos estadísticos, como realizaciones de la misma <em>f.a.</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Estas realizaciones no son independientes, y se suele asumir también la hipótesis de ergodicidad (). &lt;/p&gt;"><sup>223</sup></a> Por tanto, la hipótesis de estacionariedad significa que la ley espacial que gobierna <em>f.a.</em>, o parte de ella, es invariante a traslaciones; no depende de las localizaciones específicas observadas sino solo de <span class="math inline">\(\mathbf{h}\)</span>.</p>
+<p>Finalmente, unos breves comentarios sobre la importancia de la estacionariedad. Es imposible inferir la ley de probabilidad que gobierna la <em>f.a.</em> espacial a partir de una sola realización de la misma (una sola regionalización), pues sería como tener una muestra de tamaño 1. Pero en la práctica ese será el caso. Bueno, ni siquiera eso. Solo se dispondrá de una parte de la regionalización: la correspondiente a las localizaciones observadas. La solución a tan importante limitación es adoptar la hipótesis de estacionariedad u homogeneidad espacial. Es decir, sustituir la repetición de realizaciones de la <em>f.a.</em> espacial por repeticiones en el espacio; dicho de otra forma, suponer que los valores observados en distintas localizaciones de <span class="math inline">\(D\)</span> tienen las mismas características estadísticas y pueden ser considerados, en términos estadísticos, como realizaciones de la misma <em>f.a.</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Estas realizaciones no son independientes, y se suele asumir también la hipótesis de &lt;strong&gt;ergodicidad&lt;/strong&gt; (). &lt;/p&gt;"><sup>261</sup></a> Por tanto, la hipótesis de estacionariedad significa que la ley espacial que gobierna <em>f.a.</em>, o parte de ella, es invariante a traslaciones; no depende de las localizaciones específicas observadas sino solo de <span class="math inline">\(\mathbf{h}\)</span>.</p>
 <p>La hipótesis de estacionariedad permitirá actuar como si todas las <em>v.a.</em> que conforman la <em>f.a.</em> tuviesen la misma distribución de probabilidad (o los mismos momentos), haciendo posible el proceso inferencial. Por eso se le da tanta importancia a que la <em>f.a.</em> sea estacionaria, del tipo que sea.</p>
 </div>
 <div id="ana-estructural" class="section level2" number="41.3">
@@ -191,45 +189,37 @@ Es decir, la distribución de probabilidad conjunta de <span class="math inline"
 <span class="header-section-number">41.3.1</span> Semivariograma<a class="anchor" aria-label="anchor" href="#semivariograma"><i class="fas fa-link"></i></a>
 </h3>
 <p></p>
-<p>La estadística espacial se basa en la suposición de que las unidades georeferenciadas cercanas están relacionadas (son dependientes) de alguna manera <span class="citation">(<a href="referncias.html#ref-getis1999" role="doc-biblioref">Getis 1999a</a>)</span>, y tanto más cuanto más cercanas estén <span class="citation">(<a href="referncias.html#ref-tobler1970" role="doc-biblioref">W. R. Tobler 1970</a>)</span>.</p>
+<p>La <strong>estadística espacial</strong> se basa en la suposición de que las unidades georeferenciadas cercanas están relacionadas (son dependientes) de alguna manera <span class="citation">(<a href="cap-fraude.html#ref-getis1999">Getis 1999a</a>)</span>, y tanto más cuanto más cercanas estén <span class="citation">(<a href="cap-fraude.html#ref-tobler1970">W. R. Tobler 1970</a>)</span>.</p>
 <p>Los procesos con dependencia espacial se reconocen, visualmente, porque muestran un patrón en el espacio; en los que no la tienen, el patrón es el de la aleatoriedad. La Fig. <a href="geo.html#fig:plot-dep-iid-ch41">41.1</a> muestra una simulación de una <em>f.a.</em> con dependencia espacial (panel izquierdo) frente a unos datos totalmente aleatorios (panel derecho).</p>
-<div class="sourceCode" id="cb612"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.leg.ufpr.br/geoR/">geoR</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dnychka/fieldsRPackage">fields</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb617"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.leg.ufpr.br/geoR/">"geoR"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/dnychka/fieldsRPackage">"fields"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">728</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">sim_dep</span> <span class="op">&lt;-</span> <span class="fu">grf</span><span class="op">(</span><span class="fl">401</span>, grid <span class="op">=</span> <span class="st">"reg"</span>, cov.pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.8</span><span class="op">)</span>, messages <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="fu">points.geodata</span><span class="op">(</span><span class="va">sim_dep</span>,</span>
+<span><span class="va">sim_dep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/geoR/man/grf.html">grf</a></span><span class="op">(</span><span class="fl">401</span>, grid <span class="op">=</span> <span class="st">"reg"</span>, cov.pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.8</span><span class="op">)</span>, messages <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/geoR/man/points.geodata.html">points.geodata</a></span><span class="op">(</span><span class="va">sim_dep</span>,</span>
 <span>  main <span class="op">=</span> <span class="st">"Dependencia espacial"</span>,</span>
-<span>  col <span class="op">=</span> <span class="fu">tim.colors</span><span class="op">(</span><span class="op">)</span>, cex.max <span class="op">=</span> <span class="fl">2</span></span>
+<span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/fields/man/tim.colors.html">tim.colors</a></span><span class="op">(</span><span class="op">)</span>, cex.max <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">sim_indep</span> <span class="op">&lt;-</span> <span class="fu">grf</span><span class="op">(</span><span class="fl">401</span>, grid <span class="op">=</span> <span class="st">"reg"</span>, cov.pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0</span><span class="op">)</span>, messages <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="fu">points.geodata</span><span class="op">(</span><span class="va">sim_indep</span>,</span>
+<span><span class="va">sim_indep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/geoR/man/grf.html">grf</a></span><span class="op">(</span><span class="fl">401</span>, grid <span class="op">=</span> <span class="st">"reg"</span>, cov.pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0</span><span class="op">)</span>, messages <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/geoR/man/points.geodata.html">points.geodata</a></span><span class="op">(</span><span class="va">sim_indep</span>,</span>
 <span>  main <span class="op">=</span> <span class="st">"Aleatoriedad"</span>,</span>
-<span>  col <span class="op">=</span> <span class="fu">tim.colors</span><span class="op">(</span><span class="op">)</span>, cex.max <span class="op">=</span> <span class="fl">2</span></span>
+<span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/fields/man/tim.colors.html">tim.colors</a></span><span class="op">(</span><span class="op">)</span>, cex.max <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-dep-iid-ch41"></span>
-<img src="img/dep-aleatoriedad.png" alt="Dependencia espacial frente a aleatoriedad" width="60%"><p class="caption">
-Figura 41.1: Dependencia espacial frente a aleatoriedad
+<img src="img/dep-aleatoriedad.png" alt="Dependencia espacial frente a aleatoriedad." width="60%"><p class="caption">
+Figura 41.1: Dependencia espacial frente a aleatoriedad.
 </p>
 </div>
-<p>Pasando del terreno de las simulaciones a la realidad, la Fig. <a href="geo.html#fig:plot-temp-max-ch41">41.2</a> muestra la temperatura máxima en España el 6 de agosto de 2022<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Los datos ya procesados para el análisis se encuentran en &lt;code&gt;CDR::tempmax_data&lt;/code&gt;. Una descripción puede verse con &lt;code&gt;summary(CDR::tempmax_data)&lt;/code&gt;. Estos datos han sido descargados con la librería &lt;code&gt;climaemet&lt;/code&gt; y &lt;code&gt;mapSpain&lt;/code&gt;. Un desarrollo completo de manipulación de datos espaciales puede verse en &lt;span class="citation"&gt;Pizarro, Hernangómez, and Fernández-Avilés (&lt;a href="referncias.html#ref-R-climaemet" role="doc-biblioref"&gt;2021&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>224</sup></a>, en plena ola de calor (este es el ejemplo real que se utilizará a lo largo del capítulo). En ella puede observarse claramente una estructura de dependencia espacial, con máximas cercanas a 40 grados en la meseta central y Extremadura, de 30 grados o menos en la cordillera cantábrica y las costas atlántica, cantábrica y andaluza, y entre 30 y 35 grados en el resto del país (básicamente Murcia, Comunidad Valenciana y Cataluña).</p>
-<div class="sourceCode" id="cb613"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">CDR</span><span class="op">)</span></span>
-<span><span class="co">#summary(CDR::tempmax_data)</span></span>
-<span></span>
-<span><span class="co"># renombra objetos por simplicidad en el análisis</span></span>
-<span><span class="va">ESP</span> <span class="op">&lt;-</span> <span class="va">tempmax_data</span><span class="op">$</span><span class="va">ESP</span></span>
-<span><span class="va">ESP_utm</span> <span class="op">&lt;-</span> <span class="va">tempmax_data</span><span class="op">$</span><span class="va">ESP_utm</span></span>
-<span><span class="va">grd_sf</span> <span class="op">&lt;-</span> <span class="va">tempmax_data</span><span class="op">$</span><span class="va">grd_sf</span></span>
-<span><span class="va">grd_sp</span> <span class="op">&lt;-</span> <span class="va">tempmax_data</span><span class="op">$</span><span class="va">grd_sp</span></span>
-<span><span class="va">temp_max_utm_sf</span> <span class="op">&lt;-</span> <span class="va">tempmax_data</span><span class="op">$</span><span class="va">temp_max_utm_sf</span></span>
-<span><span class="va">temp_max_utm_sp</span> <span class="op">&lt;-</span> <span class="va">tempmax_data</span><span class="op">$</span><span class="va">temp_max_utm_sp</span></span></code></pre></div>
-<div class="sourceCode" id="cb614"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<p>Pasando del terreno de las simulaciones a la realidad, la Fig. <a href="geo.html#fig:plot-temp-max-ch41">41.2</a> muestra la temperatura máxima en España el 6 de agosto de 2022,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Los datos ya procesados para el análisis se encuentran en &lt;code&gt;CDR::tempmax_data&lt;/code&gt;. Una descripción puede verse con &lt;code&gt;summary(CDR::tempmax_data)&lt;/code&gt;. Estos datos han sido descargados con la librería &lt;code&gt;climaemet&lt;/code&gt; y &lt;code&gt;mapSpain&lt;/code&gt;. Un desarrollo completo de manipulación de datos espaciales puede verse en &lt;span class="citation"&gt;Pizarro, Hernangómez, and Fernández-Avilés (&lt;a href="cap-fraude.html#ref-R-climaemet"&gt;2021&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>262</sup></a> en plena ola de calor (este es el ejemplo real que se utilizará a lo largo del capítulo). En ella puede observarse claramente una estructura de dependencia espacial, con máximas cercanas a 40 grados en la meseta central y Extremadura, de 30 grados o menos en la cordillera cantábrica y las costas atlántica, cantábrica y andaluza, y entre 30 y 35 grados en el resto del país (básicamente Murcia, Comunidad Valenciana y Cataluña).</p>
+<div class="sourceCode" id="cb618"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
+<span><span class="co">#summary(CDR::tempmax_data)</span></span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
 <span><span class="va">br_paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">17.5</span>, <span class="fl">45</span>, <span class="fl">2.5</span><span class="op">)</span>, <span class="cn">Inf</span><span class="op">)</span></span>
 <span><span class="va">pal_paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">hcl.colors</a></span><span class="op">(</span><span class="fl">15</span>, <span class="st">"YlOrRd"</span>, rev <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -240,62 +230,60 @@ Figura 41.1: Dependencia espacial frente a aleatoriedad
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_color_gradientn</a></span><span class="op">(</span>colours <span class="op">=</span> <span class="va">pal_paper</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-temp-max-ch41"></span>
-<img src="img/tem-max-spain.png" alt="Temperatura máxima en España peninsular, 6 de agosto de 2022" width="60%"><p class="caption">
-Figura 41.2: Temperatura máxima en España peninsular, 6 de agosto de 2022
+<img src="img/tem-max-spain.png" alt="Temperatura máxima en España peninsular, 6 de agosto de 2022." width="60%"><p class="caption">
+Figura 41.2: Temperatura máxima en España peninsular, 6 de agosto de 2022.
 </p>
 </div>
-<p>Ahora bien, para poder llevar a cabo predicciones geoestadísticas es necesario representar, previamente, los patrones de dependencia espacial observados mediante funciones que indiquen cuál es la estructura de dicha dependencia espacial. Dichas funciones son los semivariogramas. Dado que la identificación de la estructura de la dependencia espacial existente en el fenómeno de interés es la clave del éxito del proceso predictivo, al semivariograma se le considera la piedra angular de la predicción geoestadística <span class="citation">(<a href="referncias.html#ref-montero2015spatial" role="doc-biblioref">José-Marı́a Montero, Fernández-Avilés, and Mateu 2015</a>)</span>. </p>
+<p>Ahora bien, para poder llevar a cabo predicciones geoestadísticas es necesario representar previamente los patrones de dependencia espacial observados mediante funciones que indiquen cuál es la estructura de dicha dependencia espacial. Dichas funciones son los <strong>semivariogramas</strong>. Dado que la identificación de la estructura de la dependencia espacial existente en el fenómeno de interés es la clave del éxito del proceso predictivo, al semivariograma se le considera la piedra angular de la predicción geoestadística <span class="citation">(<a href="#ref-montero_et_al2015"><strong>montero_et_al2015?</strong></a>)</span>. </p>
 <p>Un semivariograma se define como la semivarianza de los incrementos de la <em>f.a.</em>: <span class="math display">\[\begin{equation} (\#eq:vario)
-\gamma(\mathbf{s}_i - \mathbf{s}_j) = \frac{1}{2} V[Z(\mathbf{s}_i)-Z(\mathbf{s}_j)] , \forall \mathbf{s}_i, \mathbf{s}_j\in D.
+\gamma(\mathbf{s}_i - \mathbf{s}_j) = \frac{1}{2} V[Z(\mathbf{s}_i)-Z(\mathbf{s}_j)] , \hspace{0,2cm} \forall \mathbf{s}_i, \mathbf{s}_j\in D.
 \end{equation}\]</span>
 que, en el caso habitual de <em>f.a.</em> estacionarias de segundo orden o intrínsecamente estacionarias (sin deriva), se transforma en:
 <span class="math display">\[\begin{equation}
-\gamma (\mathbf{h}) = \frac{1}{2} V \left( Z(\mathbf{s} + \mathbf{h}) - Z(\mathbf{s}) \right) =\frac{1}{2}E\left( {\left( {Z(\mathbf{s} + \mathbf{h}) - Z(\mathbf{s})} \right)^2} \right),
+\gamma (\mathbf{h}) = \frac{1}{2} V \left( Z(\mathbf{s} + \mathbf{h}) - Z(\mathbf{s}) \right) =\frac{1}{2}E\left( {\left( {Z(\mathbf{s} + \mathbf{h}) - Z(\mathbf{s})} \right)^2} \right).
 \end{equation}\]</span></p>
 <p>Nótese que:</p>
 <ul>
-<li>Si hay dependencia espacial (positiva<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Valores cercanos similares. Si es negativa, los valores vecinos son diferentes.&lt;/p&gt;"><sup>225</sup></a>, es lo normal), la diferencia entre los valores de la <em>f.a.</em> en los puntos separados por una pequeña distancia será poca y más o menos la misma, es decir, dichas diferencias serán poco variables, y el valor del semivariograma, a pequeñas distancias, será pequeño.</li>
+<li>Si hay dependencia espacial (positiva,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Valores cercanos similares. Si es negativa, los valores vecinos son diferentes.&lt;/p&gt;"><sup>263</sup></a> es lo normal), la diferencia entre los valores de la <em>f.a.</em> en los puntos separados por una pequeña distancia será poca y más o menos la misma. Es decir, dichas diferencias serán poco variables y el valor del semivariograma a pequeñas distancias será pequeño.</li>
 </ul>
 <ul>
 <li><p>Si aumenta la distancia, la dependencia espacial se reduce y la diferencia entre los valores de la <em>f.a</em> en los puntos separados por distancias intermedias y grandes no será tan parecida como en el caso anterior, sino mayor; y variará más: Es decir, el valor del semivariograma aumenta con la distancia.</p></li>
 <li><p>Si la distancia aumenta lo suficiente como para que ya no haya dependencia espacial, las diferencias entre los valores de la <em>f.a.</em> separados por tal distancia alcanzarán la variabilidad de la <em>f.a</em> en estudio, y si ésta es estacionaria de segundo orden, el semivariograma se estabilizará en torno a ella.</p></li>
 </ul>
-<p>En el caso estacionario, las funciones de covarianza, <span class="math inline">\(C(\bf h)\)</span>, también pueden ser utilizadas para representar la estructura de la dependencia espacial, si bien se prefiere el semivariograma porque no requiere el conocimiento de la media de la <em>f.a.</em> en estudio. Además, el semivariograma cubre un espectro más amplio de fenómenos regionalizados que la función de covarianza, ya que ésta no puede definirse en el caso de estacionariedad intrínseca. Los detalles pueden verse en <span class="citation">José-Marı́a Montero, Fernández-Avilés, and Mateu (<a href="referncias.html#ref-montero2015spatial" role="doc-biblioref">2015</a>)</span> y <span class="citation">J. M. Montero and Larraz (<a href="referncias.html#ref-montero_larraz2008" role="doc-biblioref">2008</a>)</span>.
+<p>En el caso estacionario, las <strong>funciones de covarianza</strong>, <span class="math inline">\(C(\bf h)\)</span>, también pueden ser utilizadas para representar la estructura de la dependencia espacial, si bien se prefiere el semivariograma porque no requiere el conocimiento de la media de la <em>f.a.</em> en estudio. Además, el semivariograma cubre un espectro más amplio de fenómenos regionalizados que la función de covarianza, ya que ésta no puede definirse en el caso de estacionariedad intrínseca. Los detalles pueden verse en <span class="citation">(<a href="#ref-montero_et_al2015"><strong>montero_et_al2015?</strong></a>)</span> y <span class="citation">J. M. Montero and Larraz (<a href="cap-fraude.html#ref-montero_larraz2008">2008</a>)</span>.
 </p>
-<p>Cuando el semivariograma depende tanto de la dirección como de la longitud del vector <span class="math inline">\(\mathbf{h}\)</span> que une las localizaciones <span class="math inline">\(\mathbf{s}\)</span> y <span class="math inline">\(\mathbf{s}+ \mathbf{h}\)</span>, se denomina <em>anisotrópico</em>. Cuando solo depende de la distancia (<span class="math inline">\(\lvert \mathbf{h} \rvert=|| \mathbf{h} ||\)</span>, porque en el espacio euclídeo el módulo y la norma coinciden) se denomina <em>isotrópico</em>.
+<p>Cuando el semivariograma depende tanto de la dirección como de la longitud del vector <span class="math inline">\(\mathbf{h}\)</span> que une las localizaciones <span class="math inline">\(\mathbf{s}\)</span> y <span class="math inline">\(\mathbf{s}+ \mathbf{h}\)</span>, se denomina <strong>anisotrópico</strong>. Cuando solo depende de la distancia (<span class="math inline">\(\lvert \mathbf{h} \rvert=|| \mathbf{h} ||\)</span>, porque en el espacio euclídeo el módulo y la norma coinciden) se denomina <strong>isotrópico</strong>.
 </p>
 <p>Un semivariograma no puede ser cualquier función. Tiene que ser nulo en el origen, no negativo, verificar que <span class="math inline">\(\gamma(\mathbf{h})=\gamma(-\mathbf{h})\)</span>, debe ser una función condicionalmente definida negativa y tener un ritmo de crecimiento inferior a <span class="math inline">\(|\mathbf h|^2\)</span>, es decir, <span class="math inline">\(lim_{|\mathbf h|\to\infty} \frac {\gamma(\mathbf{h})}{|\mathbf h|^2}=0\)</span> cuando el proceso es no estacionario (sin deriva), siendo finito en caso de procesos estacionarios de segundo orden.</p>
 <p>El análisis del comportamiento de un semivariograma a pequeñas, medias y grandes distancias es de sumo interés, como se verá a continuación.</p>
-<p>En general, a distancias medias y grandes, los semivariogramas asociados a <em>f.a.</em> estacionarias de segundo orden crecen, monótonamente, desde el origen con la distancia, hasta alcanzar un valor límite, la <em>varianza a priori</em> de la <em>f.a.</em> (o covarianza para <span class="math inline">\(\mathbf {h}=0\)</span>, <span class="math inline">\(C(\mathbf{0})\)</span>), bien de forma exacta o asintóticamente. Dicho valor límite se denomina <em>meseta</em>, <span class="math inline">\(m\)</span>, y la distancia a la cual se alcanza se conoce como <em>alcance</em> o <em>rango</em>, <span class="math inline">\(a\)</span>. Por tanto, el rango es la distancia a partir de la cual ya no hay dependencia espacial. Cuando <span class="math inline">\(m\)</span> se alcanza asintóticamente, el alcance no queda perfectamente definido y se toma como alcance, a efectos prácticos, <span class="math inline">\(a^\prime\)</span>, la distancia a la cual el semivariograma toma el valor <span class="math inline">\(0,95m\)</span>.</p>
+<p>En general, a distancias medias y grandes, los semivariogramas asociados a <em>f.a.</em> estacionarias de segundo orden crecen, monótonamente, desde el origen con la distancia, hasta alcanzar un valor límite, la <strong>varianza a priori</strong> de la <em>f.a.</em> (o covarianza para <span class="math inline">\(\mathbf {h}=0\)</span>, <span class="math inline">\(C(\mathbf{0})\)</span>), bien de forma exacta o asintóticamente. Dicho valor límite se denomina <strong>meseta</strong>, <span class="math inline">\(m\)</span>, y la distancia a la cual se alcanza se conoce como <strong>alcance</strong> o <strong>rango</strong>, <span class="math inline">\(a\)</span>. Por tanto, el rango es la distancia a partir de la cual ya no hay dependencia espacial. Cuando <span class="math inline">\(m\)</span> se alcanza asintóticamente, el alcance no queda perfectamente definido y se toma como alcance, a efectos prácticos, denominado <strong>alcance efectivo</strong>, <span class="math inline">\(a^\prime\)</span>, la distancia a la cual el semivariograma toma el valor <span class="math inline">\(0,95m\)</span>.</p>
 <p> </p>
 <p>En el caso no estacionario (por ejemplo, si hay deriva) o intrínsecamente estacionario el semivariograma no tiene meseta.</p>
 <p>El comportamiento a pequeñas distancias, sobre todo cerca del origen, que es donde más dependencia espacial hay, está muy relacionado con el grado de continuidad y regularidad de <em>f.a.</em> Cuanto más continua y regular sea, más suaves y estructuradas serán las realizaciones que produzca, y más regular será el comportamiento del semivariograma cerca del origen (Fig. <a href="geo.html#fig:gauss-sph-plot">41.3</a>, panel izquierdo; representación bidimensional).</p>
-<p>Los semivariogramas con un comportamiento lineal cerca del origen son típicos de <em>v.r.</em> continuas, al menos por partes, pero no diferenciables. Su representación gráfica tridemensional está llena de picos. La amplitud de las fluctuaciones aumenta con la distancia entre localizaciones y es proporcional a la pendiente de la tangente en el origen (Fig. <a href="geo.html#fig:gauss-sph-plot">41.3</a>, panel derecho; representación bidimensional).</p>
-<div class="sourceCode" id="cb615"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dnychka/fieldsRPackage">fields</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.leg.ufpr.br/geoR/">geoR</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<p>Los semivariogramas con un <strong>comportamiento lineal cerca del origen</strong> son típicos de <em>v.r.</em> continuas, al menos por partes, pero no diferenciables. Su representación gráfica tridemensional está llena de picos. La amplitud de las fluctuaciones aumenta con la distancia entre localizaciones y es proporcional a la pendiente de la tangente en el origen (Fig. <a href="geo.html#fig:gauss-sph-plot">41.3</a>, panel derecho; representación bidimensional).</p>
+<div class="sourceCode" id="cb620"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">fa_gauss</span> <span class="op">&lt;-</span> <span class="fu">grf</span><span class="op">(</span><span class="fl">1225</span>, grid <span class="op">=</span> <span class="st">"reg"</span>, cov.pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.25</span><span class="op">)</span>, cov.model <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/image.html">image</a></span><span class="op">(</span><span class="va">fa_gauss</span>, col <span class="op">=</span> <span class="fu">tim.colors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">fa_gauss</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/geoR/man/grf.html">grf</a></span><span class="op">(</span><span class="fl">1225</span>, grid <span class="op">=</span> <span class="st">"reg"</span>, cov.pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.25</span><span class="op">)</span>, cov.model <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/image.html">image</a></span><span class="op">(</span><span class="va">fa_gauss</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/fields/man/tim.colors.html">tim.colors</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">fa_sph</span> <span class="op">&lt;-</span> <span class="fu">grf</span><span class="op">(</span><span class="fl">1225</span>, grid <span class="op">=</span> <span class="st">"reg"</span>, cov.pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.25</span><span class="op">)</span>, cov.model <span class="op">=</span> <span class="st">"spherical"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/image.html">image</a></span><span class="op">(</span><span class="va">fa_sph</span>, col <span class="op">=</span> <span class="fu">tim.colors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">fa_sph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/geoR/man/grf.html">grf</a></span><span class="op">(</span><span class="fl">1225</span>, grid <span class="op">=</span> <span class="st">"reg"</span>, cov.pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.25</span><span class="op">)</span>, cov.model <span class="op">=</span> <span class="st">"spherical"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/image.html">image</a></span><span class="op">(</span><span class="va">fa_sph</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/fields/man/tim.colors.html">tim.colors</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:gauss-sph-plot"></span>
-<img src="img/gauss-sph.png" alt="Representacion bidimensional de dos $f.a.$: con semivariograma parabólico en el origen (izquierda); con semivariograma lineal en el origen (derecha)" width="60%"><p class="caption">
-Figura 41.3: Representacion bidimensional de dos <span class="math inline">\(f.a.\)</span>: con semivariograma parabólico en el origen (izquierda); con semivariograma lineal en el origen (derecha)
+<img src="img/gauss-sph.png" alt="Representacion bidimensional de dos $f.a.$: con semivariograma parabólico en el origen (izquierda); con semivariograma lineal en el origen (derecha)." width="60%"><p class="caption">
+Figura 41.3: Representacion bidimensional de dos <span class="math inline">\(f.a.\)</span>: con semivariograma parabólico en el origen (izquierda); con semivariograma lineal en el origen (derecha).
 </p>
 </div>
-<p>Las <em>v.r.</em> regulares (aquellas cuya gráfica tridimensional no tiene picos) se identifican con un comportamiento semivariográfico parabólico en el origen. Si dicho comportamiento persiste a largas distancias, puede que exista una fuerte deriva.</p>
-<p>Las discontinuidades en el origen (que teóricamente no pueden darse) son frecuentes en la práctica. Su amplitud se denomina “efecto pepita” (nugget effect) y son típicas de variables regionalizadas muy irregulares y, quizás, discontinuas. Las causas más frecuentes del “efecto pepita” son la existencia de una estructura con alcance inferior a la distancia más corta entre localizaciones y los errores de posicionamiento o de medida (véase <span class="citation">Chilès and Delfiner (<a href="referncias.html#ref-chiles1999" role="doc-biblioref">1999</a>)</span> para más detalle). </p>
-<p>El caso límite del efecto pepita es el “efecto pepita puro”. En ese caso, el semivariograma es constante cualquiera que sea la distancia, indicando ausencia de dependencia espacial.</p>
+<p>Las <em>v.r.</em> regulares (aquellas cuya gráfica tridimensional no tiene picos) se identifican con un <strong>comportamiento semivariográfico parabólico en el origen</strong>. Si dicho comportamiento persiste a largas distancias, puede que exista una fuerte deriva.</p>
+<p>Las discontinuidades en el origen (que teóricamente no pueden darse) son frecuentes en la práctica. Su amplitud se denomina <strong>efecto pepita</strong>
+(<em>nugget effect</em>) y son típicas de variables regionalizadas muy irregulares y, quizás, discontinuas. Las causas más frecuentes del efecto pepita son la existencia de una estructura con alcance inferior a la distancia más corta entre localizaciones y los errores de posicionamiento o de medida (véase <span class="citation">Chilès and Delfiner (<a href="cap-fraude.html#ref-chiles1999">1999</a>)</span> para más detalle). </p>
+<p>El caso límite del efecto pepita es el <strong>efecto pepita puro</strong>. En ese caso, el semivariograma es constante cualquiera que sea la distancia, indicando ausencia de dependencia espacial.</p>
 <p>La Fig. <a href="geo.html#fig:plot-partes-sem">41.4</a> muestra gráficamente los principales elementos de un semivariograma.</p>
-<div class="sourceCode" id="cb616"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.leg.ufpr.br/geoR/">geoR</a></span><span class="op">)</span></span>
-<span><span class="va">semivar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fl">1</span> <span class="op">-</span> <span class="fu">cov.spatial</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb621"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">semivar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/pkg/geoR/man/cov.spatial.html">cov.spatial</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="fu">semivar</span><span class="op">(</span><span class="va">x</span>, cov.pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.4</span><span class="op">)</span>, cov.model <span class="op">=</span> <span class="st">"sph"</span><span class="op">)</span>, <span class="fl">0.0</span>, <span class="fl">1</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"Distancia"</span>,</span>
@@ -307,12 +295,12 @@ Figura 41.3: Representacion bidimensional de dos <span class="math inline">\(f.a
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.95</span>, <span class="st">"Meseta"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="st">"Alcance"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="st">"Ausencia de dependencia"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb617"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb622"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"img/semivar-parts.png"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-partes-sem"></span>
-<img src="img/semivar-parts.png" alt="Elementos del semivariograma (meseta unitaria)" width="60%"><p class="caption">
-Figura 41.4: Elementos del semivariograma (meseta unitaria)
+<img src="img/semivar-parts.png" alt="Elementos del semivariograma (meseta unitaria)." width="60%"><p class="caption">
+Figura 41.4: Elementos del semivariograma (meseta unitaria).
 </p>
 </div>
 <p> </p>
@@ -321,7 +309,8 @@ Figura 41.4: Elementos del semivariograma (meseta unitaria)
 <h3>
 <span class="header-section-number">41.3.2</span> Modelos de semivariogramas válidos <a class="anchor" aria-label="anchor" href="#modelos-de-semivariogramas-v%C3%A1lidos"><i class="fas fa-link"></i></a>
 </h3>
-<p>Las funciones que verifican las condiciones que debe cumplir un semivariograma (véase <a href="geo.html#semivariograma">41.3.1</a>) se conocen como semivariogramas válidos. El incumplimiento de alguna de ellas tiene perversas consecuencias en el proceso predictivo (por ejemplo, varianzas de los errores de predicción negativas). Su tipología, siguiendo el enfoque sugerido en <span class="citation">Journel and Huijbregts (<a href="referncias.html#ref-journel1978" role="doc-biblioref">1978</a>)</span> y <span class="citation">José-Marı́a Montero, Fernández-Avilés, and Mateu (<a href="referncias.html#ref-montero2015spatial" role="doc-biblioref">2015</a>)</span>, es la siguiente:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Aquí se presentan los semivariogramas isotrópicos más utilizados en la práctica. Nos centramos en ellos porque los semivariogramas anisotrópicos pueden ser representados por semivariogramas isotrópicos sin más que llevar a cabo una transformación lineal de las coordenadas, y porque las anisotropías (anisotropías) pueden representarse separadamente mediante semivariogramas isotrópicos. Para un análisis detallado, consúltese, por ejemplo, &lt;span class="citation"&gt;José-Marı́a Montero, Fernández-Avilés, and Mateu (&lt;a href="referncias.html#ref-montero2015spatial" role="doc-biblioref"&gt;2015&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>226</sup></a></p>
+<p>Las funciones que verifican las condiciones que debe cumplir un semivariograma (véase <a href="geo.html#semivariograma">41.3.1</a>) se conocen como <strong>semivariogramas válidos</strong>. El incumplimiento de alguna de ellas tiene perversas consecuencias en el proceso predictivo (por ejemplo, varianzas de los errores de predicción negativas). Su tipología, siguiendo el enfoque sugerido en <span class="citation">Journel and Huijbregts (<a href="cap-fraude.html#ref-journel1978">1978</a>)</span> y <span class="citation">(<a href="#ref-montero_et_al2015"><strong>montero_et_al2015?</strong></a>)</span>, es la siguiente:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Aquí se presentan los semivariogramas isotrópicos más utilizados en la práctica. Nos centramos en ellos porque las anisotropías (y por tanto los semivariogramas anisotrópicos) pueden ser representadas reduciéndolas la caso isotrópico sin más que llevar a cabo una transformación lineal de las coordenadas, o representando separadamente cada variabilidad direccional, dependiendo del tipo de anisotropía (geométrica o zonal). Para un análisis detallado, consúltese, por ejemplo, &lt;span class="citation"&gt;(&lt;a href="#ref-montero_et_al2015"&gt;&lt;strong&gt;montero_et_al2015?&lt;/strong&gt;&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>264</sup></a></p>
+<p></p>
 <div id="semivariogramas-con-meseta" class="section level4" number="41.3.2.1">
 <h4>
 <span class="header-section-number">41.3.2.1</span> Semivariogramas con meseta <a class="anchor" aria-label="anchor" href="#semivariogramas-con-meseta"><i class="fas fa-link"></i></a>
@@ -344,14 +333,14 @@ m &amp; \mbox{si $|\mathbf{h}| &gt; a.$}
 <p>Tiene un comportamiento lineal cerca del origen, indicando continuidad y cierto grado de irregularidad en la <em>f.a.</em> A grandes distancias alcanza la meseta cuando <span class="math inline">\(|\mathbf{h}|=a\)</span>. Estas dos características son propias de muchas regionalizaciones observadas en la realidad; de ahí su popularidad.</p>
 <ul>
 <li>
-<strong>Exponencial. </strong> Válido en <span class="math inline">\(\mathbb{R}^d, d\geq1\)</span> y viene dado por:
+<strong>Exponencial. </strong> Válido en <span class="math inline">\(\mathbb{R}^d, d\geq1\)</span>, y viene dado por:
 <span class="math display">\[\begin{equation}
 \gamma (|\mathbf{h}|)= m \left( 1-\exp \left( -\frac{|\mathbf{h}|}{a}
 \right) \right).
 \end{equation}\]</span>
 </li>
 </ul>
-<p>Igual que el esférico, cerca del origen exhibe un comportamiento lineal, siendo menor la pendiente. A diferencia de él, solo alcanza la meseta asintóticamente. A efectos prácticos, se toma como alcance la distancia para la cual el semivariograma alcanza el valor del 95% de la meseta, <span class="math inline">\(a^\prime \approx 3a\)</span>.</p>
+<p>Igual que el esférico, cerca del origen exhibe un comportamiento lineal, siendo menor la pendiente. A diferencia de él, sólo alcanza la meseta asintóticamente. A efectos prácticos, se toma como alcance la distancia para la cual el semivariograma alcanza el valor del 95% de la meseta, <span class="math inline">\(a^\prime \approx 3a\)</span>.</p>
 <ul>
 <li>
 <strong>Gausiano.</strong> Válido en <span class="math inline">\(\mathbb{R}^d, d \geq1\)</span>. Está definido por:
@@ -388,7 +377,7 @@ m\;\;\mbox{si}\;|\mathbf{h}| = 0 \\
 </h4>
 <ul>
 <li>
-<strong>J-Bessel</strong>. </li>
+<strong>J-Bessel</strong>: </li>
 </ul>
 <p>Un semivariograma no tiene por qué ser necesariamente una función monótona no decreciente, sino que puede tener “ondas” (efecto hoyo). Tal es el caso del modelo J-Bessel, que puede ser utilizado en presencia de dependencia espacial negativa o, específicamente, en caso de alternancia entre dependencia positiva y negativa. Válido en <span class="math inline">\(\mathbb{R}^d\)</span>, <span class="math inline">\(d\leq 2(\alpha +1)\)</span>, su expresión viene dada por:
 <span class="math display">\[\begin{equation}
@@ -400,13 +389,13 @@ J_\alpha \left(\frac{|\mathbf{h}|}{a} \right) \right),
 <!-- model for $\alpha =1/2$ and is one of the few hole-effect models valid -->
 <!-- \index{Valid semivariogram} on $\mathbb{R}^3$ -->
 <p>La Fig. <a href="geo.html#fig:semivar-teo-sill-ch41">41.5</a> muestra una representación gráfica de los anteriores semivariogramas.</p>
-<div class="sourceCode" id="cb618"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/gstat/">gstat</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb623"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/r-spatial/gstat/">"gstat"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/gstat/man/show.vgms.html">show.vgms</a></span><span class="op">(</span>models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sph"</span>, <span class="st">"Exp"</span>, <span class="st">"Gau"</span>, <span class="st">"Nug"</span>, <span class="st">"Bes"</span>, <span class="st">"Wav"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:semivar-teo-sill-ch41"></span>
-<img src="190041_geoestadistica_files/figure-html/semivar-teo-sill-ch41-1.png" alt="Representación de semivariogramas con meseta válidos  (meseta y alcance efectivo unitarios; a excepción del efecto pepita puro)" width="60%"><p class="caption">
-Figura 41.5: Representación de semivariogramas con meseta válidos (meseta y alcance efectivo unitarios; a excepción del efecto pepita puro)
+<img src="190041_geoestadistica_files/figure-html/semivar-teo-sill-ch41-1.png" alt="Representación de semivariogramas con meseta válidos  (meseta y alcance efectivo unitarios; a excepción del efecto pepita puro)." width="60%"><p class="caption">
+Figura 41.5: Representación de semivariogramas con meseta válidos (meseta y alcance efectivo unitarios; a excepción del efecto pepita puro).
 </p>
 </div>
 </div>
@@ -416,26 +405,25 @@ Figura 41.5: Representación de semivariogramas con meseta válidos (meseta y al
 </h4>
 <p>Estos modelos van más allá de la hipótesis estacionaria de segundo
 orden y corresponden a <em>f.a.</em> con una
-capacidad ilimitada de dispersión espacial, es decir, a <em>f.a.</em> intrínsecamente estacionarias, pero no estacionarias de segundo orden.</p>
+capacidad ilimitada de dispersión espacial, es decir, a <em>f.a.</em> intrínsecamente estacionarias, pero no estacionarias de segundo orden. Los más populares son:</p>
 <ul>
-<li><p><strong>Potencial</strong>. Válido en <span class="math inline">\(\mathbb{R}^d, d\geq1\)</span> y definido por:
+<li><p><strong>Potencial</strong>. Válido en <span class="math inline">\(\mathbb{R}^d, d\geq1\)</span>, y definido por:
 <span class="math display">\[\begin{equation}
-\gamma (|\mathbf{h}|)=  (|\mathbf{h}|)^{\alpha }, \quad \mbox  {con } 0&lt;\alpha &lt;2,
+\gamma (|\mathbf{h}|)=  (|\mathbf{h}|)^{\alpha }, \quad \mbox  {con } 0&lt;\alpha &lt;2.
 \end{equation}\]</span></p></li>
-<li><p><strong>Logarítmico</strong>. Válido en <span class="math inline">\(\mathbb{R}^d, d\geq1\)</span> y con expresión:
+<li><p><strong>Logarítmico</strong>. Válido en <span class="math inline">\(\mathbb{R}^d, d\geq1\)</span>, y con expresión:
 <span class="math display">\[\begin{equation}
 \gamma (|\mathbf{h}|) = b\log |\mathbf{h}|\; \;\mbox{si}\ |\mathbf{h}| \ge 0,
 \end{equation}\]</span></p></li>
 </ul>
 <p>donde <span class="math inline">\(b\)</span> es una constante.</p>
 <p>Una representación gráfica de ambos semivariogramas puede verse en la Fig. <a href="geo.html#fig:semivar-teo-no-sill-ch41">41.6</a>.</p>
-<div class="sourceCode" id="cb619"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/gstat/">gstat</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/gstat/man/show.vgms.html">show.vgms</a></span><span class="op">(</span>models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pow"</span>, <span class="st">"Log"</span><span class="op">)</span>, sill <span class="op">=</span> <span class="fl">1</span>, range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, nugget <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/gstat/man/show.vgms.html">show.vgms</a></span><span class="op">(</span>models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pow"</span>, <span class="st">"Log"</span><span class="op">)</span>, sill <span class="op">=</span> <span class="fl">1</span>, range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, nugget <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:semivar-teo-no-sill-ch41"></span>
-<img src="190041_geoestadistica_files/figure-html/semivar-teo-no-sill-ch41-1.png" alt="Representación de semivariogramas sin meseta válidos" width="60%"><p class="caption">
-Figura 41.6: Representación de semivariogramas sin meseta válidos
+<img src="190041_geoestadistica_files/figure-html/semivar-teo-no-sill-ch41-1.png" alt="Representación de semivariogramas sin meseta válidos." width="60%"><p class="caption">
+Figura 41.6: Representación de semivariogramas sin meseta válidos.
 </p>
 </div>
 </div>
@@ -445,37 +433,37 @@ Figura 41.6: Representación de semivariogramas sin meseta válidos
 <span class="header-section-number">41.3.3</span> Semivariograma empírico<a class="anchor" aria-label="anchor" href="#semivariograma-emp%C3%ADrico"><i class="fas fa-link"></i></a>
 </h3>
 <p>Dado que la única información de la que se dispone es una realización observada de la <em>f.a</em> objeto de estudio, en la práctica la estructura de la dependencia espacial se estima mediante el semivariograma empírico. </p>
-<p>En el marco de la estacionariedad intrínseca (que incluye la estacionariedead estricta y de segundo orden), y en <span class="math inline">\(\mathbb{R}^d, d\geq1\)</span>, se estiman (insesgadamente) los valores semivariográficos para un número determinado de distancias, por el método de los momentos:
+<p>En el marco de la estacionariedad intrínseca (que incluye la estacionariedead estricta y de segundo orden) y en <span class="math inline">\(\mathbb{R}^d, d\geq1\)</span>, se estiman (insesgadamente) los valores semivariográficos para un número determinado de distancias, por el método de los momentos:
 <span class="math display">\[\begin{equation}
 \hat{\gamma} (\mathbf{h}) = \frac{1}{2\#N(\mathbf{h})}\sum\limits_{N(\mathbf{h})} {\left( {Z(\mathbf{s}_i + \mathbf{h}) - Z({\mathbf{s}}_i )} \right)^2},
 \end{equation}\]</span>
 donde <span class="math inline">\(\#N(\mathbf{h})\)</span> es el número de parejas de localizaciones separadas por el vector <span class="math inline">\(\mathbf{h}\)</span>.</p>
-<p>La función que mejor ajusta las estimaciones de los valores semivariograficos anteriormente referidos se denomina <em>semivariograma empírico</em>, y también se suele denotar por <span class="math inline">\(\hat{\gamma} (\mathbf{h})\)</span>.</p>
-<p>Los valores semivariográficos se suelen computar para distancias inferiores a la mitad del diametro de <em>D</em>, porque, para distancias superiores, el número de parejas de localizaciones suele ser pequeño para proporcionar estimaciones fiables. En la práctica, como en muchas de las direcciones no hay un numero de parejas suficiente para calcular el semivariograma con cierta fiabilidad, lo habitual es construir un <em>semivariograma empírico omnidireccional</em>, es decir, que depende solo de la distancia (longitud del vector <strong>h</strong>) y no de la dirección. Para ello se crean regiones de tolerancia, que no se solapen, basadas en intervalos de distancia (normalmente de la misma longitud) y un angulo de tolerancia. En concreto, la tolerancia se especifica en el módulo de <span class="math inline">\(\mathbf h\)</span> (<span class="math inline">\(\pm\Delta |\mathbf h|\)</span>) y su dirección (<span class="math inline">\(\pm\Delta\theta\)</span>). Para más detalles y ejemplos, véase <span class="citation">José-Marı́a Montero, Fernández-Avilés, and Mateu (<a href="referncias.html#ref-montero2015spatial" role="doc-biblioref">2015</a>)</span>. </p>
+<p>La función que mejor ajusta las estimaciones de los valores semivariograficos anteriormente referidos se denomina <strong>semivariograma empírico</strong> y se suele denotar por <span class="math inline">\(\hat{\gamma} (\mathbf{h})\)</span>.</p>
+<p>Los valores semivariográficos se suelen computar para distancias inferiores a la mitad del diametro de <em>D</em>, porque para distancias superiores el número de parejas de localizaciones suele ser pequeño para proporcionar estimaciones fiables. En la práctica, como en muchas de las direcciones no hay un número de parejas suficiente para calcular el semivariograma con cierta fiabilidad, lo habitual es construir un <strong>semivariograma empírico omnidireccional</strong>, es decir, que depende solo de la distancia (longitud del vector <strong>h</strong>) y no de la dirección. Para ello se crean <strong>regiones de tolerancia</strong>, que no se solapen, basadas en intervalos de distancia (normalmente de la misma longitud) y un <strong>ángulo de tolerancia</strong>. En concreto, la tolerancia se especifica en el módulo de <span class="math inline">\(\mathbf h\)</span> (<span class="math inline">\(\pm\Delta |\mathbf h|\)</span>) y en su dirección (<span class="math inline">\(\pm\Delta\theta\)</span>). Para más detalles y ejemplos, véase <span class="citation">(<a href="#ref-montero_et_al2015"><strong>montero_et_al2015?</strong></a>)</span>. </p>
 <p>La Fig. <a href="geo.html#fig:plot-semivar-emp">41.7</a> muestra la ubicación de los puntos semivariográficos, indicando el número de parejas a cada distancia, en el caso de las temperaturas máximas en España (06/08/2022).</p>
-<div class="sourceCode" id="cb620"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb625"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vgm_tmax</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/variogram.html">variogram</a></span><span class="op">(</span><span class="va">tmax</span> <span class="op">~</span> <span class="fl">1</span>, <span class="va">temp_max_utm_sf</span>,</span>
 <span>  cutoff <span class="op">=</span> <span class="fl">250000</span> <span class="co"># 250 km</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html">plot</a></span><span class="op">(</span><span class="va">vgm_tmax</span>, plot.numbers <span class="op">=</span> <span class="cn">TRUE</span>, pch <span class="op">=</span> <span class="st">"+"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, cex <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-semivar-emp"></span>
-<img src="img/emp-semivar.png" alt="Valores semivariográficos. Temperaturas máximas (06/08/2022)" width="60%"><p class="caption">
-Figura 41.7: Valores semivariográficos. Temperaturas máximas (06/08/2022)
+<img src="img/emp-semivar.png" alt="Valores semivariográficos. Temperaturas máximas (06/08/2022)." width="60%"><p class="caption">
+Figura 41.7: Valores semivariográficos. Temperaturas máximas (06/08/2022).
 </p>
 </div>
-<p>En el ejemplo ilustrado, las distancia mínima entre dos estaciones meteorológicas es 1.125m y la máxima 1.027.597m. Sin embargo, dada la geometría del mapa de España (aunque de Huelva a Gerona hay 987 km en linea recta, más de dos terceras partes de las ciudades españolas no están separadas más de 500 km.), se consideró 250.000m (1/4 de la distancia máxima) como distancia máxima a la hora de calcular los valores semivariográficos, ya que a partir de dicha distancia el número de parejas no es lo suficientemente grande como para obtener resultados fiables. Por convenio, <code>gstat</code> divide la distancia en 15 intervalos (<code>geoR</code> se divide en 13 porque los autores lo hicieron un viernes 13). </p>
+<p>En el ejemplo ilustrado, la distancia mínima entre dos estaciones meteorológicas es 1.125m y la máxima 1.027.597m. Sin embargo, dada la geometría del mapa de España (aunque de Huelva a Gerona hay 987 km. en linea recta, más de dos terceras partes de las ciudades españolas no están separadas más de 500 km.), se consideró 250.000 m. (1/4 de la distancia máxima) como distancia máxima a la hora de calcular los valores semivariográficos, ya que a partir de dicha distancia el número de parejas no es lo suficientemente grande como para obtener resultados fiables. Por convenio, <code>gstat</code> divide la distancia en 15 intervalos (<code>geoR</code> la divide en 13 porque los autores lo hicieron un viernes 13). </p>
 </div>
 <div id="ajuste-semivariográfico" class="section level3" number="41.3.4">
 <h3>
 <span class="header-section-number">41.3.4</span> Ajuste semivariográfico <a class="anchor" aria-label="anchor" href="#ajuste-semivariogr%C3%A1fico"><i class="fas fa-link"></i></a>
 </h3>
 <p>Cualquier función que dependa de una distancia y una dirección no es necesariamente un semivariograma, pues para ello tienen que cumplir los requisitos especificados en <a href="geo.html#semivariograma">41.3.1</a>. Esta es la razón por la que el semivariograma empírico no puede utilizarse directamente para realizar predicciones geoestadísticas. Por ello, a los valores semivariográficos estimados se les ajusta una función que represente un semivariograma válido. Sin embargo, esta tarea, clave para el éxito del posterior proceso predictivo, no es sencilla ni existe consenso en torno a ella.
-El ajuste puede ser <em>manual</em>, utilizando métodos visuales y gráficos, o <em>automático</em>, que usa procedimientos estadísticos. Una combinación de ambos es muy recomendable.</p>
+El ajuste puede ser <strong>manual</strong>, utilizando métodos visuales y gráficos, o <strong>automático</strong>, que usa procedimientos estadísticos. Una combinación de ambos es muy recomendable.</p>
 <p>El ajuste manual pudiera parecer “no muy científico” pero, dado que lo más importante a la hora del ajuste no es tanto la bondad del ajuste para todos los puntos semivariográficos sino lo bien que un semivariograma válido representa las principales características del fenómeno, especialmente el tipo de estacionariedad (comportamiento a largas distancias) y, sobre todo, el tipo de continuidad (comportamiento cerca del origen), resulta ser un procedimiento muy práctico si se guía por las anteriores consideraciones. En este sentido, cualquier conocimiento sobre el fenómeno en estudio es bienvenido.</p>
-<p>El ajuste automatizado mediante procedimientos estadísticos incluye los <em>métodos de mínimos cuadrados</em> (tanto ordinarios como generalizados y ponderados ), que son los más populares en la práctica, y los <em>métodos basados en máxima verosimilitud</em>, que incluyen, entre otros, el tradicional método máximo verosímil, la máxima verosimilitud restringida y el método de la verosimilitud compuesta. </p>
+<p>El ajuste automatizado mediante procedimientos estadísticos incluye los <strong>métodos de mínimos cuadrados</strong> (tanto ordinarios como generalizados y ponderados ), que son los más populares en la práctica, y los <strong>métodos basados en máxima verosimilitud</strong>, que incluyen, entre otros, el tradicional método máximo verosímil, la máxima verosimilitud restringida y el método de la verosimilitud compuesta. </p>
 <p>La Fig. <a href="geo.html#fig:plot-fit-semivar">41.8</a> muestra el semivariograma empírico correspondiente a los puntos semivariográficos de la Fig. <a href="geo.html#fig:plot-semivar-emp">41.7</a>. De todos los modelos con meseta, el semivariograma ajustado ha sido un exponencial con alcance 76.404,64 metros y meseta 13,74.</p>
-<div class="sourceCode" id="cb621"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb626"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_vgm_tmax</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/fit.variogram.html">fit.variogram</a></span><span class="op">(</span><span class="va">vgm_tmax</span>,</span>
 <span>                              model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/vgm.html">vgm</a></span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sph"</span>, <span class="st">"Exp"</span>, <span class="st">"Gau"</span>, <span class="st">"Nug"</span>, <span class="st">"Bes"</span>, <span class="st">"Wav"</span><span class="op">)</span><span class="op">)</span>, fit.sills <span class="op">=</span> <span class="cn">TRUE</span>, fit.ranges <span class="op">=</span> <span class="cn">TRUE</span>, fit.kappa <span class="op">=</span> <span class="cn">TRUE</span>, fit.method <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span>
 <span><span class="va">fit_vgm_tmax</span></span>
@@ -486,11 +474,11 @@ El ajuste puede ser <em>manual</em>, utilizando métodos visuales y gráficos, o
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html">plot</a></span><span class="op">(</span><span class="va">vgm_tmax</span>, <span class="va">fit_vgm_tmax</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"2"</span>, pch <span class="op">=</span> <span class="st">"*"</span>, cex <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-fit-semivar"></span>
-<img src="img/emp-teo-semivar.png" alt="Semivariograma empírico. Temperaturas máximas (06/08/2022)" width="60%"><p class="caption">
-Figura 41.8: Semivariograma empírico. Temperaturas máximas (06/08/2022)
+<img src="img/emp-teo-semivar.png" alt="Semivariograma empírico. Temperaturas máximas (06/08/2022)." width="60%"><p class="caption">
+Figura 41.8: Semivariograma empírico. Temperaturas máximas (06/08/2022).
 </p>
 </div>
-<p>El método de ajuste ha sido el que figura por defecto en la función <code>vgm</code> : mínimos cuadrados ponderados con ponderaciones <span class="math inline">\(\frac {N_{\bf |h|}} {|\bf h|^2}\)</span>, que funciona bien en la práctica y selecciona el semivariograma que mejor ajuste cuando el número de parejas es elevado y la distancia pequeña, que es la parte del semivariograma que hay que ajustar bien porque a pequeñas distancias es cuando más dependencia espacial hay. Respecto a los parámetros iniciales, aunque el investigador puede especificar los que considere convenientes, se recomienda utilizar los que tiene la función por defecto: <span class="math inline">\((i)\)</span> alcance igual a 1/3 de la distancia máxima en la muestra; <span class="math inline">\((ii)\)</span> como efecto pepita se toma la media de los tres primeros valores semivariográficos; y <span class="math inline">\((iii)\)</span> como meseta parcial (meseta menos efecto pepita), la media de los cinco últimos valores semivariográficos.</p>
+<p>El método de ajuste ha sido el que figura por defecto en la función <code>vgm</code>: mínimos cuadrados ponderados con ponderaciones <span class="math inline">\(\frac {N_{\bf |h|}} {|\bf h|^2}\)</span>, que funciona bien en la práctica y selecciona el semivariograma que mejor ajusta cuando el número de parejas es elevado y la distancia pequeña, que es la parte del semivariograma que hay que ajustar bien porque a pequeñas distancias es cuando más dependencia espacial hay. Respecto a los parámetros iniciales, aunque el investigador puede especificar los que considere convenientes, se recomienda utilizar los que tiene la función por defecto: <span class="math inline">\((i)\)</span> alcance igual a 1/3 de la distancia máxima en la muestra; <span class="math inline">\((ii)\)</span> como efecto pepita se toma la media de los tres primeros valores semivariográficos; y <span class="math inline">\((iii)\)</span> como meseta parcial (meseta menos efecto pepita), la media de los cinco últimos valores semivariográficos.</p>
 <p> </p>
 </div>
 </div>
@@ -498,14 +486,14 @@ Figura 41.8: Semivariograma empírico. Temperaturas máximas (06/08/2022)
 <h2>
 <span class="header-section-number">41.4</span> Kriging<a class="anchor" aria-label="anchor" href="#kriging"><i class="fas fa-link"></i></a>
 </h2>
-<p>Seleccionado el semivariograma válido que mejor se ajusta a los puntos semivariográficos, se aborda el proceso predictivo. El método predictivo que usa la geoestadística es conocido como <em>kriging</em> en honor al ingeniero de minas D.G. Krige. </p>
-<p>El kriging tiene como objetivo predecir el valor de una <em>f.a.</em>, <span class="math inline">\(Z(\mathbf{s})\)</span>, en uno o más puntos (o bloques) no observados, a partir de la regionalización observada (pueden ser puntos o bloques) en un
+<p>Seleccionado el semivariograma válido que mejor se ajusta a los puntos semivariográficos, se aborda el proceso predictivo. El método predictivo que usa la geoestadística es conocido como <strong><em>kriging</em></strong> en honor al ingeniero de minas D.G. Krige. </p>
+<p>El <em>kriging</em> tiene como objetivo predecir el valor de una <em>f.a.</em>, <span class="math inline">\(Z(\mathbf{s})\)</span>, en uno o más puntos (o bloques) no observados, a partir de la regionalización observada (pueden ser puntos o bloques) en un
 dominio , y proporciona el mejor predictor lineal insesgado
-de la <em>v.r.</em> de interés en tales puntos o bloques no observados<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;En lo que sigue, la exposición se centrará en la predicción puntual a partir de datos puntuales (es decir, en el soporte puntual). La generalización a bloques puede verse en &lt;span class="citation"&gt;José-Marı́a Montero, Fernández-Avilés, and Mateu (&lt;a href="referncias.html#ref-montero2015spatial" role="doc-biblioref"&gt;2015&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>227</sup></a>. La limitación a la clase de predictores lineales
+de la <em>v.r.</em> de interés en tales puntos o bloques no observados.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;En lo que sigue, la exposición se centrará en la predicción puntual a partir de datos puntuales (es decir, en el soporte puntual). La generalización a bloques puede verse en &lt;span class="citation"&gt;(&lt;a href="#ref-montero_et_al2015"&gt;&lt;strong&gt;montero_et_al2015?&lt;/strong&gt;&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>265</sup></a> La limitación a la clase de predictores lineales
 obedece a que, bajo estacionariedad de segundo orden, solo se requiere el conocimiento de los momentos de segundo orden de la <em>f.a.</em> Con más información estructural, pueden definirse predictores no lineales.</p>
-<p>Las principales ventajas del kriging sobre los métodos de interpolación espacial deterministas (método de la distancia inversa, splines, regresión polinomial, etc.), es que (<span class="math inline">\(i\)</span>) considera la estructura de la dependencia espacial (dando lugar a mejores predicciones), (<span class="math inline">\(ii\)</span>) proporciona, junto con la predicción, la varianza del error de predicción y (<span class="math inline">\(iii\)</span>) es un interpolador exacto.</p>
-<p>Dependiendo del tipo de estacionariedad que se considere en la <em>f.a.</em> el kriging puede ser: universal (no estacionariedad en media) u ordinario (estacionariedad de segundo orden o intrínseca). Nos centraremos en el kriging ordinario (<em>KO</em>). La generalización al caso universal (hay deriva: la media depende de las localizaciones en vez de ser constante) puede verse en <span class="citation">José-Marı́a Montero, Fernández-Avilés, and Mateu (<a href="referncias.html#ref-montero2015spatial" role="doc-biblioref">2015</a>)</span>.</p>
-<p>En términos formales, <em>KO</em> se plantea como sigue: Sea <span class="math inline">\(Z =\left\{ Z(\mathbf{s}),\,\, \mathbf{s} \in D\right\}\)</span> una <em>f.a.</em> con estacionariedad de segundo orden o intrínseca y con media desconocida (cuando se conoce, <em>KO</em> se denomina kriging simple). Sea el predictor lineal krigeado <span class="math inline">\(Z^{\ast} (\mathbf{s}_0 ) = \sum\limits_{i = 1}^n {\lambda _i } Z(\mathbf{s}_i )\)</span>, donde las ponderaciones <span class="math inline">\(\lambda _i, i=1,2,...,n\)</span>, se obtienen imponiendo al error de predicción las condiciones de esperanza nula y mínima varianza.<br>
+<p>Las principales ventajas del <em>kriging</em> sobre los métodos de interpolación espacial deterministas (método de la distancia inversa, <em>splines</em>, regresión polinomial, etc.), es que (<span class="math inline">\(i\)</span>) considera la estructura de la dependencia espacial (dando lugar a mejores predicciones), (<span class="math inline">\(ii\)</span>) proporciona, junto con la predicción, la varianza del error de predicción y (<span class="math inline">\(iii\)</span>) es un interpolador exacto.</p>
+<p>Dependiendo del tipo de estacionariedad que se considere en la <em>f.a.</em> el <em>kriging</em> puede ser: universal (no estacionariedad en media) u ordinario (estacionariedad de segundo orden o intrínseca). Nos centraremos en el <strong><em>kriging</em> ordinario</strong> (<em>KO</em>). La generalización al caso universal (hay deriva: la media depende de las localizaciones en vez de ser constante) puede verse en <span class="citation">(<a href="#ref-montero_et_al2015"><strong>montero_et_al2015?</strong></a>)</span>.</p>
+<p>En términos formales, <em>KO</em> se plantea como sigue: Sea <span class="math inline">\(Z =\left\{ Z(\mathbf{s}),\,\, \mathbf{s} \in D\right\}\)</span> una <em>f.a.</em> con estacionariedad de segundo orden o intrínseca y con media desconocida (cuando se conoce, <em>KO</em> se denomina <strong><em>kriging</em> simple</strong>). Sea el <strong>predictor lineal krigeado</strong> <span class="math inline">\(Z^{\ast} (\mathbf{s}_0 ) = \sum\limits_{i = 1}^n {\lambda _i } Z(\mathbf{s}_i )\)</span>, donde las ponderaciones <span class="math inline">\(\lambda _i, i=1,2,...,n\)</span>, se obtienen imponiendo al error de predicción las condiciones de esperanza nula y mínima varianza.<br>
 El sistema de ecuaciones que proporciona dichas ponderaciones óptimas es:
 <span class="math display">\[\begin{equation}  
 \left\{ {\begin{array}{l}
@@ -514,17 +502,17 @@ El sistema de ecuaciones que proporciona dichas ponderaciones óptimas es:
 \sum\limits_{i = 1}^n {\lambda _i = 1}, \; \\
 \end{array}} \right.
 \end{equation}\]</span>
-siendo la varianza del error de predicción:
+siendo la <strong>varianza del error de predicción</strong>:
 <span class="math inline">\(\sigma_{OK}^2 (\mathbf{s}_0) = \sum\limits_{i = 1}^n {\lambda _i \gamma (\mathbf{s}_i - \mathbf{s}_0 ) + \alpha }\)</span>, donde <span class="math inline">\(\alpha\)</span> es el multiplicador de Lagrange involucrado en el proceso de optimización.</p>
 <p>Retomando el ejemplo de las temperaturas máximas en la España peninsular el 6 de agosto de 2022, a continuación se muestra el código necesario para la creación de un <em>mapping</em> de predicción de dichas temperaturas.</p>
-<div class="sourceCode" id="cb622"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb627"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">kriged_tmax</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/krige.html">krige</a></span><span class="op">(</span><span class="va">tmax</span> <span class="op">~</span> <span class="fl">1</span>,</span>
 <span>  <span class="va">temp_max_utm_sp</span>,</span>
 <span>  <span class="va">grd_sp</span>,</span>
 <span>  model <span class="op">=</span> <span class="va">fit_vgm_tmax</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; [using ordinary kriging]</span></span></code></pre></div>
-<div class="sourceCode" id="cb623"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb628"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">kriged_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">kriged_tmax</span>, xy <span class="op">=</span> <span class="cn">T</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -551,7 +539,7 @@ Figura 41.9: <span class="math inline">\(Mapping\)</span> de temperaturas máxim
 </p>
 </div>
 <p>El <em>mapping</em> de la Fig. <a href="geo.html#fig:plot-kriging-pred">41.9</a> tiene poco valor si no se acompaña de otro que muestre la desviación típica de los errores de predicción. </p>
-<div class="sourceCode" id="cb624"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb629"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">kriged_df</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_contour.html">geom_contour_filled</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">coords.x1</span>, <span class="va">coords.x2</span>, z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">var1.var</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">2.5</span>, <span class="fl">3</span>, <span class="fl">3.5</span>, <span class="fl">4</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">kriged_df</span><span class="op">$</span><span class="va">var1.var</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -569,14 +557,22 @@ Figura 41.9: <span class="math inline">\(Mapping\)</span> de temperaturas máxim
 <span>  <span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-sd-error"></span>
-<img src="img/tmax-sd-error.png" alt="Desviaciones típicas del error de predicción" width="60%"><p class="caption">
-Figura 41.10: Desviaciones típicas del error de predicción
+<img src="img/tmax-sd-error.png" alt="Desviaciones típicas del error de predicción." width="60%"><p class="caption">
+Figura 41.10: Desviaciones típicas del error de predicción.
 </p>
 </div>
 <p>Como se aprecia en la Fig. <a href="geo.html#fig:plot-sd-error">41.10</a>, cuanto mayor es el número de localizaciones observadas alrededor del punto de predicción, menor es la desviación típica del error de predicción.
 </p>
-<div class="infobox_resume">
-<p><strong>RESUMEN</strong>. La geoestadística estudia de fenómenos regionalizados, que son aquellos que se extienden en el espacio y presentan una organización o estructura debida a la dependencia espacial existente. Su objetivo es sacar provecho de dicha dependencia espacial para llevar a cabo predicciones (interpolaciones) óptimas en ubicaciones o áreas de interés, o la realización de <em>mappings</em> sobre todo el dominio o parte de él. Las dos partes del análisis geoestadístico son: <span class="math inline">\((i)\)</span> el análisis estructural de la dependencia espacial y <span class="math inline">\((ii)\)</span> la predicción “krigeada”. La estructura de dependencia espacial se representa mediante un semivariograma. La elección del semivariograma entre el elenco de funciones semivariográficas válidas es la clave del éxito de la predicción geoestadística, y por ello al semivariograma se le considera la piedra angular de la geoestadística. La técnica que utiliza la geoestadística para predecir se denomina <em>kriging</em>, y presenta un buen número de ventajas sobre los tradicionales métodos de interpolación espacial deterministas al considerar la estructura espacial de las observaciones.</p>
+<div id="resumen-37" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-37"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>La geoestadística estudia los fenómenos regionalizados, que son aquellos que se extienden en el espacio y presentan una organización o estructura debida a la dependencia espacial existente.</p></li>
+<li><p>Su objetivo es sacar provecho de dicha dependencia espacial para llevar a cabo predicciones (interpolaciones) óptimas en ubicaciones o áreas de interés, o la realización de <em>mappings</em> sobre todo el dominio o parte de él.</p></li>
+<li><p>Las dos partes del análisis geoestadístico son: <span class="math inline">\((i)\)</span> el análisis estructural de la dependencia espacial y <span class="math inline">\((ii)\)</span> la predicción “krigeada”.</p></li>
+<li><p>La estructura de dependencia espacial se representa mediante un semivariograma. La elección del semivariograma entre el elenco de funciones semivariográficas válidas es la clave del éxito de la predicción geoestadística, y por ello al semivariograma se le considera la piedra angular de la geoestadística.</p></li>
+<li><p>La técnica que utiliza la geoestadística para predecir se denomina <em>kriging</em> y presenta un buen número de ventajas sobre los tradicionales métodos de interpolación espacial deterministas al considerar la estructura espacial de las observaciones.</p></li>
+</ul>
 </div>
 
 </div>
@@ -586,10 +582,10 @@ Figura 41.10: Desviaciones típicas del error de predicción
 <div class="prev"><a href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></div>
 <div class="next"><a href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#geo"><span class="header-section-number">41</span> Geoestadística</a></li>
-<li><a class="nav-link" href="#introducci%C3%B3n-20"><span class="header-section-number">41.1</span> Introducción</a></li>
+<li><a class="nav-link" href="#introducci%C3%B3n-21"><span class="header-section-number">41.1</span> Introducción</a></li>
 <li><a class="nav-link" href="#preliminares-geo"><span class="header-section-number">41.2</span> Preliminares</a></li>
 <li>
 <a class="nav-link" href="#ana-estructural"><span class="header-section-number">41.3</span> Análisis estructural de la dependencia espacial</a><ul class="nav navbar-nav">
@@ -599,7 +595,9 @@ Figura 41.10: Desviaciones típicas del error de predicción
 <li><a class="nav-link" href="#ajuste-semivariogr%C3%A1fico"><span class="header-section-number">41.3.4</span> Ajuste semivariográfico </a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#kriging"><span class="header-section-number">41.4</span> Kriging</a></li>
+<li>
+<a class="nav-link" href="#kriging"><span class="header-section-number">41.4</span> Kriging</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#resumen-37">Resumen</a></li></ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -616,7 +614,7 @@ Figura 41.10: Desviaciones típicas del error de predicción
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

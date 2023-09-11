@@ -7,7 +7,7 @@ EL PAÍS
 
 ## Motivación
 
-El uso de estadísticas avanzadas en los deportes, especialmente en el fútbol, ha despegado en los últimos años. Una buena señal de su irrupción es la apuesta de algunos medios deportivos —como FiveThirtyEight o The Athletic— por contenidos basados en el análisis y la visualización de estas estadísticas para explicar las fortalezas y debilidades de jugadores y equipos. Además, la generación de estadísticas avanzadas, como los goles esperados, la amenaza o el valor con balón están comenzando a sustituir a las métricas tradicionales en la narración y las crónicas de los encuentros. 
+El uso de estadísticas avanzadas en los deportes, especialmente en el fútbol, ha despegado en los últimos años. Una buena señal de su irrupción es la apuesta de algunos medios deportivos —como *FiveThirtyEight* o *The Athletic*— por contenidos basados en el análisis y la visualización de estas estadísticas para explicar las fortalezas y debilidades de jugadores y equipos. Además, la generación de estadísticas avanzadas, como los goles esperados, la amenaza o el valor con balón están comenzando a sustituir a las métricas tradicionales en la narración y las crónicas de los encuentros. 
 
 \index{fútbol}
 \index{Ronaldo}
@@ -15,22 +15,26 @@ El uso de estadísticas avanzadas en los deportes, especialmente en el fútbol, 
 
 ## Las estadísticas y el fútbol
 
-En el presente capítulo se usarán estadísticas de la web especializada Fbref.com para visualizar el dominio de Cristiano Ronaldo y Lionel Messi durante más de 15 años. Para usar estos datos podríamos usar técnicas de *web scraping*\index{web scraping}  esta página web o usar la librería `worldfootballR`, desarrollada por Jason Zivkovic. La librería permite obtener datos de diferentes plataformas. 
+En el este capítulo se usan estadísticas de la web especializada [Fbref.com]() para visualizar el dominio de Cristiano Ronaldo y Lionel Messi durante más de 15 años. Para utilizar estas estadísticas existen dos alternativas: (i) recurrir a técnicas de *web scraping*\index{web scraping} y (ii) la librería `worldfootballR` [@worldfootballR], desarrollada por Jason Zivkovic, que permite obtener datos de diferentes plataformas. 
 
-La publicación y explotación de estadísticas avanzadas es reciente, de las últimas seis temporadas, con lo que para analizar las carreras completas de estos dos jugadores tendremos que conformarnos, de momento, con métricas tradicionales.
+La publicación y explotación de estadísticas avanzadas es reciente, de las últimas seis temporadas, con lo que para analizar las carreras completas de estos dos jugadores sólo se dispone, de momento, de métricas tradicionales.
 
-En la Fig. \@ref(fig:pplot-goals1) se ve la evolución de las principales cifras que definen a un atacante: los goles y las asistencias. Esta estandarización nos permite poder comparar ambos jugadores independientemente del número de minutos, aunque se ha añadido un filtro de al menos 1.000 minutos jugados en la temporada para evitar ruido. 
+La Fig. \@ref(fig:pplot-goals1) muestra la evolución de las principales cifras que definen a un atacante: los goles y las asistencias. Esta estandarización permite comparar ambos jugadores independientemente del número de minutos, aunque se ha añadido un filtro de "al menos 1.000 minutos jugados en la temporada" para evitar ruido. 
 \index{goles}
 \index{asistencias}
 
-Para realizar el gráfico, se toman los datos originales y se filtran para que solo aparezcan los jugadores seleccionados, en las temporadas con muestra suficiente. A continuación, se seleccionan las columnas que se usarán en el *plot* y se giran las dos métricas para poder añadirlas en un único `geom_line()`. 
+Para crear el gráfico, se toman los datos originales y se filtran para que sólo aparezcan los jugadores seleccionados en las temporadas con muestra suficiente. A continuación, se seleccionan las columnas que se usan en el gráfico y se giran las dos métricas para poderlas añadir en un único `geom_line()`. 
+
+\textcolor{red}{¿Qué es girar las métricas?}
 
 
 ```r
 pacman::p_load(CDR, tidyverse, janitor, ggbeeswarm, here, 
                patchwork, ggtext, ggrepel)
+```
 
 
+```r
 datos_players |>
   filter(player %in% c("Cristiano Ronaldo", "Lionel Messi"),
          min_playing > 1000) |>
@@ -54,14 +58,14 @@ datos_players |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/plot-goals-assists-1.png" alt="Evolución de goles y asistencias por 90 minutos de Cristiano y Messi desde 2005" width="100%" />
-<p class="caption">(\#fig:pplot-goals1)Evolución de goles y asistencias por 90 minutos de Cristiano y Messi desde 2005</p>
+<img src="img/plot-goals-assists-1.png" alt="Evolución de goles y asistencias por 90 minutos de Cristiano y Messi desde 2005." width="80%" />
+<p class="caption">(\#fig:pplot-goals1)Evolución de goles y asistencias por 90 minutos de Cristiano y Messi desde 2005.</p>
 </div>
 
 
-La Fig. \@ref(fig:pplot-goals1) arroja un dato increíble, durante 10 años, tener a Messi o Cristiano en el campo significaba contar en ese partido con un gol y casi media asistencia. 
+La Fig. \@ref(fig:pplot-goals1) arroja un dato increíble: durante 10 años, tener a Messi o Cristiano en el campo significaba contar en ese partido con un gol y casi media asistencia. 
 
-Pero la visualización solo nos habla de estos dos futbolistas. Para compararlos con otros jugadores se puede calcular el percentil de goles y asistencias por 90 minutos, temporada a temporada, de los jugadores que hayan jugado más de 1.000 minutos (véase Fig. \@ref(fig:pplot-goals2)). El resultado de nuevo es impactante: durante 13 temporadas Messi y Cristiano han estado entre el 1% de jugadores con más goles. Además, el argentino ha terminado la temporada entre el 1% con más asistencias en 9 ocasiones.
+Pero la visualización sólo nos habla de estos dos futbolistas. Para compararlos con otros jugadores se puede calcular el percentil de goles y asistencias por 90 minutos, temporada a temporada, de los jugadores que hayan jugado más de 1.000 minutos (véase Fig. \@ref(fig:pplot-goals2)). El resultado de nuevo es impactante: durante 13 temporadas Messi y Cristiano han estado entre el 1% de jugadores con más goles. Además, el argentino ha terminado la temporada entre el 1% con más asistencias en 9 ocasiones.
 
 
 ```r
@@ -102,11 +106,11 @@ percentiles_to_plot |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/plot-goals-assists-2.png" alt="Percentil de goles y asistencias por 90 minutos cada temporada desde 2005" width="100%" />
-<p class="caption">(\#fig:pplot-goals2)Percentil de goles y asistencias por 90 minutos cada temporada desde 2005</p>
+<img src="img/plot-goals-assists-2.png" alt="Percentil de goles y asistencias por 90 minutos cada temporada desde 2005." width="100%" />
+<p class="caption">(\#fig:pplot-goals2)Percentil de goles y asistencias por 90 minutos cada temporada desde 2005.</p>
 </div>
 
-Desde la temporada 2017/18 en esta web publican estadísticas avanzadas de jugadores por partido y temporada. En la Fig. \@ref(fig:pplot-goals3) se representan los goles esperados (miden cómo de probable es el gol dado un disparo) y las asistencias esperadas (suma de los goles esperados que suman los pases que desembocan en un tiro) por 90 minutos de los jugadores con más de 1.000 minutos. De nuevo el gráfico destaca a nuestros dos protagonistas, que se sitúan en el arco más alejado del origen de coordenadas, donde se juntan los jugadores con mejores números de asistencias y goles esperados.
+En esta web publican estadísticas avanzadas de jugadores por partido y temporada desde la temporada 2017/18. En la Fig. \@ref(fig:pplot-goals3) se representan los goles esperados (miden cómo de probable es el gol dado un disparo) y las asistencias esperadas (suma de los goles esperados que suman los pases que desembocan en un tiro) por 90 minutos de los jugadores con más de 1.000 minutos. De nuevo el gráfico destaca a los dos protagonistas, que se sitúan en el arco más alejado del origen de coordenadas, donde se juntan los jugadores con mejores números de asistencias y goles esperados.
 \index{goles esperados}
 
 
@@ -147,17 +151,16 @@ expected_data |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/plot-goals-assists-3.png" alt="Goles y asistencias por jugador y temporada" width="100%" />
-<p class="caption">(\#fig:pplot-goals3)Goles y asistencias por jugador y temporada</p>
+<img src="img/plot-goals-assists-3.png" alt="Goles y asistencias por jugador y temporada." width="90%" />
+<p class="caption">(\#fig:pplot-goals3)Goles y asistencias por jugador y temporada.</p>
 </div>
 
 
-La métrica de goles esperados permite también hablar de efectividad. Cuando un jugador suma más goles con sus disparos de lo que era esperable su efectividad es alta; cuando por el contrario el jugador termina anotando menos goles de los que se preveían por sus disparos su efectividad es baja. En la Fig. \@ref(fig:pplot-goals4) se muestra para cada jugador y temporada esta relación. Se vuelve a observar cómo Cristiano y Messi destacan en la generación de goles esperados, aunque hay una ligera diferencia: entre 2018 y 2021 la efectividad del argentino fue mayor que la del portugués. Los puntos de Cristiano se sitúan sobre la línea que representa lo esperado: mismo número de goles que probabilidad de que los disparos acaben en gol. Los de Messi se sitúan por encima, ha anotado más goles que los que sus disparos hacían prever.
+La métrica de goles esperados permite también hablar de efectividad. Cuando un jugador suma más goles con sus disparos de lo que era esperable su efectividad es alta; cuando, por el contrario, el jugador termina anotando menos goles de los que se preveían por sus disparos su efectividad es baja. En la Fig. \@ref(fig:plot-goals-assists-4) se muestra para cada jugador y temporada esta relación. Se vuelve a observar cómo Cristiano y Messi destacan en la generación de goles esperados, aunque hay una ligera diferencia: entre 2018 y 2021 la efectividad del argentino fue mayor que la del portugués. Los puntos de Cristiano se sitúan sobre la línea que representa lo esperado: mismo número de goles que probabilidad de que los disparos acaben en gol. Los de Messi se sitúan por encima: ha anotado más goles que los que sus disparos hacían prever.
 
 
 
 ```r
-
 expected_data |> 
   select(season_end_year, player, highlighted_player, label,
          Goles = gls_per, `Goles esperados` = x_g_per) |> 
@@ -187,9 +190,12 @@ expected_data |>
         legend.title = element_blank())
 ```
 
-Con estos gráficos se puede hacer una primera evaluación de los datos de estos dos grandes jugadores (y de cualquier otro) y quizás no logremos contestar a la pregunta de quién ha sido el mejor, aunque para algunos con esto ya esté claro. 
+Con estos gráficos se puede hacer una primera evaluación de los datos de estos dos grandes jugadores (y de cualquier otro) y quizás no se logre contestar a la pregunta de quién ha sido el mejor, aunque para algunos con esto ya esté claro. 
 
 <div class="figure" style="text-align: center">
-<img src="img/plot-goals-assists-4.png" alt="Goles esperados y anotados por jugador y temporada" width="100%" />
-<p class="caption">(\#fig:plot-goals-assists-4)Goles esperados y anotados por jugador y temporada</p>
+<img src="img/plot-goals-assists-4.png" alt="Goles esperados y anotados por jugador y temporada." width="90%" />
+<p class="caption">(\#fig:plot-goals-assists-4)Goles esperados y anotados por jugador y temporada.</p>
 </div>
+
+
+<img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;" />

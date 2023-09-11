@@ -1,159 +1,277 @@
 # Naive Bayes {#cap-naive-bayes}
 
-*Ramón A. Carrasco*$^{a}$ e *Itzcóatl Bueno*$^{b,a}$
+*Ramón A. Carrasco*$^{a}$, *Itzcóatl Bueno*$^{b,a}$ y *José-María Montero*$^{c}$
 
-$^{a}$Universidad Complutense de Madrid 
-$^{b}$Instituto Nacional de Estadística
+$^{a}$Universidad Complutense de Madrid  
+$^{b}$Instituto Nacional de Estadística  
+$^{c}$Universidad de Castilla-La Mancha
+
 
 ## Introducción {#nb-intro}
 
-*Naive Bayes* es un algoritmo de aprendizaje supervisado que se utiliza principalmente para la clasificación. Como otros algoritmos de aprendizaje supervisado, este algoritmo se entrena con variables de entrada y la categoría asociada a cada observación y que el modelo debe predecir. Sin embargo, se denomina *'naive'* dado que asume que las variables de entrada que se incluyen en el modelo son independientes entre sí. Por lo tanto, si se cambia una de las variables de entrada, las demás no se verán afectadas.
+*Naive Bayes* (NB) es un algoritmo de aprendizaje supervisado que se utiliza principalmente para la clasificación.[^Note-NB-1]
 
-Aunque el algoritmo *Naive Bayes* es sencillo, destaca por su facilidad de implementación y su potencia predictiva. Su ventaja principal es que utiliza un enfoque probabilístico, lo que implica que todos los cálculos se realizan en tiempo real y, por tanto, los resultados se obtienen inmediatamente, como se detalla más adelante. Además, cuando el conjunto de datos tiene un gran número de observaciones, el algoritmo *Naive Bayes* es ventajoso respecto a algoritmos como la SVM (Cap. \@ref(cap-svm)) o el Random Forest (Cap. \@ref(cap-bagg-rf)) debido a su mejor tiempo de computación.
+[^Note-NB-1]: No obstante, puede aplicarse a labores predictivas, como por ejemplo la identificación de empleados con más probabilidad de ser promocionados. 
 
-Al utilizar un enfoque probabilístico, el algoritmo *Naive Bayes* está construido sobre conceptos de probabilidad, presentados en el Cap. \@ref(Funda-probab), y en especial, este algoritmo hace uso del **Teorema de Bayes**\index{teorema!de Bayes}. A continuación se repasan los conceptos fundamentales en los que está basado el algoritmo.
+Como otros algoritmos de aprendizaje supervisado, se entrena con un conjunto de observaciones que incluyen los valores de las $p$ variables de entrada y de las categorías de la variable respuestas correspondientes a dichas observaciones. Una vez entrenado el algoritmo, se utiliza para predecir la categoría de la variable respuesta que le corresponde a un conjunto de valores de las variables predictoras. La primera palabra del algoritmo, ***naive***, responde al hecho de que asume que las variables de entrada son independientes entre sí, por lo cual si se quitan, se introducen o se cambian algunas variables predictoras, los cálculos en los que están involucrados las demás no se ven afectados. La segunda se debe a que su piedra angular es el **teorema de Bayes**.  
+
+
+Aunque el algoritmo NB es sencillo y de fácil implementación, destaca por su potencia predictiva. Su principal ventaja  es que utiliza un enfoque probabilístico, lo que implica que todos los cálculos se realizan en tiempo real y, por tanto, los resultados se obtienen inmediatamente. Cuando se trabaja con conjuntos de datos pequeños, la ventaja de NB respecto a algoritmos como SVM
+(Cap. \@ref(cap-svm)), o random forest (Cap. \@ref(cap-bagg-rf)) o boosting (Cap. \@ref(cap-boosting-xgboost)). Sin embargo, cuando el tamaño del conjunto de datos es pequeño, esta ventaja se reduce notablemente, pues en ese caso la optimización de estos últimos algoritmos no es tan exigente, y la ventaja en tiempo de computación del NB podría no compensar la pérdida en capacidad predictiva.
+
+
+Los conceptos probabilísticos necesarios para entender el funcionamiento del algoritmo NB pueden verse en el  Cap. \@ref(Funda-probab). No obstante, a continuación se muestra un brevísimo repaso del teorema de Bayes, que es la base del algoritmo. \index{teorema!de Bayes} 
 
 ## Teorema de Bayes
 
-Sean dos eventos A y B definidos en un espacio muestral, se puede definir la probabilidad condicional de que ocurra el evento A dado que previamente se haya observado B como:
+Sean dos sucesos $A$ y $B$ definidos en un espacio muestral. Se define la probabilidad condicional de que ocurra el suceso $A$ dado que previamente se haya observado $B$ como:
 
 \begin{equation}
-P(A|B) = \frac{P(A\cap B)}{P(B)}
+P(A|B) = \frac{P(A\cap B)}{P(B)},
 \end{equation}
 
-Siempre que $P(B) \neq 0$ y donde $P(A\cap B)$ es la probabilidad de que ocurran ambos eventos a la vez. Los eventos son intercambiables de tal forma que $P(A\cap B) = P(B|A)P(A)$ y si se reemplaza en la primera ecuación tenemos:
+donde $P(B) \neq 0$ y $P(A\cap B)$ es la probabilidad de que ocurran ambos eventos a la vez. Los sucesos son intercambiables, de tal forma que:
 
 \begin{equation}
-P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)}
+P(B|A) = \frac{P(B\cap A)} {P(A)}, \text{\hspace{0,1cm}lo\hspace{0,1cm} que\hspace{0,1cm} \hspace{0,1cm}implica\hspace{0,1cm} que\hspace{0,1cm}} P(A\cap B) = P(A)P(B|A),
 \end{equation}
 
-Esta fórmula es la definición del teorema de Bayes. El algoritmo de clasificación *Naive Bayes* (NB)\index{Naive Bayes} está basado en este teorema. Para ampliar los conceptos estadísticos aquí presentados pueden consultarse en más detalle en el Cap. \@ref(Funda-probab).
+con lo que:
+
+\begin{equation}
+P(A|B) = \frac{P(A)\cdot P(B|A)}{P(B)}.
+\end{equation}
+
+Y si $A_1,A_2,...,A_k$ forman una partición de $A$, las denominadas *alternativas*, se tiene que:
+
+\begin{equation}
+P(A_m|B) = \frac {P(A_m) P(B|A_m)}{\sum_{i=1}^{k} P(A_m) P(B|{A_m})}.
+\end{equation}
+
+Esta expresión es conocida como teorema de Bayes. Para ampliar los conceptos probabilísticos aquí presentados puede consultarse el Cap. \@ref(Funda-probab).
 
 ## El algoritmo *naive* Bayes
 
-Si se adapta el teorema de Bayes\index{teorema!de Bayes} a un problema de clasificación, se tendría:
+Supóngase un conjunto de datos con $p$ variables predictoras, $X_1,X_2,...,X_p$, y una variable respuesta con $k$ clases, $c_1, c_2,...,c_k$. Considérese el caso, instancia u observación ${\bf{x}}^{\prime}_j=(x_1, x_2,...,x_p), \hspace{0,2cm} j=1,2,...,N$ . Entonces, la adaptación del teorema de Bayes\index{teorema!de Bayes} para aplicarlo a un problema de clasificación, es como sigue:  se trata de calcular la probabilidad de que, dada una observación ,${\bf{x}}_j$, ésta pertenezca a una determinada clase de la variable respuesta, por ejemplo la *m*-ésima clase, $c_m$, de tal manera que dicha observación se asignará a la clase para la que se obtenga una mayor probabilidad:  
+
+<!-- \begin{equation} -->
+<!-- P(C=c|\ell)=\frac{P(\ell|C=c)\cdot P(C=c)}{P(\ell)} -->
+<!-- \end{equation} -->
 
 \begin{equation}
-P(C=c|\ell)=\frac{P(\ell|C=c)\cdot P(C=c)}{P(\ell)}
+P(C=c_m|{\bf{x}}_j)=\frac{P(C=c_m) \cdot P({\bf{x}}_j|C=c_m)}{P({\bf{x}}_j)},
 \end{equation}
 
-En este caso, $P(C=c|\ell)$ representa el objetivo de estimación en un problema de clasificación, es decir, la probabilidad de que un individuo pertenezca a la clase $c$ después de haber observado la evidencia $\ell$ (incluida en las variables del modelo). Esta es la denominada **probabilidad a posteriori**. El resto de elementos de la fórmula, se definen como:
+donde, en la jerga bayesiana: 
 
-+ $P(C=c)$ es la **probabilidad a priori** de pertenecer a la clase $c$, es decir, la probabilidad que un individuo tiene de ser asignado a esa clase sin observar sus características previamente.
++ $P(C=c_m), \hspace{0,1cm} i=1,...m, ...,k$, se denominan **probabilidades a priori** y son las probabilidades de que una observación o instancia, de la que no se conocen los valores de sus características, pertenezca (y por tanto se asignada) a cada una de las clases de la variable respuesta.
 
-+ $P(\ell|C=c)$ es la verosimilitud de observar una instancia particular de las variables incluidas en el modelo cuando el individuo pertenece a la clase $c$.
 
-+ $P(\ell)$ es la verosimilitud de observar una instancia particular de las variables incluidas en el modelo, independientemente de a qué clase pertenezca el individuo.
++ $P({\bf{x}}_j|C=c_m)$ son las probabilidades de una observación o instancia, ${\bf{x}}_j$, sea asignada a cada una de las clases de la variable respuesta, pero, esta vez, conociéndose los valores de sus características. Se denominan **verosimilitudes**.
 
-Sin embargo, una gran dificultad para aplicar esta ecuación es la necesidad de conocer que $P(\ell|c)$ es igual a $P(\ell_1\cap\ell_2\cap\dots\cap\ell_\kappa|c)$. La existencia de un ejemplo concreto en el conjunto de datos de entrenamiento que coincida a la perfección con $\ell$ es complicado, y en el caso de existir, no se tendrían suficientes ejemplos para poder estimar una probabilidad de forma fiable. La forma de solucionar este problema es incluir una suposición de independencia particularmente fuerte, que como ya se mencionó en la Sec. \@ref(nb-intro), es lo que aporta la denominación de *'naive'* al algoritmo.
++ $P({\bf{x}}_j)$ es la probabilidad de observar una instancia particular, $P(C=c_m|{\bf{x}}_j)$, independientemente de a qué clase pertenezca el individuo.
 
-La *independencia condicional*\index{independencia condicional} implica que conocer un evento no aporta información sobre otro evento. Esto es equivalente a:
++ $P(C=c_m|{\bf{x}}_j)$ son las probabilidades de que, dado un vector de características concreto, ${\bf{x}}_j$, el elemento al que pertenezcan sea clasificado en la clase *m*-esima de la variable respuesta ($m=1,2,...,k$). Se conocen como **probabilidades a posteriori** porque se calculan, *a posteriori* a partir de las *probabilidades a priori* y las *verosimilitudes* haciendo uso del teorema de Bayes.
+
+Sin embargo, a la hora de computar las denominadas *probabilidades a posteriori*, surge una dificultad: el cálculo de las *verosimilitudes* $P({\bf{x}}_j|C=c_m)= P(X_1=x_1\cap X_2=x_2\cap\dots\cap X_p=x_p|C=c_m)$ (consúltese el Cap. \@ref(Funda-probab) para ver de forma específica su cálculo). En primer lugar, puede que en el conjunto de datos no exista ningún caso en el que las variables predictoras tomen precisamente los valores $X_1=x_1; X_2=x_2,..., X_p=x_p$. En segundo lugar, en caso de existir, el número de ellos podría no ser suficiente para estimar con una mínima fiabilidad la probabilidad de pertenencia a cada una de las clases de la variable respuesta.
+
+La forma como el algoritmo KN supera esta limitación es adoptar el supuesto de que las variables predictoras son independientes. Este supuesto, sin duda, es un supuesto muy fuerte y, de ahí, que la denominación de *ingenuo* (*naive*) que recibe el algoritmo.
+
+
+<!-- para aplicar esta ecuación es la necesidad de conocer que $P(\ell|c)$ es igual a $P(\ell_1\cap\ell_2\cap\dots\cap\ell_\kappa|c)$. La existencia de un ejemplo concreto en el conjunto de datos de entrenamiento que coincida a la perfección con $\ell$ es complicado, y en el caso de existir, no se tendrían suficientes ejemplos para poder estimar una probabilidad de forma fiable. La forma de solucionar este problema es incluir una suposición de independencia particularmente fuerte, que como ya se mencionó en la Sec. \@ref(nb-intro), es lo que aporta la denominación de *'naive'* al algoritmo. -->
+
+
+Dos sucesos $A$ y $B$ son *condicionalmente independientes* dado un tercero, $C$, si:
+
+\index{independencia condicional} 
 
 \begin{equation}
-P(AB|C) = P(A|C)\cdot P(B|C)
+P(AB|C) = P(A|C)\cdot P(B|C).
 \end{equation}
 
-De este modo, el problema de clasificación en el que era difícil estimar $P(\ell_1\cap\ell_2\cap\dots\cap\ell_\kappa|c)$, ahora se tendría:
+Por consiguiente, la suposición *naive* de que las variables o características predictoras de los elementos que conforman el conjunto de datos disponible son independientes, lleva a que:
+
+\begin{equation} \label{nb-eq1}
+\begin{split}
+P({\bf{x}}_j|C=c_m) & = P(X_1=x_1 \cap X_2=x_2\cap \dots\cap X_p = x_p|C=c_m) \\
+& = P(X_1=x_1|C=c_m) \cdot P(X_2=x_2|C=c_m) \cdots P(X_p=x_p|C=c_m),
+\end{split}
+\end{equation}
+donde cada uno de los términos $P(X_j=x_j|C=c_m), \hspace{0,2cm} j=1,...,p$, puede obtenerse directamente de los datos. 
+
+Por tanto, 
+
+\begin{equation} \label{nb-eq2}
+\begin{split}
+P(C=c_m|{\bf{x}}_j) & =\frac{P(C=c_m) \cdot P(X_1=x_1 \cap X_2=x_2\cap \dots\cap X_p = x_p|C=c_m)} {P({\bf{x}}_j)} \\
+ & =\frac{P(C=c_m) \cdot  P(X_1=x_1|C=c_m) \cdot P(X_2=x_2|C=c_m) \cdots P(X_p=x_p|C=c_m)} {P({\bf{x}}_j)}.
+\end{split}
+\end{equation}
+
+
+Y como sea cual sea la clase $c_m$ el denominador de la expresión anterior es el mismo, se tiene finalmente que la ecuación de decisión del algoritmo NB es:\index{naive Bayes}
 
 \begin{equation}
-P(\ell|c)=P(\ell_1|c)\cdot P(\ell_2|c)\cdots P(\ell_\kappa|c)
+P(C=c_m) \cdot  P(X_1=x_1|C=c_m) \cdot P(X_2=x_2|C=c_m) \cdot P(X_p=x_p|C=c_m),
 \end{equation}
 
-Y cada uno de los elementos $P(\ell_i|c)$ puede obtenerse directamente de los datos. Combinando este resultado con la regla de Bayes\index{teorema!de Bayes} aplicada a un problema de decisión, se obtiene la ecuación dada por el algoritmo *Naive Bayes*\index{Naive Bayes}:
-
-\begin{equation}
-P(c|\ell)=P(\ell_1|c)\cdot P(\ell_2|c)\cdots P(\ell_\kappa|c)P(c)
-\end{equation}
-
-El algoritmo *Naive Bayes*\index{Naive Bayes} clasifica una nueva observación estimando la probabilidad de que pertenezca a cada clase y asignándole a aquella que tenga la mayor probabilidad.
-
-En definitiva, el clasificador *Naive Bayes*\index{Naive Bayes} es muy eficiente en términos de espacio de almacenamiento necesario, así como tiempos de procesamiento. Además, a pesar de ser muy simple, tiene en cuenta las características observadas. Otra de las ventajas de este clasificador es que es un modelo de aprendizaje incremental. Esto quiere decir que es una técnica de inducción que se actualiza con cada nueva observación de entrenamiento, es decir, no es necesario volver a procesar todo el conjunto de entrenamiento cuando se dispone de nuevas observaciones.
-
-El ejemplo presentado en el Cap. \@ref(cap-arboles) en el que se buscaba predecir si se podría jugar o no al tenis bajo unas condiciones meteorológicas determinadas, puede desarrollarse utilizando el modelo *Naive Bayes*. En este caso, el procedimiento puede resumirse en tres pasos:
-
-+ Resumir los datos en una tabla de frecuencias.
-+ Generar una tabla de verosimilitud obteniendo las probabilidades de las variables.
-+ Aplicar el teorema de Bayes para calcular la probabilidad a posteriori.
-
-De este modo, las 15 observaciones registradas con el tipo de día (soleado, nublado, lluvioso) y si ese día se jugó, deben resumirse en una tabla de frecuencias como la Tabla \@ref(tab:tenis-freq). En este primer paso no se tiene en cuenta la información sobre humedad o viento.
+de tal manera que a cada nueva observación, ${\bf{x}}_j$, se le asigna a la clase con mayor $P(C=c_m|{\bf{x}}_j)$.
 
 
-|           | SI| NO | Total       |
+
+<!-- El algoritmo *Naive Bayes*\index{Naive Bayes} clasifica una nueva observación estimando la probabilidad de que pertenezca a cada clase y asignándole a aquella que tenga la mayor probabilidad. -->
+
+En definitiva, el clasificador NB \index{Naive Bayes} es muy eficiente en términos de espacio de almacenamiento y tiempos de procesamiento. Además, a pesar de ser muy simple, tiene en cuenta las características observadas. Otra de las ventajas de este clasificador es su aprendizaje incremental; es decir, es una técnica de inducción que se actualiza con cada nueva observación de entrenamiento, por lo que no es necesario volver a procesar todo el conjunto de entrenamiento cuando se dispone de nuevas observaciones.
+
+Para ilustrar los anteriores conceptos, considérese de nuevo el ejemplo presentado en el Cap. \@ref(cap-arboles), en el que se trata de predecir si se puede jugar o no al tenis con unas condiciones meteorológicas determinadas. La variable respuesta es, por tanto, "*Si un determinado día se juega al tenis*", con dos categorías: $c_1=SÍ$ y $c_2=NO$. Las variables (en este caso factores) predictoras son $X_1=Tipo \hspace{0,1cm} de \hspace{0,1cm}día$, con tres categorías: *soleado*, *nublado* y *con lluvia*, $X_2=Humedad$, con dos categorías: *fuerte* y *débil*, y $X_3=Fuerza \hspace{0,1cm} del \hspace{0,1cm} viento$, también con dos categorías:*fuerte* y *débil*. En cuanto a la regla de decisión, por ejemplo, para un día soleado con humedad fuerte y fuerza del viento débil, sería: 
+
+::: {.infobox data-latex=""}
+**Nota**
+
+**Se juega si**:
+
+$P\left(Jugar=SÍ| ( X_1= soleado; X_2= fuerte; X_3= débil \right)  = P(Jugar=SÍ) \cdot  P(X_1= soleado |Jugar=SÍ) \cdot P(X_2= fuerte|Jugar=SÍ) \cdot P(X_3= débil|Jugar=SÍ)$
+
+**es mayor que**: 
+
+$P\left(Jugar=NO| ( X_1= soleado; X_2= fuerte; X_3= débil \right)  = P(Jugar=NO) \cdot  P(X_1= soleado |Jugar=NO) \cdot P(X_2= fuerte|Jugar=NO) \cdot P(X_3= débil|Jugar=NO)$
+
+:::
+
+
+Lo mismo se haría para decidir si se juega o no con cualquier otra combinación de categorías de la variables $X_1$, $X_2$ y $X_3$.
+
+
+Siguiendo con el ejemplo de un día soleado, con humedad fuerte y fuerza del viento débil, los pasos a seguir para determinar si se juega o no al tenis serían los tres siguientes:[^Note-NB-2]
+
+[^Note-NB-2]: Lo mismo se haría para cualquier otra combinación de las categorías de los tres factores predictores.
+
++ Organizar los datos en tablas de frecuencias de dos dimensiones, tantas como variables predictoras. Una de las dimensiones corresponde a una de las variables predictoras y la otra a la variable respuesta.
++ Calcular, a partir de la tablas anteriores, las *probabilidades a priori* y las *verosimilitudes*.
++ Aplicar el teorema de Bayes para calcular las *probabilidades a posteriori* y realizar la predicción.
+
+
+
+Particularizando en el caso anteriormente referido (día soleado con humedad fuerte y viento débil), las 15 observaciones registradas se presentan en la Tabla \@ref(tab:tenis-freq) (una tabla de contingencia (2 x 3), usando la terminología del Cap. \@ref(tablas-contingencia), donde uno de los factores es el primer factor explicativo, $X_1$, *Tipo de día*,  con tres categorías (soleado, nublado, lluvioso) y el otro es *Si ese día se jugó*, con dos categorías: Sí y NO. 
+
+
+|     $X_1$      | SÍ| NO | Total       |
 |-----------|:-:|:--:|:-----------:|
 | Soleado   | 2 | 4  |  6          |
 | Nublado   | 4 | 0  |  4          |
 | Lluvia    | 4 | 1  |  5          |
 | Total     |10 | 5  |  15         |  
-: (#tab:tenis-freq) Tabla de frecuencias - Tipo de día vs Jugar partido
+: (#tab:tenis-freq) Tabla de frecuencias - Tipo de día vs. Jugar partido.
 
-En un segundo paso, se obtienen las probabilidades de cada categoría a partir de la Tabla \@ref(tab:tenis-freq) resultando en la Tabla \@ref(tab:tenis-likelihood).
 
-|           | SI| NO | $P(\textrm{Tipo de día}_i)$     |
-|-----------|:-:|:--:|:-------------------------------:|
-| Soleado   | 2 | 4  |  $\frac{6}{15} = 0,40$          |
-| Nublado   | 4 | 0  |  $\frac{4}{15} = 0,27$          |
-| Lluvia    | 4 | 1  |  $\frac{5}{15} = 0,33$          |
-| P(Jugar)  |$\frac{10}{15} = 0,67$ | $\frac{5}{15} = 0,33$  |           |  
-: (#tab:tenis-likelihood) Tabla de verosimilitud - Tipo de día vs Jugar partido
 
-A partir de la Tabla \@ref(tab:tenis-likelihood) se obtiene la probabilidad de cada tipo de día dado que con esa climatología se jugó o no, es decir, $P(\textrm{Tipo de día}|Jugar)$. Obteniendo las probabilidades mostradas en la Tabla \@ref(tab:probs-tipodia)
 
-|                   |     c = SI     |     c = NO     |
+|  $X_2$      | SÍ| NO | Total       |
+|-----------|:-:|:--:|:-----------:|
+| Débil   | 6 | 2  |  8         |
+| Fuerte   | 4 | 3  |  7          |
+| Total     |10 | 5  |  15         |  
+: (#tab:tenis-freq) Tabla de frecuencias - Humedad vs. Jugar partido.
+
+
+
+|  $X_3$      | SÍ| NO | Total       |
+|-----------|:-:|:--:|:-----------:|
+| Débil   | 6 | 1  |  7         |
+| Fuerte   | 4 | 4  |  8          |
+| Total     |10 | 5  |  15         |  
+: (#tab:tenis-freq) Tabla de frecuencias -Fuerza del viento vs. Jugar partido.
+
+
+
+
+
+En un segundo paso, a partir de cualquiera de las tablas anteriores se obtienen las probabilidades a priori de clasificar una observación en una u otra categoría de la variable respuesta (SÍ, NO). Por ejemplo, en la Tabla \@ref(tab:tenis-likelihood) aparecen al final de las columnas SÍ y NO. 
+
+
+|           | SÍ                     | NO                   | $P(\textrm{Tipo de día}_i)$     |
+|-----------|:----------------------:|:--------------------:|:-------------------------------:|
+| Soleado   | 2                      | 4                    |  $\frac{6}{15} = 0,40$          |
+| Nublado   | 4                      | 0                    |  $\frac{4}{15} = 0,27$          |
+| Lluvia    | 4                      | 1                    |  $\frac{5}{15} = 0,33$          |
+| P(Jugar)  |$\frac{10}{15} = 0,67$  | $\frac{5}{15} = 0,33$|             --                  |  
+: (#tab:tenis-likelihood) Tipo de día vs Jugar partido.
+
+
+También a partir de ellas se obtienen las verosimilitudes de cada categoría de los tres factores dada una categoría de la variable respuesta (se jugó; no se jugó):
+
+A partir de la Tabla \@ref(tab:tenis-likelihood) se obtiene la probabilidad de cada tipo de día dado que con esa climatología se jugó o no, es decir, $P(\textrm{Tipo de día}|Jugar)$. Obteniendo las probabilidades mostradas en la Tabla \@ref(tab:probs-tipodia).
+
+| $X_1$                  |     $c_1$ = SÍ     |     $c_2$ = NO     |
 |:-----------------:|:--------------:|:--------------:|
-| P(Soleado \| C=c) | $\frac{2}{15}$ | $\frac{4}{15}$ |
-| P(Nublado \| C=c) | $\frac{4}{15}$ | $\frac{0}{15}$ |
-|  P(Lluvia \| C=c) | $\frac{4}{15}$ | $\frac{1}{15}$ |
-: (#tab:probs-tipodia) Probabilidad de Tipo de día sabiendo si se jugó el partido
-
-Este proceso se repite de forma independiente para las variables *viento* y *humedad* obteniendo la Tabla \@ref(tab:probs-viento) y la Tabla \@ref(tab:probs-humedad) respectivamente.
+| P(Soleado \| $C=c_m$) | $\frac{2}{10}$ | $\frac{4}{5}$ |
+| P(Nublado \| $C=c_m$) | $\frac{4}{10}$ | $\frac{0}{5}$ |
+|  P(Lluvia \| $C=c_m$) | $\frac{4}{10}$ | $\frac{1}{5}$ |
+: (#tab:probs-tipodia) Probabilidad de cada categoría de la variable "Tipo de día" sabiendo si se jugó o no el partido.
 
 
-|                   |     c = SI     |     c = NO     |
+|     $X_2$             |     $c_1$ = SÍ     |     $c_2$ = NO     |
 |:-----------------:|:--------------:|:--------------:|
-| P(Débil \| C=c) | $\frac{6}{15}$ | $\frac{2}{15}$ |
-| P(Fuerte \| C=c) | $\frac{4}{15}$ | $\frac{3}{15}$ |
-: (#tab:probs-viento) Probabilidad fuerza del Viento sabiendo si se jugó el partido
+| P(Débil \| $C=c_m$)) | $\frac{6}{15}$ | $\frac{1}{15}$ |
+| P(Fuerte \| $C=c_m$) | $\frac{4}{15}$ | $\frac{4}{15}$ |
+: (#tab:probs-humedad) Probabilidad de cada categoría de la variable "Humedad" sabiendo si se jugó o no el partido.
 
-|                   |     c = SI     |     c = NO     |
+
+
+|          $X_3$         |     $c_1$ = SÍ     |     $c_2$ = NO     |
 |:-----------------:|:--------------:|:--------------:|
-| P(Débil \| C=c) | $\frac{6}{15}$ | $\frac{1}{15}$ |
-| P(Fuerte \| C=c) | $\frac{4}{15}$ | $\frac{4}{15}$ |
-: (#tab:probs-humedad) Probabilidad nivel de Humedad sabiendo si se jugó el partido
+| P(Débil \| $C=c_m$)) | $\frac{6}{15}$ | $\frac{2}{15}$ |
+| P(Fuerte \| $C=c_m$)) | $\frac{4}{15}$ | $\frac{3}{15}$ |
+: (#tab:probs-viento) Probabilidad de cada categoría de la variable "Fuerza del viento" sabiendo si se jugó o no el partido.
 
-Finalmente, aplicando el teorema de Bayes se podría predecir si se juega o no el partido ante la previsión de un nuevo día. Por ejemplo, ¿cuál es la probabilidad de no jugar al tenis si el día se espera soleado, con fuertes rachas de viento y escasa humedad? Esto es, $\ell$=[Soleado, Fuerte, Débil] y, de acuerdo al teorema de Bayes, esta pregunta se respondería a través de:
 
-\begin{equation*}
-P(c|\ell) = \frac{P(\ell|c)\cdot P(c)}{P(\ell)}
-\end{equation*}
 
-A partir de las probabilidades previamente obtenidas y de la asunción de independencia entre las variables, se puede calcular la probabilidad de jugar como:
+<!-- Finalmente, aplicando el teorema de Bayes se podría predecir si se juega o no el partido ante la previsión de un nuevo día. Por ejemplo, ¿cuál es la probabilidad de no jugar al tenis si el día se espera soleado, con fuertes rachas de viento y escasa humedad? Esto es, $\ell$=[Soleado, Fuerte, Débil] y, de acuerdo al teorema de Bayes, esta pregunta se respondería a través de: -->
+
+<!-- \begin{equation*} -->
+<!-- P(c|\ell) = \frac{P(\ell|c)\cdot P(c)}{P(\ell)} -->
+<!-- \end{equation*} -->
+
+A partir de las probabilidades previamente obtenidas y de la asunción de independencia entre las variables, se puede calcular la probabilidad de jugar, dadas las condiciones meteorológicas expuestas como:
+
 
 \begin{equation}
-P(Si|\ell) = P(Soleado|Si)\cdot P(Fuerte|Si) \cdot P (Débil|Si) \cdot P(Si) = \frac{2}{15}\frac{4}{15}\frac{2}{15}\frac{10}{15} = 0,0032
+\begin{split}
+ P(SÍ|X_1:soleado, X_2: fuerte, X_3: débil)  =  \\
+P(SÍ) \cdot P(Soleado|SÍ) \cdot P(Fuerte|SÍ) \cdot  P (Débil|SÍ) = \\
+\frac{10}{15}\frac{2}{10}\frac{4}{10}\frac{6}{10} = 0,0320.
+\end{split}
 \end{equation}
 
 \begin{equation}
-P(No|\ell) = P(Soleado|No)\cdot P(Fuerte|No) \cdot P (Débil|No) \cdot P(No) = \frac{4}{15}\frac{3}{15}\frac{1}{15}\frac{5}{15} = 0,0012
+\begin{split}
+ P(NO|X_1: soleado, X_2: fuerte, X_3: débil) = \\
+ P(NO) \cdot P(Soleado|NO) \cdot P(Fuerte|NO) \cdot P (Débil|NO) = \\
+ \frac{5}{15}\frac{4}{5}\frac{4}{5}\frac{2}{5} = 0,0833.
+\end{split}
 \end{equation}
 
-La probabilidad de jugar es superior a la probabilidad de no jugar y, por tanto, dado un día con esas condiciones climáticas se clasificará como un día en el que se puede jugar.
+La probabilidad de no jugar es superior a la probabilidad de jugar y, por tanto, dado un día con esas condiciones climáticas se clasificará como un día en el que no se puede jugar.
+
+Igual que se ha procedido con esta predicción  para un día soleado con fuerte humedad y fuerza del viento débil, se procede para cualquier combinación de las categorías de los factores predictores.
 
 ## Procedimiento con **R**: la función `naive_bayes()`
 
-En el paquete `naivebayes` de R se encuentra la función `naive_bayes()` que se utiliza para entrenar un modelo *Naive Bayes*:
+Para entrenar el algoritmo NB se utiliza la función `naive_bayes()` del paquete `naivebayes`. Bayes*:
 
 
 ```r
 naive_bayes(formula, data, prior = ..., ...)
 ```
 
-+ `formula`: refleja la relación lineal entre la variable dependiente y los predictores $Y \sim X_1 + ... + X_p$.
-+ `data`: conjunto de datos con el que se entrena el modelo. 
++ `formula`: refleja la relación lineal entre la variable respuesta y los predictores: $Y \sim X_1 + ... + X_p$.
++ `data`: conjunto de datos con el que se entrena el modelo.
 + `prior`: vector con las probabilidades a priori de las clases.
 
 ## Clasificación de clientes utilizando el modelo *Naive Bayes*
 
-Como en los capítulos precedentes, en este ejemplo se pretende entrenar un modelo *Naive Bayes* utilizando el conjunto de datos de compras realizadas por clientes incluido en el paquete `CDR`. Este conjunto de datos cuenta con unas variables predictoras que indican qué productos han comprado los clientes, el importe que han gastado y otras características como su edad y su nivel educativo. Se utiliza el conjunto de datos sin transformar (`dp_entr`), es decir, en su escala original y con las variables categóricas sin codificar.  La variable objetivo indica si un cliente comprará o no el nuevo producto (*tensiómetro digital*).
+
+Como en los capítulos precedentes, para ejemplificar el uso del algoritmo NB se utiliza de nuevo el conjunto de datos `dp_entr`, incluido en el paquete `CDR`,  que incluye una serie de variables predictoras relativas a los productos han comprado previamente los clientes de una empresa, el importe que han gastado y otras características como su edad y su nivel educativo. Dicho conjunto se utiliza con los datos sin transformar, es decir, en su escala original y con las variables categóricas sin codificar.  La variable objetivo indica si un cliente comprará o no el nuevo producto (*tensiómetro digital*).
 
 
 ```r
@@ -174,31 +292,32 @@ set.seed(101)
 # se entrena el modelo
 model <- train(CLS_PRO_pro13 ~ .,
             data=dp_entr,
-            method="nb", 
+            method="nb",
             metric="Accuracy",
             trControl=trainControl(classProbs = TRUE,
                                    method = "cv",
                                    number = 10))
-# se muestra la salida del modelo
-model
 ```
 
 
 
 
 ```r
-Naive Bayes 
+# se muestra la salida del modelo
+model
+
+Naive Bayes
 
 558 samples
  17 predictor
-  2 classes: 'S', 'N' 
+  2 classes: 'S', 'N'
 
 No pre-processing
-Resampling: Cross-Validated (10 fold) 
-Summary of sample sizes: 502, 502, 502, 503, 503, 502, ... 
+Resampling: Cross-Validated (10 fold)
+Summary of sample sizes: 502, 502, 502, 503, 503, 502, ...
 Resampling results across tuning parameters:
 
-  usekernel  Accuracy   Kappa    
+  usekernel  Accuracy   Kappa
   FALSE      0.8512662  0.7026716
    TRUE      0.8512338  0.7025165
 
@@ -209,44 +328,60 @@ Accuracy was used to select the optimal model using the largest value.
 The final values used for the model were fL = 0, usekernel = FALSE and adjust = 1.
 ```
 
-Los resultados del proceso de entrenamiento muestran que, en este caso, es indiferente indicar el argumento `usekernel` como FALSE o TRUE, los resultados de precisión son equivalentes. El resumen del modelo muestra que la precisión media obtenida durante la validación cruzada alcanza el 85,1%, lo cual indica que el modelo ajusta bastante bien la intención de compra de nuevos clientes. 
+Los resultados del proceso de entrenamiento muestran que, en este caso, es indiferente indicar el argumento `usekernel` como FALSE o TRUE, pues los resultados de la medida de `accuracy` (proporción de predicciones correctas) son similares.[^Note-NB-3] [^Note-NB-4] [^Note-NB-5]
+
+[^Note-NB-3]:  Cuando entran en juego variables predictoras cuantitativas se puede utilizar la estimación de densidad de kernel (usekernel=TRUE). La estimación se lleva a cabo con `function density()`. Por defecto se utiliza un kernel de suavizado Gaussiano y la regla general de Silverman para el ancho de banda. Para más detalles véase @john2013estimating.
+
+[^Note-NB-4]: `Accuracy` es una medida de la bondad clasificadora del modelo que indica cuántas observaciones han sido correctamente clasificadas respecto al total de observaciones en el conjunto de entrenamiento. El coeficiente `kappa` de Cohen mide la concordancia entre las clasificaciones predichas y reales. Un valor kappa de 1 representa un acuerdo perfecto, mientras que un valor de 0 representa ningún acuerdo (distinto del que cabría esperar por azar).
+
+[^Note-NB-5]: En los resultados expuestos aparece el parámetro de ajuste `fL`. Este parámetro hace referencia a la corrección de Laplace, que se utiliza para suavizar las probabilidades y controlar el efecto de sucesos que no han ocurrido en el conjunto de entrenamiento (el problema de frecuencia cero) y que, por tanto, tienen probabilidad nula. De acuerdo con la corrección de Laplace: $P(X_i|C) = \frac{N_{X_{ic}}+1}{N_{C}+k}$, donde $N_{X_{ic}}$ es el número de ocurrencias en la base de datos donde aparece el valor de l variable $X_i$,  $N_{C}$ es el total de observaciones en el conjunto de datos y $k$ el número de valores que puede tener la clase $C$.
+
+
 
 
 ```r
 confusionMatrix(model)
-Cross-Validated (10 fold) Confusion Matrix 
+```
+
+
+
+```r
+Cross-Validated (10 fold) Confusion Matrix
 
 (entries are percentual average cell counts across resamples)
- 
+
           Reference
 Prediction    S    N
          S 41.8  6.6
          N  8.2 43.4
-                            
+
  Accuracy (average) : 0.8513
 ```
 
-En la matriz de confusión del modelo se observa para cada celda el promedio porcentual entre remuestreos. Así, se observa que en media el modelo predice mejor cuando un cliente no va a comprar el nuevo producto que cuando sí lo hace, aunque no con mucha diferencia (menos de un 2%). En ambos casos, las clasificaciones erróneas no suponen ni el 10%.
+En la matriz de confusión del modelo proporciona en cada celda el promedio porcentual en los distintos remuestreos. Así, se observa que,en media, el modelo predice mejor cuando un cliente no va a comprar el nuevo producto que cuando sí lo hace, aunque no con mucha diferencia (menos de un 2%). En ambos casos, las clasificaciones erróneas no suponen ni el 10%.
 
 
 ```r
-ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) + 
-  geom_boxplot(show.legend=FALSE) + 
+ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
+  geom_boxplot(show.legend=FALSE) +
   xlab(NULL) + ylab(NULL)
 ```
 
+
+
 <div class="figure" style="text-align: center">
-<img src="img/nb_boxplot.png" alt="Resultados del modelo Naive Bayes obtenidos durante el proceso de validación cruzada." width="60%" />
+<img src="img/nb_boxplot.png" alt="Resultados del modelo Naive Bayes obtenidos durante el proceso de validación cruzada." width="55%" />
 <p class="caption">(\#fig:NBRESULTS)Resultados del modelo Naive Bayes obtenidos durante el proceso de validación cruzada.</p>
 </div>
 
-Se puede observar como la precisión oscila entre el 75% y el 95%, aunque en uno de los resultados se obtuvo un 96% de precisión, el cual se marca como un resultado atípico.
+En la Fig. \@ref(fig:NBRESULTS) se puede observar que la `accuracy` oscila entre el 75% y el 95% en el proceso de validación cruzada, aunque en uno de los resultados se obtuvo un 96%, que aparece marcado como un outlier. La `kappa` de Cohen oscila entre el 63% y el 82%, con un outlier en el 82%.
+
 
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}
-En este capítulo se introduce al lector en el algoritmo de *Naive Bayes*, en concreto:
+En este capítulo se introduce al lector en el algoritmo *Naive Bayes*. En concreto:
 
-- Se presentan los fundamentos del algoritmo bayesiano, particularmente el Teorema de Bayes.
-- Se explica el funcionamiento del algoritmo *Naive Bayes* y su relación con dicho Teorema de Bayes. 
-- Se demuestra su aplicabilidad a un caso real de clasificación a través de `R`.
+- Se presentan los fundamentos del algoritmo.
+- Se explica el funcionamiento del algoritmo  y su relación con dicho Teorema de Bayes.
+- Se demuestra su aplicabilidad a un caso real de clasificación con **R**.
 :::

@@ -9,32 +9,30 @@ Universidad Rey Juan Carlos
 
 ## ¿Por qué informes reproducibles?
 
-\index{reproducibilidad}\index{informes}\index{markdown}\index{quarto}\index{R markdown}
-El resultado final de un proyecto de análisis de datos terminará
-comunicándose a distintos niveles, tanto _aguas arriba_ como _aguas abajo_. 
+\index{reproducibilidad}\index{informes}\index{markdown}\index{Quarto}\index{R markdown}
+El resultado final de un proyecto de análisis de datos termina
+comunicándose a distintos niveles, tanto "aguas arriba" como "aguas abajo". 
 Esta comunicación es "la última milla" del flujo de análisis que se
 esquematizaba en la Fig. \@ref(fig:problem2). Se llama genéricamente 
-"informe" a cualquiera de estos resultados que se pueden producir en 
+**informe** a cualquiera de estos resultados que se pueden producir en 
 distintos formatos de destino. Estos informes estarán compuestos de múltiples elementos como
 texto, gráficos, resultados numéricos, tablas, etc. Además, es posible que haya
-que generarlos en distintos formatos (por ejemplo html o pdf, entre otros), para diferentes destinos, como la Web, documentos imprimibles o
-presentaciones. Finalmente, con una alta probabilidad varias personas
-intervendrán en el proceso, y la **trazabilidad** (reproducibilidad) del análisis
+que generarlos en distintos formatos (por ejemplo, HTML o PDF, entre otros) para diferentes destinos, como la Web, documentos imprimibles o
+presentaciones. Finalmente, como es muy probable que intervengan varias personas en el proceso, la **trazabilidad** (reproducibilidad) del análisis
 mejorará el proyecto de forma global. 
 
 
 
-La forma de abordar el problema es típicamente con un enfoque _corta-pega_,
+La forma típica de abordar el problema es mediante un enfoque "corta-pega",
 en el que primero se realiza todo el análisis de datos con el software
 estadístico y después se utilizan
 los resultados del análisis como base de un informe escrito, posiblemente
 con algunas iteraciones del proceso si el proyecto tiene cierta envergadura.
-El software estadístico comercial suele incluir formas de generar resultados listos 
-para integrar en un informe, pero habitualmente bajo este paradigma de incluir el
+El software estadístico comercial suele incluir formas de generar resultados listos para integrar en un informe, pero habitualmente bajo este paradigma de incluir el
 resultado a posteriori [@leisch2002sweave].
 
 Esta forma de trabajar genera un alto coste de mantenimiento (debido a la regeneración manual del informe) a la vez que 
-provoca inconsistencias (por ejemplo entre unos grupos y otros,
+provoca inconsistencias (por ejemplo, entre unos grupos y otros,
 entre diferentes analistas, etc.), errores, contenidos desactualizados o no
 reproducibles. Este enfoque es propenso a fallos de organización y gestión de un proyecto, lo se traduce en 
 vulnerabilidades especialmente en la ejecución de software, simulaciones, etc.
@@ -42,62 +40,65 @@ Además, cada vez que hay que hacer un cambio, hay que hacerlo en muchos
 sitios, con la consiguiente pérdida de tiempo y posibles errores.
 
 
-El enfoque de la **investigación reproducible**^[El objetivo de la investigación reproducible es vincular instrucciones específicas a los análisis y datos experimentales, de modo que los informes puedan recrearse entendidos mejor y verificados. [@rrtaskview].] supera muchos de los obstáculos a la
-hora de preparar informes de análisis de datos. El objetivo es
-unir instrucciones para análisis de datos con datos experimentales de forma que
-los resultados se puedan volver a obtener automáticamente, entender mejor y verificar.
+El enfoque de la **investigación reproducible** supera muchos de los obstáculos a la hora de preparar informes de análisis de datos. El objetivo es
+vincular instrucciones para análisis de datos con datos experimentales de forma que
+los resultados se puedan $(i)$ volver a obtener automáticamente, $(ii)$ entender mejor y $(iii$) verificar [@rrtaskview].
 
 \index{literate programming}
 Un concepto muy relacionado que se utiliza en **R** es la **programación
-literaria**^[La programación literaria es una metodología que combina un lenguaje de programación con un lenguaje de documentación [@knuth1984literate].], mediante la cual se combina un lenguaje de programación como **R** con documentación de todo tipo (por ejemplo comentarios en el
+literaria**,[^Note-inform-1] mediante la cual se combina un lenguaje de programación como **R** con documentación de todo tipo (por ejemplo, comentarios en el
 código fuente o inclusión de ficheros _readme_).
 
-Con el enfoque de la investigación reproducible, lo que se hace es darle la vuelta
-al enfoque _corta-pega_, de forma que se escribe el informe a la vez que se realiza
+[^Note-inform-1]: La programación literaria es una metodología que combina un lenguaje de programación con un lenguaje de documentación [@knuth1984literate].
+
+Con el enfoque de la investigación reproducible lo que se hace es darle la vuelta
+al enfoque "corta-pega", de forma que se escribe el informe a la vez que se realiza
 el análisis, incrustando el código dentro del propio informe. Obviamente, es necesario
 un sistema que consolide el informe con los resultados del código, y esto es lo
-que nos permite **R** y **RStudio** mediante archivos **R Markdown** y su evolución reciente a **Quarto**. El desarrollo de **Quarto** está patrocinado por la empresa Posit, PBC, donde anteriormente crearon **R Markdown** que compartía los mismos objetivos, pero estaba dirigido principalmente a usuarios del lenguaje **R**. El mismo equipo central trabaja tanto en **R Markdown** como en **Quarto**^[https://quarto.org/about.html].
+que permite **R** y **RStudio** mediante archivos **R Markdown** y su evolución reciente a **Quarto**. El desarrollo de **Quarto** está patrocinado por la empresa Posit PBC, que anteriormente creó **R Markdown**, que compartía los mismos objetivos pero estaba dirigido principalmente a usuarios del lenguaje **R**. El mismo equipo central trabaja tanto en **R Markdown** como en **Quarto**.[^Note-inform-2] 
+
+[^Note-inform-2]: https://quarto.org/about.html.
 
 Las ventajas de utilizar un enfoque reproducible se pueden resumir en:
 
-- Si el mismo analista tiene que volver al análisis en el futuro, los
-resultados se pueden volver a obtener automáticamente de nuevo fácil y comprensiblemente.
+- si el mismo analista tiene que volver al análisis en el futuro, los
+resultados se pueden volver a obtener automáticamente de nuevo fácil y comprensiblemente;
 
-- En el caso de que en el proyecto participen más analistas, toda la explicación
-está a mano.
+- en el caso de que en el proyecto participen más analistas, toda la explicación
+está a mano;
 
-- Cualquier cambio en un punto del análisis (por ejemplo, añadir una
+- cualquier cambio en un punto del análisis (por ejemplo, añadir una
 variable a un modelo) se puede realizar de una sola vez y los cambios
-en los resultados y gráficos se actualizarán automáticamente.
+en los resultados y gráficos se actualizarán automáticamente,
 
-- Los resultados se pueden verificar por terceros en caso necesario. Un
-caso paradigmático fue el escándalo de los ensayos de cáncer en Duke en 2011^[ http://www.nytimes.com/2011/07/08/health/research/08genes.html]. 
-No obstante es un tema que cada vez se demanda más en otros campos
-fuera de la investigación clínica (por ejemplo en publicaciones de
+- los resultados se pueden verificar por terceros en caso necesario. Un
+caso paradigmático fue el escándalo de los ensayos de cáncer en Duke en 2011. [^Note-inform-3] No obstante es un tema que cada vez se demanda más en otros campos
+fuera de la investigación clínica (por ejemplo, en publicaciones de
 cualquier tipo).
 
-El flujo de trabajo sería el siguiente: los contenidos se encuentran en ficheros
-de texto plano, con código y texto explicativo. Estos ficheros fuente, se compilan y producen los materiales en los
-formatos necesarios. Los cambios se hacen una vez, y todos los materiales son
-actualizados adecuadamente.
+[^Note-inform-3]: http://www.nytimes.com/2011/07/08/health/research/08genes.html.
+
+El flujo de trabajo es el siguiente: los contenidos se encuentran en ficheros
+de texto plano, con código y texto explicativo. Estos ficheros fuente se compilan y producen los materiales en los
+formatos necesarios. Los cambios se hacen una vez y todos los materiales se
+actualizan adecuadamente.
 
 
 
 
 
 
-A continuación se abordará el enfoque reproducible. Para el otro enfoque,
-simplemente basta copiar los resultados de la consola y los gráficos de la pestaña _Plots_
+A continuación se aborda el enfoque reproducible. Para el otro enfoque (corta-pega), simplemente basta copiar los resultados de la consola y los gráficos de la pestaña _Plots_
 del panel inferior derecho en cualquier editor de documentos. 
 
 ### Markdown, R Markdown, Quarto y RStudio
 
 **Markdown** es un lenguaje de marcas ligero que fue creado con la intención de ser más legible y fácil de escribir que el código HTML, aunque actualmente se utiliza para otros formatos de salida.
-Al ser ficheros de texto plano los ficheros se pueden leer bajo
+Al ser ficheros de texto plano se pueden leer bajo
 cualquier circunstancia, con una sintaxis muy sencilla que permite leerlo
-directamente por las personas, o ser convertido por un ordenador 
+directamente por las personas o ser convertido por un ordenador 
 en otro formato más elaborado, como por ejemplo HTML
-(página web), pdf o Microsoft Word. En **RStudio**, se pueden crear ficheros **R Markdown**^[https://rmarkdown.rstudio.com]
+(página web), PDF o Microsoft Word. En **RStudio**, se pueden crear ficheros **R Markdown**[^Note-inform-4]
 utilizando esta sintaxis para
 las explicaciones del análisis, e incluir dentro "trozos" (_chunks_) de
 código, de forma que, al generar el informe, el resultado de ese código queda
@@ -106,44 +107,42 @@ por ejemplo,
 incluir un gráfico, sólo hay que añadir las líneas de código que lo crean y
 volver a generar el informe.
 
-**R Markdown** ha evolucionado a un nuevo formato denominado **Quarto**^[https://quarto.org], que extiende aún más la funcionalidad de Markdown y está pensado para ser usado con otros lenguajes de programación. En esencia, y a los efectos de este capítulo, hay pocas diferencias.
+[^Note-inform-4]: https://rmarkdown.rstudio.com.
+
+**R Markdown** ha evolucionado a un nuevo formato denominado **Quarto**,[^Note-inform-5] que extiende aún más la funcionalidad de Markdown y está pensado para ser usado con otros lenguajes de programación. En esencia, y a los efectos de este capítulo, hay pocas diferencias.
+
+[^Note-inform-5]: https://quarto.org.
 
 Para poder utilizar las capacidades de **R Markdown** y **Quarto**, es necesario tener instalado
 el paquete `knitr` [@xie2017dynamic], que utiliza también otros paquetes como `rmarkdown`.
 Aunque `knitr` no forma parte del `tidyverse`, sí es un enfoque moderno de **R**
 que vino a hacer más fácil la generación de documentos que se hacía en **R** base
-con la función `Sweave` [@leisch2002sweave]. Para usar **Quarto** se necesita también el paquete `quarto` [@R-quarto] y tener instalado el software **quarto** en el ordenador^[La instalación es trivial para cualquier sistema desde la web de quarto, https://quarto.org.].
+con la función `Sweave` [@leisch2002sweave]. Para usar **Quarto** se necesita también el paquete `quarto` [@R-quarto] y tener instalado el software **quarto** en el ordenador.[^Note-inform-6]
+
+[^Note-inform-6]: La instalación es trivial para cualquier sistema desde la web de quarto, https://quarto.org.
 
 Para crear un nuevo documento **Quarto**, se selecciona _Quarto Document..._ en el
-icono de nuevo archivo de la barra de herramientas o en el menú _File_. Entonces
+icono `<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 64C0 28.65 28.65 0 64 0H229.5C246.5 0 262.7 6.743 274.7 18.75L365.3 109.3C377.3 121.3 384 137.5 384 154.5V448C384 483.3 355.3 512 320 512H64C28.65 512 0 483.3 0 448V64zM336 448V160H256C238.3 160 224 145.7 224 128V48H64C55.16 48 48 55.16 48 64V448C48 456.8 55.16 464 64 464H320C328.8 464 336 456.8 336 448z"/></svg>`{=html} "New file" de la barra de herramientas o en el menú _File_. Entonces
 se abre el cuadro de diálogo _New Quarto Document_. Hay varios
 tipos de archivos que se pueden crear, que producirán formatos diferentes: _Document_ (documento),
 _Presentation_ (presentación de diapositivas) e _Interactive_ (aplicación web interactiva con Shiny u Observable JS). De momento se verán los documentos. Se puede crear un archivo **Quarto** vacío si no se quiere crear la estructura. Para que se cree con una estructura mínima,
-se necesita un título del documento y un autor, que después se podrán cambiar. También se selecciona un formato de salida por defecto, que puede ser HTML (para ver en el navegador), PDF, o Word. Esto también se podrá cambiar después, por lo que la forma más eficiente de trabajar es empezar con HTML, cuya previsualización es más rápida, y cuando esté el resultado final generar el archivo en el formato deseado.
+se necesita un título del documento y un autor, que después se podrán cambiar. También se selecciona un formato de salida por defecto, que puede ser HTML (para ver en el navegador), PDF o Word. Esto también se podrá cambiar después, por lo que la forma más eficiente de trabajar es empezar con HTML, cuya previsualización es más rápida, y cuando esté el resultado final generar el archivo en el formato deseado. \index{Python}
 
-\index{python}
-Se puede seleccionar la _Engine_ entre _knitr_ (**R**) y _Jupyter_ (**Python**), y también elegir si se quiere utilizar el editor visual (por defecto). Con el editor visual se pueden utilizar menús para editar el texto y dar el formato Markdown sin esfuerzo. Al hacer clic en el botón _Create_ de la ventana _New Quarto Document_, se abre en 
+En la  _Engine_ se puede seleccionar _knitr_ (**R**) o _Jupyter_ (**Python**). También se puede elegir si se quiere utilizar el editor visual (por defecto). Con el editor visual se pueden utilizar menús para editar el texto y dar el formato Markdown sin esfuerzo. Al hacer clic en el botón _Create_ de la ventana _New Quarto Document_, se abre en 
 el editor de **RStudio** un documento quarto (extensión .qmd) con una estructura básica a modo de plantilla. Los elementos principales de un archivo **Quarto** aparecen en esta plantilla:
 
-\index{YAML}
+- **Encabezado YAML**: constituye la configuración del documento y controla, sobre todo, las opciones del formato de salida, es decir, cómo se verá el resultado final. Este encabezado se encuentra entre dos líneas con tres guiones (`---`),
+donde se expresan las opciones como `opcion: valor`, y estos valores además se pueden anidar. Dispone de ayuda contextual, de forma que pulsando la combinación de teclas CTRL+ESPACIO aparecen las opciones que se pueden configurar y los posibles valores. Esta parte del documento constituye el **formato** del documento. \index{YAML}
 
-- **Encabezado YAML**: constituyen la configuración del documento, y controlan sobre todo las opciones del formato de salida, es decir, cómo se verá el resultado final. Este encabezado se encuentra entre dos líneas con tres guiones (`---`),
-donde se expresan las opciones como `opcion: valor`, y estos valores además se pueden anidar. Dispone de ayuda contextual, de forma que pulsando la combinación de teclas CTRL+ESPACIO aparecen las opciones que se pueden configurar y los posibles valores. Esta parte del documento es constituye el **formato** del documento.
-
-- **Texto formateado**: con una sintaxis muy sencilla, se puede dar formato al texto, como negritas, listas, etc. En el editor visual se puede hacer con los menús y botones de la barra de herramientas del editor.
-
-\index{chunk}
+- **Texto formateado**: con una sintaxis muy sencilla, se puede dar formato al texto, como negritas, listas, etc. En el editor visual se puede hacer con los menús y botones de la barra de herramientas del editor. 
 
 - **Fragmentos de código (_chunks_)**: al generar el documento, se ejecutará el código dentro de estos
-fragmentos, y en el documento resultante se mostrará el resultado. En cada fragmento de código aparecen dos botones que sirven para ejecutar todos los _chunks_ anteriores y para ejecutar el _chunk_ actual. Junto con el texto formateado constituyen el **contenido** del documento.
-
-
+fragmentos, y en el documento resultante se mostrará el resultado. En cada fragmento de código aparecen dos botones que sirven para ejecutar todos los _chunks_ anteriores y para ejecutar el _chunk_ actual. Junto con el texto formateado, constituyen el **contenido** del documento. \index{chunk}
 
 La barra de herramientas del editor ofrece algunas opciones:
 
-- El botón _Render_ convierte ("renderiza" en lenguaje informático) el documento **Quarto** produciendo el archivo de salida configurado. Se puede desplegar un menú para cambiar el formato de salida y otras opciones. Al crear el documento solo aparece el formato de salida elegido, pero se puede cambiar el encabezado para poder convertir el documento a distintos formatos. Por ejemplo si se cambia el encabezado que se ha creado por defecto por el siguiente, se puede generar el archivo de salida en html o word seleccionando en la lista desplegable junto al botón _Render_:
+- El botón _Render_ convierte ("renderiza" en lenguaje informático) el documento **Quarto** produciendo el archivo de salida configurado. Se puede desplegar un menú para cambiar el formato de salida y otras opciones. Al crear el documento sólo aparece el formato de salida elegido, pero se puede cambiar el encabezado para poder convertir el documento a distintos formatos. Por ejemplo, si se cambia el encabezado que se ha creado por defecto por el siguiente, se puede generar el archivo de salida en HTML o Word, seleccionando la opción en la lista desplegable junto al botón _Render_:
 
-      ````
       ---
       title: "Título del informe"
       format: 
@@ -151,11 +150,10 @@ La barra de herramientas del editor ofrece algunas opciones:
       docx: default
       editor: visual
       ---
-      ````
-
+     
 - El botón de opciones permite cambiar la forma en que se mostrarán las salidas al ejecutar el código desde el editor.
 
-- El botón _Insert a new code chunk_ nos permite insertar un nuevo fragmento de código. 
+- El botón _Insert a new code chunk_ permite insertar un nuevo fragmento de código. 
 
 - Las flechas de navegación permiten moverse entre los _chunks_ del 
 documento. También
@@ -164,42 +162,41 @@ apartado concreto del documento.
 
 - Desde el menú _Run_ se puede ejecutar el código de los distintos _chunks_.
 
-- El menú _Publish_ nos permitiría publicar el documento en algún servicio como [_RPubs_](https://rpubs.com)
+- El menú _Publish_ permite publicar el documento en algún servicio como [_RPubs_](https://rpubs.com).
 
 - El botón _Outline_ muestra un esquema para navegar por el documento, donde aparecerán los encabezados formateados con Markdown.
 
-- Se puede cambiar entre el editor visual y el del código fuente con los botones _Source_ y _Visual_ en la parte superior del editor.
+- Se puede cambiar entre el editor visual y el del código fuente con los botones _Source_ y _Visual_ en la parte superior del editor. \index{Microsoft Word}\index{LibreOffice}
 
-\index{Microsoft Word}\index{LibreOffice}
-
-Para generar el documento, se guarda el archivo en cualquier carpeta de nuestro
-proyecto y se utiliza el icono de conversión ("renderizado"). La Fig. \@ref(fig:ch-120007-captura-quarto) muestra en el panel izquierdo el archivo fuente en el editor visual, con alguna opción adicional añadida a la plantilla por defecto, y en el panel derecho el informe renderizado. Si en vez de pulsarlo directamente se selecciona el
-triángulo de la derecha, se puede seleccionar el formato de salida (html, pdf o Word)
+Para generar el documento, se guarda el archivo en cualquier carpeta del proyecto y se utiliza el icono de conversión ("renderizado"). La Fig. \@ref(fig:ch-120007-captura-quarto) muestra en el panel izquierdo el archivo fuente en el editor visual, con alguna opción adicional añadida a la plantilla por defecto, y en el panel derecho el informe renderizado. Si en vez de pulsarlo directamente se selecciona el
+triángulo de la derecha, se puede seleccionar el formato de salida (HTML, PDF o Word)
 si se han incluido esos formatos en el encabezado YAML como se ha indicado. 
 El formato PDF requiere tener instalada una
-distribución del sistema de edición libre LaTeX^[Se puede instalar una distribución 
-ligera de LaTeX con el paquete `tinytex` ejecutando `tinytex::install_tinytex()`
-habiendo instalado previamente dicho paquete.].
-El archivo de destino, con extensión .html, .pdf o .docx según el caso,
+distribución del sistema de edición libre LaTeX.[Note-inform-7] 
+El archivo de destino, con extensión .html, .pdf o .docx, según el caso,
 quedará guardado en la carpeta donde se encuentre el archivo quarto.
 Dependiendo de las opciones configuradas, el archivo se abrirá automáticamente
-en una ventana nueva de **RStudio** (por defecto), 
-o en la pestaña _Viewer_ del panel inferior derecho, o en el visor de pdf
+en una ventana nueva de **RStudio** (por defecto) 
+en la pestaña _Viewer_ del panel inferior derecho o en el visor de pdf
 integrado en **RStudio** (pdf). Para poder abrir archivos .docx será necesario tener
 instalado **Microsoft Word** o algún otro programa que pueda abrirlo, como **LibreOffice**.
 
+[^Note-inform-7]: Se puede instalar una distribución 
+ligera de LaTeX con el paquete `tinytex` ejecutando `tinytex::install_tinytex()`
+habiendo instalado previamente dicho paquete.
+
 <div class="figure" style="text-align: center">
-<img src="img/cdr_quarto.png" alt="Informe Quarto y el documento de salida que produce su conversión (&quot;renderizado&quot;) con algunas opciones adicionales" width="60%" />
-<p class="caption">(\#fig:ch-120007-captura-quarto)Informe Quarto y el documento de salida que produce su conversión ("renderizado") con algunas opciones adicionales</p>
+<img src="img/cdr_quarto.png" alt="Informe Quarto y el documento de salida que produce su conversión (renderizado) con algunas opciones adicionales." width="60%" />
+<p class="caption">(\#fig:ch-120007-captura-quarto)Informe Quarto y el documento de salida que produce su conversión (renderizado) con algunas opciones adicionales.</p>
 </div>
 
-\index{pandoc}
+\index{Pandoc}
 
 Se puede compilar el informe tantas veces como se quiera con el icono _Render_.
 Para trabajo en curso, se recomienda ir previsualizando en formato HTML, y una vez
 sea definitivo generar el formato de destino final. Para la conversión de 
 formatos, **RStudio** integra la aplicación
-[pandoc](https://pandoc.org). 
+[pandoc](https://pandoc.org)https://pandoc.org. 
 
 \index{cheetsheet}
 
@@ -214,7 +211,7 @@ abanico de proyectos.
 
 ## Documentos Quarto
 
-En esta sección se detalla cómo añadir contenido y configuración a un documento Quarto con algunas de las opciones más interesantes para la Ciencia de Datos reproducible.
+En esta sección se detalla cómo añadir contenido y configuración a un documento Quarto con algunas de las opciones más interesantes para la ciencia de datos reproducible.
 
 ### Encabezado YAML y configuración
 
@@ -234,8 +231,8 @@ Ya se ha visto cómo se pueden añadir más formatos, poniendo uno en cada líne
 
 ::: {.infobox data-latex=""}
 La "indentación" se refiere al número de espacios en blanco (o tabulaciones)
-al principio de cada línea. Las opciones que estén "dentro" de otra, deben tener la misma "indentación" (el mismo número de espacios en blanco al principio de la línea). Véase un ejemplo más completo debajo.
-En el encabezado YAML la incorrecta "indentación" puede provocar errores al generar el informe. 
+al principio de cada línea. Las opciones que estén "dentro" de otra deben tener la misma "indentación" (el mismo número de espacios en blanco al principio de la línea). Véase un ejemplo más completo debajo.
+Una  "indentación" incorrecta en el encabezado YAML puede provocar errores al generar el informe. 
 :::
 
 Además del título (opción `title`), se pueden incluir autor (opción `author`) y fecha (opción `date`).
@@ -246,7 +243,9 @@ posibles errores. El elemento `format` indica el formato de salida.
 \index{informes!bibliografía}\index{informes!plantilla}
 
 La cantidad de opciones que se pueden incluir en el encabezado YAML es enorme y no tiene cabida en este capítulo. Algunas de las más utilizadas son `lang` para indicar el idioma del documento ("es" para español),
-`bibliography` para indicar un fichero bibtex de bibliografía, o `toc` para incluir una tabla de contenidos. Algunas son específicas del formato. Por ejemplo, una muy útil es `reference-doc` para documentos de Word, con la que se puede indicar una plantilla personalizada para usar colores corporativos u otras opciones de diseño del informe^[La plantilla se debe crear a partir de un archivo generado con **Quarto**, modificando los estilos del documento y añadiendo elementos como encabezados y pies de página.]. Para documentos html se puede incluir una hoja de estilos con la opción `css`. La lista completa para cada uno de los formatos soportados por **Quarto** se puede consultar en la guía de referencia en https://quarto.org/docs/reference/.
+`bibliography` para indicar un fichero bibtex de bibliografía, o `toc` para incluir una tabla de contenidos. Algunas son específicas del formato. Por ejemplo, una muy útil es `reference-doc` para documentos de Word, con la que se puede indicar una plantilla personalizada para usar colores corporativos u otras opciones de diseño del informe.[^Note-inform-8] Para documentos html se puede incluir una hoja de estilos con la opción `css`. La lista completa para cada uno de los formatos soportados por **Quarto** se puede consultar en la guía de referencia en https://quarto.org/docs/reference/.
+
+[^Note-inform-8]: La plantilla se debe crear a partir de un archivo generado con **Quarto**, modificando los estilos del documento y añadiendo elementos como encabezados y pies de página.
 
 El siguiente encabezado YAML fijaría el ancho y el alto de las figuras (en pulgadas) para el formato de salida html, además de las otras opciones comentadas:
 
@@ -284,7 +283,7 @@ es muy sencillo, y a menudo no se necesita mucho más para realizar un informe.
 En el informe que se crea con la plantilla ya se ven algunas opciones:
 
 - Los encabezados se crean poniendo al principio de la línea tantos símbolos
-almohadilla (`##`) como nivel de título se desee (dos almohadillas, apartado, tres
+almohadilla (`#`) como nivel de título se desee (dos almohadillas, apartado, tres
 almohadillas, subapartado, etc.) Una almohadilla sería para el título del
 informe, si no se especificara en el encabezado.
 
@@ -295,7 +294,7 @@ graves (_backticks_, `` ` `` ): `` `monoespaciado` ``.
 
 - Los [enlaces](#) se crean con: `[texto del enlace](http://ejemplo.com)`.
 
-Existen otras opciones sencillas, que se pueden ver en la _Markdown Quick Reference_
+Existen otras opciones sencillas que se pueden ver en la _Markdown Quick Reference_
 del menú _Help_: 
 
 * _Cursiva_ rodeando el texto con un solo asterisco a cada lado (o guión bajo): `_cursiva_`. 
@@ -314,7 +313,7 @@ del menú _Help_:
 
 ````
     1. Primer elemento
-    2. segundo elemento
+    2. Segundo elemento
     3. ...
 ````
     
@@ -337,7 +336,7 @@ del menú _Help_:
 ````
 
 Con estas opciones se cubren las necesidades de la práctica totalidad de
-proyectos de análisis. No obstante, dependiendo del formato de salida se
+proyectos de análisis. No obstante, dependiendo del formato de salida, se
 pueden añadir otras opciones de formato. 
 
 
@@ -354,16 +353,19 @@ en forma de _chunks_ o bloques de código.
 Un _chunk_ consta de unos marcadores
 de inicio y final del _chunk_, entre los cuales se insertan expresiones de **R** que se
 ejecutarán al generar el documento de salida. El marcador de inicio son tres 
-símbolos de tilde grave seguidos de unas llaves con la letra r 
+símbolos de tilde grave seguidos de unas llaves con la letra `r` 
 dentro. El marcador de cierre del _chunk_ son de nuevo
-tres tildes graves, sin más. Y dentro del _chunk_ se pueden poner expresiones de **R** de la misma forma en que se trabaja con los _scripts_. Al convertir ("renderizar") el documento, el código se ejecutará con las opciones que se indiquen como se explica más adelante, y el archivo de salida incluirá el resultado de la ejecución del _chunk_. El siguiente sería un ejemplo de código para incluir gráficos en el informe.
+tres tildes graves, sin más. Y dentro del _chunk_ se pueden poner expresiones de **R** de la misma forma en que se trabaja con los _scripts_. Al convertir ("renderizar") el documento, el código se ejecutará con las opciones que se indiquen, como se explica más adelante, y el archivo de salida incluirá el resultado de la ejecución del _chunk_. El siguiente sería un ejemplo de código para incluir gráficos en el informe.
 
-    ```
+
+```r
+    ```{r}
     library(CDR)
     library(corrplot)
     mcor_tic <- cor(TIC2021)  
     corrplot.mixed(mcor_tic, order = 'AOE')
-    ```
+     ```
+```
 
 
 
@@ -372,7 +374,7 @@ se dispone del atajo de teclado `CTRL+ALT+I` que lo hace automáticamente, o,
 alternativamente, el icono _Insert a new code chunk_ de la barra de herramientas del 
 editor.
 Una vez se tiene el cursor dentro de un _chunk_, se puede ejecutar una expresión
-como del mismo modo que se hace en un _script_ (`CTRL+ENTER`), o el _chunk_ completo
+ del mismo modo que se hace en un _script_ (`CTRL+ENTER`), o el _chunk_ completo
 (`MAYUS+CTRL+ENTER`).
 
 A veces es necesario incluir algún resultado de **R** en medio del texto
@@ -399,7 +401,7 @@ YAML de la forma:
 que después se pueden usar en los _chunks_ de código como `params$parametro`.
 La verdadera potencia de esta característica es cuando se convierte el documento
 desde un _script_ en el que los parámetros son resultados de algún tipo de 
-operación en los datos (por ejemplo, un informe de análisis de inventario solo de una
+operación en los datos (por ejemplo, un informe de análisis de inventario sólo de una
 tienda donde se han producido roturas de stock el día x). 
 En vez de utilizar el botón _Render_, en estos casos se usa la función `quarto_render()`,
 una de cuyas opciones es `execute_params`, donde se pasarían los valores de los parámetros en forma
@@ -412,19 +414,22 @@ Al renderizar un informe que contiene _chunks_ sin configurar ninguna opción,
 el informe mostrará por defecto el código de entrada y las salidas
 (textos y gráficos), así como todos los mensajes que se pueden producir.
 
-Opcionalmente, justo después del marcador de inicio del _chunk_ se pueden añadir opciones del mismo mediante líneas que comienzan por el llamado _hashpipe_, que es una almohadilla seguida de la barra vertical, `#|` y a continuación la opción y su valor, de la misma forma que se hacía en el encabezado YAML para las opciones del documento, es decir, `opcion: valor`.
+Opcionalmente, justo después del marcador de inicio del _chunk_ se pueden añadir opciones del mismo mediante líneas que comienzan por el llamado _hashpipe_, que es una almohadilla seguida de la barra vertical, `#|`,  a continuación de la cual se puede escribir la opción y su valor, de la misma forma que se hacía en el encabezado YAML para las opciones del documento, es decir, `opcion: valor`.
 
-El _chunk_ que se muestra a continuación tiene como identificador "ejemplo",
+El _chunk_ que se muestra a continuación tiene como identificador "ejemplo"
 y como opciones `echo: false` y `fig.align: 'center'`, lo que indica que el código
 no se mostrará en el informe final y que el gráfico producido se alineará en el centro
 del texto. 
 
-    ```
+
+```r
+    ```{r}
     #| label: "Ejemplo"
     #| echo: false
     #| fig-align: 'center'
     plot(cars)
-    ```
+     ```
+```
 
 Las opciones de _chunk_ se pueden incluir de forma global en el documento estableciéndolas en el encabezado YAML del mismo, por ejemplo para mantener las opciones anteriores en todos los _chunks_ por defecto:
 
@@ -437,60 +442,70 @@ Las opciones de _chunk_ se pueden incluir de forma global en el documento establ
         fig-align: 'center'
     ---
 
-Es importante señalar que las opciones establecidas en los _chunks_ tienen prioridad a las opciones establecidas en el documento. 
+Es importante señalar que las opciones establecidas en los _chunks_ tienen prioridad sobre las opciones establecidas en el documento. 
 
 Hay varias opciones de _chunk_ que tienen que ver con la presentación en la salida. Por defecto, si se produce un error, el proceso se detiene y no se genera
 el archivo de destino. Este comportamiento, y otras muchas opciones,
-se pueden configurar como opciones del _chunk_. Las más habituales son: `error: true` para mostrar los errores y no detener la generación del documento; `warning: false` y `message: false` para no mostrar _warnings_ ni mensajes respectivamente; `include: false` para ejecutar el código pero no mostrar ningún tipo de salida; `eval: false` para no ejecutar el codigo; `results: "hide"` para indicar que no se muestren los resultados (otras opciones son `asis`,  `hold` o `markup`); `comment: simbolo` para cambiar el símbolo que se usará como comentario del output (a veces es conveniente simplemente no poner comentario, es decir, `""`). Estas opciones del _chunk_ se pueden incluir a nivel global en el encabezado YAML como se ha indicado anteriormente. La lista completa de opciones se encuentra en la _R Markdown reference guide_
-que está disponible en el menú _Help/Cheatsheets_, o a la [documentación de Quarto sobre opciones de ejecución](https://quarto.org/docs/computations/execution-options.html)^[https://quarto.org/docs/computations/execution-options.html].
+se pueden configurar como opciones del _chunk_. Las más habituales son: `error: true` para mostrar los errores y no detener la generación del documento; `warning: false` y `message: false` para no mostrar _warnings_ ni mensajes, respectivamente; `include: false` para ejecutar el código pero no mostrar ningún tipo de salida; `eval: false` para no ejecutar el codigo; `results: "hide"` para indicar que no se muestren los resultados (otras opciones son `asis`,  `hold` o `markup`); `comment: simbolo` para cambiar el símbolo que se usará como comentario del output (a veces es conveniente simplemente no poner comentario, es decir, `""`). Estas opciones del _chunk_ se pueden incluir a nivel global en el encabezado YAML como se ha indicado anteriormente. La lista completa de opciones se encuentra en la _R Markdown reference guide_
+que está disponible en el menú _Help/Cheatsheets_, o en la [documentación de Quarto sobre opciones de ejecución](https://quarto.org/docs/computations/execution-options.html)^[https://quarto.org/docs/computations/execution-options.html].
 
 
-Una característica muy cómoda es usar la ayuda contextual al escribir las opciones del _chunk_. Al comenzar a escribir, o pulsando la combinación de teclas `CTRL+ESPACIO`, se
+La ayuda contextual resulta muy cómoda al escribir las opciones del _chunk_. Al comenzar a escribir, o pulsando la combinación de teclas `CTRL+ESPACIO`, se
 muestran las opciones disponibles, y al seleccionar una opción, si tiene
-varios posibles valores aparecen también para seleccionar.
+varios posibles valores, aparecen también para seleccionar uno de ellos.
 
 
 ### Referencias cruzadas y formateo de tablas
 
 \index{tablas!formateadas}
 
-La salida tabular por defecto de la consola normalmente no es adecuada para un informe. En su lugar, lo que se desea es tener una tabla formateada adecuadamente para el formato de salida. Se pueden incluir en los informes de **Quarto** tablas formateadas de calidad. Para ello, se debe utilizar alguna función que formatee la tabla de acuerdo al formato de salida (HTML, PDF, Word) y, a veces, configurar la opción `results` del _chunk_ como `'asis'`. Muchas de estas funciones preparan automáticamente el formato según el fichero de salida que se está generando.
+La salida tabular por defecto de la consola normalmente no es adecuada para un informe. En su lugar, lo que se desea es tener una tabla formateada adecuadamente para el formato de salida. En los informes de **Quarto** se pueden incluir tablas formateadas de calidad. Para ello, se debe utilizar alguna función que formatee la tabla de acuerdo al formato de salida (HTML, PDF, Word) y, a veces, configurar la opción `results` del _chunk_ como `'asis'`. Muchas de estas funciones preparan automáticamente el formato según el fichero de salida que se está generando.
 Por ejemplo, el siguiente _chunk_ generaría una tabla en cualquiera de los formatos de salida usando la función `kable` del paquete `knitr`:
 
-     ```{r}
+
+```r
+    ```{r}
      knitr::kable(TIC2021)
      ```
+```
      
-Hay otros paquetes con multitud de opciones de formato y presentación para las tablas como `xtable`, `flextable`, `kableExtra`, `DT`, o `gt`. Se anima al lector a consultar la documentación de estos paquetes para aprender a crear tablas de calidad que comuniquen adecuadamente los resultados de los análisis.
+Hay otros paquetes con multitud de opciones de formato y presentación para las tablas, como `xtable`, `flextable`, `kableExtra`, `DT` y `gt`. Se anima al lector a consultar la documentación de estos paquetes para aprender a crear tablas de calidad que comuniquen adecuadamente los resultados de los análisis.
 
 \index{informes!referencias cruzadas}\index{informes!gráficos}
 
-Tanto las tablas como las figuras se deben referenciar adecuadamente en los informes. Para ello se utilizan las **referencias cruzadas** de los informes **Quarto**. Para poder referenciar un gráfico creado en un _chunk_, es necesario: i) que el _chunk_ tenga una etiqueta (`label: 'etiqueta'`); ii) que el _chunk_ tenga una opción `fig-cap` para el título de la figura. Entonces el gráfico se puede referenciar en cualquier lugar del documento **Quarto** simplemente escribiendo `@etiqueta`. Por ejemplo, el siguiente _chunk_ crearía el gráfico de la figura \@ref(fig:ch-120007-ref-fig), y en el texto se referenciaría como "`Figura @fig-tic`".
+Tanto las tablas como las figuras se deben referenciar adecuadamente en los informes. Para ello se utilizan las **referencias cruzadas** de los informes **Quarto**. Para poder referenciar un gráfico creado en un _chunk_, es necesario: $(i)$ que el _chunk_ tenga una etiqueta (`label: 'etiqueta'`); y $(ii)$ que el _chunk_ tenga una opción `fig-cap` para el título de la figura. Entonces el gráfico se puede referenciar en cualquier lugar del documento **Quarto** simplemente escribiendo `@etiqueta`. Por ejemplo, el siguiente _chunk_ genera el gráfico de la Fig. \@ref(fig:ch-120007-ref-fig), y en el texto se referenciaría como "`Figura @fig-tic`".
 
+
+
+```r
     ```{r}
     #| label: "fig-tic"
     #| fig-cap: "Ventas vs. % empresas con banda ancha"
-    library('ggplot2')
-    library('CDR')
+    library("ggplot2")
+    library("CDR")
     TIC2021 |> 
       ggplot(aes(ebroad, esales)) +
       geom_point() +
       geom_smooth(method = "lm")
-    ```
+     ```
+```
+
 
 <div class="figure" style="text-align: center">
-<img src="120007_Infor_quarto_files/figure-html/ch-120007-ref-fig-1.png" alt="Ventas vs. \% Empresas con banda ancha" width="55%" />
-<p class="caption">(\#fig:ch-120007-ref-fig)Ventas vs. \% Empresas con banda ancha</p>
+<img src="120007_Infor_quarto_files/figure-html/ch-120007-ref-fig-1.png" alt="Ventas vs. \% empresas con banda ancha." width="55%" />
+<p class="caption">(\#fig:ch-120007-ref-fig)Ventas vs. \% empresas con banda ancha.</p>
 </div>
 
 
 
 \index{referencias cruzadas}
 
-En cuanto a las tablas, igualmente el _chunk_ que las crea debe tener una etiqueta. El título de la tabla en este caso lo proporcionará la propia función que la crea. A modo de ejemplo, el siguiente _chunk_ crearía la Tabla \@ref(tab:ch-120007-ref-tab) ya formateada con la función `flextable()` del paquete homónimo [@R-flextable], y en el texto se referenciaría como "`Tabla @tab-tic`".
+En cuanto a las tablas, también el _chunk_ que las crea debe tener una etiqueta. El título de la tabla en este caso lo proporciona la propia función que la crea. A modo de ejemplo, el siguiente _chunk_ crea la Tabla \@ref(tab:ch-120007-ref-tab) ya formateada con la función `flextable()` del paquete homónimo [@R-flextable], y en el texto se referenciaría como "`Tabla @tab-tic`".
 
 
 
+
+```r
     ```{r}
     #| label: "tab-tic"
     #| fig-cap: "Contaminación media NOx según tipo de estación"
@@ -505,40 +520,87 @@ En cuanto a las tablas, igualmente el _chunk_ que las crea debe tener una etique
       flextable() |> 
       set_caption("Contaminación media NOx según tipo de estación.") |> 
       autofit()
-    ```
-
+     ```
+```
 
 ```{=html}
-<div class="tabwid"><style>.cl-2ea28b68{}.cl-2e95aaf6{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2e9a8706{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2e9a8710{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2e9ab91a{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab924{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab92e{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab92f{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab938{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab939{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab93a{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab942{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab943{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab94c{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab94d{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e9ab956{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-2ea28b68'>
+<template id="4b908252-898d-4917-b6ca-5268c1d79263"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  border-color: transparent;
+  caption-side: top;
+}
+.tabwid-caption-bottom table{
+  caption-side: bottom;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+.katex-display {
+    margin: 0 0 !important;
+}
+</style><div class="tabwid"><style>.cl-2d71ddf2{}.cl-2d6953b2{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2d6c874e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2d6c8758{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2d6c9e82{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d6c9e8c{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d6c9e8d{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d6c9e96{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d6c9e97{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d6c9e98{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d6c9e99{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d6c9ea0{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d6c9ea1{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d6c9ea2{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d6c9ea3{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d6c9eaa{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d658c1e{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}</style><table class='cl-2d71ddf2'>
 
 ```
 
-<caption style="display:table-caption;margin:0pt;text-align:center;border-bottom: 0.00pt solid transparent;border-top: 0.00pt solid transparent;border-left: 0.00pt solid transparent;border-right: 0.00pt solid transparent;padding-top:3pt;padding-bottom:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;">(\#tab:ch-120007-ref-tab)<span>Contaminación media NOx según tipo de estación.</span></caption>
+<caption>(\#tab:ch-120007-ref-tab)<span class="cl-2d658c1e">Contaminación media NOx según tipo de estación.</span></caption>
 
 ```{=html}
 
-<thead><tr style="overflow-wrap:break-word;"><th class="cl-2e9ab91a"><p class="cl-2e9a8706"><span class="cl-2e95aaf6">tipo</span></p></th><th class="cl-2e9ab924"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">Media</span></p></th><th class="cl-2e9ab92e"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">n</span></p></th><th class="cl-2e9ab924"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">Desv.Tip</span></p></th><th class="cl-2e9ab92f"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">Perdidos</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2e9ab938"><p class="cl-2e9a8706"><span class="cl-2e95aaf6">Fondo</span></p></td><td class="cl-2e9ab939"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">64.11108</span></p></td><td class="cl-2e9ab93a"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">49,656</span></p></td><td class="cl-2e9ab939"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">61.48603</span></p></td><td class="cl-2e9ab942"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">70</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e9ab938"><p class="cl-2e9a8706"><span class="cl-2e95aaf6">Suburbanas</span></p></td><td class="cl-2e9ab939"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">32.87574</span></p></td><td class="cl-2e9ab93a"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">12,414</span></p></td><td class="cl-2e9ab939"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">32.13426</span></p></td><td class="cl-2e9ab942"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">39</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e9ab943"><p class="cl-2e9a8706"><span class="cl-2e95aaf6">Tráfico</span></p></td><td class="cl-2e9ab94c"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">81.27392</span></p></td><td class="cl-2e9ab94d"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">33,104</span></p></td><td class="cl-2e9ab94c"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">68.13974</span></p></td><td class="cl-2e9ab956"><p class="cl-2e9a8710"><span class="cl-2e95aaf6">83</span></p></td></tr></tbody></table></div>
-```
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-2d6c9e82"><p class="cl-2d6c874e"><span class="cl-2d6953b2">tipo</span></p></td><td class="cl-2d6c9e8c"><p class="cl-2d6c8758"><span class="cl-2d6953b2">Media</span></p></td><td class="cl-2d6c9e8d"><p class="cl-2d6c8758"><span class="cl-2d6953b2">n</span></p></td><td class="cl-2d6c9e8c"><p class="cl-2d6c8758"><span class="cl-2d6953b2">Desv.Tip</span></p></td><td class="cl-2d6c9e96"><p class="cl-2d6c8758"><span class="cl-2d6953b2">Perdidos</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2d6c9e97"><p class="cl-2d6c874e"><span class="cl-2d6953b2">Fondo</span></p></td><td class="cl-2d6c9e98"><p class="cl-2d6c8758"><span class="cl-2d6953b2">64.11108</span></p></td><td class="cl-2d6c9e99"><p class="cl-2d6c8758"><span class="cl-2d6953b2">49,656</span></p></td><td class="cl-2d6c9e98"><p class="cl-2d6c8758"><span class="cl-2d6953b2">61.48603</span></p></td><td class="cl-2d6c9ea0"><p class="cl-2d6c8758"><span class="cl-2d6953b2">70</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2d6c9e97"><p class="cl-2d6c874e"><span class="cl-2d6953b2">Suburbanas</span></p></td><td class="cl-2d6c9e98"><p class="cl-2d6c8758"><span class="cl-2d6953b2">32.87574</span></p></td><td class="cl-2d6c9e99"><p class="cl-2d6c8758"><span class="cl-2d6953b2">12,414</span></p></td><td class="cl-2d6c9e98"><p class="cl-2d6c8758"><span class="cl-2d6953b2">32.13426</span></p></td><td class="cl-2d6c9ea0"><p class="cl-2d6c8758"><span class="cl-2d6953b2">39</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2d6c9ea1"><p class="cl-2d6c874e"><span class="cl-2d6953b2">Tráfico</span></p></td><td class="cl-2d6c9ea2"><p class="cl-2d6c8758"><span class="cl-2d6953b2">81.27392</span></p></td><td class="cl-2d6c9ea3"><p class="cl-2d6c8758"><span class="cl-2d6953b2">33,104</span></p></td><td class="cl-2d6c9ea2"><p class="cl-2d6c8758"><span class="cl-2d6953b2">68.13974</span></p></td><td class="cl-2d6c9eaa"><p class="cl-2d6c8758"><span class="cl-2d6953b2">83</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="0da66535-fe51-40a4-8385-0380893ddae8"></div>
+<script>
+var dest = document.getElementById("0da66535-fe51-40a4-8385-0380893ddae8");
+var template = document.getElementById("4b908252-898d-4917-b6ca-5268c1d79263");
+var caption = template.content.querySelector("caption");
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
 
+```
 
 
 ## Otros formatos
 
 \index{latex}
 
-El formato **Quarto** es solo uno de los que se pueden utilizar
+El formato **Quarto** es sólo uno de los que se pueden utilizar
 para aplicar la reproducibilidad que motiva este capítulo. Como se ha comentado, es la nueva generación de **R Markdown**, archivos que pueden seguir creándose con **RStudio**.  En **R** base
 se pueden crear archivos `Sweave`, con sintaxis LaTeX para la
 narrativa y bloques de código **R**. También es posible crear archivos R HTML,
 con la narrativa en HTML. Los identificadores de los bloques son ligeramente
 distintos, así como las opciones disponibles, aunque la filosofía es la misma.
-**R Markdown** y ahora **Quarto** han ido desplazando estos otros formatos al ser más versátil (puede 
-generar cualquiera de los otros formatos, y además otros como .docx).
+**R Markdown**, y ahora **Quarto**, han ido desplazando estos otros formatos al ser más versátiles (pueden 
+generar cualquiera de los otros formatos y además otros como .docx).
 
 En cuanto a los formatos de salida, hay una cantidad de opciones muy interesante
 que queda fuera de los objetivos de este libro. A continuación se relacionan 
-algunos de ellos, si bien se puede consultar el libro de @xie2019r y la documentación de **Quarto** para
-ver detalles.
+algunos de ellos, si bien se puede consultar el libro de @xie2019r y la documentación de **Quarto** para obtener más información.
 
 - **Notebooks**: es un tipo especial de salida HTML, más indicado cuando 
 se quieren ir probando cosas guardando el resultado parcial de lo ejecutado en el html.
@@ -551,7 +613,7 @@ presentaciones son Reveal JS y beamer (LaTeX) y con **Quarto**, además, ioslide
 - **Tableros** (_dashboards_): pueden ser estáticos, usando el paquete `flexdashboard`,
 útiles para comunicar resultados en un par de pantallazos. \index{dashboard}
 
-- **Shiny**: aplicaciones web interactivas que responden a inputs del usuario (_reactive_). Estas aplicaciones se tratan en detalla en el Cap. \@ref(shiny). \index{shiny}
+- **Shiny**: aplicaciones web interactivas que responden a inputs del usuario (_reactive_). Estas aplicaciones se tratan en detalle en el Cap. \@ref(shiny). \index{Shiny}
 
 - **Websites**: websites sencillos con páginas enlazadas en el mismo directorio.
 
@@ -572,11 +634,11 @@ que comunica muy bien.
 ### Resumen {-}
 
 - En la comunicación de resultados, es esencial seguir un enfoque reproducible.
-- **R Markdown** y su evolución **Quarto** es el formato más versátil para crear informes reproducibles que 
+- **R Markdown**, y su evolución **Quarto**, es el formato más versátil para crear informes reproducibles que 
 permitan una trazabilidad de los análisis.
 - **RStudio** permite trabajar eficientemente con **R Markdown** y **Quarto** a través de ayuda y opciones.
 - El encabezado YAML del informe contiene la configuración global, que puede incluir parámetros para automatización.
-- La narrativa del informe se escribe en Markdown, con una sintaxis extremadamente sencilla.
+- La narrativa del informe se escribe en Markdown con una sintaxis extremadamente sencilla.
 - El código se puede incluir en forma de bloques (_chunks_) o en línea.
 - En las opciones del _chunk_ se puede personalizar
 la forma en que se ejecutará y mostrará en el informe.

@@ -7,7 +7,7 @@
 <title>Capítulo 51 Análisis electoral: de Rstudio a su periódico | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Borja Andrino Turón EL PAÍS   51.1 Motivación El uso de R en el entorno profesional ha llegado también a los periódicos. Cada vez es más habitual encontrar en los medios analistas de datos que lo...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 51 Análisis electoral: de Rstudio a su periódico | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,10 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
-<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -33,7 +34,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -76,13 +77,13 @@
 <li class="book-part">Machine learning supervisado</li>
 <li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
-<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
-<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
 <li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
 <li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
@@ -108,18 +109,15 @@
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
 <li><a class="active" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
-<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
-<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
-<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -139,19 +137,21 @@
 <h2>
 <span class="header-section-number">51.1</span> Motivación<a class="anchor" aria-label="anchor" href="#motivaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h2>
-<p>El uso de <strong>R</strong> en el entorno profesional ha llegado también a los periódicos. Cada vez es más habitual encontrar en los medios analistas de datos que lo utilizan en su día a día. En EL PAÍS, muchos de los contenidos que se publican en la Unidad de Datos surgen de un notebook de RStudio. A continuación, se muestra un análisis sobre las últimas elecciones andaluzas, de RStudio a su periódico favorito.</p>
+<p>El uso de <strong>R</strong> en el entorno profesional ha llegado también a los periódicos. Cada vez es más habitual encontrar en los medios analistas de datos que lo utilizan en su día a día. En EL PAÍS, muchos de los contenidos que se publican en la Unidad de Datos surgen de un notebook de RStudio. A continuación se muestra un análisis sobre las últimas elecciones andaluzas bajo el título “De RStudio a su periódico favorito”.</p>
 </div>
 <div id="obtención-de-los-datos" class="section level2" number="51.2">
 <h2>
 <span class="header-section-number">51.2</span> Obtención de los datos<a class="anchor" aria-label="anchor" href="#obtenci%C3%B3n-de-los-datos"><i class="fas fa-link"></i></a>
 </h2>
-<p>Los datos electorales no siempre son igual de accesibles. Los de las elecciones que dependen del Ministerio del Interior se publican en el portal <a href="https://infoelectoral.interior.gob.es/opencms/es/inicio/">Infoelectoral</a>. En el caso de las elecciones andaluzas, los resultados a nivel de mesa se han publicado en los portales de cada convocatoria, aunque pueden encontrarse entre los contenidos del libro para replicar estos análisis.</p>
-<p>En primer lugar se compondrá un diccionario de municipios que se usará para filtrar y agrupar los resultados por provincia. Primero se escrapeará de la web del INE la relación de códigos de provincia con la librería rvest. Se lee el código html de la página y se buscan los elementos table con clase miTabla. A continuación, se usa la función html_table para convertir las tres tablas en un objeto tibble. La información con los nombres de municipios y provincias se leerá en la web del INE.</p>
-<div class="sourceCode" id="cb761"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load</span><span class="op">(</span><span class="va">CDR</span>, <span class="va">ggplot2</span>, <span class="va">dplyr</span>, <span class="va">rvest</span>, <span class="va">lubridate</span>, <span class="va">sf</span>, <span class="va">ggtext</span>, </span>
-<span>               <span class="va">rio</span>, <span class="va">janitor</span>, <span class="va">here</span>, <span class="va">purrr</span>, <span class="va">stringr</span>, <span class="va">scales</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">url_provincias</span> <span class="op">&lt;-</span> </span>
+<p>Los datos electorales no siempre son igual de accesibles. Los de las elecciones que dependen del Ministerio del Interior se publican en el portal <a href="https://infoelectoral.interior.gob.es/opencms/es/inicio/">Infoelectoral</a> <a href="https://infoelectoral.interior.gob.es/opencms/es/inicio/" class="uri">https://infoelectoral.interior.gob.es/opencms/es/inicio/</a>. En el caso de las elecciones andaluzas, los resultados a nivel de mesa se han publicado en los portales de cada convocatoria, si bien pueden encontrarse en el paquete <code>CDR</code> del libro los necesarios para replicar este capítulo.</p>
+<p>En primer lugar, se compone un diccionario de municipios que se usará para filtrar y agrupar los resultados por provincia. Primero se escrapea de la web del INE la relación de códigos de provincia con la librería <code>rvest</code>. Se lee el código HTML de la página y se buscan los elementos table con clase <code>miTabla</code>. A continuación, se usa la función <code><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table()</a></code> para convertir las tres tablas en un objeto <code>tibble</code>. La información con los nombres de municipios y provincias se leerá de la web del INE.</p>
+<p></p>
+<div class="sourceCode" id="cb766"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># lee las librerías necesarias para el análisis</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">CDR</span>, <span class="va">ggplot2</span>, <span class="va">dplyr</span>, <span class="va">rvest</span>, <span class="va">lubridate</span>, <span class="va">sf</span>, <span class="va">ggtext</span>, </span>
+<span>               <span class="va">rio</span>, <span class="va">janitor</span>, <span class="va">here</span>, <span class="va">purrr</span>, <span class="va">stringr</span>, <span class="va">scales</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb767"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">url_provincias</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="st">"https://www.ine.es/daco/daco42/codmun/cod_provincia.htm"</span></span>
 <span></span>
 <span><span class="va">cod_provincias</span> <span class="op">&lt;-</span> </span>
@@ -166,26 +166,26 @@
 <span>  <span class="st">"https://www.ine.es/daco/daco42/codmun/codmun20/20codmun.xlsx"</span></span>
 <span></span>
 <span><span class="va">cod_municipios</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu">import</span><span class="op">(</span><span class="va">url_municipios</span>, skip <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rstudio.github.io/reticulate/reference/import.html">import</a></span><span class="op">(</span><span class="va">url_municipios</span>, skip <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">clean_names</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html">transmute</a></span><span class="op">(</span>codigo_prov <span class="op">=</span> <span class="va">cpro</span>, </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>codigo_prov <span class="op">=</span> <span class="va">cpro</span>, </span>
 <span>            codigo_mun <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">"{codigo_prov}{cmun}"</span><span class="op">)</span>, </span>
 <span>            name_mun <span class="op">=</span> <span class="va">nombre</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">cod_provincias</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">codigo_mun</span>, <span class="va">name_mun</span>, <span class="va">name_prov</span><span class="op">)</span></span></code></pre></div>
 <p>Se añade la información sobre municipios al dataset de elecciones que tiene los datos de cada sección censal.</p>
-<div class="sourceCode" id="cb762"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb768"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">datos_elecciones</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">datos_elecciones</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">cod_municipios</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">codigo_secc</span>, <span class="va">codigo_mun</span>, <span class="va">name_mun</span>, <span class="va">name_prov</span>, <span class="va">convocatoria</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="transformación-y-primeros-gráficos" class="section level2" number="51.3">
+<div id="transformación-de-variables-y-visualización-de-resultados" class="section level2" number="51.3">
 <h2>
-<span class="header-section-number">51.3</span> Transformación y primeros gráficos<a class="anchor" aria-label="anchor" href="#transformaci%C3%B3n-y-primeros-gr%C3%A1ficos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">51.3</span> Transformación de variables y visualización de resultados<a class="anchor" aria-label="anchor" href="#transformaci%C3%B3n-de-variables-y-visualizaci%C3%B3n-de-resultados"><i class="fas fa-link"></i></a>
 </h2>
-<p>En el primer gráfico se mostrará la evolución de los votos a partidos de izquierda y de derecha en toda Andalucía desde 2015. Primero se calculan los votos válidos en cada convocatoria. Como en la estructura de datos ese dato está repetido para cada combinación de convocatoria-sección-partido se usará la función distinct antes de agrupar y sumar los votos validos de todas las secciones.</p>
-<div class="sourceCode" id="cb763"><pre class="downlit sourceCode r">
+<p>En el primer gráfico (Fig. @#ref(fig:plot-voto-and)) se muestra la evolución de los votos a partidos de izquierda y de derecha en toda Andalucía desde 2015. Primero se calculan los votos válidos en cada convocatoria. Como en la estructura de datos ese dato está repetido para cada combinación de convocatoria-sección-partido se usa la función <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> antes de agrupar y sumar los votos validos de todas las secciones.</p>
+<div class="sourceCode" id="cb769"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">datos_elecciones_validos_total</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">datos_elecciones</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">convocatoria</span>, <span class="va">codigo_secc</span>, .keep_all <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -202,9 +202,9 @@
 <span></span>
 <span><span class="va">datos_elecciones_validos</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">datos_elecciones_validos_total</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">datos_elecciones_validos_provs</span><span class="op">)</span></span></code></pre></div>
-<p>Ahora se calcula la suma de votos de cada bloque en cada convocatoria. En este caso, como cada fila tiene el dato de votos de un partido distinto no es necesaria la función distinct.</p>
-<div class="sourceCode" id="cb764"><pre class="downlit sourceCode r">
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">datos_elecciones_validos_provs</span><span class="op">)</span></span></code></pre></div>
+<p>Ahora se calcula la suma de votos de cada bloque en cada convocatoria. En este caso, como cada fila tiene el dato de votos de un partido distinto no es necesaria la función <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code>.</p>
+<div class="sourceCode" id="cb770"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">datos_bloques_total</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">datos_elecciones</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>region <span class="op">=</span> <span class="st">"Andalucía"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -219,11 +219,11 @@
 <span></span>
 <span><span class="va">datos_bloques</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">datos_bloques_total</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">datos_bloques_provs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">datos_bloques_provs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">datos_elecciones_validos</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>votos_bloque_pc <span class="op">=</span> <span class="va">votos_bloque</span> <span class="op">/</span> <span class="va">validos</span><span class="op">)</span></span></code></pre></div>
-<p>A continuación, se realiza el gráfico con los daton que se han calculado antes. Se definen los colores que representan a cada bloque, las fechas para poder etiquetar en el gráfico los ticks del eje x y se programa el gráfico.</p>
-<div class="sourceCode" id="cb765"><pre class="downlit sourceCode r">
+<p>A continuación, se construye el gráfico con los datos que se han calculado antes. Se definen los colores que representan a cada bloque, las fechas para poder etiquetar en el gráfico los <em>ticks</em> del eje x y se programa el gráfico.</p>
+<div class="sourceCode" id="cb771"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">title</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="st">"Evolución de voto a partidos de &lt;b style='color:#457b9d;'&gt;derecha&lt;/b&gt;, &lt;b style='color:#e63946;'&gt;izquierda&lt;/b&gt;&lt;br&gt;y &lt;b style='color:#676767;'&gt;otros&lt;/b&gt; desde 2015"</span></span>
 <span></span>
@@ -249,12 +249,12 @@
 <span>        plot.title <span class="op">=</span> <span class="fu">element_markdown</span><span class="op">(</span>margin<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">30</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-voto-and"></span>
-<img src="img/plot-voto-andalucia.png" alt="Evolución del voto en Andalucía" width="75%"><p class="caption">
-Figura 51.1: Evolución del voto en Andalucía
+<img src="img/plot-voto-andalucia.png" alt="Evolución del voto en Andalucía." width="75%"><p class="caption">
+Figura 51.1: Evolución del voto en Andalucía.
 </p>
 </div>
-<p>Replicar la Fig. <a href="cap-periodismo.html#fig:plot-voto-and">51.1</a> para cada provincia no es complicado. Sólo se descartarán los datos de toda Andalucía y se usará la función <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> que realizará el mismo gráfico con el mismo estilo para cada provincia.</p>
-<div class="sourceCode" id="cb766"><pre class="downlit sourceCode r">
+<p>Replicar la Fig. <a href="cap-periodismo.html#fig:plot-voto-and">51.1</a> para cada provincia no es complicado. ünicamente hay que descartar los datos de toda Andalucía y usar la función <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code>, que genera el mismo gráfico con el mismo estilo para cada provincia.</p>
+<div class="sourceCode" id="cb772"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">datos_bloques</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">!=</span> <span class="st">"Andalucía"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">convocatoria</span>, y <span class="op">=</span> <span class="va">votos_bloque_pc</span>, </span>
@@ -273,12 +273,12 @@ Figura 51.1: Evolución del voto en Andalucía
 <span>        plot.title <span class="op">=</span> <span class="fu">element_markdown</span><span class="op">(</span>margin<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">10</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-voto-pro"></span>
-<img src="img/voto-andalucia-pro.png" alt="Evolución del voto provincial" width="75%"><p class="caption">
-Figura 51.2: Evolución del voto provincial
+<img src="img/voto-andalucia-pro.png" alt="Evolución del voto provincial en Andalucía." width="75%"><p class="caption">
+Figura 51.2: Evolución del voto provincial en Andalucía.
 </p>
 </div>
-<p>La Fig. <a href="cap-periodismo.html#fig:plot-voto-pro">51.2</a> cuenta una historia complementaria al primero. El giro no se ha producido igual en toda Andalucía, no es igual el de Almería que el de Sevilla. Para intentar buscar nuevas diferencias territoriales se explorarán los mapas de ganadores a nivel municipal. Se procede de igual manera que con los datos de provincias, salvo que en este caso se agrega a partir de la columna <code>codigo_mun</code>. Para calcular el ganador se agrupa por esta columna y se usa la función <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code>, que tomará para cada municipio la fila del partido con el mayor número de votos.</p>
-<div class="sourceCode" id="cb767"><pre class="downlit sourceCode r">
+<p>La Fig. <a href="cap-periodismo.html#fig:plot-voto-pro">51.2</a> cuenta una historia complementaria (más detallada) a la relatada por la Fig. <a href="cap-periodismo.html#fig:plot-voto-and">51.1</a>. El giro no se ha producido igual en toda Andalucía, no es igual el de Almería que el de Sevilla. Para intentar buscar nuevas diferencias territoriales se explorarán los mapas de ganadores a nivel municipal. Se procede de igual manera que con los datos de provincias, salvo que en este caso se agrega a partir de la columna <code>codigo_mun</code>. Para calcular el ganador se agrupa por esta columna y se usa la función <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code>, que tomará para cada municipio la fila del partido con el mayor número de votos.</p>
+<div class="sourceCode" id="cb773"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">datos_elecciones_validos_muns</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">datos_elecciones</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">convocatoria</span>, <span class="va">codigo_secc</span>, .keep_all <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -300,8 +300,9 @@ Figura 51.2: Evolución del voto provincial
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">votos_bloque</span>, n <span class="op">=</span> <span class="fl">1</span>, with_ties <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">convocatoria</span>, <span class="va">codigo_mun</span>, </span>
 <span>         winner <span class="op">=</span> <span class="va">bloque</span>, <span class="va">votos_bloque_pc</span><span class="op">)</span> </span></code></pre></div>
-<p>Para realizar el gráfico se tomará el objeto <code>sf</code> con los recintos de los municipios andaluces y se les añadirá los datos de ganadores calculados anteriormente con la función <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>. Se usa el color del bloque para el relleno y el porcentaje de votos que suma el bloque ganador para la transparencia, de forma que de un vistazo se pueden encontrar feudos de uno u otro bloque.</p>
-<div class="sourceCode" id="cb768"><pre class="downlit sourceCode r">
+<p>Para crear el gráfico de la Fig. <a href="cap-periodismo.html#fig:plot-voto-pro">51.2</a> se toma el objeto <code>sf</code> con los recintos de los municipios andaluces y se les añaden los datos de ganadores calculados anteriormente con la función <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>. Se usa el color del bloque para el relleno y el porcentaje de votos que suma el bloque ganador para la transparencia[^transparencia], de forma que de un vistazo se pueden encontrar feudos de uno u otro bloque.
+[^transparencia]: La transparencia en diseño gráfico se refiere al grado de opacidad de una imagen.</p>
+<div class="sourceCode" id="cb774"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">map_munis</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">datos_winners_muns</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>convocatoria <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">convocatoria</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -318,24 +319,25 @@ Figura 51.2: Evolución del voto provincial
 <span>        plot.title <span class="op">=</span> <span class="fu">element_markdown</span><span class="op">(</span>margin<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">10</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-voto-andalucia-muni"></span>
-<img src="img/voto-andalucia-muni.png" alt="Resultados de las elecciones andaluzas" width="70%"><p class="caption">
-Figura 51.3: Resultados de las elecciones andaluzas
+<img src="img/voto-andalucia-muni.png" alt="Evolución del voto municipal en Andalucía (2015-2018-2022)." width="70%"><p class="caption">
+Figura 51.3: Evolución del voto municipal en Andalucía (2015-2018-2022).
 </p>
 </div>
-<p>En los mapas se encuentran nuevas historias. En 2015 la derecha era fuerte en la costa de Almería y Málaga. Su presencia creció en 2018, aunque la izquierdas seguía ganando el interior de la comunidad. En 2018 el dominio del bloque de derechas se extiende por casi todo el territorio, en especial en las zonas donde ya era fuerte en 2015.</p>
+<p>En los mapas de la Fig. <a href="cap-periodismo.html#fig:plot-voto-andalucia-muni">51.3</a> se encuentran nuevas historias. En 2015 la derecha era fuerte en la costa de Almería y Málaga. Su presencia creció en 2018, aunque la izquierdas seguía ganando el interior de la comunidad. En 2018 el dominio del bloque de derechas se extendió por casi todo el territorio, en especial en las zonas donde ya era fuerte en 2015.</p>
+<div class="inline-figure"><img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;"></div>
 
 </div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></div>
-<div class="next"><a href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></div>
+<div class="next"><a href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap-periodismo"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
 <li><a class="nav-link" href="#motivaci%C3%B3n"><span class="header-section-number">51.1</span> Motivación</a></li>
 <li><a class="nav-link" href="#obtenci%C3%B3n-de-los-datos"><span class="header-section-number">51.2</span> Obtención de los datos</a></li>
-<li><a class="nav-link" href="#transformaci%C3%B3n-y-primeros-gr%C3%A1ficos"><span class="header-section-number">51.3</span> Transformación y primeros gráficos</a></li>
+<li><a class="nav-link" href="#transformaci%C3%B3n-de-variables-y-visualizaci%C3%B3n-de-resultados"><span class="header-section-number">51.3</span> Transformación de variables y visualización de resultados</a></li>
 </ul>
 
       <div class="book-extra">
@@ -352,7 +354,7 @@ Figura 51.3: Resultados de las elecciones andaluzas
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

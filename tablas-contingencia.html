@@ -7,7 +7,7 @@
 <title>Capítulo 23 Análisis de tablas de contingencia | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="José-María Montero Universidad de Castilla-La Mancha  23.1 Introducción  Las tablas de contingencia analizan la relación existente entre variables categóricas, o susceptibles de categorizar, con...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 23 Análisis de tablas de contingencia | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,10 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
-<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -33,7 +34,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -76,13 +77,13 @@
 <li class="book-part">Machine learning supervisado</li>
 <li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
-<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
-<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
 <li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
 <li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
@@ -108,18 +109,15 @@
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
 <li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
-<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
-<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
-<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -138,7 +136,7 @@
 <span class="header-section-number">23.1</span> Introducción<a class="anchor" aria-label="anchor" href="#motiv"><i class="fas fa-link"></i></a>
 </h2>
 <p></p>
-<p>Las <strong>tablas de contingencia</strong> analizan la relación existente entre variables categóricas, o susceptibles de categorizar, con un número de categorías finito. Dada su naturaleza, no permiten el uso de las tradicionales operaciones aritméticas, con lo cual, en el ámbito de la Estadística Descriptiva su análisis suele basarse en diagramas de barras y porcentajes (véase Cap. <a href="#120006-aed"><strong>??</strong></a>), y en la esfera de la Inferencia Estadística (Cap. <a href="Fundainfer.html#Fundainfer">13</a>) se centra en los contrastes de hipótesis no paramétricos y, básicamente, en el contraste de independencia entre dos o más de estas variables. Una pregunta que suele hacerse toda aquella persona que se acerca por primera vez al análisis de tablas de contingencia es el significado del término “contingencia”. Pues bien, este término fue acuñado por Pearson <span class="citation">(<a href="referncias.html#ref-Pearson1904" role="doc-biblioref">Pearson 1904</a>)</span> al apuntar: “… Este resultado nos permite partir de la teoría matemática de la independencia probabilística, tal como se desarrolla en los libros de texto elementales, y construir a partir de ella una teoría generalizada de la <strong>asociación</strong> o, como yo la llamo, <strong>contingencia</strong>.” </p>
+<p>Las <strong>tablas de contingencia</strong> analizan la relación existente entre variables categóricas, o susceptibles de categorizar, con un número de categorías finito. Dada su naturaleza, no permiten el uso de las tradicionales operaciones aritméticas, con lo cual, en el ámbito de la Estadística Descriptiva su análisis suele basarse en diagramas de barras y porcentajes (véase Cap. <a href="#120006-aed"><strong>??</strong></a>), y en la esfera de la Inferencia Estadística (Cap. <a href="Fundainfer.html#Fundainfer">13</a>) se centra en los contrastes de hipótesis no paramétricos y, básicamente, en el contraste de independencia entre dos o más de estas variables. Una pregunta que suele hacerse toda aquella persona que se acerca por primera vez al análisis de tablas de contingencia es el significado del término “contingencia”. Pues bien, este término fue acuñado por Pearson <span class="citation">(<a href="cap-fraude.html#ref-Pearson1904">Pearson 1904</a>)</span> al apuntar: “… Este resultado nos permite partir de la teoría matemática de la independencia probabilística, tal como se desarrolla en los libros de texto elementales, y construir a partir de ella una teoría generalizada de la <strong>asociación</strong> o, como yo la llamo, <strong>contingencia</strong>.” </p>
 <p>El análisis de tablas de contingencia (o de asociación) permite dar respuesta, entre otras, a preguntas como: los factores involucrados en una tabla de contingencia, ¿son independientes o están asociados? Si están asociados, ¿qué niveles de dichos factores son los que están asociados?, ¿cuál es la intensidad de dicha asociación?</p>
 <div id="notac" class="section level3" number="23.1.1">
 <h3>
@@ -275,7 +273,7 @@
 </tbody>
 </table></div>
 <!-- ::: {#ex-tablas .example name="Tabla de contingencia con dos factores y dos niveles cada factor"} --><!-- ::: --><p>A modo de ejemplo, considérese una muestra de 80 ayuntamientos de una CC.AA., anotándose en la base <code>ayuntam</code>, incluida en el paquete <code>CRD</code> del libro, el signo político del equipo gubernamental (<code>signo_gob</code>) y si prestan o no públicamente el servicio <em>X</em> (<code>serv</code>). Los resultados obtenidos fueron los siguientes:</p>
-<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"ayuntam"</span><span class="op">)</span></span>
 <span></span>
@@ -319,12 +317,12 @@
 </h3>
 <p> </p>
 <p>Una cuestión a la que no se le da la suficiente importancia es la forma en la que se toma la información contenida en la tabla (el diseño del experimento o procedimiento de muestreo). Dada una determinada tabla de contingencia, ésta puede haber sido obtenida mediante uno u otro diseño de experimento o procedimiento de muestreo, y esta circunstancia no es baladí, puesto que condiciona su análisis, sobre todo cuando el tamaño muestral es pequeño.</p>
-<p>Sin ánimo de exhaustividad, los diseños experimentales o procedimientos de muestreo más habituales que dan lugar a una tabla de contingencia son los siguientes:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Otros procedimientos de muestreo o diseños experimentales no habituales pueden verse en &lt;span class="citation"&gt;Ruiz-Maya et al. (&lt;a href="referncias.html#ref-Ruiz_Maya_et_al1995" role="doc-biblioref"&gt;1995&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>164</sup></a></p>
+<p>Sin ánimo de exhaustividad, los diseños experimentales o procedimientos de muestreo más habituales que dan lugar a una tabla de contingencia son los siguientes:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Otros procedimientos de muestreo o diseños experimentales no habituales pueden verse en &lt;span class="citation"&gt;Ruiz-Maya et al. (&lt;a href="cap-fraude.html#ref-Ruiz_Maya_et_al1995"&gt;1995&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>168</sup></a></p>
 <ul>
 <li><strong>Tipo 1: se fijan los totales marginales de ambos factores</strong></li>
 </ul>
 <p></p>
-<p>Ejemplo: se desea investigar si la preferencia de la larva de gorgojo por el tipo de judía es independiente de la cubierta de la semilla o depende de ésta. Para ello se toman 22 judías de tipo <em>A</em> y 18 de tipo <em>B</em>, que se introducen en un recipiente con 33 larvas. Dadas las condiciones de densidad, no entrará más de una larva por judía. Pasado un tiempo prudencial para que las larvas entren en las judías, se cuentan las que han sido atacadas de cada tipo y las que no.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Como en el resto del manual, las variables aleatorias se escriben en mayúsculas y los valores que toman en minúscula. En este caso, los totales marginales han sido fijados y son valores pero no ocurre lo mismo con las frecuencias absolutas en las cuatro celdas de las tablas, que son variables aleatorias.&lt;/p&gt;"><sup>165</sup></a></p>
+<p>Ejemplo: se desea investigar si la preferencia de la larva de gorgojo por el tipo de judía es independiente de la cubierta de la semilla o depende de ésta. Para ello se toman 22 judías de tipo <em>A</em> y 18 de tipo <em>B</em>, que se introducen en un recipiente con 33 larvas. Dadas las condiciones de densidad, no entrará más de una larva por judía. Pasado un tiempo prudencial para que las larvas entren en las judías, se cuentan las que han sido atacadas de cada tipo y las que no.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Como en el resto del manual, las variables aleatorias se escriben en mayúsculas y los valores que toman en minúscula. En este caso, los totales marginales han sido fijados y son valores pero no ocurre lo mismo con las frecuencias absolutas en las cuatro celdas de las tablas, que son variables aleatorias.&lt;/p&gt;"><sup>169</sup></a></p>
 <div class="inline-table"><table class="table table-sm"><tbody>
 <tr class="odd">
 <td></td>
@@ -511,7 +509,7 @@
 <li>
 <span class="math inline">\(H_0\)</span>: los factores son independientes.</li>
 <li>
-<span class="math inline">\(H_1\)</span>: están asociados.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;También puede establecerse como hipótesis alternativa la asociación en un determinado sentido: “el nivel 1 del factor &lt;em&gt;A&lt;/em&gt; está asociado con el 1 del &lt;em&gt;B&lt;/em&gt; y el 2 del &lt;em&gt;A&lt;/em&gt; con el 2 del &lt;em&gt;B&lt;/em&gt;” (asociación positiva); o “el nivel 1 del factor &lt;em&gt;A&lt;/em&gt; está asociado con el 2 del &lt;em&gt;B&lt;/em&gt; y el 2 del &lt;em&gt;A&lt;/em&gt; con el 1 del &lt;em&gt;B&lt;/em&gt;” (asociación negativa). En estos dos casos el contraste no sería bilateral sino unilateral.&lt;/p&gt;"><sup>166</sup></a>
+<span class="math inline">\(H_1\)</span>: están asociados.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;También puede establecerse como hipótesis alternativa la asociación en un determinado sentido: “el nivel 1 del factor &lt;em&gt;A&lt;/em&gt; está asociado con el 1 del &lt;em&gt;B&lt;/em&gt; y el 2 del &lt;em&gt;A&lt;/em&gt; con el 2 del &lt;em&gt;B&lt;/em&gt;” (asociación positiva); o “el nivel 1 del factor &lt;em&gt;A&lt;/em&gt; está asociado con el 2 del &lt;em&gt;B&lt;/em&gt; y el 2 del &lt;em&gt;A&lt;/em&gt; con el 1 del &lt;em&gt;B&lt;/em&gt;” (asociación negativa). En estos dos casos el contraste no sería bilateral sino unilateral.&lt;/p&gt;"><sup>170</sup></a>
 </li>
 </ul>
 </li>
@@ -545,8 +543,8 @@
 </h4>
 <p>
 </p>
-<p>Considérese el ejemplo del diseño tipo 1 expuesto en <a href="tablas-contingencia.html#prodecim">23.1.2</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Se trata de un ejemplo clásico de &lt;span class="citation"&gt;Sokal and Rolf (&lt;a href="referncias.html#ref-Sokal2012" role="doc-biblioref"&gt;2012&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>167</sup></a>. Supóngase que el resultado obtenido fue el siguiente:</p>
-<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
+<p>Considérese el ejemplo del diseño tipo 1 expuesto en <a href="tablas-contingencia.html#prodecim">23.1.2</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Se trata de un ejemplo clásico de &lt;span class="citation"&gt;Sokal and Rolf (&lt;a href="cap-fraude.html#ref-Sokal2012"&gt;2012&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>171</sup></a>. Supóngase que el resultado obtenido fue el siguiente:</p>
+<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">datos_jud</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">6</span>,<span class="fl">21</span>,<span class="fl">12</span><span class="op">)</span></span>
 <span><span class="va">tabla</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Tipo_de_judía <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span>, </span>
 <span>                               Presencia_larva <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No"</span>,<span class="st">"Sí"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, </span>
@@ -590,7 +588,7 @@
 </tr>
 </tbody></table></div>
 <p>Según el algoritmo expuesto en la Sec. <a href="tablas-contingencia.html#algoritmo">23.2.2</a>, el contraste es como sigue:</p>
-<p><strong>1</strong>. <strong>Selección de las tablas que se alejan de <span class="math inline">\(H_0\)</span> tanto o más que la observada</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;El contraste se ha llevado a cabo de forma bilateral. En caso de una alternativa unilateral (asociación positiva o en el sentido de la diagonal principal; o negativa, en el sentido de la diagonal no principal), el procedimiento sería el mismo y las tablas seleccionadas serían, en el primer caso, todas menos la &lt;span class="math inline"&gt;\(T_7\)&lt;/span&gt;, y en el segundo, &lt;span class="math inline"&gt;\(T_0\)&lt;/span&gt; y &lt;span class="math inline"&gt;\(T_1\)&lt;/span&gt;.&lt;/p&gt;'><sup>168</sup></a> Como se señalaba en <span class="citation">Pearson (<a href="referncias.html#ref-Pearson1904" role="doc-biblioref">1904</a>)</span>, la teoría de la independencia probabilística indica que, bajo la hipótesis de independencia, el porcentaje de judías de tipo <em>A</em> y de tipo <em>B</em> no atacadas (o atacadas) por una larva de gorgojo tiene que ser el mismo. En otros términos, bajo la hipótesis de independencia, en cada una de las cuatro celdas se tiene que verificar que: <span class="math inline">\(N_{ij} = \frac{N_{i.} N_{.j}}{N}, \forall i,j\)</span>, donde <span class="math inline">\(\frac{N_{i.} N_{.j}}{N}= {E}_{ij}\)</span> se denomina frecuencia esperada bajo la hipótesis de independencia (en este caso, al estar los totales marginales fijos, <span class="math inline">\({E}_{ij}=\frac{n_{i.} n_{.j}}{n}\)</span>). Denominando <span class="math inline">\({D}_{ij}=N_{ij}-{E}_{ij}, \hspace{0,2cm}\forall i,j, \hspace{0,2cm} i=1,2,\hspace{0,2cm} j=1,2\)</span>, se puede que comprobar que en una tabla <span class="math inline">\(2\times 2\)</span>, <span class="math inline">\({D}_{11}={D} _{22}= -{D}_{12}= - {D}_{21}\)</span>, con lo cual, tomando de referencia, por ejemplo, la celda {1,1}, las tablas que se alejan tanto o más que la observada de la hipótesis de independencia son aquellas que verifican, en valor absoluto, que <span class="math inline">\({D}_{11}=N_{11}-{E}_{11}\geq n_{11}-\frac {n_{1.} n_{\cdot1}}{n}\)</span>.</p>
+<p><strong>1</strong>. <strong>Selección de las tablas que se alejan de <span class="math inline">\(H_0\)</span> tanto o más que la observada</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;El contraste se ha llevado a cabo de forma bilateral. En caso de una alternativa unilateral (asociación positiva o en el sentido de la diagonal principal; o negativa, en el sentido de la diagonal no principal), el procedimiento sería el mismo y las tablas seleccionadas serían, en el primer caso, todas menos la &lt;span class="math inline"&gt;\(T_7\)&lt;/span&gt;, y en el segundo, &lt;span class="math inline"&gt;\(T_0\)&lt;/span&gt; y &lt;span class="math inline"&gt;\(T_1\)&lt;/span&gt;.&lt;/p&gt;'><sup>172</sup></a> Como se señalaba en <span class="citation">Pearson (<a href="cap-fraude.html#ref-Pearson1904">1904</a>)</span>, la teoría de la independencia probabilística indica que, bajo la hipótesis de independencia, el porcentaje de judías de tipo <em>A</em> y de tipo <em>B</em> no atacadas (o atacadas) por una larva de gorgojo tiene que ser el mismo. En otros términos, bajo la hipótesis de independencia, en cada una de las cuatro celdas se tiene que verificar que: <span class="math inline">\(N_{ij} = \frac{N_{i.} N_{.j}}{N}, \forall i,j\)</span>, donde <span class="math inline">\(\frac{N_{i.} N_{.j}}{N}= {E}_{ij}\)</span> se denomina frecuencia esperada bajo la hipótesis de independencia (en este caso, al estar los totales marginales fijos, <span class="math inline">\({E}_{ij}=\frac{n_{i.} n_{.j}}{n}\)</span>). Denominando <span class="math inline">\({D}_{ij}=N_{ij}-{E}_{ij}, \hspace{0,2cm}\forall i,j, \hspace{0,2cm} i=1,2,\hspace{0,2cm} j=1,2\)</span>, se puede que comprobar que en una tabla <span class="math inline">\(2\times 2\)</span>, <span class="math inline">\({D}_{11}={D} _{22}= -{D}_{12}= - {D}_{21}\)</span>, con lo cual, tomando de referencia, por ejemplo, la celda {1,1}, las tablas que se alejan tanto o más que la observada de la hipótesis de independencia son aquellas que verifican, en valor absoluto, que <span class="math inline">\({D}_{11}=N_{11}-{E}_{11}\geq n_{11}-\frac {n_{1.} n_{\cdot1}}{n}\)</span>.</p>
 <p></p>
 <p>En el ejemplo que se considera, las <span class="math inline">\({D}_{11}\)</span> son las siguientes (en negrita las de la tabla observada y aquellas otras que se alejan tanto o más que ella de <span class="math inline">\(H_0\)</span>):</p>
 <p><strong><em>T</em></strong><sub>0</sub>: -3,85; <strong><em>T</em></strong><sub>1</sub>: -2,85; <em>T</em><sub>2</sub>: -1,85; <em>T</em><sub>3</sub>: -0,85; <em>T</em><sub>4</sub>: 0,15; <em>T</em><sub>5</sub>: 1,15; <em>T</em><sub>6</sub>: 2,15; <strong><em>T<sub>7</sub></em></strong>: 3,15,</p>
@@ -604,19 +602,19 @@ Nótese que el criterio anterior no es otro que el criterio general de seleccion
 <p><strong>3</strong>. <strong>Suma de dichas probabilidades</strong>: 0,0327.</p>
 <p><strong>4</strong>. <strong>Comparación con <span class="math inline">\(\alpha\)</span> y decisión sobre el rechazo o no de la hipótesis de independencia</strong>: La decisión depende del valor de <span class="math inline">\(\alpha\)</span>. Si fuera, por ejemplo, 0,05, se rechazaría la independencia entre el tipo de judía y si es o no atacada por la larva de gorgojo.</p>
 <p>El código <strong>R</strong> necesario para tomar llevar a cabo el test exacto de Fisher anterior es: </p>
-<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Ho: Los factores son independientes. </span></span>
 <span><span class="co">#H1: Los factores están asociados</span></span>
 <span><span class="va">fisher</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test</a></span><span class="op">(</span><span class="va">tabla_jud</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span><span class="op">)</span> </span>
 <span><span class="va">fisher</span><span class="op">$</span><span class="va">p.value</span></span>
 <span><span class="co">#&gt; [1] 0.0327607</span></span></code></pre></div>
-<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Ho: Los factores son independientes. </span></span>
 <span><span class="co">#H1: Existe asociación negativa.</span></span>
 <span><span class="va">fisher_less</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test</a></span><span class="op">(</span><span class="va">tabla_jud</span>, alternative <span class="op">=</span> <span class="st">"less"</span><span class="op">)</span> </span>
 <span><span class="va">fisher_less</span><span class="op">$</span><span class="va">p.value</span></span>
 <span><span class="co">#&gt; [1] 0.02361309</span></span></code></pre></div>
-<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Ho: Los factores son independientes. </span></span>
 <span><span class="co">#H1: Existe asociación positiva.</span></span>
 <span><span class="va">fisher_greater</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test</a></span><span class="op">(</span><span class="va">tabla_jud</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> </span>
@@ -645,7 +643,7 @@ se denomina chi-cuadrado ajustado <span class="math inline">\((\chi^2_{ajd})\)</
 donde <span class="math inline">\(\frac{ n (n_{11}n_{22}-n_{21}n_{12} )^2} {n_{1.}n_{\cdot1}n_{2.} n_{\cdot2}}\)</span>
 es el estadístico chi-cuadrado (<span class="math inline">\(\chi^2\)</span>) que proporcionan todos los softwares de contraste de independencia en tablas de contingencia.</p>
 <p>En el ejemplo propuesto:</p>
-<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="va">tabla_jud</span><span class="op">)</span><span class="op">$</span><span class="va">expected</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]</span></span>
 <span><span class="co">#&gt; [1,] 3.85 18.15</span></span>
@@ -656,7 +654,7 @@ es el estadístico chi-cuadrado (<span class="math inline">\(\chi^2\)</span>) qu
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; data:  tabla_jud</span></span>
 <span><span class="co">#&gt; X-squared = 5.6828, df = 1, p-value = 0.01713</span></span></code></pre></div>
-<p>Como <span class="math inline">\(\chi^2= 5,6828\)</span>, entonces <span class="math inline">\(\chi^2_{ajd}=5,54073\)</span> y <span class="math inline">\(P\left(\chi^2_{ajd} \geq 5,54073\right)=0,0186\)</span>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Este “cálculo extra” es un pequeño peaje que hay que pagar en aras de la exactitud. Y es importante, porque pudiera hacer cambiar la decisión resultante del contraste.&lt;/p&gt;"><sup>169</sup></a></p>
+<p>Como <span class="math inline">\(\chi^2= 5,6828\)</span>, entonces <span class="math inline">\(\chi^2_{ajd}=5,54073\)</span> y <span class="math inline">\(P\left(\chi^2_{ajd} \geq 5,54073\right)=0,0186\)</span>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Este “cálculo extra” es un pequeño peaje que hay que pagar en aras de la exactitud. Y es importante, porque pudiera hacer cambiar la decisión resultante del contraste.&lt;/p&gt;"><sup>173</sup></a></p>
 <p>Nótese que la probabilidad exacta de obtener una tabla tan alejada o más de la hipótesis de independencia que la observada (incluida esta) es 0,0327, mientras que la probabilidad aproximada es 0,0186. La aproximación no es muy buena, y ello se debe a la existencia de frecuencias esperadas menores que 5.</p>
 </div>
 <div id="contraste-aproximado-con-corrección-de-continuidad" class="section level4" number="23.2.3.3">
@@ -672,7 +670,7 @@ es el estadístico chi-cuadrado (<span class="math inline">\(\chi^2\)</span>) qu
 |-0,5n)^2} {n_{1.}n_{\cdot1}n_{2.} n_{\cdot2}}}  \right)\leq \alpha ,\]</span>
 donde el estadístico <span class="math inline">\({\frac{ (n-1)(|n_{11}n_{22}-n_{21}n_{12}|-0,5n)^2} {n_{1.}n_{\cdot1}n_{2.} n_{\cdot2}}}\)</span> se denomina estadístico chi-cuadrado ajustado corregido de continuidad de Yates (<span class="math inline">\(\chi^2_{ajd,CCY}\)</span>).</p>
 <p>En el ejemplo propuesto, el test chi-cuadrado con corrección de continuidad de Yates se obtiene directamente con la función <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code> que, por defecto, incluye el argumento <code>correct = TRUE</code>.</p>
-<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="va">tabla_jud</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Pearson's Chi-squared test with Yates' continuity correction</span></span>
@@ -681,7 +679,7 @@ donde el estadístico <span class="math inline">\({\frac{ (n-1)(|n_{11}n_{22}-n_
 <span><span class="co">#&gt; X-squared = 3.8637, df = 1, p-value = 0.04934</span></span></code></pre></div>
 <p>Como el estadístico Chi-cuadrado corregido de continuidad <span class="math inline">\(\chi^2_{CCY}\)</span> vale 3,8337, entonces <span class="math inline">\(\chi^2_{ajd,CCY}=\frac{39}{40}\times 3,8337=3,7636\)</span>; y como <span class="math inline">\(P\left( \chi^2_1 \geq 3,7636\right)=0,0524\)</span>,
 <span class="math inline">\(H_0\)</span> se rechazaría cuando <span class="math inline">\(\alpha &gt; 0,0524\)</span>. Nótese que si, por ejemplo, <span class="math inline">\(\alpha = 0,05\)</span>, la decisión sobre el rechazo o no de <span class="math inline">\(H_0\)</span> es distinta con <span class="math inline">\(\chi^2_{CCY}\)</span> y <span class="math inline">\(\chi^2_{ajd,CCY}\)</span>; de ahí la importancia de utilizar el estadístico ajustado.</p>
-<p>Por tanto, la corrección de Yates ha transformado la infraestimación de la probabilidad exacta en una sobreestimación de más o menos el mismo tamaño. Ello se debe a que en la tabla observada, hay freecuencias esperadas (<span class="math inline">\({E}_{ij}\)</span>) que distan mucho de ser multiplos de 0,5. La corrección de Yates es la que incluye la librería utilizada (<code>stats</code>). Otras correcciones pueden verse en <span class="citation">Ruiz-Maya et al. (<a href="referncias.html#ref-Ruiz_Maya_et_al1995" role="doc-biblioref">1995</a>)</span> y <span class="citation">J. M. Montero (<a href="referncias.html#ref-Montero2002" role="doc-biblioref">2002</a>)</span>.</p>
+<p>Por tanto, la corrección de Yates ha transformado la infraestimación de la probabilidad exacta en una sobreestimación de más o menos el mismo tamaño. Ello se debe a que en la tabla observada, hay freecuencias esperadas (<span class="math inline">\({E}_{ij}\)</span>) que distan mucho de ser multiplos de 0,5. La corrección de Yates es la que incluye la librería utilizada (<code>stats</code>). Otras correcciones pueden verse en <span class="citation">Ruiz-Maya et al. (<a href="cap-fraude.html#ref-Ruiz_Maya_et_al1995">1995</a>)</span> y <span class="citation">J. M. Montero (<a href="cap-fraude.html#ref-Montero2002">2002</a>)</span>.</p>
 </div>
 </div>
 <div id="dise" class="section level3" number="23.2.4">
@@ -725,8 +723,8 @@ P\left({N_{11}}  ={n_{11}} ;{N_{12}}={n_{12}};{N_{21}}={n_{21}};{N_{22}}={n_{22}
 <span class="header-section-number">23.3</span> Contraste de independencia en tablas <span class="math inline">\(R \times C\)</span><a class="anchor" aria-label="anchor" href="#contrasteRC"><i class="fas fa-link"></i></a>
 </h2>
 <p></p>
-<p>El análisis de tablas <span class="math inline">\(R\times C\)</span> puede considerarse, en principio, una generalización del caso de tablas <span class="math inline">\(2\times 2\)</span>. Ahora bien, en el caso <span class="math inline">\(R\times C\)</span> los test exactos, recomendados en el caso de que <span class="math inline">\(E_{ij}\leq5\)</span> en más del 20% de las celdas, [<span class="citation">H. T. Reynolds (<a href="referncias.html#ref-Reynolds1984" role="doc-biblioref">1984</a>)</span>]<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La razón es que, sea cual sea el diseño de muestreo, si la probabilidad de que un elemento de la tabla caiga en una determinada celda {&lt;em&gt;i&lt;/em&gt;,&lt;em&gt;j&lt;/em&gt;} es muy pequeña (se suele utilizar el límite del 5%), entonces la distribución de probabilidad de &lt;span class="math inline"&gt;\(N_{ij}\)&lt;/span&gt; es muy asimétrica, y para que se simetrice lo suficiente y se pueda aproximar por una Normal (que después, al cuadrado, participará en una chi-cuadrado), el tamaño muestral, en el tipo 3, y los totales marginales fijados, en los tipos 1 y 2, tienen que ser grandes (se suele fijar el valor de 100), de ahí el límite de &lt;span class="math inline"&gt;\(E_{ij}\leq5\)&lt;/span&gt;; por eso es recomendable que el tamaño muestral sea grande y los totales marginales no estén desequilibrados. En todo caso, lo ideal es que requisito &lt;span class="math inline"&gt;\(E_{ij}\leq5\)&lt;/span&gt; se cumpla en todas las celdas de la tabla.&lt;/p&gt;'><sup>170</sup></a> son un auténtico reto y aún no están disponibles en el software convencional.</p>
-<p>Si no se cumple el requisito anterior, una solución es agrupar categorías, con sentido común y coherencia.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;En tablas &lt;span class="math inline"&gt;\(2\times 2\)&lt;/span&gt; no se pueden agrupar filas, y la única solución son los tests exactos.&lt;/p&gt;'><sup>171</sup></a> Si la agrupación de categorías no pudiese hacerse, por carecer de sentido o cualquier otro motivo, lo más honesto sería no realizar el contraste hasta disponer de una base de datos mejor.</p>
+<p>El análisis de tablas <span class="math inline">\(R\times C\)</span> puede considerarse, en principio, una generalización del caso de tablas <span class="math inline">\(2\times 2\)</span>. Ahora bien, en el caso <span class="math inline">\(R\times C\)</span> los test exactos, recomendados en el caso de que <span class="math inline">\(E_{ij}\leq5\)</span> en más del 20% de las celdas, [<span class="citation">H. T. Reynolds (<a href="cap-fraude.html#ref-Reynolds1984">1984</a>)</span>]<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La razón es que, sea cual sea el diseño de muestreo, si la probabilidad de que un elemento de la tabla caiga en una determinada celda {&lt;em&gt;i&lt;/em&gt;,&lt;em&gt;j&lt;/em&gt;} es muy pequeña (se suele utilizar el límite del 5%), entonces la distribución de probabilidad de &lt;span class="math inline"&gt;\(N_{ij}\)&lt;/span&gt; es muy asimétrica, y para que se simetrice lo suficiente y se pueda aproximar por una Normal (que después, al cuadrado, participará en una chi-cuadrado), el tamaño muestral, en el tipo 3, y los totales marginales fijados, en los tipos 1 y 2, tienen que ser grandes (se suele fijar el valor de 100), de ahí el límite de &lt;span class="math inline"&gt;\(E_{ij}\leq5\)&lt;/span&gt;; por eso es recomendable que el tamaño muestral sea grande y los totales marginales no estén desequilibrados. En todo caso, lo ideal es que requisito &lt;span class="math inline"&gt;\(E_{ij}\leq5\)&lt;/span&gt; se cumpla en todas las celdas de la tabla.&lt;/p&gt;'><sup>174</sup></a> son un auténtico reto y aún no están disponibles en el software convencional.</p>
+<p>Si no se cumple el requisito anterior, una solución es agrupar categorías, con sentido común y coherencia.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;En tablas &lt;span class="math inline"&gt;\(2\times 2\)&lt;/span&gt; no se pueden agrupar filas, y la única solución son los tests exactos.&lt;/p&gt;'><sup>175</sup></a> Si la agrupación de categorías no pudiese hacerse, por carecer de sentido o cualquier otro motivo, lo más honesto sería no realizar el contraste hasta disponer de una base de datos mejor.</p>
 <p>A la luz de lo anteriormente expuesto, en el caso de tablas <span class="math inline">\(R\times C\)</span> la atención se centra en los tests aproximados.</p>
 <div id="contaprox" class="section level3" number="23.3.1">
 <h3>
@@ -735,7 +733,7 @@ P\left({N_{11}}  ={n_{11}} ;{N_{12}}={n_{12}};{N_{21}}={n_{21}};{N_{22}}={n_{22}
 <p>Cuando el procedimiento de muestreo o el diseño experimental es de tipo 1 o 2 el contraste aproximado de independencia es el denominado contraste Chi-cuadrado. La filosofía de dicho contraste es la siguiente: parece lógico que el contraste se base en las diferencias (cuadráticas, para que no se compensen las negativas con las positivas) entre las frecuencias observadas y las esperadas bajo la hipótesis de independencia. Si los factores son independientes, dichas diferencias serán pequeñas y atribuibles a fluctuaciones aleatorias. Si están asociados, serán grandes y atribuibles a la asociación existente entre sus niveles. Pearson propuso el siguiente estadístico de contraste: <span class="math display">\[\chi^2 =\sum_{i=1}^{R} \sum_{j=1}^{C}\frac {\left(N_{ij}-{E}_{ij}\right)^2} {{E}_{ij}},\]</span></p>
 <p>
 </p>
-<p>que, si no se incumple el requisito expuesto en las primeras lineas de la Sec. <a href="tablas-contingencia.html#contrasteRC">23.3</a>, y bajo la hipótesis de independencia, se distribuye como una <span class="math inline">\(\chi_{(R-1)(C-1)}^2\)</span>. En caso de que <span class="math inline">\(P\left( \chi_{(R-1)(C-1)}^2 \geq \sum_{i=1}^{R} \sum_{j=1}^{C}\frac {\left(n_{ij}-\hat{E}_{ij}\right)^2} {\hat{E}_{ij}}\right )\)</span> sea inferior al nivel de significación prefijado, se rechaza la hipótesis de independencia.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(\hat{E}_{ij}=\frac{n_{i.} n_{.j}}{n}\)&lt;/span&gt; es el valor de &lt;span class="math inline"&gt;\({E}_{ij}\)&lt;/span&gt; calculado con los datos de la tabla observada. Igualmente, &lt;span class="math inline"&gt;\(n_{ij}\)&lt;/span&gt; son las frecuencias de la tabla observada.&lt;/p&gt;'><sup>172</sup></a> Téngase en cuenta que en el caso <span class="math inline">\(R\times C\)</span> la hipótesis alternativa es “al menos un nivel de un factor está asociado con un nivel del otro factor”.</p>
+<p>que, si no se incumple el requisito expuesto en las primeras lineas de la Sec. <a href="tablas-contingencia.html#contrasteRC">23.3</a>, y bajo la hipótesis de independencia, se distribuye como una <span class="math inline">\(\chi_{(R-1)(C-1)}^2\)</span>. En caso de que <span class="math inline">\(P\left( \chi_{(R-1)(C-1)}^2 \geq \sum_{i=1}^{R} \sum_{j=1}^{C}\frac {\left(n_{ij}-\hat{E}_{ij}\right)^2} {\hat{E}_{ij}}\right )\)</span> sea inferior al nivel de significación prefijado, se rechaza la hipótesis de independencia.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(\hat{E}_{ij}=\frac{n_{i.} n_{.j}}{n}\)&lt;/span&gt; es el valor de &lt;span class="math inline"&gt;\({E}_{ij}\)&lt;/span&gt; calculado con los datos de la tabla observada. Igualmente, &lt;span class="math inline"&gt;\(n_{ij}\)&lt;/span&gt; son las frecuencias de la tabla observada.&lt;/p&gt;'><sup>176</sup></a> Téngase en cuenta que en el caso <span class="math inline">\(R\times C\)</span> la hipótesis alternativa es “al menos un nivel de un factor está asociado con un nivel del otro factor”.</p>
 <p>La razón de que las diferencias
 <span class="math inline">\(\left(N_{ij}-\hat{E}_{ij}\right)^2\)</span> se dividan por <span class="math inline">\(\hat{E}_{ij}\)</span> en el estadístico chi-cuadrado de Pearson es la siguiente: la misma diferencia <span class="math inline">\(N_{ij}-\hat{E}_{ij}\)</span> puede significar cosas bien diferentes. Una diferencia de 5 no es nada si <span class="math inline">\(\hat{E}_{ij}=1000\)</span>; pero es muchísimo si <span class="math inline">\(\hat{E}_{ij}=2\)</span>. Por eso la diferencia (cuadrática) se pone en relación con la frecuencia esperada.</p>
 <p></p>
@@ -744,7 +742,7 @@ P\left({N_{11}}  ={n_{11}} ;{N_{12}}={n_{12}};{N_{21}}={n_{21}};{N_{22}}={n_{22}
 El estadístico Chi-cuadrado tiene un límite superior fijo: $N(K-1)$, donde $N$ es el tamaño de la muestra y $K$ es el número más pequeño de filas o columnas. **Por eso no se puede utilizar como medida de asociación. ¿Un valor Chi-cuadrado de 35 es grande o pequeño, es decir, indica mucha o poca asociación? Pues depende; hay que compararlo con su valor máximo.**  -->
 <!-- -   Si el tamaño muestral es grande y/o el número de niveles de los factores es elevado, el test Chi-cuadrado indicará siempre "rechazo de la hipótesis de independencia". En este caso el resultado no es muy interesante porque lo que el test podría estar detectando es un alejamiento insignificante de la hipótesis de independencia en al menos una celda y, dado que el test se alimenta con mucha información (tamaño muestral grande), lo considera significativo. Sin embargo, cuando valoremos el tamaño de la asociación detectada la medida de asociación nos dirá: los factores no son independientes, pero la intensidad de su asociación es despreciable. -->
 <!-- -   Más sobre lo mismo: si en una Tabla RxC se multiplican por 10 las frecuencias observadas, las diferencias de porcentajes serán las mismas, pero el estadístico de contraste se multiplica por 10 y si con el primero no se rechazaba la hipótesis de independencia, con el segundo puede ocurrir que sí, sindo las proporciones las mismas. -->
-<p>En el caso de que el procedimiento de muestreo sea del tipo 3, aunque puede aplicarse el contraste chi-cuadrado, es recomendable proceder con el contraste de independencia de razón de verosimilitudes, que compara por cociente las frecuencias esperadas bajo la hipótesis de independencia y las observadas. Se basa en la razón de la verosimilitud de la hipótesis de independencia a la luz de la muestra obtenida y del máximo de la función de verosimilitud, <span class="math inline">\(\Lambda\)</span>. Bajo el supuesto de independencia la razón será cercana a la unidad, atribuyéndose la diferencia a fluctuaciones aleatorias; el logaritmo neperiano de dicha razón (negativo) estará cercano a cero. En caso contrario, el cociente de verosimilitudes (negativo) disminuye, tanto más cuanto más diferencia hay entre la verosimilitud de la hipótesis de independencia y el máximo de la función de verosimilitud. En <span class="citation">Wilks (<a href="referncias.html#ref-Wilks1935" role="doc-biblioref">1935</a>)</span> se demostró que, cuando la hipótesis de independencia es cierta, <span class="math inline">\(G=-2ln \Lambda\)</span>, con <span class="math inline">\(\Lambda= \prod_{i=1}^R \prod_{j=1}^C \left (\frac {{E}_{ij}} {N_{ij}}\right)^{N_{ij}}\)</span> se distribuye como una <span class="math inline">\(\chi_{(R-1)(C-1)}^2\)</span>. Ambos estadísticos de contraste, <span class="math inline">\(\chi^2\)</span> y <span class="math inline">\(G\)</span>, son asintóticamente equivalentes.</p>
+<p>En el caso de que el procedimiento de muestreo sea del tipo 3, aunque puede aplicarse el contraste chi-cuadrado, es recomendable proceder con el contraste de independencia de razón de verosimilitudes, que compara por cociente las frecuencias esperadas bajo la hipótesis de independencia y las observadas. Se basa en la razón de la verosimilitud de la hipótesis de independencia a la luz de la muestra obtenida y del máximo de la función de verosimilitud, <span class="math inline">\(\Lambda\)</span>. Bajo el supuesto de independencia la razón será cercana a la unidad, atribuyéndose la diferencia a fluctuaciones aleatorias; el logaritmo neperiano de dicha razón (negativo) estará cercano a cero. En caso contrario, el cociente de verosimilitudes (negativo) disminuye, tanto más cuanto más diferencia hay entre la verosimilitud de la hipótesis de independencia y el máximo de la función de verosimilitud. En <span class="citation">Wilks (<a href="cap-fraude.html#ref-Wilks1935">1935</a>)</span> se demostró que, cuando la hipótesis de independencia es cierta, <span class="math inline">\(G=-2ln \Lambda\)</span>, con <span class="math inline">\(\Lambda= \prod_{i=1}^R \prod_{j=1}^C \left (\frac {{E}_{ij}} {N_{ij}}\right)^{N_{ij}}\)</span> se distribuye como una <span class="math inline">\(\chi_{(R-1)(C-1)}^2\)</span>. Ambos estadísticos de contraste, <span class="math inline">\(\chi^2\)</span> y <span class="math inline">\(G\)</span>, son asintóticamente equivalentes.</p>
 <p>
 </p>
 <p>A modo de ejemplo, se quiere contrastar si en la Comunidad de Madrid la opinión
@@ -752,7 +750,7 @@ sobre la presidente Dña. Isabel Díaz Ayuso depende de la zona geográfica o si
 por el contrario, es independiente de ella. Para ello se encuestan,
 por algún procedimiento aleatorio 2795 personas con derecho a voto en la comunidad
 y se eliminan las respuestas “NS/NC/me es indiferente”. Los resultados obtenidos fueron los siguientes (dataset <code>ayuso</code> del paquete <code>CDR</code>):</p>
-<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"ayuso"</span><span class="op">)</span></span>
 <span><span class="va">tabla_ayuso</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">ayuso</span><span class="op">)</span></span>
 <span><span class="va">tabla_ayuso</span></span>
@@ -773,7 +771,7 @@ y se eliminan las respuestas “NS/NC/me es indiferente”. Los resultados obten
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; data:  tabla_ayuso</span></span>
 <span><span class="co">#&gt; X-squared = 19.486, df = 6, p-value = 0.003418</span></span></code></pre></div>
-<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://andrisignorell.github.io/DescTools/">"DescTools"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://andrisignorell.github.io/DescTools/reference/GTest.html">GTest</a></span><span class="op">(</span><span class="va">tabla_ayuso</span>,correct <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -798,7 +796,7 @@ y se eliminan las respuestas “NS/NC/me es indiferente”. Los resultados obten
 <p>
 </p>
 <p>Si no se rechaza la hipótesis de independencia, el análisis de la tabla se puede dar por finalizado. En caso contrario, el nuevo objetivo es determinar la dirección de la asociación detectada (o las fuentes de asociación en el caso <span class="math inline">\(R\times C\)</span>) y su intensidad, y para ello se utilizan las denominadas medidas de asociación. Igual que en el contraste de independencia, se distinguirán los casos <span class="math inline">\(2\times 2\)</span> y <span class="math inline">\(R\times C\)</span>, en esta ocasión no tanto por motivos pedagógicos sino porque las situaciones son bien diferentes.</p>
-<p>En el caso <span class="math inline">\(2\times 2\)</span>, los tipos de asociación en función de su dirección (positiva y negativa) ya se se definieron en la Sec. <a href="tablas-contingencia.html#plantgen">23.2.1</a>. Por lo que se refiere a los límites de su intensidad, se dice que la asociación es perfecta cuando al menos uno de los niveles de uno de los factores queda determinado por un nivel del otro factor. La asociación perfecta puede ser estricta o implícita de tipo 2:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La asociación perfecta implícita de tipo 1, que no puede darse en tablas &lt;span class="math inline"&gt;\(2\times 2\)&lt;/span&gt;, consiste en que, dado un nivel de un factor, el nivel del otro queda inmediatamente determinado; pero dado el nivel de este último no se puede determinar el nivel del primero.&lt;/p&gt;'><sup>173</sup></a></p>
+<p>En el caso <span class="math inline">\(2\times 2\)</span>, los tipos de asociación en función de su dirección (positiva y negativa) ya se se definieron en la Sec. <a href="tablas-contingencia.html#plantgen">23.2.1</a>. Por lo que se refiere a los límites de su intensidad, se dice que la asociación es perfecta cuando al menos uno de los niveles de uno de los factores queda determinado por un nivel del otro factor. La asociación perfecta puede ser estricta o implícita de tipo 2:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La asociación perfecta implícita de tipo 1, que no puede darse en tablas &lt;span class="math inline"&gt;\(2\times 2\)&lt;/span&gt;, consiste en que, dado un nivel de un factor, el nivel del otro queda inmediatamente determinado; pero dado el nivel de este último no se puede determinar el nivel del primero.&lt;/p&gt;'><sup>177</sup></a></p>
 <ul>
 <li>Estricta: dado el nivel de un factor, el nivel del otro queda inmediatamente determinado.</li>
 <li>Implícita de tipo 2: dado un nivel de un factor, el nivel del otro queda inmediatamente determinado; dado el otro nivel, no queda determinado el nivel del otro factor.</li>
@@ -833,7 +831,7 @@ y se eliminan las respuestas “NS/NC/me es indiferente”. Los resultados obten
 </ul>
 <p>Lógicamente, a mayor valor absoluto de <span class="math inline">\(\hat{Q}\)</span> mayor intensidad de la asociación.</p>
 <p>En el ejemplo utilizado para ilustrar el diseño experimental de tipo 1, el valor observado de <span class="math inline">\(Q\)</span> es <span class="math inline">\(\hat{Q}=0,83\)</span>:</p>
-<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://andrisignorell.github.io/DescTools/reference/CramerV.html">YuleQ</a></span><span class="op">(</span><span class="va">tabla_jud</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] -0.826087</span></span></code></pre></div>
 <p>A la luz del valor del valor de <span class="math inline">\(\hat{Q}\)</span> se concluye la existencia de una fuerte asociación negativa.</p>
@@ -854,13 +852,13 @@ y se estima como <span class="math display">\[\hat{\phi^2}=\frac{\left(n_{11}n_{
 <p>Su campo de variación es <span class="math inline">\([0;1]\)</span>, tomando el valor 0 en caso de independencia y 1 cuando hay asociación perfecta y estricta. Cuanto mayor sea el valor del coeficiente, mayor es intensidad de la asociación.</p>
 <p>No proporciona la dirección de la asociación, si bien se puede saber por el signo de <span class="math inline">\(n_{11}n_{22}-n_{12}n_{21}\)</span>. Otra consideración importante es que, si se codifican los niveles de los factores como (0;1), <span class="math inline">\({\phi}^2\)</span> coincide con el coeficiente de determinación lineal entre los factores. Por tanto, la asociación que mide es “lineal” (de ahí que su valor suela ser más bajo que el de <span class="math inline">\({Q}\)</span>). Su raíz cuadrada es conocida como “la V de Cramer”. En el ejemplo utilizado se tiene que:</p>
 <p></p>
-<div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="fu"><a href="https://andrisignorell.github.io/DescTools/reference/CramerV.html">Phi</a></span><span class="op">(</span><span class="va">tabla_jud</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span></span>
 <span><span class="co">#&gt; [1] 0.1420701</span></span></code></pre></div>
 </div>
 <div id="odds-ratio-o-cociente-de-posibilidadestablas_conting-6" class="section level4" number="23.4.2.2">
 <h4>
-<span class="header-section-number">23.4.2.2</span> Odds ratio o cociente de posibilidades<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Para no confundirlo con el riesgo relativo.&lt;/p&gt;"><sup>174</sup></a><a class="anchor" aria-label="anchor" href="#odds-ratio-o-cociente-de-posibilidadestablas_conting-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">23.4.2.2</span> Odds ratio o cociente de posibilidades<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Para no confundirlo con el riesgo relativo.&lt;/p&gt;"><sup>178</sup></a><a class="anchor" aria-label="anchor" href="#odds-ratio-o-cociente-de-posibilidadestablas_conting-6"><i class="fas fa-link"></i></a>
 </h4>
 <p>
 </p>
@@ -877,10 +875,10 @@ y se estima como <span class="math display">\[\hat{\phi^2}=\frac{\left(n_{11}n_{
 <!-- -   Si $ln\hat{\alpha}= 0$, la posibilidad de trabajar en el colectivo de los varones es mayor que en el colectivo de las mujeres. -->
 <!-- -   Si $ln\hat{\alpha} \geq 0$, la posibilidad de trabajar en el colectivo de los varones es menor que en el colectivo de las mujeres. -->
 <!-- Sin embargo, la interpretación, dada la gran amplitud del campo de variación, aunque simétrico, continúa siendo muy difusa. -->
-<p>Una ventaja que tiene respecto a <span class="math inline">\({\alpha}\)</span> es que no cambia si las filas se convierten en columnas y las columnas en filas.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Es decir, no es necesario identificar la variable respuesta para utilizar esta medida.&lt;/p&gt;"><sup>175</sup></a> Por ello, la razón de posibilidades se puede utilizar no sólo en estudios retrospectivos, sino también en aquéllos prospectivos y transversales. Finalmente, nótese que <span class="math inline">\((i)\)</span> la razón de posibilidades y el riesgo relativo (<span class="math inline">\(P_1/P_2\)</span>) se relacionan como sigue: <span class="math inline">\(\alpha= \frac {P_1 (1-P_2)} {P_2 (1-P_1)}\)</span>; y que <span class="math inline">\((ii)\)</span> ambos son similares cuando la probabilidad de éxito <span class="math inline">\(P_i\)</span> está cerca de cero en ambos grupos.</p>
+<p>Una ventaja que tiene respecto a <span class="math inline">\({\alpha}\)</span> es que no cambia si las filas se convierten en columnas y las columnas en filas.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Es decir, no es necesario identificar la variable respuesta para utilizar esta medida.&lt;/p&gt;"><sup>179</sup></a> Por ello, la razón de posibilidades se puede utilizar no sólo en estudios retrospectivos, sino también en aquéllos prospectivos y transversales. Finalmente, nótese que <span class="math inline">\((i)\)</span> la razón de posibilidades y el riesgo relativo (<span class="math inline">\(P_1/P_2\)</span>) se relacionan como sigue: <span class="math inline">\(\alpha= \frac {P_1 (1-P_2)} {P_2 (1-P_1)}\)</span>; y que <span class="math inline">\((ii)\)</span> ambos son similares cuando la probabilidad de éxito <span class="math inline">\(P_i\)</span> está cerca de cero en ambos grupos.</p>
 <p>El código siguiente proporciona el valor muestral de <span class="math inline">\(\alpha\)</span> (<span class="math inline">\(\hat\alpha\)</span>) en el ejemplo que nos ocupa, así como su intervalo de confianza del 95%:</p>
-<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mvs.unimelb.edu.au/research/groups/veterinary-epidemiology-melbourne">"epiR"</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://fvas.unimelb.edu.au/research/groups/veterinary-epidemiology-melbourne">"epiR"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/epiR/man/epi.2by2.html">epi.2by2</a></span><span class="op">(</span><span class="va">tabla_jud</span>, method <span class="op">=</span> <span class="st">'cohort.count'</span><span class="op">)</span><span class="op">$</span><span class="va">massoc.summary</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span></span>
 <span><span class="co">#&gt;          var       est      lower     upper</span></span>
 <span><span class="co">#&gt; 2 Odds ratio 0.0952381 0.01021365 0.8880565</span></span></code></pre></div>
@@ -906,7 +904,7 @@ y se estima como <span class="math display">\[\hat{\phi^2}=\frac{\left(n_{11}n_{
 <p>
 </p>
 <p>En el ejemplo utilizado en la Sec. <a href="tablas-contingencia.html#contaprox">23.3.1</a>:</p>
-<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://andrisignorell.github.io/DescTools/reference/CramerV.html">CramerV</a></span><span class="op">(</span><span class="va">tabla_ayuso</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.0590406</span></span></code></pre></div>
 <p>Aunque se rechaza la hipótesis de independencia, la asociación existente entre la opinión sobre la presidente y la zona geográfica es muy pequeña. Y ello porque, sea cual sea la zona geográfica, aunque hay ligerísimas variaciones, la opinión es muy favorable: para alrededor del 60% es excelente, para la tercera parte muy buena y tan solo para el 5% es mala (alrededor del 4%) o muy mala (apenas el 1%).</p>
@@ -925,7 +923,7 @@ y se estima como <span class="math display">\[\hat{\phi^2}=\frac{\left(n_{11}n_{
 <p><span class="math display">\[\hat\lambda=\frac{\sum_{j=1}^C \max_i n_{i.}-max_i n_{i.}+\sum_{i=1}^R \max_j n_{\cdot j}-\max_j n_{\cdot j} }{2n-\max_i n_{i.}\max_j n_{\cdot j}}.\]</span></p>
 <p>Su campo de variación es <span class="math inline">\([0,1]\)</span>. En caso de independencia, <span class="math inline">\(\lambda=0\)</span>. Ahora bien, que <span class="math inline">\(\hat\lambda=0\)</span> no implica necesariamente que <em>A</em> y <em>B</em> tengan que ser independientes, puesto que <span class="math inline">\(\lambda\)</span> también toma el valor 0 cuando en uno de los niveles del factor a explicar las frecuencias son superiores a las de los demás niveles, y ello para todos los niveles del factor explicativo, aunque los factores no sean independientes. En caso de asociación, <span class="math inline">\(0&lt; \lambda \leq 1\)</span>, alcanzándose la unidad en caso de asociación perfecta.</p>
 <p>Una limitación de <span class="math inline">\(\lambda\)</span> (además de la anterior y de que exige determinar el factor explicativo y el factor a explicar) es su sensibilidad a totales marginales desequilibrados; en este caso, toma valores anormalmente bajos. Tal es el caso del ejemplo que nos ocupa, donde <span class="math inline">\(\hat\lambda=0\)</span>, con factor a explicar la opinión, y, sin embargo, los factores no son independientes. Y es que, sea cual sea la zona geográfica, las frecuencias de la categoría de opinión “excelente” son siempre las más elevadas.</p>
-<div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb340"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://andrisignorell.github.io/DescTools/reference/Lambda.html">Lambda</a></span><span class="op">(</span><span class="va">tabla_ayuso</span>, direction <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0</span></span></code></pre></div>
 </div>
@@ -947,7 +945,7 @@ mientras que la siguiente expresión corresponde a las estimaciones las dierenci
 <p><span class="math display">\[\hat{R}_{ij}(est;ajd)=\frac{\hat{R}_{ij}(est)}{\sqrt{\left(1-\frac {n_{i.}} {N}\right)\left(1-\frac {n_{\cdot j}} {N}\right)}}.\]</span></p>
 <p>Habrá una fuente de asociación en cada celda {<em>i</em>;<em>j</em>} que verifique: <span class="math inline">\(|\hat{R}_{ij}(est;ajd)|\geq{k}\)</span>, con <span class="math inline">\(k= 2,33; 1,96; 1,64\)</span> para <span class="math inline">\(\alpha=0,01; 0,05; 0,10\)</span>, respectivamente.</p>
 <p>En el ejemplo que nos ocupa, los residuos estandarizados ajustados son:</p>
-<div class="sourceCode" id="cb340"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb341"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://juba.github.io/questionr/">questionr</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://juba.github.io/questionr/reference/chisq.residuals.html">chisq.residuals</a></span><span class="op">(</span><span class="va">tabla_ayuso</span>, digits <span class="op">=</span> <span class="fl">2</span>, std <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                opinion</span></span>
@@ -1014,8 +1012,8 @@ con los siguientes grados de libertad (g.l.) y <span class="math inline">\({E}_{
 <p>Para calcular el valor muestral del estadístico de contraste para las diferentes hipótesis, basta con sustituir las <span class="math inline">\(N_{ij}\)</span> por las frecuencias observadas (las <span class="math inline">\(n_{ij}\)</span>) y los totales marginales (<span class="math inline">\(N_{i.m}\)</span>, <span class="math inline">\(N_{.j.}\)</span>, <span class="math inline">\(N_{i..}\)</span>, etc.) por los totales marginales observados y que figuran en la tabla que surge de los datos en estudio (<span class="math inline">\(n_{i.m}\)</span>, <span class="math inline">\(n_{.j.}\)</span>, <span class="math inline">\(n_{i..}\)</span>, etc.).</p>
 <p>También son interesantes las relaciones de segundo orden o superior (por ejemplo, si la asociación entre dos de los factores difiere en dirección y/o intensidad para distintos niveles del tercero), pero se estudian mediante <strong>modelos logarítmico lineales</strong>.</p>
 <p></p>
-<div id="resumen-20" class="section level3 unnumbered infobox_resume">
-<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-20"><i class="fas fa-link"></i></a>
+<div id="resumen-21" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-21"><i class="fas fa-link"></i></a>
 </h3>
 <p>Las tablas de contingencia analizan la relación entre variables categóricas. Su análisis responde preguntas como: los factores involucrados en la tabla, ¿son independientes o están asociados? Si están asociados, ¿qué niveles de dichos factores son los que están asociados?, ¿cuál es la intensidad de dicha asociación? Se aborda ampliamente el caso de tablas bifactoriales y se proponen test exactos y aproximados para el contraste de la hipótesis de independencia (para tres procedimientos de muestreo diferentes) y una selección de medidas de asociación. Finalmente, se hace una breve incursión en el ámbito de las tablas multidimensionales.</p>
 </div>
@@ -1030,7 +1028,7 @@ con los siguientes grados de libertad (g.l.) y <span class="math inline">\({E}_{
 <div class="prev"><a href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></div>
 <div class="next"><a href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#tablas-contingencia"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
 <li>
@@ -1067,7 +1065,7 @@ con los siguientes grados de libertad (g.l.) y <span class="math inline">\({E}_{
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#contrastes-de-independencia-en-tablas-multidimensionales"><span class="header-section-number">23.6</span> Contrastes de independencia en tablas multidimensionales</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#resumen-20">Resumen</a></li></ul>
+<a class="nav-link" href="#contrastes-de-independencia-en-tablas-multidimensionales"><span class="header-section-number">23.6</span> Contrastes de independencia en tablas multidimensionales</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#resumen-21">Resumen</a></li></ul>
 </li>
 </ul>
 
@@ -1085,7 +1083,7 @@ con los siguientes grados de libertad (g.l.) y <span class="math inline">\({E}_{
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

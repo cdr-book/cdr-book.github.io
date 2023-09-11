@@ -9,6 +9,8 @@ Universidad de Castilla-La Mancha
 
 ## ¿Qué se entiende por ciencia? {#ciencia}
 
+
+
 No es posible determinar si la ciencia de datos es una ciencia sin
 previamente consensuar la definición de ciencia. La palabra *ciencia*
 deriva del latín (*scientia*), que deriva a su vez del verbo latino
@@ -20,7 +22,7 @@ Este tipo de conocimiento constituye la base sobre la que se sustenta el
 conocimiento científico, que se enriquece al verificar, con la ayuda
 de un método, la validez de las observaciones realizadas. Se adquiere,
 por tanto, de forma consciente, deliberada y metódica. Puede ser
-sometido a prueba y, llegado el caso, ser superado @Montero_1997.
+sometido a prueba y, llegado el caso, ser superado [@Montero_1997].
 
 [^bilal]: Quisiera agradecer a Bilal Laouah y a José-María Montero los comentarios realizados durante el desarrollo de este capítulo.
 
@@ -40,7 +42,7 @@ Si bien esta definición está encuadrada dentro del enfoque del falsacionismo d
 Karl Popper (para el cual las teorías son conjeturas, hipótesis generales que permiten explicar fenómenos), introduce la palabra clave de la discusión planteada, el **método**, y
 más concretamente, el **método científico**.
 
-La palabra *método* procede del latín *methodus*"*, y esta del griego
+La palabra *método* procede del latín *methodus*, y esta del griego
  $\mu \varepsilon \theta o \delta 0 \varsigma$, que quiere decir
 "**el camino a seguir para ir más allá**". Es, pues, un procedimiento
 para conseguir algo; y como el fin que busca la ciencia es la verdad, el
@@ -66,7 +68,7 @@ científico no hay ciencia", @Bunge_2004. "Una ciencia es una disciplina
 que utiliza el método científico con la finalidad de hallar estructuras
 generales (leyes)." @Montero_1997.
 
-Dado que la utilización del método científico es la piedra angular alrededor  de la cual se articula el concepto de ciencia, a continuación se aborda la cuestión de si, en base a lo anterior, la ciencia de datos es o no una ciencia. No obstante, previamente, se abordará la cuestión de qué se entiende por ciencia de datos"
+Dado que la utilización del método científico es la piedra angular alrededor  de la cual se articula el concepto de ciencia, a continuación se aborda la cuestión de si, en base a lo anterior, la ciencia de datos es o no una ciencia. No obstante, previamente, se abordará la cuestión de qué se entiende por ciencia de datos.
 
 
 
@@ -74,7 +76,7 @@ Dado que la utilización del método científico es la piedra angular alrededor 
 
 \index{Tukey} \index{ciencia de datos} \index{análisis!de datos}
 
-La Ciencia de datos es una disciplina emergente donde, a diferencia de
+La ciencia de datos es una disciplina emergente donde, a diferencia de
 otros saberes como, por ejemplo, las ciencias matemáticas, el corpus o
 la acumulación de conocimiento se ha generado en un lapso de tiempo
 relativamente corto (y de una forma muy intensa), y no a lo largo de
@@ -91,11 +93,11 @@ estadísticas matemáticas que se aplican al análisis de datos"
 [@tukey_1962]. A partir de este momento, toda una serie de
 acontecimientos fueron consolidando el término **ciencia de datos**
 como una nueva disciplina. Una breve descripción de los acontecimientos
-se muestran en la Fig. (\@ref(fig:time-line-ds)).
+se muestran en la Fig. \@ref(fig:time-line-ds).
 
 <div class="figure" style="text-align: center">
-<img src="img/time-line-ds6.png" alt="Línea del tiempo de la ciencia de datos. Elaboración propia" width="100%" />
-<p class="caption">(\#fig:time-line-ds)Línea del tiempo de la ciencia de datos. Elaboración propia</p>
+<img src="img/time-line-ds6.png" alt="Línea del tiempo de la ciencia de datos. Elaboración propia." width="100%" />
+<p class="caption">(\#fig:time-line-ds)Línea del tiempo de la ciencia de datos. Elaboración propia.</p>
 </div>
 
 La ciencia de datos implica la limpieza, la agregación y la manipulación
@@ -128,15 +130,15 @@ avanzado, siendo una única disciplina, subsume en su ejercicio otras
 disciplinas como las ciencias matemáticas y la estadística y la ciencia
 de la computación, que a su vez son aplicadas a un amplio rango de
 dominios de manera integral. La ciencia de datos se sirve de los métodos
-formales de las matemática y de las aplicaciones prácticas e
+formales de las matemáticas y de las aplicaciones prácticas e
 ingenieriles de las ciencias de la computación para la generación de
 conocimiento y para la resolución de problemas prácticos en múltiples
 campos. Esta ubicuidad la sitúa, transversalmente, 
 entre los saberes de primer orden. En otras palabras,
 la ciencia de datos va adoptando los paradigmas, modelos, teorías o
 constructos propios del campo sustantivo en el que se ejerce, de forma
-que para resolver alguna problemática sobre personas, puede recurrir
-al corpus relativo de la psicología o de la sociología, y para
+que, para resolver alguna problemática sobre personas, puede recurrir
+al corpus relativo de la psicología o de la sociología y, para
 profundizar sobre alguna condición de salud, puede hacer lo propio con
 la medicina o la biología, por mencionar algunos ejemplos.
 
@@ -144,15 +146,16 @@ la medicina o la biología, por mencionar algunos ejemplos.
 
 ## Lo científico de la ciencia de datos
 
+
 En la Sec. \@ref(ciencia) se manifestó que un aspecto fundamental de
 la ciencia es que utiliza el método científico con la finalidad de
 hallar estructuras generales (principios y leyes) con capacidad
 predictiva y comprobable (en el sentido amplio del término). Es por ello que el marco general de la
 **metodología científica** ha sido bien fundamentado a lo largo de las
 últimas décadas gracias a las contribuciones de diferentes teóricos de
-la ciencia (@chalmers_2000, @Bunge_2004, @Diez_Moulines_1999). Por otra
+la ciencia [@chalmers_2000; @Bunge_2004; @Diez_Moulines_1999]. Por otra
 parte, las ciencias se clasifican, según el objeto de estudio [@Bunge_2018], 
-en:[^nota-bunge1] empíricas y formales. Dado que la ciencia de datos
+en: empíricas y formales[^nota-bunge1]. Dado que la ciencia de datos
 subsume diferentes disciplinas y se aplica a diferentes campos, puede
 tener características tanto de las ciencias empíricas como de las
 formales.
@@ -188,7 +191,7 @@ datos el estatuto de ciencia que comparten otros saberes científicos:
      psicométricas o datos transaccionales producidos por diferentes
      tecnologías.
 
-(iii) El saber científico es implica que las
+(iii) El saber científico implica que las
       afirmaciones científicas puedan ser **contrastadas** a través de los
       hechos. En ciencia de datos, esto también sucede, ya que, estadísticamente, los
       resultados a los que se llega no están ligados a la subjetividad
@@ -222,7 +225,7 @@ datos el estatuto de ciencia que comparten otros saberes científicos:
      ser compartidos a través de diferentes estrategias, entre ellas, la
      visualización de datos.
 
-La ciencia, sin embargo, no sólo puede describirse mediante sus
+La ciencia, sin embargo, no solo puede describirse mediante sus
 características constitutivas, sino también **funcionalmente** [@Hempel_2005]. 
 De hecho, las características anteriormente citadas son
 las que posibilitan las funciones **descriptiva**, **explicativa** y
@@ -235,7 +238,7 @@ las que posibilitan las funciones **descriptiva**, **explicativa** y
     detalle sus características, es decir, el número de variables, el
     número de observaciones, los valores nulos, etc. Esta tarea se
     conoce como "comprensión de los datos" en la metodología
-    CRIPS-DM (véase Sec. \@ref(met-crisp-dm).
+    CRIPS-DM (véase Sec. \@ref(met-crisp-dm)).
 
 (ii)   La segunda, la **explicativa**, determina cómo se relacionan los
     fenómenos que se observan. En general, cuando un científico de
@@ -265,10 +268,13 @@ química, o si, por el contrario, es un saber de segundo orden, es decir,
 una suerte de disciplina que se sirve de otros saberes para desplegarlos
 y actualizarlos.
 
+
+
+
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}
 
-+ Para determinar si la ciencia de datos es, realmente, una ciencia en
++ Para determinar si la ciencia de datos es, realmente, una ciencia, en
 primer lugar se debe consensuar la definición de ciencia, que va
 íntimamente ligada a la definición de método científico.
 

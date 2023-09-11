@@ -1,4 +1,4 @@
-# R para ciencia de datos {#ch-110003}
+# **R** para ciencia de datos {#ch-110003}
 
 *Emilio L. Cano*
 
@@ -15,33 +15,31 @@ Universidad Rey Juan Carlos
 El análisis estadístico de datos es una tarea fundamental 
 en la transformación digital de las empresas y organizaciones. 
 Siempre ha estado ahí, pero
-en la actualidad la disponibilidad de datos, la cantidad de los mismos, 
-y la velocidad con la que se requieren resultados, está haciendo
+en la actualidad la disponibilidad de datos, la cantidad de los mismos  
+y la velocidad con la que se requieren resultados están haciendo
 necesario el capacitar a los profesionales
 para su análisis con nuevas herramientas. Nuevas tendencias (muchas veces
-malinterpretadas) como Inteligencia Artificial, _Big Data_, Industria 4.0, _Internet of Things_ (IoT), 
-o _Data Science_, aumentan el interés por parte de las empresas, los profesionales 
+malinterpretadas), como Inteligencia Artificial (IA), _Big Data_, Industria 4.0, _Internet of Things_ (IoT)
+o _Data Science_,  aumentan el interés por parte de las empresas, los profesionales 
 y los investigadores en estas técnicas.
 
 El tratamiento de datos y su análisis requiere el uso de
 software avanzado. Aunque algunas tareas como, por ejemplo, mecanizar y almacenar datos, se pueden realizar
 eficazmente con programas de hoja de cálculo \index{hoja de cálculo}
-como Excel, 
-se debería
+como Excel, se debería
 utilizar software especializado para el análisis de datos. Existen distintos 
 paquetes estadísticos comerciales, como SPSS, Statgraphics, Stata, SAS, JMP o Minitab. En los últimos 
 años se ha abierto camino como alternativa el [software estadístico y lenguaje de
 programación **R**](http://www.r-project.org) [@R-base]. Hay otras alternativas que, en su mayoría, o son parciales, referidas a un 
 ámbito concreto, o son más lenguajes de programación que software estadístico, como Python. 
-**R** es software libre, pero su gratuidad sólo es una
+**R** es software libre, pero su gratuidad solo es una
 de sus ventajas, como se verá a lo largo del libro. Su gran inconveniente
 es la curva de aprendizaje: no es tan fácil de aprender y usar como un
 software de ventanas, ya que el uso de **R** se basa en expresiones que
-hay que ejecutar desde _scripts_ (archivos de código).\index{script} 
+hay que ejecutar desde scripts (archivos de código).\index{script} 
 
 
-**R** es un 
-sistema para **computación estadística**: software de **análisis de datos** y
+**R** es un sistema para **computación estadística**: software de **análisis de datos** y
 **lenguaje de programación**. Ha sido ampliamente utilizado en investigación y docencia, 
 y actualmente también 
 en las empresas y organismos públicos. Es la evolución del trabajo de los laboratorios Bell con el 
@@ -58,14 +56,14 @@ Uno de los aspectos más espectaculares de **R** es la cantidad de **paquetes**
 disponibles. Un paquete (_package_) de **R** es un componente con funcionalidad adicional que se puede
 instalar en el sistema para ser utilizado por **R**. En el momento de 
 compilar este libro, el número de paquetes disponibles en el repositorio oficial 
-es de 19725.  
+es de 19875.  
 
 
 Una vez conocido el mundo de **R**, se plantea la siguiente pregunta: ¿y por qué
 utilizar **R**? Es imposible dar un único motivo. A continuación se enumeran
 algunos de ellos:
 
-- Es Free and Open Source Software (FOSS). Gratis y libre. En inglés se suele decir _free as in free beer, and free as in free speech_.
+- Es *Free and Open Source Software* (FOSS). Gratis y libre. En inglés se suele decir _free as in free beer, and free as in free speech_.
 - Tiene una amplia comunidad de usuarios que proporciona recursos.
 - Es multiplataforma.
 - Se usa cada vez en más empresas e instituciones.
@@ -95,15 +93,17 @@ interactuar con **R**, pero es muy pobre a la hora de trabajar con ella. En su l
 es más conveniente utilizar el entorno de desarrollo [RStudio Desktop](http://www.rstudio.org) (o su versión en la nube https://posit.cloud/), 
 que es como un
 "envoltorio" del sistema **R** con más funcionalidades y ayudas, pero
-manteniendo el mismo nivel de interacción: consola y _scripts_[^nota-estilo]. Al igual que **R**, RStudio es una aplicación de software libre, pero, en este caso, desarrollada y mantenida por la compañía privada Posit PBC. 
+manteniendo el mismo nivel de interacción: consola y scripts[^nota-estilo]. Al igual que **R**, RStudio es una aplicación de software libre, pero, en este caso, desarrollada y mantenida por la compañía privada Posit PBC. 
 
 [^nota-estilo]: Lo importante
 es seguir un estilo consistente en cuanto a nombres de objetos, espacios
-en blanco y el uso de delimitadores y tabulación en el _script_. Véase por ejemplo
-la [guía de estilo de Hadley Wickam](http://adv-r.had.co.nz/Style.html)
+en blanco y el uso de delimitadores y tabulación en el script. Véase por ejemplo
+la [guía de estilo de Hadley Wickham](http://adv-r.had.co.nz/Style.html)
 [@wickham2015advanced].
 
 ::: {.infobox data-latex=""}
+**Nota**
+
 Una cosa muy importante en **R** es que las expresiones son **sensibles a mayúsculas**,
 y por tanto los objetos `datos` y `Datos` son distintos.
 :::
@@ -115,13 +115,13 @@ y por tanto los objetos `datos` y `Datos` son distintos.
 Durante todo el libro se utiliza la interfaz RStudio. Pero, como se avanzó anteriormente, RStudio
 es solo un "envoltorio" de **R**, por lo que previamente hay que tener instalado
 en el ordenador el sistema "base" de **R**. **R** está disponible para sistemas
-Windows, MacOS y Linux. Por cuestiones de espacio, no se incluyen detalles en este libro, pero la instalación es sencilla siguiendo las instrucciones en sus correspondientes websites:
+Windows, MacOS y Linux. Por cuestiones de espacio, no se incluyen detalles en este libro, pero la instalación es sencilla siguiendo las instrucciones en sus correspondientes *websites*:
 
 
 1. Instalación de **R**: http://www.r-project.org 
 2. Instalación de RStudio: https://posit.co 
 
-Para completar la instalación de **R**, se muestra cómo instalar[^nota-install-pack] los paquetes del `tidyverse`[^nota-tv] mediante expresiones en la consola o _script_ con la función `install.packages()`: 
+Para completar la instalación de **R**, se muestra cómo instalar[^nota-install-pack] los paquetes del `tidyverse`[^nota-tv] mediante expresiones en la consola o script con la función `install.packages()`: 
 
 
 ```r
@@ -151,7 +151,7 @@ dplyr::select()
 ## Trabajar con proyectos de RStudio {#110003-proyectos}
 \index{proyectos}
 
-La manera más eficiente de trabajar con **R**, es mediante **proyectos**
+La manera más eficiente de trabajar con **R**  es mediante **proyectos**
 de RStudio. Esto permite abstraerse de los detalles de la sesión de **R** 
 (espacio de trabajo, directorio de trabajo, _environment_), ya que al abrir
 un proyecto estará todo preparado para seguir el trabajo donde se dejó,
@@ -165,41 +165,43 @@ y depende del proyecto particular. Las siguientes carpetas pueden ser
 útiles en un amplio abanico de proyectos, y 
 las tres primeras se pueden usar prácticamente en cualquier proyecto:
 
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"/></svg>`{=html} `data`: en esta carpeta se tienen los archivos de
-datos, tanto aquellos orígenes de datos que se quieran importar, como los
-que se puedan guardar desde un _script_.
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"/></svg>`{=html} `R`: para los _scripts_. Es posible que solamente haya un _script_
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"/></svg>`{=html} `data`: en esta carpeta se tienen los archivos de
+datos, tanto aquellos orígenes de datos que se quieran importar como los
+que se puedan guardar desde un script.
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"/></svg>`{=html} `R`: para los scripts. Es posible que solamente haya un script
 en nuestro proyecto, pero si hubiera más se pueden guardar en esta carpeta.
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"/></svg>`{=html} `inform`: aquí se pueden guardar los archivos Quarto o R Markdown
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"/></svg>`{=html} `inform`: aquí se pueden guardar los archivos Quarto o R Markdown
 que se utilicen para generar informes o presentaciones.
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"/></svg>`{=html} `img`: si en nuestro proyecto se utilizan imágenes
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"/></svg>`{=html} `img`: si en nuestro proyecto se utilizan imágenes
 de cualquier tipo, es una buena idea tenerlas en una carpeta aparte.
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"/></svg>`{=html} `test`: si se quieren separar los _scripts_ que se utilicen para 
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"/></svg>`{=html} `test`: si se quieren separar los scripts que se utilicen para 
 pruebas y no se quieren mezclar con los "buenos" en la carpeta `R`.
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H192c20.1 0 39.1 9.5 51.2 25.6l19.2 25.6c6 8.1 15.5 12.8 25.6 12.8H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"/></svg>`{=html} `aux`, `tmp`, `util`, `notas`, `doc`, ...: 
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"/></svg>`{=html} `aux`, `tmp`, `util`, `notas`, `doc`, ...: 
 este tipo de carpetas vienen bien cuando
 hay información que está relacionada o es útil para un proyecto, pero el archivo no es 
 del proyecto de análisis de datos en sí. Por ejemplo, unas especificaciones de
 un producto o servicio, un artículo científico, fotografías de una fábrica, 
 comunicaciones con clientes, etc.
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H192c20.1 0 39.1 9.5 51.2 25.6l19.2 25.6c6 8.1 15.5 12.8 25.6 12.8H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"/></svg>`{=html} `ejercicios`, `practicas`, ...: si nuestro proyecto
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"/></svg>`{=html} `ejercicios`, `practicas`, ...: si nuestro proyecto
 forma parte de una asignatura, curso, o similar.
 
 
 ::: {.infobox data-latex=""}
+**Nota**
+
 Un aspecto importante cuando se trabaja en proyectos colaborativos es el control de versiones. Este tema se aborda en el Cap. \@ref(github).
 :::
 
 
 ## Tratamiento de datos con **R**
 
-En este apartado se van a empezar a utilizar expresiones de **R**. Las expresionesse escribirn en _scripts_, que pueden contener "comentarios" (texto que no se ejecutará) utilizando el símbolo "almohadilla" (`#`). Muchas de las expresiones que se usan son llamadas a funciones[^nota-espacio]. La ayuda de cualquier función se puede obtener en la consola usando la expresión `?function`, donde `function` es el nombre de la función u objeto del que se quiere obtener ayuda.
+En este apartado se van a empezar a utilizar expresiones de **R**. Las expresiones se escribirán en scripts, que pueden contener "comentarios" (texto que no se ejecutará) utilizando el símbolo "almohadilla" (`#`). Muchas de las expresiones que se usan son llamadas a funciones[^nota-espacio]. La ayuda de cualquier función se puede obtener en la consola usando la expresión `?function`, donde `function` es el nombre de la función u objeto del que se quiere obtener ayuda.
 
-[^nota-espacio]: Por motivos de espacio´, no se incluyen mayores explicaciones de las mismas, pero se anima al lector a explorar la ayuda de cada una de ellas para comprender mejor su funcionamiento.
+[^nota-espacio]: Por motivos de espacio, no se incluyen mayores explicaciones de las mismas, pero se anima al lector a explorar la ayuda de cada una de ellas para comprender mejor su funcionamiento.
 
 ### Estructuras y tipos de datos {#110003-estructuras}
 
-Las estructuras y tipos de datos más frecuentes con las que se trabaja en **R** son las que se detallan a continuación.
+Las estructuras y tipos de datos más frecuentes con los que se trabaja en **R** son los que se detallan a continuación.
 
 **Tablas de datos**. Son colecciones de variables numéricas y/o atributos
 organizadas en columnas,
@@ -297,7 +299,7 @@ class(tempmin_data$fecha)
 ```
 
 \index{cadenas de caracteres}\index{strings}
-**Cadenas de texto**. Son estructuras de datos que aparecen en forma de vector de caracteres. La columna `indicativo` del conjunto de datos `tempmin_data` es un ejemplo de este tipo de datos. La ayuda de `?regexpr` proporciona la información necesaria sobre cómo extraer texto con expresiones regulares, y la de `?paste` para aprender a unir cadenas de texto. El paquete `stringr` del _tidyverse_ contiene funciones para facilitar el trabajo con cadenas de texto. 
+**Cadenas de texto**. Son estructuras de datos que aparecen en forma de vector de caracteres. La columna `indicativo` del conjunto de datos `tempmin_data` es un ejemplo de este tipo de datos. La ayuda de `?regexpr` proporciona la información necesaria sobre cómo extraer texto con expresiones regulares, y la de `?paste`, para aprender a unir cadenas de texto. El paquete `stringr` del _tidyverse_ contiene funciones para facilitar el trabajo con cadenas de texto. 
 
 
 
@@ -376,6 +378,8 @@ merma <- read.table(file = "data/ejDatos.csv",
 [^nota-rt]: Con el argumento `header` se indica si la primera fila tiene encabezados (`TRUE`) o no (`FALSE`, opción por defecto). También hay que especificar el separador de columnas `sep` y el símbolo decimal `dec`. `fileEncoding` es la especificación de la codificación de texto; las más habituales son `utf-8` y '`latin1`.
 
 ::: {.infobox data-latex=""}
+**Nota**
+
 Para saber cómo importar datos desde sistemas gestores de bases de datos véase el
 Cap. \@ref(datos-sql).
 :::
@@ -398,7 +402,7 @@ La ruta o "xpath" se puede obtener usando las herramientas de desarrollo del nav
 
 ### Exportación de datos y archivos de datos específicos de R
 
-En algunos proyectos es necesario guardar algunos datos que se han ido creando o
+En algunos proyectos es necesario guardar ciertos datos que se han ido creando o
 transformando, bien para compartir con otras partes interesadas, bien para
 ser utilizados en el mismo u otros proyectos. 
 Para exportar los datos a Excel, se utiliza la función `write.xlsx()` del paquete `openxlsx` (si no está instalado, se instala de la forma habitual).
@@ -464,13 +468,14 @@ Las principales ventajas (opinables) de utilizar el _tidyverse_ son tres:
 Uno de los paquetes más populares del _tidyverse_ es `ggplot2`, que proporciona una "gramática de gráficos"
 [@Wickham2016] y es una pieza clave del _tidyverse_ actual, junto con los paquetes `dplyr` (gramática para la manipulación de datos) y `tidyr` (herramienta para crear datos _tidy_). 
 El flujo de trabajo propuesto por el _tidyverse_ se describe en el libro
-"R for Data Science" [@wickham2016r] y se sintetiza en la Fig. \@ref(fig:ch-110003-flujods).
+*R for Data Science* [@wickham2016r] y se sintetiza en la Fig. \@ref(fig:ch-110003-flujods).
 
 
 <div class="figure" style="text-align: center">
-<img src="img/data-science.png" alt="Flujo de trabajo en Ciencia de Datos propuesto por el tidyverse (fuente: Wickham, H. and Grolemund, G. (2016))" width="80%" />
-<p class="caption">(\#fig:ch-110003-flujods)Flujo de trabajo en Ciencia de Datos propuesto por el tidyverse (fuente: Wickham, H. and Grolemund, G. (2016))</p>
+<img src="img/data-science.png" alt="Flujo de trabajo en ciencia de datos propuesto por el $tidyverse$. Fuente: Wickham and Grolemund (2016)." width="80%" />
+<p class="caption">(\#fig:ch-110003-flujods)Flujo de trabajo en ciencia de datos propuesto por el $tidyverse$. Fuente: Wickham and Grolemund (2016).</p>
 </div>
+
 
 Además del mencionado libro, la web del _tidyverse_ (http://tidyverse.org) contiene
 toda la documentación de los paquetes, incluidos artículos para tareas concretas,
@@ -506,7 +511,7 @@ comprobar y aplicar esta guía de estilo a través del paquete `styler`. Los _Ad
 
 El _pipe_ es, básicamente, un operador compuesto de dos caracteres, `|>`,
 que se puede obtener con el atajo de teclado `CTRL+MAYUS+M`. El operador
-se pone en medio de dos expresiones de **R**. Sean `lado_izquierdo`
+se pone en medio de dos expresiones de **R**, sean `lado_izquierdo`
 y `lado_derecho` las expresiones que se ponen a izquierda y derecha
 del _pipe_. Entonces se utiliza de la siguiente manera:
 
@@ -517,6 +522,8 @@ lado_izquierdo |> lado_derecho
 
 
 ::: {.infobox data-latex=""}
+**Nota**
+
 El operador _nativo_ de **R**, `|>`, apareció en la versión R-4.1.0. Hay un operador alternativo que proviene del paquete `magrittr`, `%>%`, que había que usar antes de esta versión, y mucha literatura y documentación está escrita usándolo. Hay diferencias, pero a los efectos de este capítulo ambos operadores se pueden utilizar indistintamente.
 :::
 
@@ -558,7 +565,7 @@ columnas y para resumir datos.
 \index{filtrar datos}
 Los verbos definidos para estas operaciones son:
 
--  **`filter()`**: elige filas en función de los valores de la columna.
++ **`filter()`**: elige filas en función de los valores de la columna.
 
 
 ```r
@@ -567,7 +574,8 @@ pm10 <- contam_mad |>
 ```
 
 \index{ordenar datos}
--  **`arrange()`**: cambia el orden de las filas con algún criterio.
+
++ **`arrange()`**: cambia el orden de las filas con algún criterio.
 
 
 ```r
@@ -576,7 +584,8 @@ zonas<- contam_mad |>
 ```
 
 \index{extraer datos}
--  **`slice()`**: extrae filas por su índice. También hay una serie de funciones
+
++ **`slice()`**: extrae filas por su índice. También hay una serie de funciones
 "asistentes" (_helpers_) para obtener los índices que se utilizan con
 frecuencia. Por ejemplo:
 
@@ -590,6 +599,7 @@ se especifica `n` o `prop`, se obtienen sólo las filas que contienen el mínimo
 que puede haber más de una fila que cumpla la condición. 
 
 Véase el resultado de los siguientes ejemplos:
+
 
 
 ```r
@@ -607,7 +617,8 @@ pm10 |> slice_sample(n = 4) # muestra 4 registros
 Los verbos definidos para estas operaciones son:
 
 \index{seleccionar columnas}
-- **`select()`**: indica cuando una columna se incluye o no. Se pueden utilizar _helpers_ para seleccionar columnas que cumplan cierta condición (por ejemplo, ser numéricas) y también para "quitar" columnas de la selección (con el signo menos (`-`)).
+
+- **`select()`**: indica cuando una columna se incluye o no. Se pueden utilizar _helpers_ para seleccionar columnas que cumplan cierta condición (por ejemplo, ser numéricas) y también para "quitar" columnas de la selección (con el signo menos,[`-`]).
 
 
 ```r
@@ -623,7 +634,7 @@ En cuanto a la **modificación** de datos, existen múltiples posibilidades. Alg
 - **`rename()`**: cambia el nombre de la columna.
 
 - **`mutate()`**: cambia los valores de las columnas y crea nuevas columnas. La función `transmute()` funciona igual que `mutate()`, pero la tabla de datos
-resultante sólo contiene las nuevas columnas creadas.
+resultante solo contiene las nuevas columnas creadas.
 
 
 - **`relocate()`**: cambia el orden de las columnas.
@@ -687,7 +698,7 @@ datos, para lo que se utiliza la función `ungroup()`.
 A continuación, se muestra una expresión un poco más compleja que las anteriores. 
 En el conjunto de datos `contam_mad` del paquete `CDR`, se filtra por el 
 nombre de contaminante "NOx". Después se agrupan los datos por zona y se 
-calculan algunos estadísticos resumen para cada zona. 
+calculan algunos estadísticos de resumen para cada zona. 
 
 
 ```r
@@ -727,14 +738,14 @@ columnas. Hay cuatro tipos de uniones que se pueden realizar,
 usando las siguientes funciones:
 
 - `inner_join()`: se incluyen las filas de ambas tablas para las que coinciden las variables de unión.
-- `left_join()`: se incluyen todas las filas de la primer tabla y sólo las de la segunda donde hay coincidencias.
-- `right_join()`: se incluyen todas las filas de la segunda tabla y sólo las de la primera donde hay coincidencias.
+- `left_join()`: se incluyen todas las filas de la primera tabla y solo las de la segunda donde hay coincidencias.
+- `right_join()`: se incluyen todas las filas de la segunda tabla y solo las de la primera donde hay coincidencias.
 - `full_join()`: se incluyen todas las filas de las dos tablas.
 
 Las funciones requieren como argumentos dos tablas de datos y
 la especificación de las columnas coincidentes. Si no se especifica,
 hace las uniones por todas las columnas coincidentes en ambas tablas. Para
-las filas que sólo están en una de las tablas, se añaden valores `NA`
+las filas que solo están en una de las tablas, se añaden valores `NA`
 donde no haya coincidencias.
 
 A modo de ejemplo, las siguientes expresiones unen dos datasets para combinar datos de municipios con su renta. En el Cap. \@ref(130009) se verán estas uniones en la práctica.
@@ -788,6 +799,8 @@ valores en la tabla original. Las observaciones deben estar identificadas de for
 al estilo de las tablas dinámicas de las hojas de cálculo con el argumento `values_fn`.
 
 ::: {.infobox data-latex=""}
+**Nota**
+
 Las funciones `pivot_longer()` y `pivot_wider()` admiten otros argumentos
 `names_xx` y `values_xx` para personalizar la forma de reestructurar los datos.
 En la mayoría de las
@@ -822,7 +835,7 @@ en dos o más con la función `separate()` (véanse los detalles en la ayuda de 
 
 \index{missing}\index{valores perdidos}
 Para terminar este apartado de reorganización de datos, se da una
-primera aproximación al tratamiento de valores perdidos, que se tratará en el 
+primera aproximación al tratamiento de valores perdidos, que se abordará en el 
 Cap. \@ref(130009). En **R**, un valor
 perdido se representa por el valor especial `NA` (_not available_). Brevemente,
 las funciones más utilizadas en este campo son:
@@ -851,7 +864,7 @@ contam_mad |>
 ### Resumen {-}
 
 - **R** es software libre y gratuito, mantenido por una enorme comunidad.
-- La forma de interactuar con **R** es mediante expresiones, que se escriben en _scripts_, y al ejecutarlas se obtienen los resultados.
+- La forma de interactuar con **R** es mediante expresiones, que se escriben en scripts, y al ejecutarlas se obtienen los resultados.
 - Los objetos de datos que se vayan a usar deben estar en el espacio de trabajo.
 - RStudio es un "envoltorio" de **R**, y por tanto **R** tiene que estar instalado
 en el sistema para poder usar RStudio.

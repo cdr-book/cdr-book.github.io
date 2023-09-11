@@ -6,22 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 53 Segmentación de clientes en el comerico minorista | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
-<meta name="description" content="Jaime Fierro Martín\(^{a}\), Rocío González Martínez\(^{a}\) y Cristina Sánchez Figueroa\(^{b}\) \(^{a}\)Analyticae, SL, \(^{b}\)Universidad Nacional a Distancia  53.1 Motivación y conceptos clave...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="description" content="Jaime Fierro Martín\(^{a}\), Rocío González Martínez\(^{a}\) y Cristina Sánchez Figueroa\(^{b}\) \(^{a}\)Analyticae, SL\(^{b}\)Universidad Nacional de Educación a Distancia  53.1 Motivación y...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 53 Segmentación de clientes en el comerico minorista | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
-<meta property="og:description" content="Jaime Fierro Martín\(^{a}\), Rocío González Martínez\(^{a}\) y Cristina Sánchez Figueroa\(^{b}\) \(^{a}\)Analyticae, SL, \(^{b}\)Universidad Nacional a Distancia  53.1 Motivación y conceptos clave...">
+<meta property="og:description" content="Jaime Fierro Martín\(^{a}\), Rocío González Martínez\(^{a}\) y Cristina Sánchez Figueroa\(^{b}\) \(^{a}\)Analyticae, SL\(^{b}\)Universidad Nacional de Educación a Distancia  53.1 Motivación y...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 53 Segmentación de clientes en el comerico minorista | Fundamentos de ciencia de datos con R">
-<meta name="twitter:description" content="Jaime Fierro Martín\(^{a}\), Rocío González Martínez\(^{a}\) y Cristina Sánchez Figueroa\(^{b}\) \(^{a}\)Analyticae, SL, \(^{b}\)Universidad Nacional a Distancia  53.1 Motivación y conceptos clave...">
+<meta name="twitter:description" content="Jaime Fierro Martín\(^{a}\), Rocío González Martínez\(^{a}\) y Cristina Sánchez Figueroa\(^{b}\) \(^{a}\)Analyticae, SL\(^{b}\)Universidad Nacional de Educación a Distancia  53.1 Motivación y...">
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
-<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -33,7 +34,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -76,13 +77,13 @@
 <li class="book-part">Machine learning supervisado</li>
 <li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
-<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
-<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
 <li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
 <li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
@@ -108,18 +109,15 @@
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
 <li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
 <li><a class="active" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
-<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
-<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
-<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -132,7 +130,7 @@
 <span class="header-section-number">Capítulo 53</span> Segmentación de clientes en el comerico minorista<a class="anchor" aria-label="anchor" href="#cap-rfm"><i class="fas fa-link"></i></a>
 </h1>
 <p><em>Jaime Fierro Martín</em><span class="math inline">\(^{a}\)</span>, <em>Rocío González Martínez</em><span class="math inline">\(^{a}\)</span> y <em>Cristina Sánchez Figueroa</em><span class="math inline">\(^{b}\)</span></p>
-<p><span class="math inline">\(^{a}\)</span>Analyticae, SL, <span class="math inline">\(^{b}\)</span>Universidad Nacional a Distancia</p>
+<p><span class="math inline">\(^{a}\)</span>Analyticae, SL<br><span class="math inline">\(^{b}\)</span>Universidad Nacional de Educación a Distancia</p>
 <div id="motivación-y-conceptos-clave" class="section level2" number="53.1">
 <h2>
 <span class="header-section-number">53.1</span> Motivación y conceptos clave<a class="anchor" aria-label="anchor" href="#motivaci%C3%B3n-y-conceptos-clave"><i class="fas fa-link"></i></a>
@@ -145,10 +143,10 @@ clientes</strong> permitirá detectar en qué
 momento de su ciclo de vida con la empresa se encuentran y desarrollar
 propuestas de valor que convengan en cada momento.</p>
 <p><strong>Segmentar</strong> se define como el proceso de dividir a
-los clientes actuales o potenciales, en diferentes grupos o segmentos
+los clientes, actuales o potenciales, en diferentes grupos o segmentos
 consistentes en individuos con características y niveles similares de
-interés (véase el Cap. <a href="no-jerarquico.html#no-jerarquico">31</a> para una explicación detallada de
-las técnicas del cluster no jerárquico). Es un proceso creativo e iterativo con el fin de satisfacer con
+interés (véase el Cap. <a href="no-jerarquico.html#no-jerarquico">31</a>) para una explicación detallada de
+las técnicas del clúster no jerárquico). Es un proceso creativo e iterativo con el fin de satisfacer con
 mayor acierto las necesidades de los clientes, proporcionando una
 ventaja competitiva y sostenible a la compañía. La segmentación viene
 dada por las necesidades de los clientes, no de la compañía, y debería
@@ -159,19 +157,19 @@ necesitaba mejorar el conocimiento de sus clientes, agrupándolos en
 función de su comportamiento de compra. Los resultados obtenidos fueron
 clave para definir la estrategia de marketing relacional de la compañía.</p>
 </div>
-<div id="el-modelo-recency-frequency-monetary-tradicional" class="section level2" number="53.2">
+<div id="el-modelo-rfm-tradicional" class="section level2" number="53.2">
 <h2>
-<span class="header-section-number">53.2</span> El modelo <em>Recency, frequency, monetary</em> tradicional<a class="anchor" aria-label="anchor" href="#el-modelo-recency-frequency-monetary-tradicional"><i class="fas fa-link"></i></a>
+<span class="header-section-number">53.2</span> El modelo RFM tradicional<a class="anchor" aria-label="anchor" href="#el-modelo-rfm-tradicional"><i class="fas fa-link"></i></a>
 </h2>
-<p>El <strong>modelo RFM</strong> es una técnica popular que se
+<p>El <strong>modelo RFM</strong> (<em>recency</em>, <em>frequency</em>, <em>monetary</em>) es una técnica popular que se
 utiliza para analizar el comportamiento de compra de los clientes: cómo
 compran, su frecuencia de compra y cuánto gastan. Es un método útil para
 enriquecer la segmentación de los clientes en varios grupos que permitan
 la personalización e identificación de los clientes más proclives a
 responder a las promociones. El análisis RFM depende de las medidas de
-actualidad<strong>(<em>recency</em>)</strong><strong>(R)</strong>, frecuencia
-<strong>(<em>frequency</em>)</strong><strong>(F)</strong> y valor monetario
-<strong>(<em>monetary</em>)</strong><strong>(M)</strong>, que son tres importantes
+actualidad <strong>(<em>recency</em>)</strong> (R), frecuencia
+<strong>(<em>frequency</em>)</strong> (F) y valor monetario
+<strong>(<em>monetary</em>)</strong> (M), que son tres importantes
 variables relacionadas con la compra que influyen en las posibilidades
 de compra futura de los clientes.</p>
 <p>El <strong>modelo RFM tradicional</strong> categoriza el valor de las variables
@@ -179,25 +177,25 @@ dividiéndolas en quintiles, a partir de los cuales se calcula una
 puntuación única que representa el valor del cliente. Sin embargo, no es
 muy preciso. Si el intervalo de frecuencia de compras se fija entre 0 y
 20, en términos de negocio podría interpretarse como que un cliente con
-una sola compra será igual que otro que tenga 20. Por ello,los enfoques
+una sola compra será igual que otro que tenga 20. Por ello, os enfoques
 de conjuntos clásicos pueden resultar poco funcionales
-<span class="citation">(<a href="referncias.html#ref-martinez2019comparison" role="doc-biblioref">Martı́nez et al. 2019</a>)</span>. En este caso práctico, se propone una mejora
+<span class="citation">(<a href="cap-fraude.html#ref-martinez2019comparison">Martı́nez et al. 2019</a>)</span>. En este caso práctico, se propone una mejora
 en la definición de los intervalos mediante la aplicación del <strong>ranking
 de percentiles</strong>. Este método, que se ha
-denominado modelo RFM extendido, proporciona un método robusto para
-tratar los valores atípicos (<em>outliers</em>), y además normaliza las
+denominado <strong>modelo RFM extendido</strong>, proporciona un procedimiento robusto para
+tratar los valores atípicos (<em>outliers</em>) y además normaliza las
 variables entre 0 y 1 para evitar la diferencias de peso entre las
 variables, permitiendo así la correcta implementación del <strong>algoritmo de
 segmentación</strong>.</p>
 </div>
-<div id="el-modelo-recency-frequency-monetary-extendido" class="section level2" number="53.3">
+<div id="el-modelo-rfm-extendido" class="section level2" number="53.3">
 <h2>
-<span class="header-section-number">53.3</span> El modelo <em>Recency, frequency, monetary</em> extendido<a class="anchor" aria-label="anchor" href="#el-modelo-recency-frequency-monetary-extendido"><i class="fas fa-link"></i></a>
+<span class="header-section-number">53.3</span> El modelo RFM extendido<a class="anchor" aria-label="anchor" href="#el-modelo-rfm-extendido"><i class="fas fa-link"></i></a>
 </h2>
 <p>Los autores de este caso práctico recomiendan seguir una metodología de
 gestión de proyectos. La <strong>metodología
-CRISP-DM</strong> <span class="citation">(<a href="referncias.html#ref-chapman2000crisp" role="doc-biblioref">Chapman et al. 2000b</a>)</span>, presentada
-en el Cap. @ref(metodología) es un estándar ampliamente utilizado
+CRISP-DM</strong> <span class="citation">(<a href="cap-fraude.html#ref-chapman2000crisp">Chapman et al. 2000b</a>)</span>, presentada
+en el Cap. <a href="metodologia.html#metodologia">2</a>, es un estándar ampliamente utilizado
 en los proyectos de ciencia de datos.</p>
 <p>Una vez definido el problema (mejorar el conocimiento que una empresa de
 comercio minorista tiene de sus clientes, agrupándolos en función de su
@@ -216,7 +214,7 @@ contenida en estos datos de compra atesora gran valor, ya que carecen
 del sesgo y subjetividad propias de otras informaciones obtenidas
 mediante encuestas de opinión, estudios de mercado, entrevistas y grupos
 de discusión, etc. Estos datos suelen encontrarse en las plataformas ERP
-(<em>Enterprise Resource Planning</em>) de gestión de pedidos y ventas, o CRM
+(<em>Enterprise Resource Planning</em>) de gestión de pedidos y ventas o CRM
 (<em>Customer Relationship Management</em>) de las empresas.</p>
 <p>El lector es, o será, consciente de que la fase de extracción, carga y
 limpieza de los datos es la más exigente del proyecto, y donde se
@@ -224,7 +222,7 @@ empleará gran parte de los recursos y tiempo de todo el proyecto. <strong>R</st
 cuenta con gran cantidad de paquetes y recursos que facilitan la
 extracción desde diferentes tipos de bases de datos.</p>
 <p>Para este caso práctico serán necesarias las siguientes librerías:</p>
-<div class="sourceCode" id="cb780"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb786"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://lubridate.tidyverse.org">"lubridate"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.sthda.com/english/rpkgs/factoextra">"factoextra"</a></span><span class="op">)</span></span>
@@ -234,16 +232,16 @@ extracción desde diferentes tipos de bases de datos.</p>
 <p>Cualquier tipo de estudio o proyecto de ciencia de datos requiere
 familiarizarse con los datos y determinar si presentan suficiente
 exactitud, completitud, consistencia, credibilidad y actualidad
-<span class="citation">(<a href="referncias.html#ref-munoz2018calidad" role="doc-biblioref">Muñoz-Reja, Carretero, and Cejudo 2018</a>)</span>. Los datos de transacciones de venta registrados por
-las empresas pueden contener datos atípicos (p.ej. valores perdidos,
-inexactos, outliers, etc.). Para determinar la acción a tomar, o no, de
+<span class="citation">(<a href="cap-fraude.html#ref-munoz2018calidad">Muñoz-Reja, Carretero, and Cejudo 2018</a>)</span>. Los datos de transacciones de venta registrados por
+las empresas pueden contener valores perdidos,
+inexactos, <em>outliers</em>, etc. Para determinar la acción a tomar, o no, de
 limpieza o corrección de los datos de partida, es esencial conocer el
 negocio y las consecuencias que éstas operaciones tendrán en el
 resultado final de la segmentación.</p>
 <p>El conjunto de datos de muestra contiene 200.000 observaciones
 correspondientes a transacciones de compra. Las siguientes variables
 iniciales están explicadas en el set de datos:</p>
-<div class="sourceCode" id="cb781"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb787"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html">head</a></span><span class="op">(</span><span class="va">datos_retail</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 x 4</span></span>
 <span><span class="co">#&gt; id_ticket fecha importe_venta codigo_socio</span></span>
@@ -257,7 +255,7 @@ iniciales están explicadas en el set de datos:</p>
 <span class="header-section-number">53.3.2</span> Cálculo de las variables del modelo RFM<a class="anchor" aria-label="anchor" href="#c%C3%A1lculo-de-las-variables-del-modelo-rfm"><i class="fas fa-link"></i></a>
 </h3>
 <p>Identificadas las variables iniciales, es necesario calcular los
-factores clave del Modelo RFM:</p>
+factores clave del modelo RFM:</p>
 <ul>
 <li><p>La variable actualidad, <em>recency</em> (R), es el intervalo de tiempo
 transcurrido desde la última compra de un cliente hasta la fecha de
@@ -267,7 +265,7 @@ compras por cliente y contando el número total de tickets únicos.</p></li>
 <li><p>La variable valor monetario, <em>monetary</em> (M), se calcula sumando
 todos los importes de venta por cliente.</p></li>
 </ul>
-<div class="sourceCode" id="cb782"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb788"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fecha_estudio_rfm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2022-08-01"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">rfm</span> <span class="op">&lt;-</span> <span class="va">datos_retail</span> <span class="op">|&gt;</span></span>
@@ -278,7 +276,7 @@ todos los importes de venta por cliente.</p></li>
 <span>    fecha_transaccion_reciente <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html">first</a></span><span class="op">(</span><span class="va">fecha</span>, order_by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>actualidad <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/time_length.html">time_length</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/interval.html">interval</a></span><span class="op">(</span>start <span class="op">=</span> <span class="va">fecha_transaccion_reciente</span>, end <span class="op">=</span> <span class="va">fecha_estudio_rfm</span><span class="op">)</span>, unit <span class="op">=</span> <span class="st">"days"</span><span class="op">)</span>, .keep <span class="op">=</span> <span class="st">"unused"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb783"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb789"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html">head</a></span><span class="op">(</span><span class="va">rfm</span><span class="op">)</span> <span class="co"># el lector puede ver las variables del Modelo RFM</span></span></code></pre></div>
 </div>
 <div id="breve-análisis-exploratorio-de-las-variables-del-modelo-rfm" class="section level3" number="53.3.3">
@@ -290,14 +288,14 @@ todos los importes de venta por cliente.</p></li>
 <li><p>107.929 clientes han realizado una media de 1,85 compras, con un
 importe medio total de 70,56€ y 450,4 días de media desde la última
 compra hasta la fecha de realización del estudio, con una fuerte
-asimetría positiva de los valores <em>frequency</em> y <em>monetary</em> (ver Fig. <a href="cap-rfm.html#fig:imagen1">53.1</a>).</p></li>
+asimetría positiva de los valores <em>frequency</em> y <em>monetary</em> (véase Fig. <a href="cap-rfm.html#fig:imagen1">53.1</a>).</p></li>
 <li><p>Se detecta una gran estacionalidad de las compras, como se puede
 apreciar en la agrupación de las observaciones de <em>recency</em>.
 Teniendo en cuenta la fecha en la que ser realiza el análisis, los
-valores obtenidos en la variable <em>recency,</em> se pueden interpretar
+valores obtenidos en la variable <em>recency</em> se pueden interpretar
 como el periodo de ventas de la campaña navideña.</p></li>
 </ul>
-<div class="sourceCode" id="cb784"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb790"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
 <span><span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="va">rfm</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -310,8 +308,8 @@ como el periodo de ventas de la campaña navideña.</p></li>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>strip.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">9</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:imagen1"></span>
-<img src="img/Rplot01.png" alt="Box-plot" width="60%"><p class="caption">
-Figura 53.1: Box-plot
+<img src="img/Rplot01.png" alt="Box-plot de las variables RFM." width="60%"><p class="caption">
+Figura 53.1: Box-plot de las variables RFM.
 </p>
 </div>
 </div>
@@ -322,76 +320,76 @@ Figura 53.1: Box-plot
 <p>Los valores de ranking son relativos entre clientes y no pueden ser
 utilizados para objetivos de negocio, basados en valores absolutos de
 puntuación por cliente.</p>
-<div class="sourceCode" id="cb785"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb791"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rfm_rank</span> <span class="op">&lt;-</span> <span class="va">rfm</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"frecuencia"</span>, <span class="st">"monetario"</span><span class="op">)</span>, <span class="va">percent_rank</span>, .names <span class="op">=</span> <span class="st">"rank_{.col}"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"actualidad"</span><span class="op">)</span>, <span class="op">~</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/percent_rank.html">percent_rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">.x</span><span class="op">)</span>, .names <span class="op">=</span> <span class="st">"rank_{.col}"</span><span class="op">)</span><span class="op">)</span> <span class="co"># menor recency indica mayor puntuación en rank</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"actualidad"</span><span class="op">)</span>, <span class="op">~</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">percent_rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">.x</span><span class="op">)</span>, .names <span class="op">=</span> <span class="st">"rank_{.col}"</span><span class="op">)</span><span class="op">)</span> <span class="co"># menor recency indica mayor puntuación en rank</span></span></code></pre></div>
 <p>Se podría decir que el análisis RFM combina tres atributos clave de los
 clientes para construir un ranking que permite agruparlos de forma útil
-para el negocio. Así, a si un cliente que compró en una fecha reciente
-(Recency) se le otorgan más puntos. Si compró muchas veces (Frecuency),
+para el negocio. Así, a un cliente que compró en una fecha reciente
+(<em>recency</em>) se le otorgan más puntos. Si compró muchas veces (<em>frecuency</em>),
 también se le coloca más arriba en el ranking. Finalmente, si gastó más
-en el total de sus compras (Monetary), también puntúa más alto.
-Combinando estos tres parámetros, se obtiene un ranking RFM. Para la
-elaboración de este ranking se parte del concepto de percentil . La idea
-es asignarle a cada cliente una puntuación según las tres variables o
+en el total de sus compras (<em>Monetary</em>), también se le puntúa más alto.
+Combinando estas tres puntuaciones se obtiene un ranking RFM. Para la
+elaboración de este ranking se parte del concepto de percentil. La idea
+es asignar a cada cliente una puntuación según las tres variables o
 factores clave del modelo RFM, de modo que los mejores clientes serán
 los que tengan una puntuación mayor.</p>
-<div class="sourceCode" id="cb786"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb792"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html">head</a></span><span class="op">(</span><span class="va">rfm_rank</span><span class="op">)</span> <span class="co"># el lector puede ver la puntuación del ranking</span></span></code></pre></div>
 <p>Una vez que se tienen los rankings de percentiles en las tres variables
 para todos los clientes, se procede a su clusterización mediante el
-método k-means.</p>
+método <em>k</em>-means.</p>
 </div>
 <div id="modelado-rfm-mediante-k-means" class="section level3" number="53.3.5">
 <h3>
-<span class="header-section-number">53.3.5</span> Modelado: RFM mediante k-means<a class="anchor" aria-label="anchor" href="#modelado-rfm-mediante-k-means"><i class="fas fa-link"></i></a>
+<span class="header-section-number">53.3.5</span> Modelado: RFM mediante <em>k</em>-means<a class="anchor" aria-label="anchor" href="#modelado-rfm-mediante-k-means"><i class="fas fa-link"></i></a>
 </h3>
 <p>El modelo establecido debe proporcionar una segmentación de clientes con
 sentido de negocio. En este caso práctico se opta por el algoritmo de
-clustering estándar que presenta la ventaja de ser muy intuitivo y
+clustering estándar que presenta la ventaja de que es muy intuitivo y
 permite trabajar con grandes conjuntos de datos. Como el lector ha
-podido comprobar, existen otros muchos algoritmos de aprendizaje no
+podido comprobar en la Parte VI de este manual, existen otros muchos algoritmos de aprendizaje no
 supervisado que pueden ser empleados.</p>
-<p>El número óptimo de <em>clusters</em> (o segmentos, en la jerga del marketing)
+<p>El número óptimo de clústeres (o segmentos, en la jerga del marketing)
 es uno de los retos a la hora de aplicar técnicas de <em>clustering</em>. No
 existe una manera exclusiva de encontrar el número adecuado de clusters.
 Se trata de un proceso subjetivo que depende de los datos, del tipo de
 <em>clustering</em> empleado y, en este caso, de que el número elegido tenga
 sentido y utilidad en el negocio. Existen numerosos métodos para
-facilitar la elección del número de <em>clusters</em>; entre ellos destacan el
+facilitar la elección del número de clústeres; entre ellos destacan el
 <em>Elbow method,</em> el <em>Average silhouette method</em> y el <em>Gap statistic
-method</em>, que gracias a la función <code><a href="https://rdrr.io/pkg/factoextra/man/fviz_nbclust.html">fviz_nbclust()</a></code> del paquete
-<code>factoextra,</code> se pueden calcular con facilidad para realizar una buena
+method</em> (véase Cap.<a href="no-jerarquico.html#no-jerarquico">31</a>), que se pueden calcular con la función <code><a href="https://rdrr.io/pkg/factoextra/man/fviz_nbclust.html">fviz_nbclust()</a></code> del paquete
+<code>factoextra</code> para realizar una buena
 elección.</p>
-<p>Con el método Elbow, número óptimo de <em>clusters</em> se calcula como sigue:</p>
-<div class="sourceCode" id="cb787"><pre class="downlit sourceCode r">
+<p>Con el método Elbow, el número óptimo de clústeres se calcula como sigue:</p>
+<div class="sourceCode" id="cb793"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="va">muestra_clusters</span> <span class="op">&lt;-</span> <span class="va">rfm_rank</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches</a></span><span class="op">(</span><span class="st">"rank"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches</a></span><span class="op">(</span><span class="st">"rank"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_nbclust.html">fviz_nbclust</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">muestra_clusters</span>, FUNcluster <span class="op">=</span> <span class="va">kmeans</span>, method <span class="op">=</span> <span class="st">"wss"</span>, k.max <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:imagen2"></span>
-<img src="img/Rplot02.png" alt="Número óptimo de clusters" width="60%"><p class="caption">
-Figura 53.2: Número óptimo de clusters
+<img src="img/Rplot02.png" alt="Número óptimo de clusters (método Elbow)." width="60%"><p class="caption">
+Figura 53.2: Número óptimo de clusters (método Elbow).
 </p>
 </div>
 <p>En la Fig. <a href="cap-rfm.html#fig:imagen2">53.2</a> se observa que la varianza total <em>intra-cluster</em> apenas mejora a partir
 del cuarto <em>cluster</em>.</p>
-<p>El algoritmo de clustering k-means se entrena con las variables R-F-M
-normalizadas con el ranking. La salida de la <em>función</em> <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code> del
+<p>El algoritmo de clustering <span class="math inline">\(k\)</span>-means se entrena con las variables R-F-M
+normalizadas con el ranking. La salida de la función <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code> del
 paquete base <code>stats</code> es un objeto que, entre otros componentes, ofrece
-un vector numérico indicativo del <em>clusters</em> al que pertenece cada uno
+un vector numérico indicativo del clúster al que pertenece cada uno
 de los clientes.</p>
-<div class="sourceCode" id="cb788"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb794"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="va">km_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">rfm_rank</span><span class="op">[</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span>, centers <span class="op">=</span> <span class="fl">4</span>, nstart <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">clientes_segmentos</span> <span class="op">&lt;-</span> <span class="va">rfm_rank</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>segmento <span class="op">=</span> <span class="va">km_fit</span><span class="op">$</span><span class="va">cluster</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb789"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb795"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html">head</a></span><span class="op">(</span><span class="va">clientes_segmentos</span><span class="op">)</span> <span class="co"># el lector puede ver el segmento al que pertence el cliente</span></span></code></pre></div>
 </div>
 <div id="descriptivos-e-interpretación-de-los-segmentos" class="section level3" number="53.3.6">
@@ -401,12 +399,11 @@ de los clientes.</p>
 <p>Los segmentos obtenidos deben tener sentido y utilidad de negocio. Para
 ello es imprescindible proporcionar los estadísticos descriptivos de
 cada segmento y proceder a su interpretación de perfil de cliente.</p>
-<div class="sourceCode" id="cb790"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb796"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">descriptivo_segmentos</span> <span class="op">&lt;-</span> <span class="va">clientes_segmentos</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">segmento</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"monetario"</span>, <span class="st">"frecuencia"</span>, <span class="st">"actualidad"</span><span class="op">)</span>,</span>
-<span>    .fns <span class="op">=</span> <span class="va">mean</span>, .names <span class="op">=</span> <span class="st">"md_{.col}"</span></span>
-<span>  <span class="op">)</span>, n_clientes <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    .fns <span class="op">=</span> <span class="va">mean</span>, .names <span class="op">=</span> <span class="st">"md_{.col}"</span> <span class="op">)</span>, n_clientes <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">segmento</span>, <span class="va">n_clientes</span><span class="op">)</span></span>
 <span></span>
@@ -424,9 +421,9 @@ cada segmento y proceder a su interpretación de perfil de cliente.</p>
 realizando compras desde hace poco tiempo y tienen un gran potencial
 de desarrollo. Es un segmento de clientes con interés para la
 empresa.</li>
-<li>2-<em>No podemos perder</em>: se trata de los clientes <em>‘churn’</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;El término &lt;em&gt;customer churn&lt;/em&gt; se suele traducir como perdida de
+<li>2-<em>No podemos perder</em>: se trata de los clientes <em>churn</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;El término &lt;em&gt;customer churn&lt;/em&gt; se suele traducir como perdida de
 clientes o rotación de clientes. Se compone de las palabras inglesas
-&lt;em&gt;change&lt;/em&gt; (en castellano cambio) y &lt;em&gt;turn&lt;/em&gt; (en castellano abandonar).&lt;/p&gt;"><sup>250</sup></a> que
+&lt;em&gt;change&lt;/em&gt; (en castellano cambio) y &lt;em&gt;turn&lt;/em&gt; (en castellano abandonar).&lt;/p&gt;"><sup>293</sup></a> que
 fueron buenos clientes en términos monetarios y de frecuencia pero
 que hace tiempo que no realizan nuevas compras. La compañía debe
 hacer un esfuerzo en recuperar estos clientes para convertirlos al
@@ -436,46 +433,36 @@ que compran con frecuencia, están activos y aportan ventas a la
 compañía. Es el segmento de clientes con mayor interés para la
 empresa.</li>
 <li>4-<em>Una compra</em>: segmento formado por aquellos clientes que han
-realizado una sola compra hace tiempo. Presentan frecuencia,
+realizado una única compra hace tiempo. Presentan frecuencia,
 actualidad y valor monetario bajo. Se trata de un segmento de
 clientes con escaso interés para la compañía.</li>
 </ul>
-<div class="sourceCode" id="cb791"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb797"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">segmentos_descriptivo</span> <span class="op">&lt;-</span> <span class="va">clientes_segmentos</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>segmento <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
 <span>    <span class="va">segmento</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"1_Nuevos probando"</span>,</span>
 <span>    <span class="va">segmento</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">~</span> <span class="st">"2_No perder"</span>,</span>
 <span>    <span class="va">segmento</span> <span class="op">==</span> <span class="fl">3</span> <span class="op">~</span> <span class="st">"3_Top"</span>,</span>
-<span>    <span class="va">segmento</span> <span class="op">==</span> <span class="fl">4</span> <span class="op">~</span> <span class="st">"4_Una compra"</span></span>
-<span>  <span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="va">segmento</span> <span class="op">==</span> <span class="fl">4</span> <span class="op">~</span> <span class="st">"4_Una compra"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">segmento</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span></span>
-<span>      .cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>,</span>
-<span>      .fns <span class="op">=</span> <span class="va">mean</span></span>
-<span>    <span class="op">)</span>,</span>
-<span>    n_clientes <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span> .cols <span class="op">=</span> <span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, .fns <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>,</span>
+<span>            n_clientes <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">segmento</span>, <span class="va">n_clientes</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">table_dot_plot</span> <span class="op">&lt;-</span> <span class="va">segmentos_descriptivo</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># select(starts_with("rank")) |&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rank_monetario"</span>, <span class="st">"rank_frecuencia"</span>, <span class="st">"rank_actualidad"</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"Variable RFM"</span>, values_to <span class="op">=</span> <span class="st">"Puntuación"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggdotchart.html">ggdotchart</a></span><span class="op">(</span></span>
-<span>  <span class="va">table_dot_plot</span>,</span>
-<span>  x <span class="op">=</span> <span class="st">"Variable RFM"</span>, y <span class="op">=</span> <span class="st">"Puntuación"</span>,</span>
+<span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggdotchart.html">ggdotchart</a></span><span class="op">(</span><span class="va">table_dot_plot</span>, x <span class="op">=</span> <span class="st">"Variable RFM"</span>, y <span class="op">=</span> <span class="st">"Puntuación"</span>,</span>
 <span>  group <span class="op">=</span> <span class="st">"segmento"</span>, color <span class="op">=</span> <span class="st">"segmento"</span>, palette <span class="op">=</span> <span class="st">"jco"</span>,</span>
 <span>  add <span class="op">=</span> <span class="st">"segment"</span>, position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge</a></span><span class="op">(</span><span class="fl">0.3</span><span class="op">)</span>,</span>
 <span>  sorting <span class="op">=</span> <span class="st">"none"</span>, facet.by <span class="op">=</span> <span class="st">"segmento"</span>, dot.size <span class="op">=</span> <span class="fl">5</span>,</span>
-<span>  rotate <span class="op">=</span> <span class="cn">TRUE</span>, legend <span class="op">=</span> <span class="st">"none"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span>  rotate <span class="op">=</span> <span class="cn">TRUE</span>, legend <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
 <p>La Fig <a href="cap-rfm.html#fig:imagen3">53.3</a> muestra cada uno de los segmentos indicados. El ranking obtenido ayuda a identificar las diferencias en los tipos de clientes y es útil para decidir a qué segmentos enfocarse y qué estrategias usar para cada uno.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:imagen3"></span>
-<img src="img/Rplot03.png" alt="Lollipop de variables RFM" width="55%"><p class="caption">
-Figura 53.3: Lollipop de variables RFM
+<img src="img/Rplot03.png" alt="Lollipop de variables RFM." width="55%"><p class="caption">
+Figura 53.3: Lollipop de variables RFM.
 </p>
 </div>
 </div>
@@ -483,30 +470,31 @@ Figura 53.3: Lollipop de variables RFM
 <h3>
 <span class="header-section-number">53.3.7</span> Puesta en producción<a class="anchor" aria-label="anchor" href="#puesta-en-producci%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
-<p>Calculado el modelo RFM k-means, la compañía puede incorporar
-periódicamente los datos de los clientes nuevos, o actualizados. De este
+<p>Calculado el modelo RFM <span class="math inline">\(k\)</span>-means, la compañía puede incorporar
+periódicamente los datos de los clientes nuevos o actualizarlos. De este
 modo, los segmentos de clientes se actualizarán y, más allá de las
 acciones de <em>marketing mix</em> que realicen las compañías gracias a la
 segmentación, podrán analizarse las migraciones de clientes entre los
 diferentes segmentos en el periodo estudiado. La función <code>cl_predict()</code>
 facilita la actualización periódica de los segmentos con el modelo
 entrenado.</p>
+<div class="inline-figure"><img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;"></div>
 
 </div>
 </div>
 </div>
 
   <div class="chapter-nav">
-<div class="prev"><a href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></div>
+<div class="prev"><a href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></div>
 <div class="next"><a href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap-rfm"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="nav-link" href="#motivaci%C3%B3n-y-conceptos-clave"><span class="header-section-number">53.1</span> Motivación y conceptos clave</a></li>
-<li><a class="nav-link" href="#el-modelo-recency-frequency-monetary-tradicional"><span class="header-section-number">53.2</span> El modelo Recency, frequency, monetary tradicional</a></li>
+<li><a class="nav-link" href="#el-modelo-rfm-tradicional"><span class="header-section-number">53.2</span> El modelo RFM tradicional</a></li>
 <li>
-<a class="nav-link" href="#el-modelo-recency-frequency-monetary-extendido"><span class="header-section-number">53.3</span> El modelo Recency, frequency, monetary extendido</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#el-modelo-rfm-extendido"><span class="header-section-number">53.3</span> El modelo RFM extendido</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#recopilaci%C3%B3n-y-comprensi%C3%B3n-de-los-datos"><span class="header-section-number">53.3.1</span> Recopilación y comprensión de los datos</a></li>
 <li><a class="nav-link" href="#c%C3%A1lculo-de-las-variables-del-modelo-rfm"><span class="header-section-number">53.3.2</span> Cálculo de las variables del modelo RFM</a></li>
 <li><a class="nav-link" href="#breve-an%C3%A1lisis-exploratorio-de-las-variables-del-modelo-rfm"><span class="header-section-number">53.3.3</span> Breve análisis exploratorio de las variables del modelo RFM</a></li>
@@ -532,7 +520,7 @@ entrenado.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

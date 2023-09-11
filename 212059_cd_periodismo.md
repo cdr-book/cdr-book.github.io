@@ -9,18 +9,25 @@ EL PAÍS
 
 ## Motivación
 
-El uso de **R** en el entorno profesional ha llegado también a los periódicos. Cada vez es más habitual encontrar en los medios analistas de datos que lo utilizan en su día a día. En EL PAÍS, muchos de los contenidos que se publican en la Unidad de Datos surgen de un notebook de RStudio. A continuación, se muestra un análisis sobre las últimas elecciones andaluzas, de RStudio a su periódico favorito.
+El uso de **R** en el entorno profesional ha llegado también a los periódicos. Cada vez es más habitual encontrar en los medios analistas de datos que lo utilizan en su día a día. En EL PAÍS, muchos de los contenidos que se publican en la Unidad de Datos surgen de un notebook de RStudio. A continuación se muestra un análisis sobre las últimas elecciones andaluzas bajo el título "De RStudio a su periódico favorito".
 
 ## Obtención de los datos
-Los datos electorales no siempre son igual de accesibles. Los de las elecciones que dependen del Ministerio del Interior se publican en el portal [Infoelectoral](https://infoelectoral.interior.gob.es/opencms/es/inicio/). En el caso de las elecciones andaluzas, los resultados a nivel de mesa se han publicado en los portales de cada convocatoria, aunque pueden encontrarse entre los contenidos del libro para replicar estos análisis.
+Los datos electorales no siempre son igual de accesibles. Los de las elecciones que dependen del Ministerio del Interior se publican en el portal [Infoelectoral](https://infoelectoral.interior.gob.es/opencms/es/inicio/) https://infoelectoral.interior.gob.es/opencms/es/inicio/. En el caso de las elecciones andaluzas, los resultados a nivel de mesa se han publicado en los portales de cada convocatoria, si bien pueden encontrarse en el paquete `CDR` del libro los necesarios para replicar este capítulo.
 
-En primer lugar se compondrá un diccionario de municipios que se usará para filtrar y agrupar los resultados por provincia. Primero se escrapeará de la web del INE la relación de códigos de provincia con la librería rvest. Se lee el código html de la página y se buscan los elementos table con clase miTabla. A continuación, se usa la función html_table para convertir las tres tablas en un objeto tibble. La información con los nombres de municipios y provincias se leerá en la web del INE.
+En primer lugar, se compone un diccionario de municipios que se usará para filtrar y agrupar los resultados por provincia. Primero se escrapea de la web del INE la relación de códigos de provincia con la librería `rvest`. Se lee el código HTML de la página y se buscan los elementos table con clase `miTabla`. A continuación, se usa la función `html_table()` para convertir las tres tablas en un objeto `tibble`. La información con los nombres de municipios y provincias se leerá de la web del INE.
+
+\index{Instituto Nacional de Estadística, INE}
 
 
 ```r
+# lee las librerías necesarias para el análisis
 pacman::p_load(CDR, ggplot2, dplyr, rvest, lubridate, sf, ggtext, 
                rio, janitor, here, purrr, stringr, scales)
+```
 
+
+
+```r
 url_provincias <- 
   "https://www.ine.es/daco/daco42/codmun/cod_provincia.htm"
 
@@ -54,8 +61,9 @@ datos_elecciones <-
   select(codigo_secc, codigo_mun, name_mun, name_prov, convocatoria, everything())
 ```
 
-## Transformación y primeros gráficos
-En el primer gráfico se mostrará la evolución de los votos a partidos de izquierda y de derecha en toda Andalucía desde 2015. Primero se calculan los votos válidos en cada convocatoria. Como en la estructura de datos ese dato está repetido para cada combinación de convocatoria-sección-partido se usará la función distinct antes de agrupar y sumar los votos validos de todas las secciones. 
+## Transformación de variables y visualización de resultados
+
+En el primer gráfico (Fig. \@#ref(fig:plot-voto-and)) se muestra la evolución de los votos a partidos de izquierda y de derecha en toda Andalucía desde 2015. Primero se calculan los votos válidos en cada convocatoria. Como en la estructura de datos ese dato está repetido para cada combinación de convocatoria-sección-partido se usa la función `distinct()` antes de agrupar y sumar los votos validos de todas las secciones. 
 
 
 ```r
@@ -78,7 +86,7 @@ datos_elecciones_validos <-
   bind_rows(datos_elecciones_validos_provs)
 ```
 
-Ahora se calcula la suma de votos de cada bloque en cada convocatoria. En este caso, como cada fila tiene el dato de votos de un partido distinto no es necesaria la función distinct. 
+Ahora se calcula la suma de votos de cada bloque en cada convocatoria. En este caso, como cada fila tiene el dato de votos de un partido distinto no es necesaria la función `distinct()`. 
 
 
 ```r
@@ -101,7 +109,7 @@ datos_bloques <-
   mutate(votos_bloque_pc = votos_bloque / validos)
 ```
 
-A continuación, se realiza el gráfico con los daton que se han calculado antes. Se definen los colores que representan a cada bloque, las fechas para poder etiquetar en el gráfico los ticks del eje x y se programa el gráfico.
+A continuación, se construye el gráfico con los datos que se han calculado antes. Se definen los colores que representan a cada bloque, las fechas para poder etiquetar en el gráfico los *ticks* del eje x y se programa el gráfico.
 
 
 ```r
@@ -133,12 +141,12 @@ datos_bloques |>
 
 
 <div class="figure" style="text-align: center">
-<img src="img/plot-voto-andalucia.png" alt="Evolución del voto en Andalucía" width="75%" />
-<p class="caption">(\#fig:plot-voto-and)Evolución del voto en Andalucía</p>
+<img src="img/plot-voto-andalucia.png" alt="Evolución del voto en Andalucía." width="75%" />
+<p class="caption">(\#fig:plot-voto-and)Evolución del voto en Andalucía.</p>
 </div>
 
 
-Replicar la Fig. \@ref(fig:plot-voto-and) para cada provincia no es complicado. Sólo se descartarán los datos de toda Andalucía y se usará la función `facet_wrap()` que realizará el mismo gráfico con el mismo estilo para cada provincia. 
+Replicar la Fig. \@ref(fig:plot-voto-and) para cada provincia no es complicado. ünicamente hay que descartar los datos de toda Andalucía y usar la función `facet_wrap()`, que genera el mismo gráfico con el mismo estilo para cada provincia. 
 
 ```r
 datos_bloques |> 
@@ -160,12 +168,12 @@ datos_bloques |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/voto-andalucia-pro.png" alt="Evolución del voto provincial" width="75%" />
-<p class="caption">(\#fig:plot-voto-pro)Evolución del voto provincial</p>
+<img src="img/voto-andalucia-pro.png" alt="Evolución del voto provincial en Andalucía." width="75%" />
+<p class="caption">(\#fig:plot-voto-pro)Evolución del voto provincial en Andalucía.</p>
 </div>
 
 
-La Fig. \@ref(fig:plot-voto-pro) cuenta una historia complementaria al primero. El giro no se ha producido igual en toda Andalucía, no es igual el de Almería que el de Sevilla. Para intentar buscar nuevas diferencias territoriales se explorarán los mapas de ganadores a nivel municipal. Se procede de igual manera que con los datos de provincias, salvo que en este caso se agrega a partir de la columna `codigo_mun`. Para calcular el ganador se agrupa por esta columna y se usa la función `slice_max()`, que tomará para cada municipio la fila del partido con el mayor número de votos. 
+La Fig. \@ref(fig:plot-voto-pro) cuenta una historia complementaria (más detallada) a la relatada por la Fig. \@ref(fig:plot-voto-and). El giro no se ha producido igual en toda Andalucía, no es igual el de Almería que el de Sevilla. Para intentar buscar nuevas diferencias territoriales se explorarán los mapas de ganadores a nivel municipal. Se procede de igual manera que con los datos de provincias, salvo que en este caso se agrega a partir de la columna `codigo_mun`. Para calcular el ganador se agrupa por esta columna y se usa la función `slice_max()`, que tomará para cada municipio la fila del partido con el mayor número de votos. 
 
 
 ```r
@@ -192,7 +200,8 @@ datos_winners_muns <-
          winner = bloque, votos_bloque_pc) 
 ```
 
-Para realizar el gráfico se tomará el objeto `sf` con los recintos de los municipios andaluces y se les añadirá los datos de ganadores calculados anteriormente con la función `left_join()`. Se usa el color del bloque para el relleno y el porcentaje de votos que suma el bloque ganador para la transparencia, de forma que de un vistazo se pueden encontrar feudos de uno u otro bloque.
+Para crear el gráfico de la Fig. \@ref(fig:plot-voto-pro) se toma el objeto `sf` con los recintos de los municipios andaluces y se les añaden los datos de ganadores calculados anteriormente con la función `left_join()`. Se usa el color del bloque para el relleno y el porcentaje de votos que suma el bloque ganador para la transparencia[^transparencia], de forma que de un vistazo se pueden encontrar feudos de uno u otro bloque.
+[^transparencia]: La transparencia en diseño gráfico se refiere al grado de opacidad de una imagen.
 
 
 ```r
@@ -215,13 +224,11 @@ map_munis |>
 
 
 <div class="figure" style="text-align: center">
-<img src="img/voto-andalucia-muni.png" alt="Resultados de las elecciones andaluzas" width="70%" />
-<p class="caption">(\#fig:plot-voto-andalucia-muni)Resultados de las elecciones andaluzas</p>
+<img src="img/voto-andalucia-muni.png" alt="Evolución del voto municipal en Andalucía (2015-2018-2022)." width="70%" />
+<p class="caption">(\#fig:plot-voto-andalucia-muni)Evolución del voto municipal en Andalucía (2015-2018-2022).</p>
 </div>
 
 
+En los mapas de la Fig. \@ref(fig:plot-voto-andalucia-muni) se encuentran nuevas historias. En 2015 la derecha era fuerte en la costa de Almería y Málaga. Su presencia creció en 2018, aunque la izquierdas seguía ganando el interior de la comunidad. En 2018 el dominio del bloque de derechas se extendió por casi todo el territorio, en especial en las zonas donde ya era fuerte en 2015.
 
-
-
-En los mapas se encuentran nuevas historias. En 2015 la derecha era fuerte en la costa de Almería y Málaga. Su presencia creció en 2018, aunque la izquierdas seguía ganando el interior de la comunidad. En 2018 el dominio del bloque de derechas se extiende por casi todo el territorio, en especial en las zonas donde ya era fuerte en 2015.
-
+<img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;" />

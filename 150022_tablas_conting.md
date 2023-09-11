@@ -5,7 +5,7 @@
 Universidad de Castilla-La Mancha
 
 
-## Introducción{#motiv}
+## Introducción {#motiv}
 
 \index{tabla!de contingencia}
 

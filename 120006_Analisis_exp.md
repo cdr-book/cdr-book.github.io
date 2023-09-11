@@ -25,11 +25,11 @@ en muchas ocasiones será suficiente el AED para tomar
 una decisión sobre el problema en estudio. 
 
 
-### El cuarterto de Anscombe
+### El cuarteto de Anscombe
 \index{cuarteto de Anscombe}
 
 Un ejemplo clásico de la importancia del **AED** y, concretamente, de las representaciones gráficas es el "cuarteto de Anscombe" [@Anscombe1973],
-el cual está compuesto por 11 filas de 8 variables numéricas que conforman 4 conjuntos de datos (disponibles en el objeto `anscombe`), con los mismos resúmenes estadísticos pero con propiedades muy distintas, lo que se ve fácilmente cuando se representan en forma gráfica. Si se calcula, por ejemplo, la media y la desviación típica de cada variable, se observa que son prácticamente iguales. Incluso los coeficientes de correlación de cada $X$ con su $Y$ son también prácticamente idénticos.
+el cual está compuesto por 11 filas de 8 variables numéricas que conforman 4 conjuntos de datos (disponibles en el objeto `anscombe`), con los mismos resúmenes estadísticos pero con propiedades muy distintas, lo que se ve fácilmente cuando se representan en forma gráfica. Si se calculan, por ejemplo, la media y la desviación típica de cada variable, se observa que son prácticamente iguales. Incluso los coeficientes de correlación de cada $X$ con su $Y$ son también prácticamente idénticos.
 
 
 ```r
@@ -45,18 +45,18 @@ anscombe |> summarise(across(.fns = sd))
 Sin embargo, la Fig. \@ref(fig:ch-120006-anscombeuni) muestra que, a pesar de tener medias y desviaciones típicas prácticamente iguales, los datos son muy diferentes.
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-anscombeuni-1.png" alt="Representación de las variables del cuarteto de Anscombe" width="60%" />
-<p class="caption">(\#fig:ch-120006-anscombeuni)Representación de las variables del cuarteto de Anscombe</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-anscombeuni-1.png" alt="Representación de las variables del cuarteto de Anscombe." width="60%" />
+<p class="caption">(\#fig:ch-120006-anscombeuni)Representación de las variables del cuarteto de Anscombe.</p>
 </div>
 
 
 
 Si en el análisis por separado ya se ve la necesidad de hacer un gráfico,
-ésta es más evidente cuando se analizan las variables conjuntamente. La
+esta es más evidente cuando se analizan las variables conjuntamente. La
 Fig. \@ref(fig:ch-120006-anscombelm) muestra los cuatro gráficos que constituyen
 "el cuarteto de Anscombe" y que se puede obtener de la propia ayuda del
 conjunto de datos (`example(anscombe)`). La línea de regresión que se ajusta
-es prácticamente la misma, y los coeficientes de correlación entre las variables *X* e *Y* de los cuatro gráficos, idénticos: 0.8163. 
+es prácticamente la misma, y los coeficientes de correlación entre las variables *X* e *Y* de los cuatro gráficos, idénticos: 0,8163. 
 Es evidente que la relación entre las variables es muy distinta en cada uno
 de los casos, y si no se visualizan los datos para elegir el mejor modelo
 de regresión y después interpretarlo, se pueden tomar decisiones
@@ -64,16 +64,16 @@ erróneas. El cuarteto de Anscombe es muy ilustrativo, al igual que  _The Datasa
 
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-anscombelm-1.png" alt="Los cuatro gráficos que constituyen el cuarteto de Anscombe junto con un ajuste lineal" width="60%" />
-<p class="caption">(\#fig:ch-120006-anscombelm)Los cuatro gráficos que constituyen el cuarteto de Anscombe junto con un ajuste lineal</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-anscombelm-1.png" alt="Los cuatro gráficos que constituyen el cuarteto de Anscombe junto con un ajuste lineal." width="60%" />
+<p class="caption">(\#fig:ch-120006-anscombelm)Los cuatro gráficos que constituyen el cuarteto de Anscombe junto con un ajuste lineal.</p>
 </div>
 
 
 ### Conceptos generales
 \index{población}\index{muestra}\index{estadística descriptiva}
 
-Muy brevemente, se presentan una serie de conceptos esenciales para la mejor 
-comprensión de este manual[^nota-bib-ed]. Los datos que se analizan,
+Muy brevemente, se presenta una serie de conceptos esenciales para la mejor 
+comprensión de este manual[^nota-bib-ed]. Los datos que se analizan
 provienen de una determinada **población**, y no son más que
 una **muestra**, es decir, un subconjunto de toda la población. 
 La **Estadística Descriptiva** se ocupa del AED en sentido amplio, que se aplica 
@@ -81,11 +81,11 @@ sobre los datos concretos de la muestra. La
 **Inferencia Estadística** (véase Cap. \@ref(Fundainfer)) hace referencia a los métodos mediante los cuales, a través de los datos muestrales, se toman decisiones, se analizan relaciones o se hacen predicciones sobre la población. Para ello, se hace uso de la **Probabilidad** aplicando el modelo adecuado (véase Cap. \@ref(Funda-probab)). Además, es muy importante considerar el método de obtención de la muestra (véase Cap. \@ref(muestreo)) que, en términos generales, debe ser representativa de la población para que las conclusiones sean válidas.
 La Fig. \@ref(fig:ch-120006-dogma1) representa la esencia de la Estadística y sus métodos.
 
-[^nota-bib-ed]: Para un análisis extenso de los conceptos aquí expuestos puede consultarse, por ejemplo, en @montero2007. 
+[^nota-bib-ed]: Para un análisis extenso de los conceptos aquí expuestos puede consultarse, por ejemplo, @montero2007. 
 
 <div class="figure" style="text-align: center">
-<img src="img/dogma1.png" alt="La esencia de los métodos estadísticos" width="60%" />
-<p class="caption">(\#fig:ch-120006-dogma1)La esencia de los métodos estadísticos</p>
+<img src="img/dogma1.png" alt="La esencia de los métodos estadísticos." width="60%" />
+<p class="caption">(\#fig:ch-120006-dogma1)La esencia de los métodos estadísticos.</p>
 </div>
 
 
@@ -93,13 +93,13 @@ Las características a observar en los elementos de una población pueden dar lu
 
 1. **Cuantitativa** (se puede medir o contar). Se denomina **variable cuantitativa** a cualquier característica observable que pueda expresarse en valores numéricos. Se clasifican como **variables discretas** (se puede _contar_ el número de valores que toma) y **continuas** (pueden tomar cualquier valor en un intervalo dado).
     
-2. **Cualitativa** (no se puede expresar como un número). Se denomina **variable cualitativa, atributo o factor** a cualquier característica observable que indica una *cualidad* o *atributo*. Éstas pueden tener varios niveles (politómicas) o solo dos (dicotómicas). Si en una variable categórica se pueden *ordenar* las categorías, entonces se denomina **variables ordinal**.
+2. **Cualitativa** (no se puede expresar como un número). Se denomina **variable cualitativa, atributo o factor** a cualquier característica observable que indica una *cualidad* o *atributo*. Estas pueden tener varios niveles (politómicas) o solo dos (dicotómicas). Si en una variable categórica se pueden *ordenar* las categorías, entonces se denomina **variables ordinales**.
 
 
 ### Componentes de un gráfico y su representación en **R**
 \index{gráfico}
 
-De los diferentes sistemas que tiene **R** para representar gráficos (los "base", paquete `graphics`, y los "grid", paquete `lattice` [@lattice]),
+De los diferentes sistemas que tiene **R** para representar gráficos [los "base", paquete `graphics`, y los "grid", paquete `lattice` @lattice],
 este capítulo se centra en el paquete `ggplot2` [@Wickham2016], que forma parte del _tidyverse_, por su amplio uso y popularidad.
 
 El flujo de trabajo con `ggplot2` se puede resumir en los siguientes pasos:
@@ -150,13 +150,13 @@ El resumen numérico de variables cualitativas se muestra en la tabla de frecuen
 la cual se puede representar con un gráfico de barras o con un gráfico
 de sectores[^sectores]. Las frecuencias absolutas son el número de observaciones en cada categoría y las frecuencias relativas son la proporción de observaciones en cada categoría con respecto al total. Por ejemplo, el conjunto de datos `accidentes2020_data`
 disponible en el paquete `CDR` describe los datos de accidentes de tráfico 
-con víctimas y/o daños al patrimonio en la ciudad de Madrid registrados por Policía Municipal. Entre sus variables, contiene la variable cualitativa tipología del accidente `tipo_accidente`. Un resumen puede obtenerse tanto con la función `table()` 
+con víctimas y/o daños al patrimonio en la ciudad de Madrid registrados por la Policía Municipal. Entre sus variables, contiene la variable cualitativa de tipología del accidente `tipo_accidente`. Un resumen puede obtenerse tanto con la función `table()` 
 como con el paquete `dplyr`, como se vio en la Sec. \@ref(110003-tidyverse). 
 En variables cualitativas, la categoría más frecuente se denomina **moda** de la variable[^nota-orden].
 
 [^sectores]: El gráfico de sectores no es recomendable, ya que proporciona la misma 
 información que el gráfico de barras y para el ojo
-humano es mucho más difícil de distinguir ángulos que alturas.
+humano es mucho más difícil distinguir ángulos que alturas.
 
 [^nota-orden]: Nótese que el orden por defecto que utiliza **R** es el alfabético. Se puede cambiar este comportamiento reordenando los niveles del factor; por ejemplo, para poner "Otro" en la última posición.
 
@@ -196,14 +196,16 @@ accidentes2020_data |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-geombar-1.png" alt="Gráfico de barras con ggplot2" width="60%" />
-<p class="caption">(\#fig:ch-120006-geombar)Gráfico de barras con ggplot2</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-geombar-1.png" alt="Gráfico de barras con ggplot2." width="60%" />
+<p class="caption">(\#fig:ch-120006-geombar)Gráfico de barras con ggplot2.</p>
 </div>
 
 \index{gráfico!de barras}
 
 
 ::: {.infobox data-latex=""}
+**Nota**
+
 El código anterior es la forma más básica de hacer un gráfico con `ggplot2`.
 Opciones más avanzadas pueden encontrarse en @wickham2016r. 
 :::
@@ -218,8 +220,8 @@ ayuntam |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-ggs-1.png" alt="Gráfico de sectores con tests. Prestación o no de un determinado servicio X en ayuntamientos de distinto signo político" width="60%" />
-<p class="caption">(\#fig:ch-120006-ggs)Gráfico de sectores con tests. Prestación o no de un determinado servicio X en ayuntamientos de distinto signo político</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-ggs-1.png" alt="Gráfico de sectores con tests. Prestación o no de un determinado servicio X en ayuntamientos de distinto signo político." width="60%" />
+<p class="caption">(\#fig:ch-120006-ggs)Gráfico de sectores con tests. Prestación o no de un determinado servicio X en ayuntamientos de distinto signo político.</p>
 </div>
 
 
@@ -231,13 +233,13 @@ library("waffle")
 freq <- ayuntam |> 
   count(serv)
 m <- setNames(freq$n, freq$serv)
-waffle(m,
-  rows = 4, colors = c("red", "green"))
+
+waffle(m, rows = 4, colors = c("red", "green"))
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-gofre-1.png" alt="Gráfico waffle: Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político" width="60%" />
-<p class="caption">(\#fig:ch-120006-gofre)Gráfico waffle: Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-gofre-1.png" alt="Gráfico waffle. Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político." width="60%" />
+<p class="caption">(\#fig:ch-120006-gofre)Gráfico waffle. Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político.</p>
 </div>
 
 
@@ -267,7 +269,7 @@ summary(renta_municipio_data$`2019`)
 #>    4053    9914   11595   12247   13690   32183    5697
 ```
 
-Sin embargo, los estadísticos descriptivos suelen presentarse juntos "describiendo" el conjunto de datos. Existen distintos paquetes, como `summarytools`, que proporcionan un resumen completo de un vector numérico con la función `descr()` así como de un conjunto de datos completo (ver opciones del paquete).
+Sin embargo, los estadísticos descriptivos suelen presentarse juntos "describiendo" el conjunto de datos. Existen distintos paquetes, como `summarytools`, que proporcionan un resumen completo de un vector numérico con la función `descr()`, así como de un conjunto de datos completo (ver opciones del paquete).
 
 
 
@@ -306,7 +308,7 @@ A continuación se proporciona una breve definición de las anteriores medidas y
 
 $$\bar{x}= \frac{\sum\limits_{i=1}^n x_i}{n}.$$
 
-* Desviación típica (_Std.Dev_), $s$: es la raíz cuadrada de la varianza $s^2$. Representa la variación promedio alrededor de la media, en las unidades de la variable y en sus unidades al cuadrado respectivamente. La siguiente fórmula corresponde a la varianza muestral, dividiendo por $n-1$. Para la varianza poblacional, se dividiría por el tamaño de la población $N$. Para calcular la desviación típica, bastaría con hacer la raíz cuadrada.
+* Desviación típica (_std. dev_), $s$: es la raíz cuadrada de la varianza, $s^2$. Representa la variación promedio alrededor de la media, en las unidades de la variable y en sus unidades al cuadrado, respectivamente. La siguiente fórmula corresponde a la varianza muestral, dividiendo por $n-1$. Para la varianza poblacional, se dividiría por el tamaño de la población $N$. Para calcular la desviación típica, bastaría con hacer la raíz cuadrada.
 
 $$s^2= \frac{\sum\limits_{i=1}^n (x_i- \bar{x})^2}{n-1}.$$
 
@@ -315,7 +317,7 @@ $$s^2= \frac{\sum\limits_{i=1}^n (x_i- \bar{x})^2}{n-1}.$$
 
 * La mediana (_Median_) es el segundo cuartil $Q_2$. Es el punto central de los datos, dejando la mitad de las observaciones por abajo y la otra mitad por arriba. Los cuartiles $Q_1$ y $Q_3$, dividen los datos dejando por debajo de su valor el 25% y el 75%, respectivamente.
 
-* La desviación absoluta mediana (_MAD_) es la mediana de las desviaciones a la mediana.
+* La desviación absoluta mediana (_MAD_,  por sus siglas en inglés) es la mediana de las desviaciones a la mediana.
 
 * El rango intercuartílico es la diferencia entre el tercer y el primer cuartil. Es decir, el rango del 50% de las observaciones centrales:
 
@@ -334,7 +336,7 @@ $$g_1 = \frac{\frac{1}{n}\sum\limits_{i=1}^n(x_i-\bar x ) ^3}{s^3}.$$
 
 $$g_2 = \frac{\frac{1}{n}\sum\limits_{i=1}^n(x_i-\bar x ) ^4}{s^4}-3.$$
 
-Los otros tres valores que aparecen en la salida de la función `descr()` son el error típico del coeficiente de asimetría (_SE.Skewness_), el número total de valores válidos (_N.Valid_) y el porcentaje respecto al total de datos (_Pct.Valid_). El complementario de este último, por tanto, es el porcentaje de valores perdidos (_missing_). 
+Los otros tres valores que aparecen en la salida de la función `descr()` son el error típico del coeficiente de asimetría (_SE. Skewness_), el número total de valores válidos (_N. Valid_) y el porcentaje respecto al total de datos (_Pct. Valid_). El complementario de este último, por tanto, es el porcentaje de valores perdidos (_missing_). 
 
 \index{histograma}
 
@@ -342,7 +344,7 @@ La representación gráfica de la tabla de frecuencias de una variable cuantitat
 es el **histograma**[^nota-hist-disc]. 
 Para representarlo, se cuenta el número de observaciones (frecuencia) por intervalo (_bin_). Una posible regla sería el método de Sturges[^nota-sturges], que se puede hallar con la función `nclass.Sturges()`. 
 
-[^nota-hist-disc]: En el caso de las variables discretas con un número de posibles valores pequeño, 
+[^nota-hist-disc]: En el caso de las variables discretas con un número de posibles valores pequeños, 
 es mejor proceder igual que si fuera una variable cualitativa, obteniendo una tabla de frecuencias y un gráfico de barras, con la diferencia de que el orden de los posibles valores será el numérico.
 
 [^nota-sturges]: Este es el método que utiliza por defecto la función `hist`
@@ -370,19 +372,19 @@ como se verá en la Sec. \@ref(no-mentir),
 pues debe estudiarse bien la naturaleza de la variable a analizar. 
 
 
-El histograma proporciona mucha información sobre la variable: (i) si es aproximadamente simétrica, (ii) si tiene forma de campana (se parece a la distribución Normal), (iii) si hay valores extremos y cómo son de frecuentes,
-y (iv) si puede haber mezcla de poblaciones (más de una moda).
+El histograma proporciona mucha información sobre la variable: ($i$) si es aproximadamente simétrica, ($ii$) si tiene forma de campana (se parece a la distribución Normal), ($iii$) si hay valores extremos y cómo son de frecuentes,
+y ($iv$) si puede haber mezcla de poblaciones (más de una moda).
 
 La función `geom_histogram()` del paquete `ggplot2` añade una capa con un
 histograma al gráfico. El color de las barras se controla con el _aesthetics_ `fill` y la altura puede representar las frecuencias absolutas (recuentos) o 
 relativas (proporciones). El número de intervalos se indica con el argumento
-`bins`, o alternativamente la anchura de intervalo con `bin_width`, véase la Fig. \@ref(fig:ch-120006-plot-hist-bins).
+`bins`, o alternativamente, la anchura de intervalo con `bin_width`, véase la Fig. \@ref(fig:ch-120006-plot-hist-bins).
 
 
 
 ```r
 p <- renta_municipio_data |>
-  tidyr::drop_na() |>
+  drop_na() |>
   ggplot(aes(`2019`))
 
 h1 <- p + geom_histogram(color = "yellow", fill = "pink")
@@ -397,15 +399,15 @@ h1 + h2 + h3
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/plot-hist-bins.png" alt="Histogramas de la renta neta per cápita en 2019 con distintos bins. Izquierda: bins por defecto (n=30); Centro: bins con la regla de Strurges; Derecha: bins = 20" width="60%" />
-<p class="caption">(\#fig:ch-120006-plot-hist-bins)Histogramas de la renta neta per cápita en 2019 con distintos bins. Izquierda: bins por defecto (n=30); Centro: bins con la regla de Strurges; Derecha: bins = 20</p>
+<img src="img/plot-hist-bins.png" alt="Histogramas de la renta neta per cápita en 2019 con distintos bins. Izquierda: $bins$ por defecto (n = 30); Centro: $bins$ con la regla de Strurges; Derecha: $bins$ = 20." width="60%" />
+<p class="caption">(\#fig:ch-120006-plot-hist-bins)Histogramas de la renta neta per cápita en 2019 con distintos bins. Izquierda: $bins$ por defecto (n = 30); Centro: $bins$ con la regla de Strurges; Derecha: $bins$ = 20.</p>
 </div>
 
 \index{gráfico!de densidad}
 
 Una representación alternativa al histograma es la línea de densidad, que sustituye
 las barras por una línea continua, generalmente suavizada. A continuación, se añade 
-la linea de densidad a uno de los histogramas de la Fig. \@ref(fig:ch-120006-plot-hist-bins) y el 
+la línea de densidad a uno de los histogramas de la Fig. \@ref(fig:ch-120006-plot-hist-bins) y el 
 resultado se puede ver en la Fig. \@ref(fig:ch-120006-hist-density).
 
 
@@ -420,8 +422,8 @@ p + geom_histogram(aes(y = after_stat(density)),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-hist-density-1.png" alt="Histograma y linea de densidad de la renta neta per capita española en 2019" width="60%" />
-<p class="caption">(\#fig:ch-120006-hist-density)Histograma y linea de densidad de la renta neta per capita española en 2019</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-hist-density-1.png" alt="Histograma y linea de densidad de la renta neta per capita española en 2019." width="60%" />
+<p class="caption">(\#fig:ch-120006-hist-density)Histograma y linea de densidad de la renta neta per capita española en 2019.</p>
 </div>
 
 
@@ -443,8 +445,8 @@ boxplot + violin
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/boxplot-violin-renta.png" alt="Boxplot y violin plot de la renta neta per cápita en 2019" width="60%" />
-<p class="caption">(\#fig:ch-120006-plot-boxplot-violin)Boxplot y violin plot de la renta neta per cápita en 2019</p>
+<img src="img/boxplot-violin-renta.png" alt="Diagrama de caja y bigotes y diagrama de violín de la renta neta per cápita en 2019." width="60%" />
+<p class="caption">(\#fig:ch-120006-plot-boxplot-violin)Diagrama de caja y bigotes y diagrama de violín de la renta neta per cápita en 2019.</p>
 </div>
 
 
@@ -458,9 +460,9 @@ secuencial de las observaciones, bien a través de puntos (`geom_point()`) o a t
 En la Sec. \@ref(120006-aeduni) se ha realizado un AED de
 variables aisladas, pero lo usual es incluir las relaciones entre variables 
 en el AED. 
-Las herramientas estadísticas utilizadas son: (i) las tablas de frecuencias conjuntas, que, en el caso de dos atributos, son tablas de doble entrada, 
+Las herramientas estadísticas utilizadas son: ($i$) las tablas de frecuencias conjuntas, que, en el caso de dos atributos, son tablas de doble entrada, 
 con un atributo en filas y el otro en columnas, para determinar si existe asociación entre dichos atributos, como se verá en el Cap. \@ref(tablas-contingencia); 
-(ii) los resúmenes numéricos, como la covarianza, el coeficiente de correlación, coeficientes de asociación, etc. y (iii) los gráficos en los que se puede representar más de una variable. 
+($ii$) los resúmenes numéricos, como la covarianza, el coeficiente de correlación, coeficientes de asociación, etc. y ($iii$) los gráficos en los que se puede representar más de una variable. 
 
 \index{tabla!de contingencia}
 
@@ -471,7 +473,7 @@ de frecuencias, en este caso conjuntas para las distintas combinaciones de los n
 de las variables. Este tipo de tablas se denominan **tablas de contingencia** (véase Cap. \@ref(tablas-contingencia)). Para dos atributos, se puede representar en
 forma de tabla de doble entrada. 
 
-El resultado de la función `table()` se puede utilizar dentro de las funciones `prop.table()` y `addmargins()` para obtener las frecuencias relativas, añadir los totales marginales, o ambas cosas. Para el ejemplo de la prestación de un servicio "X" o no por parte de 80 ayuntamientos, `table()` podría utilizarse para dar respuesta a la siguiente pregunta: ¿La prestación pública del servicio *X* es independiente del signo político del Ayuntamiento o depende de dicho signo?
+El resultado de la función `table()` se puede utilizar dentro de las funciones `prop.table()` y `addmargins()` para obtener las frecuencias relativas, añadir los totales marginales, o ambas cosas. Para el ejemplo de la prestación de un servicio "*X*" o no por parte de 80 ayuntamientos, `table()` podría utilizarse para dar respuesta a la siguiente pregunta: ¿La prestación pública del servicio *X* es independiente del signo político del ayuntamiento o depende de dicho signo?
 
 
 ```r
@@ -482,7 +484,7 @@ table(ayuntam$signo_gob , ayuntam$serv)
 #>   Ilustrados  6 32
 ```
 
-No obstante, la representación gráfica más habitual siguen siendo los gráficos de barras, como se muestra en la Fig. \@ref(fig:ch-120006-barras-ayunt) producida con el siguiente código: 
+No obstante, la representación gráfica más habitual sigue siendo los gráficos de barras, como se muestra en la Fig. \@ref(fig:ch-120006-barras-ayunt) producida con el siguiente código: 
 
 
 ```r
@@ -496,8 +498,8 @@ frecuencias + proporciones
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-barras-ayunt-1.png" alt="Grafico de barras de la prestación pública del servicio X por parte de 80 Ayuntamientos de distinto signo político. Izquierda: frecuencias absolutas. Derecha: frecuencias relativas." width="80%" />
-<p class="caption">(\#fig:ch-120006-barras-ayunt)Grafico de barras de la prestación pública del servicio X por parte de 80 Ayuntamientos de distinto signo político. Izquierda: frecuencias absolutas. Derecha: frecuencias relativas.</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-barras-ayunt-1.png" alt="Gráfico de barras de la prestación pública del servicio $X$ por parte de 80 ayuntamientos de distinto signo político. Izquierda: frecuencias absolutas. Derecha: frecuencias relativas." width="80%" />
+<p class="caption">(\#fig:ch-120006-barras-ayunt)Gráfico de barras de la prestación pública del servicio $X$ por parte de 80 ayuntamientos de distinto signo político. Izquierda: frecuencias absolutas. Derecha: frecuencias relativas.</p>
 </div>
 
 Una visualización interesante de tablas de doble entrada son los gráficos en los que
@@ -505,13 +507,13 @@ se representan las frecuencias conjuntas por medio de puntos cuya área es propo
 
 
 ```r
-library('gplots')
+library("gplots")
 balloonplot(table(ayuntam$signo_gob , ayuntam$serv))
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-balloonplot-eda-ayunt-1.png" alt="Representación gráfica de tabla de frecuencias con la función `ballonplot()`" width="60%" />
-<p class="caption">(\#fig:ch-120006-balloonplot-eda-ayunt)Representación gráfica de tabla de frecuencias con la función `ballonplot()`</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-balloonplot-eda-ayunt-1.png" alt="Representación gráfica de tabla de frecuencias." width="60%" />
+<p class="caption">(\#fig:ch-120006-balloonplot-eda-ayunt)Representación gráfica de tabla de frecuencias.</p>
 </div>
 
 
@@ -520,7 +522,7 @@ Para representar dos o más factores a la vez en un único gráfico, se dispone 
 
 
 ```r
-library('ggmosaic')
+library("ggmosaic")
 accidentes2020_data |>
 ggplot() +
   geom_mosaic(aes(x = product(tipo_accidente, sexo), 
@@ -528,8 +530,8 @@ ggplot() +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-mosaico-accidentes-1.png" alt="Gráfico de mosaico para relacionar el tipo de accidente y el sexo en los datos de accidentes" width="60%" />
-<p class="caption">(\#fig:ch-120006-mosaico-accidentes)Gráfico de mosaico para relacionar el tipo de accidente y el sexo en los datos de accidentes</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-mosaico-accidentes-1.png" alt="Gráfico de mosaico para relacionar el tipo de accidente y el sexo en los datos de accidentes." width="60%" />
+<p class="caption">(\#fig:ch-120006-mosaico-accidentes)Gráfico de mosaico para relacionar el tipo de accidente y el sexo en los datos de accidentes.</p>
 </div>
 
 \index{facetas (gráficos)}
@@ -559,8 +561,8 @@ accidentes2020_data  |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-acc-3vbles-1.png" alt="Representación de tres atributos mediante gráficos de barras conjuntos y facetas" width="100%" />
-<p class="caption">(\#fig:ch-120006-acc-3vbles)Representación de tres atributos mediante gráficos de barras conjuntos y facetas</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-acc-3vbles-1.png" alt="Representación de tres atributos mediante gráficos de barras conjuntos y facetas." width="100%" />
+<p class="caption">(\#fig:ch-120006-acc-3vbles)Representación de tres atributos mediante gráficos de barras conjuntos y facetas.</p>
 </div>
 
 
@@ -576,9 +578,7 @@ del grado de dependencia lineal entre dos variables numéricas.
 Si la covarianza es cero, no hay relación lineal (pero podría
 haber otro tipo de relación, recuérdese el cuarteto de Anscombe).
 Pero la covarianza es una medida que depende de la escala
-de las variables, por lo que  
-es más fácil interpretar el coeficiente de correlación lineal $r_{xy}$ (función `cor()`), que
-está acotado entre -1 y 1. Cuanto más se acerque a 1, en valor absoluto,
+de las variables, por lo que es más fácil interpretar el coeficiente de correlación lineal $r_{xy}$ (función `cor()`), que está acotado entre -1 y 1. Cuanto más se acerque a 1, en valor absoluto,
 más fuerte será la dependencia lineal. Las fórmulas para calcular ambos estadísticos son 
 las siguientes:
 
@@ -589,21 +589,21 @@ $$r_{xy}=\frac{s_{xy}}{s_x \cdot s_y}.$$
 Además, la matriz de correlación suele ser un punto de partida
 en las técnicas de reducción de la dimensionalidad (Véanse los Cap. \@ref(acp), \@ref(af) y \@ref(mds)). Si, por ejemplo, se desea 
 calcular la matriz de correlaciones del conjunto de datos `TIC2021`,
-que presenta las estadísticas de uso de las TIC en la Unión Europea 2021,
+que presenta las estadísticas de uso de las TIC en la Unión Europea en 2021,
 se puede utilizar el paquete `corrplot`, que proporciona una forma elegante y versátil de representarla[^nota-corrplot] (véase la Fig. \@ref(fig:ch-120006-correlacion)). 
 
 [^nota-corrplot]: Una gran cantidad de ejemplos puede verse ejecutando `example(corrplot)`. 
 
 
 ```r
-library('corrplot')
+library("corrplot")
 mcor_tic <- cor(TIC2021)  
 corrplot.mixed(mcor_tic, order = 'AOE')
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-correlacion-1.png" alt="Representación gráfica de la matriz de correlaciones entre las variables del conjunto de datos TIC2021" width="60%" />
-<p class="caption">(\#fig:ch-120006-correlacion)Representación gráfica de la matriz de correlaciones entre las variables del conjunto de datos TIC2021</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-correlacion-1.png" alt="Representación gráfica de la matriz de correlaciones entre las variables del conjunto de datos TIC2021." width="60%" />
+<p class="caption">(\#fig:ch-120006-correlacion)Representación gráfica de la matriz de correlaciones entre las variables del conjunto de datos TIC2021.</p>
 </div>
 
 
@@ -631,15 +631,15 @@ previo entre las variables `Ozone` y `Temp` con el gráfico de la Fig. \@ref(fig
 
 ```r
 airquality |>
-  dplyr::select(Ozone,Temp) |>
+  select(Ozone,Temp) |>
   ggplot(aes( x= Temp, y=Ozone)) +
   geom_point() +
   geom_smooth()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-scatter-ozono-1.png" alt="Gráfico de dispersión del Ozono frente a la Temperatura" width="60%" />
-<p class="caption">(\#fig:ch-120006-scatter-ozono)Gráfico de dispersión del Ozono frente a la Temperatura</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-scatter-ozono-1.png" alt="Gráfico de dispersión del ozono frente a la temperatura." width="60%" />
+<p class="caption">(\#fig:ch-120006-scatter-ozono)Gráfico de dispersión del ozono frente a la temperatura.</p>
 </div>
 
 \index{serie temporal (gráfico)}
@@ -660,8 +660,8 @@ contam_mad |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-nox-time-1.png" alt="Concentración media semanal de NOx en las estaciones de medición de Madrid (enero 2011- marzo 2022)" width="60%" />
-<p class="caption">(\#fig:ch-120006-nox-time)Concentración media semanal de NOx en las estaciones de medición de Madrid (enero 2011- marzo 2022)</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-nox-time-1.png" alt="Concentración media semanal de NOx en las estaciones de medición de Madrid (enero 2011 - marzo 2022)." width="60%" />
+<p class="caption">(\#fig:ch-120006-nox-time)Concentración media semanal de NOx en las estaciones de medición de Madrid (enero 2011 - marzo 2022).</p>
 </div>
 
 
@@ -678,7 +678,7 @@ de las cuales se enumeran a continuación, con el tipo
 de gráfico adecuado:
 
 - Una variable numérica y una variable categórica: gráficos de cajas o de violín
-para cada nivel de la categórica (Fig. \@ref(fig:ch-120006-plot-violin-zonas)), o bien gráficos de densidad para cada categoría (Fig. \@ref(fig:ch-120006-plot-violin-zonas)).
+para cada nivel de la categórica (Fig. \@ref(fig:ch-120006-plot-violin-zonas)), o bien gráficos de densidad para cada categoría (Fig. \@ref(fig:ch-120006-plot-ridges-tipos)).
 
 
 ```r
@@ -693,14 +693,14 @@ contam_mad |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/plot-violin-zonas.png" alt="Comparación de los niveles de PM10 en las Zonas de la ciudad de Madrid a efectos de Calidad del Aire durante la Calima de marzo de 2022" width="60%" />
-<p class="caption">(\#fig:ch-120006-plot-violin-zonas)Comparación de los niveles de PM10 en las Zonas de la ciudad de Madrid a efectos de Calidad del Aire durante la Calima de marzo de 2022</p>
+<img src="img/plot-violin-zonas.png" alt="Comparación de los niveles de PM10 en las zonas de la ciudad de Madrid a efectos de calidad del aire durante la calima de marzo de 2022." width="60%" />
+<p class="caption">(\#fig:ch-120006-plot-violin-zonas)Comparación de los niveles de PM10 en las zonas de la ciudad de Madrid a efectos de calidad del aire durante la calima de marzo de 2022.</p>
 </div>
 
 
 
 ```r
-library('ggridges')
+library("ggridges")
 contam_mad |>
   filter(nom_abv == "NOx") |>
   ggplot(aes(x = daily_mean, y = tipo, fill = tipo)) +
@@ -708,8 +708,8 @@ contam_mad |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/plot-ridges-tipos.png" alt="Comparación de concentraciones de NOx por tipo de estación de medición" width="60%" />
-<p class="caption">(\#fig:ch-120006-plot-ridges-tipos)Comparación de concentraciones de NOx por tipo de estación de medición</p>
+<img src="img/plot-ridges-tipos.png" alt="Comparación de concentraciones de NOx por tipo de estación de medición." width="60%" />
+<p class="caption">(\#fig:ch-120006-plot-ridges-tipos)Comparación de concentraciones de NOx por tipo de estación de medición.</p>
 </div>
 
 
@@ -724,17 +724,14 @@ como en la Fig. \@ref(fig:plot-dispersion-conjunta-alarma).
 
 
 ```r
-# periodo del estado de alarma
 pm10_nox_mad <- contam_mad |>
   na.omit() |>
   filter(nom_abv %in% c("PM10", "NOx")) |>
-  filter(between(fecha, left = as.Date("2020-03-14"), right = as.Date("2020-06-30"))) |> 
+  # periodo del estado de alarma
+  filter(between(fecha,left=as.Date("2020-03-14"), right=as.Date("2020-06-30"))) |> 
   select(estaciones, zona, tipo, nom_abv, daily_mean, fecha) |>
-tidyr::pivot_wider(names_from = "nom_abv", values_from = "daily_mean", values_fn = mean)
+  pivot_wider(names_from = "nom_abv", values_from = "daily_mean", values_fn = mean)
 ```
-
-
-
 
 
 
@@ -747,8 +744,8 @@ geom_point()
 
 
 <div class="figure" style="text-align: center">
-<img src="img/plot-dispersion-conjunta-alarma.png" alt="Grafíco de dipersión de las variables `NOx`, `PM10`, `zona` y `tipo` (de emplazamiento) durante el estado de alarma en la ciudad de Madrid (todas las estaciones de medición)" width="60%" />
-<p class="caption">(\#fig:plot-dispersion-conjunta-alarma)Grafíco de dipersión de las variables `NOx`, `PM10`, `zona` y `tipo` (de emplazamiento) durante el estado de alarma en la ciudad de Madrid (todas las estaciones de medición)</p>
+<img src="img/plot-dispersion-conjunta-alarma.png" alt="Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) durante el estado de alarma en la ciudad de Madrid (todas las estaciones de medición)." width="60%" />
+<p class="caption">(\#fig:plot-dispersion-conjunta-alarma)Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) durante el estado de alarma en la ciudad de Madrid (todas las estaciones de medición).</p>
 </div>
 
 
@@ -765,7 +762,7 @@ variables representadas en un mismo "lienzo", como en la Fig. \@ref(fig:ch-12000
 
 ```r
 pm10_nox_mad |>
-  tidyr:: drop_na() |>
+  drop_na() |>
   ggplot(aes(y=NOx, x= PM10, colour = tipo, shape = zona)) +
   geom_point() +
   geom_smooth() +
@@ -774,8 +771,8 @@ pm10_nox_mad |>
 
 
 <div class="figure" style="text-align: center">
-<img src="img/plot-dispersion-ms-conjunta-alarma.png" alt="Grafíco de dipersión de las variables `NOx`, PM10, `zona` y `tipo` (de emplazamiento) por estación de medición durante el estado de alarma en la ciudad de Madrid" width="80%" />
-<p class="caption">(\#fig:ch-120006-plot-dispersion-ms-conjunta-alarma)Grafíco de dipersión de las variables `NOx`, PM10, `zona` y `tipo` (de emplazamiento) por estación de medición durante el estado de alarma en la ciudad de Madrid</p>
+<img src="img/plot-dispersion-ms-conjunta-alarma.png" alt="Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) por estación de medición durante el estado de alarma en la ciudad de Madrid." width="80%" />
+<p class="caption">(\#fig:ch-120006-plot-dispersion-ms-conjunta-alarma)Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) por estación de medición durante el estado de alarma en la ciudad de Madrid.</p>
 </div>
 
 
@@ -803,7 +800,7 @@ _Análisis exploratorio de varias variables_
 - Las variables cualitativas se pueden resumir con tablas de frecuencias conjuntas y su 
 representación gráfica y con combinaciones de gráficos de barras. 
 
-- La principal medida conjunta de dos variables cuantitativas es el coeficiente de correlación. Para más de dos variables se suelen representar en forma de matriz.
+- La principal medida conjunta de dos variables cuantitativas es el coeficiente de correlación. Más de dos variables se suelen representar en forma de matriz.
 
 - El gráfico de dispersión es la representación básica para dos variables cuantitativas. Se pueden representar estos gráficos por pares en forma de matriz de gráficos.
 

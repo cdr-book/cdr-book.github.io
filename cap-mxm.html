@@ -6,22 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 18 Modelos mixtos | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
-<meta name="description" content="\(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Carlos III de Madrid  18.1 Conceptos básicos Los modelos mixtos (MM) para variables de respuesta continuas son modelos estadísticos en...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="description" content="María Durbán\(^{a}\) y Víctor Casero-Alonso\(^{b}\) \(^{a}\)Universidad Carlos III de Madrid\(^{b}\)Universidad de Castilla-La Mancha  18.1 Conceptos básicos Los modelos mixtos (MM) para variables...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 18 Modelos mixtos | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
-<meta property="og:description" content="\(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Carlos III de Madrid  18.1 Conceptos básicos Los modelos mixtos (MM) para variables de respuesta continuas son modelos estadísticos en...">
+<meta property="og:description" content="María Durbán\(^{a}\) y Víctor Casero-Alonso\(^{b}\) \(^{a}\)Universidad Carlos III de Madrid\(^{b}\)Universidad de Castilla-La Mancha  18.1 Conceptos básicos Los modelos mixtos (MM) para variables...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 18 Modelos mixtos | Fundamentos de ciencia de datos con R">
-<meta name="twitter:description" content="\(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Carlos III de Madrid  18.1 Conceptos básicos Los modelos mixtos (MM) para variables de respuesta continuas son modelos estadísticos en...">
+<meta name="twitter:description" content="María Durbán\(^{a}\) y Víctor Casero-Alonso\(^{b}\) \(^{a}\)Universidad Carlos III de Madrid\(^{b}\)Universidad de Castilla-La Mancha  18.1 Conceptos básicos Los modelos mixtos (MM) para variables...">
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
-<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -33,7 +34,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -76,13 +77,13 @@
 <li class="book-part">Machine learning supervisado</li>
 <li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
-<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
-<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
 <li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
 <li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
@@ -108,18 +109,15 @@
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
 <li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
-<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
-<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
-<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -131,7 +129,8 @@
 <h1>
 <span class="header-section-number">Capítulo 18</span> Modelos mixtos<a class="anchor" aria-label="anchor" href="#cap-mxm"><i class="fas fa-link"></i></a>
 </h1>
-<p><span class="math inline">\(^{a}\)</span>Universidad de Castilla-La Mancha<br><span class="math inline">\(^{b}\)</span>Universidad Carlos III de Madrid</p>
+<p><em>María Durbán</em><span class="math inline">\(^{a}\)</span> y <em>Víctor Casero-Alonso</em><span class="math inline">\(^{b}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad Carlos III de Madrid<br><span class="math inline">\(^{b}\)</span>Universidad de Castilla-La Mancha</p>
 <div id="conceptos-básicos" class="section level2" number="18.1">
 <h2>
 <span class="header-section-number">18.1</span> Conceptos básicos<a class="anchor" aria-label="anchor" href="#conceptos-b%C3%A1sicos"><i class="fas fa-link"></i></a>
@@ -164,7 +163,7 @@ caso, qué tipo de modelo.</p>
 <p></p>
 <p>En este tipo de datos, la variable dependiente (de respuesta, de interés)
 se mide una sola vez en cada unidad de análisis (individuos, objetos, elementos …), y los
-individuos<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;En adelante nos referiremos a las unidades de análisis como individuos.&lt;/p&gt;"><sup>141</sup></a>
+individuos<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;En adelante nos referiremos a las unidades de análisis como individuos.&lt;/p&gt;"><sup>145</sup></a>
 están agrupados (o anidados) en unidades mayores. Muchos tipos
 de datos tienen una estructura jerárquica: alumnos en escuelas, personas
 en municipios, pacientes en hospitales, plantas en una parcela…</p>
@@ -204,7 +203,7 @@ tamaño de su hospital de referencia.</li>
 <span class="header-section-number">18.1.1.2</span> Medidas repetidas y datos longitudinales<a class="anchor" aria-label="anchor" href="#medidas-repetidas-y-datos-longitudinales"><i class="fas fa-link"></i></a>
 </h4>
 <p>En este tipo de datos, la variable dependiente se mide más de una vez en
-un mismo individuo <span class="citation">(<a href="referncias.html#ref-Singer03" role="doc-biblioref">Singer and Willet 2003</a>)</span>. Por ejemplo, se miden los niveles de
+un mismo individuo <span class="citation">(<a href="cap-fraude.html#ref-Singer03">Singer and Willett 2003</a>)</span>. Por ejemplo, se miden los niveles de
 glucosa de un enfermo antes y después de haberle inyectado insulina.
 Este tipo de datos también puede ser considerado como datos multinivel
 (o jerárquicos) donde el nivel 2 representa a los individuos y el nivel
@@ -229,7 +228,7 @@ análisis, y que, por tanto, las observaciones no son independientes.</p>
 <span class="header-section-number">18.1.2</span> ¿Efectos fijos o aleatorios?<a class="anchor" aria-label="anchor" href="#efectos-fijos-o-aleatorios"><i class="fas fa-link"></i></a>
 </h3>
 <p>En un modelo mixto la clave se encuentra en la distinción entre efectos
-fijos y aleatorios <span class="citation">(<a href="referncias.html#ref-Snijers03" role="doc-biblioref">Snijers 2003</a>)</span>. Esto es importante porque la inferencia y
+fijos y aleatorios <span class="citation">(<a href="cap-fraude.html#ref-Snijers03">Snijders 2005</a>)</span>. Esto es importante porque la inferencia y
 el análisis de ambos efectos es distinta.</p>
 <p>Los <strong>efectos fijos</strong> son variables en las cuales el investigador ha
 incluido sólo los niveles (o tratamientos) que son de su interés. Por
@@ -334,7 +333,7 @@ con dimensión <span class="math inline">\(p \times p\)</span>.</li>
 <h4>
 <span class="header-section-number">18.2.1.1</span> Estimación de <span class="math inline">\(\boldsymbol{\beta}\)</span> y <span class="math inline">\(\boldsymbol{u}\)</span><a class="anchor" aria-label="anchor" href="#estimaci%C3%B3n-de-boldsymbolbeta-y-boldsymbolu"><i class="fas fa-link"></i></a>
 </h4>
-<p>Se hace mediante las llamadas <strong>ecuaciones de Henderson</strong> <span class="citation">(<a href="referncias.html#ref-Henderson1953" role="doc-biblioref">Henderson 1953</a>)</span>. Permiten
+<p>Se hace mediante las llamadas <strong>ecuaciones de Henderson</strong> <span class="citation">(<a href="cap-fraude.html#ref-Henderson1953">Henderson 1953</a>)</span>. Permiten
 obtener el mejor estimador lineal insesgado de <span class="math inline">\(\boldsymbol{\beta}\)</span> y el mejor
 predictor lineal insesgado de <span class="math inline">\(\boldsymbol{u}\)</span>. Se obtienen maximizando la densidad
 conjunta de <span class="math inline">\(\boldsymbol{y}\)</span> y <span class="math inline">\(\boldsymbol{u}\)</span>:
@@ -402,7 +401,7 @@ LRT = -2\left [ ln(l_{H_0})- ln(l_{H_1}) \right ]\approx \chi^2_{df}.
 <p>Al usar el test LRT (Eq. <a href="cap-mxm.html#eq:LRT">(18.4)</a>) se ha de tener en cuenta
 que la distribución asintótica del estadístico del test depende de si el
 valor del parámetro bajo la hipótesis nula (<span class="math inline">\(H_0\)</span>) está o no en la frontera del
-espacio paramétrico<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Es espacio paramétrico es el conjunto de posibles valores del parámetro. Los valores que están en la frontera son los valores que están en el límite inferior (el mínimo) o el superior (máximo) del conjunto de valores posible. Dado que la varianza es positiva, si se contrasta si el valor es cero, estaría tomando un valor en la frontera.&lt;/p&gt;"><sup>142</sup></a></p>
+espacio paramétrico<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Es espacio paramétrico es el conjunto de posibles valores del parámetro. Los valores que están en la frontera son los valores que están en el límite inferior (el mínimo) o el superior (máximo) del conjunto de valores posible. Dado que la varianza es positiva, si se contrasta si el valor es cero, estaría tomando un valor en la frontera.&lt;/p&gt;"><sup>146</sup></a></p>
 <ul>
 <li><p><strong>Caso 1</strong>: El valor de los parámetros de varianza bajo <span class="math inline">\(H_0\)</span> no
 está en la frontera del espacio paramétrico (por ejemplo, al
@@ -475,7 +474,7 @@ se ajusta el modelo:
 que ignora que los alumnos provienen de distintos centros (por
 eso solo aparece el subíndice <span class="math inline">\(j\)</span>, que es el que representa a las unidades
 de nivel más bajo, en este caso a los alumnos).</p>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"mlmRev"</span><span class="op">)</span></span>
 <span><span class="va">Hsb82</span><span class="op">$</span><span class="va">school</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Hsb82</span><span class="op">$</span><span class="va">school</span>, ordered<span class="op">=</span><span class="cn">F</span><span class="op">)</span></span>
 <span><span class="va">multi0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">cses</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
@@ -520,7 +519,7 @@ tenga su propia ordenada en el origen:
 <p>Este modelo es similar al anterior añadiendo el subíndice <span class="math inline">\(i\)</span> para
 identificar el centro al que pertenece cada alumno. En realidad, se
 utiliza una variable categórica con tantas categorías como escuelas.</p>
-<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">multi1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">cses</span> <span class="op">+</span> <span class="va">school</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span></code></pre></div>
 <p>Se están considerando las escuelas como un efecto fijo y no aleatorio,
 es decir, implícitamente se está suponiendo que solo interesan estas
@@ -542,7 +541,7 @@ Figura 18.3: Ilustración de posibles escenarios para tres escuelas
 donde aparece ahora el sub-índice <span class="math inline">\(i\)</span> también en la pendiente, lo que indica que cada centro
 tiene una pendiente diferente.</p>
 <p>El código</p>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">multi2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">cses</span><span class="op">*</span><span class="va">school</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span></code></pre></div>
 <p>generaría 159 coeficientes más (uno por cada escuela), que son los que se incluirían con
 la interacción. Pero no interesan estas escuelas en
@@ -590,7 +589,7 @@ ambos son independientes, es decir, las observaciones que provienen
 de distintas escuelas son independientes.</li>
 </ul>
 <p>En el ejemplo de las escuelas:</p>
-<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/lme4/lme4/">"lme4"</a></span><span class="op">)</span></span>
 <span><span class="va">Modelo0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="fl">1</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">school</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
 <span><span class="va">Modelo0</span></span>
@@ -615,7 +614,7 @@ es el efecto aleatorio predicho para dicha escuela.</li>
 <p>La Fig. <a href="cap-mxm.html#fig:plot-qqmath">18.4</a>**} permite ver los efectos aleatorios junto con sus intervalos de
 confianza (las escuelas han sido ordenadas atendiendo a su media para
 apreciar mejor la variabilidad entre las mismas). Para ello se ajusta el modelo con la función <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer()</a></code>:</p>
-<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://lattice.r-forge.r-project.org/">"lattice"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/qqmath.html">qqmath</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/nlme/man/random.effects.html">ranef</a></span><span class="op">(</span><span class="va">Modelo0</span>, condVar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">school</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -631,7 +630,7 @@ Figura 18.4:  Efectos aleatorios junto con sus intervalos de confianza
 <!-- ``` -->
 <p>Una primera aproximación para contrastar si hay o no diferencias entre
 los grupos sería calcular el intervalo de confianza para <span class="math inline">\(\sigma_u\)</span>:</p>
-<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">Modelo0</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                 2.5 %    97.5 %</span></span>
 <span><span class="co">#&gt; .sig01       2.594729  3.315880</span></span>
@@ -646,7 +645,7 @@ H_1: \quad \sigma^2_u\neq 0 \Rightarrow y_{ij} = \beta_0 + u_i + \epsilon_{ij}.
 <p>El resultado del test, se compara con el valor de una
 mixtura de distribuciones Chi-cuadrado <span class="math inline">\(0.5 \chi^2_0 + 0.5\chi^2_1\)</span>, concretamente <span class="math inline">\(0.5 \chi^2_p + 0.5\chi^2_{p-1}\)</span>, donde <span class="math inline">\(p\)</span> es el número de parámetros de la varianza que se hacen
 cero bajo <span class="math inline">\(H_0\)</span>.</p>
-<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Modelo_NULL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
 <span><span class="va">test</span> <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo_NULL</span>, REML <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">+</span> <span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo0</span>, REML <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">pchisq</a></span><span class="op">(</span><span class="va">test</span>, df <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">)</span>  </span>
@@ -679,7 +678,7 @@ para todos los grupos. Todas las líneas rectas ajustadas para cada grupo
 son paralelas.</p>
 <p>En el ejemplo de las escuelas, se introduce como variable explicativa
 <code>cses</code> (nivel socioeconómico centrado en su media):</p>
-<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Modelo1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">cses</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">school</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
 <span><span class="va">Modelo1</span></span>
 <span><span class="co">#&gt; Linear mixed model fit by REML ['lmerMod']</span></span>
@@ -708,7 +707,7 @@ ajustar de nuevo los modelos que se quieren comparar usando máxima
 verosimilitud (en vez de REML). Si se utiliza la función <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer()</a></code> para
 ajustar el modelo no es necesario reajustar con ML pues la función <code>anova</code>
 lo hará automáticamente, mientras que si se usa la función <code><a href="https://rdrr.io/pkg/nlme/man/lme.html">lme()</a></code> sí será necesario hacerlo.</p>
-<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">Modelo0</span>, <span class="va">Modelo1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Data: Hsb82</span></span>
 <span><span class="co">#&gt; Models:</span></span>
@@ -739,7 +738,7 @@ y_{ij} = \underbrace{\beta_0 + \beta_2s_{i}}_{\text{efectos fijos}}+\underbrace{
 católico):
 <span class="math display">\[mAch = \beta_0 + \beta_2~sector + u_{i} + \epsilon_{ij}\]</span></p>
 <p>Se ajusta el modelo usando la función <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer()</a></code>:</p>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Modelo2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">sector</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">school</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
 <span><span class="va">Modelo2</span></span>
 <span><span class="co">#&gt; Linear mixed model fit by REML ['lmerMod']</span></span>
@@ -768,7 +767,7 @@ descendido: <span class="math inline">\((2.935^2-2.584^2)/2.935^2 =\)</span> <sp
 la variable sector la variabilidad a nivel de escuela se ha reducido en
 un <span class="math inline">\(22 \%\)</span>.</p>
 <p>Para contrastar si la variable sector es significativa se usa de nuevo el test LRT:</p>
-<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">Modelo0</span>, <span class="va">Modelo2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Data: Hsb82</span></span>
 <span><span class="co">#&gt; Models:</span></span>
@@ -815,7 +814,7 @@ covarianza implica que los grupos con un valor del efecto de grupo <span class="
 elevado tienden a tener valores elevados de <span class="math inline">\(v_i\)</span>, o equivalentemente,
 centros educativos con ordenada en el origen alta, tienen pendiente alta.</p>
 <p>El modelo en <strong>R</strong> sería:</p>
-<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Modelo3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span> <span class="va">mAch</span><span class="op">~</span> <span class="va">cses</span> <span class="op">+</span> <span class="op">(</span><span class="va">cses</span> <span class="op">|</span> <span class="va">school</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
 <span><span class="va">Modelo3</span></span>
 <span><span class="co">#&gt; Linear mixed model fit by REML ['lmerMod']</span></span>
@@ -846,7 +845,7 @@ la variabilidad (de la nota) entre las escuelas para un nivel socioeconómico me
 <p>Para comprobarlo, el contraste de hipótesis sería en este caso:
 <span class="math display">\[H_0:
 \sigma_{uv} = 0 \quad \text{ y } \quad H_1: \sigma_{uv}\neq 0\]</span></p>
-<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Modelo3.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">ses</span> <span class="op">~</span> <span class="va">cses</span> <span class="op">+</span> <span class="op">(</span><span class="va">cses</span> <span class="op">||</span> <span class="va">school</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span></code></pre></div>
 <p>Cuando se quiere que haya un efecto aleatorio para la ordenada en el
 origen y para la pendiente pero que estén incorrelados, en la función
@@ -854,7 +853,7 @@ solo hay que poner doble barra en vez
 de simple.</p>
 <p>En este caso no es necesario utilizar la mixtura de distribuciones Chi-cuadrado para contrastar <span class="math inline">\(H_0:\)</span>
 <span class="math inline">\(\sigma_{uv} = 0\)</span>, pues <span class="math inline">\(\sigma_{uv}\)</span> puede tomar cualquier valor.</p>
-<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">Modelo3.1</span>, <span class="va">Modelo3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Data: Hsb82</span></span>
 <span><span class="co">#&gt; Models:</span></span>
@@ -867,7 +866,7 @@ de simple.</p>
 <p>El siguiente paso sería contrastar si es necesario que las rectas tengan
 pendientes diferentes, es decir, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma^2_v = 0\)</span>, <span class="math inline">\(H_1\)</span>:
 <span class="math inline">\(\sigma^2_v&gt;0\)</span>. En este caso sí se necesita la aproximación:</p>
-<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo1</span>, REML <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>         <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo3.1</span>, REML <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">pchisq</a></span><span class="op">(</span><span class="va">test</span>, df <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">)</span> </span>
@@ -875,7 +874,7 @@ pendientes diferentes, es decir, <span class="math inline">\(H_0\)</span>: <span
 <p>Por lo tanto, la pendiente es diferente en las distintas escuelas.</p>
 <p>Además, se puede usar algún criterio de información para comparar los
 modelos:</p>
-<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo3</span><span class="op">)</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; [1] 46726.23</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo3.1</span><span class="op">)</span><span class="op">)</span>  </span>
@@ -895,7 +894,7 @@ origen como de la pendiente:
 <p><br>
 Al introducir la variable medida al nivel 2, la parte fija se modifica
 (con respecto al Modelo 3), pero no la parte aleatoria:</p>
-<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Modelo4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">cses</span><span class="op">*</span><span class="va">sector</span> <span class="op">+</span> <span class="op">(</span><span class="va">cses</span> <span class="op">||</span> <span class="va">school</span><span class="op">)</span>, </span>
 <span>                     data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
 <span><span class="va">Modelo4</span></span>
@@ -927,7 +926,7 @@ nivel socio-económico es más lenta que un colegio público.</p>
 <li>Se ajusta el modelo con todos los efectos fijos y aleatorios
 posibles.</li>
 </ol>
-<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Modelo5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">cses</span> <span class="op">*</span> <span class="va">sector</span><span class="op">+</span><span class="op">(</span><span class="va">cses</span> <span class="op">|</span> <span class="va">school</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Se contrasta qué efectos aleatorios son significativos, sin mover
@@ -935,7 +934,7 @@ los efectos fijos.</li>
 </ol>
 <p>Primero se contrasta si la covarianza entre efectos fijos y aleatorios es cero
 o no:</p>
-<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Se ajusta el modelo con covarianza = 0</span></span>
 <span><span class="va">Modelo5.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">ses</span> <span class="op">~</span> <span class="va">cses</span> <span class="op">*</span> <span class="va">sector</span><span class="op">+</span><span class="op">(</span><span class="va">cses</span><span class="op">||</span><span class="va">school</span><span class="op">)</span>,</span>
 <span>                 data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
@@ -955,7 +954,7 @@ significativa y si la ordenada en el origen lo es.</p>
 <li>Una vez elegidos los efectos aleatorios que se mantienen en el modelo,
 se eligen los efectos fijos:</li>
 </ol>
-<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Modelo6</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">Modelo5</span>, <span class="va">.</span> <span class="op">~</span> <span class="va">.</span><span class="op">-</span><span class="va">cses</span><span class="op">:</span><span class="va">sector</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">Modelo6</span>, <span class="va">Modelo5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Data: Hsb82</span></span>
@@ -969,8 +968,8 @@ se eligen los efectos fijos:</li>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
 <p>Dado que la interacción es significativa, se opta por dejar los efectos fijos <code>cses</code> y <code>sector</code> en el modelo (en aras de facilitar las interpretaciones), por lo que no sería necesario contrastar su significatividad y este sería el modelo final.</p>
 </div>
-<div id="resumen-16" class="section level3 unnumbered infobox_resume">
-<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-16"><i class="fas fa-link"></i></a>
+<div id="resumen-17" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-17"><i class="fas fa-link"></i></a>
 </h3>
 <p>En este capítulo se introducen los modelos mixtos o modelos con efectos aleatorios. En particular:</p>
 <ul>
@@ -989,7 +988,7 @@ se eligen los efectos fijos:</li>
 <div class="prev"><a href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></div>
 <div class="next"><a href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap-mxm"><span class="header-section-number">18</span> Modelos mixtos</a></li>
 <li>
@@ -1013,7 +1012,7 @@ se eligen los efectos fijos:</li>
 <li><a class="nav-link" href="#modelo-con-ordenada-en-el-origen-aleatoria"><span class="header-section-number">18.4.1</span> Modelo con ordenada en el origen aleatoria</a></li>
 <li><a class="nav-link" href="#modelo-con-pendiente-aleatoria"><span class="header-section-number">18.4.2</span> Modelo con pendiente aleatoria</a></li>
 <li><a class="nav-link" href="#c%C3%B3mo-construir-el-modelo-en-la-pr%C3%A1ctica"><span class="header-section-number">18.4.3</span> ¿Cómo construir el modelo en la práctica?</a></li>
-<li><a class="nav-link" href="#resumen-16">Resumen</a></li>
+<li><a class="nav-link" href="#resumen-17">Resumen</a></li>
 </ul>
 </li>
 </ul>
@@ -1032,7 +1031,7 @@ se eligen los efectos fijos:</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

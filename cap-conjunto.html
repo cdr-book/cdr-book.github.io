@@ -7,7 +7,7 @@
 <title>Capítulo 22 Análisis conjunto | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Mª Leticia Meseguer Santamaría Universidad de Castilla-La Mancha  22.1 Introducción y conceptos clave El análisis conjunto (o conjoint analysis) estudia situaciones de elección múltiple. Funciona...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 22 Análisis conjunto | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,10 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
-<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -33,7 +34,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -76,13 +77,13 @@
 <li class="book-part">Machine learning supervisado</li>
 <li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
-<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
-<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
 <li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
 <li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
@@ -108,18 +109,15 @@
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
 <li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
-<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
-<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
-<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -201,7 +199,7 @@ Está limitado por su complejidad y por el uso de software especializado, aunque
 <li><p>Se usar CBC si se analizan entre 6 y 10 atributos y con elecciones reflexivas sobre productos, puesto que el encuestado no asigna directamente utilidades, sino que se limita a elegir una (o ninguna) de las opciones presentadas.</p></li>
 </ul>
 <p><strong>La selección de elementos</strong>. Se escogen sólo los <strong>atributos</strong> que condicionan la elección, es decir, los que expliquen las preferencias de los individuos y permitan diferenciar bien entre los productos o servicios; deben estar lo más cercanos posible a la independencia entre ellos. Para cada atributo se eligen sus <strong>niveles</strong>; deben ser mutuamente excluyentes y cubrir todo el rango de posibilidades. Por último, y dependiendo de la metodología utilizada, se determinan los <strong>perfiles y escenarios</strong>.</p>
-<p><strong>Creación de estímulos</strong>. Se utilizarán diseños factoriales fraccionados ortogonales, que reducen el número de perfiles que se le muestran al entrevistado. Como el número de posibles perfiles es la multiplicación del número de niveles de todos los atributos, puede ser imposible en la práctica que el individuo indique sus preferencias entre todos ellos. Por ello, se seleccionan sólo algunos de los perfiles, que sean representativos del resto, es decir, que en los perfiles incluidos en los estímulos aparezca cada nivel de cada factor combinado con el resto de niveles de forma lo más proporcional posible.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Por ejemplo, si se consideran 4 atributos con 3 niveles cada uno, habría un total de 81 perfiles diferentes. Se elige un número menor de perfiles (suele ser habitual considerar como mínimo el número total de niveles menos el de atributos más uno; en este ejemplo 4x3-4+1=9 perfiles) y se busca que en ellos aparezca, aproximadamente, el mismo número de veces cada nivel de cada atributo.&lt;/p&gt;"><sup>159</sup></a> La selección se efectúa mediante diseño factorial de experimentos, fraccionado (que jerarquiza los efectos, permitiendo la reducción de perfiles) y ortogonal (equilibrado en los niveles).</p>
+<p><strong>Creación de estímulos</strong>. Se utilizarán diseños factoriales fraccionados ortogonales, que reducen el número de perfiles que se le muestran al entrevistado. Como el número de posibles perfiles es la multiplicación del número de niveles de todos los atributos, puede ser imposible en la práctica que el individuo indique sus preferencias entre todos ellos. Por ello, se seleccionan sólo algunos de los perfiles, que sean representativos del resto, es decir, que en los perfiles incluidos en los estímulos aparezca cada nivel de cada factor combinado con el resto de niveles de forma lo más proporcional posible.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Por ejemplo, si se consideran 4 atributos con 3 niveles cada uno, habría un total de 81 perfiles diferentes. Se elige un número menor de perfiles (suele ser habitual considerar como mínimo el número total de niveles menos el de atributos más uno; en este ejemplo 4x3-4+1=9 perfiles) y se busca que en ellos aparezca, aproximadamente, el mismo número de veces cada nivel de cada atributo.&lt;/p&gt;"><sup>163</sup></a> La selección se efectúa mediante diseño factorial de experimentos, fraccionado (que jerarquiza los efectos, permitiendo la reducción de perfiles) y ortogonal (equilibrado en los niveles).</p>
 <p><strong>Forma de presentación</strong>. Dependerá de la metodología elegida. La Fig. <a href="cap-conjunto.html#fig:150024-pres">22.2</a> muestra algunos ejemplos.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:150024-pres"></span>
@@ -227,12 +225,12 @@ Figura 22.2: Formas de presentación
   Y^{i}=\beta_0 + \sum_{j,k} U_{jk} X_{jk}^{i} + \varepsilon^{i},
 \end{equation}\]</span></p>
 <p>donde los coeficientes <span class="math inline">\(U_{jk}\)</span> son las utilidades parciales, o <em>partial partworths</em>, que indican la utilidad que el individuo asigna a cada nivel de cada atributo, y <span class="math inline">\(\varepsilon^{i}\)</span> denota el término de error.</p>
-<p>En el modelo <a href="cap-conjunto.html#eq:utilidad">(22.1)</a> habrá multicolinealidad<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;En otros términos, el modelo no tendrá rango completo y las estimaciones no serán únicas.&lt;/p&gt;"><sup>160</sup></a>, ya que todos los atributos deben estar presentes en todos los perfiles, es decir <span class="math inline">\(\sum_k X_{jk}^{i}=1\)</span>. Para evitar las consecuencias indeseadas de la multicolinealidad en la estimación de las utilidades parciales, se elimina uno de los niveles de cada factor (sin pérdida de generalidad, el último, <span class="math inline">\(K\)</span>), estimándose por OLS la función de utilidad (que ahora se denomina “restringida”):</p>
+<p>En el modelo <a href="cap-conjunto.html#eq:utilidad">(22.1)</a> habrá multicolinealidad<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;En otros términos, el modelo no tendrá rango completo y las estimaciones no serán únicas.&lt;/p&gt;"><sup>164</sup></a>, ya que todos los atributos deben estar presentes en todos los perfiles, es decir <span class="math inline">\(\sum_k X_{jk}^{i}=1\)</span>. Para evitar las consecuencias indeseadas de la multicolinealidad en la estimación de las utilidades parciales, se elimina uno de los niveles de cada factor (sin pérdida de generalidad, el último, <span class="math inline">\(K\)</span>), estimándose por OLS la función de utilidad (que ahora se denomina “restringida”):</p>
 <p><span class="math display" id="eq:utilrest">\[\begin{equation}
 \tag{22.2}
   Y^{i}=\delta + \sum_{j,k, k \neq K} \gamma_{jk} X_{jk}^{i} + \varepsilon^{i},
 \end{equation}\]</span></p>
-<p>donde <span class="math inline">\(\delta = \beta_0 + \sum_{j} U_{jK}\)</span> y <span class="math inline">\(\gamma_{jk}=U_{jk}-U_{jK}\)</span>. A partir de la estimación de <a href="cap-conjunto.html#eq:utilrest">(22.2)</a>, se pueden calcular los valores de la función de utilidad original en <a href="cap-conjunto.html#eq:utilidad">(22.1)</a>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Los valores &lt;span class="math inline"&gt;\(U_{j1}\)&lt;/span&gt; se pueden calcular imponiendo que &lt;span class="math inline"&gt;\(\sum_{k} U_{jk}=1\)&lt;/span&gt; para cada atributo &lt;span class="math inline"&gt;\(j\)&lt;/span&gt;. Menos frecuente, aunque también válido, es expresar la utilidades relativas a un nivel de referencia (en este caso, el último) por lo que se consideraría cada &lt;span class="math inline"&gt;\(U_{jK}=0\)&lt;/span&gt;.&lt;/p&gt;'><sup>161</sup></a></p>
+<p>donde <span class="math inline">\(\delta = \beta_0 + \sum_{j} U_{jK}\)</span> y <span class="math inline">\(\gamma_{jk}=U_{jk}-U_{jK}\)</span>. A partir de la estimación de <a href="cap-conjunto.html#eq:utilrest">(22.2)</a>, se pueden calcular los valores de la función de utilidad original en <a href="cap-conjunto.html#eq:utilidad">(22.1)</a>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Los valores &lt;span class="math inline"&gt;\(U_{j1}\)&lt;/span&gt; se pueden calcular imponiendo que &lt;span class="math inline"&gt;\(\sum_{k} U_{jk}=1\)&lt;/span&gt; para cada atributo &lt;span class="math inline"&gt;\(j\)&lt;/span&gt;. Menos frecuente, aunque también válido, es expresar la utilidades relativas a un nivel de referencia (en este caso, el último) por lo que se consideraría cada &lt;span class="math inline"&gt;\(U_{jK}=0\)&lt;/span&gt;.&lt;/p&gt;'><sup>165</sup></a></p>
 <p>Si hay <span class="math inline">\(Z\)</span> individuos, cada uno de ellos, <span class="math inline">\(z\)</span>, dará una valoración diferente a los perfiles <span class="math inline">\(i\)</span>, es decir los valores de <span class="math inline">\(Y_{z}^{i}\)</span> serán diferentes, produciendo una estimación diferente de la función de utilidad <a href="cap-conjunto.html#eq:utilidad">(22.1)</a> y, por tanto, diferentes utilidades parciales <span class="math inline">\(\widehat{U}_{jk,z}\)</span>. Para obtener las utilidades para el conjunto de individuos, se procede al cálculo de sus valores medios:</p>
 <p><span class="math display" id="eq:utilglobal">\[\begin{equation}
 \tag{22.3}
@@ -249,7 +247,7 @@ Figura 22.2: Formas de presentación
 \tag{22.5}
   ImpRel_{j}=\frac{Imp_{j}}{\sum_{t=1}^{J} Imp_{t}}.
 \end{equation}\]</span></p>
-<p>Por último, una vez estimadas las utilidades, la <em>utilidad total</em> de un perfil <span class="math inline">\(i\)</span> es la suma de las utilidades de los niveles de cada uno de los atributos que lo definen más la constante de regresión:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Si se desea obtener la utilidad total del perfil &lt;span class="math inline"&gt;\(i\)&lt;/span&gt; para un individuo concreto, &lt;span class="math inline"&gt;\(z\)&lt;/span&gt;, bastaría con utilizar la &lt;a href="cap-conjunto.html#eq:utilperfil"&gt;(22.6)&lt;/a&gt; para los valores concretos de &lt;span class="math inline"&gt;\(\beta_{0z}\)&lt;/span&gt; y &lt;span class="math inline"&gt;\(U_{ij,z}\)&lt;/span&gt;.&lt;/p&gt;'><sup>162</sup></a></p>
+<p>Por último, una vez estimadas las utilidades, la <em>utilidad total</em> de un perfil <span class="math inline">\(i\)</span> es la suma de las utilidades de los niveles de cada uno de los atributos que lo definen más la constante de regresión:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Si se desea obtener la utilidad total del perfil &lt;span class="math inline"&gt;\(i\)&lt;/span&gt; para un individuo concreto, &lt;span class="math inline"&gt;\(z\)&lt;/span&gt;, bastaría con utilizar la &lt;a href="cap-conjunto.html#eq:utilperfil"&gt;(22.6)&lt;/a&gt; para los valores concretos de &lt;span class="math inline"&gt;\(\beta_{0z}\)&lt;/span&gt; y &lt;span class="math inline"&gt;\(U_{ij,z}\)&lt;/span&gt;.&lt;/p&gt;'><sup>166</sup></a></p>
 <p><span class="math display" id="eq:utilperfil">\[\begin{equation}
 \tag{22.6}
   \widehat{U}_i=\beta_0 + \sum_{j=1}^J\widehat{U}_{jk}\hspace{0,2cm} \text{para los niveles presentes en el perfil},
@@ -280,11 +278,11 @@ Figura 22.2: Formas de presentación
 </ul>
 <p>De las 54 posibles combinaciones se seleccionan 13 perfiles, valorados de 0 a 10 según las preferencias de cada uno de los 100 encuestados.</p>
 <p>Para realizar el análisis conjunto propuesto, primeramente se carga tanto el paquete como los datos:</p>
-<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://keii.ue.wroc.pl/conjoint">"conjoint"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"tea"</span><span class="op">)</span></span></code></pre></div>
-<p>La función <code><a href="https://rdrr.io/pkg/conjoint/man/Conjoint.html">Conjoint()</a></code> devolverá las utilidades de los niveles, el vector de porcentajes de la importancia de los atributos y las gráficas correspondientes.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La función &lt;code&gt;Conjoint()&lt;/code&gt; proporciona una salida matricial donde, además de los resultados numéricos, proporciona una gráfica de utilidad para cada atributo más una para la utilidad media de cada atributo. Dada la cantidad de información, los gráficos no se reproducen en el texto.&lt;/p&gt;"><sup>163</sup></a></p>
-<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
+<p>La función <code><a href="https://rdrr.io/pkg/conjoint/man/Conjoint.html">Conjoint()</a></code> devolverá las utilidades de los niveles, el vector de porcentajes de la importancia de los atributos y las gráficas correspondientes.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La función &lt;code&gt;Conjoint()&lt;/code&gt; proporciona una salida matricial donde, además de los resultados numéricos, proporciona una gráfica de utilidad para cada atributo más una para la utilidad media de cada atributo. Dada la cantidad de información, los gráficos no se reproducen en el texto.&lt;/p&gt;"><sup>167</sup></a></p>
+<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/conjoint/man/Conjoint.html">Conjoint</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">tpref</span>, x<span class="op">=</span><span class="va">tprof</span>, z<span class="op">=</span><span class="va">tlevn</span><span class="op">)</span></span></code></pre></div>
 <p>En la Tabla <a href="cap-conjunto.html#tab:funcionR">22.1</a> se exponen otras funciones disponibles para obtener algunos resultados concretos:</p>
 <div class="inline-table"><table class="table table-sm">
@@ -331,7 +329,7 @@ Figura 22.2: Formas de presentación
 </tbody>
 </table></div>
 <p>Así, es posible obtener sólo la información relativa a las utilidades, mediante la función <code><a href="https://rdrr.io/pkg/conjoint/man/caUtilities.html">caUtilities()</a></code>, o sólo la correspondiente a la importancia de los atributos, usando la función <code><a href="https://rdrr.io/pkg/conjoint/man/caImportance.html">caImportance()</a></code>:</p>
-<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/conjoint/man/caUtilities.html">caUtilities</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">tprefm</span> , x<span class="op">=</span><span class="va">tprof</span>, z<span class="op">=</span><span class="va">tlevn</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Call:</span></span>
@@ -375,7 +373,7 @@ Figura 22.2: Formas de presentación
 <p>De forma adicional, el análisis conjunto también permite profundizar en el conocimiento de los individuos en función de sus preferencias. Como ejemplo, se puede abordar cuestión de si existen <em>grupos</em> de individuos con preferencias similares entre ellos y diferentes de las del resto de grupos, cuestión conocida generalmente como <em>segmentación</em>. En este caso, el objetivo del proyecto sería identificar grupos de encuestados con preferencias similares, segmentando el mercado y permitiendo adaptar los atributos de cada producto o servicio a las características concretas de ese nicho de mercado.</p>
 <p>Para ello, se puede utilizar la función <code><a href="https://rdrr.io/pkg/conjoint/man/caSegmentation.html">caSegmentation()</a></code>, que devuelve un análisis de conglomerados dividiendo a los individuos en <span class="math inline">\(k\)</span> <em>clusters</em>, usando el método <em>k-means</em> (véase Sec. <a href="no-jerarquico.html#no-jerarquico">31</a>). Como ejemplo, se consideran tres clusters.</p>
 <p>El vector de agrupación resume las características de los tres grupos formados.</p>
-<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">segments</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/conjoint/man/caSegmentation.html">caSegmentation</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">tprefm</span> , x<span class="op">=</span><span class="va">tprof</span>, c<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">segments</span><span class="op">$</span><span class="va">segm</span></span>
 <span><span class="co">#&gt; K-means clustering with 3 clusters of sizes 40, 40, 20</span></span>
@@ -416,7 +414,7 @@ Figura 22.2: Formas de presentación
 <div class="prev"><a href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></div>
 <div class="next"><a href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap-conjunto"><span class="header-section-number">22</span> Análisis conjunto</a></li>
 <li><a class="nav-link" href="#introducci%C3%B3n-y-conceptos-clave"><span class="header-section-number">22.1</span> Introducción y conceptos clave</a></li>
@@ -439,7 +437,7 @@ Figura 22.2: Formas de presentación
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

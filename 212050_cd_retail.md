@@ -3,7 +3,8 @@
 
 *Jaime Fierro Martín*$^{a}$, *Rocío González Martínez*$^{a}$ y *Cristina Sánchez Figueroa*$^{b}$
 
-$^{a}$Analyticae, SL, $^{b}$Universidad Nacional a Distancia
+$^{a}$Analyticae, SL  
+$^{b}$Universidad Nacional de Educación a Distancia
 
 
 ## Motivación y conceptos clave
@@ -17,10 +18,10 @@ momento de su ciclo de vida con la empresa se encuentran y desarrollar
 propuestas de valor que convengan en cada momento.
 
 **Segmentar** \index{segmentar}se define como el proceso de dividir a
-los clientes actuales o potenciales, en diferentes grupos o segmentos
+los clientes, actuales o potenciales, en diferentes grupos o segmentos
 consistentes en individuos con características y niveles similares de
-interés (véase el Cap. \@ref(no-jerarquico) para una explicación detallada de 
-las técnicas del cluster no jerárquico). Es un proceso creativo e iterativo con el fin de satisfacer con
+interés (véase el Cap. \@ref(no-jerarquico)) para una explicación detallada de 
+las técnicas del clúster no jerárquico). Es un proceso creativo e iterativo con el fin de satisfacer con
 mayor acierto las necesidades de los clientes, proporcionando una
 ventaja competitiva y sostenible a la compañía. La segmentación viene
 dada por las necesidades de los clientes, no de la compañía, y debería
@@ -32,17 +33,17 @@ necesitaba mejorar el conocimiento de sus clientes, agrupándolos en
 función de su comportamiento de compra. Los resultados obtenidos fueron
 clave para definir la estrategia de marketing relacional de la compañía.
 
-## El modelo *Recency, frequency, monetary* tradicional 
+## El modelo RFM tradicional 
 
-El **modelo RFM**\index{modelo RFM} es una técnica popular que se
+El **modelo RFM** (*recency*, *frequency*, *monetary*) \index{modelo RFM} es una técnica popular que se
 utiliza para analizar el comportamiento de compra de los clientes: cómo
 compran, su frecuencia de compra y cuánto gastan. Es un método útil para
 enriquecer la segmentación de los clientes en varios grupos que permitan
 la personalización e identificación de los clientes más proclives a
 responder a las promociones. El análisis RFM depende de las medidas de
-actualidad**(*recency*)**\index{recency}**(R)**, frecuencia
-**(*frequency*)**\index{frequency}**(F)** y valor monetario
-**(*monetary*)**\index{monetary}**(M)**, que son tres importantes
+actualidad **(*recency*)**\index{recency} (R), frecuencia
+**(*frequency*)**\index{frequency} (F) y valor monetario
+ **(*monetary*)**\index{monetary} (M), que son tres importantes
 variables relacionadas con la compra que influyen en las posibilidades
 de compra futura de los clientes.
 
@@ -51,23 +52,23 @@ dividiéndolas en quintiles, a partir de los cuales se calcula una
 puntuación única que representa el valor del cliente. Sin embargo, no es
 muy preciso. Si el intervalo de frecuencia de compras se fija entre 0 y
 20, en términos de negocio podría interpretarse como que un cliente con
-una sola compra será igual que otro que tenga 20. Por ello,los enfoques
+una sola compra será igual que otro que tenga 20. Por ello, os enfoques
 de conjuntos clásicos pueden resultar poco funcionales
 [@martinez2019comparison]. En este caso práctico, se propone una mejora
 en la definición de los intervalos mediante la aplicación del **ranking
 de percentiles**\index{ranking de percentiles}. Este método, que se ha
-denominado modelo RFM extendido, proporciona un método robusto para
-tratar los valores atípicos (*outliers*), y además normaliza las
+denominado **modelo RFM extendido**, proporciona un procedimiento robusto para
+tratar los valores atípicos (*outliers*) y además normaliza las
 variables entre 0 y 1 para evitar la diferencias de peso entre las
 variables, permitiendo así la correcta implementación del **algoritmo de
 segmentación**.
 
-## El modelo *Recency, frequency, monetary* extendido
+## El modelo RFM extendido
 
 Los autores de este caso práctico recomiendan seguir una metodología de
 gestión de proyectos. La **metodología
-CRISP-DM**\index{Metodología CRISP-DM} [@chapman2000crisp], presentada
-en el Cap. \@ref(metodología) es un estándar ampliamente utilizado
+CRISP-DM**\index{metodología!CRISP-DM} [@chapman2000crisp], presentada
+en el Cap. \@ref(metodologia), es un estándar ampliamente utilizado
 en los proyectos de ciencia de datos.
 
 Una vez definido el problema (mejorar el conocimiento que una empresa de
@@ -86,7 +87,7 @@ contenida en estos datos de compra atesora gran valor, ya que carecen
 del sesgo y subjetividad propias de otras informaciones obtenidas
 mediante encuestas de opinión, estudios de mercado, entrevistas y grupos
 de discusión, etc. Estos datos suelen encontrarse en las plataformas ERP
-(*Enterprise Resource Planning*) de gestión de pedidos y ventas, o CRM
+(*Enterprise Resource Planning*) de gestión de pedidos y ventas o CRM
 (*Customer Relationship Management*) de las empresas.
 
 El lector es, o será, consciente de que la fase de extracción, carga y
@@ -111,8 +112,8 @@ Cualquier tipo de estudio o proyecto de ciencia de datos requiere
 familiarizarse con los datos y determinar si presentan suficiente
 exactitud, completitud, consistencia, credibilidad y actualidad
 [@munoz2018calidad]. Los datos de transacciones de venta registrados por
-las empresas pueden contener datos atípicos (p.ej. valores perdidos,
-inexactos, outliers, etc.). Para determinar la acción a tomar, o no, de
+las empresas pueden contener valores perdidos,
+inexactos, *outliers*, etc. Para determinar la acción a tomar, o no, de
 limpieza o corrección de los datos de partida, es esencial conocer el
 negocio y las consecuencias que éstas operaciones tendrán en el
 resultado final de la segmentación.
@@ -135,7 +136,7 @@ head(datos_retail)
 ### Cálculo de las variables del modelo RFM
 
 Identificadas las variables iniciales, es necesario calcular los
-factores clave del Modelo RFM:
+factores clave del modelo RFM:
 
 -   La variable actualidad, *recency* (R), es el intervalo de tiempo
     transcurrido desde la última compra de un cliente hasta la fecha de
@@ -173,12 +174,12 @@ Del análisis puede concluirse que:
 -   107.929 clientes han realizado una media de 1,85 compras, con un
     importe medio total de 70,56€ y 450,4 días de media desde la última
     compra hasta la fecha de realización del estudio, con una fuerte
-    asimetría positiva de los valores *frequency* y *monetary* (ver Fig. \@ref(fig:imagen1)).
+    asimetría positiva de los valores *frequency* y *monetary* (véase Fig. \@ref(fig:imagen1)).
 
 -   Se detecta una gran estacionalidad de las compras, como se puede
     apreciar en la agrupación de las observaciones de *recency*.
     Teniendo en cuenta la fecha en la que ser realiza el análisis, los
-    valores obtenidos en la variable *recency,* se pueden interpretar
+    valores obtenidos en la variable *recency* se pueden interpretar
     como el periodo de ventas de la campaña navideña.
 
 
@@ -196,8 +197,8 @@ plot_data |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/Rplot01.png" alt="Box-plot" width="60%" />
-<p class="caption">(\#fig:imagen1)Box-plot</p>
+<img src="img/Rplot01.png" alt="Box-plot de las variables RFM." width="60%" />
+<p class="caption">(\#fig:imagen1)Box-plot de las variables RFM.</p>
 </div>
 
 ### Cálculo del ranking de percentiles
@@ -215,13 +216,13 @@ rfm_rank <- rfm |>
 
 Se podría decir que el análisis RFM combina tres atributos clave de los
 clientes para construir un ranking que permite agruparlos de forma útil
-para el negocio. Así, a si un cliente que compró en una fecha reciente
-(Recency) se le otorgan más puntos. Si compró muchas veces (Frecuency),
+para el negocio. Así, a un cliente que compró en una fecha reciente
+(*recency*) se le otorgan más puntos. Si compró muchas veces (*frecuency*),
 también se le coloca más arriba en el ranking. Finalmente, si gastó más
-en el total de sus compras (Monetary), también puntúa más alto.
-Combinando estos tres parámetros, se obtiene un ranking RFM. Para la
-elaboración de este ranking se parte del concepto de percentil . La idea
-es asignarle a cada cliente una puntuación según las tres variables o
+en el total de sus compras (*Monetary*), también se le puntúa más alto.
+Combinando estas tres puntuaciones se obtiene un ranking RFM. Para la
+elaboración de este ranking se parte del concepto de percentil. La idea
+es asignar a cada cliente una puntuación según las tres variables o
 factores clave del modelo RFM, de modo que los mejores clientes serán
 los que tengan una puntuación mayor.
 
@@ -232,53 +233,53 @@ head(rfm_rank) # el lector puede ver la puntuación del ranking
 
 Una vez que se tienen los rankings de percentiles en las tres variables
 para todos los clientes, se procede a su clusterización mediante el
-método k-means.
+método *k*-means.
 
-### Modelado: RFM mediante k-means
+### Modelado: RFM mediante *k*-means
 
 El modelo establecido debe proporcionar una segmentación de clientes con
 sentido de negocio. En este caso práctico se opta por el algoritmo de
-clustering estándar que presenta la ventaja de ser muy intuitivo y
+clustering estándar que presenta la ventaja de que es muy intuitivo y
 permite trabajar con grandes conjuntos de datos. Como el lector ha
-podido comprobar, existen otros muchos algoritmos de aprendizaje no
+podido comprobar en la Parte VI de este manual, existen otros muchos algoritmos de aprendizaje no
 supervisado que pueden ser empleados.
 
-El número óptimo de *clusters* (o segmentos, en la jerga del marketing)
+El número óptimo de clústeres (o segmentos, en la jerga del marketing)
 es uno de los retos a la hora de aplicar técnicas de *clustering*. No
 existe una manera exclusiva de encontrar el número adecuado de clusters.
 Se trata de un proceso subjetivo que depende de los datos, del tipo de
 *clustering* empleado y, en este caso, de que el número elegido tenga
 sentido y utilidad en el negocio. Existen numerosos métodos para
-facilitar la elección del número de *clusters*; entre ellos destacan el
+facilitar la elección del número de clústeres; entre ellos destacan el
 *Elbow method,* el *Average silhouette method* y el *Gap statistic
-method*, que gracias a la función `fviz_nbclust()` del paquete
-`factoextra,` se pueden calcular con facilidad para realizar una buena
+method* (véase Cap.\@ref(no-jerarquico)), que  se pueden calcular con la función `fviz_nbclust()` del paquete
+`factoextra` para realizar una buena
 elección.
 
-Con el método Elbow, número óptimo de *clusters* se calcula como sigue:
+Con el método Elbow, el número óptimo de clústeres se calcula como sigue:
 
 
 ```r
 set.seed(123)
 muestra_clusters <- rfm_rank |>
   slice_sample(n = 5000) |>
-  dplyr::select(matches("rank"))
+  select(matches("rank"))
 
 fviz_nbclust(x = muestra_clusters, FUNcluster = kmeans, method = "wss", k.max = 10)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/Rplot02.png" alt="Número óptimo de clusters" width="60%" />
-<p class="caption">(\#fig:imagen2)Número óptimo de clusters</p>
+<img src="img/Rplot02.png" alt="Número óptimo de clusters (método Elbow)." width="60%" />
+<p class="caption">(\#fig:imagen2)Número óptimo de clusters (método Elbow).</p>
 </div>
 
 En la Fig. \@ref(fig:imagen2) se observa que la varianza total *intra-cluster* apenas mejora a partir
 del cuarto *cluster*.
 
-El algoritmo de clustering k-means se entrena con las variables R-F-M
-normalizadas con el ranking. La salida de la *función* `kmeans()` del
+El algoritmo de clustering $k$-means se entrena con las variables R-F-M
+normalizadas con el ranking. La salida de la función `kmeans()` del
 paquete base `stats` es un objeto que, entre otros componentes, ofrece
-un vector numérico indicativo del *clusters* al que pertenece cada uno
+un vector numérico indicativo del clúster al que pertenece cada uno
 de los clientes.
 
 
@@ -306,8 +307,7 @@ cada segmento y proceder a su interpretación de perfil de cliente.
 descriptivo_segmentos <- clientes_segmentos |>
   group_by(segmento) |>
   summarise(across(c("monetario", "frecuencia", "actualidad"),
-    .fns = mean, .names = "md_{.col}"
-  ), n_clientes = n()) |>
+    .fns = mean, .names = "md_{.col}" ), n_clientes = n()) |>
   ungroup() |>
   relocate(segmento, n_clientes)
 
@@ -327,7 +327,7 @@ Interpretación de los segmentos:
     realizando compras desde hace poco tiempo y tienen un gran potencial
     de desarrollo. Es un segmento de clientes con interés para la
     empresa.
--   2-*No podemos perder*: se trata de los clientes *'churn'*[^rfm1] que
+-   2-*No podemos perder*: se trata de los clientes *churn*[^segmentacion-1] que
     fueron buenos clientes en términos monetarios y de frecuencia pero
     que hace tiempo que no realizan nuevas compras. La compañía debe
     hacer un esfuerzo en recuperar estos clientes para convertirlos al
@@ -337,11 +337,11 @@ Interpretación de los segmentos:
     compañía. Es el segmento de clientes con mayor interés para la
     empresa.
 -   4-*Una compra*: segmento formado por aquellos clientes que han
-    realizado una sola compra hace tiempo. Presentan frecuencia,
+    realizado una única compra hace tiempo. Presentan frecuencia,
     actualidad y valor monetario bajo. Se trata de un segmento de
     clientes con escaso interés para la compañía.
 
-[^rfm1]: El término *customer churn* se suele traducir como perdida de
+[^segmentacion-1]: El término *customer churn* se suele traducir como perdida de
     clientes o rotación de clientes. Se compone de las palabras inglesas
     *change* (en castellano cambio) y *turn* (en castellano abandonar).
 
@@ -352,48 +352,39 @@ segmentos_descriptivo <- clientes_segmentos |>
     segmento == 1 ~ "1_Nuevos probando",
     segmento == 2 ~ "2_No perder",
     segmento == 3 ~ "3_Top",
-    segmento == 4 ~ "4_Una compra"
-  )) |>
+    segmento == 4 ~ "4_Una compra")) |>
   group_by(segmento) |>
-  summarise(
-    across(
-      .cols = where(is.numeric),
-      .fns = mean
-    ),
-    n_clientes = n()
-  ) |>
+  summarise(across( .cols = where(is.numeric), .fns = mean),
+            n_clientes = n()) |>
   ungroup() |>
   relocate(segmento, n_clientes)
 
 table_dot_plot <- segmentos_descriptivo |>
-  # select(starts_with("rank")) |>
   pivot_longer(cols = c("rank_monetario", "rank_frecuencia", "rank_actualidad"), names_to = "Variable RFM", values_to = "Puntuación")
 
-ggdotchart(
-  table_dot_plot,
-  x = "Variable RFM", y = "Puntuación",
+ggdotchart(table_dot_plot, x = "Variable RFM", y = "Puntuación",
   group = "segmento", color = "segmento", palette = "jco",
   add = "segment", position = position_dodge(0.3),
   sorting = "none", facet.by = "segmento", dot.size = 5,
-  rotate = TRUE, legend = "none"
-)
+  rotate = TRUE, legend = "none")
 ```
 
 La Fig \@ref(fig:imagen3) muestra cada uno de los segmentos indicados. El ranking obtenido ayuda a identificar las diferencias en los tipos de clientes y es útil para decidir a qué segmentos enfocarse y qué estrategias usar para cada uno.
 
-
 <div class="figure" style="text-align: center">
-<img src="img/Rplot03.png" alt="Lollipop de variables RFM" width="55%" />
-<p class="caption">(\#fig:imagen3)Lollipop de variables RFM</p>
+<img src="img/Rplot03.png" alt="Lollipop de variables RFM." width="55%" />
+<p class="caption">(\#fig:imagen3)Lollipop de variables RFM.</p>
 </div>
 
 ### Puesta en producción
 
-Calculado el modelo RFM k-means, la compañía puede incorporar
-periódicamente los datos de los clientes nuevos, o actualizados. De este
+Calculado el modelo RFM $k$-means, la compañía puede incorporar
+periódicamente los datos de los clientes nuevos o actualizarlos. De este
 modo, los segmentos de clientes se actualizarán y, más allá de las
 acciones de *marketing mix* que realicen las compañías gracias a la
 segmentación, podrán analizarse las migraciones de clientes entre los
 diferentes segmentos en el periodo estudiado. La función `cl_predict()`
 facilita la actualización periódica de los segmentos con el modelo
 entrenado.
+
+<img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;" />

@@ -7,7 +7,7 @@
 <title>Capítulo 20 Modelización de series temporales | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Mª Carmen García Centeno Universidad San Pablo-CEU, CEU Universities   20.1 Conceptos básicos El análisis de series temporales es muy útil para analizar el comportamiento de los datos con...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 20 Modelización de series temporales | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,10 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
-<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -33,7 +34,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -76,13 +77,13 @@
 <li class="book-part">Machine learning supervisado</li>
 <li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
-<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
-<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
 <li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
 <li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
@@ -108,18 +109,15 @@
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
 <li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
-<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
-<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
-<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -143,7 +141,7 @@
 <p>Una serie temporal se puede definir como el conjunto de valores observados, en periodos consecutivos de tiempo de la misma amplitud, de una característica de interés en la que su valor en cada instante temporal es una variable aleatoria. Por consiguiente, una serie temporal no es sino la realización de un proceso estocástico; por ejemplo: las precipitaciones diarias, la inflación mensual o el PIB trimestral.</p>
 <p>A continuación se exponen algunos de los conceptos clave sobre los que se fundamenta el análisis de series temporales:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Proceso estocástico</strong>. Es una sucesión de variables aleatorias <span class="math inline">\(\{Y_t\}\)</span>, donde <span class="math inline">\(t= -\infty,..., -2, -1, 0, 1,2,...,\infty\)</span>, que dependen de un parámetro. En el caso de las series temporales ese parámetro es el tiempo.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Pueden depender de más de un parámetro; pero en este capítulo se aborda el caso de un único parámetro: el tiempo&lt;/p&gt;"><sup>145</sup></a> Así, en cada momento del tiempo el proceso se particulariza en una variable aleatoria con una determinada distribución de probabilidad. Desde el punto de vista práctico es muy complicado, y a veces imposible, caracterizar un proceso estocástico según su distribución de probabilidad conjunta. Por esta razón, se recurre a caracterizarlo de una forma menos completa, pero más sencilla y práctica, basada en los dos primeros momentos de una distribución; en concreto: la media (<span class="math inline">\(E(Y_t)=\mu_t\)</span>), la varianza (<span class="math inline">\(Var(Y_t)=E(Y_t-\mu_t)^2=\sigma_t^2\)</span>) y las covarianzas (<span class="math inline">\(\gamma(k)=Cov(Y_t,Y_{t-k})=E(Y_t-\mu_t)(Y_{t-k}-\mu_{t-k})\)</span>).</p></li>
+<li><p><strong>Proceso estocástico</strong>. Es una sucesión de variables aleatorias <span class="math inline">\(\{Y_t\}\)</span>, donde <span class="math inline">\(t= -\infty,..., -2, -1, 0, 1,2,...,\infty\)</span>, que dependen de un parámetro. En el caso de las series temporales ese parámetro es el tiempo.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Pueden depender de más de un parámetro; pero en este capítulo se aborda el caso de un único parámetro: el tiempo&lt;/p&gt;"><sup>149</sup></a> Así, en cada momento del tiempo el proceso se particulariza en una variable aleatoria con una determinada distribución de probabilidad. Desde el punto de vista práctico es muy complicado, y a veces imposible, caracterizar un proceso estocástico según su distribución de probabilidad conjunta. Por esta razón, se recurre a caracterizarlo de una forma menos completa, pero más sencilla y práctica, basada en los dos primeros momentos de una distribución; en concreto: la media (<span class="math inline">\(E(Y_t)=\mu_t\)</span>), la varianza (<span class="math inline">\(Var(Y_t)=E(Y_t-\mu_t)^2=\sigma_t^2\)</span>) y las covarianzas (<span class="math inline">\(\gamma(k)=Cov(Y_t,Y_{t-k})=E(Y_t-\mu_t)(Y_{t-k}-\mu_{t-k})\)</span>).</p></li>
 <li><p><strong>Estacionariedad</strong>. Un proceso estocástico es estacionario, en sentido simple o amplio, si su media y la varianza se mantienen invariantes a lo largo del tiempo y las covarianzas entre dos variables solo dependen del lapso de tiempo que transcurre entre ellas. Es decir:</p></li>
 </ol>
 <ol start="3" style="list-style-type: decimal">
@@ -156,7 +154,7 @@
 <p>La representación gráfica de los coeficientes de correlación <span class="math inline">\(\rho(k)\)</span> para <span class="math inline">\(k=0,1,2,…\)</span> se conoce como .</p>
 <ol start="5" style="list-style-type: decimal">
 <li><p><strong>Función de autocorrelación parcial (PACF)</strong>. Está formada por el conjunto de las correlaciones lineales parciales obtenidas para los distintos valores de <span class="math inline">\(k\)</span>. Así, para dos instantes de una serie temporal <span class="math inline">\(t\)</span> y <span class="math inline">\((t-k)\)</span>, mide la correlación lineal existente entre las variables <span class="math inline">\(Y_{t}\)</span> e <span class="math inline">\(Y_{t-k}\)</span> asociadas a ellos, ajustada de los valores que toma el proceso temporal en los periodos intermedios (<span class="math inline">\(Y_{t-1},Y_{t-2},..., Y_{t-(k-1)}\)</span>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;En el coeficiente de autocorrelación parcial de orden &lt;span class="math inline"&gt;\(k\)&lt;/span&gt; se calcula la correlación entre parejas de valores
-separados por esa distancia temporal pero eliminando el efecto debido a la correlación producida por retardos anteriores a &lt;span class="math inline"&gt;\(k\)&lt;/span&gt;.&lt;/p&gt;'><sup>146</sup></a></p></li>
+separados por esa distancia temporal pero eliminando el efecto debido a la correlación producida por retardos anteriores a &lt;span class="math inline"&gt;\(k\)&lt;/span&gt;.&lt;/p&gt;'><sup>150</sup></a></p></li>
 <li><p><strong>Ergodicidad</strong>. Un proceso estocástico es ergódico cuando, a partir de un determinado desfase temporal entre las variables, la correlación lineal existente entre ellas tiende a desaparecer. Esto implica que las covarianzas y el coeficiente de correlación tienden a cero, es decir,</p></li>
 </ol>
 <p><span class="math display">\[\lim\limits_{k \to \infty}\gamma(k)=0 \quad  y \quad  \lim\limits_{k \to \infty}\rho(k)=0\]</span></p>
@@ -175,7 +173,7 @@ Esto implica que un ruido blanco siempre es estacionario.</li>
 <span class="header-section-number">20.2</span> Modelos ARIMA<a class="anchor" aria-label="anchor" href="#modelos-arima"><i class="fas fa-link"></i></a>
 </h2>
 <p>Para determinar las características del proceso estocástico subyacente a la serie temporal, se van a utilizar los modelos ARIMA (acrónimo del inglés <em>AutoRegresive Integrated Moving Average</em>). Estos modelos están formados por tres componentes: <strong>AR</strong> (autorregresivo), <strong>I</strong> (integrado, es decir, número de diferencias necesarias para convertirlo en estacionario cuando no lo es) y <strong>MA</strong> (medias móviles). Fueron propuestos por Box y Jenkins y son un caso paraticular de procesos estocásticos lineales, estacionarios, ergódicos y discretos. Entre este tipo de procesos lineales, los más frecuentes son:</p>
-<p>Los modelos ARIMA tratan de captar la dinámica y la dependencia existente en los datos de una serie temporal. Por lo tanto, son muy útiles para describir un valor como una combinación o función lineal de valores pasados y errores debidos al azar. Para detalles sobre la cuestión pueden verse, entre muchos otros, <span class="citation">Hamilton (<a href="referncias.html#ref-Hamilton1994" role="doc-biblioref">1994</a>)</span>, <span class="citation">Uriel Jiménez and Peiro Giménez (<a href="referncias.html#ref-Uriel2000" role="doc-biblioref">2000</a>)</span>, <span class="citation">Cryer and Chan (<a href="referncias.html#ref-Cryer2008" role="doc-biblioref">2010</a>)</span>, <span class="citation">Pemberton (<a href="referncias.html#ref-Pemberton2011" role="doc-biblioref">2011</a>)</span>, <span class="citation">Mínguez Salido and García Centeno (<a href="referncias.html#ref-Minguez2011" role="doc-biblioref">2011</a>)</span>, <span class="citation">Brockwell and Davis (<a href="referncias.html#ref-Brockwell2016" role="doc-biblioref">2016</a>)</span> y <span class="citation">Shumway and Stoffer (<a href="referncias.html#ref-Shumway2017" role="doc-biblioref">2017</a>)</span>.</p>
+<p>Los modelos ARIMA tratan de captar la dinámica y la dependencia existente en los datos de una serie temporal. Por lo tanto, son muy útiles para describir un valor como una combinación o función lineal de valores pasados y errores debidos al azar. Para detalles sobre la cuestión pueden verse, entre muchos otros, <span class="citation">Hamilton (<a href="cap-fraude.html#ref-Hamilton1994">1994</a>)</span>, <span class="citation">Uriel Jiménez and Peiro Giménez (<a href="cap-fraude.html#ref-Uriel2000">2000</a>)</span>, <span class="citation">Cryer and Chan (<a href="cap-fraude.html#ref-Cryer2008">2010</a>)</span>, <span class="citation">Pemberton (<a href="cap-fraude.html#ref-Pemberton2011">2011</a>)</span>, <span class="citation">Mínguez Salido and García Centeno (<a href="cap-fraude.html#ref-Minguez2011">2011</a>)</span>, <span class="citation">Brockwell and Davis (<a href="cap-fraude.html#ref-Brockwell2016">2016</a>)</span> y <span class="citation">Shumway and Stoffer (<a href="cap-fraude.html#ref-Shumway2017">2017</a>)</span>.</p>
 <p>En la modelización ARIMA se pueden destacar varias fases. La primera se centra en la <strong>identificación</strong> del modelo ARIMA que haya podido generar los datos de la serie temporal. En esta fase, es necesario decidir los órdenes del proceso (es decir, el desfase temporal entre el mayor y menor periodo de tiempo de las variables incluidas en el modelo) tanto de la parte regular como de la estacional.</p>
 <p>La ACF y la PACF desempeñan un papel clave en la identificación de estos órdenes. Antes de calcular la ACF y la PACF, es necesario comprobar que la serie es estacionaria, es decir, que no deambula ni tiene tendencia creciente o decreciente. En el caso de que no lo sea, se realizarán las transformaciones necesarias para convertirla en estacionaria, ya que la modelización ARIMA exige que los datos sean estacionarios. Las dos razones fundamentales por las cuales pueden no ser estacionarios son: la no constancia en el tiempo de la media o la existencia de fluctuaciones de diferente amplitud que hacen que la varianza no se mantenga constante.</p>
 <p>Si la serie no es estacionaria en varianza, de entre las transformacione Box-Cox, se puede utilizar una transformación logarítimica porque reduce el rango dinámico de la variable, corrige la asimetría positiva y acerca a la normalidad la distribución de la variable; además, facilita la interpretación de las estimaciones de los coeficientes del modelo, ya que la diferencia del logaritmo de la serie es, aproximadamente, su tasa de variación porcentual.</p>
@@ -189,9 +187,9 @@ Esto implica que un ruido blanco siempre es estacionario.</li>
 <span class="header-section-number">20.3</span> Análisis de series temporales con <strong>R</strong><a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-de-series-temporales-con-r"><i class="fas fa-link"></i></a>
 </h2>
 <p>Algunas de las librerías que normalmente se suelen utilizar en la modelización de series temporales con <strong>R</strong> son:</p>
-<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"tseries"</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dsstoffer.github.io/">"astsa"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/nickpoison/astsa/">"astsa"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://pkg.robjhyndman.com/forecast/">"forecast"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://lubridate.tidyverse.org">"lubridate"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://svn.r-project.org/R-packages/trunk/foreign/">"foreign"</a></span><span class="op">)</span></span>
@@ -199,14 +197,14 @@ Esto implica que un ruido blanco siempre es estacionario.</li>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span></code></pre></div>
 <p>La libreria <code>tseries</code> permite manipular datos de series temporales; <code>astsa</code> es adecuada para analizar series de tiempo en los dominios de frecuencia y tiempo; <code>forecast</code> lleva a cabo (y analiza) predicciones con series temporales; <code>lubridate</code> facilita el trabajo con fechas y horas; <code>foreign</code> es esencial para crear objetos en <strong>R</strong> importando datos de casi cualquier formato conocido, como por ejemplo SAS, SPSS, Stata, etc.; <code>quantmod</code> ayuda, de forma cuantitativa, en el desarrollo de estrategias y modelización mediante la utilización de estadísticas;<code>readxl</code> facilita la exportación de datos de Excel a <strong>R</strong>; y “ggplot2” es muy útil para la realización de gráficos.</p>
 <p>En el caso real que se propone, se utilizan datos mensuales del INE (www.ine.es) correspondientes al índice general de precios al consumo (IPC) en el periodo muestral comprendido entre enero de 2002 y marzo de 2022. Los datos están en el fichero <code>ìpc</code> del paquete <code>CDR</code> del libro.</p>
-<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ipc</span> <span class="op">&lt;-</span> <span class="fu">CDR</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/CDR/man/IPC.html">ipc</a></span></span></code></pre></div>
 <p>Para trabajar con series temporales, la fecha es un requisito imprescindible. En caso de los datos no tuviesen fecha, habría que incluirla. Por ejemplo, para series mensuales, el código sería:</p>
-<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ipc_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ts.html">ts</a></span><span class="op">(</span><span class="va">ipc</span><span class="op">$</span><span class="va">ipc</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2002</span>, <span class="fl">1</span><span class="op">)</span>, end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2022</span>, <span class="fl">3</span><span class="op">)</span>, frequency <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span></code></pre></div>
 <p>En el caso de fichero <code>ipc</code> la fecha figura en la primera columna del fichero.</p>
 <p>La representación gráfica de la serie original puede ayudar a saber si la serie ha sido generada por un proceso estacionario o no. Para obtener dicha representación, se ejecuta el siguiente código:</p>
-<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ipc</span><span class="op">$</span><span class="va">Time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/yearmon.html">as.Date</a></span><span class="op">(</span><span class="va">ipc</span><span class="op">$</span><span class="va">Time</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">ipc</span>,</span>
@@ -224,7 +222,7 @@ Figura 20.1: Evolución del IPC entre enero 2002 y marzo 2022.
 </p>
 </div>
 <p>La descomposición aditiva o multiplicativa en <span class="math inline">\((i)\)</span> tendencia, <span class="math inline">\((ii)\)</span> componente estacional, <span class="math inline">\((iii)\)</span> componente cíclico y $(iv) componente irregular de la serie del IPC, así como su representación gráfica, también puede ayudar a determinar si la serie es estacionaria o no. El código para la descomposición aditiva de la serie es el siguiente:</p>
-<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">componentes_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/decompose.html">decompose</a></span><span class="op">(</span><span class="va">ipc_ts</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">componentes_ts</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -236,7 +234,7 @@ Figura 20.2: Descomposición aditiva del IPC
 <p>Tanto en el gráfico de la serie original del IPC (Fig. <a href="cap-series-temp.html#fig:ipc">20.1</a>) como en el de su descomposición en componentes (Fig. <a href="cap-series-temp.html#fig:DescomposicionST">20.2</a>), se aprecia que la serie tiene tendencia y componente estacional (mensual). Por lo tanto, no es estacionaria en media, es decir, la media es distinta para diferentes meses y años; tampoco lo es en varianza, ya que la dispersión respecto de la media cambia a lo largo del tiempo.</p>
 <p>Si una serie no es estacionaria ni en media ni en varianza es necesario empezar corrigiendo la no estacionariedad en varianza y, posteriormente, la no estacionariedad en media.</p>
 <p>Las transformaciones de Box-Cox son las más utilizadas para corregir el problema de no estacionariedad en varianza. De todas estas transformaciones, la más habitual es el logaritmo. Para obtener la representación gráfica del logaritmo de <span class="math inline">\(Y_t\)</span>, se ejecuta el siguiente código:</p>
-<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">logipc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">ipc_ts</span><span class="op">)</span></span>
 <span><span class="va">ts_logipc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>value <span class="op">=</span> <span class="va">logipc</span>, Time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">logipc</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> </span>
@@ -256,7 +254,7 @@ Figura 20.3: Logaritmo del IPC
 </div>
 <p>Corregido el problema de la no estacionariedad en varianza, en la Fig. <a href="cap-series-temp.html#fig:lipc">20.3</a> se aprecia que sigue sin ser estacionaria, ya que al tener estacionalidad y tendencia creciente no es estacionaria en media. Para conseguir que la serie sea estacionaria es necesario corregir tanto su tendencia como su estacionalidad.</p>
 <p>Es indiferente cuál de los dos problemas se resuelve primero, pues el resultado final de la transformación es el mismo. En este caso, se empieza corrigiendo la tendencia. Para ello, se calcula una diferencia regular del logaritmo del IPC, obteniéndose la serie <span class="math inline">\((dlogipc_{t} = log(ipc_t) - log(ipc_{t-1})\)</span>. Al ser datos mensuales, esta transformación representa la tasa de variación relativa mensual del IPC. El código para calcular esta diferencia regular y su representación gráfica (Fig. <a href="cap-series-temp.html#fig:dlipc">20.4</a>) es:</p>
-<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dlogipc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="va">logipc</span>, differences <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">ts_dlogipc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>value <span class="op">=</span> <span class="va">dlogipc</span>, Time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">dlogipc</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
@@ -275,7 +273,7 @@ Figura 20.4: Diferencia regular del logaritmo del IPC
 </p>
 </div>
 <p>Corregida la tendencia, a continuación se corrige su estacionalidad. Para ello, sobre la diferencia regular del logaritmo del IPC, se calculará una diferencia estacional mensual <span class="math inline">\((d12dlogipc_{t})= log(ipc_t) - log(ipc_{t-12})\)</span>. El código para calcular esta diferencia estacional y su representación gráfica (Fig. <a href="cap-series-temp.html#fig:d12dlipc">20.5</a>) es:</p>
-<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d12dlogipc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="va">dlogipc</span>, <span class="fl">12</span><span class="op">)</span></span>
 <span><span class="va">ts_d12dlogipc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>value <span class="op">=</span> <span class="va">d12dlogipc</span>, Time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">d12dlogipc</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -300,7 +298,7 @@ Figura 20.5: Diferencia estacional de la diferencia regular del logaritmo del IP
 <p><span class="math display">\[ H_1: (\phi-1)&lt;0. \]</span>
 En esta ecuación se pueden añadir más retardos de la variable, una tendencia (en series que claramente tengan una tendencia decreciente o creciente) o eliminar la constante (en series con media nula).]
 En este caso se utiliza el test de raíces unitarias de Dickey-Fuller, que es un test unilateral en el que la hipótesis nula es la existencia de raíces unitarias y, por lo tanto, que la serie no es estacionaria (es decir, es I(1)), mientras que la hipótesis alternativa es que sí es estacionaria (es decir, la serie es I(0)). Si se realiza el test sobre la serie original (<code>ipc_ts</code>) y sobre la serie transformada del IPC (<code>d12dLogIPC</code>), se comprueba que esta última es la transformación estacionaria. El código utilizado para realizar este contraste es:</p>
-<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tseries/man/adf.test.html">adf.test</a></span><span class="op">(</span><span class="va">ipc_ts</span><span class="op">)</span></span>
 <span><span class="co">#&gt;</span></span>
 <span><span class="co">#&gt; Augmented Dickey-Fuller Test</span></span>
@@ -421,9 +419,9 @@ y su PACF (también teórica) viene dada por:
 </div>
 <p>Tendiendo en cuenta lo anterior, en el caso concreto del IPC, después de obtener su transformación estacionaria, la ACF y la PACF muestrales son muy útiles para identificar el modelo ARIMA más adecuado, así como su correspondiente orden en el periodo muestral estudiado.</p>
 <p>A continuación se muestra el código <strong>R</strong> para ejecutar los comandos que permiten calcular y representar la ACF y la PACF muestrales de la transformación estacionaria del IPC (Fig. <a href="cap-series-temp.html#fig:acfd12dlipc">20.6</a> y Fig. <a href="cap-series-temp.html#fig:pacfd12dlipc">20.7</a>, respectivamente). El número de retardos (lags) se establece en 40 para, así, incluir al menos 3 retardos estacionales (12, 24 y 36):</p>
-<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/acf.html">acf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/ts.html">ts</a></span><span class="op">(</span><span class="va">d12dlogipc</span>, frequency <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, lag.max <span class="op">=</span> <span class="fl">40</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/acf.html">acf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/ts.html">ts</a></span><span class="op">(</span><span class="va">d12dlogipc</span>, frequency <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, lag.max <span class="op">=</span> <span class="fl">40</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"img/acf1.png"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:acfd12dlipc"></span>
@@ -431,7 +429,7 @@ y su PACF (también teórica) viene dada por:
 Figura 20.6: ACF. Función de autocorrelación muestral de d12dLogIPC
 </p>
 </div>
-<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/acf.html">pacf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/ts.html">ts</a></span><span class="op">(</span><span class="va">d12dlogipc</span>, frequency <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, lag.max <span class="op">=</span> <span class="fl">40</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:pacfd12dlipc"></span>
@@ -446,7 +444,7 @@ Figura 20.7: PACF. Función de autocorrelación parcial muestral de d12dLogIPC
 <span class="header-section-number">20.3.2</span> Estimación del modelo<a class="anchor" aria-label="anchor" href="#estimaci%C3%B3n-del-modelo"><i class="fas fa-link"></i></a>
 </h3>
 <p>Los parámetros del modelo se estiman por el método de máxima verosimilitud. Dado que la función de máxima verosimilitud no es lineal, para maximizarla se lleva a cabo un procedimiento iterativo de estimación no lineal. El código en <strong>R</strong> que permite obtener las estimaciones de los parámetros del modelo y sus correspondientes desviaciones típicas es:</p>
-<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">modelo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.html">arima</a></span><span class="op">(</span><span class="va">ipc_ts</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">modelo</span></span>
 <span><span class="co">#&gt;</span></span>
@@ -490,7 +488,7 @@ t=\frac{0,4665}{0,0701} = 6,654 \quad y\quad |t|=|\frac{-0,8302}{0,0860}|=9,653.
 </ol>
 <p>Como se avanzó al final de la Sec. <a href="cap-series-temp.html#conceptos">20.1</a>, uno de los supuestos de la modelización ARIMA es que el error del modelo (o perturbación aleatoria) tiene que ser ruido blanco. Como los errores no son observables, las comprobaciones se llevan a cabo sobre los residuos (diferencia entre los valores reales y los predichos por el modelo). Existen varias formas de comprobar si los residuos son ruido blanco o no. Entre ellas, las más utilizadas son: el gráfico de la serie original de residuos, la ACF y la PACF estimadas y el contraste de Portmanteau (planteado inicialmente por Box-Pierce y actualizado posteriormente por Ljung-Box).</p>
 <p>En primer lugar, de forma intuitiva, el gráfico de los residuos puede mostrar si la media es constante e igual a cero y si su varianza también es constante. Además, puede reflejar si existen valores atípicos u outliers (se consideran como tales aquellos que superen tres veces su desviación típica). El siguiente código <strong>R</strong> permite obtener los residuos y su representación gráfica (Fig. <a href="cap-series-temp.html#fig:residuos">20.8</a>).</p>
-<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">residuos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">modelo</span><span class="op">)</span></span>
 <span><span class="va">ts_residuos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>value <span class="op">=</span> <span class="va">residuos</span>, Time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">residuos</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
@@ -508,8 +506,8 @@ Figura 20.8: Gráfico de los residuos
 </p>
 </div>
 <p>En la Fig. <a href="cap-series-temp.html#fig:residuos">20.8</a> se observa que la media es constante e igual a cero y que a partir de febrero de 2022, como consecuencia de las tensiones inflacionarias, los residuos son mayores que en el resto del periodo muestral.</p>
-<p>En segundo lugar, se pueden calcular la ACF y la PACF muestrales de los residuos para comprobar que están incorrelacionados, es decir, que los coeficientes de correlación calculados son estadísticamente nulos. Si éstos fuesen estadísticamente significativos, los residuos no serían ruido blanco. Entonces, para la correcta modelización habría que identificar el proceso e incorporarlo al modelo inicial propuesto para volver a estimarlo. Los correlogramas obtenidos (Fig. <a href="cap-series-temp.html#fig:acfpacfresiduos">20.9</a>) con el código que se muestra a continuación, indican que no hay coeficientes de correlación estadísticamente significativos (ya que se encuentran dentro de los intervalos de confianza) y, por lo tanto, los residuos son ruido blanco.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;A veces, pueden observarse 1 o 2 correlaciones significativas en desfases de mayor orden no estacionales. Ello se debe, generalmente, a un error aleatorio y no constituye una señal de inclumplimiento del supuesto, por lo que se puede concluir que los residuos son independientes. Tal es el caso en la Fig. @(acfpacfresiduos), concretamente en la PACF.&lt;/p&gt;"><sup>147</sup></a></p>
-<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
+<p>En segundo lugar, se pueden calcular la ACF y la PACF muestrales de los residuos para comprobar que están incorrelacionados, es decir, que los coeficientes de correlación calculados son estadísticamente nulos. Si éstos fuesen estadísticamente significativos, los residuos no serían ruido blanco. Entonces, para la correcta modelización habría que identificar el proceso e incorporarlo al modelo inicial propuesto para volver a estimarlo. Los correlogramas obtenidos (Fig. <a href="cap-series-temp.html#fig:acfpacfresiduos">20.9</a>) con el código que se muestra a continuación, indican que no hay coeficientes de correlación estadísticamente significativos (ya que se encuentran dentro de los intervalos de confianza) y, por lo tanto, los residuos son ruido blanco.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;A veces, pueden observarse 1 o 2 correlaciones significativas en desfases de mayor orden no estacionales. Ello se debe, generalmente, a un error aleatorio y no constituye una señal de inclumplimiento del supuesto, por lo que se puede concluir que los residuos son independientes. Tal es el caso en la Fig. @(acfpacfresiduos), concretamente en la PACF.&lt;/p&gt;"><sup>151</sup></a></p>
+<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/acf.html">acf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/ts.html">ts</a></span><span class="op">(</span><span class="va">residuos</span>, frequency <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, lag.max <span class="op">=</span> <span class="fl">40</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/acf.html">pacf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/ts.html">ts</a></span><span class="op">(</span><span class="va">residuos</span>, frequency <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, lag.max <span class="op">=</span> <span class="fl">40</span><span class="op">)</span></span></code></pre></div>
@@ -520,7 +518,7 @@ Figura 20.9: ACF y PACF estimadas de los residuos
 </p>
 </div>
 <p>También se puede utilizar el contraste de Portmanteau (Ljung-Box) para comprobar si los residuos están incorrelacionados y se comportan como un ruido blanco o no. En este contraste global de significación, la hipótesis nula que se plantea, en el caso del IPC, es que los primeros 40 coeficientes de correlación son cero frente a la hipótesis alternativa de que no lo son. Para un nivel de significación del 5%, la evidencia empírica no es suficiente para rechazar <span class="math inline">\(H_0\)</span>, ya que el p-valor correspondiente al estadístico del contraste (X-squared o Chi-cuadrado) es 0.5448, mayor que el nivel de significación del 5% y, por lo tanto, se concluye que los residuos están incorrelacionados. El código <strong>R</strong> para llevar a cabo el test de Box-Ljung es:</p>
-<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/box.test.html">Box.test</a></span><span class="op">(</span><span class="va">residuos</span>, type <span class="op">=</span> <span class="st">"Ljung-Box"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;</span></span>
 <span><span class="co">#&gt; Box-Ljung test</span></span>
@@ -531,7 +529,7 @@ Figura 20.9: ACF y PACF estimadas de los residuos
 <li>Análisis de la bondad del ajuste.</li>
 </ol>
 <p>Finalmente, se debe comprobar la capacidad de ajuste del modelo comparando los valores observados y los estimados. Una forma sencilla e intuitiva de hacerlo es a través de su representación gráfica. El código <strong>R</strong> utilizado para ello es el siguiente:</p>
-<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ipc_ts</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">ipc_ts</span> <span class="op">-</span> <span class="va">modelo</span><span class="op">$</span><span class="va">residuals</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -550,7 +548,7 @@ Figura 20.10: Ajuste con el modelo estimado.
 <p>Después de comprobar que el modelo ARIMA estimado es adecuado, se puede utilizar para obtener valores futuros de la variable objeto de análisis. Las predicciones que se obtienen pueden ser de dos tipos: puntuales o por intervalos. Las predicciones puntuales para un horizonte temporal <em>h</em> se obtienen calculando el valor esperado de la variable dependiente en <span class="math inline">\(T+h\)</span> <span class="math inline">\((Y_{T+h})\)</span>) condicionado al conjunto de información disponible hasta el momento actual (<span class="math inline">\(T\)</span>). Para obtener las predicciones por intervalos es necesario sumar y restar a la predicción puntual la desviación típica del error de predicción multiplicada por el valor crítico tabulado para el nivel de confianza fijado.</p>
 <p>Algunas características generales de las prediciones obtenidas con modelos ARIMA son:</p>
 <p>En el caso concreto del IPC, para obtener 12 predicciones puntuales y sus correspondientes intervalos de predicción al 80% y 95% de confianza, así como su representación gráfica (Fig. <a href="cap-series-temp.html#fig:prediccion">20.11</a>), el código <strong>R</strong> que hay utilizar es:</p>
-<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">forecast</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/forecast.html">forecast</a></span><span class="op">(</span><span class="va">modelo</span>, h <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95</span></span>
 <span><span class="co">#&gt; Apr 2022 109.7116 109.2900 110.1332 109.0668 110.3564</span></span>
@@ -575,8 +573,8 @@ Figura 20.11: Predicciones con el modelo ARIMA(1,1,0)(0,1,1)12 estimado
 </p>
 </div>
 </div>
-<div id="resumen-18" class="section level3 unnumbered infobox_resume">
-<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-18"><i class="fas fa-link"></i></a>
+<div id="resumen-19" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-19"><i class="fas fa-link"></i></a>
 </h3>
 <p>Los modelos univariantes ARIMA analizan las series de tiempo desde un punto de vista moderno y estocástico y son muy útiles para captar su dinámica. Es importante destacar que:</p>
 <ul>
@@ -596,7 +594,7 @@ Figura 20.11: Predicciones con el modelo ARIMA(1,1,0)(0,1,1)12 estimado
 <div class="prev"><a href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></div>
 <div class="next"><a href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap-series-temp"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="nav-link" href="#conceptos"><span class="header-section-number">20.1</span> Conceptos básicos</a></li>
@@ -607,7 +605,7 @@ Figura 20.11: Predicciones con el modelo ARIMA(1,1,0)(0,1,1)12 estimado
 <li><a class="nav-link" href="#estimaci%C3%B3n-del-modelo"><span class="header-section-number">20.3.2</span> Estimación del modelo</a></li>
 <li><a class="nav-link" href="#validaci%C3%B3n-1"><span class="header-section-number">20.3.3</span> Validación</a></li>
 <li><a class="nav-link" href="#predicci%C3%B3n-2"><span class="header-section-number">20.3.4</span> Predicción</a></li>
-<li><a class="nav-link" href="#resumen-18">Resumen</a></li>
+<li><a class="nav-link" href="#resumen-19">Resumen</a></li>
 </ul>
 </li>
 </ul>
@@ -626,7 +624,7 @@ Figura 20.11: Predicciones con el modelo ARIMA(1,1,0)(0,1,1)12 estimado
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

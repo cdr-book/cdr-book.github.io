@@ -8,10 +8,13 @@
 
 *F. Liberatore*$^{a}$, *L. Quijano-Sánchez*$^{b}$, *M. Camacho-Collados*$^{c}$
 
-$^{a}$Cardiff University, $^{b}$Universidad Autónoma de Madrid, $^{c}$Ministerio del Interior
+$^{a}$Cardiff University  
+$^{b}$Universidad Autónoma de Madrid  
+$^{c}$Ministerio del Interior
 
 ## Introducción
 En este capítulo se plantea la idea de realizar un **análisis de una red de crimen organizado**. Para ello, se estudia la red derivada de un *dataset* real, relativo a la operación *Oversize*. El estudio se llevará a cabo usando la librería `igraph`.
+\index{crimen organizado}
 
 ## El conjunto de datos *Oversize*
 
@@ -20,6 +23,8 @@ Los datos que se van a analizar se han obtenido de la operación *Oversize* [@be
 En particular, se va a estudiar la red obtenida de las escuchas telefónicas. Los datos hacen referencia a todas las conversaciones telefónicas transcritas por la policía y consideradas relevantes. En esta red, los nodos representan sospechosos (los datos son anónimos y los nombres asignados en la red se han generado de forma aleatoria). Las aristas conectan los sospechosos que han tenido al menos una conversación telefónica relevante al caso durante la investigación.
 
 ## Creación de la red mafiosa
+\index{red mafiosa}
+
 
 El dataset `Oversize_nodes` contiene el listado de nodos con sus propiedades, en este caso el nombre (ficticio) del sospechoso. `Oversize_edges` contiene las aristas del grafo, representadas como parejas de nodos, a su vez identificados por su ID. A partir de estos datasets la librería `igraph` permite crear un grafo, tal y como se ilustra a continuación. 
 
@@ -32,9 +37,9 @@ net <- graph_from_data_frame(d=oversize_edges,
                              vertices=oversize_nodes, 
                              directed=F) 
 net
-#> IGRAPH 38dc19a UN-- 182 247 -- 
+#> IGRAPH 348aa52 UN-- 182 247 -- 
 #> + attr: name (v/c)
-#> + edges from 38dc19a (vertex names):
+#> + edges from 348aa52 (vertex names):
 #>  [1] Casto Ben          --Gustavo Mango          
 #>  [2] Casto Ben          --Metrofane Abbatiello   
 #>  [3] Uranio Natoli      --Fidenziano Marcellino  
@@ -48,11 +53,14 @@ net
 
 La vista previa del grafo indica lo siguiente:
 
--   El grafo es no dirigido (*UN*) y está compuesto por 182 nodos y 247 aristas.
+-   el grafo es no dirigido (*UN*) y está compuesto por 182 nodos y 247 aristas;
 
--   El único atributo es el nombre de los nodos (*attr: name (v/c)*).
+-   el único atributo es el nombre de los nodos (*attr: name (v/c)*);
 
--   Finalmente, se proporciona una previsualización de un subconjunto de aristas, indicando para cada una los dos nodos conectados (ej. *Casto Ben \--Gustavo Mango*).
+-   finalmente, se proporciona una previsualización de un subconjunto de aristas, indicando para cada una los dos nodos conectados (ej. *Casto Ben \--Gustavo Mango*).
+
+\index{grafo}
+\index{vertices}
 
 
 ## Visualización de la red mafiosa
@@ -64,11 +72,14 @@ Para hacerse una idea de que aspecto tiene el grafo, se procede a su visualizaci
 plot(net, asp=0)
 ```
 
-<img src="212048_cd_policia_files/figure-html/vis-red1-1.png" width="60%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="212048_cd_policia_files/figure-html/vis-red1-1.png" alt="Grafo básico de la red mafiosa." width="60%" />
+<p class="caption">(\#fig:vis-red1)Grafo básico de la red mafiosa.</p>
+</div>
 
-Como se puede apreciar, el resultado no es muy claro. Todos los nodos tienen el mismo tamaño y se solapan entre ellos. Además, se muestran los nombres de todos los actores dentro de la red, lo cual dificulta ulteriormente su interpretación.
+Tal y como se aprecia en la Fig. \@ref(fig:vis-red1) el resultado no es muy claro. Todos los nodos tienen el mismo tamaño y se solapan entre ellos. Además, se muestran los nombres de todos los actores dentro de la red, lo cual dificulta ulteriormente su interpretación.
 
-Se puede mejorar esta presentación usando unos parámetros de `plot()`, específicos de `igraph`. En particular:
+Se puede mejorar esta presentación usando unos parámetros de `plot()`  específicos de la librería `igraph`. En particular:
 
 -   `vertex.size`: determina el tamaño de los nodos.
 
@@ -79,18 +90,22 @@ Se puede mejorar esta presentación usando unos parámetros de `plot()`, especí
 plot(net, vertex.size=2, vertex.label=c(''),  asp=0)
 ```
 
-<img src="212048_cd_policia_files/figure-html/vis-red2-1.png" width="60%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="212048_cd_policia_files/figure-html/vis-red2-1.png" alt="Grafo básico de la red mafiosa (mejorado)." width="60%" />
+<p class="caption">(\#fig:vis-red2)Grafo básico de la red mafiosa (mejorado).</p>
+</div>
 
-En la Fig. \@ref(fig:vis-red2) se puede ver cómo el grafo permite una mejor valoración de la distribución de los actores dentro de la red. Por ejemplo, hay dos grupos pequeños (de cuatro y dos actores) completamente desconectados de la red principal.
+En la Fig. \@ref(fig:vis-red2) observa cómo el grafo permite una mejor valoración de la distribución de los actores dentro de la red. Por ejemplo, hay dos grupos pequeños (de cuatro y dos actores) completamente desconectados de la red principal.
 
 ## Importancia de los actores (delincuentes)
 
 Las medidas de centralidad permiten asignar un valor a cada actor que establece su importancia relativa a los demás. Existen diversas medidas, cada una con sus características y finalidad. En este ejemplo se van a usar las siguientes:
 
--   **Grado**: número de aristas que llegan al nodo o salen de él. Cuanto más alto sea este valor, más vecinos tendrá el nodo.
+-   **grado**: número de aristas que llegan al nodo o salen de él. Cuanto más alto sea este valor, más vecinos tendrá el nodo;
 
--   **Intermediación**: cuantifica el número de veces que un nodo se encuentra en el camino más corto entre otros actores. Cuanto más alto este valor, más información pasará por el nodo.
-
+-   **intermediación**: cuantifica el número de veces que un nodo se encuentra en el camino más corto entre otros actores. Cuanto más alto este valor, más información pasará por el nodo.
+\index{grado}
+\index{intermediación}
 
 
 ```r
@@ -119,6 +134,7 @@ head(sort(btwn, decreasing = T))
 ```
 
 Las medidas de centralidad se pueden usar para mejorar la visualización del grafo. Primero, se filtran todos los nodos que tengan grado menor que dos, ya que representan actores muy marginales en la red. Luego, se representa el tamaño de cada nodo en función de su valor de intermediación, escalando con un tamaño máximo de cinco.
+\index{centralidad}
 
 
 ```r
@@ -132,7 +148,10 @@ plot(net2,
      asp = 0) # visualizacion subgrafo
 ```
 
-<img src="212048_cd_policia_files/figure-html/red-centralidad-1.png" width="60%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="212048_cd_policia_files/figure-html/red-centralidad-1.png" alt="Grafo de la red mafiosa mejorado (mejorado con medidas de cetralidad)." width="60%" />
+<p class="caption">(\#fig:red-centralidad)Grafo de la red mafiosa mejorado (mejorado con medidas de cetralidad).</p>
+</div>
 
 Como se puede apreciar en la Fig. \@ref(fig:centralidad), gracias a las medidas de centralidad se puede tener una mejor idea de cómo se configura la red respecto a sus actores más importantes.
 
@@ -170,9 +189,12 @@ E(net2)$color <- V(net2)$color[edge.start]
 plot(net2, asp=0) # Los resultados puede ser distintos con cada ejecucion
 ```
 
-<img src="212048_cd_policia_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="212048_cd_policia_files/figure-html/unnamed-chunk-5-1.png" alt="Visualización de comunidades de la mafia." width="60%" />
+<p class="caption">(\#fig:unnamed-chunk-5)Visualización de comunidades de la mafia.</p>
+</div>
 
-Se puede mejorar aún más el aspecto del grafo. Para ello, se va a experimentar con una disposición diferente de los nodos. En este ejemplo, se usa el algoritmo Fruchterman-Reingold [@fruchterman1991graph]. Además, se aplica un efecto de curvatura a las aristas asignando un valor positivo al parámetro `edge.curved`. El resultado se puede ver en la Fig. \@ref(fig:red-fr).
+Se puede mejorar aún más el aspecto del grafo. Para ello, se va a experimentar con una disposición diferente de los nodos. En este ejemplo, se usa el algorítmo Fruchterman-Reingold [@fruchterman1991graph]. Además, se aplica un efecto de curvatura a las aristas asignando un valor positivo al parámetro `edge.curved`. El resultado se puede ver en la Fig. \@ref(fig:red-fr).
 
 
 ```r
@@ -183,7 +205,12 @@ plot(net2,
      edge.curved=0.5) # Los resultados pueden ser distintos con cada ejecucion
 ```
 
-<img src="212048_cd_policia_files/figure-html/red-fr-1.png" width="100%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="212048_cd_policia_files/figure-html/red-fr-1.png" alt="Visualización de comunidades de la mafia con el algorítmo Fruchterman-Reingold." width="100%" />
+<p class="caption">(\#fig:red-fr)Visualización de comunidades de la mafia con el algorítmo Fruchterman-Reingold.</p>
+</div>
+
+\index{algorítmo Fruchterman-Reingold}
 
 Finalmente, se puede exportar el grafo como PDF usando la función `pdf()` de **R**.
 
@@ -192,8 +219,9 @@ Finalmente, se puede exportar el grafo como PDF usando la función `pdf()` de **
 pdf('grafo_final.pdf')
 plot(net2, layout=l1, asp = 0, edge.curved=0.5) # Los resultados puede ser distintos con cada ejecucion
 dev.off()
-#> agg_png 
-#>       2
 ```
 
 Como se ha podido observar tras las acciones anteriores, en la red se aprecian siete distintas comunicades. Tres destacan por su importancia, lideradas por Gustavo Mango, Bino Lana y Pacifico Caliri. Bino Lana, en particular, tiene especial relevancia ya que actúa como un puente entre Gustavo Mango y Pacificio Caliri.
+
+
+<img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;" />

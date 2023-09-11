@@ -6,22 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 39 Análisis de grafos y redes sociales | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
-<meta name="description" content="José J. Galán Universidad Complutense de Madrid   39.1 Introducción El origen de la teoría de grafos se debe al problema de los siete puentes de Königsberg (Paul Euler 1736), que es considerado el...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="description" content="José J. Galán Universidad Complutense de Madrid   39.1 Introducción El origen de la teoría de grafos se debe al problema de los siete puentes de Königsberg, planteado en Paul Euler (1736), que es...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 39 Análisis de grafos y redes sociales | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
-<meta property="og:description" content="José J. Galán Universidad Complutense de Madrid   39.1 Introducción El origen de la teoría de grafos se debe al problema de los siete puentes de Königsberg (Paul Euler 1736), que es considerado el...">
+<meta property="og:description" content="José J. Galán Universidad Complutense de Madrid   39.1 Introducción El origen de la teoría de grafos se debe al problema de los siete puentes de Königsberg, planteado en Paul Euler (1736), que es...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 39 Análisis de grafos y redes sociales | Fundamentos de ciencia de datos con R">
-<meta name="twitter:description" content="José J. Galán Universidad Complutense de Madrid   39.1 Introducción El origen de la teoría de grafos se debe al problema de los siete puentes de Königsberg (Paul Euler 1736), que es considerado el...">
+<meta name="twitter:description" content="José J. Galán Universidad Complutense de Madrid   39.1 Introducción El origen de la teoría de grafos se debe al problema de los siete puentes de Königsberg, planteado en Paul Euler (1736), que es...">
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
-<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -33,7 +34,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -76,13 +77,13 @@
 <li class="book-part">Machine learning supervisado</li>
 <li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
-<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
-<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
 <li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
 <li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
@@ -108,18 +109,15 @@
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
 <li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
-<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
-<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
-<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -135,18 +133,18 @@
 <p>Universidad Complutense de Madrid</p>
 <p>
 </p>
-<div id="introducción-18" class="section level2" number="39.1">
+<div id="introducción-19" class="section level2" number="39.1">
 <h2>
-<span class="header-section-number">39.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-18"><i class="fas fa-link"></i></a>
+<span class="header-section-number">39.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-19"><i class="fas fa-link"></i></a>
 </h2>
-<p>El origen de la teoría de grafos se debe al problema de los siete puentes de Königsberg <span class="citation">(<a href="referncias.html#ref-Euler1736" role="doc-biblioref">Paul Euler 1736</a>)</span>, que es considerado el primer artículo sobre teoría de grafos. El problema se centra en la ciudad Königsberg en Prusia, ahora Kaliningrado (Rusia), donde existen varios puentes y el problema plantea trazar una ruta que cruce todos los puentes una única vez (ver Fig. <span class="math inline">\(\ref{fig:puentes}\)</span>). Euler mediante el uso de grafos demostró que no era posible.</p>
+<p>El origen de la teoría de grafos se debe al problema de los siete puentes de Königsberg, planteado en <span class="citation">Paul Euler (<a href="cap-fraude.html#ref-Euler1736">1736</a>)</span>, que es considerado el primer artículo sobre teoría de grafos. El problema se centra en la ciudad Königsberg (antigua Prusia), ahora Kaliningrado (Rusia), donde existen varios puentes y el problema consiste en trazar una ruta que cruce todos los puentes una única vez (véase Fig. <a href="grafos.html#fig:puentes">39.1</a>). Euler, mediante el uso de grafos, demostró que no era posible.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:puentes"></span>
-<img src="img/Fig_g1.png" alt="Siete puentes de Königsberg, Euler (1736)." width="60%"><p class="caption">
-Figura 39.1: Siete puentes de Königsberg, Euler (1736).
+<img src="img/Fig_g1.png" alt="Los siete puentes de Königsberg, Euler (1736)." width="60%"><p class="caption">
+Figura 39.1: Los siete puentes de Königsberg, Euler (1736).
 </p>
 </div>
-<p>Pero, ¿qué relación tiene un concepto creado en 1736, el de grafo, con algo tan reciente como las redes sociales?. Informalmente se puede hablar de las redes sociales (RRSS) como las relaciones existentes entre personas, un hilo invisible que une a las personas en relación con algo que tienen en común. En algunos casos es muy evidente porque se crean grupos específicos de personas que comparten una afición y en otros casos es menos evidente porque, por ejemplo, pueden compartir un amigo en común sin saberlo. Estos hilos “invisibles” se unen y forman una red que se puede representar como un grafo, el mismo concepto de grafo que describió Euler, y que permite establecer diferentes caminos para unir a las personas que forman la red.</p>
+<p>Pero, ¿qué relación tiene un concepto creado en 1736, el de grafo, con algo tan reciente como las redes sociales? Sin ser extremadamente rigurosos, se puede hablar de las redes sociales (RRSS) como las relaciones existentes entre personas, es decir, un hilo invisible que une a las personas que tienen algo en común. En algunos casos es muy evidente porque se crean grupos específicos de personas que comparten una afición y, en otros, es menos evidente porque, por ejemplo, pueden compartir un amigo en común sin saberlo. Estos hilos “invisibles” se unen y forman una red que se puede representar como un grafo, el mismo concepto de grafo que describió Euler y que permite establecer diferentes caminos para unir a las personas que forman la red.</p>
 <p>
 </p>
 </div>
@@ -154,40 +152,45 @@ Figura 39.1: Siete puentes de Königsberg, Euler (1736).
 <h2>
 <span class="header-section-number">39.2</span> Teoría de grafos<a class="anchor" aria-label="anchor" href="#teor%C3%ADa-de-grafos"><i class="fas fa-link"></i></a>
 </h2>
-<p>Informalmente se puede decir que un <strong>grafo</strong> es un conjunto de <strong>nodos</strong> (vértices) que pueden estar unidos por <strong>aristas</strong> (enlaces).</p>
-<p>Si se piensa en cada nodo como una persona y en cada arista como la relación que los une, entonces se podría representar mediante grafos una <strong>red social</strong> (ver Fig. <span class="math inline">\(\ref{fig:grafo}\)</span>).</p>
-<p>Antes de ver el primer ejemplo se muestran las librerías necesarias en este capítulo.</p>
-<div class="sourceCode" id="cb560"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r.igraph.org/">"igraph"</a></span><span class="op">)</span> </span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span> </span></code></pre></div>
-<p>En este primer ejemplo en <strong>R</strong> se puede observar cómo se obtienen los datos de una red social. El conjunto <code>datos_facebook</code> está incluido en el paquete <code>CDR</code>. A continuación, se representan las relaciones de los miembros que la componen mediante un grafo.</p>
-<div class="sourceCode" id="cb561"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">grafo_facebook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph.data.frame</a></span><span class="op">(</span><span class="va">datos_facebook</span>, directed <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo_facebook</span>, vertex.label <span class="op">=</span> <span class="cn">NA</span>, vertex.size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span></code></pre></div>
-<p>Más formalmente una <strong>red social</strong> puede modelizarse con una estructura de red invisible (relación familiar, amistad, trabajo …) que une mediante relaciones a distintos actores a través de sus intereses o valores comunes, estableciendo una relación personal entre individuos o grupos de individuos conectados.</p>
-<p>Existen distintos grafos dependiendo de las características de la red social representada, algunos ejemplos de estos grafos son:</p>
-<ul>
-<li>El grafo de amistad (ver Fig. @ref{fig:grafo-comunidades2}), donde cada nodo representa una persona y la arista conecta dos personas si dentro de la red social son amigos.</li>
-</ul>
-<div class="sourceCode" id="cb562"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">amistades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  persona <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span><span class="op">)</span>,  amigo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>, <span class="st">"E"</span>, <span class="st">"A"</span><span class="op">)</span> <span class="op">)</span></span>
-<span><span class="va">grafo_amistades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span><span class="va">amistades</span><span class="op">)</span></span></code></pre></div>
-<ul>
-<li>El grafo de comunidades (ver Fig. @ref{fig:grafo-comunidades2}), donde también cada nodo representa una persona y la arista les conecta si dentro de la red social pertenecen a la misma comunidad, entendiendo por comunidad un grupo de individuos que comparten intereses o características en común.</li>
-</ul>
-<div class="sourceCode" id="cb563"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  persona <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span><span class="op">)</span>, comunidad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"1"</span><span class="op">)</span> <span class="op">)</span></span>
-<span><span class="va">grafo_comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span><span class="va">comunidades</span><span class="op">)</span></span></code></pre></div>
+<p>Un <strong>grafo</strong> es un conjunto de <strong>nodos</strong> (vértices) que pueden estar unidos por <strong>aristas</strong> (enlaces). Si se piensa en cada nodo como una persona y en cada arista como la relación que los une, entonces una <strong>red social</strong> puede representarse mediante grafos (véase Fig. <a href="grafos.html#fig:grafo-comunidades2">39.3</a>).</p>
+<p>En el primer ejemplo que se plantea en este capítulo, relativo a una red social, se utiliza el conjunto <code>datos_facebook</code> incluido en el paquete <code>CDR</code>. Para llevarlo a cabo, primeramente se cargan las librerías y se representan las relaciones entre los miembros que la componen mediante un grafo (Fig. <a href="grafos.html#fig:grafo">39.2</a>).</p>
 <div class="sourceCode" id="cb564"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo_amistades</span>, vertex.label <span class="op">=</span> <span class="fu"><a href="https://r.igraph.org/reference/V.html">V</a></span><span class="op">(</span><span class="va">grafo_amistades</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, main<span class="op">=</span><span class="st">"Grafo amistades"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo_comunidades</span>, vertex.label <span class="op">=</span> <span class="fu"><a href="https://r.igraph.org/reference/V.html">V</a></span><span class="op">(</span><span class="va">grafo_comunidades</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, main<span class="op">=</span><span class="st">"Grafo comunidades"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://igraph.org">"igraph"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb565"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grafo_facebook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph.data.frame</a></span><span class="op">(</span><span class="va">datos_facebook</span>, directed <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo_facebook</span>, vertex.label <span class="op">=</span> <span class="cn">NA</span>, vertex.size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:grafo"></span>
+<img src="210044_grafos_rrss_files/figure-html/grafo-1.png" alt="Estructura de una red social representada como grafo." width="60%"><p class="caption">
+Figura 39.2: Estructura de una red social representada como grafo.
+</p>
+</div>
+<p>Formalmente, una red social puede modelizarse con una estructura de red invisible (relación familiar, amistad, trabajo …) que une a distintos actores con intereses o valores comunes, estableciendo una relación personal entre los individuos o grupos de individuos conectados. Existen distintos tipos grafos dependiendo de las características de la red social representada. Algunos ejemplos son:</p>
+<ul>
+<li>El grafo de amistad (véase Fig. <a href="grafos.html#fig:grafo-comunidades2">39.3</a>), donde cada nodo representa una persona y una arista conecta dos personas si dentro de la red social son amigos.</li>
+</ul>
+<div class="sourceCode" id="cb566"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">amistades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  persona <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span><span class="op">)</span>, amigo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>, <span class="st">"E"</span>, <span class="st">"A"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">grafo_amistades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span><span class="va">amistades</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>El grafo de comunidades (véase Fig. <a href="grafos.html#fig:grafo-comunidades2">39.3</a>), donde también cada nodo representa una persona y una arista conecta dos personas si dentro de la red social pertenecen a la misma comunidad, entendiendo por comunidad un grupo de individuos que comparten intereses o características en común.</li>
+</ul>
+<div class="sourceCode" id="cb567"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  persona <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span><span class="op">)</span>, comunidad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"1"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">grafo_comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span><span class="va">comunidades</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo_amistades</span>, vertex.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">grafo_amistades</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, main <span class="op">=</span> <span class="st">"Grafo amistades"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo_comunidades</span>, vertex.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">grafo_comunidades</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, main <span class="op">=</span> <span class="st">"Grafo comunidades"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:grafo-comunidades2"></span>
 <img src="210044_grafos_rrss_files/figure-html/grafo-comunidades2-1.png" alt="Grafo de amistades y comunidades." width="60%"><p class="caption">
-Figura 39.2: Grafo de amistades y comunidades.
+Figura 39.3: Grafo de amistades y comunidades.
 </p>
 </div>
 </div>
@@ -195,47 +198,42 @@ Figura 39.2: Grafo de amistades y comunidades.
 <h2>
 <span class="header-section-number">39.3</span> Elementos de un grafo<a class="anchor" aria-label="anchor" href="#elementos-de-un-grafo"><i class="fas fa-link"></i></a>
 </h2>
-<p>El análisis de RRSS mediante la teoría de grafos requiere conocer previamente una serie de conceptos básicos <span class="citation">(<a href="referncias.html#ref-Perez2021" role="doc-biblioref">Perez Sola 2021</a>)</span> que se enumeran a continuación.</p>
+<p>El análisis de RRSS mediante la teoría de grafos requiere conocer previamente una serie de conceptos básicos <span class="citation">(<a href="cap-fraude.html#ref-Perez2021">Perez Sola 2021</a>)</span> que se listan y definen a continuación:</p>
 <ul>
-<li><p>Los <strong>vértices</strong> representan nodos que se unen mediante aristas. En una red social cada vértice representa una de las personas de dicha red, unidas en ocasiones por intereses comunes a otras.</p></li>
-<li><p>Las <strong>aristas</strong> son las relaciones que unen los nodos. Son <strong>dirigidas</strong> (Fig.<span class="math inline">\(\ref{fig:grafo-dirigido-nodirigido-sencillo}\)</span>) si tienen un sentido definido y <strong>no dirigidas</strong> (Fig. <span class="math inline">\(\ref{fig:grafo-dirigido-nodirigido-sencillo}\)</span>) en caso contrario.</p></li>
+<li><p>los <strong>vértices</strong>: representan nodos que se unen mediante aristas. En una red social cada vértice representa una de las personas de dicha red, unidas en ocasiones por intereses comunes a otras;</p></li>
+<li><p>las <strong>aristas</strong>: son las relaciones que unen los nodos. Son <strong>dirigidas</strong>
+(Fig. <a href="grafos.html#fig:grafo-dirigido-nodirigido-sencillo">39.4</a>) si tienen un sentido definido y <strong>no dirigidas</strong>
+(Fig. <a href="grafos.html#fig:grafo-dirigido-nodirigido-sencillo">39.4</a>) en caso contrario.</p></li>
 </ul>
-<p>El siguiente código computa un grafo dirigido:</p>
-<div class="sourceCode" id="cb565"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">grafodirigido</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph.data.frame</a></span><span class="op">(</span><span class="va">datos_grafos</span>, directed <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
-<p>Para un grafo no dirigido, basta con especificar <code>directed = F</code> en la función <code><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph.data.frame()</a></code>:</p>
-<div class="sourceCode" id="cb566"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">grafonodirigido</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph.data.frame</a></span><span class="op">(</span><span class="va">datos_grafos</span>, directed <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
-<p>En otras RRSS, como <strong>LinkedIn</strong>, las aristas podrían representar la relación que une las personas. Las personas forman parte de un grupo con intereses comunes, formando un grafo no dirigido. Pero también se pueden seguir a alguien sin necesariamente ser seguido; en ese caso las relaciones se pueden representar como un grafo dirigido.</p>
+<p>El siguiente código genera un grafo dirigido:</p>
+<div class="sourceCode" id="cb569"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grafo_dirigido</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph.data.frame</a></span><span class="op">(</span><span class="va">datos_grafos</span>, directed <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<p>Para un grafo no dirigido basta con especificar <code>directed = F</code>:</p>
+<div class="sourceCode" id="cb570"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grafo_nodirigido</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph.data.frame</a></span><span class="op">(</span><span class="va">datos_grafos</span>, directed <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<p>En otras RRSS, como LinkedIn, las aristas podrían representar la relación que une las personas. Las personas forman parte de un grupo con intereses comunes, formando un grafo no dirigido. Pero también se pueden seguir a alguien sin necesariamente ser seguido; en ese caso las relaciones se pueden representar como un grafo dirigido.</p>
 <ul>
-<li>Un <strong>grafo</strong> es un conjunto de vértices y aristas que se puede representar mediante <span class="math inline">\(G = (V, E)\)</span>, donde <span class="math inline">\(V\)</span> es el conjunto de nodos o vértices del grafo y <span class="math inline">\(E\)</span> es un conjunto de pares de vértices llamado arista, arco o edge.</li>
+<li>Un <strong>grafo</strong>: es un conjunto de vértices y aristas que se puede representar mediante <span class="math inline">\(G = (V, E)\)</span>, donde <span class="math inline">\(V\)</span> es el conjunto de nodos o vértices del grafo y <span class="math inline">\(E\)</span> es un conjunto de aristas, arcos o <em>edges</em>. En la Fig. <a href="grafos.html#fig:grafo-dirigido-nodirigido-sencillo">39.4</a> se incluye un grafo “sencillo”, representado por el objeto <code>grafo</code>, (solo se indican las aristas y el software <strong>R</strong> es capaz de interpretar los vértices), sobre el cual se explican a continuación los conceptos de matriz de adyacencia, grado y camino:</li>
 </ul>
-<p>Se presenta un grafo “sencillo” en la Fig. <span class="math inline">\(\ref{fig:grafo-dirigido-nodirigido-sencillo}\)</span> (sólo se indican las aristas y <strong>R</strong> es capaz de interpretar los vértices), sobre el cual se explicará la matriz de adyacencia, grado y camino:</p>
-<div class="sourceCode" id="cb567"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">grafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/make_graph.html">graph</a></span><span class="op">(</span>edges <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb568"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafodirigido</span>, vertex.label <span class="op">=</span> <span class="fu"><a href="https://r.igraph.org/reference/V.html">V</a></span><span class="op">(</span><span class="va">grafodirigido</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, main<span class="op">=</span><span class="st">"Grafo dirigido"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafonodirigido</span>, vertex.label <span class="op">=</span> <span class="fu"><a href="https://r.igraph.org/reference/V.html">V</a></span><span class="op">(</span><span class="va">grafonodirigido</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, main<span class="op">=</span><span class="st">"Grafo no dirigido"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo</span>,  main<span class="op">=</span><span class="st">"Grafo \"sencillo\""</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb571"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/make_graph.html">graph</a></span><span class="op">(</span>edges <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, mai <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo_dirigido</span>, vertex.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">grafo_dirigido</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, main <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo_nodirigido</span>, vertex.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">grafo_nodirigido</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, main <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo</span>, main <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:grafo-dirigido-nodirigido-sencillo"></span>
-<img src="210044_grafos_rrss_files/figure-html/grafo-dirigido-nodirigido-sencillo-1.png" alt="Grafo dirigido, no dirigido y sencillo." width="60%"><p class="caption">
-Figura 39.3: Grafo dirigido, no dirigido y sencillo.
+<img src="210044_grafos_rrss_files/figure-html/grafo-dirigido-nodirigido-sencillo-1.png" alt="De izquierda a derecha: grafo dirigido, grafo no dirigido y grafo sencillo." width="60%"><p class="caption">
+Figura 39.4: De izquierda a derecha: grafo dirigido, grafo no dirigido y grafo sencillo.
 </p>
 </div>
 <p></p>
 <ul>
-<li>La información recogida en un grafo también se puede expresar mediante números, organizados en una matriz denominada <strong>matriz de adyacencia</strong>, <span class="math inline">\(A_{n\times n}\)</span>, lo que facilita los cálculos computacionales en grandes redes. Cada entrada de la matriz, <span class="math inline">\(a_{ij}\)</span>, indica el número de aristas que comparten los vértices (o nodos) i-ésimo y j-ésimo (si no existe relación entre ellos, entonces <span class="math inline">\(a_{ij}=0\)</span>); cada fila de la matriz indica el número de aristas que comparte el vértice i-ésimo con cada uno de los otros vértices. La suma de todas las entradas <span class="math inline">\(a_{ij}\)</span> de una fila es el grado del vértice correspondiente.
-En los grafos no dirigidos <span class="math inline">\(A_{n \times n}\)</span> es simétrica, ya que si el vértice o nodo <span class="math inline">\(1\)</span> conecta con el <span class="math inline">\(2\)</span>, entonces el <span class="math inline">\(2\)</span> también conecta con el <span class="math inline">\(1\)</span>. En los grafos dirigidos, donde cada arista tiene una orientación, esto no tiene por qué ocurrir: el vértice o nodo <span class="math inline">\(1\)</span> puede conectar con el <span class="math inline">\(1\)</span> pero no al revés. En este tipo de grafos la matriz de adyacencia no es simétrica.</li>
+<li>La información recogida en un grafo también se puede expresar mediante números, organizados en una matriz denominada <strong>matriz de adyacencia</strong>, <span class="math inline">\({\bf A}_{n\times n}\)</span> (donde <span class="math inline">\(n\)</span> es el número de nodos), lo que facilita los cálculos computacionales en grandes redes. Cada entrada de la matriz, <span class="math inline">\(a_{ij}\)</span>, indica el número de aristas que salen del <span class="math inline">\(i\)</span>-ésimo vértice y llegan al <span class="math inline">\(j\)</span>-ésimo; cada fila de la matriz indica el número de aristas que salen del vértice <span class="math inline">\(i\)</span>-ésimo con destino a cada uno de los otros vértices. En los grafos no dirigidos <span class="math inline">\({\bf A}_{n \times n}\)</span> es simétrica, ya que si el vértice o nodo <span class="math inline">\(1\)</span> conecta con el <span class="math inline">\(2\)</span>, entonces el <span class="math inline">\(2\)</span> también conecta con el <span class="math inline">\(1\)</span>. En los grafos dirigidos, donde cada arista tiene una orientación, esto no tiene porqué ocurrir: el vértice o nodo <span class="math inline">\(1\)</span> puede conectar con el <span class="math inline">\(1\)</span> pero no al revés. En este tipo de grafos la matriz de adyacencia no es simétrica. A continuación se obtiene la matriz de adyacencia del objeto <code>grafo</code>:</li>
 </ul>
-<p></p>
-<ul>
-<li>El <strong>grado</strong> o valencia de un nodo x es el numero de aristas que concurren en dicho nodo, y se representa mediante <em>grado(x)</em>, <em>g(x)</em> o <em>gr(x)</em>, lo cual en <strong>R</strong> se calcula con la función <em>degree</em>, siendo un vértice de grado 0 un vértice aislado. En un grafo <span class="math inline">\(G\)</span> hay un grado máximo <span class="math inline">\(\Delta (G)\)</span> y un grado mínimo <span class="math inline">\(\delta (G)\)</span>; el grado del grafo, <em>g(G)</em>, es la suma de los grados de todos sus vértices. En una red social representa el número de relaciones que existen; en una red social como Facebook podría significar conocer cuántos amigos tiene cada persona.</li>
-</ul>
-<p>A continuación se muestra la matriz de adyacencia del grafo visto previamente:</p>
-<div class="sourceCode" id="cb569"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">matriz_adyacencia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/as_adjacency_matrix.html">get.adjacency</a></span><span class="op">(</span><span class="va">grafo</span>, sparse <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb573"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">matriz_adyacencia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/as_adjacency_matrix.html">get.adjacency</a></span><span class="op">(</span><span class="va">grafo</span>, sparse <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">matriz_adyacencia</span></span>
 <span><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5]</span></span>
 <span><span class="co">#&gt; [1,]    0    1    1    1    0</span></span>
@@ -243,214 +241,247 @@ En los grafos no dirigidos <span class="math inline">\(A_{n \times n}\)</span> e
 <span><span class="co">#&gt; [3,]    0    0    0    0    1</span></span>
 <span><span class="co">#&gt; [4,]    0    0    0    0    1</span></span>
 <span><span class="co">#&gt; [5,]    0    0    0    0    0</span></span></code></pre></div>
-<p>Ahora muestra el grado del mismo grafo:</p>
-<div class="sourceCode" id="cb570"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/degree.html">degree</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 3 2 2 3 2</span></span></code></pre></div>
 <p></p>
 <ul>
-<li>Un <strong>camino</strong> es un conjunto de aristas no recursivas. Entre dos vértices puede existir más de un camino, además puede haber varios y se puede incluir el mismo vértice en el camino más de una vez. Evidentemente, siempre habrá un <strong>camino más corto</strong>: que será aquel que menos aristas ha recorrido. Si entre todos los pares de vértices existe un camino, entonces el grafo se denomina <em>conexo</em>.</li>
+<li>El <strong>grado</strong> o <strong>valencia</strong> de un nodo <em>x</em> en un grafo es el número de aristas que concurren en él (que “entran a” o “salen de” dicho nodo), y se representa mediante <span class="math inline">\(grado(x)\)</span>, <span class="math inline">\(g(x)\)</span> o <span class="math inline">\(gr(x)\)</span>, siendo un vértice de grado 0 un vértice aislado. En un grafo <span class="math inline">\(G\)</span>, el grado máximo (<span class="math inline">\(\Delta (G)\)</span>) es el valor más grande entre los grados de los nodos, mientras que el grado mínimo (<span class="math inline">\(\delta (G)\)</span>) es el valor más pequeño. El grado de un grafo <span class="math inline">\(g(G)\)</span> es la suma de los grados de los vértices, lo que mide la cantidad de conexiones en el grafo. En redes sociales, el grado representa el número de relaciones.</li>
 </ul>
-<p>El siguiente código se utiliza para mostrar el camino más corto entre los vértices 2 y 5 de grafo utilizado de ejemplo.</p>
-<div class="sourceCode" id="cb571"><pre class="downlit sourceCode r">
+<p>La función <code><a href="https://rdrr.io/pkg/igraph/man/degree.html">degree()</a></code> proporciona un vector que contiene los grados de cada vértice en el grafo, ayudando a analizar la estructura y la importancia de los nodos en la red. A continuación se muestra el grado de cada uno de los 5 vértices anteriores, así como el grado del grafo (mediante la función <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>) y los grados máximo y mínimo mediante las funciones <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code> y <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>:</p>
+<div class="sourceCode" id="cb574"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grado_nodos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/degree.html">degree</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span>
+<span><span class="va">grado_nodos</span></span>
+<span><span class="co">#&gt; [1] 3 2 2 3 2</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">grado_nodos</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 12</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">grado_nodos</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 3</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">grado_nodos</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 2</span></span></code></pre></div>
+<p></p>
+<ul>
+<li>Un <strong>camino</strong> es un conjunto de aristas no recursivas. La longitud de un camino es su número de aristas. Entre dos vértices puede haber más de dos caminos y se puede incluir el mismo vértice en el camino más de una vez. Evidentemente, siempre habrá un <strong>camino más corto</strong>, que será aquel que menos aristas ha recorrido. Si entre todos los pares de vértices existe un camino, entonces el grafo se denomina <strong>conexo</strong>. El siguiente código muestra el camino más corto entre los vértices 2 y 5 del objeto <code>grafo</code> utilizado de ejemplo.</li>
+</ul>
+<div class="sourceCode" id="cb575"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Camino más corto entre el nodo 2 y el 5</span></span>
-<span><span class="va">caminos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/distances.html">get.shortest.paths</a></span><span class="op">(</span><span class="va">grafo</span>, from <span class="op">=</span> <span class="st">"2"</span>, to <span class="op">=</span> <span class="st">"5"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://r.igraph.org/reference/V.html">V</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span><span class="op">[</span><span class="va">caminos</span><span class="op">$</span><span class="va">vpath</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt; + 3/5 vertices, from 1bf6d87:</span></span>
+<span><span class="va">caminos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/distances.html">get.shortest.paths</a></span><span class="op">(</span><span class="va">grafo</span>, from <span class="op">=</span> <span class="st">"2"</span>, to <span class="op">=</span> <span class="st">"5"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span><span class="op">[</span><span class="va">caminos</span><span class="op">$</span><span class="va">vpath</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">#&gt; + 3/5 vertices, from 2098a34:</span></span>
 <span><span class="co">#&gt; [1] 2 4 5</span></span></code></pre></div>
 </div>
 <div id="procedimiento-con-r-el-paquete-igraph" class="section level2" number="39.4">
 <h2>
 <span class="header-section-number">39.4</span> Procedimiento con <strong>R</strong>: el paquete <code>igraph</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-el-paquete-igraph"><i class="fas fa-link"></i></a>
 </h2>
-<p>Existen diversos paquetes en <strong>R</strong> para representar grafos, pero el más utilizado y popularizado, por sencillez y eficacia, es <code>igraph</code> <span class="citation">(<a href="referncias.html#ref-igraph" role="doc-biblioref">Csardi and Nepusz 2006</a>)</span>. Se trata de un paquete que permite crear y manipular grafos para analizar redes en <strong>R</strong> de forma muy sencilla (Fig. @ref{fig:grafobasico}).</p>
-<p>A continuación se muestra un sencillo ejemplo sobre cómo crear un grafo dirigido con la librería <code>igraph</code></p>
-<div class="sourceCode" id="cb572"><pre class="downlit sourceCode r">
+<p>Existen diversos paquetes en <strong>R</strong> para representar grafos, pero el más utilizado y popularizado, por su sencillez y eficacia, es <code>igraph</code> <span class="citation">(<a href="cap-fraude.html#ref-igraph">Csardi and Nepusz 2006</a>)</span>. Se trata de un paquete que permite crear y manipular grafos para analizar redes en <strong>R</strong> de forma muy sencilla (Fig. <a href="grafos.html#fig:grafobasico">39.5</a>). A continuación se muestra un sencillo ejemplo sobre cómo crear un grafo dirigido a partir de un <em>data frame</em> usando la función <code><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame()</a></code> con los siguientes argumentos:</p>
+<ul>
+<li><p><strong><code>edges</code></strong>: data frame en el que las dos primeras columnas representan una lista o conjunto de aristas.</p></li>
+<li><p><strong><code>directed</code></strong>: un valor lógico que indica si es un grafo dirigido o no dirigido.</p></li>
+<li><p><strong><code>vertices</code></strong>: un data frame con los valores de los vértices o NULL.</p></li>
+</ul>
+<div class="sourceCode" id="cb576"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"nodos"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  <span class="st">"from"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span><span class="op">)</span>, </span>
-<span>  <span class="st">"to"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"D"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">red</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span><span class="va">edges</span>, directed <span class="op">=</span> <span class="cn">TRUE</span>, vertices <span class="op">=</span> <span class="va">nodes</span><span class="op">)</span></span>
+<span>  <span class="st">"from"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span><span class="op">)</span>,</span>
+<span>  <span class="st">"to"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"D"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">red</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span><span class="va">edges</span>, directed <span class="op">=</span> <span class="cn">TRUE</span>, vertices <span class="op">=</span> <span class="va">nodes</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">red</span>, vertex.size <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:grafobasico"></span>
-<img src="210044_grafos_rrss_files/figure-html/grafobasico-1.png" alt="Ejemplo de grafo con `igraph`" width="60%"><p class="caption">
-Figura 39.4: Ejemplo de grafo con <code>igraph</code>
+<img src="210044_grafos_rrss_files/figure-html/grafobasico-1.png" alt="Ejemplo de grafo con `igraph`." width="60%"><p class="caption">
+Figura 39.5: Ejemplo de grafo con <code>igraph</code>.
 </p>
 </div>
-<p>Para crear un grafo, Fig. @ref{fig:grafobasico}, a partir de un <em>data frame</em> se ha usado la función <code><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph_from_data_frame()</a></code> con los siguientes argumentos:</p>
-<p><code>graph_from_data_frame(edges, directed = TRUE, vertices = nodes)</code> donde:</p>
-<ul>
-<li><p><strong><code>edges:</code></strong> es un data frame donde las dos primeras columnas representan una lista de aristas.</p></li>
-<li><p><strong><code>directed:</code></strong> es un valor lógico que indica si es un grafo dirigido o no dirigido.</p></li>
-<li><p><strong><code>vertices</code></strong> es un data frame con los valores de los vértices o NULL.</p></li>
-</ul>
-<p>El siguiente código muestra las relaciones entre los actores de dos películas.
-<code>nodes</code> contiene el nombre de cada actor y su descripción, es imprescindible que los nombres que más adelante se introducen en edges existan en nodes. Al mismo tiempo no es obligatorio declarar los nodos ya que pueden ser extraídos de las relaciones.
-<code>edges</code> contiene la relaciones, <code>from</code> y <code>to</code>, además de la película donde coinciden. Siendo este último dato descriptivo y no necesario.</p>
-<div class="sourceCode" id="cb573"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"actores"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>  <span class="st">"Jim Carrey"</span>, <span class="st">"Arnold Swarzenneger"</span>, <span class="st">"George Cloney"</span>,</span>
-<span>  <span class="st">"Cameron Diaz"</span></span>
-<span><span class="op">)</span>, <span class="st">"descripcion"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"actor"</span>, <span class="st">"actor"</span>, <span class="st">"actor"</span>, <span class="st">"actriz"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  <span class="st">"from"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jim Carrey"</span>, <span class="st">"Jim Carrey"</span>, <span class="st">"George Cloney"</span>, <span class="st">"Jim Carrey"</span><span class="op">)</span>,</span>
-<span>  <span class="st">"to"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="st">"Arnold Swarzenneger"</span>, <span class="st">"George Cloney"</span>, <span class="st">"Arnold Swarzenneger"</span>,</span>
-<span>    <span class="st">"Cameron Diaz"</span></span>
-<span>  <span class="op">)</span>, <span class="st">"pelicula"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="st">"Batman y Robin"</span>, <span class="st">"Batman y Robin"</span>,</span>
-<span>    <span class="st">"Batman y Robin"</span>, <span class="st">"La mascara"</span><span class="op">)</span></span>
+<p>A continuación se muestra otro ejemplo con las relaciones entre los actores de dos películas.
+<code>nodes</code> contiene el nombre de cada actor y su descripción, es decir, si se trata de un actor o una actriz (es imprescindible que los nombres que más adelante se introducen en <code>edges</code> existan en <code>nodes</code>). Sin embargo, no es obligatorio declarar los nodos, ya que pueden ser extraídos de las relaciones.
+<code>edges</code> contiene la relaciones, <code>from</code> y <code>to</code>, además de la película donde coinciden. No obstante, este último dato es meramente descriptivo y no resulta necesario.</p>
+<div class="sourceCode" id="cb577"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"actores"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jim Carrey"</span>, <span class="st">"Arnold Schwarzenegger"</span>, <span class="st">"George Clooney"</span>, <span class="st">"Cameron Díaz"</span><span class="op">)</span>, </span>
+<span>                    <span class="st">"descripcion"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"actor"</span>, <span class="st">"actor"</span>, <span class="st">"actor"</span>, <span class="st">"actriz"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">red</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span><span class="va">edges</span>, directed <span class="op">=</span> <span class="cn">F</span>, vertices <span class="op">=</span> <span class="va">nodes</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  <span class="st">"from"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jim Carrey"</span>, <span class="st">"Jim Carrey"</span>, <span class="st">"George Clooney"</span>, <span class="st">"Jim Carrey"</span><span class="op">)</span>,</span>
+<span>  <span class="st">"to"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Arnold Schwarzenegger"</span>, <span class="st">"George Clooney"</span>, <span class="st">"Arnold Schwarzenegger"</span>, <span class="st">"Cameron Díaz"</span><span class="op">)</span>, </span>
+<span>  <span class="st">"pelicula"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Batman y Robin"</span>, <span class="st">"Batman y Robin"</span>, <span class="st">"Batman y Robin"</span>, <span class="st">"La mascara"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">red</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span><span class="va">edges</span>, directed <span class="op">=</span> <span class="cn">F</span>, vertices <span class="op">=</span> <span class="va">nodes</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">red</span>, vertex.size <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:grafoactores"></span>
-<img src="210044_grafos_rrss_files/figure-html/grafoactores-1.png" alt="Grafo representativo de la relacion de actores respecto a películas" width="60%"><p class="caption">
-Figura 39.5: Grafo representativo de la relacion de actores respecto a películas
+<img src="210044_grafos_rrss_files/figure-html/grafoactores-1.png" alt="Grafo representativo de la relacion de actores respecto a películas." width="60%"><p class="caption">
+Figura 39.6: Grafo representativo de la relacion de actores respecto a películas.
 </p>
 </div>
-<p>En la Fig. @ref{fig:grafoactores} se puede observar como el actor Jim Carrey tuvo relación con todos los actores de la red propuesta, mientras que la actriz Cameron Diaz solo participó con uno de ellos (el propio Jim Carrey).</p>
+<p>En la Fig. <a href="grafos.html#fig:grafoactores">39.6</a> se puede observar que el actor Jim Carrey tuvo relación con todos los actores de la red propuesta, mientras que la actriz Cameron Díaz sólo participó con uno de ellos (el propio Jim Carrey).</p>
 </div>
 <div id="análisis-de-influencia-en-un-grafo-aplicado-a-rrss" class="section level2" number="39.5">
 <h2>
 <span class="header-section-number">39.5</span> Análisis de influencia en un grafo aplicado a RRSS<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-de-influencia-en-un-grafo-aplicado-a-rrss"><i class="fas fa-link"></i></a>
 </h2>
-<p>Existen paquetes para obtener información de distintas RRSS; por ejemplo, en <strong>R</strong> se puede utilizar el paquete <code>Rfacebook</code> para conectarse a <strong>Facebook</strong> y obtener información de los contactos existentes. Para ello será necesario activar la API, Interfaz de Programación de Aplicaciones, desde <strong><a href="https://developers.facebook.com" class="uri">https://developers.facebook.com</a></strong>. La información necesaria se puede encontrar en su página web <strong><a href="https://developers.facebook.com/docs" class="uri">https://developers.facebook.com/docs</a></strong>. Para ilustrar un ejemplo didáctico, sin que el lector necesite conocimientos de desarrollo para descargar los datos, se ha generado un fichero Excel que simula la relación entre amigos de una red social como podría ser Facebook generando un grafo dirigido, tipo de grafo habitual en este tipo de redes.</p>
-<p>Se incorporan los datos y se muestra su cabecera.</p>
-<p>En primer lugar, se utiliza el siguiente código para recoger los datos de un fichero CSV, con dos columnas, separadas por un espacio. Cada columna mediante un número identificador representa una persona, la unión de estas dos personas es el resultado de una relación, estas relaciones pueden visualizarse con el siguiente código.</p>
-<div class="sourceCode" id="cb574"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">datos_faceboook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph.data.frame</a></span><span class="op">(</span><span class="va">datos_facebook</span>, directed <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
-<span><span class="co">#datos_faceboook # descomentar para ver las relaciones</span></span></code></pre></div>
-<p>En esta ocasión se utiliza la función <code><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph.data.frame()</a></code> del paquete <code>igraph</code> para crear un objeto de tipo grafo, dirigido en este caso, a partir de un data frame en <strong>R</strong>. Seguidamente, mediante <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> se muestra el grafo al mismo tiempo que se establecen sus propiedades. Ver Fig. <span class="math inline">\(\ref{fig:grafofacebook1}\)</span>. Nótese que la estructura de los datos de entrada para construir el grafo es diferente a la función <code><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph_from_data_frame()</a></code> vista en el apartado anterior, pero ambas cumple el objetivo de construir un grafo y por ello se presentan ambas opciones.</p>
-<div class="sourceCode" id="cb575"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">grafo_facebook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph.data.frame</a></span><span class="op">(</span><span class="va">datos_facebook</span>, directed <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://r.igraph.org/reference/plot.igraph.html">plot.igraph</a></span><span class="op">(</span><span class="va">grafo_facebook</span>,</span>
+<p>Existen paquetes para obtener información de distintas RRSS; por ejemplo, en <strong>R</strong> se puede utilizar el paquete <code>Rfacebook</code> para conectarse a Facebook y obtener información de los contactos existentes. Para ello es necesario activarla API, Interfaz de Programación de Aplicaciones, desde <strong><a href="https://developers.facebook.com" class="uri">https://developers.facebook.com</a></strong>. La información necesaria se puede encontrar en su página web <strong><a href="https://developers.facebook.com/docs" class="uri">https://developers.facebook.com/docs</a></strong>. Para ilustrar un ejemplo didáctico, sin que el lector necesite conocimientos de desarrollo para descargar los datos, se ha simulado la relación entre amigos de una red social, como podría ser Facebook, en el conjunto de datos <code>datos_facebook</code> contenido en el paquete <code>CDR</code> del libro.</p>
+<p>En esta ocasión se utiliza la función <code><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph.data.frame()</a></code> del paquete <code>igraph</code> para crear un objeto de tipo grafo, dirigido en este caso, a partir de un data frame en <strong>R</strong>. Seguidamente, mediante <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>, se muestra el grafo al mismo tiempo que se establecen sus propiedades (véase Fig. <a href="grafos.html#fig:grafofacebook1">39.7</a>).</p>
+<div class="sourceCode" id="cb578"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">datos_faceboook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph.data.frame</a></span><span class="op">(</span><span class="va">datos_facebook</span>, directed <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="co"># datos_faceboook # descomentar para ver las relaciones</span></span></code></pre></div>
+<div class="sourceCode" id="cb579"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grafo_facebook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph.data.frame</a></span><span class="op">(</span><span class="va">datos_facebook</span>, directed <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/plot.igraph.html">plot.igraph</a></span><span class="op">(</span><span class="va">grafo_facebook</span>,</span>
 <span>  layout <span class="op">=</span> <span class="va">layout.fruchterman.reingold</span>,</span>
 <span>  vertex.label <span class="op">=</span> <span class="cn">NA</span>, vertex.label.cex <span class="op">=</span> <span class="fl">1</span>, vertex.size <span class="op">=</span> <span class="fl">3</span>, edge.curved <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:grafofacebook1"></span>
-<img src="210044_grafos_rrss_files/figure-html/grafofacebook1-1.png" alt="Aplicación de `igraph` a RRSS." width="60%"><p class="caption">
-Figura 39.6: Aplicación de <code>igraph</code> a RRSS.
+<img src="210044_grafos_rrss_files/figure-html/grafofacebook1-1.png" alt="Representación de un grafo con RRSS." width="60%"><p class="caption">
+Figura 39.7: Representación de un grafo con RRSS.
 </p>
 </div>
-<p>Siguiendo con el ejemplo, se ven las relaciones de la red social, se puede observar que el número de aristas que concurren en cada vértice indica el número de personas con las que se relaciona el individuo, representado por dicho vértice. Indica, por tanto, el número de relaciones que mantiene dicho individuo.</p>
-<div class="sourceCode" id="cb576"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/degree.html">degree</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span><span class="op">)</span></span>
+<div class="infobox">
+<p><strong>Nota</strong></p>
+<p>Obsérvese como varía la estructura de los datos de entrada para construir un grafo.</p>
+</div>
+<p>Siguiendo con el ejemplo, a continuación se analizan las relaciones de la red social. Como se avanzó anteriormente, el número de aristas que entran o salen de cada vértice indica el número de personas con las que se relaciona el individuo representado por dicho vértice. En la salida de debajo se muestra cuántos vértices (segunda linea) tienen cada grado específico (primera linea):</p>
+<div class="sourceCode" id="cb580"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/degree.html">degree</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 </span></span>
 <span><span class="co">#&gt;  1  2  4  4  7  4  8 14 19 15 14 19 22 15 11 13  9  5  3  3  4  1  4</span></span></code></pre></div>
-<p>Ahora sobre el mismo ejemplo se personalizan los datos. Las RRSS son enormes y, por tanto,es útil centrarse en una subred para estudios concretos. A modo de ejemplo, para focalizar este caso de estudio el ejemplo se centrará en aquéllos cuyo grado sea igual o superior a 26, asignándoles su nombre.</p>
-<div class="sourceCode" id="cb577"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bad_network</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/V.html">V</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://r.igraph.org/reference/degree.html">degree</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="fl">26</span><span class="op">]</span></span>
-<span><span class="va">grafo_facebook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/delete_vertices.html">delete.vertices</a></span><span class="op">(</span><span class="va">grafo_facebook</span>, <span class="va">bad_network</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://r.igraph.org/reference/V.html">V</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span><span class="op">$</span><span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<p>Ahora se procede a personalizar los nodos. Las RRSS son enormes y, por tanto, es útil centrarse en una subred para estudios concretos. A modo de ejemplo, para focalizar este caso de estudio, se tendrán en cuenta únicamente aquéllos vértices o nodos cuyo grado sea igual o superior a 26, asignándoles su nombre.</p>
+<div class="sourceCode" id="cb581"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bad_network</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/degree.html">degree</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="fl">26</span><span class="op">]</span></span>
+<span><span class="va">grafo_facebook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/delete_vertices.html">delete.vertices</a></span><span class="op">(</span><span class="va">grafo_facebook</span>, <span class="va">bad_network</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span><span class="op">$</span><span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>  <span class="st">"Gema"</span>, <span class="st">"Patricia"</span>, <span class="st">"Ramon"</span>, <span class="st">"José"</span>, <span class="st">"Maria"</span>, <span class="st">"Ángeles"</span>,</span>
 <span>  <span class="st">"Gabriel"</span>, <span class="st">"Javier"</span>, <span class="st">"Victor"</span>, <span class="st">"Leonor"</span>, <span class="st">"Ana"</span>, <span class="st">"Isabel"</span>, <span class="st">"Cristóbal"</span>, <span class="st">"Rosa"</span>, <span class="st">"Aurora"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo_facebook</span>, vertex.size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:grafofacebook3"></span>
-<img src="210044_grafos_rrss_files/figure-html/grafofacebook3-1.png" alt="Aplicación de `Igraph` a RRSS." width="60%"><p class="caption">
-Figura 39.7: Aplicación de <code>Igraph</code> a RRSS.
+<img src="210044_grafos_rrss_files/figure-html/grafofacebook3-1.png" alt="Subgrafo en RRSS." width="60%"><p class="caption">
+Figura 39.8: Subgrafo en RRSS.
 </p>
 </div>
-<p>En la Fig. <span class="math inline">\(\ref{fig:grafofacebook3}\)</span> se pueden ver las relaciones entre las personas incluidas en el grafo (a quién siguen y por quiénes son seguidas). Por ejemplo, a Gema no la sigue nadie. Leonor, otro caso extremo igual que Gema, es seguida por Aurora, Ángeles y Gabriel, pero ella no sigue a nadie.</p>
+<p>En la Fig. <a href="grafos.html#fig:grafofacebook3">39.8</a> se pueden ver las relaciones entre las personas incluidas en el grafo (a quién siguen y por quiénes son seguidas). Por ejemplo, a Gema no la sigue nadie. Leonor, otro caso extremo igual que Gema, es seguida por Aurora, Ángeles y Gabriel, pero ella no sigue a nadie.</p>
 <div id="centralidad" class="section level3" number="39.5.1">
 <h3>
 <span class="header-section-number">39.5.1</span> Centralidad<a class="anchor" aria-label="anchor" href="#centralidad"><i class="fas fa-link"></i></a>
 </h3>
 <p></p>
-<p>Un grafo no tiene una centralidad real porque no tiene coordenadas <span class="citation">(<a href="referncias.html#ref-Easly2010" role="doc-biblioref">Easley 2010</a>)</span>, pero existen distintas medidas de centralidad que, en una red/grafo social, permitirán identificar el networking social de cada individuo, es decir, su influencia.</p>
-<p>En teoría de grafos y análisis de RRSS, el concepto de <strong>centralidad</strong> refiere a la importancia o prominencia de los vértices o nodos en un determinado grafo o red social. En el caso de una red social de amigos, como, por ejemplo, Facebook, la centralidad de un nodo (persona) representa el número de amigos que tiene.</p>
-<p>Son innumerables las medidas de <strong>centralidad</strong> (generalmente normalizadas o estandarizadas) que pueden encontrarse en la literatura sobre la cuestión para determinar y comparar, de forma cuantitativa, la importancia relativa de un nodo en el conjunto de la red.
-La <strong>centralidad</strong> no es un atributo intrínseco de los nodos, sino un atributo estructural: un valor que depende de las relaciones de dicho nodo con los demás de la red. Generalmente, el nodo central suele tener la mayor centralidad, mientras que la mínima suele corresponder a los nodos periféricos</p>
-<p>En los grafos dirigidos, cuantas más aristas reciba un nodo (persona) más personas estan intentando interactuar con ella y más prestigio tendrá en la red. Pero si la interacción hacia esta persona no es directa y se realiza a través de un camino más largo pasando por más nodos quiere decir que su influencia es elevada, ya que más personas han recibido esa influencia.</p>
-<p>Existen diversas técnicas de obtener la centralidad <span class="citation">(<a href="referncias.html#ref-Stanley1995" role="doc-biblioref">Wasserman 1995</a>)</span>, entre las que destacamos la centralidad por intermediación y la de vector propio por ser dos conceptos diferentes en el análisis de redes. Ahora se vera más en detalle como la primera mide la influencia de un nodo en la transmisión de información, mientras que la segunda es una medida mas amplia de la centralidad global de un nodo en un grafo.</p>
+<p>En teoría de grafos y análisis de RRSS, el concepto de <strong>centralidad</strong> se refiere a la importancia o prominencia de los vértices o nodos en un determinado grafo o red social. En el caso de una red social de amigos, como por ejemplo Facebook, la centralidad de un nodo (persona) representa el número de amigos que tiene.</p>
+<p>Un grafo no tiene una centralidad real porque no tiene coordenadas <span class="citation">(<a href="cap-fraude.html#ref-Easly2010">Easley 2010</a>)</span>, pero existen distintas medidas de centralidad que, en una red/grafo social permiten identificar el <em>networking</em> social de cada individuo, es decir, su influencia.</p>
+<p>Son innumerables las medidas de <strong>centralidad</strong> (generalmente normalizadas o estandarizadas) que pueden encontrarse en la literatura sobre la cuestión para determinar y comparar, de forma cuantitativa, la importancia relativa de un nodo en el conjunto de la red.</p>
+<p>La <strong>centralidad</strong> no es un atributo intrínseco de los nodos, sino un atributo estructural: un valor que depende de las relaciones de dicho nodo con los demás de la red. Generalmente, el nodo central suele tener la mayor centralidad, mientras que la mínima suele corresponder a los nodos periféricos</p>
+<p>En los grafos dirigidos, cuantas más aristas reciba un nodo (persona en el caso de una RRSS) más nodos (personas) están intentando interactuar con él y más importancia tendrá en el grafo (más “prestigio” tendrá la persona en la red). Pero si la conexión de un nodo con otro (la influencia de una prsona sobre otra en una RRSS) no es directa sino que tiene lugar a través de un camino más largo (pasando por más nodos), entonces quiere decir que su influencia es mayor, ya que, en el caso de la RRSS más personas han recibido esa influencia, unas directamente y otras de forma indirecta.</p>
+<p>En la literatura existen diversas medidas la centralidad <span class="citation">(<a href="cap-fraude.html#ref-Stanley1995">Wasserman 1995</a>)</span>. Entre ellas, a continuación se definen la centralidad de grado, la centralidad de intermediación (o simplemente centralidad) y la centralidad de vector propio.</p>
 <ul>
-<li>La técnica de <strong>centralidad de intermediación (betweenness)</strong> se basa en el número de caminos mínimos (camino más corto entre dos vértices en un grafo ponderado) en los que un nodo esta involucrado. Por lo tanto, en una red social una persona tendrá mayor influencia cuanto mayor betweenness tenga, porque comunicará mucha información a través de los nodos de la red. Si puede llegar a un grupo grande, aunque sea a través de un nodo a quien nadie sigue, como Gema, puede alcanzar un gran nivel de viralización porque su información llegara hasta muchas personas.</li>
+<li>La <strong>centralidad de grado</strong> (en inglés, <em>degree centrality</em>) fue la primera de las medidas de centralidad y también es la más sencilla. Más concretamente, la centralidad del <span class="math inline">\(i\)</span>-ésimo nodo es su grado, es decir, el número de aristas que posee un nodo con los demás:</li>
 </ul>
-<p>El siguiente código muestra la centralidad mediante intermediación correspondiente a los nodos del ejemplo actual</p>
-<div class="sourceCode" id="cb578"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">betweenness_centrality</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/betweenness.html">betweenness</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span></span>
+<p><span class="math display">\[ C_{D}^{(i)}=\sum _{j \neq i} a_{ij},\]</span>
+donde <span class="math inline">\(a_{ij}\)</span> es el <span class="math inline">\(j\)</span>-ésimo elemento de la <span class="math inline">\(i\)</span>-ésima fila de la matriz de adjacencia.</p>
+<p>Para normalizar la centralidad de grado, lo normal es dividirla por el número total de nodos de la red. En el caso de grafos simples (sin bucles), basta con dividir por el número total de nodos menos 1. Cuando el grado máximo de un grafo sea demasiado bajo, también se podría dividir por dicho grado máximo. Po tanto, se consideran aceptables las siguientes medidas de centralidad de grado normalizadas:
+<span class="math display">\[C_{Dnorm}^{(i)}=\frac {C_{D}^{(i)}}{n}, \hspace{0,5cm} C_{Dnorm}^{(i)}=\frac {C_{D}^{(i)}}{n-1},
+\hspace{0,5cm} C_{Dnorm}^{(i)}=\frac {C_{D}^{(i)}} {\max_{i \in V} C_{D}^{(i)}}.\]</span></p>
+<ul>
+<li>La <strong>centralidad de intermediación</strong> (<em>betweenness</em>) del <span class="math inline">\(i\)</span>-ésimo nodo es la proporción que el número de caminos entre cualesquiera otros dos nodos (<span class="math inline">\(j\)</span> y <span class="math inline">\(k\)</span>) cuya conexión pasa por el nodo <span class="math inline">\(i\)</span> supone respecto del número de caminos mínimos (más cortos) desde el nodo <span class="math inline">\(j\)</span> hasta el nodo <span class="math inline">\(k\)</span>. Por lo tanto, en el caso de una RRSS, una persona tendrá mayor influencia cuanto mayor centralidad de información tenga porque comunicará mucha información a través de los nodos de la red (supuesto que la transferencia de la información a través de la red siempre se lleve a cabo a través de los caminos más cortos).</li>
+</ul>
+<p>Formalmente, la centralidad de intermediación del <span class="math inline">\(i\)</span>-ésimo nodo se define como sigue:</p>
+<p><span class="math display">\[C_B^{(i)}=\sum_{i \neq k \in V} \frac {B_{jk}^{(i)}}{B_{jk}},\]</span></p>
+<p>donde <span class="math inline">\(B_{jk}^{(i)}\)</span> es el número de caminos más cortos desde <span class="math inline">\(j\)</span> hasta <span class="math inline">\(k\)</span> que pasan por el nodo
+<span class="math inline">\(i\)</span> y <span class="math inline">\(B_{jk}\)</span> el número de caminos más cortos desde el nodo <span class="math inline">\(j\)</span> hasta el nodo <span class="math inline">\(k\)</span>.</p>
+<p>La centralidad de intermediación normalizada (para que sus valores estén siempre entre 0 y 1) se obtiene dividiendo la centralidad de intermediación por el mayor número posible de pares de nodos, excluyendo el nodo en el que se está midiendo el grado de centralidad.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;En caso de que el gráfico tenga bucles, estos no se consideran.&lt;/p&gt;"><sup>250</sup></a></p>
+<p>En caso de grafos no dirigidos:
+<span class="math display">\[C_{B(norm)}^{(i)}=\frac {C_B^{(i)}}{ \frac {(n-1)(n-2)}{2}}. \]</span></p>
+<p>En caso de grafos dirigidos:</p>
+<p><span class="math display">\[C_{B(norm)}^{(i)}=\frac {C_B^{(i)}}{ (n-1)(n-2)}. \]</span></p>
+<p>El siguiente código muestra la centralidad de intermediación normalizada correspondiente a los nodos del ejemplo de Facebook (para obtenerla sin normalizar, hay que especificar <code>normalized = FALSE</code> al llamar a la función <code><a href="https://rdrr.io/pkg/igraph/man/betweenness.html">betweenness()</a></code>):</p>
+<div class="sourceCode" id="cb582"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">betweenness_centrality</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/betweenness.html">betweenness</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span></span>
 <span><span class="va">betweenness_centrality</span></span>
 <span><span class="co">#&gt;      Gema  Patricia     Ramon      José     Maria   Ángeles   Gabriel    Javier </span></span>
 <span><span class="co">#&gt;  0.000000 33.500000 30.200000 10.500000 53.300000  7.000000 37.800000 27.200000 </span></span>
 <span><span class="co">#&gt;    Victor    Leonor       Ana    Isabel Cristóbal      Rosa    Aurora </span></span>
 <span><span class="co">#&gt; 42.700000  0.000000  9.333333  0.000000  6.000000  4.666667 23.800000</span></span></code></pre></div>
-<p>Maria es el nodo con mayor porcentaje, ello quiere decir que es quien tiene un mayor número de enlaces o conexiones con otros nodos, siendo el nodo de mayor importancia en términos de conectividad.</p>
+<p>Como puede apreciarse, María es el nodo con mayor centralidad, es decir, es la persona con mayor influencia en la transferencia de información entre los nodos a través de la red, bajo el supuesto de que cada nodo transfiere la información siguiendo los caminos más cortos.</p>
 <ul>
-<li>La <strong>Centralidad de vector propio (eigenvector)</strong>. Se basa en la centralidad de los nodos con los que se relaciona. En concreto la centralidad de valor propio es proporcional a la suma de las centralidades de sus nodos vecinos.
-Se representa mediante <span class="math inline">\(c_{i} = \lambda \sum_{j} a_{ij}c_{j}\)</span>, donde <span class="math inline">\(\lambda\)</span> es la constante de proporcionalidad y <span class="math inline">\(a_{ij}\)</span> es el valor de la fila <span class="math inline">\(i\)</span> y la columna <span class="math inline">\(j\)</span> de la matriz de adyacencia <strong>A</strong> de la red social.</li>
+<li>La <strong>centralidad de vector propio</strong> (<em>eigencentrality</em>), <span class="math inline">\(C_E^{(i)}\)</span>. Es una medida de centralidad recursiva que se basa en la centralidad de los nodos con los que se relaciona. En concreto la centralidad de valor propio es proporcional a la suma de las centralidades de sus nodos vecinos. A modo de ejemplo, un relaciones públicas de una discoteca puede conocer a mucha gente mientras que un político puede conocer menos gente; sin embargo, la gente que conoce el relaciones públicas de la discoteca es gente normal, sin grandes influencias en otra gente, mientas que las personas que conoce el político son son personas altamente influyentes. Por ello, el político está mejor posicionado en términos de influencia que el relaciones públicas de la discoteca, aunque conozca menos gente.</li>
 </ul>
-<p>El siguiente código muestra la centralidad mediante vector propio correspondiente a los nodos del ejemplo actual</p>
-<div class="sourceCode" id="cb579"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">eigencentrality</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/eigen_centrality.html">eigen_centrality</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span><span class="op">$</span><span class="va">vector</span></span>
+<p>En términos matemáticos, la expresión de la centralidad de vector propio del <span class="math inline">\(i\)</span>-ésimo nodo es:
+<span class="math inline">\(C_E^{(i)} = \lambda \sum_{j} a_{ij}C_E^{(j)}\)</span>, donde <span class="math inline">\(\lambda\)</span> es la constante de proporcionalidad, <span class="math inline">\(a_{ij}\)</span> es el valor de la fila <span class="math inline">\(i\)</span> y la columna <span class="math inline">\(j\)</span> de la matriz de adyacencia <strong>A</strong> y <span class="math inline">\(C_E^{(j)}\)</span> es la centralidad de valor propio de los nodos con los que se relaciona el nodo <span class="math inline">\(i\)</span>. La denominación de “centralidad de vector propio” se debe a que el vector dicha centralidad corresponde al vector propio de <span class="math inline">\(\bf A\)</span> asociado al mayor valor propio de la matriz, <span class="math inline">\(\lambda\)</span>.</p>
+<p>El siguiente código muestra la centralidad mediante vector propio correspondiente a los nodos del ejemplo actual:</p>
+<div class="sourceCode" id="cb583"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">eigencentrality</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/eigen_centrality.html">eigen_centrality</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span><span class="op">$</span><span class="va">vector</span></span>
 <span><span class="va">eigencentrality</span></span>
 <span><span class="co">#&gt;      Gema  Patricia     Ramon      José     Maria   Ángeles   Gabriel    Javier </span></span>
 <span><span class="co">#&gt; 0.1618269 0.6090993 0.7768737 0.3148866 0.9257523 0.6787138 0.7180398 0.4714266 </span></span>
 <span><span class="co">#&gt;    Victor    Leonor       Ana    Isabel Cristóbal      Rosa    Aurora </span></span>
 <span><span class="co">#&gt; 1.0000000 0.4725741 0.7663131 0.2086397 0.7620632 0.3831565 0.7000984</span></span></code></pre></div>
-<p>Observamos que según esta centralidad, basada en el número de enlaces y conexiones con otros nodos importantes, el mayor porcentaje es obtenido por el nodo Victor. Este nodo es por tanto central en términos de conexión con otros nodos importantes de la red siendo identificado como el nodo líder o de mayor influencia de la red.</p>
+<p>Como puede apreciarse, la mayor centralidad de autovalor corresponde al nodo Víctor. Este nodo es, por tanto, central en términos de conexión con otros nodos importantes de la red, identificándose como el nodo líder o de mayor influencia de la red.</p>
 </div>
 <div id="detección-de-comunidades" class="section level3" number="39.5.2">
 <h3>
 <span class="header-section-number">39.5.2</span> Detección de comunidades<a class="anchor" aria-label="anchor" href="#detecci%C3%B3n-de-comunidades"><i class="fas fa-link"></i></a>
 </h3>
-<p>
-En el análisis de una red social es importante detectar las distintas comunidades que la componen, entendiendo por comunidad un grupo de personas afines, gracias a las comunidades podremos estudiar los distintos grupos que lo forman en función de sus relaciones y afinidad <span class="citation">(<a href="referncias.html#ref-Missaouri2015" role="doc-biblioref">Missaouri 2015</a>)</span>.</p>
-<p>Existen diversos algoritmos en <strong>R</strong> para detectar comunidades <span class="citation">(<a href="referncias.html#ref-Borgatti2022" role="doc-biblioref">Borgatti 2022</a>)</span>, pero ninguno ha demostrado que pueda actuar a la perfección con todos los grafos debido a la gran tipología que existe. Así, según el ejemplo anterior podemos detectar las siguientes comunidades:</p>
+<p></p>
+<p>En el análisis de una RRSS es importante detectar las distintas comunidades que la componen, entendiendo por comunidad un grupo de personas afines. La detección de dichas comunidades permite estudiar los distintos grupos que conforman la RRSS en función de sus relaciones y afinidad <span class="citation">(<a href="cap-fraude.html#ref-Missaouri2015">Missaouri 2015</a>)</span>.</p>
+<p>En principio, podría identificarse la detección de comunidades con la agrupación o clusterización. Aunque esta última podría aplicarse a grafos/RRSS, en la agrupación en clústeres los elementos con atributos similares se agrupan en el mismo clúster, mientras que la detección de comunidades está especialmente diseñada para analizar redes en función de un único tipo de atributo: los bordes. Además, los algoritmos de agrupación tienden a separar nodos periféricos individuales de las comunidades a las que deberían pertenecer, cosa que no ocurre con las técnicas de detección de comunidades.</p>
+<p>Existen diversos algoritmos en <strong>R</strong> para detectar comunidades <span class="citation">(<a href="cap-fraude.html#ref-Borgatti2022">Borgatti 2022</a>)</span>, pero ninguno ha demostrado que pueda actuar a la perfección con todos los grafos debido a la gran tipología existente. En el ejemplo anterior se detectan las siguientes comunidades:</p>
 <ul>
-<li>La <strong>detección de comunidades mediante betweenness</strong> tiene implementado en el paquete <code>igraph</code> un algoritmo para detectar comunidades por lo que a continuación se expone.</li>
+<li>Detección de comunidades mediante <strong>centralidad de intermediación</strong>:</li>
 </ul>
-<div class="sourceCode" id="cb580"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">communities</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_edge_betweenness.html">cluster_edge_betweenness</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span></span>
-<span><span class="co"># head(communities, 10) # descomentar para ver las comunidades</span></span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">communities</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/cluster_edge_betweenness.html">edge.betweenness.community</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span></span>
+<span><span class="co">#head(communities, 10) # descomentar para ver las comunidades</span></span></code></pre></div>
 <ul>
-<li>La <strong>detección de comunidades mediante walktrap</strong> es también muy utilizada en RRSS, se basa en el concepto de que las caminatas aleatorias cortas permanecen a la misma comunidad y no esta basado en una medida de centralidad.</li>
+<li>Detección de comunidades mediante <strong>centralidad de vector propio</strong> (<em>eigencentality</em>):</li>
 </ul>
-<p>A continuación, se presenta el código del algoritmo walktrap, mediante el cual se detectan dos comunidades:</p>
-<div class="sourceCode" id="cb581"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">communities</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_walktrap.html">walktrap.community</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">communities</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/cluster_leading_eigen.html">leading.eigenvector.community</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span></span>
+<span><span class="co">#head(communities, 10) # descomentar para ver las comunidades</span></span></code></pre></div>
+<ul>
+<li>Detección de comunidades mediante Walktrap: este procedimiento no está basado en una medida de centralidad sino en la idea de que la distancia entre vértices se mide a través de caminatas aleatorias en la red. Específicamente, la idea básica básica del algoritmo <code>walktrap</code> es que los recorridos aleatorios en un gráfico/red tienden a quedar atrapados en partes dénsamente conectadas que se identifican con comunidades. <code>Walktrap</code> utiliza el resultado de caminatas aleatorias para fusionar comunidades de forma aglomerativa. La calidad de las agrupaciones se puede evaluar utilizando cualquier criterio de calidad disponible, si bien el de modularidad es el más popular.</li>
+</ul>
+<p>A continuación se presenta el código del algoritmo <code>walktrap</code> para detectar dos comunidades:</p>
+<div class="sourceCode" id="cb586"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">communities</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/cluster_walktrap.html">walktrap.community</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span></span>
+<span><span class="co">#head(communities, 10) # descomentar para ver las comunidades</span></span></code></pre></div>
+<p>Otro método de detección de comunidades que merece la pena mencionar es el <strong>método de de detección de comunidades de Louvain</strong>, que es el algoritmo más popular por su fácil interpretación, flexibilidad, alta calidad de las comunidades y eficiencia en tiempo de ejecución. Se basa en la modularidad, que trata de maximizar la diferencia entre el número real y el número esperado de aristas en una comunidad. Sin embargo, la optimización de la modularidad en una red es <em>NP-difícil</em> (acrónimo del término de teoría de la computación <em>nondeterministic polynomial time-hard</em>) y, por lo tanto, tiene que usar heurística.</p>
+<p>El algoritmo de Louvain se divide en dos fases que se repiten iterativamente: <span class="math inline">\((i)\)</span> movimiento local de nodos y <span class="math inline">\((ii)\)</span> agregación de la red. El algoritmo comienza con una red ponderada de <em>n</em> nodos. En la primera fase, el algoritmo asigna una comunidad diferente a cada nodo de la red. Luego, para cada nodo, considera los vecinos y evalúa la ganancia de modularidad eliminando dicho nodo particular de la comunidad a la que pertenece y colocándolo en la comunidad vecina donde la ganancia (positiva) se máxima. El nodo permanecerá en la misma comunidad si no hay ganancia positiva. Este proceso se aplica repetidamente y para todos los nodos hasta que no haya más ganancias. Esta primera fase del algoritmo se detiene cuando se obtiene un máximo local de modularidad. En la segunda fase, el algoritmo construye una nueva red considerando como nodos las comunidades encontradas en la primera fase. Una vez completada la segunda fase, el algoritmo vuelve a aplicar la primera fase a la red resultante. Estos pasos se repiten hasta que no haya cambios en la red y se obtenga la máxima modularidad.</p>
+<p>Una ventaja del algoritmo es que descubre comunidades de comunidades durante el proceso. Una limitación importante es que tiene tendencia a descubrir comunidades que están internamente desconectadas (mal conectadas) ya que al mover un nodo que ha actuado como un puente entre dos componentes en una comunidad a una nueva comunidad puede desconectar la comunidad anterior. Otra limitación, esta vez desde la perspectiva computacional, es el uso del almacenamiento de la red en la memoria principal.</p>
 </div>
 <div id="representación-con-grafos" class="section level3" number="39.5.3">
 <h3>
 <span class="header-section-number">39.5.3</span> Representación con grafos<a class="anchor" aria-label="anchor" href="#representaci%C3%B3n-con-grafos"><i class="fas fa-link"></i></a>
 </h3>
-<p>Ahora que se ha observado la detección de comunidades se realiza su representación final mediante grafos.</p>
-<p>
-- El siguiente código muestra la red mediante un <strong>grafo de tipo Eigenvector</strong> donde se han detectado mediante este algoritmo tres comunidades. Según este método, no es tan importante que tengas muchos amigos, lo importante es que tus amigos sean muy influyentes (ver Fig. <span class="math inline">\(\ref{fig:grafofacebook8}\)</span>)</p>
-<div class="sourceCode" id="cb582"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cl_g_network</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_leading_eigen.html">leading.eigenvector.community</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cl_g_network</span>, <span class="va">grafo_facebook</span>,</span>
-<span>  edge.arrow.size <span class="op">=</span> <span class="fl">0.25</span>, main <span class="op">=</span></span>
-<span>    <span class="st">"Leading Eigenvector Community"</span>, vertex.size <span class="op">=</span> <span class="fl">50</span></span>
+<p>Una vez detectadas las comunidades, se procede a su representación final mediante grafos.</p>
+<p></p>
+<ul>
+<li>El grafo de tipo centralidad de vector propio (<em>eigencentrality</em>) muestra la existencia de tres comunidades. Según este método, no es tan importante tener muchos amigos, sino que lo importante es que tus amigos sean muy influyentes (véase Fig. <a href="grafos.html#fig:grafo-Betweenness-Walktrap">39.9</a>).</li>
+</ul>
+<div class="sourceCode" id="cb587"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">eigen_grafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/cluster_leading_eigen.html">leading.eigenvector.community</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span></span></code></pre></div>
+<p></p>
+<ul>
+<li>El grafo de tipo centralidad de intermediación (<em>Betweenness</em>), respresentado en la Fig. <a href="grafos.html#fig:grafo-Betweenness-Walktrap">39.9</a> muestra siete comunidades.</li>
+</ul>
+<div class="sourceCode" id="cb588"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">betweenness_grafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/cluster_edge_betweenness.html">edge.betweenness.community</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span></span></code></pre></div>
+<p></p>
+<ul>
+<li>En el grafo de tipo <em>walktrap</em> se pueden observar dos comunidades (véase Fig. <a href="grafos.html#fig:grafo-Betweenness-Walktrap">39.9</a>).</li>
+</ul>
+<div class="sourceCode" id="cb589"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Walktrap_grafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/cluster_walktrap.html">walktrap.community</a></span><span class="op">(</span><span class="va">grafo_facebook</span>, steps <span class="op">=</span> <span class="fl">5</span>, modularity <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># Debe indicarse el largo de la caminata aleatoria, se recomienda usar 5 caminatas.</span></span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, mai <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">eigen_grafo</span>, <span class="va">grafo_facebook</span>, edge.arrow.size <span class="op">=</span> <span class="fl">0.25</span>, vertex.size <span class="op">=</span> <span class="fl">50</span>,  main <span class="op">=</span> <span class="st">" "</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">betweenness_grafo</span>, <span class="va">grafo_facebook</span>, edge.arrow.size <span class="op">=</span> <span class="fl">0.25</span>, vertex.size <span class="op">=</span> <span class="fl">50</span>, main <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">Walktrap_grafo</span>, <span class="va">grafo_facebook</span>, edge.arrow.size <span class="op">=</span> <span class="fl">0.25</span>, vertex.label <span class="op">=</span> <span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, vertex.size <span class="op">=</span> <span class="fl">50</span>, main <span class="op">=</span> <span class="st">" "</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:grafofacebook8"></span>
-<img src="210044_grafos_rrss_files/figure-html/grafofacebook8-1.png" alt="Aplicación de `Igraph` a RRSS" width="60%"><p class="caption">
-Figura 39.8: Aplicación de <code>Igraph</code> a RRSS
-</p>
-</div>
-<p>
-- A continuación el código que muestra la red mediante el <strong>grafo de tipo betweenness</strong> donde en la Fig.<span class="math inline">\(\ref{fig:grafo-Betweenness-Walktrap}\)</span> se observan siete comunidades.</p>
-<div class="sourceCode" id="cb583"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">betweenness_grafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_edge_betweenness.html">edge.betweenness.community</a></span><span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span></span></code></pre></div>
-<p>
-- Ahora se puede observar el código para obtener el <strong>grafo de tipo Walktrap</strong>. Se pueden observar dos comunidades detectadas con <strong>Walktrap</strong>, ver Fig.<span class="math inline">\(\ref{fig:grafo-Betweenness-Walktrap}\)</span></p>
-<div class="sourceCode" id="cb584"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Walktrap_grafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_walktrap.html">walktrap.community</a></span><span class="op">(</span><span class="va">grafo_facebook</span>, steps <span class="op">=</span> <span class="fl">5</span>, modularity <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#Debe indicarse el largo de la caminata aleatoria, se recomienda usar 5 caminatas.</span></span></code></pre></div>
-<div class="sourceCode" id="cb585"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">betweenness_grafo</span>, <span class="va">grafo_facebook</span>, edge.arrow.size <span class="op">=</span> <span class="fl">0.25</span>, vertex.size <span class="op">=</span> <span class="fl">50</span>, main<span class="op">=</span><span class="st">"Grafo Betweenness"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">Walktrap_grafo</span>, <span class="va">grafo_facebook</span>, edge.arrow.size <span class="op">=</span> <span class="fl">0.25</span>,</span>
-<span>vertex.label <span class="op">=</span> <span class="op">(</span><span class="va">grafo_facebook</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, vertex.size <span class="op">=</span> <span class="fl">50</span>, main<span class="op">=</span><span class="st">"Grafo Walktrap"</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:grafo-Betweenness-Walktrap"></span>
-<img src="210044_grafos_rrss_files/figure-html/grafo-Betweenness-Walktrap-1.png" alt="Grafo Betweenness y Walktrap." width="60%"><p class="caption">
-Figura 39.9: Grafo Betweenness y Walktrap.
+<img src="210044_grafos_rrss_files/figure-html/grafo-Betweenness-Walktrap-1.png" alt="De izquierda a derecha: grafo $eigencentrality$, grafo $Betweenness$ y grafo $Walktrap$." width="60%"><p class="caption">
+Figura 39.9: De izquierda a derecha: grafo <span class="math inline">\(eigencentrality\)</span>, grafo <span class="math inline">\(Betweenness\)</span> y grafo <span class="math inline">\(Walktrap\)</span>.
 </p>
 </div>
 </div>
@@ -460,98 +491,95 @@ Figura 39.9: Grafo Betweenness y Walktrap.
 <span class="header-section-number">39.6</span> Entorno social en el universo cinematográfico Marvel<a class="anchor" aria-label="anchor" href="#entorno-social-en-el-universo-cinematogr%C3%A1fico-marvel"><i class="fas fa-link"></i></a>
 </h2>
 <p></p>
-<p>Se va a analizar el Universo Cinematográfico de Marvel como una red social donde cada héroe tiene un grado de relación con otro. Se realiza este estudio utilizando los datos <code>marvel_edges</code> del paquete <code>CDR</code> que contiene dos columnas formateadas para representar la red social del Universo Marvel, donde la primera columna es el nombre de un personaje del Universo cinematográfico Marvel y la segunda el nombre de otro con el que coincide en alguna película, representado cada relación una arista entre dos nodos. Con estos datos se forma el grafo correspondiente a su red social, donde las coincidencias en la misma película entre héroes representan relaciones y cada héroe un nodo. En el siguiente código cargamos el fichero y formamos el <code>grafo_marvel</code>.</p>
-<div class="sourceCode" id="cb586"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">grafo_marvel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph.data.frame</a></span><span class="op">(</span><span class="va">marvel_edges</span>, directed <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<p>En esta sección se analiza el Universo Cinematográfico de Marvel<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;El Universo Cinematográfico de Marvel comprende todas las series, películas, cortometrajes y demás productos audiovisuales creados por Marvel Studios y basados en los personajes y aventuras de los cómics de Marvel.&lt;/p&gt;"><sup>251</sup></a> como una RRSS donde cada héroe tiene un grado de relación con otro. Para ello se utilizan el conjunto de datos <code>marvel_edges</code> del paquete <code>CDR</code>, que contiene dos columnas formateadas para representar la RRSS de Marvel, donde la primera columna es el nombre de un personaje del universo cinematográfico Marvel y la segunda el nombre de otro personaje con el que coincide en alguna película (la relación viene representada por una arista que une los dos nodos). Con estos datos se genera el grafo correspondiente a la RRSS de Marvel, en la cual cada héroe es un nodo y las relaciones son las coincidencias de dichos héroes en la misma película. Con el código que se expone a continuación se carga el fichero y se crea el <code>grafo_marvel</code>.</p>
+<div class="sourceCode" id="cb591"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grafo_marvel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph.data.frame</a></span><span class="op">(</span><span class="va">marvel_edges</span>, directed <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo_marvel</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:marvel1"></span>
-<img src="210044_grafos_rrss_files/figure-html/marvel1-1.png" alt="Grafo original sobre el Universo cinematografico Marvel" width="60%"><p class="caption">
-Figura 39.10: Grafo original sobre el Universo cinematografico Marvel
+<img src="210044_grafos_rrss_files/figure-html/marvel1-1.png" alt="Grafo original sobre el Universo Cinematográfico Marvel." width="60%"><p class="caption">
+Figura 39.10: Grafo original sobre el Universo Cinematográfico Marvel.
 </p>
 </div>
-<p>Son muchas las relaciones mostradas en la <span class="math inline">\(\ref{fig:marvel1}\)</span>, por lo que a continuación se muestran aquellos héroes que tienen dos o más relaciones. Esto crea un grafo más visible, incluido un subgrafo de dos nodos (véase <span class="math inline">\(\ref{fig:grafo-relaciones-comunidades}\)</span>).</p>
-<div class="sourceCode" id="cb587"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">nodos_poca_realacion</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/degree.html">degree</a></span><span class="op">(</span><span class="va">grafo_marvel</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="va">grafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/delete_vertices.html">delete.vertices</a></span><span class="op">(</span><span class="va">grafo_marvel</span>, <span class="va">nodos_poca_realacion</span><span class="op">)</span></span></code></pre></div>
-<p>A continuación, se presenta el número de relaciones que tiene cada nodo, cada héroe, mediante la centralidad de grado en R usando la función degree() del paquete igraph. Se puede apreciar como Iron Man y Capitán América son quienes mayor número de relaciones tiene y por lo tanto quienes más gozan de popularidad e influencia.</p>
-<div class="sourceCode" id="cb588"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">grado_nodos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/degree.html">degree</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span>
-<span><span class="co">#sort(grado_nodos)# descomentar para ver la centralidad de grado de los héroes.</span></span></code></pre></div>
-<p>Ahora, se analizan las comunidades que tiene, identificando cada una con un color distinto. En esta ocasión se utiliza el algoritmo Louvain, se considera
-el algoritmo más popular por su fácil interpretación, flexibilidad, alta calidad de las comunidades y eficiencia en tiempo de ejecución. El resultado podemos verlos en la <span class="math inline">\(\ref{fig:grafo-relaciones-comunidades}\)</span>.</p>
-<div class="sourceCode" id="cb589"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_louvain.html">cluster_louvain</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb590"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo</span>, vertex.label <span class="op">=</span> <span class="fu"><a href="https://r.igraph.org/reference/V.html">V</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, main<span class="op">=</span><span class="st">"Relaciones de héroes"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo</span>, vertex.color <span class="op">=</span> <span class="va">comunidades</span><span class="op">$</span><span class="va">membership</span>, vertex.label <span class="op">=</span> <span class="fu"><a href="https://r.igraph.org/reference/V.html">V</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, main<span class="op">=</span><span class="st">"Comunidades de héroes"</span><span class="op">)</span></span></code></pre></div>
+<p>Como puede apreciarse en la en la Fig. <a href="grafos.html#fig:marvel1">39.10</a>, son muchos los héroes y muchas las relaciones entre ellos, por lo que, a continuación, se seleccionan sólo aquellos héroes que tienen dos o más relaciones. De esta forma se obtiene un grafo más agradable a la vista y más interpretable (véase panel izquierdo de la Fig. <a href="grafos.html#fig:grafo-relaciones-comunidades">39.11</a>, que se acompaña de un gráfico de comunidades en el panel derecho).</p>
+<div class="sourceCode" id="cb592"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">nodos_poca_realacion</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/degree.html">degree</a></span><span class="op">(</span><span class="va">grafo_marvel</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">grafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/delete_vertices.html">delete.vertices</a></span><span class="op">(</span><span class="va">grafo_marvel</span>, <span class="va">nodos_poca_realacion</span><span class="op">)</span></span></code></pre></div>
+<p>En el panel izquierdo de la Fig. <a href="grafos.html#fig:grafo-relaciones-comunidades">39.11</a> se presenta el número de relaciones que tiene cada nodo (cada héroe) mediante la centralidad de grado. Se puede apreciar que Iron Man y Capitán América son quienes mayor número de relaciones tienen y, por lo tanto, quienes gozan de más popularidad e influencia.</p>
+<div class="sourceCode" id="cb593"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grado_nodos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/degree.html">degree</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span>
+<span><span class="co"># sort(grado_nodos) # descomentar para ver la centralidad de grado de los héroes.</span></span></code></pre></div>
+<p>En el panel derecho pueden verse las comunidades formadas, cada una de ellas identificada con un color distinto. Para formar las comunidades se ha utilizado el algoritmo Louvain. El resultado se muestra en la Fig. <a href="grafos.html#fig:grafo-relaciones-comunidades">39.11</a>.</p>
+<div class="sourceCode" id="cb594"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/cluster_louvain.html">cluster_louvain</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo</span>, vertex.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, main <span class="op">=</span> <span class="st">"Relaciones de héroes"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">grafo</span>, vertex.color <span class="op">=</span> <span class="va">comunidades</span><span class="op">$</span><span class="va">membership</span>, vertex.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, main <span class="op">=</span> <span class="st">"Comunidades de héroes"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:grafo-relaciones-comunidades"></span>
 <img src="210044_grafos_rrss_files/figure-html/grafo-relaciones-comunidades-1.png" alt="Grafo de relaciones y comunidades de héroes." width="60%"><p class="caption">
 Figura 39.11: Grafo de relaciones y comunidades de héroes.
 </p>
 </div>
-Por otra parte, se observan las comunalidades, es decir, grupos de personas que tienen algo en común, en este caso héroes que comparten escenas en películas.
-De esta manera recorremos el grafo anterior para mostrar por separado cada una de las comunidades encontradas, rápidamente se observa que la Comunidad 3 es la
-comunidad con más miembros por lo tanto es la comunidad más popular y la que posee un mayor interés compartido.
+En la Fig. <a href="grafos.html#fig:marvel5">39.12</a> se puede apreciar que la comunidad 3 es la que tiene más miembros y, por lo tanto, la más popular y la que más personas incluye con intereses comunes.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:marvel5"></span>
-<img src="img/Comunidades_marvel.png" alt="Distintas comunidades" width="100%"><p class="caption">
-Figura 39.12: Distintas comunidades
+<img src="img/Comunidades_marvel.png" alt="Comunidades." width="100%"><p class="caption">
+Figura 39.12: Comunidades.
 </p>
 </div>
-<div class="sourceCode" id="cb591"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_louvain.html">cluster_louvain</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb596"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/cluster_louvain.html">cluster_louvain</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span>
 <span><span class="va">num_comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">comunidades</span><span class="op">$</span><span class="va">membership</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">num_comunidades</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">nodos_comunidad</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">comunidades</span><span class="op">$</span><span class="va">membership</span> <span class="op">==</span> <span class="va">i</span><span class="op">)</span></span>
-<span>  <span class="va">subgrafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/subgraph.html">induced_subgraph</a></span><span class="op">(</span><span class="va">grafo</span>, <span class="va">nodos_comunidad</span><span class="op">)</span></span>
+<span>  <span class="va">subgrafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/subgraph.html">induced_subgraph</a></span><span class="op">(</span><span class="va">grafo</span>, <span class="va">nodos_comunidad</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>A continuación, el análisis se centra en la comunidad con más relaciones (Fig. @ref{fig:grafo-relaciones-color}). Para ello, se identifica la comunidad más grande y se genera un subgrafo, mediante la función <code><a href="https://r.igraph.org/reference/subgraph.html">induced_subgraph()</a></code> del paquete <code>igraph</code>, para su visualización.</p>
-<div class="sourceCode" id="cb592"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_louvain.html">cluster_louvain</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span>
+<p>Para profundizar en el análisis de la Comunidad 3, se genera un subgrafo con diferentes colores y tamaños, que permite una mejor visualización e interpretación de lo que pasa en la comunidad (panel derecho de la Fig. <a href="grafos.html#fig:grafo-relaciones-color">39.13</a>). Para ello se utiliza la función <code><a href="https://rdrr.io/pkg/igraph/man/subgraph.html">igraph::induced_subgraph()</a></code> para su visualización.</p>
+<div class="sourceCode" id="cb597"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/cluster_louvain.html">cluster_louvain</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span>
 <span><span class="va">tamanos_comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">comunidades</span><span class="op">$</span><span class="va">membership</span><span class="op">)</span></span>
 <span><span class="va">indice_comunidad_max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">tamanos_comunidades</span><span class="op">)</span></span>
 <span><span class="va">nodos_comunidad_max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">comunidades</span><span class="op">$</span><span class="va">membership</span> <span class="op">==</span> <span class="va">indice_comunidad_max</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">subgrafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/subgraph.html">induced_subgraph</a></span><span class="op">(</span><span class="va">grafo</span>, <span class="va">nodos_comunidad_max</span><span class="op">)</span></span></code></pre></div>
-<p>La Fig. @ref{fig:grafo-relaciones-color} muestra el tamaño de los héroes según el número de relaciones y con un color distinto por cada héroe, lo que hace que el gráfico final sea más llamativo y fácil de interpretar.</p>
-<div class="sourceCode" id="cb593"><pre class="downlit sourceCode r">
+<span><span class="va">subgrafo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/subgraph.html">induced_subgraph</a></span><span class="op">(</span><span class="va">grafo</span>, <span class="va">nodos_comunidad_max</span><span class="op">)</span></span></code></pre></div>
+<p>La Fig. <a href="grafos.html#fig:grafo-relaciones-color">39.13</a> muestra el tamaño de los héroes según el número de relaciones y utiliza un color distinto por cada héroe, lo que hace que el gráfico final sea más llamativo y fácil de interpretar.</p>
+<div class="sourceCode" id="cb598"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calcular el grado de cada nodo</span></span>
-<span><span class="va">grados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/degree.html">degree</a></span><span class="op">(</span><span class="va">subgrafo</span><span class="op">)</span></span>
+<span><span class="va">grados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/degree.html">degree</a></span><span class="op">(</span><span class="va">subgrafo</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Ajustar el tamaño de los nodos proporcionalmente a su grado</span></span>
 <span><span class="va">tamaños</span> <span class="op">&lt;-</span> <span class="fl">80</span> <span class="op">*</span> <span class="va">grados</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">grados</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Generar un vector de colores aleatorios</span></span>
-<span><span class="va">colores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/colors.html">colors</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://r.igraph.org/reference/gorder.html">vcount</a></span><span class="op">(</span><span class="va">subgrafo</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb594"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">subgrafo</span>, main<span class="op">=</span><span class="st">"(a)"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">subgrafo</span>, vertex.color <span class="op">=</span> <span class="va">colores</span>, vertex.size <span class="op">=</span> <span class="va">tamaños</span>, main<span class="op">=</span><span class="st">"(b)"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">colores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/colors.html">colors</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/gorder.html">vcount</a></span><span class="op">(</span><span class="va">subgrafo</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">subgrafo</span>, main <span class="op">=</span> <span class="st">"(a)"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">subgrafo</span>, vertex.color <span class="op">=</span> <span class="va">colores</span>, vertex.size <span class="op">=</span> <span class="va">tamaños</span>, main <span class="op">=</span> <span class="st">"(b)"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:grafo-relaciones-color"></span>
-<img src="210044_grafos_rrss_files/figure-html/grafo-relaciones-color-1.png" alt="Grafo estandar con más relaciones (a) y grafo adaptado con color y tamaño (b)" width="60%"><p class="caption">
-Figura 39.13: Grafo estandar con más relaciones (a) y grafo adaptado con color y tamaño (b)
+<img src="210044_grafos_rrss_files/figure-html/grafo-relaciones-color-1.png" alt="(a) Grafo estándar con más relaciones y  (b) grafo adaptado con color y tamaño." width="60%"><p class="caption">
+Figura 39.13: (a) Grafo estándar con más relaciones y (b) grafo adaptado con color y tamaño.
 </p>
 </div>
-<p>Las comunidades pueden ser representadas por otros algoritmos. A continuación se representan los algoritmos ya comentados, Betweenness, el cual es útil cuando los nodos que conectan distintas comunidades son los más importantes y se quiere asegurar que se incorporen en una comunidad y el algoritmo Walktrap, el cual detecta eficazmente comunidades de tamaños similares.</p>
-<div class="sourceCode" id="cb595"><pre class="downlit sourceCode r">
+<p>Las comunidades pueden ser representadas por otros algoritmos. A continuación, se representan las formadas con los algoritmos ya comentados: <code>Betweenness</code>, de utilidad cuando los nodos que conectan distintas comunidades son los más importantes y se quiere asegurar que se incorporen en una comunidad y el <code>Walktrap</code>, que detecta eficazmente comunidades de tamaños similares (Fig. <a href="grafos.html#fig:marvel11">39.14</a>).</p>
+<div class="sourceCode" id="cb600"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># edge_betweenness</span></span>
-<span><span class="va">comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_edge_betweenness.html">cluster_edge_betweenness</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span>
+<span><span class="va">comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/cluster_edge_betweenness.html">cluster_edge_betweenness</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span>
 <span><span class="co"># walktrap</span></span>
-<span><span class="va">comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_walktrap.html">cluster_walktrap</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">comunidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/cluster_walktrap.html">cluster_walktrap</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:marvel11"></span>
-<img src="img/Comunidades_algoritmos_marvel.png" alt="Comunidades según el algoritmo utilizado" width="60%"><p class="caption">
-Figura 39.14: Comunidades según el algoritmo utilizado
+<img src="img/Comunidades_algoritmos_marvel.png" alt="Gráfo de comunidades: algoritmos Betweeness y Walktrap." width="60%"><p class="caption">
+Figura 39.14: Gráfo de comunidades: algoritmos Betweeness y Walktrap.
 </p>
 </div>
 <!-- ## Otras utilidades de los grafos -->
 <!-- Los grafos son estructuras esenciales en la ciencia de datos, fundamentales en redes, pero también tienen otras utilidades en **R**. A modo de ejemplo, se presenta una introducción a una representación espacial donde cada nodo es una ubicación geográfica y cada arista la conexión de proximidad.  -->
-<!-- Mediante el siguiente código, primero, se forma la Fig \ref{fig:gmapaaccidentes1} donde se muestran los tipos de accidente ocurridos en Madrid durante el año 2020 que tiene como relación la zona en la que sucedió, en este caso en "Barajas". Además se añade a las aristas el número de accidentes sucedido por cada tipo. -->
+<!-- Mediante el siguiente código, primero, se forma la Fig fig:gmapaaccidentes1} donde se muestran los tipos de accidente ocurridos en Madrid durante el año 2020 que tiene como relación la zona en la que sucedió, en este caso en "Barajas". Además se añade a las aristas el número de accidentes sucedido por cada tipo. -->
 <!-- ```{r accidentalidad,  fig.cap="Accidentalidad en Barajas", eval =FALSE} -->
 <!-- options(dplyr.summarise.inform = FALSE) # Evita mensaje información dplyr -->
 <!-- datos_accidentalidad_2020 <- accidentes2020_data -->
@@ -647,10 +675,10 @@ Figura 39.14: Comunidades según el algoritmo utilizado
 </h3>
 <p>Este capítulo ha introducido la teoría de grafos y su relación con las RRSS, destacando:</p>
 <ul>
-<li><p>Los conceptos elementales de la teoría de grafos: vértice, arista, gráfico dirigido y no dirigido, grado y camino entre otros.</p></li>
+<li><p>Los conceptos elementales de la teoría de grafos: vértice, arista, gráfo dirigido y no dirigido, grado y camino, entre otros.</p></li>
 <li><p>El procedimiento con <strong>R</strong> para el análisis de grafos a través del paquete <code>igraph</code>, mostrando la estructura necesaria para componer un grafo.</p></li>
 <li><p>El análisis de influencia en un grafo aplicado a RRSS, introduciendo los conceptos de centralidad y comunidad.</p></li>
-<li><p>El análisis del entorno social de los personajes del universo cinematográfico Marvel, aplicando los conocimientos teoricos presentados a lo largo del capítulo.</p></li>
+<li><p>El análisis del entorno social de los personajes del Universo Cinematográfico Marvel, aplicando los conocimientos teóricos presentados a lo largo del capítulo.</p></li>
 </ul>
 </div>
 
@@ -659,14 +687,15 @@ Figura 39.14: Comunidades según el algoritmo utilizado
 
 
 
+
   <div class="chapter-nav">
 <div class="prev"><a href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></div>
 <div class="next"><a href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#grafos"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
-<li><a class="nav-link" href="#introducci%C3%B3n-18"><span class="header-section-number">39.1</span> Introducción</a></li>
+<li><a class="nav-link" href="#introducci%C3%B3n-19"><span class="header-section-number">39.1</span> Introducción</a></li>
 <li><a class="nav-link" href="#teor%C3%ADa-de-grafos"><span class="header-section-number">39.2</span> Teoría de grafos</a></li>
 <li><a class="nav-link" href="#elementos-de-un-grafo"><span class="header-section-number">39.3</span> Elementos de un grafo</a></li>
 <li><a class="nav-link" href="#procedimiento-con-r-el-paquete-igraph"><span class="header-section-number">39.4</span> Procedimiento con R: el paquete igraph</a></li>
@@ -696,7 +725,7 @@ Figura 39.14: Comunidades según el algoritmo utilizado
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

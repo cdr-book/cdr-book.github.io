@@ -6,22 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 8 Integración y limpieza de datos | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
-<meta name="description" content="Jorge Velasco López\(^{a}\) y José-María Montero\(^{b}\) \(^{a}\)Instituto Nacional de Estadística de España \(^{b}\)Universidad de Castilla-La Mancha  8.1 Introducción En los proyectos de ciencia...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="description" content="Jorge Velasco López\(^{a}\) y José-María Montero\(^{b}\) \(^{a}\)Instituto Nacional de Estadística de España\(^{b}\)Universidad de Castilla-La Mancha  8.1 Introducción En los proyectos de ciencia...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 8 Integración y limpieza de datos | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
-<meta property="og:description" content="Jorge Velasco López\(^{a}\) y José-María Montero\(^{b}\) \(^{a}\)Instituto Nacional de Estadística de España \(^{b}\)Universidad de Castilla-La Mancha  8.1 Introducción En los proyectos de ciencia...">
+<meta property="og:description" content="Jorge Velasco López\(^{a}\) y José-María Montero\(^{b}\) \(^{a}\)Instituto Nacional de Estadística de España\(^{b}\)Universidad de Castilla-La Mancha  8.1 Introducción En los proyectos de ciencia...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 8 Integración y limpieza de datos | Fundamentos de ciencia de datos con R">
-<meta name="twitter:description" content="Jorge Velasco López\(^{a}\) y José-María Montero\(^{b}\) \(^{a}\)Instituto Nacional de Estadística de España \(^{b}\)Universidad de Castilla-La Mancha  8.1 Introducción En los proyectos de ciencia...">
+<meta name="twitter:description" content="Jorge Velasco López\(^{a}\) y José-María Montero\(^{b}\) \(^{a}\)Instituto Nacional de Estadística de España\(^{b}\)Universidad de Castilla-La Mancha  8.1 Introducción En los proyectos de ciencia...">
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
-<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -33,7 +34,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -76,13 +77,13 @@
 <li class="book-part">Machine learning supervisado</li>
 <li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
-<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
-<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
 <li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
 <li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
@@ -108,18 +109,15 @@
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
 <li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
-<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
-<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
-<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -132,29 +130,31 @@
 <span class="header-section-number">Capítulo 8</span> Integración y limpieza de datos<a class="anchor" aria-label="anchor" href="#id_130009"><i class="fas fa-link"></i></a>
 </h1>
 <p><em>Jorge Velasco López</em><span class="math inline">\(^{a}\)</span> y <em>José-María Montero</em><span class="math inline">\(^{b}\)</span></p>
-<p><span class="math inline">\(^{a}\)</span>Instituto Nacional de Estadística de España
-<span class="math inline">\(^{b}\)</span>Universidad de Castilla-La Mancha</p>
+<p><span class="math inline">\(^{a}\)</span>Instituto Nacional de Estadística de España<br><span class="math inline">\(^{b}\)</span>Universidad de Castilla-La Mancha</p>
 <div id="introducción-3" class="section level2" number="8.1">
 <h2>
 <span class="header-section-number">8.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-3"><i class="fas fa-link"></i></a>
 </h2>
 <p>En los proyectos de ciencia de datos, generalmente es necesario realizar un <strong>preprocesamiento</strong> (o <strong>preparación</strong>) de los datos antes de iniciar las fases de modelado. Las labores de preprocesamiento son específicas para cada conjunto de datos, para los objetivos del proyecto y para las técnicas de modelización que se van a utilizar. Sin embargo, hay una serie de tareas comunes, como las de <strong>integración</strong> (combinación de datos de distintas fuentes) a partir de los datos en bruto (o sin procesar) y <strong>limpieza</strong> (identificación y corrección de posibles errores en los datos). Otras tareas que se suelen incluir en el proceso de preparación de datos son: la transformación de la variable objetivo, para cambiar su distribución de probabilidad (normalmente para hacerla gaussiana), la transformación de variables predictoras (o clasificadoras, en su caso) (<em>feature engineering</em>), la normalización y la reducción de la dimensionalidad. Estas tareas se abordarán en el Cap. <a href="chap-feature.html#chap-feature">9</a>.
 </p>
-<p>En <strong>R</strong>, existen varios paquetes para llevar a cabo estos trabajos: <code>tidyverse</code>, para la manipulación de ficheros y variables que se han ilustrado en el Cap. <a href="ch-110003.html#ch-110003">3</a>; <code>dlookr</code> <span class="citation">(<a href="referncias.html#ref-staniak2019landscape" role="doc-biblioref">Staniak and Biecek 2019</a>)</span>; <code>validate</code>, <code>errorlocate</code> y <code>dcmodify</code> <span class="citation">(<a href="referncias.html#ref-van2019data" role="doc-biblioref">Loo and Jonge 2019</a>)</span>, para realizar validaciones y transformaciones a los datos; <code>caret</code> <span class="citation">(<a href="referncias.html#ref-kuhn2008building" role="doc-biblioref">Kuhn 2008</a>)</span>, para imputar los datos faltantes o perdidos (<em>missing data</em>; <code>sf</code> <span class="citation">(<a href="referncias.html#ref-pebesma2018simple" role="doc-biblioref">Edzer J. Pebesma et al. 2018</a>)</span>, para el manejo de conjuntos de datos espaciales; y <code>GGally</code> <span class="citation">(<a href="referncias.html#ref-schloerke2021ggally" role="doc-biblioref">Schloerke et al. 2021</a>)</span> y <code>naniar</code> <span class="citation">(<a href="referncias.html#ref-tierney2018expanding" role="doc-biblioref">N. J. Tierney and Cook 2018</a>)</span> para labores de visualización.</p>
+<p>En <strong>R</strong>, existen varios paquetes para llevar a cabo estos trabajos: <code>tidyverse</code>, para la manipulación de ficheros y variables que se han ilustrado en el Cap. <a href="ch-110003.html#ch-110003">3</a>; <code>dlookr</code> <span class="citation">(<a href="cap-fraude.html#ref-staniak2019landscape">Staniak and Biecek 2019</a>)</span>; <code>validate</code>, <code>errorlocate</code> y <code>dcmodify</code> <span class="citation">(<a href="cap-fraude.html#ref-van2019data">Loo and Jonge 2019</a>)</span>, para realizar validaciones y transformaciones a los datos; <code>caret</code> <span class="citation">(<a href="cap-fraude.html#ref-kuhn2008building">Kuhn 2008</a>)</span>, para imputar los datos faltantes o perdidos (<em>missing data</em>); <code>sf</code> <span class="citation">(<a href="#ref-pebesma2018simple"><strong>pebesma2018simple?</strong></a>)</span>, para el manejo de conjuntos de datos espaciales; y <code>GGally</code> <span class="citation">(<a href="cap-fraude.html#ref-schloerke2021ggally">Schloerke et al. 2021</a>)</span> y <code>naniar</code> <span class="citation">(<a href="cap-fraude.html#ref-tierney2018expanding">N. J. Tierney and Cook 2018</a>)</span> para labores de visualización.</p>
 </div>
 <div id="integración-de-datos" class="section level2" number="8.2">
 <h2>
 <span class="header-section-number">8.2</span> Integración de datos <a class="anchor" aria-label="anchor" href="#integraci%C3%B3n-de-datos"><i class="fas fa-link"></i></a>
 </h2>
 <p>La <strong>integración</strong> es un conjunto de procesos técnicos y de negocio que se utilizan para combinar información proveniente de diferentes fuentes. En términos generales, se puede decir que consiste en acceder a los datos desde todas las fuentes y localizaciones, tanto en entorno local, como en la nube o en una combinación de ambos, de modo que los registros de una fuente de datos enlacen con los registros de otra.</p>
-<p>Para ilustrar el proceso de integración, a continuación se integra, por separado,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Podría parecer que lo lógico es integrar todos los ficheros en un sólo conjunto de datos. Sin embargo, en muchas ocasiones es conveniente realizar integraciones parciales de los ficheros, para llevar a cabo distintas tareas en cada una de ellas, o, simplemente, por cuestiones de rendimiento.&lt;/p&gt;"><sup>63</sup></a> el conjunto de datos <code>Madrid_Sale</code> (incluido en el paquete <code>idealista18</code>), que contiene el identificador de las viviendas en venta en el municipio de Madrid y 41 variables relativas a dichos inmuebles (como su antigüedad y precio, por ejemplo) con otros dos conjuntos de datos del mismo paquete: <code>Madrid_POIS</code>, donde se listan, entre otras, las coordenadas de las estaciones de metro de la ciudad de Madrid; y <code>Madrid_Polygons</code>, que contiene los polígonos (en este caso, distritos) del municipio. Ello redundará en un enriquecimiento de los análisis que se lleven a cabo, al disponer en un mismo conjunto de datos un número mayor de variables relativas al problema a solucionar. A modo de ejemplo, la integración de <code>Madrid_Sale</code> con <code>Madrid_POIS</code> permitirá determinar el número de estaciones de metro a menos de 500 metros de la vivienda y la distancia de cada vivienda a la estación de metro más cercana; la integración de <code>Madrid_Sale</code> y <code>Madrid_Polygons</code> permitirá la construcción un mapa de precios medios del metro cuadrado de vivienda por distritos. Ambos ejemplos se ilustrarán con detalle en las dos subsecciones siguientes.</p>
+<p>Para ilustrar el proceso de integración, a continuación se integran, por separado,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Podría parecer que lo lógico es integrar todos los ficheros en un solo conjunto de datos. Sin embargo, en muchas ocasiones es conveniente realizar integraciones parciales de los ficheros, para llevar a cabo distintas tareas en cada una de ellas, o, simplemente, por cuestiones de rendimiento.&lt;/p&gt;"><sup>67</sup></a> el conjunto de datos <code>Madrid_Sale</code> (incluido en el paquete <code>idealista18</code>), que contiene el identificador de las viviendas en venta en el municipio de Madrid, y 41 variables relativas a dichos inmuebles (como su antigüedad y precio, por ejemplo) con otros dos conjuntos de datos del mismo paquete: <code>Madrid_POIS</code>, donde se listan, entre otras, las coordenadas de las estaciones de metro de la ciudad de Madrid; y <code>Madrid_Polygons</code>, que contiene los polígonos (en este caso, distritos) del municipio. Ello redundará en un enriquecimiento de los análisis que se lleven a cabo, al disponer en un mismo conjunto de datos un número mayor de variables relativas al problema a solucionar. A modo de ejemplo, la integración de <code>Madrid_Sale</code> con <code>Madrid_POIS</code> permitirá determinar el número de estaciones de metro a menos de 500 metros de la vivienda y la distancia de cada vivienda a la estación de metro más cercana; la integración de <code>Madrid_Sale</code> y <code>Madrid_Polygons</code> permitirá la construcción de un mapa de precios medios del metro cuadrado de vivienda por distritos. Ambos ejemplos se ilustrarán con detalle en las dos subsecciones siguientes.</p>
 <p>La función <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> permite mostrar la estructura de los tres conjuntos de datos incluidos en el paquete <code>idealista18</code>.</p>
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span>
+<span><span class="co"># install.packages("devtools")                    # descomentar para instalar </span></span>
+<span><span class="co"># devtools::install_github("paezha/idealista18")  # descomentar para instalar</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://paezha.github.io/idealista18/">"idealista18"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/">"sf"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggobi.github.io/ggally/">"GGally"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/choonghyunryu/dlookr/">"dlookr"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://hbiostat.org/R/Hmisc/">"Hmisc"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">Madrid_Sale</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">Madrid_POIS</span><span class="op">)</span></span>
@@ -172,7 +172,7 @@
 <h3>
 <span class="header-section-number">8.2.1</span> Integración de los ficheros <code>Madrid_Sale</code> y <code>Madrid_POIS</code><a class="anchor" aria-label="anchor" href="#integraci%C3%B3n-de-los-ficheros-madrid_sale-y-madrid_pois"><i class="fas fa-link"></i></a>
 </h3>
-<p>Como se avanzó anteriormente, dos interesantes resultados que se podrían obtener mediante la integración de estos conjuntos de datos son: <span class="math inline">\((i)\)</span> la determinación del número de estaciones de metro a menos de 500 metros de la localización de la vivienda de interés, y <span class="math inline">\((ii)\)</span> la distancia a la estación de metro más cercana. Para la integración entre los dos ficheros, se utiliza la función <code><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_join()</a></code>, función de unión para datos espaciales, del paquete <code>sf</code>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Téngase en cuenta que la vivienda es un bien anclado a una localización geográfica.&lt;/p&gt;"><sup>64</sup></a></p>
+<p>Como se avanzó anteriormente, dos interesantes resultados que se podrían obtener mediante la integración de estos conjuntos de datos son: <span class="math inline">\((i)\)</span> la determinación del número de estaciones de metro a menos de 500 metros de la localización de la vivienda de interés, y <span class="math inline">\((ii)\)</span> la distancia a la estación de metro más cercana. Para la integración entre los dos ficheros, se utiliza la función <code><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_join()</a></code>, función de unión para datos espaciales, del paquete <code>sf</code>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Téngase en cuenta que la vivienda es un bien anclado a una localización geográfica.&lt;/p&gt;"><sup>68</sup></a></p>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vivs_madrid</span> <span class="op">&lt;-</span> <span class="va">Madrid_Sale</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_join</a></span><span class="op">(</span><span class="va">Madrid_Polygons</span>, left <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
@@ -181,7 +181,7 @@
 <li>Nombre de la proyección (<code>proj</code>).</li>
 <li>Zona UTM (<code>zone</code>) donde se ubica el conjunto de viviendas.</li>
 <li>Nombre del elipsoide (<code>ellips</code>). La Tierra no es una esfera y tiene accidentes geográficos, por lo cual hay que trabajar con elipsoides y explicitar los parámetros que definen su forma.</li>
-<li>Nombre del datum (<code>datum</code>). Define el origen y la orientación de los ejes de coordenadas, es decir, proporciona la información necesaria para dibujar el sistema de coordenadas en el elipsoide. El World Geodetic System (WGS84) es un standard en la industria a nivel mundial; no obstante, existen algunas variantes locales (la más famosa es el North American Datum (NAD83).</li>
+<li>Nombre del datum (<code>datum</code>). Define el origen y la orientación de los ejes de coordenadas, es decir, proporciona la información necesaria para dibujar el sistema de coordenadas en el elipsoide. El World Geodetic System (WGS84) es un estándar en la industria a nivel mundial; no obstante, existen algunas variantes locales (la más famosa es el North American Datum (NAD83).</li>
 <li>Tipo de unidades (<code>units</code>); en este caso, metros.</li>
 </ul>
 <p>Seguidamente, se indica la distancia (en este caso en metros) que se va a usar como radio en la variable <code>radius_meters</code>. Finalmente, se lleva a cabo un procesamiento específico para datos espaciales: se crea un objeto espacial, se proyecta a plano para pasar de tres a dos dimensiones (hasta ahora se ha trabajado en la representación de la Tierra en tres dimensiones; sin embargo, estamos acostumbrados a ver mapas, es decir, a ver dos dimensiones), se cambia la geometría y, finalmente, se vuelve al sistema de coordenadas no proyectadas.</p>
@@ -210,7 +210,7 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">ASSETID</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>N_METRO_STOPS_500_M <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Al cruzar <code>metro_count</code> con <code>vivs_madrid</code>, se observa que hay casi 25.000 registos que no cruzan (25.000 viviendas que no tienen ninguna estación de metro a menos de 500 metros). En consecuencia, se retiran del análisis puesto el objetivo de la integración de estos dos conjuntos de datos es <span class="math inline">\((i)\)</span> la determinación del número de estaciones de metro a menos de 500 metros de la localización de las viviendas incluidas en el fichero <code>Madrid_Sale</code>.</p>
+<p>Al cruzar <code>metro_count</code> con <code>vivs_madrid</code>, se observa que hay casi 25.000 registos que no cruzan (25.000 viviendas que no tienen ninguna estación de metro a menos de 500 metros). En consecuencia, se retiran del análisis puesto que el objetivo de la integración de estos dos conjuntos de datos es <span class="math inline">\((i)\)</span> la determinación del número de estaciones de metro a menos de 500 metros de la localización de las viviendas incluidas en el fichero <code>Madrid_Sale</code>.</p>
 <div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vivs_madrid</span> <span class="op">&lt;-</span> <span class="va">vivs_madrid</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">metro_count</span>, by <span class="op">=</span> <span class="st">"ASSETID"</span><span class="op">)</span></span></code></pre></div>
@@ -245,14 +245,15 @@
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>tract_area <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="va">WKT</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_join</a></span><span class="op">(</span><span class="va">Madrid_Sale_sf</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">LOCATIONNAME</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>tract_area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">tract_area</span><span class="op">)</span>, preciopm2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">PRICE</span> <span class="op">/</span> <span class="va">CONSTRUCTEDAREA</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>A partir del resultado de esta integración, se construye la Fig. <a href="id_130009.html#fig:madrid">8.1</a>, que muestra un el mapa del precio medio del metro cuadrado de las viviendas a la venta en Madrid, a escala de distrito, lo que da una visión clara de las zonas más o menos económicas.</p>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>tract_area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">tract_area</span><span class="op">)</span>, </span>
+<span>                    preciopm2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">PRICE</span> <span class="op">/</span> <span class="va">CONSTRUCTEDAREA</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>A partir del resultado de esta integración, se construye la Fig. <a href="id_130009.html#fig:madrid">8.1</a>, que muestra un mapa del precio medio del metro cuadrado de las viviendas a la venta en Madrid, a escala de distrito, lo que da una visión clara de las zonas más o menos económicas.</p>
 <div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">Madrid_Sale_Polygons</span><span class="op">[</span><span class="st">"preciopm2"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:madrid"></span>
-<img src="img/madrid33.png" alt="Precio por metro cuadrado de viviendas a la venta en Madrid por distrito" width="60%"><p class="caption">
-Figura 8.1: Precio por metro cuadrado de viviendas a la venta en Madrid por distrito
+<img src="img/madrid33.png" alt="Precio por metro cuadrado de viviendas a la venta en Madrid por distrito." width="60%"><p class="caption">
+Figura 8.1: Precio por metro cuadrado de viviendas a la venta en Madrid por distrito.
 </p>
 </div>
 </div>
@@ -263,11 +264,11 @@ Figura 8.1: Precio por metro cuadrado de viviendas a la venta en Madrid por dist
 </h2>
 <p> </p>
 <p>Es más habitual de lo deseable que algunas variables presenten problemas en la calidad de sus datos. En el Cap. <a href="DGDQM.html#DGDQM">7</a>, se mencionaban una serie de causas y la posibilidad de realizar el perfilado para tener una medición de la calidad de los datos. Si los datos no tienen el nivel de calidad adecuado, deben realizarse tareas de limpieza para transformarlos en datos consistentes, corrigiendo datos incorrectos, corruptos, con formato incorrecto, duplicados o incompletos.</p>
-En la Fig. <a href="id_130009.html#fig:limpieza">8.2</a> se muestra un proceso general de limpieza de datos. Cada rectángulo azul representa datos en un estado determinado, mientras que cada flecha representa las actividades necesarias para pasar de un estado a otro. En el primer estado están los datos tal y como se recogen (<strong>datos en bruto</strong> o <strong>sin procesar</strong>). Pueden carecer de encabezados, contener tipos de datos incorrectos, etiquetas de categoría incorrectas, codificación de caracteres desconocida o inesperada, etc. Una vez realizadas las correcciones necesarias, los datos pueden considerarse <strong>datos técnicamente correctos</strong>. Es decir, en este estado, los datos se pueden leer en un <strong>data.frame</strong> de <strong>R</strong>, con los nombres, tipos y etiquetas correctos. Sin embargo, esto no significa que los valores estén libres de errores o completos. Los <strong>datos consistentes</strong> son aquellos que están preparados para las fases de modelado.
+En la Fig. <a href="id_130009.html#fig:limpieza">8.2</a> se muestra un proceso general de limpieza de datos. Cada rectángulo azul representa datos en un estado determinado, mientras que cada flecha representa las actividades necesarias para pasar de un estado a otro. En el primer estado están los datos tal y como se recogen (<strong>datos en bruto</strong> o <strong>sin procesar</strong>). Pueden carecer de encabezados, contener tipos de datos incorrectos, etiquetas de categoría incorrectas, codificación de caracteres desconocida o inesperada, etc. Una vez realizadas las correcciones necesarias, los datos pueden considerarse <strong>datos técnicamente correctos</strong>. Es decir, en este estado, los datos se pueden leer en un <code>data.frame</code> de <strong>R</strong>, con los nombres, tipos y etiquetas correctos. Sin embargo, esto no significa que los valores estén libres de errores o completos. Los <strong>datos consistentes</strong> son aquellos que están preparados para las fases de modelado.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:limpieza"></span>
-<img src="img/limpieza.png" alt="Flujo del proceso de limpieza de datos" width="80%"><p class="caption">
-Figura 8.2: Flujo del proceso de limpieza de datos
+<img src="img/limpieza.png" alt="Flujo del proceso de limpieza de datos." width="80%"><p class="caption">
+Figura 8.2: Flujo del proceso de limpieza de datos.
 </p>
 </div>
 <p>Si bien las técnicas utilizadas para la limpieza de datos pueden variar según el tipo de datos que se esté procesando, en general, se pueden dividir en cinco grupos:</p>
@@ -333,43 +334,44 @@ Por ejemplo, a continuación se genera el conjunto de datos <code>Madrid_Sale_in
 <span>  <span class="co"># Eliminación de espacios en blanco múltiples</span></span>
 <span>  <span class="va">nuevo_texto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="va">nuevo_texto</span>, <span class="st">"[\\s]+"</span>, <span class="st">" "</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">nuevo_texto</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">Madrid_Polygons</span><span class="op">$</span><span class="va">LOCATIONNAME1</span> <span class="op">&lt;-</span> <span class="fu">limpieza_textos</span><span class="op">(</span>texto <span class="op">=</span> <span class="va">Madrid_Polygons</span><span class="op">$</span><span class="va">LOCATIONNAME</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Madrid_Polygons</span><span class="op">$</span><span class="va">LOCATIONNAME1</span> <span class="op">&lt;-</span> <span class="fu">limpieza_textos</span><span class="op">(</span>texto <span class="op">=</span> <span class="va">Madrid_Polygons</span><span class="op">$</span><span class="va">LOCATIONNAME</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">Madrid_Polygons</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $ LOCATIONNAME &lt;fct&gt; Conde Orgaz-Piovera, Pinar del Rey, Timón, Palacio,</span></span>
 <span><span class="co">#&gt; ...</span></span>
 <span><span class="co">#&gt; $ LOCATIONNAME1 &lt;chr&gt; "conde orgaz piovera", "pinar del rey", "timón",</span></span></code></pre></div>
 </div>
 </div>
-<div id="eliminación-de-observaciones-duplicadas-o-irrelevantes." class="section level3" number="8.3.2">
+<div id="eliminación-de-observaciones-duplicadas-o-irrelevantes" class="section level3" number="8.3.2">
 <h3>
-<span class="header-section-number">8.3.2</span> Eliminación de observaciones duplicadas o irrelevantes.<a class="anchor" aria-label="anchor" href="#eliminaci%C3%B3n-de-observaciones-duplicadas-o-irrelevantes."><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3.2</span> Eliminación de observaciones duplicadas o irrelevantes<a class="anchor" aria-label="anchor" href="#eliminaci%C3%B3n-de-observaciones-duplicadas-o-irrelevantes"><i class="fas fa-link"></i></a>
 </h3>
 <p>
 Las <strong>observaciones duplicadas</strong> aparecen frecuentemente durante la recogida de datos e integración de las bases de datos, por lo que dichas duplicidades deben ser eliminadas en esta fase de limpieza.</p>
 <p>A continuación, se usa la función <code><a href="https://choonghyunryu.github.io/dlookr/reference/overview.html">overview()</a></code> del paquete <code>dlookr</code> sobre el conjunto de datos <code>Madrid_Sale_int</code>, obtenido en la Sec. <a href="id_130009.html#madridsaleint">8.3.1.1</a>.</p>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://choonghyunryu.github.io/dlookr/reference/overview.html">overview</a></span><span class="op">(</span><span class="va">Madrid_Sale_int</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     division               metrics    value</span></span>
-<span><span class="co">#&gt; 1       size          observations    70059</span></span>
-<span><span class="co">#&gt; 2       size             variables       46</span></span>
-<span><span class="co">#&gt; 3       size                values  3222714</span></span>
-<span><span class="co">#&gt; 4       size           memory size 21931336</span></span>
-<span><span class="co">#&gt; 5 duplicated duplicate observation        0</span></span>
-<span><span class="co">#&gt; 6    missing  complete observation    26394</span></span>
-<span><span class="co">#&gt; 7    missing   missing observation    43665</span></span>
-<span><span class="co">#&gt; 8    missing     missing variables        7</span></span>
-<span><span class="co">#&gt; 9    missing        missing values    48653</span></span></code></pre></div>
-<p>Entre otra información, como la existencia de valores faltantes (<em>missing</em>) en siete variables, se puede observar que no hay valores duplicados después del proceso de integración. En caso contrario, se podrían usar las funciones <code>base</code> de <strong>R</strong> para <span class="math inline">\((i)\)</span> localizarlos, con <code><a href="https://rdrr.io/r/base/duplicated.html">duplicated()</a></code>, y <span class="math inline">\((ii)\)</span> extraer los registros únicos, con <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code>. También se puede usar <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code>, del paquete <code>dplyr</code>, para eliminar los registros duplicados de un <em>data.frame</em>.</p>
+<span><span class="co">#&gt;      division                  metrics         value</span></span>
+<span><span class="co">#&gt; 1        size             observations         70059</span></span>
+<span><span class="co">#&gt; 2        size                variables            46</span></span>
+<span><span class="co">#&gt; 3        size                   values       3222714</span></span>
+<span><span class="co">#&gt; 4        size              memory size      21931336</span></span>
+<span><span class="co">#&gt; 5  duplicated    duplicate observation             0</span></span>
+<span><span class="co">#&gt; 6     missing     complete observation         26394</span></span>
+<span><span class="co">#&gt; 7     missing      missing observation         43665</span></span>
+<span><span class="co">#&gt; 8     missing        missing variables             7</span></span>
+<span><span class="co">#&gt; 9     missing           missing values         48653</span></span></code></pre></div>
+<p>Entre otra información, como la existencia de valores faltantes (<em>missing</em>) en siete variables, se puede observar que no hay valores duplicados después del proceso de integración. En caso contrario, se podrían usar las funciones <code>base</code> de <strong>R</strong> para <span class="math inline">\((i)\)</span> localizarlos, con <code><a href="https://rdrr.io/r/base/duplicated.html">duplicated()</a></code>, y <span class="math inline">\((ii)\)</span> extraer los registros únicos, con <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code>. También se puede usar <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code>, del paquete <code>dplyr</code>, para eliminar los registros duplicados de un <code>data.frame</code>.</p>
 <p>Las <strong>observaciones irrelevantes</strong> son aquellas que no encajan en el problema específico que se está analizando. Por ejemplo, si el objeto de estudio son datos de Madrid, se pueden eliminar las observaciones que no correspondan a dicho municipio.
 A continuación, se puede advertir que todas las observaciones de <code>Madrid_Polygons$LOCATIONID1</code> empiezan por el código correspondiente a Madrid (<code>0-EU-ES-28</code>) y, por tanto, no es necesario filtrar registros.</p>
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">Madrid_Polygons</span><span class="op">$</span><span class="va">LOCATIONID1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 0-EU-ES-28 </span></span>
-<span><span class="co">#&gt;        135</span></span></code></pre></div>
-<p>En caso necesario, se pueden filtrar todos los registros de Madrid en el objeto <code>Madrid_Polygons1</code> haciendo:</p>
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">Madrid_Polygons</span><span class="op">$</span><span class="va">LOCATIONID1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; 0-EU-ES-28</span></span>
+<span><span class="co">#&gt; 135</span></span></code></pre></div>
+<p>En caso necesario, se pueden filtrar todos los registros de Madrid en el objeto <code>Madrid_Polygons1</code> haciendo:</p>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Madrid_Polygons1</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">Madrid_Polygons</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">Madrid_Polygons</span><span class="op">$</span><span class="va">LOCATIONID</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span> <span class="op">!=</span> <span class="st">"0-EU-ES-28"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -380,11 +382,11 @@ A continuación, se puede advertir que todas las observaciones de <code>Madrid_P
 <p>
 A menudo, hay observaciones distintas que, aparentemente, no encajan en los datos que se están analizando. Si existe una razón coherente para eliminar un valor atípico (un <em>outlier</em>), como una entrada de datos incorrecta, hacerlo mejorará el rendimiento que proporcionan los datos con los que se está trabajando. Sin embargo, el hecho de que exista un valor atípico no significa que sea incorrecto. Si un valor atípico resulta ser irrelevante para el análisis, o es un error, debe considerarse su eliminación.
 El número de posibles valores atípicos en el conjunto de datos <code>Madrid_Sale_red</code> se determina con el siguiente código, que avisa de la posibilidad de que existan para cada una de las variables.</p>
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://choonghyunryu.github.io/dlookr/reference/diagnose_numeric.data.frame.html">diagnose_numeric</a></span><span class="op">(</span><span class="va">Madrid_Sale_red</span><span class="op">)</span></span></code></pre></div>
-<p>Otra manera de localizar datos atípicos es a través de la <strong>visualización</strong>. Por ejemplo, en la Fig. <a href="id_130009.html#fig:idealistagraf1">8.3</a> se relaciona el precio de la vivienda por metro cuadrado con su localización, y se observa que la zona más cara es Recoletos y la más barata es San Cristobal. La simple observación aconsejaría un análisis de los casos extremos (muy baratos o caros en cada uno de los distritos).
-</p>
 <div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://choonghyunryu.github.io/dlookr/reference/diagnose_numeric.data.frame.html">diagnose_numeric</a></span><span class="op">(</span><span class="va">Madrid_Sale_red</span><span class="op">)</span></span></code></pre></div>
+<p>Otra manera de localizar datos atípicos es a través de la <strong>visualización</strong>. Por ejemplo, en la Fig. <a href="id_130009.html#fig:idealistagraf1">8.3</a> se relaciona el precio de la vivienda por metro cuadrado con su localización, y se observa que la zona más cara es Recoletos y la más barata es San Cristóbal. La simple observación aconsejaría un análisis de los casos extremos (muy baratos o caros en cada uno de los distritos).
+</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">Madrid_Sale_int</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">LOCATIONNAME</span>, <span class="va">PRICE</span> <span class="op">/</span> <span class="va">CONSTRUCTEDAREA</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">PRICE</span> <span class="op">/</span> <span class="va">CONSTRUCTEDAREA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span>, vjust <span class="op">=</span> <span class="fl">0.5</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -395,33 +397,33 @@ El número de posibles valores atípicos en el conjunto de datos <code>Madrid_Sa
 Figura 8.3: Precio medio del metro cuadrado por distritos
 </p>
 </div>
-<p>Los box-plots y gráficos de dispersión de variables, para las categorías dadas de otra, así como las correlaciones entre dichas variables, también pueden utilizarse para detectar valores atípicos. Por ejemplo, se puede considerar la relación del precio del metro cuadrado de la vivienda con otras variables, como la superficie construida, la distancia al metro y el número de habitaciones. Para ello, primeramente se crea el conjunto de datos <code>Madrid_Sale_red2</code> con la variable derivada <code>price_bin</code> (de tipo factor), cuyas categorías o clases (o <em>bins</em>) son los cuartiles de la variable <code>PRICE</code>.</p>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Madrid_Sale_red2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">Madrid_Sale_int</span>, price_bin <span class="op">=</span> <span class="fu">cut2</span><span class="op">(</span><span class="va">PRICE</span>, g<span class="op">=</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">price_bin</span>, <span class="va">CONSTRUCTEDAREA</span>, <span class="va">DISTANCE_TO_METRO</span>, <span class="va">ROOMNUMBER</span>, <span class="va">LOCATIONNAME</span><span class="op">)</span></span></code></pre></div>
-<p>A partir del conjunto de datos <code>Madrid_Sale_red2</code> se puede crear construir la Fig. <a href="id_130009.html#fig:idealistagraf2">8.4</a>.</p>
+<p>Los <em>box-plots</em> y gráficos de dispersión de variables, para las categorías dadas de otra, así como las correlaciones entre dichas variables, también pueden utilizarse para detectar valores atípicos. Por ejemplo, se puede considerar la relación del precio del metro cuadrado de la vivienda con otras variables, como la superficie construida, la distancia al metro y el número de habitaciones. Para ello, primeramente se crea el conjunto de datos <code>Madrid_Sale_red2</code> con la variable derivada <code>price_bin</code> (de tipo factor), cuyas categorías o clases (o <em>bins</em>) son los cuartiles de la variable <code>PRICE</code>.</p>
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Madrid_Sale_red2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">Madrid_Sale_int</span>, price_bin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/cut2.html">cut2</a></span><span class="op">(</span><span class="va">PRICE</span>, g<span class="op">=</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">price_bin</span>, <span class="va">CONSTRUCTEDAREA</span>, <span class="va">DISTANCE_TO_METRO</span>, <span class="va">ROOMNUMBER</span>, <span class="va">LOCATIONNAME</span><span class="op">)</span></span></code></pre></div>
+<p>A partir del conjunto de datos <code>Madrid_Sale_red2</code> se puede crear la Fig. <a href="id_130009.html#fig:idealistagraf2">8.4</a>.</p>
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span><span class="va">Madrid_Sale_red2</span>,</span>
 <span>  column <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">price_bin</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
 <span>  upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="fu"><a href="https://ggobi.github.io/ggally/reference/wrap.html">wrap</a></span><span class="op">(</span><span class="st">"cor"</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:idealistagraf2"></span>
-<img src="img/idealistagraf2.png" alt="Distribuciones y correlaciones cruzadas algunas variables de Madrid-Sale-red " width="60%"><p class="caption">
-Figura 8.4: Distribuciones y correlaciones cruzadas algunas variables de Madrid-Sale-red
+<img src="img/idealistagraf2.png" alt="Distribuciones y correlaciones cruzadas algunas variables de $Madrid-Sale-red$." width="60%"><p class="caption">
+Figura 8.4: Distribuciones y correlaciones cruzadas algunas variables de <span class="math inline">\(Madrid-Sale-red\)</span>.
 </p>
 </div>
-<p>En dicha figura, la diagonal descendente muestra la función de cuantía (para precio medio del metro cuadrado) y las funciones de densidad de <code>CONSTRUCTEDAREA</code>, <code>DISTANCE_TO_METRO</code> y <code>ROOMNUMBER</code>. Los tres últimos paneles de la primera columna muestran los histogramas de las estas tres últimas variables. Los tres últimos paneles de la primera fila, proporcionan los box-plots de estas variables para los cuatro <em>bins</em> de la variable <code>price_bin</code> (primer cuartil en rosa, segundo en verde, tercero en azul y cuarto en morado). Los paneles del triángulo lateral derecho muestran sus correlaciones, mientras que los del triángulo inferior izquierdo presentan sus gráficos de dispersión. Dicho lo anterior, por ejemplo, en la primera fila se observa que las viviendas más económicas suelen tener menos superficie construida (segunda columna), que suelen estar ligeramente más alejadas del metro (tercera) y suelen tener menos habitaciones. Sin embargo, se aprecian algunas cuestiones que llaman la atención. Por ejemplo, que hay una viviendas muy alejadas (a casi 400 kilómetros) de la estación de metro más cercana, lo cual distorsiona algunas de las figuras e impide ver la información que contienen; o que hay viviendas cuyo precio por metro cuadrado pertenece a la primera categoría de la variable <code>price_bin</code> (las más económicas) con muchas habitaciones o con mucha superficie construida. A continuación, por ejemplo, se filtran las viviendas con 30 o más habitaciones (aunque la lógica sería válida para muchas menos). Se observa que la superficie construida es de menos de 120 metros lo que, sin mayor conocimiento del conjunto de datos, no parece ser coherente y podrían excluirse (filtrarse) del conjunto de datos, o tratar de recabar la información correcta.</p>
-<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<p>En dicha figura, la diagonal descendente muestra la función de cuantía (para precio medio del metro cuadrado) y las funciones de densidad de <code>CONSTRUCTEDAREA</code>, <code>DISTANCE_TO_METRO</code> y <code>ROOMNUMBER</code>. Los tres últimos paneles de la primera columna muestran los histogramas de estas tres últimas variables. Los tres últimos paneles de la primera fila proporcionan los box-plots de estas variables para los cuatro <em>bins</em> de la variable <code>price_bin</code> (primer cuartil en rosa, segundo en verde, tercero en azul y cuarto en morado). Los paneles del triángulo lateral derecho muestran sus correlaciones, mientras que los del triángulo inferior izquierdo presentan sus gráficos de dispersión. Dicho lo anterior, por ejemplo, en la primera fila se observa que las viviendas más económicas suelen tener menos superficie construida (segunda columna), que suelen estar ligeramente más alejadas del metro (tercera) y suelen tener menos habitaciones. Sin embargo, se aprecian algunas cuestiones que llaman la atención. Por ejemplo, que hay una vivienda muy alejadas (a casi 400 kilómetros) de la estación de metro más cercana, lo cual distorsiona algunas de las figuras e impide ver la información que contienen; o que hay viviendas cuyo precio por metro cuadrado pertenece a la primera categoría de la variable <code>price_bin</code> (las más económicas) con muchas habitaciones o con mucha superficie construida. A continuación, por ejemplo, se filtran las viviendas con 30 o más habitaciones (aunque la lógica sería válida para muchas menos). Se observa que la superficie construida es de menos de 120 metros lo que, sin mayor conocimiento del conjunto de datos, no parece ser coherente y podrían excluirse (filtrarse) del conjunto de datos, o tratar de recabar la información correcta.</p>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Madrid_Sale_red2</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">price_bin</span> <span class="op">==</span> <span class="st">"[ 21000, 168000)"</span>, <span class="va">ROOMNUMBER</span> <span class="op">&gt;</span> <span class="fl">30</span><span class="op">)</span></span>
-<span><span class="co">#&gt;          price_bin CONSTRUCTEDAREA DISTANCE_TO_METRO ROOMNUMBER LOCATIONNAME</span></span>
-<span><span class="co">#&gt; 1 [ 21000, 168000)              90         0.3826137         33  Almendrales</span></span></code></pre></div>
+<span><span class="co">#&gt;            price_bin CONSTRUCTEDAREA DISTANCE_TO_METRO ROOMNUMBER LOCATIONNAME</span></span>
+<span><span class="co">#&gt;   1 [ 21000, 168000)              90         0.3826137         33 Almendrales</span></span></code></pre></div>
 <!-- ::: {.infobox data-latex=""} -->
 <!-- **Nota** -->
-<p>Finalmente, detectados los valores atípicos, por cualquiera de los procedimientos anteriormente expuestos, el paquete <code>dlookr</code>, a través de la función <code><a href="https://choonghyunryu.github.io/dlookr/reference/imputate_outlier.html">imputate_outlier()</a></code>, permite llevar a cabo sofisticadas imputaciones de los mismos, si bien sólo en el caso variables numéricas. Los métodos de imputación que se contemplan son: media, mediana, moda y <em>capping</em> (imputar los valores atípicos superiores con el percentil 95, y los inferiores con el percentil 5). Por ejemplo, se podría imputar la variable <code>CONSTRUCTEDAREA_imp</code> a partir de <code>CONSTRUCTEDAREA</code> con el método media (<em>mean</em>): <code>CONSTRUCTEDAREA_imp &lt;- imputate_outlier(Madrid_Sale_red2, CONSTRUCTEDAREA, method = "mean")</code>.
+<p>Finalmente, detectados los valores atípicos, por cualquiera de los procedimientos anteriormente expuestos, el paquete <code>dlookr</code>, a través de la función <code><a href="https://choonghyunryu.github.io/dlookr/reference/imputate_outlier.html">imputate_outlier()</a></code>, permite llevar a cabo sofisticadas imputaciones de los mismos, si bien solo en el caso de variables numéricas. Los métodos de imputación que se contemplan son: media, mediana, moda y <em>capping</em> (imputar los valores atípicos superiores con el percentil 95, y los inferiores con el percentil 5). Por ejemplo, se podría imputar la variable <code>CONSTRUCTEDAREA_imp</code> a partir de <code>CONSTRUCTEDAREA</code> con el método media (<em>mean</em>): <code>CONSTRUCTEDAREA_imp &lt;- imputate_outlier(Madrid_Sale_red2, CONSTRUCTEDAREA, method = "mean")</code>.
 <!-- ::: --></p>
 <p>Otra opción es poner los valores atípicos como valores no disponibles (<em>not available</em>, <code>NA</code>) y proceder a imputar dichos <code>NA</code> tal y como se muestra en el epígrafe siguiente.</p>
-<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Madrid_Sale_red2</span><span class="op">$</span><span class="va">ROOMNUMBER</span><span class="op">[</span><span class="va">Madrid_Sale_red2</span><span class="op">$</span><span class="va">ROOMNUMBER</span> <span class="op">&gt;=</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">Madrid_Sale_red2</span><span class="op">$</span><span class="va">price_bin</span> <span class="op">==</span> <span class="st">"[ 21000, 168000)"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
 </div>
 <div id="gestión-de-datos-faltantes-missing" class="section level3" number="8.3.4">
@@ -429,12 +431,12 @@ Figura 8.4: Distribuciones y correlaciones cruzadas algunas variables de Madrid-
 <span class="header-section-number">8.3.4</span> Gestión de datos faltantes (<em>missing</em>)<a class="anchor" aria-label="anchor" href="#gesti%C3%B3n-de-datos-faltantes-missing"><i class="fas fa-link"></i></a>
 </h3>
 <p>
-Los datos pueden faltar por multitud de razones, aunque generalmente se suelen agrupar en dos categorías: <strong>valores faltantes informativos</strong> <span class="citation">(<a href="referncias.html#ref-kuhn2013applied" role="doc-biblioref">Kuhn, Johnson, et al. 2013</a>)</span> y <strong>valores faltantes aleatorios</strong> <span class="citation">(<a href="referncias.html#ref-little2019statistical" role="doc-biblioref">Little and Rubin 2019</a>)</span>. Los informativos implican una causa estructural, ya sea por deficiencias en la forma en que se recopilaron los datos o por anomalías en el entorno de observación. Los aleatorios son aquellos que tienen lugar independientemente del proceso de recopilación de datos.</p>
+Los datos pueden faltar por multitud de razones, aunque generalmente se suelen agrupar en dos categorías: <strong>valores faltantes informativos</strong> <span class="citation">(<a href="cap-fraude.html#ref-kuhn2013applied">Kuhn and Johnson 2013</a>)</span> y <strong>valores faltantes aleatorios</strong> <span class="citation">(<a href="cap-fraude.html#ref-little2019statistical">Little and Rubin 2019</a>)</span>. Los informativos implican una causa estructural, ya sea por deficiencias en la forma en que se recopilaron los datos o por anomalías en el entorno de observación. Los aleatorios son aquellos que tienen lugar independientemente del proceso de recopilación de datos.</p>
 <p>Dependiendo de si los valores faltantes son de uno u otro tipo, se procederá de una u otra manera. A los informativos, en general, se les puede asignar un valor concreto (por ejemplo,
-“Ninguno”), ya que este valor puede afectar a los resultados de las predicciones. Los aleatorios pueden manejarse mediante la eliminación o la imputación. Además, los diferentes algoritmos de aprendizaje automático manejan la falta de información de manera diferente. De hecho, la mayoría de los algoritmos no incorporan mecanismos para manejarlos (por ejemplo, modelos lineales generalizados y derivados, redes neuronales y <em>support vector machine</em>) y, por lo tanto, requieren que se traten previamente. Sólo unos pocos modelos (principalmente basados en árboles) tienen procedimientos incorporados para tratar los valores faltantes.</p>
+“Ninguno”), ya que este valor puede afectar a los resultados de las predicciones. Los aleatorios pueden manejarse mediante la eliminación o la imputación. Además, los diferentes algoritmos de aprendizaje automático manejan la falta de información de manera diferente. De hecho, la mayoría de los algoritmos no incorporan mecanismos para manejarlos (por ejemplo, modelos lineales generalizados y derivados, redes neuronales y <em>support vector machine</em>) y, por lo tanto, requieren que se traten previamente. Solo unos pocos modelos (principalmente basados en árboles) tienen procedimientos incorporados para tratar los valores faltantes.</p>
 <p>Como se avanzó anteriormente, en <strong>R</strong>, los valores nulos se representan con el símbolo <code>NA</code>. Es importante distinguirlos de los valores indefinidos (p. ej., dividir entre cero), que se representan con el símbolo <code>NaN</code> (<em>Not a Number</em>).
 Para visualizar los patrones de datos <em>faltantes</em> de la variable <code>price_bin</code> del conjunto de datos <code>Madrid_Sale_red2</code>, se ejecuta el siguiente código.</p>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/njtierney/naniar">"naniar"</a></span><span class="op">)</span></span>
 <span><span class="fu">gg_miss_fct</span><span class="op">(</span>x <span class="op">=</span> <span class="va">`Madrid_Sale_red2`</span>, fct <span class="op">=</span> <span class="va">price_bin</span><span class="op">)</span></span></code></pre></div>
 <!-- # También puede visualizarse de otra manera con la siguiente opción -->
@@ -442,23 +444,23 @@ Para visualizar los patrones de datos <em>faltantes</em> de la variable <code>pr
 En la Fig. <a href="id_130009.html#fig:missing1">8.5</a> se puede observar claramente que hay datos faltantes en la variable <code>LOCATIONNAME</code>, sobre todo en los dos primeros cuartiles (<em>bins</em>). Concretamente, hay 42 valores faltantes. No obstante, aunque el degradado del color morado apenas permite apreciarlo, también hay un valor faltantes en <code>ROOMNUMBER</code>.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:missing1"></span>
-<img src="img/missing1.png" alt="Visualización de valores faltantes" width="60%"><p class="caption">
-Figura 8.5: Visualización de valores faltantes
+<img src="img/missing1.png" alt="Visualización de valores faltantes." width="60%"><p class="caption">
+Figura 8.5: Visualización de valores faltantes.
 </p>
 </div>
 <p>La gestión de los valores faltantes debe hacerse considerando la problemática que se quiera resolver. Una primera opción a considerar sería excluirlos, si bien se estaría eliminando información. Para filtrar los registros faltantes, se podría utilizar la función <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code>. En el caso de <code>ROOMNUMBER</code>:</p>
-<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Madrid_Sale_red3</span> <span class="op">&lt;-</span> <span class="va">Madrid_Sale_red2</span></span>
 <span><span class="va">Madrid_Sale_red3</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">ROOMNUMBER</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>También se puede optar por reemplazarlos, por ejemplo por un 0, de la siguiente manera:</p>
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Madrid_Sale_red3</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Madrid_Sale_red3</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
 <span><span class="co"># También puede usarse la función `replace_na()`, que sustituye los valores perdidos en cada variable por el valor especificado.</span></span></code></pre></div>
 <p>No obstante, estas dos opciones no son acciones recomendables en primera instancia, porque eliminar los registros con valores faltantes, o introducir valores que podrían no respetar la semántica de los datos, puede ocasionar un alto impacto negativo en los niveles globales de calidad de datos del conjunto de datos.</p>
 <p>Se puede ir más allá de la eliminación de valores faltantes. A través de diversos métodos se pueden imputar valores que, con mayor o menor probabilidad, podrían ser los que realmente correspondieran a estos valores faltantes. Estos métodos se conocen como <strong>métodos de imputación de valores</strong>. Para imputar valores faltantes se pueden usar diversas alternativas, como la función <code><a href="https://rdrr.io/pkg/caret/man/preProcess.html">preProcess()</a></code> del paquete <code>caret</code> o la función <code><a href="https://choonghyunryu.github.io/dlookr/reference/imputate_na.html">imputate_na()</a></code> del paquete <code>dlookr</code>.
 A continuación, se imputan los valores faltantes del conjunto de datos <code>Madrid_Sale_red2</code> con dos métodos. En primer lugar, con el algoritmo de KNN (<span class="math inline">\(k\)</span> vecinos más cercanos), que sustituye el valor faltante por la media de los valores de los <span class="math inline">\(k\)</span> vecinos más próximos. Después de realizar el preprocesamiento, se comprueba que las imputaciones han sido realizadas.</p>
-<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/topepo/caret/">"caret"</a></span><span class="op">)</span></span>
 <span><span class="co"># Se realiza el preprocesamiento:</span></span>
 <span><span class="va">pre_knn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/preProcess.html">preProcess</a></span><span class="op">(</span><span class="va">Madrid_Sale_red2</span>, method <span class="op">=</span> <span class="st">"knnImpute"</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
@@ -466,8 +468,8 @@ A continuación, se imputan los valores faltantes del conjunto de datos <code>Ma
 <span><span class="va">imputed_knn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">pre_knn</span>, <span class="va">Madrid_Sale_red2</span><span class="op">)</span></span>
 <span><span class="co"># Se comprueba que se ha imputado el valor faltante de la variable ROOMNUMBER</span></span>
 <span><span class="fu"><a href="https://choonghyunryu.github.io/dlookr/reference/diagnose.data.frame.html">diagnose</a></span><span class="op">(</span><span class="va">imputed_knn</span><span class="op">)</span></span></code></pre></div>
-<p>A continuación, la imputación se realiza con la mediana (que suele ser preferible a imputar la media, puesto que el promedio puede verse afectado por outliers).</p>
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<p>A continuación, la imputación se realiza con la mediana (que suele ser preferible a imputar la media, puesto que el promedio puede verse afectado por <em>outliers</em>).</p>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se realiza el preprocesamiento:</span></span>
 <span><span class="va">pre_median</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/preProcess.html">preProcess</a></span><span class="op">(</span><span class="va">Madrid_Sale_red2</span>, method <span class="op">=</span> <span class="st">"medianImpute"</span><span class="op">)</span></span>
 <span><span class="co"># Se obtienen los datos</span></span>
@@ -476,7 +478,7 @@ A continuación, se imputan los valores faltantes del conjunto de datos <code>Ma
 <span><span class="fu"><a href="https://choonghyunryu.github.io/dlookr/reference/diagnose.data.frame.html">diagnose</a></span><span class="op">(</span><span class="va">imputed_median</span><span class="op">)</span></span></code></pre></div>
 <div class="infobox">
 <p><strong>Nota</strong></p>
-<p>El paquete <code>dlookr</code>, a través de la función <code><a href="https://choonghyunryu.github.io/dlookr/reference/imputate_na.html">imputate_na()</a></code>, permite imputar valores faltantes. El predictor admite variables numéricas y categóricas. Los métodos que utiliza son: para numéricas <code>media, moda, KNN, rpart</code> y <code>mice</code>); y para categóricas: <code>mode, rpart</code> y <code>mica</code>.
+<p>El paquete <code>dlookr</code>, a través de la función <code><a href="https://choonghyunryu.github.io/dlookr/reference/imputate_na.html">imputate_na()</a></code>, permite imputar valores faltantes. El predictor admite variables numéricas y categóricas. Los métodos que utiliza son: para numéricas <code>media, moda, KNN, rpart</code> y <code>mice</code>; y para categóricas: <code>mode, rpart</code> y <code>mica</code>.
 El paquete <code>recipes</code> también es recomendable. Por ejemplo, para la imputación de los valores faltantes con la media de la variable se usaría <code>step_meanimpute(all_numeric())</code>.</p>
 </div>
 </div>
@@ -485,19 +487,19 @@ El paquete <code>recipes</code> también es recomendable. Por ejemplo, para la i
 <span class="header-section-number">8.3.5</span> Validación y control de calidad<a class="anchor" aria-label="anchor" href="#validaci%C3%B3n-y-control-de-calidad"><i class="fas fa-link"></i></a>
 </h3>
 <p>
-Al final del proceso de limpieza de datos, éstos deberían ser consistentes y seguir las reglas apropiadas para su campo de negocio. De no ser así, los modelos que estimen en base a ellos no representarán convenientemente la realidad objeto de estudio y las conclusiones que se obtengan de dichos modelos no serán de utilidad para dicha realidad.</p>
+Al final del proceso de limpieza de datos, éstos deberían ser consistentes y seguir las reglas apropiadas para su campo de negocio. De no ser así, los modelos que se estimen en base a ellos no representarán convenientemente la realidad objeto de estudio y las conclusiones que se obtengan de dichos modelos no serán de utilidad para dicha realidad.</p>
 <p>La verificación de si los datos son o no consistentes y si siguen o no las reglas del campo de negocio del cual proceden, se puede llevar a cabo con el paquete <code>tidyverse</code>, que permite hacer selecciones, filtrados o tablas de frecuencias, entre otras acciones. A modo de ejemplo, en el caso del precio medio del metro cuadrado de los distritos de la ciudad de Madrid, se puede usar la función <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> para obtener la distribución de frecuencias de la variable <code>METRO_STOP_MASCERCANO_DISTANCIA</code> y comprobar si es consistente con el conocimiento que se tiene de esa variable y del conjunto de datos. Se muestran las distancias a la estación más cercana para las viviendas correspondientes a los seis primeros registros.</p>
-<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">Madrid_Sale_red</span><span class="op">)</span>, <span class="va">METRO_STOP_MASCERCANO_DISTANCIA</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   METRO_STOP_MASCERCANO_DISTANCIA n</span></span>
-<span><span class="co">#&gt; 1                        1.413845 1</span></span>
-<span><span class="co">#&gt; 2                        1.414032 1</span></span>
-<span><span class="co">#&gt; 3                        2.586694 1</span></span>
-<span><span class="co">#&gt; 4                        3.156593 1</span></span>
-<span><span class="co">#&gt; 5                        4.013776 1</span></span>
-<span><span class="co">#&gt; 6                        4.128947 1</span></span></code></pre></div>
-<p>Una opción más sofisticada es el paquete <code>validate</code>, donde se pueden introducir las reglas de negocio dentro del propio código o bien desde un fichero externo. A continuación, se realiza un ejemplo con las reglas incrustadas en el propio código. Estas reglas pueden ser avisos o normas que indican error en esos datos. En este ejemplo, se han definido siete reglas: por ejemplo, <code>PRICE</code><span class="math inline">\(\ge\)</span> 0, o que la suma de las variables <code>HASNORTHORIENTATION</code>, <code>HASSOUTHORIENTATION</code> <code>HASEASTORIENTATION</code> y <code>HASWESTORIENTATION</code> sea la unidad. La salida que se obtiene se presenta a continuación. A modo de ejemplo, la regla <code>HASNORTHORIENTATION + HASSOUTHORIENTATION + HASEASTORIENTATION +HASWESTORIENTATION</code> <span class="math inline">\(=\)</span> 1 es la número 3, que, como se puede ver, no se cumple en 48.446 ocasiones.</p>
 <div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">Madrid_Sale_red</span><span class="op">)</span>, <span class="va">METRO_STOP_MASCERCANO_DISTANCIA</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; METRO_STOP_MASCERCANO_DISTANCIA n</span></span>
+<span><span class="co">#&gt; 1                      1.413845 1</span></span>
+<span><span class="co">#&gt; 2                      1.414032 1</span></span>
+<span><span class="co">#&gt; 3                      2.586694 1</span></span>
+<span><span class="co">#&gt; 4                      3.156593 1</span></span>
+<span><span class="co">#&gt; 5                      4.013776 1</span></span>
+<span><span class="co">#&gt; 6                      4.128947 1</span></span></code></pre></div>
+<p>Una opción más sofisticada es el paquete <code>validate</code>, donde se pueden introducir las reglas de negocio dentro del propio código o bien desde un fichero externo. A continuación, se realiza un ejemplo con las reglas incrustadas en el propio código. Estas reglas pueden ser avisos o normas que indican error en esos datos. En este ejemplo, se han definido siete reglas: por ejemplo, <code>PRICE</code><span class="math inline">\(\ge\)</span> 0, o que la suma de las variables <code>HASNORTHORIENTATION</code>, <code>HASSOUTHORIENTATION</code> <code>HASEASTORIENTATION</code> y <code>HASWESTORIENTATION</code> sea la unidad. La salida que se obtiene se presenta a continuación. A modo de ejemplo, la regla <code>HASNORTHORIENTATION + HASSOUTHORIENTATION + HASEASTORIENTATION +HASWESTORIENTATION</code> <span class="math inline">\(=\)</span> 1 es la número 3, que, como se puede ver, no se cumple en 48.446 ocasiones.</p>
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/data-cleaning/validate">"validate"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">Madrid_Sale_int</span> <span class="op">|&gt;</span></span>
@@ -521,21 +523,21 @@ Al final del proceso de limpieza de datos, éstos deberían ser consistentes y s
 <span><span class="co">#&gt; 7 V7     1     1    0    0 FALSE FALSE</span></span></code></pre></div>
 <div class="infobox">
 <p><strong>Nota</strong></p>
-<p>El proceso de validación puede ser ser más o menos complejo, según afecte a una única variable en un mismo registro, a más de una variable de un mismo registro o a más de una variable en más de un registro. En el último caso, además, se puede validar en un solo conjunto de datos o en más de uno.</p>
+<p>El proceso de validación puede ser más o menos complejo, según afecte a una única variable en un mismo registro, a más de una variable de un mismo registro o a más de una variable en más de un registro. En el último caso, además, se puede validar en un solo conjunto de datos o en más de uno.</p>
 </div>
-<p>En un esquema tradicional de validación, además de las reglas de validación aportadas por los expertos en el tópico del que se trate, debe incluirse también un listado de reglas de corrección (igualmente aportado por los expertos en la materia) que indiquen cómo hay que corregir un registro cuando no cumple con una determinada regla de validación. Este modo de proceder, además de suponer un doble esfuerzo, puede conducir a inconsistencias o validaciones cíclicas.</p>
-<p>El Método de Fellegi y Holt<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;El MFH es un estándar internacional en la revisión de la integridad de la información de encuestas y censos.&lt;/p&gt;"><sup>65</sup></a> (MFH) dá una solución a este problema, evitando dichas inconsistencias, proporcionando un procedimiento que genera un conjunto completo de reglas de validación, incorporando reglas implícitas a las formuladas por los expertos de manera explícita.</p>
+<p>En un esquema tradicional de validación, además de las reglas de validación aportadas por los expertos en el tema del que se trate, debe incluirse también un listado de reglas de corrección (igualmente aportado por los expertos en la materia) que indiquen cómo hay que corregir un registro cuando no cumple con una determinada regla de validación. Este modo de proceder, además de suponer un doble esfuerzo, puede conducir a inconsistencias o validaciones cíclicas.</p>
+<p>El Método de Fellegi y Holt<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;El MFH es un estándar internacional en la revisión de la integridad de la información de encuestas y censos.&lt;/p&gt;"><sup>69</sup></a> (MFH) da una solución a este problema, evitando dichas inconsistencias, proporcionando un procedimiento que genera un conjunto completo de reglas de validación, incorporando reglas implícitas a las formuladas por los expertos de manera explícita.</p>
 <p>En breves palabras, dicho método asegura el cumplimiento de las siguientes tres premisas:</p>
 <ul>
 <li>Minimizar el número de campos a corregir en un registro para hacerlo pasar todas las validaciones.</li>
-<li>Mantiener, en la medida de lo posible, la distribución conjunta original del conjunto de datos.</li>
-<li>Derivar las reglas de corrección, directamente y de forma implícita, de las reglas de validación. Por tanto, dichas reglas de corrección no son propuestas el experto o, en su caso, por el validador.</li>
+<li>Mantener, en la medida de lo posible, la distribución conjunta original del conjunto de datos.</li>
+<li>Derivar las reglas de corrección, directamente y de forma implícita, de las reglas de validación. Por tanto, dichas reglas de corrección no son propuestas por el experto o, en su caso, por el validador.</li>
 </ul>
-<p>Los detalles sobre el MFH pueden verse en <span class="citation">Boskovitz, Goré, and Hegland (<a href="referncias.html#ref-boskovitz2003logical" role="doc-biblioref">2003</a>)</span>.</p>
+<p>Los detalles sobre el MFH pueden verse en <span class="citation">Boskovitz, Goré, and Hegland (<a href="cap-fraude.html#ref-boskovitz2003logical">2003</a>)</span>.</p>
 <p>El MFH no está exento de limitaciones. La primera es el incremento del coste computacional, que puede llegar a constituir un problema en caso de que el número de reglas implícitas sea muy elevado, lo cual es muy frecuente. De hecho, hay casos en los que hay más reglas implícitas que registros. Para solucionar este problema, denominado “problema de localización del error”, que consiste, básicamente, en determinar el conjunto mínimo de variables a corregir para cada validación, se han propuesto varias alternativas, que incluyen métodos de investigación de operaciones, árboles binarios y metaheurísticas como algoritmos genéticos y similares.</p>
 <p>A efectos prácticos, el MFH se puede aplicar con la función <code>locate_errors()</code> del paquete <code>errorlocate</code>, determinándose así cuáles son las variables a corregir para solventar los errores
 en las reglas de negocio establecidas (objeto <code>rules</code>). Por ejemplo, en el conjunto de datos <code>Madrid_Sale_red2</code> (donde se definía la variable <code>price_bin</code>), se establecen ahora unas reglas básicas algo más laxas (específicamente una: más de 10 habitaciones los tres primeros cuartiles), obteniéndose que habría que depurar la variable ROOMNUMBER en dos ocasiones para que el conjunto de datos quedase totalmente limpio (o depurado).</p>
-<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/data-cleaning/errorlocate">"errorlocate"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">rules</span> <span class="op">&lt;-</span> <span class="fu">validator</span><span class="op">(</span><span class="kw">if</span> <span class="op">(</span><span class="va">ROOMNUMBER</span> <span class="op">&gt;=</span> <span class="fl">10</span><span class="op">)</span> <span class="va">price_bin</span> <span class="op">==</span> <span class="st">"[502000,7138000]"</span><span class="op">)</span></span>
@@ -544,27 +546,22 @@ en las reglas de negocio establecidas (objeto <code>rules</code>). Por ejemplo, 
 <span><span class="va">el</span></span>
 <span><span class="co"># el$variable</span></span>
 <span><span class="co">#   names              errors missing</span></span>
-<span></span>
-<span><span class="co">#     price_bin         0       0</span></span>
-<span><span class="co">#   ROOMNUMBER          2       1</span></span>
-<span><span class="co">#   CONSTRUCTEDAREA     0       0</span></span>
-<span><span class="co">#   DISTANCE_TO_METRO   0       0</span></span>
-<span><span class="co">#   LOCATIONNAME        0      42</span></span></code></pre></div>
-<p>¿Y qué se debe hacer con los registros que no cumplen las normas de validación? La respuesta es, como norma, “siempre que se disponga de información de negocio, ésta debe preponderar sobre cualquier tipo de imputación”.
+<span><span class="co">#   price_bin               0       0</span></span>
+<span><span class="co">#   ROOMNUMBER              2       1</span></span>
+<span><span class="co">#   CONSTRUCTEDAREA         0       0</span></span>
+<span><span class="co">#   DISTANCE_TO_METRO       0       0</span></span>
+<span><span class="co">#   LOCATIONNAME            0      42</span></span></code></pre></div>
+<p>¿Y qué se debe hacer con los registros que no cumplen las normas de validación? La respuesta es, como norma, “siempre que se disponga de información de negocio, esta debe preponderar sobre cualquier tipo de imputación”.
 A partir de este punto se puede proceder a realizar imputaciones determinísticas para solucionar los problemas detectados.</p>
 <p>En el ejemplo anterior, se propone imputar el valor <code>ROOMNUMBER=5</code> a los casos de los tres primeros cuartiles (todos menos el más caro) que tengan más de 10 habitaciones. Para ello, se utiliza la función <code>modify_so()</code> del paquete <code>dcmodify</code>. Para comprobar que la imputación se ha llevado a cabo con éxito, se pueden comparar los conjuntos de datos antes y después de la imputación con la función <code>compare()</code>, comprobándose que tal imputación se ha realizado exitosamente en los 2 registros que presentaban problemas con la regla <span class="math inline">\(ROOMNUMBER &gt;= 10\)</span>.</p>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/data-cleaning/dcmodify">"dcmodify"</a></span><span class="op">)</span></span>
-<span></span>
 <span><span class="va">out</span> <span class="op">&lt;-</span> <span class="va">Madrid_Sale_red2</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">modify_so</span><span class="op">(</span><span class="kw">if</span> <span class="op">(</span><span class="va">ROOMNUMBER</span> <span class="op">&gt;=</span> <span class="fl">10</span> <span class="op">&amp;</span> <span class="va">price_bin</span> <span class="op">!=</span> <span class="st">"[502000,7138000]"</span><span class="op">)</span> <span class="va">ROOMNUMBER</span> <span class="op">&lt;-</span> <span class="fl">5</span><span class="op">)</span></span>
-<span></span>
 <span><span class="va">rules</span> <span class="op">&lt;-</span> <span class="fu">validator</span><span class="op">(</span><span class="kw">if</span> <span class="op">(</span><span class="va">ROOMNUMBER</span> <span class="op">&gt;=</span> <span class="fl">10</span><span class="op">)</span> <span class="va">price_bin</span> <span class="op">==</span> <span class="st">"[502000,7138000]"</span><span class="op">)</span></span>
 <span><span class="fu">compare</span><span class="op">(</span><span class="va">rules</span>, raw <span class="op">=</span> <span class="va">Madrid_Sale_red2</span>, modified <span class="op">=</span> <span class="va">out</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Object of class validatorComparison:</span></span>
-<span><span class="co">#&gt;</span></span>
 <span><span class="co">#&gt; compare(x = rules, raw = Madrid_Sale_red2, modified = out)</span></span>
-<span><span class="co">#&gt;</span></span>
 <span><span class="co"># Status                 raw modified</span></span>
 <span><span class="co">#   validations        70059    70059</span></span>
 <span><span class="co">#   verifiable         70058    70058</span></span>
@@ -583,7 +580,7 @@ A partir de este punto se puede proceder a realizar imputaciones determinística
 </h3>
 <ul>
 <li><p>En un proyecto de ciencia de datos deben realizarse procesos de integración y limpieza previos a la fase de modelización, para asegurar niveles adecuados de calidad. Por ello, tras las labores iniciales de depuración, debe comprobarse si los datos son o no consistentes, y si siguen o no las reglas del campo de negocio del cual proceden. En este capítulo se abordan las cuestiones relativas a la integración de conjuntos de datos, su limpieza y depuración, y se proponen procedimientos para la validación de los mismos.</p></li>
-<li><p>El conjunto de datos utilizado en este capítulo está disponible en el paquete `idealista18; en concreto, se utilizan los datos de Madrid.</p></li>
+<li><p>El conjunto de datos utilizado en este capítulo está disponible en el paquete <code>idealista18</code>; en concreto, se utilizan los datos de Madrid.</p></li>
 <li><p>A partir de estos datos, se muestra un ejemplo de integración de datos espaciales y se diseña un marco de limpieza genérico basado en una serie de pasos básicos.</p></li>
 <li><p>Para la realización de estas funciones de integración y limpieza de datos, se proponen distintas funciones de los paquetes <code>tidyverse</code> (para la manipulación de ficheros y variables) y <code>caret</code> (para la imputación de valores perdidos).</p></li>
 <li><p>Para el tratamiento de datos espaciales se utiliza el paquete <code>sf</code>. La visualización de los mismos se lleva a cabo con <code>GGAlly</code> y <code>naniar</code>.</p></li>
@@ -598,7 +595,7 @@ A partir de este punto se puede proceder a realizar imputaciones determinística
 <div class="prev"><a href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></div>
 <div class="next"><a href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#id_130009"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="nav-link" href="#introducci%C3%B3n-3"><span class="header-section-number">8.1</span> Introducción</a></li>
@@ -611,7 +608,7 @@ A partir de este punto se puede proceder a realizar imputaciones determinística
 <li>
 <a class="nav-link" href="#limpieza-de-datos"><span class="header-section-number">8.3</span> Limpieza de datos</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#correcci%C3%B3n-de-errores-estructurales"><span class="header-section-number">8.3.1</span> Corrección de errores estructurales</a></li>
-<li><a class="nav-link" href="#eliminaci%C3%B3n-de-observaciones-duplicadas-o-irrelevantes."><span class="header-section-number">8.3.2</span> Eliminación de observaciones duplicadas o irrelevantes.</a></li>
+<li><a class="nav-link" href="#eliminaci%C3%B3n-de-observaciones-duplicadas-o-irrelevantes"><span class="header-section-number">8.3.2</span> Eliminación de observaciones duplicadas o irrelevantes</a></li>
 <li><a class="nav-link" href="#gesti%C3%B3n-de-valores-at%C3%ADpicos-no-deseados"><span class="header-section-number">8.3.3</span> Gestión de valores atípicos no deseados</a></li>
 <li><a class="nav-link" href="#gesti%C3%B3n-de-datos-faltantes-missing"><span class="header-section-number">8.3.4</span> Gestión de datos faltantes (missing)</a></li>
 <li><a class="nav-link" href="#validaci%C3%B3n-y-control-de-calidad"><span class="header-section-number">8.3.5</span> Validación y control de calidad</a></li>
@@ -634,7 +631,7 @@ A partir de este punto se puede proceder a realizar imputaciones determinística
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

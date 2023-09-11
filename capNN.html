@@ -6,22 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 36 Redes neuronales artificiales | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
-<meta name="description" content="Noelia Vállez Enano\(^{a}\) y José Luis Espinosa Aranda\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  36.1 ¿Qué es el deep learning?  La inteligencia artificial es una disciplina científica...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="description" content="Noelia Vállez Enano\(^{a}\) y José Luis Espinosa Aranda\(^{a,b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Ubotica Technologies  36.1 ¿Qué es el deep learning?  La inteligencia artificial...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 36 Redes neuronales artificiales | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
-<meta property="og:description" content="Noelia Vállez Enano\(^{a}\) y José Luis Espinosa Aranda\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  36.1 ¿Qué es el deep learning?  La inteligencia artificial es una disciplina científica...">
+<meta property="og:description" content="Noelia Vállez Enano\(^{a}\) y José Luis Espinosa Aranda\(^{a,b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Ubotica Technologies  36.1 ¿Qué es el deep learning?  La inteligencia artificial...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 36 Redes neuronales artificiales | Fundamentos de ciencia de datos con R">
-<meta name="twitter:description" content="Noelia Vállez Enano\(^{a}\) y José Luis Espinosa Aranda\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  36.1 ¿Qué es el deep learning?  La inteligencia artificial es una disciplina científica...">
+<meta name="twitter:description" content="Noelia Vállez Enano\(^{a}\) y José Luis Espinosa Aranda\(^{a,b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Ubotica Technologies  36.1 ¿Qué es el deep learning?  La inteligencia artificial...">
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
-<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -33,7 +34,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -76,13 +77,13 @@
 <li class="book-part">Machine learning supervisado</li>
 <li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
-<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
-<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
 <li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
 <li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
@@ -108,18 +109,15 @@
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
 <li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
-<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
-<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
-<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -131,43 +129,45 @@
 <h1>
 <span class="header-section-number">Capítulo 36</span> Redes neuronales artificiales<a class="anchor" aria-label="anchor" href="#capNN"><i class="fas fa-link"></i></a>
 </h1>
-<p><em>Noelia Vállez Enano</em><span class="math inline">\(^{a}\)</span> y <em>José Luis Espinosa Aranda</em><span class="math inline">\(^{a}\)</span></p>
-<p><span class="math inline">\(^{a}\)</span>Universidad de Castilla-La Mancha</p>
+<p><em>Noelia Vállez Enano</em><span class="math inline">\(^{a}\)</span> y <em>José Luis Espinosa Aranda</em><span class="math inline">\(^{a,b}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad de Castilla-La Mancha<br><span class="math inline">\(^{b}\)</span>Ubotica Technologies</p>
 <div id="qué-es-el-deep-learning" class="section level2" number="36.1">
 <h2>
 <span class="header-section-number">36.1</span> ¿Qué es el <em>deep learning</em>?<a class="anchor" aria-label="anchor" href="#qu%C3%A9-es-el-deep-learning"><i class="fas fa-link"></i></a>
 </h2>
 <p></p>
-<p>La inteligencia artificial es una disciplina científica que se ocupa de crear programas informáticos que ejecutan operaciones comparables a las que realiza la mente humana, como el aprendizaje o el razonamiento lógico <span class="citation">(<a href="referncias.html#ref-definicionIA" role="doc-biblioref">Real Academia Española 2023</a>)</span>. Entre otros ejemplos se pueden encontrar en la actualidad tanto robots que son capaces de realizar tareas de manera similar a un humano en una fábrica, las denominadas como casas inteligentes o los vehículos autónomos.</p>
-<p>Dentro de las técnicas utilizadas para la inteligencia artificial, se encuentran las técnicas clásicas de <em>machine learning</em>, ya explicadas en capítulos anteriores de este libro, las cuales tienen la habilidad de aprender sin haber sido explícitamente programadas para una tarea en particular, pudiendo ser utilizadas para varios fines y aplicaciones.</p>
-<p>A su vez, dentro de estos algoritmos, se pueden enmarcar como un subconjunto de las mismas las técnicas de <em>deep learning</em>, las cuales intentan simular tanto la arquitectura como el comportamiento del sistema nervioso humano, en particular, de las redes de neuronas que componen el encéfalo y que se encargan de realizar tareas específicas (Fig. <a href="capNN.html#fig:iaMLDL">36.1</a>). Para ello, estas técnicas se basan en el concepto de redes neuronales, que intentan emular la forma de aprendizaje de los humanos <span class="citation">(<a href="referncias.html#ref-goodfellow2016deep" role="doc-biblioref">Goodfellow, Bengio, and Courville 2016</a>)</span>.</p>
+<p>La inteligencia artificial (IA) es una disciplina científica que se ocupa de crear programas informáticos que ejecutan operaciones comparables a las que realiza la mente humana, como el aprendizaje o el razonamiento lógico <span class="citation">(<a href="cap-fraude.html#ref-definicionIA">RAE 2023</a>)</span>. Entre otros ejemplos, se pueden encontrar en la actualidad tanto robots que son capaces de realizar tareas de manera similar a un humano en una fábrica, las denominadas casas inteligentes o los vehículos autónomos.</p>
+<p>Dentro de las técnicas utilizadas para la IA se encuentran las técnicas clásicas de <em>machine learning</em> (véase Parte VI de este manual), las cuales tienen la habilidad de aprender sin haber sido explícitamente programadas para una tarea en particular, pudiendo ser utilizadas para varios fines y aplicaciones.</p>
+<p>A su vez, dentro de las técnicas de <em>machine learning</em>, se enmarcan, como un subconjunto de ellas, las técnicas de <em>deep learning</em>, las cuales intentan simular tanto la arquitectura como el comportamiento del sistema nervioso humano – en particular, de las redes de neuronas que componen el encéfalo y que se encargan de realizar tareas específicas (véase la Fig. <a href="capNN.html#fig:iaMLDL">36.1</a>). Para ello, estas técnicas se basan en el concepto de redes neuronales, que intentan emular la forma de aprendizaje de los humanos <span class="citation">(<a href="cap-fraude.html#ref-goodfellow2016deep">Goodfellow, Bengio, and Courville 2016</a>)</span>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:iaMLDL"></span>
-<img src="img/conc_dl_01_iaMLDL.png" alt="Inteligencia Artificial vs Machine learning vs Deep Learning" width="90%"><p class="caption">
-Figura 36.1: Inteligencia Artificial vs Machine learning vs Deep Learning
+<img src="img/conc_dl_01_iaMLDL.png" alt="Inteligencia artificial, $machine$ $learning$ y $deep$ $learning$." width="90%"><p class="caption">
+Figura 36.1: Inteligencia artificial, <span class="math inline">\(machine\)</span> <span class="math inline">\(learning\)</span> y <span class="math inline">\(deep\)</span> <span class="math inline">\(learning\)</span>.
 </p>
 </div>
 <div id="diferencias-entre-las-técnicas-de-machine-learning-tradicional-y-el-deep-learning" class="section level3" number="36.1.1">
 <h3>
 <span class="header-section-number">36.1.1</span> Diferencias entre las técnicas de <em>machine learning</em> tradicional y el <em>deep learning</em><a class="anchor" aria-label="anchor" href="#diferencias-entre-las-t%C3%A9cnicas-de-machine-learning-tradicional-y-el-deep-learning"><i class="fas fa-link"></i></a>
 </h3>
-<p>Como se vio en el Cap. <a href="metodologia.html#metodologia">2</a>, la metodologías de ciencia de datos tienen una etapa llamada preparación de datos que incluye la tarea de elección de variables, la cual ha sido tratada ampliamente en el Cap. <a href="chap-feature.html#chap-feature">9</a>, para realizar una selección de las mejores características que representen el problema a resolver, y que puedan ser comprendidas por el algoritmo de <em>machine learning</em> seleccionado de tal forma que sea capaz de solucionar el problema planteado.</p>
-<p>Por ejemplo, en el caso de querer detectar una cara dentro de una imagen, sería necesario definir qué tipo de características servirían para detectar la misma, como podrían ser, a bajo nivel, determinados tipos de bordes de la imagen (Fig. <a href="capNN.html#fig:scharrpitu">36.2</a>). Estas características proporcionarían la base para detectar a nivel medio elementos de la cara como ojos, narices, orejas, etc. y, definitivamente, a alto nivel, reconocer donde hay una cara dentro de la imagen.</p>
+<p>
+</p>
+<p>Como se vio en el Cap. <a href="metodologia.html#metodologia">2</a>, los métodos de ciencia de datos tienen una etapa llamada preparación de datos que incluye la tarea de selección de variables (véase Cap. <a href="chap-feature.html#chap-feature">9</a>) para determinar las mejores características o variables predictoras/clasificadoras en el marco del problema a resolver, características que, a su vez, deben ser entendidas por el algoritmo de <em>machine learning</em> seleccionado, de tal forma que éste sea capaz de solucionar el problema planteado.</p>
+<p>Por ejemplo, en el caso de querer detectar una cara dentro de una imagen, sería necesario definir qué tipo de características servirían para detectar la misma, como podrían ser, a bajo nivel, determinados tipos de bordes de la imagen (véase la Fig. <a href="capNN.html#fig:scharrpitu">36.2</a>). Estas características proporcionarían la base para detectar a nivel medio elementos de la cara como ojos, narices, orejas, etc. y, definitivamente, a alto nivel, reconocer dónde hay una cara dentro de la imagen.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:scharrpitu"></span>
-<img src="img/conc_dl_02_Pitu.png" alt="Detección de bordes de una imagen mediante el método de Scharr" width="100%"><p class="caption">
-Figura 36.2: Detección de bordes de una imagen mediante el método de Scharr
+<img src="img/conc_dl_02_Pitu.png" alt="Detección de bordes de una imagen mediante el método de Scharr." width="100%"><p class="caption">
+Figura 36.2: Detección de bordes de una imagen mediante el método de Scharr.
 </p>
 </div>
-<p>Esta elección de características requiere en muchas ocasiones de la intervención humana, por lo que puede llevar mucho tiempo y diversos experimentos de prueba y error hasta poder encontrar una combinación de características que permita resolver el problema planteado.</p>
-<p>Las técnicas de <em>deep learning</em>, a diferencia de las técnicas de <em>machine learning</em> tradicional, son capaces de aprender cuales son las mejores características que permitirán representar el problema que se quiere resolver sin necesidad de la interacción humana a la misma vez que buscan la solución al mismo.</p>
-<p>Continuando con el ejemplo anterior de la detección de caras, mientras que en las técnicas de <em>machine learning</em> sería necesario introducirle al algoritmo qué características base componen una cara para que sea capaz de reconocerlas, al utilizar <em>deep learning</em> únicamente sería necesario mostrarle suficientes imágenes de caras para conseguir que el algoritmo sea capaz de aprender a identificar una cara por sí mismo, identificando de forma automática las características más importantes de una cara.</p>
-<p>Esta capacidad de aprender las mejores características necesarias por sí mismo hace que a nivel teórico las técnicas de <em>deep learning</em> puedan llegar a ser más potentes que el <em>machine learning</em> clásico, pero debido a la mayor complejidad del problema y, por consiguiente, al proceso de entrenamiento, también lleva a que que sean necesarios muchos más datos y una mayor potencia de cómputo para entrenarlas.</p>
-<p>Este hecho explica que, aunque las bases de las técnicas de <em>deep learning</em> como el algoritmo del descenso del gradiente <span class="citation">(<a href="referncias.html#ref-kiefer1952stochastic" role="doc-biblioref">Kiefer and Wolfowitz 1952</a>)</span>, el perceptrón <span class="citation">(<a href="referncias.html#ref-rosenblatt1958perceptron" role="doc-biblioref">Rosenblatt 1958</a>)</span>, los algoritmos de retropropagación y el perceptrón multicapa <span class="citation">(<a href="referncias.html#ref-rumelhart1986learning" role="doc-biblioref">Rumelhart, Hinton, and Williams 1986</a>)</span> y la primera red neuronal convolucional <span class="citation">(<a href="referncias.html#ref-lecun1995convolutional" role="doc-biblioref">LeCun, Bengio, et al. 1995</a>)</span>, datan de varios años atrás, no sea hasta hace relativamente poco tiempo, cuando se ha podido empezar a utilizar estas técnicas. Esto se debe a diversos factores:</p>
+<p>En muchas ocasiones, la selección de características requiere la intervención humana, por lo que puede llevar mucho tiempo y diversos experimentos de prueba y error hasta poder encontrar una combinación de características que permita resolver el problema planteado. Pues bien, las técnicas de <em>deep learning</em>, a diferencia de las de <em>machine learning</em> tradicional, son capaces de aprender cuáles son las características que permiten representar mejor el problema que se quiere resolver sin necesidad de la interacción humana a la vez que buscan la solución al mismo.</p>
+<p>Continuando con el ejemplo anterior de la detección de caras, mientras que en las técnicas de <em>machine learning</em> es necesario indicar al algoritmo cuales son las características base que componen una cara para que sea capaz de reconocerlas, en las técnicas de <em>deep learning</em> únicamente es necesario mostrarle suficientes imágenes de caras para conseguir que el algoritmo sea capaz de aprender a identificar una cara por sí mismo, identificando de forma automática las características más importantes de una cara.</p>
+<p>Esta capacidad de aprender por sí mismo las características determinantes a la hora de resolver un problema hace que, a nivel teórico, las técnicas de <em>deep learning</em> puedan llegar a ser más potentes que las del <em>machine learning</em> clásico.
+Sin embargo, dado que las técnicas de <em>deep learning</em> enfrentan problemas más complejos y, por consiguiente, procesos de entrenamiento más complicados, necesitan muchos más datos y una mayor potencia de cálculo para entrenar sus algoritmos.</p>
+<p>Este hecho explica que, aunque las bases de las técnicas de <em>deep learning</em> como el algoritmo del descenso del gradiente <span class="citation">(<a href="cap-fraude.html#ref-kiefer1952stochastic">Kiefer and Wolfowitz 1952</a>)</span>, el perceptrón <span class="citation">(<a href="cap-fraude.html#ref-rosenblatt1958perceptron">Rosenblatt 1958</a>)</span>, los algoritmos de retropropagación y el perceptrón multicapa <span class="citation">(<a href="cap-fraude.html#ref-rumelhart1986learning">Rumelhart, Hinton, and Williams 1986</a>)</span> y la primera red neuronal convolucional <span class="citation">(<a href="cap-fraude.html#ref-lecun1995convolutional">LeCun, Bengio, et al. 1995</a>)</span>, datan de varios años atrás, no sea hasta hace relativamente poco tiempo cuando se han podido empezar a utilizar. Esto se debe a diversos factores:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>La evolución en el hardware de procesamiento.</strong> En particular, debido a la mejora de la capacidad de paralelismo masivo durante el cómputo que proporcionaron las nuevas tarjetas gráficas (GPU) al incorporar una gran cantidad de microprocesadores específicos, han podido ser utilizadas para las técnicas de <em>deep learning</em>. Originalmente su principal uso era representar modelos complejos 3D en los monitores, pero su utilización para técnicas de <em>deep learning</em> ha llevado recientemente al desarrollo de tarjetas específicas para este fin. Además, es posible disponer bajo demanda de estos recursos de computación como servicios a través de Internet. Esto es lo que se conoce como <em>cloud computing</em>.</p></li>
-<li><p><strong>El Big data.</strong> La gran cantidad de datos que se generan y almacenan en la actualidad, así como la mayor facilidad a la hora de trabajar con esos conjuntos de datos (gracias a las nuevas herramientas disponibles), han permitido cubrir la necesidad del gran volumen de datos iniciales necesarios.</p></li>
-<li><p><strong>La evolución del sofware.</strong> Recientemente ha habido un amplio interés tanto en buscar nuevos modelos para resolver todo tipo de problemas, como para mejorar las técnicas utilizadas para entrenar dichas redes neuronales. Esto ha llevado a la creación y mejora de diversos frameworks, librerías y aplicaciones relacionadas con el entrenamiento y despliegue de redes neuronales. Entre ellos, serían destacables Keras, Tensorflow, Pytorch, Caffe2, Matlab y OpenVINO.</p></li>
+<li><p><strong>La evolución en el hardware de procesamiento.</strong> En particular, debido a la mejora de la capacidad de paralelismo masivo durante el cómputo que proporcionaron las nuevas tarjetas gráficas (GPU), al incorporar una gran cantidad de microprocesadores específicos, han podido ser utilizadas para las técnicas de <em>deep learning</em>. Originalmente su principal uso era representar modelos complejos 3D en los monitores, pero su utilización para técnicas de <em>deep learning</em> ha llevado recientemente al desarrollo de tarjetas específicas para este fin. Además, es posible disponer bajo demanda de estos recursos de computación como servicios a través de Internet. Esto es lo que se conoce como <em>cloud computing</em>.</p></li>
+<li><p><strong>El <em>big data</em>.</strong> La gran cantidad de datos que se generan y almacenan en la actualidad, así como la mayor facilidad a la hora de trabajar con esos conjuntos de datos (gracias a las nuevas herramientas disponibles), han permitido cubrir la necesidad del gran volumen de datos iniciales necesarios en estas técnicas.</p></li>
+<li><p><strong>La evolución del software.</strong> Recientemente ha habido un amplio interés tanto en buscar nuevos modelos para resolver todo tipo de problemas como en mejorar las técnicas utilizadas para entrenar redes neuronales. Esto ha llevado a la creación y mejora de diversos <em>frameworks</em>, librerías y aplicaciones relacionadas con el entrenamiento y despliegue de redes neuronales. Entre ellos destacan Keras, Tensorflow, Pytorch, Caffe2, Matlab y OpenVINO.</p></li>
 </ol>
 </div>
 </div>
@@ -177,101 +177,102 @@ Figura 36.2: Detección de bordes de una imagen mediante el método de Scharr
 </h2>
 <p>Las posibles aplicaciones de las técnicas de <em>deep learning</em> son muy diversas y, gracias a la continua investigación desarrollada en el área en la actualidad, no hacen más que aumentar. A continuación se comentan algunas de ellas:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Clasificación de imágenes.</strong> Aunque la clasificación de imágenes dentro del área de la visión por computador o artificial es una realidad hace muchos años, es con las técnicas de <em>deep learning</em> con las que se han logrado los mayores avances, en particular, utilizando las redes neuronales convolucionales. Estas redes permiten determinar a qué clase, perteneciente al conjunto de categorías utilizado para entrenar, se corresponde una determinada imagen.</p></li>
-<li><p><strong>Detección de objetos.</strong> Permite localizar los objetos contenidos en una imagen mediante un rectángulo, clasificándolo a su vez por su tipología. Por ejemplo, utilizando una cámara de seguridad instalada en una calle con este tipo de modelos sería posible localizar y diferenciar entre peatones y vehículos (Fig. <a href="capNN.html#fig:camaraTermica">36.3</a>).</p></li>
+<li><p><strong>Clasificación de imágenes.</strong> Aunque la clasificación de imágenes dentro del área de la visión por computador, o artificial, es una realidad hace muchos años, es con las técnicas de <em>deep learning</em> con las que se han logrado los mayores avances (en particular, utilizando las redes neuronales convolucionales). Estas redes permiten determinar a qué clase, perteneciente al conjunto de categorías utilizado para entrenar, corresponde una determinada imagen.</p></li>
+<li><p><strong>Detección de objetos.</strong> Permite localizar los objetos contenidos en una imagen mediante un rectángulo, clasificándolo a su vez por su tipología. Por ejemplo, con este tipo de modelos es posible localizar y diferenciar entre peatones y vehículos utilizando una cámara de seguridad instalada en una calle (Fig. <a href="capNN.html#fig:camaraTermica">36.3</a>).</p></li>
 </ol>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:camaraTermica"></span>
-<img src="img/conc_dl_04_camaraTermica.png" alt="Detección de peatones y vehículos utilizando una cámara térmica y técnicas de deep learning" width="90%"><p class="caption">
-Figura 36.3: Detección de peatones y vehículos utilizando una cámara térmica y técnicas de deep learning
+<img src="img/conc_dl_04_camaraTermica.png" alt="Detección de peatones y vehículos utilizando una cámara térmica y técnicas de $deep$ $learning$." width="75%"><p class="caption">
+Figura 36.3: Detección de peatones y vehículos utilizando una cámara térmica y técnicas de <span class="math inline">\(deep\)</span> <span class="math inline">\(learning\)</span>.
 </p>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li><p><strong>Segmentación semántica/de instancias.</strong> De forma similar a la detección de objetos, la segmentación semántica permite localizar objetos contenidos en una imagen, además de su tipología, pero en este caso se marcan utilizando una máscara a nivel de píxel. La segmentación de instancias además es capaz de diferenciar entre diferentes instancias de una misma clase aun cuando se encuentren situadas de forma contigua.</p></li>
-<li><p><strong>Reconocimiento del habla.</strong> Permite a un computador procesar y comprender el habla humana. En la actualidad existen varios asistentes inteligentes basados en esta tecnología que además son capaces de interpretar órdenes o instrucciones sencillas y actuar en consecuencia.</p></li>
-<li><p><strong>Traducción automática.</strong> Consiste en utilizar las técnicas de <em>deep learning</em> para traducir un texto automáticamente de una lengua a otra sin la necesidad de intervención humana. En la actualidad, no se limita únicamente a la traducción literal, palabra por palabra, del texto, si no que también tiene en cuenta el significado que tendría en el idioma original para adaptarlo al idioma destino (Fig. <a href="capNN.html#fig:deepL">36.4</a>).</p></li>
+<li><p><strong>Reconocimiento del habla.</strong> Permite a un computador procesar y comprender el habla humana. Ya existen varios asistentes inteligentes basados en esta tecnología que, además, son capaces de interpretar órdenes o instrucciones sencillas y actuar en consecuencia.</p></li>
+<li><p><strong>Traducción automática.</strong> Consiste en utilizar las técnicas de <em>deep learning</em> para traducir un texto automáticamente de una lengua a otra sin la necesidad de intervención humana. En la actualidad, no se limita únicamente a la traducción literal, palabra por palabra, del texto, sino que también tiene en cuenta el significado que tendría en el idioma original para adaptarlo al idioma destino (Fig. <a href="capNN.html#fig:deepL">36.4</a>).</p></li>
 </ol>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:deepL"></span>
-<img src="img/conc_dl_05_deepL.png" alt="Traductor automático basado en Deep Learning" width="100%"><p class="caption">
-Figura 36.4: Traductor automático basado en Deep Learning
+<img src="img/conc_dl_05_deepL.png" alt="Traductor automático basado en $deep$ $learning$." width="100%"><p class="caption">
+Figura 36.4: Traductor automático basado en <span class="math inline">\(deep\)</span> <span class="math inline">\(learning\)</span>.
 </p>
 </div>
 <ol start="6" style="list-style-type: decimal">
 <li>
-<strong>Generación automática de imágenes/texto.</strong> Permite obtener desde una imagen un texto descriptivo que indique el contenido de la imagen, o al contrario, a partir de un texto descriptivo generar una imagen basada en dicha descripción. Un ejemplo de este último caso sería Dall-E <span class="citation">(<a href="referncias.html#ref-borji2022generated" role="doc-biblioref">Borji 2022</a>)</span> (Fig. <a href="capNN.html#fig:DallE">36.5</a>).</li>
+<strong>Generación automática de imágenes/texto.</strong> Permite obtener, desde una imagen, un texto descriptivo que indique el contenido de la imagen; o al contrario, a partir de un texto descriptivo generar una imagen basada en dicha descripción. Un ejemplo de este último caso sería Dall-E <span class="citation">(<a href="cap-fraude.html#ref-borji2022generated">Borji 2022</a>)</span>, que puede verse en la Fig. <a href="capNN.html#fig:DallE">36.5</a>.</li>
 </ol>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:DallE"></span>
-<img src="img/conc_dl_06_DallE.png" alt='Algunas salidas posibles del generador de imágentes a partir de texto Dall-E, para el texto a $``$cat with glasses studying computer vision in the space with the Earth in the background$"$' width="100%"><p class="caption">
-Figura 36.5: Algunas salidas posibles del generador de imágentes a partir de texto Dall-E, para el texto a <span class="math inline">\(``\)</span>cat with glasses studying computer vision in the space with the Earth in the background<span class="math inline">\("\)</span>
+<img src="img/conc_dl_06_DallE.png" alt="Algunas salidas posibles del generador de imágenes a partir de texto Dall-E, para el texto: $A$ $cat$ $with$ $glasses$ $studying$ $computer$ $vision$ $in$ $the$ $space$ $with$ $the$ $Earth$ $in$ $the$ $background$." width="100%"><p class="caption">
+Figura 36.5: Algunas salidas posibles del generador de imágenes a partir de texto Dall-E, para el texto: <span class="math inline">\(A\)</span> <span class="math inline">\(cat\)</span> <span class="math inline">\(with\)</span> <span class="math inline">\(glasses\)</span> <span class="math inline">\(studying\)</span> <span class="math inline">\(computer\)</span> <span class="math inline">\(vision\)</span> <span class="math inline">\(in\)</span> <span class="math inline">\(the\)</span> <span class="math inline">\(space\)</span> <span class="math inline">\(with\)</span> <span class="math inline">\(the\)</span> <span class="math inline">\(Earth\)</span> <span class="math inline">\(in\)</span> <span class="math inline">\(the\)</span> <span class="math inline">\(background\)</span>.
 </p>
 </div>
 <ol start="7" style="list-style-type: decimal">
-<li><p><strong>Automóvil autónomo.</strong> Las técnicas de <em>deep learning</em> están siendo claves para el desarrollo del vehículo autónomo, capaz de circular sin la necesidad de la interacción de un conductor humano. Para lograr definitivamente un vehículo con estas características, es necesario que sea capaz de ver, tomar decisiones y conducir al mismo tiempo. Esto se consigue en la actualidad integrando la información de gran cantidad de sensores que obtienen datos en tiempo real sobre el entorno, como serían cámaras, LIDAR, radares o ultrasónicos entre otros, y que son procesados por varias redes neuronales con el fin de que sea capaz de tomar una decisión en cuestión de milisegundos (Fig. <a href="capNN.html#fig:camaraTermica">36.3</a>).</p></li>
-<li><p><strong>Chatbots con inteligencia artificial.</strong> Son aplicaciones software que, utilizando la inteligencia artificial conversacional, son capaces de conversar mediante un chat escrito como si fueran un ser humano. Caben destacar los asistentes virtuales existentes en diversas páginas web y el reciente <em>ChatGPT</em> <span class="citation">(<a href="referncias.html#ref-chatGPT" role="doc-biblioref">OpenAI 2022</a>)</span>, el cual es capaz de mantener conversaciones con el usuario, resolver problemas sencillos, generar textos y resúmenes sobre cualquier tema o generar código en diversos lenguajes de programación a partir de una petición realizada mediante lenguaje natural.</p></li>
+<li><p><strong>Automóvil autónomo.</strong> Las técnicas de <em>deep learning</em> están siendo claves para el desarrollo del vehículo autónomo, capaz de circular sin necesidad de la interacción de un conductor humano. Para lograr definitivamente un vehículo con estas características, es necesario que sea capaz de ver, tomar decisiones y conducir al mismo tiempo. Esto se consigue en la actualidad integrando la información de gran cantidad de sensores que obtienen datos en tiempo real sobre el entorno – como serían cámaras, LIDAR, radares o ultrasónicos, entre otros – que es procesada por varias redes neuronales con el fin de que el sistema de conducción sea capaz de tomar una decisión en cuestión de milisegundos (Fig. <a href="capNN.html#fig:camaraTermica">36.3</a>).</p></li>
+<li><p><strong>Chatbots con IA.</strong> Son aplicaciones software que, utilizando la IA conversacional, son capaces de conversar mediante un chat escrito como si fueran un ser humano. Caben destacar los asistentes virtuales existentes en diversas páginas web y el reciente ChatGPT <span class="citation">(<a href="cap-fraude.html#ref-chatGPT">OpenAI 2022</a>)</span>, el cual es capaz de mantener conversaciones con el usuario, resolver problemas sencillos, generar textos y resúmenes sobre cualquier tema o generar código en diversos lenguajes de programación a partir de una petición realizada mediante lenguaje natural.</p></li>
 </ol>
 </div>
 <div id="redes-neuronales" class="section level2" number="36.3">
 <h2>
 <span class="header-section-number">36.3</span> Redes neuronales<a class="anchor" aria-label="anchor" href="#redes-neuronales"><i class="fas fa-link"></i></a>
 </h2>
-<p>Las redes neuronales artificiales (en inglés Artificial Neural Network (ANN)) tienen su origen en la definición de neurona artificial de <span class="citation">(<a href="referncias.html#ref-mcculloch1943logical" role="doc-biblioref">McCulloch and Pitts 1943</a>)</span> y en el diseño del perceptrón por parte de Frank Rosenblatt <span class="citation">(<a href="referncias.html#ref-rosenblatt1958perceptron" role="doc-biblioref">Rosenblatt 1958</a>)</span>. Cada ANN está formada por un conjunto de elementos conocidos como ``neuronas” cuya organización está inspirada en la que siguen las redes neuronales de los seres vivos. Entre dos neuronas adyacentes existe una serie de conexiones a través de las cuales se envía la información como si de pulsos eléctricos se tratase. De forma aislada, cada neurona procesa la información recibida para producir un resultado que será utilizado por las siguientes neuronas con las que está conectada.</p>
-<p>Cada ANN tiene como objetivo resolver una tarea concreta. Por ejemplo, una ANN podría estar diseñada para reconocer un dígito o una letra a partir de una imagen. Para conseguir resolver dicha tarea, la red sigue un proceso de aprendizaje automático. Este proceso se conoce como ``entrenamiento” y requiere que se disponga de un conjunto de datos representativos de la tarea a resolver.</p>
+<p>Las redes neuronales artificiales (en inglés <em>artificial neural networks</em>, ANN) tienen su origen en la definición de neurona artificial de <span class="citation">McCulloch and Pitts (<a href="cap-fraude.html#ref-mcculloch1943logical">1943</a>)</span> y en el diseño del perceptrón por parte de Frank Rosenblatt <span class="citation">(<a href="cap-fraude.html#ref-rosenblatt1958perceptron">Rosenblatt 1958</a>)</span>. Cada ANN está formada por un conjunto de elementos conocidos como ``neuronas” cuya organización está inspirada en la que siguen las redes neuronales de los seres vivos. Entre dos neuronas adyacentes existe una serie de conexiones a través de las cuales se envía la información como si de pulsos eléctricos se tratase. De forma aislada, cada neurona procesa la información recibida para producir un resultado que será utilizado por las siguientes neuronas con las que está conectada.</p>
+<p>Cada ANN tiene como objetivo resolver una tarea concreta. Por ejemplo, una ANN podría estar diseñada para reconocer un dígito o una letra a partir de una imagen. Para resolver dicha tarea, la red sigue un proceso de aprendizaje automático. Este proceso se conoce como ``entrenamiento” y requiere que se disponga de un conjunto de datos representativos de la tarea a resolver.</p>
 </div>
 <div id="perceptrón-o-neurona" class="section level2" number="36.4">
 <h2>
 <span class="header-section-number">36.4</span> Perceptrón o neurona<a class="anchor" aria-label="anchor" href="#perceptr%C3%B3n-o-neurona"><i class="fas fa-link"></i></a>
 </h2>
-<p>El elemento básico de toda ANN es la neurona artificial, inspirada en la neuronas biológicas. Cada neurona tiene una serie de entradas y produce una única salida. Las entradas pueden ser variables extraídas de la tarea que se debe resolver o salidas de otras neuronas de la red.</p>
-<p>Para calcular la salida, cada neurona realiza una suma ponderada de sus entradas utilizando una serie de pesos, <span class="math inline">\(\boldsymbol w\)</span> donde <span class="math inline">\(w_i\in \mathbb{R}\)</span>, y añade un término constante,<span class="math inline">\(w_0\in \mathbb{R}\)</span>. Por tanto, cada neurona actúa como un clasificador lineal que puede separar dos conjuntos diferentes dependiendo de si la salida es positiva o negativa (Figura <a href="capNN.html#fig:perceptron">36.6</a>).</p>
+<p>El elemento básico de toda ANN es la neurona artificial, inspirada en las neuronas biológicas. Cada neurona tiene una serie de entradas y produce una única salida. Las entradas pueden ser valores de las variables seleccionadas para resolver el problema en estudio o salidas de otras neuronas de la red.</p>
+<p>Para calcular la salida, primeramente, cada neurona realiza una suma ponderada de sus entradas utilizando una serie de pesos, <span class="math inline">\(\bf w\)</span>, donde <span class="math inline">\(w_i\in \mathbb{R}\)</span>, y añade un término constante, <span class="math inline">\(w_0\in \mathbb{R}\)</span>:</p>
+<p><span class="math display">\[\begin{equation}
+\bf w^{\prime}    \bf x  = w_0 + w_1 x_1 + w_2 x_2 + \dots + w_n x_n .
+\end{equation}\]</span></p>
+<p>Una vez obtenida la suma ponderada, normalmente se pueden separar las entradas en dos conjuntos, obteniéndose como salida final un valor binario, siguiendo la fórmula:</p>
+<p><span class="math display">\[\begin{equation}
+f (\bf w^{\prime}   \bf x) =
+\begin{cases}
+1 &amp; \text{si $\bf w^{\prime}   \bf x&gt;0$}\\
+0 &amp; \text{en otro caso.}
+\end{cases}
+\end{equation}\]</span></p>
+<p>Por tanto, cada neurona actúa como un clasificador lineal que puede separar dos conjuntos diferentes dependiendo de si la salida es positiva o negativa (Fig. <a href="capNN.html#fig:perceptron">36.6</a>).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:perceptron"></span>
-<img src="img/perceptron.png" alt="Estructura del perceptrón o neurona" width="80%"><p class="caption">
-Figura 36.6: Estructura del perceptrón o neurona
+<img src="img/perceptron.png" alt="Estructura del perceptrón o neurona." width="80%"><p class="caption">
+Figura 36.6: Estructura del perceptrón o neurona.
 </p>
 </div>
-<p>Para cada vector de entrada, <span class="math inline">\(\boldsymbol x\)</span>, la neurona aplicará los pesos, <span class="math inline">\(\boldsymbol w\)</span>, como el producto escalar de ambos vectores:</p>
-<p><span class="math display">\[\begin{equation}
-\boldsymbol w^{\prime}    \boldsymbol x  = w_0\cdot 1+w_1 \cdot x_1+w_2 \cdot x_2+\dots+w_n \cdot x_n .
-\end{equation}\]</span></p>
-<p>Una vez obtenida la suma ponderada, típicamente se puede separar las entradas en dos conjuntos, obteniéndose como salida final un valor binario, siguiendo la fórmula:</p>
-<p><span class="math display">\[\begin{equation}
-f (\boldsymbol w^{\prime}   \boldsymbol x) = \begin{cases}
-1 &amp; \text{si $\boldsymbol w^{\prime}   \boldsymbol x&gt;0$}\\
-0 &amp; \text{en otro caso}
-\end{cases} .
-\end{equation}\]</span></p>
-<div id="aprendizaje" class="section level3" number="36.4.1">
+<div id="aprendizaje-perceptron" class="section level3" number="36.4.1">
 <h3>
-<span class="header-section-number">36.4.1</span> Aprendizaje<a class="anchor" aria-label="anchor" href="#aprendizaje"><i class="fas fa-link"></i></a>
+<span class="header-section-number">36.4.1</span> Aprendizaje<a class="anchor" aria-label="anchor" href="#aprendizaje-perceptron"><i class="fas fa-link"></i></a>
 </h3>
-<p>Durante el proceso de aprendizaje, el perceptrón busca el ajuste automático de los valores de los pesos. Éstos deben seleccionarse de forma que minimicen el error de clasificación cometido sobre un conjunto de entrenamiento. El conjunto de entrenamiento estará compuesto por un conjunto de muestras del que se conoce su clase:</p>
+<p>Durante el proceso de aprendizaje, el perceptrón busca el ajuste automático de los valores de los pesos. Éstos deben seleccionarse de forma que minimicen el error de clasificación (predicción en su caso) cometido sobre un conjunto de entrenamiento. El conjunto de entrenamiento, <span class="math inline">\(D\)</span>, está compuesto por un conjunto de <span class="math inline">\(h\)</span> observaciones de las que se conoce su clase:</p>
 <p><span class="math display">\[\begin{equation}
-D = \{ (\boldsymbol x_1 , y_1 ), (\boldsymbol x_2 , y_2 ), \dots, (\boldsymbol x_m , y_m ) \},
+D = \{ ({\bf x}_1 , y_1 ), ({\bf x}_2 , y_2 ), \dots, ({\bf x}_h , y_h ) \},
 \end{equation}\]</span></p>
-<p>donde cada muestra, <span class="math inline">\(\boldsymbol x_i = (x_{i1},x_{i2},\dots,x_{in})\)</span>, pertenece a una de las dos clases, <span class="math inline">\(y_i = \{ 0,1 \}\)</span> .</p>
-<p>El primer paso del aprendizaje o entrenamiento consiste en la inicialización de cada peso <span class="math inline">\(w_j\)</span> a 0 o a algún otro valor aleatorio.</p>
-<p>Tras ello, se calcula la clase estimada, <span class="math inline">\(\hat y\)</span>, en un momento determinado, <span class="math inline">\(t\)</span>, para cada muestra <span class="math inline">\(\boldsymbol x_i\)</span> del conjunto de datos:
+<p>donde cada <span class="math inline">\({\bf x}_i = (x_{1i},x_{2i},\dots,x_{pi})\)</span>, pertenece a una de las dos clases, <span class="math inline">\(y_i = {0,1 }, \hspace{0,5cm} i=1,2,...h\)</span>.</p>
+<p>El primer paso del aprendizaje o entrenamiento consiste en la inicialización de cada peso <span class="math inline">\(w_j, \hspace{0,1cm} j=1,2,...,p,\)</span> a 0 o a algún otro valor aleatorio.</p>
+<p>Tras ello, se calcula la clase asignada a cada <span class="math inline">\(\hat y_i\)</span> en un momento determinado, <span class="math inline">\(t\)</span>, para cada colección de valores <span class="math inline">\(\boldsymbol x_i\)</span> del conjunto de datos de entrenamiento:
 <span class="math display">\[\begin{equation}
-\hat y_i(t) = f(\boldsymbol w(t)^{T}  \boldsymbol x_i) = f(w_0(t) + w_1(t) \cdot x_{i1} + \dots + w_n(t) \cdot x_{in}) .
+\hat y_i(t) = f({\bf w}(t)^{\prime}  {\bf x}_i) = f(w_0(t) + w_1(t) \cdot x_{1i} + \dots + w_p(t) \cdot x_{pi}).
 \end{equation}\]</span></p>
-<p>Tras obtener la salida para todas las muestras de entrenamiento, cada uno de los pesos, <span class="math inline">\(w_j\)</span>, de la neurona se actualiza siguiendo la fórmula:
+<p>Tras obtener la salida para todas las observaciones del conjunto de entrenamiento, cada uno de los pesos de la neurona, <span class="math inline">\(w_j\)</span>, se actualiza siguiendo la fórmula:
 <span class="math display">\[\begin{equation}
-w_j(t+1) = w_j(t) + \lambda \cdot |y_i-\hat y_i(t)|\cdot x_{ij} .
+w_j(t+1) = w_j(t) + \lambda  |y_i-\hat y_i(t)|\cdot x_{ji}.
 \end{equation}\]</span></p>
-<p>donde <span class="math inline">\(|y_i-\hat y_i(t)|\)</span> será 0 cuando la clase predicha coincida con la clase real de la muestra y <span class="math inline">\(\lambda\)</span> es la tasa de aprendizaje. La tasa de aprendizaje debe seleccionarse de antemano y controla la variación de los pesos entre iteraciones. En algunos casos el valor de <span class="math inline">\(\lambda\)</span> es 0 o varía durante el proceso de entrenamiento.</p>
-<p>Los dos pasos anteriores se repiten hasta que el error de clasificación es menor que un cierto umbral o el número de iteraciones alcanza un cierto valor fijado. Normalmente se suele utilizar el número de iteraciones como criterio de paro puesto que no siempre es posible alcanzar una tasa de error más baja que la deseada.</p>
+<p>donde <span class="math inline">\(|y_i-\hat y_i(t)|\)</span> es 0 cuando la clase predicha coincide con la clase real de la observación y <span class="math inline">\(\lambda\)</span> es la tasa de aprendizaje. La tasa de aprendizaje debe seleccionarse de antemano y controla la variación de los pesos entre iteraciones. En algunos casos el valor de <span class="math inline">\(\lambda\)</span> es 0 o varía durante el proceso de entrenamiento.</p>
+<p>Los dos pasos anteriores se repiten hasta que el error de clasificación sea menor que un cierto umbral, <span class="math inline">\(u\)</span> o el número de iteraciones alcance un cierto valor fijado. Normalmente se suele utilizar el número de iteraciones como criterio de parada puesto que no siempre es posible alcanzar una tasa de error más baja que la deseada.</p>
 </div>
 <div id="convergencia" class="section level3" number="36.4.2">
 <h3>
 <span class="header-section-number">36.4.2</span> Convergencia<a class="anchor" aria-label="anchor" href="#convergencia"><i class="fas fa-link"></i></a>
 </h3>
-<p>El teorema de la convergencia del perceptrón dice que, en los problemas en los que haya dos clases linealmente separables, es siempre posible encontrar unos pesos que realicen la separación en un número finito de iteraciones <span class="citation">(<a href="referncias.html#ref-novikoff62convergence" role="doc-biblioref">Novikoff 1962</a>)</span>. Sin embargo, en la mayoría de los casos, no se está ante problemas linealmente separables, esto es, no es posible obtener un conjunto de variables que separen perfectamente las muestras de ambas clases. Por ello, es necesario el uso de ciertas estrategias que solucionen el problema de convergencia en estos casos. Algunas de las estrategias más utilizadas son:</p>
+<p>El teorema de la convergencia del perceptrón establece que, en los problemas en los que haya dos clases linealmente separables, es siempre posible encontrar unos pesos que realicen la separación en un número finito de iteraciones <span class="citation">(<a href="cap-fraude.html#ref-novikoff62convergence">Novikoff 1962</a>)</span>. Sin embargo, la mayoría de los problemas que se estudian no son linealmente separables, esto es, no es posible obtener un conjunto de variables que separen perfectamente, de forma lineal, las observaciones de cada clase. Por ello, en estos casos, es necesario el uso de ciertas estrategias que solucionen el problema de convergencia. Algunas de las estrategias más utilizadas son:</p>
 <ul>
-<li><p>Algoritmo Pocket: Guarda la mejor solución obtenida hasta el final del entrenamiento.</p></li>
-<li><p>Algoritmo Maxover: Halla el margen de separación máximo permitiendo clasificaciones incorrectas.</p></li>
-<li><p>Algoritmo de Voto: Se utilizan múltiples perceptrones combinando sus salidas.</p></li>
+<li><p>Algoritmo Pocket: guarda la mejor solución obtenida hasta el final del entrenamiento.</p></li>
+<li><p>Algoritmo Maxover: halla el margen de separación máximo permitiendo clasificaciones incorrectas.</p></li>
+<li><p>Algoritmo de Voto: se utilizan múltiples perceptrones combinando sus salidas.</p></li>
 </ul>
 </div>
 </div>
@@ -279,27 +280,27 @@ w_j(t+1) = w_j(t) + \lambda \cdot |y_i-\hat y_i(t)|\cdot x_{ij} .
 <h2>
 <span class="header-section-number">36.5</span> Perceptrón multiclase<a class="anchor" aria-label="anchor" href="#perceptr%C3%B3n-multiclase"><i class="fas fa-link"></i></a>
 </h2>
-<p>Una extensión lógica del uso del perceptrón es su empleo en la resolución de tareas de clasificación donde existan más de dos clases <span class="citation">(<a href="referncias.html#ref-haykin1999" role="doc-biblioref">Haykin 1999</a>)</span>. En ese caso se tendrá un conjunto de entrenamiento, <span class="math inline">\(D\)</span>, de <span class="math inline">\(m\)</span> muestras:</p>
+<p>Una extensión lógica del uso del perceptrón es su empleo en la resolución de tareas de clasificación donde existan más de dos clases <span class="citation">(<a href="cap-fraude.html#ref-haykin1999">Haykin 1999</a>)</span>. En ese caso se tendrá un conjunto de entrenamiento, <span class="math inline">\(D\)</span>, de <span class="math inline">\(m\)</span> muestras:</p>
 <p><span class="math display">\[\begin{equation}
-D = \{ (\boldsymbol x_1 , y_1 ), (\boldsymbol x_2 , y_2 ), \dots, (\boldsymbol x_m , y_m ) \},
+D = { ({\bf x}_1 , y_1 ), ({\bf x}_2 , y_2 ), \dots, ({\bf x}_h , y_h ) },
 \end{equation}\]</span></p>
-<p>donde cada muestra <span class="math inline">\(\boldsymbol x_i = (x_{i1},x_{i2},\dots,x_{in})\)</span> pertenezca a una de las <span class="math inline">\(c\)</span> clases posibles:</p>
+<p>donde cada muestra <span class="math inline">\({\bf x}_i = (x_{1i},x_{2i},\dots,x_{pi})\)</span> pertenece a una de las <span class="math inline">\(k\)</span> clases posibles:</p>
 <p><span class="math display">\[\begin{equation}
-y_i = \{ 0,1,\dots,c-1 \} .
+y_i = \{ 0,1,\dots,k-1 \} .
 \end{equation}\]</span></p>
-<p>A diferencia del problema binario, en su versión multiclase lo que se definen son varios modelos, <span class="math inline">\(F\)</span>, uno para cada una de las <span class="math inline">\(c\)</span> clases:</p>
+<p>A diferencia del problema binario, en la versión multiclase del perceptrón multiclase lo que se definen son varios modelos, <span class="math inline">\(F\)</span>, uno para cada una de las <span class="math inline">\(k\)</span> clases:</p>
 <p><span class="math display">\[\begin{equation}
-F=\{f_0,f_1,\dots,f_{c-1}\}\\
-f_j: \mathbb{R}^n \rightarrow \mathbb{R} .
+F=\{f_0,f_1,\dots,f_{k-1}\}\\
+, \hspace{0,1cm}f_m \{m=0,1,...,k-1\}: \mathbb{R}^p \rightarrow \mathbb{R}.
 \end{equation}\]</span></p>
 <p>En este caso la salida no se selecciona en función de si el valor obtenido es positivo o negativo, sino que se asigna la clase del modelo que obtenga el valor más alto tras aplicar los pesos a la muestra. Esta estrategia recibe el nombre de ``uno contra todos”:</p>
 <p><span class="math display">\[\begin{equation}
-\hat y_i = argmax_j(f_j(\boldsymbol x_i))\\
-j\in\{0,1,\dots ,c-1\} .
+\hat y_i = argmax_{m}\hspace{0,1cm}f_m(\boldsymbol x_i)\\
+,\hspace{0,2cm}m\in\{0,1,\dots ,k-1\} .
 \end{equation}\]</span></p>
 <p>En muchas ocasiones lo que se obtiene no es un único valor con la clase asignada como salida, sino que se obtiene un vector con las salidas binarias de cada uno de los modelos empleados. En ese caso, el vector contendrá un 1 en la posición de la clase asignada y un 0 en el resto de clases. Por ejemplo, el vector <span class="math inline">\([0,1,0,0,0]\)</span> representaría que una muestra ha sido asignada a la segunda clase en un problema de clasificación donde existen 5 clases posibles:</p>
 <p><span class="math display">\[\begin{equation}
-[(f_1(\boldsymbol x_i)),(f_2(\boldsymbol x_i)),\dots,(f_c(\boldsymbol x_i))] .
+[f_0({\bf x}_i),f_1({\bf x}_i)),\dots,f_{k-1}({\bf x} _i)] .
 \end{equation}\]</span></p>
 </div>
 <div id="funciones-de-activación" class="section level2" number="36.6">
@@ -307,82 +308,84 @@ j\in\{0,1,\dots ,c-1\} .
 <span class="header-section-number">36.6</span> Funciones de activación<a class="anchor" aria-label="anchor" href="#funciones-de-activaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h2>
 <p>Además de los pesos, toda neurona tiene asociada una función de activación. Esta función se encarga de transformar la suma ponderada de las entradas en el resultado final. En las secciones anteriores se ha utilizado una función de activación con umbral 0, pero existen muchas otras. Algunas de las más utilizadas se enumeran a continuación.</p>
-<p>Para algunas de ellas, se ha implementado una función, <code>plot_activation_function()</code>, que permite dibujarlas en <strong>R</strong>, y que se puede ver a continuación:</p>
-<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<p>Para algunas de ellas, se ha implementado una función, <code>plot_activation_function()</code>, que permite dibujarlas en <strong>R</strong>:</p>
+<div class="sourceCode" id="cb488"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://www.stefanom.io/latex2exp/">"latex2exp"</a></span><span class="op">)</span></span>
 <span><span class="va">plot_activation_function</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">f</span>, <span class="va">title</span>, <span class="va">range</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">range</span><span class="op">)</span>, mapping<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">0</span>, color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">3</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fl">0</span>, color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">3</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">stat_function</a></span><span class="op">(</span>fun<span class="op">=</span><span class="va">f</span>, colour <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">'x'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">'f(x)'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://www.stefanom.io/latex2exp/reference/TeX.html">TeX</a></span><span class="op">(</span><span class="st">r'(w$\prime$x)'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://www.stefanom.io/latex2exp/reference/TeX.html">TeX</a></span><span class="op">(</span><span class="st">r'(f(w$\prime$x))'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <ul>
 <li>
-<strong>Función lineal.</strong> Se trata de una función identidad donde la salida tiene el mismo valor que la entrada. Normalmente se aplica en problemas de regresión lineal. Por ejemplo, si se quiere predecir el número de días que lloverá en un mes determinado.</li>
+<strong>Función lineal.</strong> Se trata de una función identidad donde la salida tiene el mismo valor que la entrada. Normalmente se aplica en problemas de regresión lineal. Por ejemplo, si se quiere predecir el número de días que lloverá en un mes determinado. Su expresión es:</li>
 </ul>
 <p><span class="math display">\[\begin{equation}
-f(x)=x
+f({\bf w}^{\prime} \bf x)={\bf w}^{\prime} \bf x,
 \end{equation}\]</span></p>
-<div class="line-block">   Y se representa gráficamente de la siguiente forma:</div>
-<div class="sourceCode" id="cb478"><pre class="downlit sourceCode r">
+<div class="line-block">y su representación gráfica es de la siguiente forma:</div>
+<div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span> <span class="va">x</span> <span class="op">}</span></span>
 <span><span class="fu">plot_activation_function</span><span class="op">(</span><span class="va">f</span>, <span class="st">'Lineal'</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-3-1.png" width="60%" style="display: block; margin: auto;"></div>
 <ul>
 <li>
-<strong>Función umbral.</strong> Esta función recibe también el nombre de función escalón. Si el valor de entrada es menor que el umbral la salida será 0. En caso contrario, la salida será 1. Si el umbral es 0, la función se reduce a mirar el signo del valor analizado.</li>
+<strong>Función umbral.</strong> Esta función recibe también el nombre de función escalón. Si el valor de entrada es menor que el umbral, <span class="math inline">\(u\)</span>, la salida es 0. En caso contrario, la salida es 1. Si el umbral es 0, la función se reduce a observar el signo del valor de la salida.</li>
 </ul>
 <p><span class="math display">\[\begin{equation}
-f(x)=\begin{cases}
-0 &amp; \text{si $x&lt;u$}\\
-1 &amp; \text{en otro caso}
+f({\bf w}^{\prime} {\bf x})=\begin{cases}
+0 &amp; \text{si ${\bf w}^{\prime} {\bf x}&lt;u$}\\
+1 &amp; \text{en otro caso},
 \end{cases}
 \end{equation}\]</span></p>
-<div class="line-block">   Se representa gráficamente mediante el siguiente código, el cual se corresponde con una modificación de la función <em>plot_activation_function</em>, ya que la versión original no mostraría de forma correcta la gráfica al requerir representar dos valores en la posición 0, el valor 0 y el valor 1 del escalón:</div>
-<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
+<p>Se representa gráficamente mediante el código que aparece a continuación, el cual se corresponde con una modificación de la función <code>plot_activation_function()</code>, ya que la versión original no mostraría de forma correcta la gráfica al requerir representar dos valores en la posición 0: el valor 0 y el valor 1 del escalón:</p>
+<div class="sourceCode" id="cb490"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>, <span class="op">-</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, f<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">f</span>, group<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Umbral"</span><span class="op">)</span><span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">'f(x)'</span><span class="op">)</span><span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://www.stefanom.io/latex2exp/reference/TeX.html">TeX</a></span><span class="op">(</span><span class="st">r'(f(w$\prime$x))'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://www.stefanom.io/latex2exp/reference/TeX.html">TeX</a></span><span class="op">(</span><span class="st">r'(w$\prime$x)'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">0</span>, color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">3</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fl">0</span>, color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">3</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_step</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">'red'</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-4-1.png" width="60%" style="display: block; margin: auto;"></div>
 <ul>
 <li>
-<strong>Función sigmoide.</strong> También conocida como función logística, se trata de una de las funciones más utilizadas para asignar una clase. Si el punto de evaluación de la función es un valor negativo muy bajo, la función dará como resultado un valor muy cercano a 0, si se evalúa en 0, el resultado es 0,5 y si se evalúa en un valor positivo alto el resultado será aproximadamente 1.</li>
+<strong>Función sigmoide.</strong> También conocida como función logística, se trata de una de las funciones más utilizadas para asignar una clase. Si el punto de evaluación de la función es un valor negativo muy bajo, la función da como resultado un valor muy cercano a 0, si se evalúa en 0 el resultado es 0,5 y si se evalúa en un valor positivo alto el resultado es aproximadamente 1.</li>
 </ul>
 <p><span class="math display">\[\begin{equation}
-f(x)=\frac{1}{1-e^{-x}}
+f( {\bf w}^{\prime} {\bf x})=\frac{1}  {1-e^{-{\bf w}^{\prime} {\bf x}}}.
 \end{equation}\]</span></p>
-<div class="line-block">   Representándose gráficamente de la siguiente forma:</div>
-<div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
+<div class="line-block">   Su representación gráfica es como sigue:</div>
+<div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="fu">plot_activation_function</span><span class="op">(</span><span class="va">f</span>, <span class="st">'Sigmoide'</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;">
-- <strong>Función tangente hiperbólica.</strong> El rango de valores de salida es [-1, 1], donde los valores altos tienden de manera asintótica a 1 y los valores muy bajos tienden de manera asintótica a -1 de forma similar a la sigmoide.</p>
+- <strong>Función tangente hiperbólica.</strong> El rango de valores de salida es [-1, 1], donde para valores altos de <span class="math inline">\({\bf w}^{\prime} \bf x\)</span> la función tiende de manera asintótica a 1 y los valores muy bajos tiende, también de manera asintótica, a -1, de forma similar a la sigmoide.</p>
 <p><span class="math display">\[\begin{equation}
-f(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}
+f({\bf w}^{\prime} \bf x)=\frac{e^{{\bf w}^{\prime} {\bf x}} -e^{-{\bf w}^{\prime} \bf x}}     {e^{{\bf w}^{\prime} \bf x}+e^{-{\bf w}^{\prime} \bf x}}.
 \end{equation}\]</span></p>
-<div class="line-block">   Siendo su representación gráfica de la siguiente forma:</div>
-<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
+<div class="line-block">   Su representación gráfica es como sigue:</div>
+<div class="sourceCode" id="cb492"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tanh_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Hyperbolic.html">tanh</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="fu">plot_activation_function</span><span class="op">(</span><span class="va">tanh_func</span>, <span class="st">'Tangente Hiperbólica'</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-6-1.png" width="60%" style="display: block; margin: auto;">
-- <strong>Función ReLU.</strong> Se trata de la unidad lineal rectificada (del inglés Rectified Linear Unit). Es posiblemente la función de activación más utilizada actualmente en deep learning <span class="citation">(<a href="referncias.html#ref-nair2010rectified" role="doc-biblioref">Nair and Hinton 2010</a>)</span>.</p>
+- <strong>Función ReLU.</strong> Se trata de la unidad lineal rectificada (del inglés <em>rectified linear unit</em>). Es posiblemente la función de activación más utilizada actualmente en <em>deep learning</em> <span class="citation">(<a href="cap-fraude.html#ref-nair2010rectified">Nair and Hinton 2010</a>)</span>.</p>
 <p><span class="math display">\[\begin{equation}
-f(x)=\begin{cases}
-0 &amp; \text{si $x\leq 0$}\\
-x &amp; \text{en otro caso}
+f({\bf w}^{\prime} {\bf x})=\begin{cases}
+0 &amp; \text{si ${\bf w}^{\prime} {\bf x}\leq 0$}\\
+{\bf w}^{\prime} {\bf x} &amp; \text{en otro caso},
 \end{cases}
 \end{equation}\]</span></p>
-<div class="line-block">   Y se representaría gráficamente de la siguiente manera:</div>
-<div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
+<div class="line-block">   y se representa gráficamente de la siguiente manera:</div>
+<div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rec_lu_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">0</span> , <span class="fl">0</span>, <span class="va">x</span> <span class="op">)</span><span class="op">}</span></span>
 <span><span class="fu">plot_activation_function</span><span class="op">(</span><span class="va">rec_lu_func</span>, <span class="st">'ReLU'</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-7-1.png" width="60%" style="display: block; margin: auto;"></div>
@@ -392,134 +395,142 @@ x &amp; \text{en otro caso}
 <span class="header-section-number">36.7</span> Perceptrón multicapa<a class="anchor" aria-label="anchor" href="#perceptr%C3%B3n-multicapa"><i class="fas fa-link"></i></a>
 </h2>
 <p></p>
-<p>Aunque el perceptrón puede aprender muchos tipos de lógica, no es posible que aprenda la operación XOR (OR exclusivo) que se diferencia del OR en que asigna un 1 a la salida cuando las dos entradas son distintas <span class="citation">(<a href="referncias.html#ref-minsky1969introduction" role="doc-biblioref">Minsky and Papert 1969</a>)</span>. El perceptrón multicapa o, en inglés, Multilayer Perceptron (MLP) surge para dar una solución a este problema que es un paradigma de los problemas linealmente no separables, que realmente son la mayoría en el mundo real.</p>
-<p>Un MLP está compuesto por varias capas con neuronas. La primera capa será la de entrada, que recibirá las variables que representan los elementos del problema a resolver. Por otro lado, la última capa representará las clases de salida (en las que hay que clasificar las entradas), esto es, la salida del MLP. Entre ambas capas existirán una o más capas ``ocultas”. Las neuronas de una capa intermedia tienen como entrada la salida de la capa anterior y su salida es la entrada de las neuronas de la siguiente capa (Figura <a href="capNN.html#fig:ann">36.7</a>). Este tipo de capas también son llamadas <em>densas</em> o <em>totalmente conectadas</em>.</p>
+<p>Aunque el perceptrón puede aprender muchos tipos de lógica, no es posible que aprenda la operación XOR (OR exclusivo), que se diferencia del OR en que asigna un 1 a la salida cuando las dos entradas son distintas <span class="citation">(<a href="cap-fraude.html#ref-minsky1969introduction">Minsky and Papert 1969</a>)</span>. El perceptrón multicapa o, en inglés, <em>multilayer perceptron</em> (MLP) surge para dar una solución a este problema, que es un paradigma de los problemas linealmente no separables, que realmente son la mayoría en el mundo real.</p>
+<p>Un MLP está compuesto por varias capas con neuronas. La primera capa es la de entrada, que recibe las variables seleccionadas para dar solución al problema a resolver. La última, la salida del MLP, representa las clases de salida (en las que hay que clasificar las entradas). Entre ambas capas hay una o más capas intermedias u “ocultas”. Las neuronas de una capa intermedia tienen como entrada la salida de la capa anterior y su salida es la entrada de las neuronas de la siguiente capa (Fig. <a href="capNN.html#fig:ann">36.7</a>). Este tipo de capas también son llamadas <strong>densas</strong> o <strong>totalmente conectadas</strong>. En la práctica, tanto las capas intermedias como la capa de salida están compuestas por neuronas totalmente conectadas.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ann"></span>
-<img src="img/ann.png" alt="Estructura del perceptrón multicapa (MLP)" width="100%"><p class="caption">
-Figura 36.7: Estructura del perceptrón multicapa (MLP)
+<img src="img/ann.png" alt="Estructura del perceptrón multicapa (MLP)." width="80%"><p class="caption">
+Figura 36.7: Estructura del perceptrón multicapa (MLP).
 </p>
 </div>
-<div id="aprendizaje-1" class="section level3" number="36.7.1">
+<div id="aprendizaje" class="section level3" number="36.7.1">
 <h3>
-<span class="header-section-number">36.7.1</span> Aprendizaje<a class="anchor" aria-label="anchor" href="#aprendizaje-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">36.7.1</span> Aprendizaje<a class="anchor" aria-label="anchor" href="#aprendizaje"><i class="fas fa-link"></i></a>
 </h3>
-<p>El MLP entra en la categoría de los algoritmos de propagación hacia adelante o <em>feedforward</em> ya que las entradas de las neuronas de una capa se combinan mediante la suma ponderada, pasan por una función de activación y el resultado es propagado a las neuronas de la capa siguiente. Este proceso se lleva a cabo desde la capa de entrada hasta la capa de salida.</p>
-<p>Dado un conjunto de muestras de entrenamiento <span class="math inline">\(\{(\boldsymbol x_1, y_1), (\boldsymbol x_2, y_2), \ldots, (\boldsymbol x_n, y_n)\}\)</span> donde cada <span class="math inline">\(\boldsymbol x_i \in \mathbb{R}^d\)</span> e <span class="math inline">\(y_i \in \{0, 1\}\)</span> (siendo <span class="math inline">\(d\)</span> el número de características), la salida de la primera capa, <span class="math inline">\(\boldsymbol z_1\)</span>, para una entrada <span class="math inline">\(\boldsymbol x\)</span> vendrá dada por la expresión:</p>
+<p>El MLP entra en la categoría de los algoritmos de propagación hacia adelante, o <em>feedforward</em>, ya que las entradas de las neuronas de una capa, que se combinan mediante su suma ponderada, pasan por una función de activación y el resultado es propagado a las neuronas de la capa siguiente. Este proceso se lleva a cabo desde la capa de entrada hasta la capa de salida.</p>
+<p>Dado un conjunto de observaciones de entrenamiento:</p>
 <p><span class="math display">\[\begin{equation}
-\boldsymbol z_1 = \boldsymbol W_{(1)}^{\prime}   \boldsymbol x + \boldsymbol b_1 ,
+D = \{ ({\bf x}_1 , y_1 ), ({\bf x}_2 , y_2 ), \dots, ({\bf x}_h , y_h ) \},
 \end{equation}\]</span></p>
-<p>donde <span class="math inline">\(\boldsymbol b_1 \in \mathbb{R}^{h}\)</span> es un vector con las constantes de la primera capa, siendo <span class="math inline">\(h\)</span> el número de varibles de cada capa, y <span class="math inline">\(\boldsymbol{W}_{(1)} \in \mathbb{R}^{h \times d}\)</span> son los pesos de la capa. Tras aplicar la función de activación, <span class="math inline">\(g(\cdot)\)</span>, al vector intermedio, <span class="math inline">\(\boldsymbol{z}\in \mathbb{R}^h\)</span>, se obtiene:</p>
+<p>donde cada <span class="math inline">\(\boldsymbol x_i \in \mathbb{R}^p\)</span> (siendo <span class="math inline">\(p\)</span> el número de características) e <span class="math inline">\(y_i \in \{0, 1\}\)</span>.</p>
+<p>El vector <span class="math inline">\({\bf z}_1\)</span> cuyos elementos son las sumas ponderadas de las <span class="math inline">\(c_1\)</span> neuronas de la primera capa intermedia, <span class="math inline">\({\bf z}_j, \hspace{0,1cm} j=1, 2,..c_1\)</span>, para una entrada genérica <span class="math inline">\({\bf x}\)</span>, viene dado por la expresión:</p>
 <p><span class="math display">\[\begin{equation}
-\boldsymbol{h_1}= g(\mathbf{z_1}) .
+{\bf z}_1 = {\bf W}_{(1)}^{\prime}   {\bf x} + {\bf b}_1 ,
 \end{equation}\]</span></p>
-<p>La salida de una capa intermedia, <span class="math inline">\(\boldsymbol{h_i}\in \mathbb{R}^h\)</span>, también está formada por variables intermedias que sirven de entrada a la siguiente capa. La función a calcular en la siguiente capa será por tanto:</p>
+<p>donde <span class="math inline">\({\bf b}_{1} \in \mathbb{R}^{p}\)</span> es un vector con las constantes de la primera capa, siendo <span class="math inline">\(p\)</span> el número de variables de cada capa, y <span class="math inline">\({\bf{W}}_{(1)} \in \mathbb{R}^{c_1 \times p}\)</span> la matriz de pesos de la capa.</p>
+<p>Tras aplicar la función de activación, <span class="math inline">\(g(\cdot)\)</span>, al vector de sumas ponderadas de las neuronas de la primera capa intermedia, <span class="math inline">\({\bf z}_1\in \mathbb{R}^{c_1}\)</span>, se obtiene el vector de salidas de dichas neuronas:</p>
 <p><span class="math display">\[\begin{equation}
-\boldsymbol h_2 = g ( \boldsymbol W_{(2)}^{\prime}   \boldsymbol h_1 + \boldsymbol b_2) .
+{\bf h}_{1}= g({\bf z}_1), \hspace{0,1cm}.
 \end{equation}\]</span></p>
-<p>Siguiendo el mismo razonamiento, la salida de la última capa, <span class="math inline">\(\hat y\)</span>, y por tanto de la red, vendrá dada por:</p>
+<p>Como las salidas de las neuronas de una capa intermedia son las entradas de las neuronas de la siguiente capa, en la siguiente capa el vector que contiene las salidas de sus neuronas es:</p>
 <p><span class="math display">\[\begin{equation}
-\hat y = g ( \boldsymbol W_{(n)}^{\prime}   \boldsymbol h_{n-1} + \boldsymbol b_n ) .
+{\bf h}_{2} = g ( {\bf W}_{(2)}^{\prime}   {\bf h_1)} + {\bf b}_2), \hspace{0,1cm}.
 \end{equation}\]</span></p>
-<p>Por ejemplo, si se tiene una red de tres capas la salida podrá calcularse como:</p>
+<p>En general, el vector de salidas de las neuronas de la <span class="math inline">\(c\)</span>-ésima (<span class="math inline">\(c=1,2,...,C\)</span>) capa intermedia se obtiene como:</p>
 <p><span class="math display">\[\begin{equation}
-\hat y = g ( \boldsymbol W_{(3)}^{\prime}   \boldsymbol g ( \boldsymbol W_{(2)}^{\prime}   \boldsymbol g ( \boldsymbol W_{(1)}^{\prime}   \boldsymbol x + \boldsymbol b_1)+ \boldsymbol b_2 )+ \boldsymbol b_3  ) .
+{\bf h}_{c} = g ( {\bf W}_{(c)}^{\prime}  {\bf h}_{c-1}) + {\bf b}_c), \hspace{0,1cm}.
 \end{equation}\]</span></p>
-<p>Para entrenar y ajustar los pesos de este tipo de redes es necesario realizar el ajuste de la combinación de todos los pesos de la red. De forma similar a la búsqueda de los pesos de una sola neurona, será necesario encontrar la combinación de valores que clasifiquen bien todas las muestras del conjunto de entrenamiento o, en su defecto, que fallen en el menor número de muestras posible o minimicen alguna otra función de coste. En este punto es donde entra en juego la propagación hacia atrás o <em>backpropagation</em>.</p>
-<p>La propagación hacia atrás es el mecanismo por el que el MLP ajusta de forma iterativa los pesos de la red con el objetivo de minimizar una función de coste que mide lo bueno o malo que es el resultado obtenido en un momento determinado <span class="citation">(<a href="referncias.html#ref-rumelhart1986learning" role="doc-biblioref">Rumelhart, Hinton, and Williams 1986</a>)</span>. Su único requisito de aplicación es que todas las operaciones de la red (incluidas las funciones de activación) sean diferenciables ya que se utiliza el algoritmo del descenso del gradiente para optimizar la función de coste.</p>
-<p>El MLP utiliza diferentes funciones de coste o pérdida según el tipo de problema a resolver. Para los problemas de clasificación, la función de coste más utilizada es la Entropía Cruzada Media (en inglés Average Cross-Entropy). Para un problema binario esta función de coste se calcula como;</p>
+<p>Siguiendo el mismo razonamiento, en una red con <span class="math inline">\(C\)</span> capas densas o totalmente conectadas (<span class="math inline">\(C-1\)</span> capas ocultas o intermedias y una capa de salida), la salida de la red, <span class="math inline">\(\hat y\)</span>, para una entrada <span class="math inline">\(\bf x\)</span>, viene dada por:</p>
 <p><span class="math display">\[\begin{equation}
-C(\hat{y},y,\boldsymbol W) = -\dfrac{1}{n}\sum_{i=0}^n(y_i \ln {\hat{y_i}} + (1-y_i) \ln{(1-\hat{y_i})}) + \dfrac{\alpha}{2n} ||\boldsymbol W||_2^2 ,
+\hat y = g ( {\bf W}_{(C)}^{\prime}   {\bf h}_{C-1} + {\bf b}_C ),
 \end{equation}\]</span></p>
-<p>donde <span class="math inline">\(\alpha ||W||_2^2\)</span> con <span class="math inline">\(\alpha &gt; 0\)</span> es un término de regularización, L2, también conocido como penalización ya que penaliza los modelos complejos. <span class="math inline">\(\alpha\)</span> es un hiperparámetro cuyo valor se establece manualmente.</p>
-<p>Para los problemas de regresión, la función de coste se basa en el Error Cuadrático Medio (<em>Mean Squared Error</em>):</p>
+<p>siendo <span class="math inline">\(C\)</span> el número de capas (<span class="math inline">\(C-1\)</span> intermedias y una de salida).</p>
+<p>Por ejemplo, en una red con tres capas densas, dos intermedias y una de salida, la salida es:</p>
+<p><span class="math display">\[\begin{equation}
+\hat y = g \left( {\bf W}_{(3)}^{\prime}   g \left( {\bf W}_{(2)}^{\prime}   g \left( {\bf W}_{(1)}^{\prime}   {\bf x} + {\bf b}_1 \right) + {\bf b}_2 \right)+ {\bf b}_3  \right) .
+\end{equation}\]</span></p>
+<p>Para entrenar y ajustar los pesos de este tipo de redes es necesario realizar el ajuste de la combinación de todos los pesos de la red. De forma similar a la búsqueda de los pesos óptimos en el caso de una sola neurona (véase Sec. <a href="capNN.html#aprendizaje-perceptron">36.4.1</a>, será necesario encontrar la combinación de valores que clasifiquen bien todas las muestras del conjunto de entrenamiento o, en su defecto, que fallen en el menor número de muestras posible o minimicen alguna otra función de coste. En este punto es donde entra en juego la propagación hacia atrás o <em>backpropagation</em>.</p>
+<p>La propagación hacia atrás es el mecanismo por el que el MLP ajusta de forma iterativa los pesos de la red con el objetivo de minimizar una función de coste que mide lo bueno o malo que es el resultado obtenido en un momento determinado <span class="citation">(<a href="cap-fraude.html#ref-rumelhart1986learning">Rumelhart, Hinton, and Williams 1986</a>)</span>. Su único requisito de aplicación es que todas las operaciones de la red (incluidas las funciones de activación) sean diferenciables ya que se utiliza el algoritmo del descenso del gradiente para optimizar la función de coste.</p>
+<p>El MLP utiliza diferentes funciones de coste o pérdida según el tipo de problema a resolver. Para los problemas de clasificación, la función de coste más utilizada es la <strong>entropía cruzada media</strong> (en inglés <em>average cross-entropy</em>, ACE). Para un problema binario esta función de coste se calcula como;</p>
+<p><span class="math display">\[\begin{equation}
+C(\hat{y},y,{\bf W}) = -\dfrac{1}{h}\sum_{i=0}^n(y_i \ln {\hat{y_i}} + (1-y_i) \ln{(1-\hat{y_i})}) + \dfrac{\alpha}{2h} ||{\bf W}||_2^2 ,
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(h\)</span> es el número de observaciones contenidas en el conjunto de entrenamiento, <span class="math inline">\(\bf{W}\)</span> es la matriz que contiene los pesos de la red, <span class="math inline">\(\alpha ||W||_2^2\)</span> (con <span class="math inline">\(\alpha &gt; 0\)</span>) es un término de regularización, L2, también conocido como penalización ya que penaliza los modelos complejos. <span class="math inline">\(\alpha\)</span> es un hiperparámetro cuyo valor se establece manualmente.</p>
+<p>Para los problemas de regresión, la función de coste se basa en el error cuadrático medio (<em>mean squared error</em>, MSE):</p>
 <p><span class="math display">\[\begin{equation}
 C(\hat{y},y,\boldsymbol W) = \frac{1}{2n}\sum_{i=0}^n||\hat{y}_i - y_i ||_2^2 + \frac{\alpha}{2n} ||\boldsymbol W||_2^2 .
 \end{equation}\]</span></p>
-<p>Cada iteración en el proceso de aprendizaje estará compuesta entonces por dos etapas, una de propagación hacia adelante y otra de propagación hacia atrás. En la primera etapa se introducen los valores de entrada a la red y se propagan las operaciones y los resultados hasta obtener la salida final de la red. En la segunda, el gradiente de la función de coste es propagado hacia atrás para actualizar los valores de los pesos de todas las capas y acercarse más a los valores que minimizan la función de coste.</p>
-<p>En el algoritmo del descenso del gradiente, <span class="math inline">\(\nabla C_{\boldsymbol W}\)</span> se calcula y deduce de <span class="math inline">\(\boldsymbol W\)</span>.
-Formalmente esto puede expresarse como:</p>
+<p>Cada iteración en el proceso de aprendizaje estará compuesta entonces por dos etapas: una de propagación hacia adelante y otra de propagación hacia atrás. En la primera etapa se introducen los valores de entrada a la red y se propagan las operaciones y los resultados hasta obtener la salida final de la red. En la segunda, el gradiente de la función de coste es propagado hacia atrás para actualizar los valores de los pesos de todas las capas y acercarse más a los valores que minimizan la función de coste.</p>
+<p>En el algoritmo del descenso del gradiente, <span class="math inline">\(\nabla C_{\boldsymbol W}\)</span> (la derivada multivariante de la función de coste respecto a todos los parámetros de la red) se calcula y deduce de <span class="math inline">\(\boldsymbol W\)</span>.</p>
+<p>Formalmente esto puede expresarse como:</p>
 <p><span class="math display">\[\begin{equation}
-\boldsymbol W^{t+1} = \boldsymbol W^{\prime}   - \lambda \nabla {C}_{\boldsymbol W}^{t} ,
+\boldsymbol W^{t+1} = \boldsymbol W^{t}   - \lambda \nabla {C}_{\boldsymbol W}^{t} ,
 \end{equation}\]</span></p>
-<p>donde <span class="math inline">\(t\)</span> es el estado de la red en una iteración determinada y <span class="math inline">\(\lambda\)</span> es la tasa de aprendizaje cuyo valor debe ser superior a 0.</p>
+<p>donde <span class="math inline">\(t\)</span> es el estado de la red en una iteración determinada y <span class="math inline">\(\lambda\)</span> es la tasa de aprendizaje, cuyo valor debe ser superior a 0.</p>
 <p>Al igual que en el caso del perceptrón único, el entrenamiento terminará cuando se alcance un número máximo de iteraciones o la mejora en la función de coste entre dos iteraciones consecutivas no supere cierto umbral.</p>
-<p>Durante el proceso de aprendizaje, es necesario guardar en memoria los resultados de cada una de las muestras del conjunto de entrenamiento. Si el número de muestras o el tamaño de la red son grandes, es posible que no se disponga del suficiente espacio. Para resolver este problema, en una iteración no se utiliza todo el conjunto de entrenamiento, sino que se utiliza un subconjunto del mismo llamado <em>batch</em>. El conjunto de entrenamiento se divide en cada iteración, por tanto, en un número de <em>batches</em> disjuntos con un número de muestras por <em>batch</em>. Atendiendo a esta división, es posible definir una serie de hiperparámetros:</p>
+<p>Durante el proceso de aprendizaje, es necesario guardar en memoria los resultados de cada una de las muestras del conjunto de entrenamiento. Si el número de muestras o el tamaño de la red son grandes, es posible que no se disponga del espacio suficiente. Para resolver este problema, en una iteración no se utiliza todo el conjunto de entrenamiento, sino que se utiliza un subconjunto del mismo llamado <em>batch</em>. El conjunto de entrenamiento se divide en cada iteración, por tanto, en un número de <em>batches</em> disjuntos con un número de observaciones por <em>batch</em>. Atendiendo a esta división, es posible definir una serie de hiperparámetros:</p>
 <ul>
-<li>Tamaño del <em>batch</em>. Número de muestras utilizadas en cada iteración para actualizar los pesos.</li>
+<li>Tamaño del <em>batch</em>. Número de observaciones utilizadas en cada iteración para actualizar los pesos.</li>
 <li>Número de épocas. Número de pasadas completas sobre el conjunto de entrenamiento hasta terminar el proceso de aprendizaje.</li>
-<li>Número de iteraciones por época. Será el resultado de dividir el número total de muestras por el tamaño del <em>batch</em>.</li>
+<li>Número de iteraciones por época. Es el resultado de dividir el número total de observaciones por el tamaño del <em>batch</em>.</li>
 </ul>
-<p>Por ejemplo, si se tiene un conjunto de 55000 muestras y el tamaño del <em>batch</em> es de 100, cada época tendrá 550 iteraciones.</p>
+<p>Por ejemplo, si se tiene un conjunto de 55000 observaciones y el tamaño del <em>batch</em> es de 100, cada época tendrá 550 iteraciones.</p>
 </div>
 </div>
 <div id="instalación-de-librerías-de-deep-learning-en-r-tensorflowkeras" class="section level2" number="36.8">
 <h2>
 <span class="header-section-number">36.8</span> Instalación de librerías de <em>deep learning</em> en <strong>R</strong>: Tensorflow/Keras<a class="anchor" aria-label="anchor" href="#instalaci%C3%B3n-de-librer%C3%ADas-de-deep-learning-en-r-tensorflowkeras"><i class="fas fa-link"></i></a>
 </h2>
-<p>El framework que se va a utilizar en este libro para trabajar con técnicas de <em>deep learning</em> será Tensorflow/Keras, debido a que es uno de los más completos en la actualidad, permitiendo realizar una configuración completa del proceso de entrenamiento y trabajar con diversos tipos de redes neuronales.</p>
-<p>Para poder utilizar Tensorflow/Keras en <strong>R</strong>, es necesario realizar la instalación de la librería fuera de <strong>R</strong>. Por ello, si ya se dispone de una instalación del mismo sería posible utilizarla. No obstante, se recomienda seguir los pasos indicados a continuación para tener una instalación nativa de Tensorflow/Keras asociada directamente a R.</p>
+<p>El <em>framework</em> que se utiliza en este libro para trabajar con técnicas de <em>deep learning</em> es Tensorflow/Keras, debido a que <span class="math inline">\((i)\)</span> es uno de los más completos en la actualidad, <span class="math inline">\((ii)\)</span> permite realizar una configuración completa del proceso de entrenamiento y <span class="math inline">\((iii)\)</span> permite trabajar con diversos tipos de redes neuronales.</p>
+<p>Para poder utilizar Tensorflow/Keras en <strong>R</strong>, es necesario realizar la instalación de la librería fuera de <strong>R</strong>. Por ello, si ya se dispone de una instalación del mismo sería posible utilizarla. No obstante, se recomienda seguir los pasos indicados a continuación para tener una instalación nativa de Tensorflow/Keras asociada directamente a <strong>R</strong>.</p>
 <ul>
 <li>
-<strong>Paso 1</strong> - Librería de Tensorflow en <strong>R</strong>
-</li>
+<strong>Paso 1</strong>: instalación de la librería de <code>tensorflow</code> en <strong>R</strong>.</li>
 </ul>
-<p>El primer paso será instalar el paquete de <strong>tensorflow</strong> en <strong>R</strong> [].</p>
-<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb494"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tensorflow"</span><span class="op">)</span></span></code></pre></div>
-<p>A continuación, será necesario tener una instalación de Conda en el sistema. Los usuarios tanto de Windows como de Linux/Mac podrán realizar directamente la instalación de una versión de Conda denominada Mini-Conda en el instalador del siguiente paso, la cual sería la opción recomendada para no tener que realizar una instalación externa de manera adicional.</p>
+<p>A continuación, será necesario tener una instalación de Conda en el sistema. Los usuarios tanto de Windows como de Linux/Mac pueden realizar directamente la instalación de una versión de Conda denominada Mini-Conda en el instalador del siguiente paso, opción recomendada para no tener que realizar una instalación externa de manera adicional.</p>
 <div class="infobox">
-<p><strong>NOTA</strong></p>
-<p>Otra manera disponible para los usuarios de Windows, pero no recomendada por los autores de este libro salvo que ya se disponga de Anaconda instalado, sería la de utilizar el programa y la librería directamente dentro de Anaconda, instalando una versión de R directamente en el sistema a través del siguiente link:</p>
+<p><strong>Nota</strong></p>
+<p>Otra opción para los usuarios de Windows, pero no recomendada por los autores de este libro salvo que ya se tenga instalado Anaconda, es utilizar el programa y la librería directamente dentro de Anaconda, instalando una versión de <strong>R</strong> directamente en el sistema a través del siguiente link:</p>
 <p><a href="https://docs.anaconda.com/anaconda/install/windows/" class="uri">https://docs.anaconda.com/anaconda/install/windows/</a></p>
 </div>
 <ul>
 <li>
-<strong>Paso 2</strong> - Instalación de <strong>tensorflow</strong> y <strong>keras</strong>
-</li>
+<strong>Paso 2</strong>: instalación de <code>tensorflow</code> y <code>keras</code>.</li>
 </ul>
-<p>Para continuar la instalación se activará la librería de Tensorflow y se ejecutará la función <em>install_tensorflow</em></p>
-<div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/tensorflow">tensorflow</a></span><span class="op">)</span></span>
-<span><span class="fu">install_tensorflow</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Al ejecutar esta función, los usuarios deberán marcar “Y” para aceptar la instalación de Mini-Conda, descartando aceptar la utilización de cualquier otro sistema Conda que pueda estar instalado previamente.</p>
-<p>También se puede ejecutar la función <em>install_keras</em> del paquete <strong>keras</strong> para instalar Tensorflow.</p>
-<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
+<p>Para continuar la instalación hay que activar la librería <code>tensorflow</code> y ejecutar la función <code><a href="https://rdrr.io/pkg/tensorflow/man/install_tensorflow.html">install_tensorflow()</a></code>:</p>
+<div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/tensorflow">"tensorflow"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/tensorflow/man/install_tensorflow.html">install_tensorflow</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Al ejecutar esta función, los usuarios deben marcar “Y” para aceptar la instalación de Mini-Conda, descartando aceptar la utilización de cualquier otro sistema Conda que pueda estar instalado previamente.</p>
+<p>También se puede ejecutar la función <code><a href="https://rdrr.io/pkg/keras/man/install_keras.html">install_keras()</a></code> del paquete <code>keras</code> para instalar Tensorflow.</p>
+<div class="sourceCode" id="cb496"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"keras"</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tensorflow.rstudio.com/">keras</a></span><span class="op">)</span></span>
-<span><span class="fu">install_keras</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tensorflow.rstudio.com/">"keras"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/keras/man/install_keras.html">install_keras</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
-<strong>Paso 3</strong> - Confirmar la instalación</li>
+<strong>Paso 3</strong>: confirmar la instalación.</li>
 </ul>
-<p>Para confirmar la instalación, se puede comprobar con los siguientes comandos (la salida puede variar según el equipo, pero la línea final tiene que ser similar a la indicada):</p>
-<div class="sourceCode" id="cb486"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/tensorflow">tensorflow</a></span><span class="op">)</span></span>
+<p>La instalación se puede comprobar con los siguientes comandos (la salida puede variar según el equipo, pero la línea final tiene que ser similar a la indicada):</p>
+<div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/tensorflow">"tensorflow"</a></span><span class="op">)</span></span>
 <span><span class="va">tf</span><span class="op">$</span><span class="fu">constant</span><span class="op">(</span><span class="st">"Hellow Tensorflow"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="capNN.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tf.Tensor</span>(b<span class="st">'Hellow Tensorflow'</span>, <span class="at">shape=</span>(), <span class="at">dtype=</span>string)</span></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="capNN.html#cb498-1" tabindex="-1"></a><span class="fu">tf.Tensor</span>(b<span class="st">'Hellow Tensorflow'</span>, <span class="at">shape=</span>(), <span class="at">dtype=</span>string)</span></code></pre></div>
 </div>
 <div id="ejemplo-de-red-para-clasificación-en-r" class="section level2" number="36.9">
 <h2>
 <span class="header-section-number">36.9</span> Ejemplo de red para clasificación en <strong>R</strong><a class="anchor" aria-label="anchor" href="#ejemplo-de-red-para-clasificaci%C3%B3n-en-r"><i class="fas fa-link"></i></a>
 </h2>
 <p></p>
-<p>En esta sección se entrena una red neuronal artificial para reconocer o clasificar los dígitos manuscritos del conjunto de datos MNIST (<a href="https://en.wikipedia.org/wiki/MNIST_database" class="uri">https://en.wikipedia.org/wiki/MNIST_database</a>). Cada una de las imágenes de este conjunto de datos tiene un tamaño de <span class="math inline">\(28\times28\)</span> píxeles en escala de grises. En vez de extraer una serie de variables a partir de cada imagen, en este caso se utilizan cada uno de los <span class="math inline">\(28\times28=784\)</span> píxeles como variable de entrada (Figura <a href="capNN.html#fig:mlpmnhist">36.8</a>).</p>
+<p>En esta sección se entrena una red neuronal artificial para reconocer o clasificar los dígitos manuscritos del conjunto de datos MNIST (<a href="https://en.wikipedia.org/wiki/MNIST_database" class="uri">https://en.wikipedia.org/wiki/MNIST_database</a>). Cada una de las imágenes de este conjunto de datos tiene un tamaño de <span class="math inline">\(28\times28\)</span> píxeles<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Para aquellos no familiarizados con la cuestión, un pixel es la menor unidad homogénea en color que forma parte de una imagen digital. Cuanto mayor sea la cantidad de píxeles, mejor calidad tendrá la imagen. En otros término, son los puntos de color (siendo la escala de grises una gama de color monocromática). Las imágenes se forman como una sucesión de píxeles. En las imágenes de mapa de bits, o en los dispositivos gráficos, cada píxel se codifica mediante un conjunto de bits de longitud determinada (la profundidad de color); por ejemplo, se puede codificar con un byte (8 bits), de manera que cada píxel admite hasta 256 variaciones de color (&lt;span class="math inline"&gt;\(2^8\)&lt;/span&gt; posibilidades binarias), de 0 a 255. En las denominadas imágenes llamadas de color verdadero se suelen utilizar tres bytes (24 bits) para definir el color de un píxel; por consiguiente, cada píxel permite representar &lt;span class="math inline"&gt;\(2^{24}=16.777.216\)&lt;/span&gt; variaciones de color.&lt;/p&gt;'><sup>240</sup></a> en escala de grises. En vez de extraer una serie de variables a partir de cada imagen, en este caso se utilizan cada uno de los <span class="math inline">\(28\times28=784\)</span> píxeles como variable de entrada (véase Fig. <a href="capNN.html#fig:mlpmnhist">36.8</a>).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:mlpmnhist"></span>
-<img src="img/mlpmnhist.png" alt="MLP para reconocimiento de dígitos manuscritos" width="100%"><p class="caption">
-Figura 36.8: MLP para reconocimiento de dígitos manuscritos
+<img src="img/mlpmnhist.png" alt="MLP para reconocimiento de dígitos manuscritos." width="100%"><p class="caption">
+Figura 36.8: MLP para reconocimiento de dígitos manuscritos.
 </p>
 </div>
 <div id="carga-y-visualización-de-los-datos" class="section level3" number="36.9.1">
 <h3>
 <span class="header-section-number">36.9.1</span> Carga y visualización de los datos<a class="anchor" aria-label="anchor" href="#carga-y-visualizaci%C3%B3n-de-los-datos"><i class="fas fa-link"></i></a>
 </h3>
-<p>El primer paso será cargar la librería <strong>keras</strong> que permite crear redes neuronales y conjunto de imágenes que se encuentra disponible públicamente:</p>
-<div class="sourceCode" id="cb488"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tensorflow.rstudio.com/">keras</a></span><span class="op">)</span></span>
-<span><span class="va">mnist</span> <span class="op">&lt;-</span> <span class="fu">dataset_mnist</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>A continuación, se puede ver el contenido de las variables generadas, donde cabe destacar que el conjunto de datos MNIST ya viene separado en dos subconjuntos, uno para entrenamiento y otro para test, compuestos por 60000 y 10000 imágenes respectivamente. En ambos casos, estos datos se almacenan en la variable de nombre <em>x</em>.</p>
-<div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
+<p>El primer paso consiste en cargar la librería <code>keras</code>, que permite crear redes neuronales y descargar el conjunto de imágenes que se encuentra disponible públicamente:</p>
+<div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tensorflow.rstudio.com/">"keras"</a></span><span class="op">)</span></span>
+<span><span class="va">mnist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/keras/man/dataset_mnist.html">dataset_mnist</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>A continuación, se puede ver el contenido de las variables generadas, que en este caso contienen los valores de los píxeles de las imágenes. Cabe destacar que el conjunto de datos MNIST ya viene separado en dos subconjuntos, uno para entrenamiento y otro para test, compuestos por 60000 y 10000 imágenes respectivamente. En ambos casos, estos datos se almacenan en la variable de nombre <em>x</em>.</p>
+<div class="sourceCode" id="cb500"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">mnist</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "train" "test"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">mnist</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span>
@@ -530,8 +541,8 @@ Figura 36.8: MLP para reconocimiento de dígitos manuscritos
 <span><span class="co">#&gt; [1] 10000    28    28</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 10000</span></span></code></pre></div>
-<p>Además, las imágenes de cada subconjunto vienen acompañadas de la clase a la que pertenecen (dígito contenido en la imagen). En ambos casos, esta etiqueta se almacena en la variable con nombre <em>y</em>. A continuación se muestra un pequeño ejemplo que permitirá visualizar alguna de las imágenes contenidas en el conjunto de datos de entrenamiento junto con la etiqueta representando el dígito contenido:</p>
-<div class="sourceCode" id="cb490"><pre class="downlit sourceCode r">
+<p>Además, las imágenes de cada subconjunto vienen acompañadas de la clase a la que pertenecen (dígito contenido en la imagen). En ambos casos, esta etiqueta se almacena en la variable con nombre <em>y</em>. A continuación se muestra un pequeño ejemplo que permitirá visualizar alguna de las imágenes contenidas en el conjunto de datos de entrenamiento junto con la etiqueta que indica el dígito contenido:</p>
+<div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfcol<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span>, xaxs<span class="op">=</span><span class="st">'i'</span>, yaxs<span class="op">=</span><span class="st">'i'</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">16</span><span class="op">)</span> <span class="op">{</span></span>
@@ -542,8 +553,8 @@ Figura 36.8: MLP para reconocimiento de dígitos manuscritos
 <span><span class="op">}</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-15"></span>
-<img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-15-1.png" alt="Algunas imágenes del conjunto de entrenamiento" width="60%"><p class="caption">
-Figura 36.9: Algunas imágenes del conjunto de entrenamiento
+<img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-15-1.png" alt="Algunas imágenes del conjunto de entrenamiento." width="60%"><p class="caption">
+Figura 36.9: Algunas imágenes del conjunto de entrenamiento.
 </p>
 </div>
 </div>
@@ -551,9 +562,9 @@ Figura 36.9: Algunas imágenes del conjunto de entrenamiento
 <h3>
 <span class="header-section-number">36.9.2</span> Preprocesamiento<a class="anchor" aria-label="anchor" href="#preprocesamiento"><i class="fas fa-link"></i></a>
 </h3>
-<p>Una vez cargados los datos y comprobado su contenido, es posible realizar algún tipo de preprocesado. Dependiendo del tipo de problema se podrán realizar unas operaciones u otras. Por ejemplo, cuando se trabaja con imágenes es muy típico estandarizar los valores de color de las imágenes para mitigar las diferencias producidas por las diferentes condiciones de iluminación.</p>
-<p>En este caso, solo se va a transformar los valores originales de la imagen (en rango de 0 a 255) a valores entre 0 y 1 dividiendo cada valor por el máximo, 255:</p>
-<div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
+<p>Una vez cargados los datos y comprobado su contenido se puede llevar a cabo algún tipo de preprocesado. Dependiendo del tipo de problema, se podrán realizar unas operaciones u otras. Por ejemplo, cuando se trabaja con imágenes es muy típico estandarizar los valores de color de las imágenes para mitigar las diferencias producidas por las diferentes condiciones de iluminación.</p>
+<p>En este caso, sólo se van a transformar los valores originales de los píxeles de cada imagen (en rango de 0 a 255, véase nota a pie de página 1) a valores entre 0 y 1 dividiendo cada valor por el máximo, 255:</p>
+<div class="sourceCode" id="cb502"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mnist</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">mnist</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">x</span><span class="op">/</span><span class="fl">255</span></span>
 <span><span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span><span class="op">/</span><span class="fl">255</span></span></code></pre></div>
 </div>
@@ -561,16 +572,16 @@ Figura 36.9: Algunas imágenes del conjunto de entrenamiento
 <h3>
 <span class="header-section-number">36.9.3</span> Generación de la red neuronal<a class="anchor" aria-label="anchor" href="#nngen"><i class="fas fa-link"></i></a>
 </h3>
-<p>El siguiente paso consiste en la generación de la red neuronal. Para ello, se define primero la estructura utilizando la interfaz <em>sequential</em> proporcionada por Tensorflow/Keras a través de la función <em>keras_model_sequential</em>:</p>
-<div class="sourceCode" id="cb492"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">keras_model_sequential</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">layer_flatten</span><span class="op">(</span>input_shape <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">28</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">layer_dense</span><span class="op">(</span>units <span class="op">=</span> <span class="fl">15</span>, activation <span class="op">=</span> <span class="st">"relu"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">layer_dense</span><span class="op">(</span><span class="fl">10</span>, activation <span class="op">=</span> <span class="st">"softmax"</span><span class="op">)</span></span></code></pre></div>
-<p>Como se puede observar, la red definida está compuesta por una capa de tipo <em>flatten</em> que se encarga de transformar los 28x28 valores a un vector de 784 elementos, para que a continuación una capa oculta <em>dense</em> de 15 neuronas con activación <em>relu</em> se encargue de realizar las primeras operaciones con esos datos. Al final, una última capa <em>dense</em> se encarga de obtener la probabilidad de que la imagen represente cada una de las posibles clases mediante una activación <em>softmax</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La activación &lt;em&gt;softmax&lt;/em&gt; convierte un vector de número reales en una distribución de probabilidad de tal manera que la probabilidad de pertenecer a cada una de las categoría de salida siempre sume el &lt;span class="math inline"&gt;\(100\%\)&lt;/span&gt;.&lt;/p&gt;'><sup>211</sup></a>:</p>
-<div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
+<p>El siguiente paso consiste en la generación de la red neuronal. Para ello, se define primero la estructura, utilizando la interfaz <em>sequential</em> proporcionada por Tensorflow/Keras a través de la función <code><a href="https://rdrr.io/pkg/keras/man/keras_model_sequential.html">keras_model_sequential()</a></code>:</p>
+<div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/keras/man/keras_model_sequential.html">keras_model_sequential</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_flatten.html">layer_flatten</a></span><span class="op">(</span>input_shape <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">28</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_dense.html">layer_dense</a></span><span class="op">(</span>units <span class="op">=</span> <span class="fl">15</span>, activation <span class="op">=</span> <span class="st">"relu"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_dense.html">layer_dense</a></span><span class="op">(</span><span class="fl">10</span>, activation <span class="op">=</span> <span class="st">"softmax"</span><span class="op">)</span></span></code></pre></div>
+<p>Como se puede observar, la red definida está compuesta por una capa de tipo <code>flatten</code><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Una capa &lt;em&gt;flatten&lt;/em&gt; “aplana” la entrada, es decir, unidimensionaliza la entrada multidimensional o, en otros términos, convierte una matriz en un vector. Normalmente se usa en la transición de la capa convolucional a la capa completamente conectada.&lt;/p&gt;"><sup>241</sup></a> que se encarga de transformar los 28x28 valores en un vector de 784 elementos, para que a continuación una capa oculta <code>dense</code> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Una capa densa es aquella en las que todas las neuronas de la capa están conectadas con todas las de la capa anterior.&lt;/p&gt;"><sup>242</sup></a> de 15 neuronas con activación <code>relu</code> se encargue de realizar las primeras operaciones con esos datos. Al final, una última capa <code>dense</code> se encarga de obtener la probabilidad de que la imagen represente cada una de las posibles clases mediante una activación <code>softmax</code>:[^Note-RNA-1]</p>
+<div class="sourceCode" id="cb504"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span>, line_length<span class="op">=</span><span class="fl">64</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb494"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#&gt; Model: "sequential"</span></span>
 <span><span class="co">#&gt; ____________________________________________________________________</span></span>
 <span><span class="co">#&gt;  Layer (type)              Output Shape               Param #    </span></span>
@@ -584,9 +595,9 @@ Figura 36.9: Algunas imágenes del conjunto de entrenamiento
 <span><span class="co">#&gt; Non-trainable params: 0</span></span>
 <span><span class="co">#&gt; ____________________________________________________________________</span></span></code></pre></div>
 <p>Finalmente, es necesario compilar el modelo, indicando algunos de los parámetros de configuración necesarios para el proceso de entrenamiento, como la función de coste o pérdida, el optimizador a utilizar y las métricas a obtener:</p>
-<div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb506"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">compile</span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://generics.r-lib.org/reference/compile.html">compile</a></span><span class="op">(</span></span>
 <span>    loss <span class="op">=</span> <span class="st">"sparse_categorical_crossentropy"</span>, <span class="co"># función utilizada para problemas de clasificación con varias clases</span></span>
 <span>    optimizer <span class="op">=</span> <span class="st">"sgd"</span>, <span class="co"># stochastic gradient descent</span></span>
 <span>    metrics <span class="op">=</span> <span class="st">"accuracy"</span> <span class="co"># Precisión</span></span>
@@ -596,17 +607,17 @@ Figura 36.9: Algunas imágenes del conjunto de entrenamiento
 <h3>
 <span class="header-section-number">36.9.4</span> Entrenamiento<a class="anchor" aria-label="anchor" href="#nntrain"><i class="fas fa-link"></i></a>
 </h3>
-<p>Una vez generada la estructura de la red neuronal y definida la anterior configuración, es posible entrenarla mediante la función <em>fit()</em>. Para ello, se le debe indicar el conjunto de imágenes de entrenamiento, <em>x</em>, que debe utilizar y sus clases correspondientes, <em>y</em>. Además de otros parámetros, se podrá configurar el número de épocas, <em>epochs</em>, a entrenar (pasadas sobre el conjunto completo de entrenamiento), el tamaño del <em>batch</em> que se utilizará en cada iteración con <em>batch_size</em> (número de imágenes por iteración), qué porcentaje de elementos del conjunto de datos se utilizarán para validar el modelo con <em>validation_split</em> (imágenes utilizadas durante el entrenamiento pero solo para obtener una estimación real del error cometido) o la tasa de aprendizaje, <em>learning_rate</em>.</p>
-<div class="sourceCode" id="cb496"><pre class="downlit sourceCode r">
+<p>Una vez generada la estructura de la red neuronal y definida la anterior configuración, es posible entrenarla mediante la función <code><a href="https://generics.r-lib.org/reference/fit.html">fit()</a></code>. Para ello, se le debe indicar el conjunto de imágenes de entrenamiento, <em>x</em>, que debe utilizar y sus clases correspondientes, <em>y</em>. Además de otros parámetros, se podrá configurar el número de épocas a entrenar (<code>epochs</code>, pasadas sobre el conjunto completo de entrenamiento), el tamaño del <em>batch</em> que se utilizará en cada iteración (<code>batch_size</code>, número de imágenes por iteración), qué porcentaje de elementos del conjunto de datos se utilizan para validar el modelo (<code>validation_split</code>, imágenes utilizadas durante el entrenamiento pero solo para obtener una estimación real del error cometido) y la tasa de aprendizaje (<code>learning_rate</code>).</p>
+<div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">training_evolution</span> <span class="op">&lt;-</span> <span class="va">model</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">fit</span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://generics.r-lib.org/reference/fit.html">fit</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="va">mnist</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">x</span>, y <span class="op">=</span> <span class="va">mnist</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">y</span>,</span>
 <span>    epochs <span class="op">=</span> <span class="fl">10</span>, batch_size <span class="op">=</span> <span class="fl">128</span>,</span>
 <span>    validation_split <span class="op">=</span> <span class="fl">0.2</span>,</span>
 <span>    learning_rate <span class="op">=</span> <span class="fl">0.1</span>,</span>
 <span>    verbose <span class="op">=</span> <span class="fl">2</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb508"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#&gt; Epoch 1/10</span></span>
 <span><span class="co">#&gt; 375/375 - 2s - loss: 1.6313 - accuracy: 0.5266 - val_loss: 1.0455 - val_accuracy: 0.7510 - 2s/epoch - 6ms/step</span></span>
 <span><span class="co">#&gt; Epoch 2/10</span></span>
@@ -627,40 +638,40 @@ Figura 36.9: Algunas imágenes del conjunto de entrenamiento
 <span><span class="co">#&gt; 375/375 - 1s - loss: 0.3678 - accuracy: 0.8975 - val_loss: 0.3359 - val_accuracy: 0.9050 - 1s/epoch - 3ms/step</span></span>
 <span><span class="co">#&gt; Epoch 10/10</span></span>
 <span><span class="co">#&gt; 375/375 - 1s - loss: 0.3571 - accuracy: 0.8997 - val_loss: 0.3289 - val_accuracy: 0.9064 - 1s/epoch - 3ms/step</span></span></code></pre></div>
-<p>Tras el entrenamiento es posible ver su evolución mediante las gráficas de coste/pérdida y precisión:</p>
-<div class="sourceCode" id="cb498"><pre class="downlit sourceCode r">
+<p>Las gráficas de coste/pérdida y precisión permiten ver su evolución durante el proceso de entrenamiento:</p>
+<div class="sourceCode" id="cb509"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">training_evolution</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-curve1"></span>
-<img src="img/curve1.png" alt="Evolución durante el entrenamiento de la función de precisión y de coste/pérdida de los conjuntos de entrenamiento y validación" width="100%"><p class="caption">
-Figura 36.10: Evolución durante el entrenamiento de la función de precisión y de coste/pérdida de los conjuntos de entrenamiento y validación
+<img src="img/curve1.png" alt="Evolución durante el entrenamiento de la función de precisión y de coste/pérdida: conjuntos de entrenamiento y validación." width="60%"><p class="caption">
+Figura 36.10: Evolución durante el entrenamiento de la función de precisión y de coste/pérdida: conjuntos de entrenamiento y validación.
 </p>
 </div>
-<p>Como se puede observar, la red entrenada tiene alrededor de un 90% de precisión (porcentaje de aciertos al clasificar las imágenes) para las imágenes en los conjuntos de entrenamiento y validación. En el caso de la función de pérdida o coste, que mide el error cometido al realizar la clasificación, podemos ver como se reduce conforme la precisión del modelo aumenta.</p>
+<p>Como se puede observar, la red entrenada tiene alrededor de un 90% de precisión (porcentaje de aciertos al clasificar las imágenes) tanto para las imágenes del conjunto de entrenamiento como para las del conjunto de validación. En el caso de la función de pérdida o coste, que mide el error cometido al realizar la clasificación, se aprecia que se reduce conforme la precisión del modelo aumenta.</p>
 </div>
 <div id="test" class="section level3" number="36.9.5">
 <h3>
 <span class="header-section-number">36.9.5</span> Test<a class="anchor" aria-label="anchor" href="#test"><i class="fas fa-link"></i></a>
 </h3>
 <p>Una vez entrenado el modelo, es posible aplicarlo sobre el conjunto de test. Para ello, se puede realizar la predicción sobre cualquiera de las imágenes mediante la función <em>predict</em>, obteniendo la probabilidad de que pertenezca a una determinada clase:</p>
-<div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb510"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">predictions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">predictions</span>, digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
-<pre><code>#&gt;       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10]
-#&gt; [1,] 0.000 0.000 0.000 0.003 0.000 0.000 0.000 0.995 0.000 0.002
-#&gt; [2,] 0.009 0.000 0.836 0.024 0.000 0.009 0.119 0.000 0.003 0.000
-#&gt; [3,] 0.000 0.962 0.013 0.006 0.001 0.001 0.003 0.002 0.010 0.002
-#&gt; [4,] 0.999 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
-#&gt; [5,] 0.001 0.000 0.007 0.000 0.836 0.004 0.011 0.012 0.017 0.111</code></pre>
-<p>También se puede utilizar la función <em>evaluate</em> para calcular tanto el coste o pérdida como la precisión de la red neuronal sobre el conjunto de test. Como se puede observar, se obtienen valores muy similares a los obtenidos durante el entrenamiento:</p>
-<div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">predictions</span>, digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]</span></span>
+<span><span class="co">#&gt; [1,] 0.000 0.000 0.000 0.003 0.000 0.000 0.000 0.995 0.000 0.002</span></span>
+<span><span class="co">#&gt; [2,] 0.009 0.000 0.836 0.024 0.000 0.009 0.119 0.000 0.003 0.000</span></span>
+<span><span class="co">#&gt; [3,] 0.000 0.962 0.013 0.006 0.001 0.001 0.003 0.002 0.010 0.002</span></span>
+<span><span class="co">#&gt; [4,] 0.999 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000</span></span>
+<span><span class="co">#&gt; [5,] 0.001 0.000 0.007 0.000 0.836 0.004 0.011 0.012 0.017 0.111</span></span></code></pre></div>
+<p>También se puede utilizar la función <code><a href="https://rdrr.io/pkg/tensorflow/man/evaluate.html">evaluate()</a></code> para calcular tanto el coste o pérdida como la precisión de la red neuronal sobre el conjunto de <em>test</em>. Como se puede observar, se obtienen valores muy similares a los obtenidos durante el entrenamiento:</p>
+<div class="sourceCode" id="cb511"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">evaluate</span><span class="op">(</span><span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span>, <span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">y</span>, verbose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
-<pre><code>#&gt;      loss  accuracy 
-#&gt; 0.3310305 0.9045000</code></pre>
-<p>Con la función <em>predict</em> se puede también generar la matriz de confusión de la red para evaluar aciertos y fallos para cada clase:</p>
-<div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">prediction_matrix</span> <span class="op">&lt;-</span> <span class="va">model</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">k_argmax</span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/tensorflow/man/evaluate.html">evaluate</a></span><span class="op">(</span><span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span>, <span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">y</span>, verbose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="co">#&gt; loss      accuracy</span></span>
+<span><span class="co">#&gt; 0.3310305 0.9045000</span></span></code></pre></div>
+<p>Con la función <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> se puede también generar la matriz de confusión de la red para evaluar aciertos y fallos para cada clase:</p>
+<div class="sourceCode" id="cb512"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">prediction_matrix</span> <span class="op">&lt;-</span> <span class="va">model</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/keras/man/k_argmax.html">k_argmax</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">confusion_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/array.html">as.array</a></span><span class="op">(</span><span class="va">prediction_matrix</span><span class="op">)</span>, <span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
 <span><span class="va">confusion_matrix</span></span></code></pre></div>
 <pre><code>#&gt;    
@@ -675,49 +686,49 @@ Figura 36.10: Evolución durante el entrenamiento de la función de precisión y
 #&gt;   7    2    2   12   17    2   10    0  916   11   18
 #&gt;   8    3   15   35   20   10   38    2    3  839    9
 #&gt;   9    0    0   11    5   47    7    0   44   19  898</code></pre>
-<p>En la diagonal principal podemos observar el número de aciertos que obtiene el modelo entrenado para el conjunto de test, mientras que el resto de valores indican en cuantas ocasiones una clase es clasificada de manera incorrecta como otra diferente. A partir de esta matriz de confusión se puede calcular el valor de <strong>accuracy</strong> calculado mediante la función <strong>evaluate</strong> previa.</p>
+<p>La diagonal principal contiene el número de aciertos del modelo entrenado para el conjunto de test, mientras que el resto de valores indican en cuántas ocasiones una clase es clasificada de manera incorrecta como otra diferente. A partir de esta matriz de confusión se puede calcular el valor de <code>accuracy</code> calculado mediante la función <code><a href="https://rdrr.io/pkg/tensorflow/man/evaluate.html">evaluate()</a></code>.</p>
 </div>
 <div id="guardado-y-reutilización-del-modelo" class="section level3" number="36.9.6">
 <h3>
 <span class="header-section-number">36.9.6</span> Guardado y reutilización del modelo<a class="anchor" aria-label="anchor" href="#guardado-y-reutilizaci%C3%B3n-del-modelo"><i class="fas fa-link"></i></a>
 </h3>
-<p>Finalmente, es posible almacenar el modelo entrenado mediante la función <em>save_model_tf</em>, que genera una carpeta con la red que se puede cargar y reutilizar mediante la función <em>load_model_tf</em>.</p>
-<div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">save_model_tf</span><span class="op">(</span>object <span class="op">=</span> <span class="va">model</span>, filepath <span class="op">=</span> <span class="st">"model"</span><span class="op">)</span></span>
-<span><span class="va">reloaded_model</span> <span class="op">&lt;-</span> <span class="fu">load_model_tf</span><span class="op">(</span><span class="st">"model"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">reloaded_model</span>, <span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">28</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">28</span><span class="op">]</span><span class="op">)</span>, digits<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
-<pre><code>#&gt;       [,1] [,2]  [,3]   [,4] [,5]  [,6] [,7]   [,8] [,9] [,10]
-#&gt; [1,] 2e-04    0 1e-04 0.0028    0 1e-04    0 0.9948    0 0.002</code></pre>
+<p>Finalmente, es posible almacenar el modelo entrenado mediante la función <code>save_model_tf</code>, que genera una carpeta con la red que se puede cargar y reutilizar mediante la función <code>load_model_tf</code>.</p>
+<div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/keras/man/save_model_tf.html">save_model_tf</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">model</span>, filepath <span class="op">=</span> <span class="st">"model"</span><span class="op">)</span></span>
+<span><span class="va">reloaded_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/keras/man/save_model_tf.html">load_model_tf</a></span><span class="op">(</span><span class="st">"model"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">reloaded_model</span>, <span class="va">mnist</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">28</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">28</span><span class="op">]</span><span class="op">)</span>, digits<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       [,1]   [,2]   [,3]   [,4]  [,5]  [,6]  [,7]    [,8]   [,9]    [,10]</span></span>
+<span><span class="co">#&gt; [1,] 2e-04     0   1e-04 0.0028     0 1e-04     0  0.9948      0    0.002</span></span></code></pre></div>
 </div>
 </div>
 <div id="ejemplo-de-red-para-regresión-en-r" class="section level2" number="36.10">
 <h2>
 <span class="header-section-number">36.10</span> Ejemplo de red para regresión en <strong>R</strong><a class="anchor" aria-label="anchor" href="#ejemplo-de-red-para-regresi%C3%B3n-en-r"><i class="fas fa-link"></i></a>
 </h2>
-<p>En esta sección se entrena una red neuronal artificial para predecir el precio de la vivienda según sus características en Madrid. Para ello se usará el dataset de <strong>Madrid_Sale</strong> disponibles en el paquete de <em>R</em> <strong>Idealista18</strong>, con datos inmobiliaros del año 2018 y que fue utilizado en el Cap. <a href="chap-feature.html#chap-feature">9</a>. Para ello, se tomarán las siguientes 7 variables que se usarán para realizar la estimación:</p>
+<p>En esta sección se entrena una red neuronal artificial para predecir el precio de la vivienda en Madrid en función de sus características. Para ello se usa el conjunto de datos <code>Madrid_Sale</code> disponibles en el paquete de <strong>R</strong> <code>Idealista18</code>, que contiene información del año 2018 y que fue utilizado en el Cap. <a href="chap-feature.html#chap-feature">9</a>. Se toman como variables predictoras (capa de entrada) las siguientes:</p>
 <ul>
 <li>
-<em>CONSTRUCTEDAREA</em>: metros cuadrados construidos.</li>
+<code>CONSTRUCTEDAREA</code>: metros cuadrados construidos.</li>
 <li>
-<em>ROOMNUMBER</em>: número de habitaciones.</li>
+<code>ROOMNUMBER</code>: número de habitaciones.</li>
 <li>
-<em>BATHNUMBER</em>: número de baños.</li>
+<code>BATHNUMBER</code>: número de baños.</li>
 <li>
-<em>HASLIFT</em>: si tiene ascensor.</li>
+<code>HASLIFT</code>: si tiene o no ascensor.</li>
 <li>
-<em>DISTANCE_TO_CITY_CENTER</em>: distancia al centro de la ciudad.</li>
+<code>DISTANCE_TO_CITY_CENTER</code>: distancia al centro de la ciudad.</li>
 <li>
-<em>DISTANCE_TO_METRO</em>: distancia a la parada de metro más cercana.</li>
+<code>DISTANCE_TO_METRO</code>: distancia a la estación de metro más cercana.</li>
 <li>
-<em>DISTANCE_TO_CASTELLANA</em>: distancia a la Castellana.</li>
+<code>DISTANCE_TO_CASTELLANA</code>: distancia a La Castellana.</li>
 </ul>
 <div id="carga-y-visualización-de-los-datos-1" class="section level3" number="36.10.1">
 <h3>
 <span class="header-section-number">36.10.1</span> Carga y visualización de los datos<a class="anchor" aria-label="anchor" href="#carga-y-visualizaci%C3%B3n-de-los-datos-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Considerando que ya se ha cargado previamente la librería <code>keras</code>, se carga el conjunto de datos indicando las variables a considerar:</p>
-<div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://paezha.github.io/idealista18/">idealista18</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb515"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://paezha.github.io/idealista18/">"idealista18"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"Madrid_Sale"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">variables</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"CONSTRUCTEDAREA"</span>,<span class="st">"ROOMNUMBER"</span>,<span class="st">"BATHNUMBER"</span>,</span>
@@ -727,8 +738,8 @@ Figura 36.10: Evolución durante el entrenamiento de la función de precisión y
 <span><span class="va">x_madrid_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.matrix.html">data.matrix</a></span><span class="op">(</span><span class="va">x_madrid</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">y_madrid</span> <span class="op">&lt;-</span> <span class="va">Madrid_Sale</span><span class="op">$</span><span class="va">PRICE</span></span>
 <span><span class="va">y_madrid_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">y_madrid</span>,nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">y_madrid</span><span class="op">)</span>,byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>El conjunto de datos contiene un total de 94815 elementos, que se dividirán en un 90% para entrenamiento y un 10% para test:</p>
-<div class="sourceCode" id="cb508"><pre class="downlit sourceCode r">
+<p>El conjunto de datos contiene un total de 94815 elementos. El 90% ellos se destinarán al conjunto de entrenamiento y el 10% restante al de validación o test:</p>
+<div class="sourceCode" id="cb516"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">y_madrid</span><span class="op">)</span>, replace<span class="op">=</span><span class="cn">TRUE</span>, prob<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">madrid_dat_train_x</span> <span class="op">&lt;-</span> <span class="va">x_madrid_mat</span><span class="op">[</span><span class="va">ind</span>, <span class="op">]</span></span>
 <span><span class="va">madrid_dat_test_x</span> <span class="op">&lt;-</span> <span class="va">x_madrid_mat</span><span class="op">[</span><span class="op">!</span><span class="va">ind</span>, <span class="op">]</span></span>
@@ -739,8 +750,8 @@ Figura 36.10: Evolución durante el entrenamiento de la función de precisión y
 <h3>
 <span class="header-section-number">36.10.2</span> Preprocesamiento<a class="anchor" aria-label="anchor" href="#preprocesamiento-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>Una vez cargados los datos y comprobado su contenido, es recomendable la normalización de las variables contenidas en el conjunto de datos debido a su heterogeneidad. Aunque sería posible para la red neuronal el adaptarse a esta situación, ciertamente puede complicar el proceso de entrenamiento haciéndola más imprecisa. Para ello, se utilizará la función <code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code> sobre las variables predictoras y se dividirá la variable del precio entre 100000 para reducir su escala:</p>
-<div class="sourceCode" id="cb509"><pre class="downlit sourceCode r">
+<p>Una vez cargados los datos y comprobado su contenido, se recomienda normalizar las variables seleccionadas como predictoras, puesto que normalmente son muy heterogéneas. Aunque la red neuronal podría adaptarse a una situación de heterogeneidad, dicha adaptación podría complicar el proceso de entrenamiento, lo cual se traduciría en mauyor imprecisión. Para llevar a cabo el proceso de normalización se utiliza la función <code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code> sobre las variables predictoras; adicionalmente, se divide la variable precio entre 100000 para reducir su escala:</p>
+<div class="sourceCode" id="cb517"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">madrid_dat_train_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">madrid_dat_train_x</span><span class="op">)</span></span>
 <span><span class="va">madrid_dat_test_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">madrid_dat_test_x</span><span class="op">)</span></span>
 <span><span class="va">madrid_dat_train_y</span> <span class="op">&lt;-</span> <span class="va">madrid_dat_train_y</span><span class="op">/</span><span class="fl">100000</span></span>
@@ -750,17 +761,17 @@ Figura 36.10: Evolución durante el entrenamiento de la función de precisión y
 <h3>
 <span class="header-section-number">36.10.3</span> Generación de la red neuronal<a class="anchor" aria-label="anchor" href="#generaci%C3%B3n-de-la-red-neuronal"><i class="fas fa-link"></i></a>
 </h3>
-<p>El siguiente paso consiste en la generación de la red neuronal. Para ello, al igual que en la sección <a href="capNN.html#nngen">36.9.3</a>, se define primero la estructura utilizando la interfaz <em>sequential</em> proporcionada por Tensorflow/Keras a través de la función <code>keras_model_sequential()</code>:</p>
-<div class="sourceCode" id="cb510"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">keras_model_sequential</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">layer_dense</span><span class="op">(</span>units<span class="op">=</span><span class="fl">128</span>, activation<span class="op">=</span><span class="st">"relu"</span>, input_shape<span class="op">=</span><span class="fl">7</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">layer_dense</span><span class="op">(</span>units<span class="op">=</span><span class="fl">64</span>, activation<span class="op">=</span><span class="st">"relu"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">layer_dense</span><span class="op">(</span>units<span class="op">=</span><span class="fl">16</span>, activation<span class="op">=</span><span class="st">"relu"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">layer_dense</span><span class="op">(</span>units<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p>Como se puede observar, la red está compuesta por varias capas ocultas tipo <em>dense</em>, en las que las tres primeras tienen una activación <em>relu</em>. Al final, una última capa <em>dense</em> se encarga de obtener el valor de la estimación y, al contrario que en el ejemplo previo, no incluye ningún tipo de función de activación debido a que el valor de la misma ya es comprensible tanto para el modelo como para su interpretación. Esto sería equivalente a utilizar la función de activación lineal.</p>
-<div class="sourceCode" id="cb511"><pre class="downlit sourceCode r">
+<p>El siguiente paso consiste en la generación de la red neuronal. Para ello, igual que en la sección <a href="capNN.html#nngen">36.9.3</a>, primero se define su estructura utilizando la interfaz <em>sequential</em> proporcionada por Tensorflow/Keras a través de la función <code><a href="https://rdrr.io/pkg/keras/man/keras_model_sequential.html">keras_model_sequential()</a></code>:</p>
+<div class="sourceCode" id="cb518"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/keras/man/keras_model_sequential.html">keras_model_sequential</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_dense.html">layer_dense</a></span><span class="op">(</span>units<span class="op">=</span><span class="fl">128</span>, activation<span class="op">=</span><span class="st">"relu"</span>, input_shape<span class="op">=</span><span class="fl">7</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_dense.html">layer_dense</a></span><span class="op">(</span>units<span class="op">=</span><span class="fl">64</span>, activation<span class="op">=</span><span class="st">"relu"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_dense.html">layer_dense</a></span><span class="op">(</span>units<span class="op">=</span><span class="fl">16</span>, activation<span class="op">=</span><span class="st">"relu"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/keras/man/layer_dense.html">layer_dense</a></span><span class="op">(</span>units<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<p>Como se puede observar, la red está compuesta por varias capas tipo <em>dense</em> (además de la de entrada) en las que las tres primeras tienen una activación <code>relu</code>. La última capa <em>dense</em> se encarga de proporcionar el valor de la predicción y, al contrario que en el ejemplo previo, no incluye ningún tipo de función de activación, puesto que su valor ya es comprensible tanto para el modelo como para su interpretación. Esto sería equivalente a utilizar la función de activación lineal.</p>
+<div class="sourceCode" id="cb519"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span>, line_length<span class="op">=</span><span class="fl">64</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb512"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb520"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#&gt; Model: "sequential_1"</span></span>
 <span><span class="co">#&gt; ________________________________________________________________</span></span>
 <span><span class="co">#&gt;  Layer (type)               Output Shape              Param #   </span></span>
@@ -774,46 +785,46 @@ Figura 36.10: Evolución durante el entrenamiento de la función de precisión y
 <span><span class="co">#&gt; Trainable params: 10,337</span></span>
 <span><span class="co">#&gt; Non-trainable params: 0</span></span>
 <span><span class="co">#&gt; ________________________________________________________________</span></span></code></pre></div>
-<p>Finalmente, se compila el modelo indicando los parámetros de configuración necesarios para el proceso de entrenamiento. En este caso la función de coste o pérdida se corresponderá con el Error Medio Cuadrático y la métrica con el error medio absoluto:</p>
-<div class="sourceCode" id="cb513"><pre class="downlit sourceCode r">
+<p>Finalmente, se compila el modelo indicando los parámetros de configuración necesarios para el proceso de entrenamiento. En este caso la función de coste o pérdida es el error cuadrático medio y la métrica el error absoluto medio:</p>
+<div class="sourceCode" id="cb521"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">compile</span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://generics.r-lib.org/reference/compile.html">compile</a></span><span class="op">(</span></span>
 <span>    loss <span class="op">=</span> <span class="st">"mse"</span>, <span class="co"># mean squared error</span></span>
 <span>    optimizer <span class="op">=</span> <span class="st">"sgd"</span>, <span class="co"># stochastic gradient descent</span></span>
-<span>    metrics <span class="op">=</span> <span class="st">"mae"</span> <span class="co"># mean average error</span></span>
+<span>    metrics <span class="op">=</span> <span class="st">"mae"</span> <span class="co"># mean absolute error</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 </div>
 <div id="entrenamiento" class="section level3" number="36.10.4">
 <h3>
 <span class="header-section-number">36.10.4</span> Entrenamiento<a class="anchor" aria-label="anchor" href="#entrenamiento"><i class="fas fa-link"></i></a>
 </h3>
-<p>Una vez generada la estructura de la red neuronal y definida la anterior configuración, se entrena la misma utilizando la función <code>fit()</code>, configurando el resto de parámetros de forma similar a como se vio en la sección <a href="capNN.html#nntrain">36.9.4</a>:</p>
-<div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
+<p>Una vez generada la estructura de la red neuronal y definida la anterior configuración, se entrena la red con la función <code><a href="https://generics.r-lib.org/reference/fit.html">fit()</a></code>, configurando el resto de parámetros de forma similar a como se vio en la sección <a href="capNN.html#nntrain">36.9.4</a>:</p>
+<div class="sourceCode" id="cb522"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">training_evolution</span> <span class="op">&lt;-</span> <span class="va">model</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">fit</span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://generics.r-lib.org/reference/fit.html">fit</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="va">madrid_dat_train_x</span>, y <span class="op">=</span> <span class="va">madrid_dat_train_y</span>,</span>
 <span>    epochs <span class="op">=</span> <span class="fl">50</span>, batch_size <span class="op">=</span> <span class="fl">512</span>,</span>
 <span>    validation_split <span class="op">=</span> <span class="fl">0.2</span>,</span>
 <span>    learning_rate <span class="op">=</span> <span class="fl">0.1</span>,</span>
 <span>    verbose <span class="op">=</span> <span class="fl">2</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p>Tras el entrenamiento es posible ver su evolución mediante las gráficas de coste/pérdida y error:</p>
-<div class="sourceCode" id="cb515"><pre class="downlit sourceCode r">
+<p>Las gráficas de coste/pérdida y error durante el proceso de entrenamiento puede verse en la Fig. <a href="capNN.html#fig:plot-curve2">36.11</a>.</p>
+<div class="sourceCode" id="cb523"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">training_evolution</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-curve2"></span>
-<img src="img/curve2.png" alt="Evolución durante el entrenamiento de la precisión y la pérdida de los conjuntos de entrenamiento y validación" width="100%"><p class="caption">
-Figura 36.11: Evolución durante el entrenamiento de la precisión y la pérdida de los conjuntos de entrenamiento y validación
+<img src="img/curve2.png" alt="Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación." width="60%"><p class="caption">
+Figura 36.11: Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación.
 </p>
 </div>
-<p>Como se puede observar, en este caso el modelo tiene aún posibilidad de mejora, ya que la pérdida sigue siendo alta y no se ha estancado, por lo que incrementando el número de épocas y el tiempo de entrenamiento se podría obtener un mejor resultado.</p>
+<p>Como se puede observar, en este caso el modelo tiene aún posibilidad de mejora, ya que la pérdida es elevada y no se ha estancado, por lo que incrementando el número de épocas y el tiempo de entrenamiento se podría obtener un mejor resultado.</p>
 </div>
 <div id="test-1" class="section level3" number="36.10.5">
 <h3>
 <span class="header-section-number">36.10.5</span> Test<a class="anchor" aria-label="anchor" href="#test-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>Una vez entrenado el modelo, es posible aplicarlo sobre el conjunto de test mediante la función <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>, obteniendo la estimación para cada una de las viviendas:</p>
-<div class="sourceCode" id="cb516"><pre class="downlit sourceCode r">
+<p>Una vez entrenado el modelo, es posible aplicarlo sobre el conjunto de test mediante la función <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>, obteniendo la predicción del precio de cada una de las viviendas incluidas en dicho conjunto:</p>
+<div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">predictions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">madrid_dat_test_x</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">predictions</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [,1]</span></span>
@@ -822,20 +833,20 @@ Figura 36.11: Evolución durante el entrenamiento de la precisión y la pérdida
 <span><span class="co">#&gt; [3,] 3.887646</span></span>
 <span><span class="co">#&gt; [4,] 6.390513</span></span>
 <span><span class="co">#&gt; [5,] 5.721725</span></span></code></pre></div>
-<p>Y mediante la función <code>evaluate()</code> se calcula tanto el coste o pérdida como el error de la red neuronal sobre el conjunto de test, el cual tendremos que multiplicar por 100000 para obtener el resultado en la escala original del conjunto de datos:</p>
-<div class="sourceCode" id="cb517"><pre class="downlit sourceCode r">
+<p>Y mediante la función <code><a href="https://rdrr.io/pkg/tensorflow/man/evaluate.html">evaluate()</a></code> se calcula tanto el coste o pérdida como el error de la red neuronal sobre el conjunto de test (véase Fig. <a href="capNN.html#fig:plot-curve2">36.11</a>), el cual se tiene que multiplicar por 100.000 para obtener el resultado en la escala original del conjunto de datos:</p>
+<div class="sourceCode" id="cb525"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">evaluate</span><span class="op">(</span><span class="va">madrid_dat_test_x</span>, <span class="va">madrid_dat_test_y</span>, verbose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/tensorflow/man/evaluate.html">evaluate</a></span><span class="op">(</span><span class="va">madrid_dat_test_x</span>, <span class="va">madrid_dat_test_y</span>, verbose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="co">#&gt; loss mae</span></span>
 <span><span class="co">#&gt; 2.4195166 0.9227165</span></span></code></pre></div>
 </div>
-<div id="resumen-29" class="section level3 unnumbered infobox_resume">
-<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-29"><i class="fas fa-link"></i></a>
+<div id="resumen-33" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-33"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
-<li><p>En este capítulo se ha explicado en detalle el concepto de redes neuronales artificiales, incluyendo los elementos que la componen, desde el perceptrón o neurona básica hasta el perceptrón multicapa, pasando el perceptron multiclase, junto al proceso de aprendizaje de los mismos.</p></li>
+<li><p>En este capítulo se ha explicado en detalle el concepto de redes neuronales artificiales, incluyendo los elementos que la componen, desde el perceptrón o neurona básica hasta el perceptrón multicapa, pasando el perceptrón multiclase, junto al proceso de aprendizaje de los mismos.</p></li>
 <li><p>Además, se han definido las funciones de activación clásicas utilizadas en las redes neuronales artificiales, las cuales se encargan de transformar la suma ponderada de las entradas en el resultado final de la capa.</p></li>
-<li><p>Finalmente, se han explicado los pasos necesarios para poder entrenar una red neuronal artificial utilizando la librería Tensorflow/Keras en <strong>R</strong>, resolviendo el problema de clasificación de dígitos manuscritos representado en el conjunto de datos MNIST y un problema de regresión para estimar el precio de viviendas según sus características representado en el conjunto de datos de Idealista18.</p></li>
+<li><p>Finalmente, se han explicado los pasos necesarios para poder entrenar una red neuronal artificial utilizando la librería Tensorflow/Keras en <strong>R</strong>, resolviendo un problema de clasificación de dígitos manuscritos, a partir del conjunto de datos <code>MNIST</code>, y un problema de regresión para predecir el precio de la vivienda en Madrid en función de sus características, a parir del conjunto de datos de <code>Idealista18</code>.</p></li>
 </ul>
 </div>
 
@@ -846,7 +857,7 @@ Figura 36.11: Evolución durante el entrenamiento de la precisión y la pérdida
 <div class="prev"><a href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></div>
 <div class="next"><a href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#capNN"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
 <li>
@@ -856,14 +867,14 @@ Figura 36.11: Evolución durante el entrenamiento de la precisión y la pérdida
 <li><a class="nav-link" href="#redes-neuronales"><span class="header-section-number">36.3</span> Redes neuronales</a></li>
 <li>
 <a class="nav-link" href="#perceptr%C3%B3n-o-neurona"><span class="header-section-number">36.4</span> Perceptrón o neurona</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#aprendizaje"><span class="header-section-number">36.4.1</span> Aprendizaje</a></li>
+<li><a class="nav-link" href="#aprendizaje-perceptron"><span class="header-section-number">36.4.1</span> Aprendizaje</a></li>
 <li><a class="nav-link" href="#convergencia"><span class="header-section-number">36.4.2</span> Convergencia</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#perceptr%C3%B3n-multiclase"><span class="header-section-number">36.5</span> Perceptrón multiclase</a></li>
 <li><a class="nav-link" href="#funciones-de-activaci%C3%B3n"><span class="header-section-number">36.6</span> Funciones de activación</a></li>
 <li>
-<a class="nav-link" href="#perceptr%C3%B3n-multicapa"><span class="header-section-number">36.7</span> Perceptrón multicapa</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#aprendizaje-1"><span class="header-section-number">36.7.1</span> Aprendizaje</a></li></ul>
+<a class="nav-link" href="#perceptr%C3%B3n-multicapa"><span class="header-section-number">36.7</span> Perceptrón multicapa</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#aprendizaje"><span class="header-section-number">36.7.1</span> Aprendizaje</a></li></ul>
 </li>
 <li><a class="nav-link" href="#instalaci%C3%B3n-de-librer%C3%ADas-de-deep-learning-en-r-tensorflowkeras"><span class="header-section-number">36.8</span> Instalación de librerías de deep learning en R: Tensorflow/Keras</a></li>
 <li>
@@ -883,7 +894,7 @@ Figura 36.11: Evolución durante el entrenamiento de la precisión y la pérdida
 <li><a class="nav-link" href="#generaci%C3%B3n-de-la-red-neuronal"><span class="header-section-number">36.10.3</span> Generación de la red neuronal</a></li>
 <li><a class="nav-link" href="#entrenamiento"><span class="header-section-number">36.10.4</span> Entrenamiento</a></li>
 <li><a class="nav-link" href="#test-1"><span class="header-section-number">36.10.5</span> Test</a></li>
-<li><a class="nav-link" href="#resumen-29">Resumen</a></li>
+<li><a class="nav-link" href="#resumen-33">Resumen</a></li>
 </ul>
 </li>
 </ul>
@@ -902,7 +913,7 @@ Figura 36.11: Evolución durante el entrenamiento de la precisión y la pérdida
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -58,7 +58,7 @@ creatividad humanas.
 
 En resumen, es el tratamiento sistemático de los problemas, de la forma descrita, y no la certeza
 de los resultados obtenidos o la utilización de las técnicas muy concretas y específicas, el que
-garantiza el carácter científico de las conclusiones @cancelo_1991. La ciencia de los datos, como no podía ser
+garantiza el carácter científico de las conclusiones [@cancelo_1991]. La ciencia de datos, como no podía ser
 de otra forma, proporciona una serie de metodologías que guían el trabajo de los científicos de
 datos. Las principales metodologías se presentan a continuación.
 
@@ -79,13 +79,13 @@ Estas metodologías han nacido y se han desarrollado en el ámbito de los proble
 aunque todas son extrapolables a otros ámbitos de conocimiento (educación, ciencia, salud,
 etc.). Por tanto, en este capítulo (y, en general, en todo el manual)
 el término de "negocio" (empleado en las propias metodologías
-frecuentemente) debe de ser entendido en sentido amplio, abarcando los diversos ámbitos del
+frecuentemente) debe ser entendido en sentido amplio, abarcando los diversos ámbitos del
 conocimiento en los que se aplica la ciencia de datos.
 
 
 Por su amplio uso, destacan tres metodologías: 
 
-(i) Obtención de conocimiento en bases de datos (Knowledge Discovery in Databases-**KDD**), propuesta
+(i) Obtención de conocimiento en bases de datos (en inglés *Knowledge Discovery in Databases*, **KDD**), propuesta
 por @fayyad_1996 e inspirada en un trabajo previo de @brachman_1994, fue
 la primera metodología aceptada por la comunidad científica. Se trata
 del primer intento serio de sistematizar el proceso conocido hoy día como ciencia de datos y en
@@ -93,7 +93,7 @@ aquellos tiempos como conocimiento basado en bases de datos, pues se centraba en
 de datos. 
 
 (ii) **SEMMA**, acrónimo que coincide con las etapas de las que consta (en inglés,
-*Sample*, *Explore*, *Modify*, *Model* and *Assess*) fue desarrollada y mantenida
+*Sample*, *Explore*, *Modify*, *Model  and Assess*) fue desarrollada y mantenida
 por el Instituto SAS en 2012. Se define como el proceso de selección, exploración y modelización de grandes
 bases de datos para descubrir patrones de negocio desconocidos.
 
@@ -103,7 +103,7 @@ la compañía SPSS, posteriormente adquirida por IBM, que se ha encargado de man
 refinarla hasta la actualidad. Esta metodología define una secuencia flexible de
 seis fases que permiten la construcción e implementación de un modelo de minería de datos para
 ser utilizado en un entorno real, que contribuya a respaldar la toma de decisiones de negocio.
-Se considera la metodología más utilizada en la actualidad (@azevedo_2008 y @shafique_2014, entre otros) y
+Se considera la metodología más utilizada en la actualidad [@azevedo_2008; @shafique_2014], entre otros y
 se describe en la siguiente sección.
 
 
@@ -124,8 +124,8 @@ De manera esquemática, dichas etapas son:
     Consta de cuatro fases:
 
     -   *Determinación de los objetivos de negocio*, consensuados
-        previamente con la organización. Es importante fijar los key
-        performance indicators (KPIs) que permitan medir fidedignamente el
+        previamente con la organización. Es importante fijar los *key
+        performance indicators* (KPI) que permitan medir fidedignamente el
         grado de consecución de dichos objetivos.
 
     -   *Evaluación de la situación actual*. Inventariar las fuentes de datos que
@@ -159,8 +159,7 @@ De manera esquemática, dichas etapas son:
     pero que están expresados en unidades de medida incorrectas), incoherencias en la
     codificación (especialmente en las variables categóricas).
 
-3.  **Preparación de los datos**. Esta etapa suele ser la que requiere más tiempo y esfuerzo
-del proyecto (frecuentemente más del 70 %). Consta de cinco fases:
+3.  **Preparación de los datos**. Esta etapa del proyecto suele ser la que requiere más tiempo y esfuerzo (frecuentemente más del 70 %). Consta de cinco fases:
 
     -   *Selección:* se toman decisiones sobre los casos o filas que hay que seleccionar y sobre
     los atributos (variables) o columnas que hay que incluir.
@@ -168,9 +167,9 @@ del proyecto (frecuentemente más del 70 %). Consta de cinco fases:
     -   *Limpieza:* si en la subfase de verificación de la calidad de los datos se han detectado problemas, hay que subsanarlos. Los valores perdidos se pueden excluir o interpolar; los errores en los datos se pueden corregir con algún esquema lógico o manualmente; si hubiera incoherencias en la codificación se podría llevar a cabo una recodificación que sustituyese a la codificación original.
 
 
-    -   *Construcción*: a partir de los ya disponibles, de nuevos atributos (variables) o columnas y de nuevas filas o registros.
+    -   *Construcción*: a partir de los datos ya disponibles, de nuevos atributos (variables) o columnas y de nuevas filas o registros.
 
-    -   *Integración*: necesaria para construir un concepto de negocio unificado (por ejemplo, el concepto de cliente) si se han usado diversas fuentes (tiquet de compra y registros de cliente). La fusión de columnas con algunas claves en común (*join*), adición de filas con las columnas en común (*union*), la agrupación, etc., se utilizan frecuentemente.
+    -   *Integración*: necesaria para construir un concepto de negocio unificado (por ejemplo, el concepto de cliente) si se han usado diversas fuentes (tíquet de compra y registros de cliente). La fusión de columnas con algunas claves en común (*join*), adición de filas con las columnas en común (*union*), la agrupación, etc., se utilizan frecuentemente.
 
     -   *Formateo*: orientada a las necesidades de los modelos que se usarán posteriormente. La conversión de variables categóricas a numéricas (usando técnicas de *one hot encoding*) o viceversa, la normalización (usando normalizaciones *min-max* o *z-score*), etc., son tareas comunes en esta etapa.
 
@@ -183,15 +182,14 @@ de *machine learning*. Las subfases de las que consta esta fase son:
      -   *Selección de técnicas de modelado*, si se va a usar *machine learning* supervisado o no supervisado y, especifícamente, el tipo de algoritmos a usar en cada una de estas técnicas. Por supuesto, se tienen en cuenta los requisitos fijados en la primera fase, la cantidad y tipo de datos de los que se dispone, los requisitos concretos de cada modelo, etc.
 
      -   *Generación de un diseño de comprobación*, a través de medidas
-         y criterios de bondad del modelo: el área bajo la curva ROC, el criterio de información de Akaike (AIC), el coeficiente de determinación lineal ($R^2$), la matrizde confusión, etc.
+         y criterios de bondad del modelo: el área bajo la curva ROC, el criterio de información de Akaike (AIC), el coeficiente de determinación lineal ($R^2$), la matriz de confusión, etc.
 
-     -   *Generación de modelos*, que se entrenan oportunamente para seleccionar, posteriormente, el
-         más adecuado.
+     -   *Generación de modelos*, que se entrenan oportunamente para seleccionar, posteriormente, el más adecuado.
 
      -   *Validación del modelo*, en función de los modelos generados y del plan de pruebas especificado.
 
 (v) **Evaluación**.  Se debe comprobar que el modelo final generado cumple las expectativas de
-negocio especificadas en la primera fase. Hay que hacer hincapié en este aspecto ya que
+negocio especificadas en la primera fase. Hay que hacer hincapié en este aspecto ya que se
 suele confundir en la práctica esta fase de evaluación con la subfase de la anterior etapa
 de validación del modelo. Ahora la evaluación se lleva a cabo desde el punto de vista del negocio.
 Así, por ejemplo, cabe plantearse si con el modelo elegido se pueden alcanzar las metas de
@@ -216,7 +214,7 @@ las actividades siguientes:
      -   *Revisión final del proyecto*: donde se establecen las conclusiones finales y se formalizan las lecciones aprendidas para incorporarlas a futuros proyectos de ciencia de datos.
 
 
-Para concluir, subrayar que, aunque son varias las metodologías propuestas, CRISP-DM
+Para concluir, cabe subrayar que, aunque son varias las metodologías propuestas, CRISP-DM
 es la más completa, la más desarrollada y, además, puede ser implementada, como
 todas las propuestas en la literatura, mediante el lenguaje **R**.
 

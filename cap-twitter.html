@@ -7,7 +7,7 @@
 <title>Capítulo 50 ¿Cómo twitea Elon Musk? | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Mariluz Congosto Universidad Carlos III de madrid  50.1 Introducción  El objetivo de este caso de uso es arrojar luz, de manera objetiva, sobre un fenómeno social de interés general: el uso de...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 50 ¿Cómo twitea Elon Musk? | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -19,9 +19,10 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
-<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -33,7 +34,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Fundamentos de ciencia de datos con R</a>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -76,13 +77,13 @@
 <li class="book-part">Machine learning supervisado</li>
 <li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
-<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador k-vecinos más próximos</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="jerarquico.html"><span class="header-section-number">30</span> Análisis cluster: clusterización jerárquica</a></li>
-<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis cluster: clusterización no jerárquica</a></li>
+<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
 <li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
 <li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
@@ -108,18 +109,15 @@
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="active" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
 <li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> Crisis: impacto en el paro de Castilla-La Mancha</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
-<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Un dato sobre el cambio climático</a></li>
-<li><a class="" href="cap-ree.html"><span class="header-section-number">57</span> Predicción de consumo eléctrico con redes neuronales</a></li>
-<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">58</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -133,33 +131,34 @@
 </h1>
 <p><em>Mariluz Congosto</em></p>
 <p>Universidad Carlos III de madrid</p>
-<div id="introducción-25" class="section level2" number="50.1">
+<div id="introducción-26" class="section level2" number="50.1">
 <h2>
-<span class="header-section-number">50.1</span> Introducción <a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-25"><i class="fas fa-link"></i></a>
+<span class="header-section-number">50.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-26"><i class="fas fa-link"></i></a>
 </h2>
-<p>El objetivo de este caso de uso es arrojar luz, de manera objetiva, sobre un <strong>fenómeno social</strong> de interés general: el uso de Twitter por parte de <strong>Elon Musk</strong>. Este multimillonario adquirió la red social el 28 de octubre de 2022 y, desde entonces, ha tomado decisiones drásticas, como reducir la plantilla y lanzar nuevos servicios de pago de manera apresurada. Su constante cambio de rumbo queda reflejado en su actividad frenética en Twitter, donde es un usuario muy activo.</p>
-<p>Este caso de estudio aborda, una vez descargados los <em>tweets</em> mediante las <strong>APIs de Twitter</strong><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Para el caso de estudio que se desarrolla se ha usado la librería &lt;code&gt;rtweet&lt;/code&gt; para acceder a la &lt;strong&gt;API Standard (V1.1)&lt;/strong&gt; (accesible a todo el mundo). Para obtener las credenciales que permiten trabajar en &lt;strong&gt;modo usuario&lt;/strong&gt; se facilita el script de &lt;strong&gt;python make_token_Twitter.ipynb&lt;/strong&gt; en github &lt;a href="https://github.com/congosto/token_API_V1.1**" class="uri"&gt;https://github.com/congosto/token_API_V1.1**&lt;/a&gt;. Este &lt;em&gt;script&lt;/em&gt; se puede ejecutar en el entorno Google Colab &lt;a href="https://colab.research.google.com/" class="uri"&gt;https://colab.research.google.com/&lt;/a&gt;.&lt;/p&gt;'><sup>249</sup></a>, cómo adaptarlos mediante minería de textos (<a href="mineria-textos.html#mineria-textos">38</a>) para su <strong>análisis</strong> y <strong>visualización</strong>. Se representa el contenido de estos mensajes mediante nubes de palabras, <em>scatters plots</em> y <em>timelines</em>. Este conjunto de gráficas ofrecerán distintas vistas de los datos que, sin duda, ayudarán a comprender los cambios de comunicación desde que adquirió Twitter.</p>
+<p></p>
+<p>El objetivo de este caso de uso es arrojar luz, de manera objetiva, sobre un <strong>fenómeno social</strong> de interés general: el uso de Twitter por parte de <strong>Elon Musk</strong>. Este multimillonario adquirió la red social el 28 de octubre de 2022 y desde entonces ha tomado decisiones drásticas, como reducir la plantilla y lanzar nuevos servicios de pago de manera apresurada. Su constante cambio de rumbo queda reflejado en su actividad frenética en Twitter, donde es un usuario muy activo.</p>
+<p>Este caso de estudio aborda, una vez descargados los <em>tweets</em> mediante las <strong>APIs de Twitter</strong>,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Para el caso de estudio que se desarrolla se ha usado la librería &lt;code&gt;rtweet&lt;/code&gt; para acceder a la &lt;strong&gt;API Standard (V1.1)&lt;/strong&gt; (accesible a todo el mundo). Para obtener las credenciales que permiten trabajar en &lt;strong&gt;modo usuario&lt;/strong&gt; se facilita el script de &lt;strong&gt;python make_token_Twitter.ipynb&lt;/strong&gt; en github &lt;a href="https://github.com/congosto/token_API_V1.1**" class="uri"&gt;https://github.com/congosto/token_API_V1.1**&lt;/a&gt;. Este &lt;em&gt;script&lt;/em&gt; se puede ejecutar en el entorno Google Colab &lt;a href="https://colab.research.google.com/" class="uri"&gt;https://colab.research.google.com/&lt;/a&gt;.&lt;/p&gt;'><sup>292</sup></a> cómo adaptarlos mediante minería de textos (Cap.<a href="mineria-textos.html#mineria-textos">38</a>) para su <strong>análisis</strong> y <strong>visualización</strong>. El contenido de estos mensajes se representa mediante nubes de palabras, <em>scatters plots</em> y <em>timelines</em>. Este conjunto de gráficas ofrece distintas perspectivas de los datos que, sin duda, ayudarán a comprender los cambios de comunicación desde que adquirió Twitter.</p>
 </div>
 <div id="análisis-visual-de-los-tweets-de-elon-musk" class="section level2" number="50.2">
 <h2>
 <span class="header-section-number">50.2</span> Análisis visual de los <em>tweets</em> de Elon Musk <a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-visual-de-los-tweets-de-elon-musk"><i class="fas fa-link"></i></a>
 </h2>
 <p>Las librerías que se utilizan son las siguientes:</p>
-<div class="sourceCode" id="cb745"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb750"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span>    <span class="co"># manipulación de datos</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://lubridate.tidyverse.org">"lubridate"</a></span><span class="op">)</span>    <span class="co"># formato de fechas</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://scales.r-lib.org">"scales"</a></span><span class="op">)</span>       <span class="co"># manejo de escalas numéricas</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/juliasilge/tidytext">"tidytext"</a></span><span class="op">)</span>     <span class="co"># manipulación de textos</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/lepennec/ggwordcloud">"ggwordcloud"</a></span><span class="op">)</span>  <span class="co"># creación de una nube de palabras</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"RColorBrewer"</span><span class="op">)</span> <span class="co"># paleta de colores</span></span></code></pre></div>
-<p>El rango de fechas elegido para delimitar temporalmente los tweets de Elon Musk va desde el 16-06-2022 hasta el 22-12-2022. Este rango es adecuado para visualizar la actividad e impacto del perfil de Musk antes y después de la adquisición de Twitter.</p>
+<p>El rango de fechas elegido para delimitar temporalmente los tweets de Elon Musk va desde el 16-06-2022 hasta el 22-12-2022. Este rango es adecuado para visualizar la actividad e impacto del perfil de Elon Musk antes y después de la adquisición de Twitter.</p>
 <p>Se cargan los datos de la librería <code>CDR</code> del libro.</p>
-<div class="sourceCode" id="cb746"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb751"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tweets_user</span> <span class="op">&lt;-</span> <span class="fu">CDR</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/CDR/man/elon_musk.html">elon_musk</a></span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Cambiar a formato fecha</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>created_at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="va">created_at</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"UTC"</span> <span class="op">)</span><span class="op">)</span> </span></code></pre></div>
-<p>Una vez obtenidos los datos, se les puede dar forma. Los datos incluyen fechas, textos, tipos de <em>tweets</em> y métricas que pueden ser representados mediante gráficos. A continuación, se definen unos parámetros generales a todas las gráficas: la fecha de la compra de Twitter, el color de los distintos tipos de mensajes (<em>original</em>, <em>quoted</em>, <em>reply</em>, <em>retweeted</em>).</p>
-<div class="sourceCode" id="cb747"><pre class="downlit sourceCode r">
+<p>Una vez obtenidos los datos, se les puede dar forma. Los datos incluyen fechas, textos, tipos de <em>tweets</em> y métricas que pueden representarse mediante gráficos. A continuación, se definen unos parámetros generales a todas las gráficas: la fecha de la compra de Twitter, el color de los distintos tipos de mensajes (<em>original</em>, <em>quoted</em>, <em>reply</em>, <em>retweeted</em>).</p>
+<div class="sourceCode" id="cb752"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fecha en la que Elon Musk compró Twitter</span></span>
 <span><span class="va">compra_twitter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2022-10-28"</span><span class="op">)</span></span>
 <span></span>
@@ -173,10 +172,10 @@
 <h3>
 <span class="header-section-number">50.2.1</span> ¿Cuáles son los temas más recurrentes? <a class="anchor" aria-label="anchor" href="#cu%C3%A1les-son-los-temas-m%C3%A1s-recurrentes"><i class="fas fa-link"></i></a>
 </h3>
-<p>Para representar los términos más frecuentes en los tweets de Elon Musk se utiliza una nube de palabras. Esta representación gráfica se crea mediante la librería <code>ggwordcloud</code>, que funciona en el entorno <code>ggplot</code>.</p>
+<p>Para representar los términos más frecuentes en los <em>tweets</em> de Elon Musk se utiliza una nube de palabras. Esta representación gráfica se crea mediante la librería <code>ggwordcloud</code>, que funciona en el entorno <code>ggplot</code>.</p>
 <p>El texto de los mensajes se encuentra en la variable <code>full_text</code>, la cual se limpia eliminando las URLs y los <em>handles</em> de los usuarios. Además, se añade una columna para distinguir los textos anteriores y posteriores a la compra de Twitter.</p>
 <p>Posteriormente, se descomponen los textos en palabras independientes, se eliminan las <em>stop words</em> y se calcula la frecuencia de aparición de cada palabra.</p>
-<div class="sourceCode" id="cb748"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb753"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">stop_words</span><span class="op">)</span> <span class="co"># Descarga las stop words de la librería tidytext</span></span>
 <span></span>
 <span><span class="va">corpus_text</span> <span class="op">&lt;-</span> <span class="va">tweets_user</span> <span class="op">|&gt;</span></span>
@@ -196,10 +195,10 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">freq</span><span class="op">)</span><span class="op">)</span> <span class="co"># Ordena de mayor a menor frecuencia de aparición</span></span>
 <span></span>
 <span><span class="co"># print (corpus_text) # Descomentar para ver el resultado final </span></span></code></pre></div>
-<p>Para generar la nube de palabras de Elon Musk, se utiliza la función <code><a href="https://lepennec.github.io/ggwordcloud/reference/geom_text_wordcloud.html">geom_text_wordcloud_area()</a></code>. Esta función toma como entrada la lista de palabras y su frecuencia, y genera una comparación entre antes y después de la compra de Twitter (Fig. <a href="cap-twitter.html#fig:elon-musk-nube-words">50.1</a>.</p>
+<p>Para generar la nube de palabras de Elon Musk se utiliza la función <code><a href="https://lepennec.github.io/ggwordcloud/reference/geom_text_wordcloud.html">geom_text_wordcloud_area()</a></code>. Esta función toma como entrada la lista de palabras y su frecuencia y genera una comparación entre antes y después de la compra de Twitter (Fig. <a href="cap-twitter.html#fig:elon-musk-nube-words">50.1</a>).</p>
 <p>La proporción del tamaño de las palabras en la nube está en función de su frecuencia y se utiliza la librería <code>RColorBrewer</code> para definir la paleta de colores.</p>
-<p>El resultado muestra que, antes de la compra de Twitter, Musk centraba su atención en sus empresas y en la guerra de Rusia-Ucrania. Sin embargo, tras la adquisición, su temática se relaciona con su nueva propiedad.</p>
-<div class="sourceCode" id="cb749"><pre class="downlit sourceCode r">
+<p>El resultado muestra que antes de la compra de Twitter Elon Musk centraba su atención en sus empresas y en la guerra de Rusia-Ucrania. Sin embargo, tras la adquisición, su temática se relaciona con su nueva propiedad.</p>
+<div class="sourceCode" id="cb754"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">paleta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">8</span>, <span class="st">"Dark2"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -216,8 +215,8 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span> <span class="op">(</span>strip.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"grey50"</span>, size <span class="op">=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:elon-musk-nube-words"></span>
-<img src="212050_cd_elon_musk_files/figure-html/elon-musk-nube-words-1.png" alt="Palabras más frecuentes de Elon Musk en Twitter, antes y después de su compra" width="60%"><p class="caption">
-Figura 50.1: Palabras más frecuentes de Elon Musk en Twitter, antes y después de su compra
+<img src="212050_cd_elon_musk_files/figure-html/elon-musk-nube-words-1.png" alt="Palabras más frecuentes de Elon Musk en Twitter antes y después de su compra." width="60%"><p class="caption">
+Figura 50.1: Palabras más frecuentes de Elon Musk en Twitter antes y después de su compra.
 </p>
 </div>
 </div>
@@ -226,8 +225,8 @@ Figura 50.1: Palabras más frecuentes de Elon Musk en Twitter, antes y después 
 <span class="header-section-number">50.2.2</span> ¿Quiénes son los usuarios con los que más conversa? <a class="anchor" aria-label="anchor" href="#qui%C3%A9nes-son-los-usuarios-con-los-que-m%C3%A1s-conversa"><i class="fas fa-link"></i></a>
 </h3>
 <p>Es posible visualizar con quiénes ha conversado Elon Musk con mayor frecuencia. Para ello, se pueden utilizar las respuestas que ha dado a otros usuarios en Twitter. Estas respuestas se obtienen de la variable <code>full_text</code>.</p>
-<p>Para identificar con quiénes ha interactuado más Musk, se extraen los <em>handles</em> de los comentarios y se añade una columna para distinguir las menciones antes y después de la adquisición de Twitter. A continuación, se calcula la frecuencia de aparición de cada <em>handle</em>.</p>
-<div class="sourceCode" id="cb750"><pre class="downlit sourceCode r">
+<p>Para identificar con quiénes ha interactuado más Elon Musk se extraen los <em>handles</em> de los comentarios y se añade una columna para distinguir las menciones antes y después de la adquisición de Twitter. A continuación, se calcula la frecuencia de aparición de cada <em>handle</em>.</p>
+<div class="sourceCode" id="cb755"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">stop_words</span><span class="op">)</span></span>
 <span><span class="va">corpus_menciones</span> <span class="op">&lt;-</span> <span class="va">tweets_user</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Extrae los handles de los comentarios con una expresión regular "@\\w+"</span></span>
@@ -243,10 +242,10 @@ Figura 50.1: Palabras más frecuentes de Elon Musk en Twitter, antes y después 
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">freq</span><span class="op">)</span><span class="op">)</span> <span class="co"># ordena de mayor a menor frec. de aparición</span></span>
 <span></span>
 <span><span class="co"># print (corpus_menciones) # Descomentar para ver el resultado final </span></span></code></pre></div>
-<p>Una vez que los datos han sido procesados, se utiliza la función <code><a href="https://lepennec.github.io/ggwordcloud/reference/geom_text_wordcloud.html">geom_text_wordcloud_area()</a></code> para generar la nube de palabras correspondiente a las menciones en los tweets de Elon Musk.</p>
-<p>Para ello, se toma la lista de menciones y su frecuencia, y se utiliza la misma operación que se realizó con la nube de palabras anterior.</p>
+<p>Una vez que los datos han sido procesados, se utiliza la función <code><a href="https://lepennec.github.io/ggwordcloud/reference/geom_text_wordcloud.html">geom_text_wordcloud_area()</a></code> para generar la nube de palabras correspondiente a las menciones en los <em>tweets</em> de Elon Musk.</p>
+<p>Para ello, se toma la lista de menciones y su frecuencia y se utiliza la misma operación que se realizó con la nube de palabras anterior.</p>
 <p>El resultado (Fig. <a href="cap-twitter.html#fig:elon-musk-nube-menciones">50.2</a>) muestra que algunos interlocutores se mantienen, otros pierden protagonismo y aparecen otros nuevos. Se mantienen @BillyM2k (comediante) y @WholeMarsBlog (relacionado con temas de Marte). Pierden protagonismo @teslaownersSVm, @EvaFoxU, @PPathole y @Teslarati (relacionados con Tesla). Ganan protagonismo @stillgray (<em>influencer</em>), @micsolana (capital riesgo) y @Jason (emprendedor).</p>
-<div class="sourceCode" id="cb751"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb756"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">paleta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">8</span>, <span class="st">"Dark2"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://lepennec.github.io/ggwordcloud/reference/geom_text_wordcloud.html">geom_text_wordcloud_area</a></span><span class="op">(</span> <span class="co">#  dibuja la nube de palabras</span></span>
@@ -260,8 +259,8 @@ Figura 50.1: Palabras más frecuentes de Elon Musk en Twitter, antes y después 
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span> <span class="op">(</span>strip.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"grey50"</span>, size <span class="op">=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:elon-musk-nube-menciones"></span>
-<img src="212050_cd_elon_musk_files/figure-html/elon-musk-nube-menciones-1.png" alt="Usuarios con los que dialoga Elon Musk antes y después de la compra de Twitter" width="60%"><p class="caption">
-Figura 50.2: Usuarios con los que dialoga Elon Musk antes y después de la compra de Twitter
+<img src="212050_cd_elon_musk_files/figure-html/elon-musk-nube-menciones-1.png" alt="Usuarios con los que dialoga Elon Musk antes y después de la compra de Twitter." width="60%"><p class="caption">
+Figura 50.2: Usuarios con los que dialoga Elon Musk antes y después de la compra de Twitter.
 </p>
 </div>
 </div>
@@ -269,9 +268,9 @@ Figura 50.2: Usuarios con los que dialoga Elon Musk antes y después de la compr
 <h3>
 <span class="header-section-number">50.2.3</span> ¿Cuál es su rutina de publicación? <a class="anchor" aria-label="anchor" href="#cu%C3%A1l-es-su-rutina-de-publicaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
-<p>Para analizar la distribución horaria de los tweets de Elon Musk, se examina la frecuencia de publicación de <em>tweets</em> cada hora de cada día. Dado que la residencia declarada de Musk es Austin (Texas), se ajustará la hora de los tweets al huso horario de esta ciudad, ya que la hora proporcionada por Twitter está en GMT.</p>
-<p>Debido a que los datos abarcan un período largo, desde junio hasta diciembre, se acotarán a 15 días antes y después de la compra de Twitter. Es importante tener en cuenta que la fecha de creación de los tweets (<code>created_at</code>) se presenta en formato fecha-hora, y cada día consta de 86.400 segundos (60 segundos * 60 minutos * 24 horas).</p>
-<div class="sourceCode" id="cb752"><pre class="downlit sourceCode r">
+<p>Para analizar la distribución horaria de los <em>tweets</em> de Elon Musk se examina la frecuencia de publicación de <em>tweets</em> cada hora de cada día. Dado que su residencia declarada es Austin (Texas), se ajusta la hora de los <em>tweets</em> al huso horario de esta ciudad, ya que la hora proporcionada por Twitter está en GMT.</p>
+<p>Debido a que los datos abarcan un período largo, desde junio hasta diciembre, se acotan a 15 días antes y después de la compra de Twitter. Es importante tener en cuenta que la fecha de creación de los <em>tweets</em> (<code>created_at</code>) se presenta en formato fecha-hora y que cada día consta de 86.400 segundos (60 segundos <span class="math inline">\(\times\)</span> 60 minutos <span class="math inline">\(\times\)</span> 24 horas).</p>
+<div class="sourceCode" id="cb757"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tweets_user_hour</span> <span class="op">&lt;-</span> <span class="va">tweets_user</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Cambiamos al huso horario de Texas</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>created_at <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="va">created_at</span>, <span class="st">"US/Central"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -289,8 +288,8 @@ Figura 50.2: Usuarios con los que dialoga Elon Musk antes y después de la compr
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># print (tweets_user_hour) # Descomentar para ver el resultado final </span></span></code></pre></div>
-<p>A continuación, se recalcan los días de la semana que son festivos en color rojo para apreciar si hay distinta rutina.</p>
-<div class="sourceCode" id="cb753"><pre class="downlit sourceCode r">
+<p>A continuación, se recalcan los días de la semana que son festivos en color rojo para apreciar si cambia la rutina.</p>
+<div class="sourceCode" id="cb758"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">festivos</span> <span class="op">&lt;-</span> <span class="va">tweets_user</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Cambiamos al huso horario de Texas</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>created_at <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="va">created_at</span>, <span class="st">"US/Central"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -311,9 +310,9 @@ Figura 50.2: Usuarios con los que dialoga Elon Musk antes y después de la compr
 <span>    <span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">wday</a></span><span class="op">(</span><span class="va">time_in_days</span><span class="op">)</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span>, <span class="st">"red"</span>, <span class="st">"black"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># print (festivos) # Desencomentar para ver el resultado final </span></span></code></pre></div>
-<p>Finalmente, se representa un gráfico de dispersión (<em>scatter plot</em>) con las coordenadas de las horas del día (eje X) y los días seleccionados (eje Y), utilizando la función <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>. El tamaño del punto es proporcional al número de <em>tweets</em> en esa hora y día, y el color el tipo de tweet (<em>original</em>, <em>reply</em>, <em>quoted</em> y <em>retweeted</em>). Se marca una línea horizontal con la función <code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline()</a></code> en la fecha de compra de Twitter y se crea un eje X doble para que sea más fácil ver las horas debido a la altura de la gráfica.</p>
-<p>La Fig. <a href="cap-twitter.html#fig:elon-musk-rutina">50.3</a> muestra que no hay una rutina clara en la publicación de tweets de Elon Musk. Esto podría deberse a que viaja mucho. La mayoría de sus mensajes son comentarios y han aumentado considerablemente desde la compra de Twitter. El máximo número de <em>tweets</em> por hora fue 10.</p>
-<div class="sourceCode" id="cb754"><pre class="downlit sourceCode r">
+<p>Finalmente, se representa un gráfico de dispersión (<em>scatter plot</em>) con las coordenadas de las horas del día (eje X) y los días seleccionados (eje Y) utilizando la función <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>. El tamaño del punto es proporcional al número de <em>tweets</em> en esa hora y día y el color indica el tipo de <em>tweet</em> (<em>original</em>, <em>reply</em>, <em>quoted</em> y <em>retweeted</em>). Se marca una línea horizontal con la función <code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline()</a></code> en la fecha de compra de Twitter y se crea un eje X doble para que sea más fácil ver las horas debido a la altura de la gráfica.</p>
+<p>La Fig. <a href="cap-twitter.html#fig:elon-musk-rutina">50.3</a> muestra que no hay una rutina clara en la publicación de <em>tweets</em> de Elon Musk. Esto podría deberse a que viaja mucho. La mayoría de sus mensajes son comentarios y han aumentado considerablemente desde la compra de Twitter. El máximo número de <em>tweets</em> por hora fue 10.</p>
+<div class="sourceCode" id="cb759"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
 <span>    data <span class="op">=</span> <span class="va">tweets_user_hour</span>,</span>
@@ -350,8 +349,8 @@ Figura 50.2: Usuarios con los que dialoga Elon Musk antes y después de la compr
 <span>  <span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:elon-musk-rutina"></span>
-<img src="212050_cd_elon_musk_files/figure-html/elon-musk-rutina-1.png" alt="Rutina de publicación de Elon Musk. (huso horario de Texas)" width="60%"><p class="caption">
-Figura 50.3: Rutina de publicación de Elon Musk. (huso horario de Texas)
+<img src="212050_cd_elon_musk_files/figure-html/elon-musk-rutina-1.png" alt="Rutina de publicación de Elon Musk (huso horario de Texas)." width="60%"><p class="caption">
+Figura 50.3: Rutina de publicación de Elon Musk (huso horario de Texas).
 </p>
 </div>
 </div>
@@ -359,9 +358,9 @@ Figura 50.3: Rutina de publicación de Elon Musk. (huso horario de Texas)
 <h3>
 <span class="header-section-number">50.2.4</span> ¿Cuál es su <em>timeline</em> de publicación? <a class="anchor" aria-label="anchor" href="#cu%C3%A1l-es-su-timeline-de-publicaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
-<p>Ahora se analiza cómo se distribuyen los <em>tweets</em> en el tiempo por tipo de tweet. Se resaltará la fecha de compra de Twitter con una anotación para facilitar la comparación de la frecuencia anterior y posterior a esta fecha.</p>
-<p>Se crea una columna con la fecha redondeada a días, se agrupan los <em>tweets</em> por fecha y el tipo de tweet y se calcula su número para cada día.</p>
-<div class="sourceCode" id="cb755"><pre class="downlit sourceCode r">
+<p>Ahora se analiza cómo se distribuyen los <em>tweets</em> en el tiempo por tipo de <em>tweet</em>. Se resalta la fecha de compra de Twitter con una anotación para facilitar la comparación de la frecuencia anterior y posterior a esta fecha.</p>
+<p>Se crea una columna con la fecha redondeada a días, se agrupan los <em>tweets</em> por fecha y el tipo de <em>tweet</em> y se calcula su número para cada día.</p>
+<div class="sourceCode" id="cb760"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tweets_user_day</span> <span class="op">&lt;-</span> <span class="va">tweets_user</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Creamos una columna con el tiempo en días</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>time_in_days <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/round_date.html">floor_date</a></span><span class="op">(</span><span class="va">created_at</span>, <span class="st">"1 day"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -372,8 +371,8 @@ Figura 50.3: Rutina de publicación de Elon Musk. (huso horario de Texas)
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># print (tweets_user_day) # descomentar para ver el resultado</span></span></code></pre></div>
-<p>En la Fig. <a href="cap-twitter.html#fig:elon-musk-line-chart">50.4</a> se puede observar un incremento en el número de publicaciones después de la compra de Twitter. De hecho, se publicaron casi el doble de tweets en comparación con el periodo anterior a la adquisición de la plataforma. Asimismo, se puede ver, al igual que en la Fig. <a href="cap-twitter.html#fig:elon-musk-rutina">50.3</a>, que la mayoría de los <em>tweets</em> de Elon Musk fueron comentarios.</p>
-<div class="sourceCode" id="cb756"><pre class="downlit sourceCode r">
+<p>En la Fig. <a href="cap-twitter.html#fig:elon-musk-line-chart">50.4</a> se puede observar un incremento en el número de publicaciones después de la compra de Twitter. De hecho, se publicaron casi el doble de <em>tweets</em> en comparación con el periodo anterior a la adquisición de la plataforma. Asimismo, se puede ver que, al igual que en la Fig. <a href="cap-twitter.html#fig:elon-musk-rutina">50.3</a>, la mayoría de los <em>tweets</em> de Elon Musk fueron comentarios.</p>
+<div class="sourceCode" id="cb761"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">tweets_user_day</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time_in_days</span>, y <span class="op">=</span> <span class="va">num_tweets</span>, fill <span class="op">=</span> <span class="va">tipo_tweet</span><span class="op">)</span>,alpha <span class="op">=</span> <span class="fl">0.7</span> <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">compra_twitter</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="co"># compra de Twitter</span></span>
@@ -409,8 +408,8 @@ Figura 50.3: Rutina de publicación de Elon Musk. (huso horario de Texas)
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:elon-musk-line-chart"></span>
-<img src="212050_cd_elon_musk_files/figure-html/elon-musk-line-chart-1.png" alt="Publicación de Tweets por día de Elon Musk" width="60%"><p class="caption">
-Figura 50.4: Publicación de Tweets por día de Elon Musk
+<img src="212050_cd_elon_musk_files/figure-html/elon-musk-line-chart-1.png" alt="Publicación de $tweets$ por día de Elon Musk." width="60%"><p class="caption">
+Figura 50.4: Publicación de <span class="math inline">\(tweets\)</span> por día de Elon Musk.
 </p>
 </div>
 </div>
@@ -418,14 +417,14 @@ Figura 50.4: Publicación de Tweets por día de Elon Musk
 <h3>
 <span class="header-section-number">50.2.5</span> ¿Cuál es el impacto de sus <em>tweets</em>? <a class="anchor" aria-label="anchor" href="#cu%C3%A1l-es-el-impacto-de-sus-tweets"><i class="fas fa-link"></i></a>
 </h3>
-<p>Para comparar los <em>tweets</em> propios publicados (sin <em>retweets</em>) y el impacto que reciben (<em>retweets</em> recibidos), se utilizará una gráfica de doble escala. Dado que ambas variables tienen diferentes órdenes de magnitud, este tipo de gráfica permitirá una mejor comparación. Además, se incluirá una anotación con la fecha de compra de Twitter para distinguir los cambios antes y después de este evento.</p>
-<p>En esta gráfica se podrá ver cómo se van superponiendo capas de dibujo.</p>
+<p>Para comparar los <em>tweets</em> propios publicados (sin <em>retweets</em>) y el impacto que reciben (<em>retweets</em> recibidos) se utiliza una gráfica de doble escala. Dado que ambas variables tienen diferentes órdenes de magnitud, este tipo de gráfica permitirá una mejor comparación. Además, se incluiye una anotación con la fecha de compra de Twitter para distinguir los cambios antes y después de este evento.</p>
+<p>En esta gráfica se puede ver cómo se van superponiendo capas de dibujo.</p>
 <p>Se preparan los datos en dos <code>data.frames</code> y se calcula la relación de escala:</p>
 <ul>
 <li>
-<code>tweets_propios_day</code> con de los <em>tweets</em> propios por día y los mensajes originales/hora:</li>
+<code>tweets_propios_day</code>, con los <em>tweets</em> propios por día y los mensajes originales/hora:</li>
 </ul>
-<div class="sourceCode" id="cb757"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb762"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tweets_propios_day</span> <span class="op">&lt;-</span> <span class="va">tweets_user</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Creamos una columna con el tiempo en días</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>time_in_days <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/round_date.html">floor_date</a></span><span class="op">(</span><span class="va">created_at</span>, <span class="st">"1 day"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -437,9 +436,9 @@ Figura 50.4: Publicación de Tweets por día de Elon Musk
 <span><span class="co"># print (tweets_propios_day) # Descomentar para ver el resultado</span></span></code></pre></div>
 <ul>
 <li>
-<code>tweets_RT_day</code> con los <em>retweets</em> recibidos por día:</li>
+<code>tweets_RT_day</code>, con los <em>retweets</em> recibidos por día:</li>
 </ul>
-<div class="sourceCode" id="cb758"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb763"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tweets_RT_day</span> <span class="op">&lt;-</span> <span class="va">tweets_user</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Creamos una columna con el tiempo en días</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>time_in_days <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/round_date.html">floor_date</a></span><span class="op">(</span><span class="va">created_at</span>, <span class="st">"1 day"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -452,7 +451,7 @@ Figura 50.4: Publicación de Tweets por día de Elon Musk
 <ul>
 <li>Se calculan las escalas:</li>
 </ul>
-<div class="sourceCode" id="cb759"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb764"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Máximo número de tweets propios</span></span>
 <span><span class="va">max_tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">tweets_propios_day</span><span class="op">$</span><span class="va">num_tweets</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co"># Máximo número de retweets recibidos</span></span>
@@ -460,8 +459,8 @@ Figura 50.4: Publicación de Tweets por día de Elon Musk
 <span><span class="va">ajuste_escala</span> <span class="op">&lt;-</span> <span class="va">max_RT</span> <span class="op">/</span> <span class="va">max_tweets</span> <span class="co"># Ajsute de escala</span></span>
 <span><span class="co"># print (ajuste_escala)  # desencomentar para ver el ajuste</span></span>
 <span><span class="va">my_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Num. original tweets"</span> <span class="op">=</span> <span class="st">"steelblue4"</span>, <span class="st">"RTs"</span> <span class="op">=</span> <span class="st">"red4"</span><span class="op">)</span></span></code></pre></div>
-<p>La Fig. <a href="cap-twitter.html#fig:elon-musk-impacto">50.5</a> muestra un incremento masivo de los <em>retweets</em> recibidos desde la compra de Twitter, siendo el día que tomó posesión, el que generó el mayor pico: 800K RTs.</p>
-<div class="sourceCode" id="cb760"><pre class="downlit sourceCode r">
+<p>La Fig. <a href="cap-twitter.html#fig:elon-musk-impacto">50.5</a> muestra un incremento masivo de los <em>retweets</em> recibidos desde la compra de Twitter, siendo el día que tomó posesión el que generó el mayor pico: 800K RTs.</p>
+<div class="sourceCode" id="cb765"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Pinta la evolución de los tweets propios/día</span></span>
 <span>  <span class="co"># Pinta el área que representa los tweets propios por día</span></span>
@@ -528,10 +527,11 @@ Figura 50.4: Publicación de Tweets por día de Elon Musk
 <span>  <span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:elon-musk-impacto"></span>
-<img src="212050_cd_elon_musk_files/figure-html/elon-musk-impacto-1.png" alt="Tweets vs. retweets de Elon Musk" width="60%"><p class="caption">
-Figura 50.5: Tweets vs. retweets de Elon Musk
+<img src="212050_cd_elon_musk_files/figure-html/elon-musk-impacto-1.png" alt="$Tweets$ vs. $retweets$ de Elon Musk" width="60%"><p class="caption">
+Figura 50.5: <span class="math inline">\(Tweets\)</span> vs. <span class="math inline">\(retweets\)</span> de Elon Musk
 </p>
 </div>
+<div class="inline-figure"><img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;"></div>
 
 </div>
 </div>
@@ -541,10 +541,10 @@ Figura 50.5: Tweets vs. retweets de Elon Musk
 <div class="prev"><a href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></div>
 <div class="next"><a href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="Índice capítulo"><h2>Índice capítulo</h2>
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cap-twitter"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
-<li><a class="nav-link" href="#introducci%C3%B3n-25"><span class="header-section-number">50.1</span> Introducción </a></li>
+<li><a class="nav-link" href="#introducci%C3%B3n-26"><span class="header-section-number">50.1</span> Introducción</a></li>
 <li>
 <a class="nav-link" href="#an%C3%A1lisis-visual-de-los-tweets-de-elon-musk"><span class="header-section-number">50.2</span> Análisis visual de los tweets de Elon Musk </a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cu%C3%A1les-son-los-temas-m%C3%A1s-recurrentes"><span class="header-section-number">50.2.1</span> ¿Cuáles son los temas más recurrentes? </a></li>
@@ -570,7 +570,7 @@ Figura 50.5: Tweets vs. retweets de Elon Musk
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con R</strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-06-16.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
