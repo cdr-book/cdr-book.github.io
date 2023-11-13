@@ -9,20 +9,20 @@ Red Eléctrica de España
 \index{consumo eléctrico}
 \index{red neuronal}
 
-Red Eléctrica, como operador del sistema eléctrico español, tiene como misión principal garantizar la continuidad del suministro eléctrico en España. Para ello, entre otras muchas tareas, se desarrollan, evolucionan y mantienen algoritmos de previsión del consumo eléctrico y de la producción con las principales energías renovables (eólica y solar) para distintas frecuencia (horas, días, meses, años, etc.) y escalas temporales (anual, horaria, quinceminutal).
+Red Eléctrica, como operador del sistema eléctrico español, tiene como misión principal garantizar la continuidad del suministro eléctrico en España. Para ello, entre otras muchas tareas, se desarrollan, evolucionan y mantienen algoritmos de previsión del consumo eléctrico y de la producción con las principales energías renovables (eólica y solar) para distintas frecuencias (horas, días, meses, años, etc.) y escalas temporales (anual, horaria, quinceminutal).
 
-Este caso de uso se sitúa en el departamento de Ciencia de Datos del Operador del Sistema. Es el principio del año 2018 y el área de planificación de la empresa solicita una **predicción de el consumo eléctrico en España**, medida en Mwh, para el año actual y el siguiente (2018 y 2019). La predicción se llevará a cabo con una red neuronal artificial (RNA, véase Cap. \@ref(capNN)) y es importante destacar que este desarrollo no está previsto en el presupuesto del año, por lo que tanto el software como los datos de entrada deben ser, en la medida de lo posible, gratuitos.
+Este caso de uso se sitúa en el departamento de Ciencia de Datos del Operador del Sistema. Es el principio del año 2018 y el área de planificación de la empresa solicita una **predicción del consumo eléctrico en España**, medida en MWH, para el año actual y el siguiente (2018 y 2019). La predicción se llevará a cabo con una red neuronal artificial (RNA, véase Cap. \@ref(capNN)) y es importante destacar que este desarrollo no está previsto en el presupuesto del año, por lo que tanto el software como los datos de entrada deben ser, en la medida de lo posible, gratuitos.
 
 ## Datos de entrada {#ree-datos}
 
 Respecto a los datos de entrada de la RNA, se requiere tanto una serie histórica de la variable a predecir (el consumo eléctrico) como de las variables que se seleccionen para explicar adecuadamente su comportamiento. 
 
-En cuanto a la serie histórica de consumo eléctrico anual, Red Eléctrica, en su Web corporativa, publica datos estadísticos accesibles de forma abierta. Sin embargo, el histórico publicado comienza en 2012 y sería conveniente tener un periodo de tiempo más amplio para poder entrenar adecuadamente las RNA candidatas a ser utilizadas. Se realiza una búsqueda de otras fuentes y, afortunadamente, se encuentra que el Instituto para la Diversificación y Ahorro de la Energía (IDAE) publica datos desde 1990, con agregación anual, del consumo final de energía eléctrica en miles de toneladas equivalentes de petróleo --ktep.  
+En cuanto a la serie histórica de consumo eléctrico anual, Red Eléctrica, en su web corporativa, publica datos estadísticos accesibles de forma abierta. Sin embargo, el histórico publicado comienza en 2012 y sería conveniente tener un período de tiempo más amplio para poder entrenar adecuadamente las RNA candidatas a ser utilizadas. Se realiza una búsqueda de otras fuentes y, afortunadamente, se encuentra que el Instituto para la Diversificación y Ahorro de la Energía (IDAE) publica datos desde 1990, con agregación anual, del consumo final de energía eléctrica en miles de toneladas equivalentes de petróleo --ktep--.  
 
-Como los datos se deben entregar en MWh, la predicción resultante se tendrá que convertir con el coeficiente que indican en la Web del IDAE (1 MWh = 0,086 tep).
+Como los datos se deben entregar en MWh, la predicción resultante se tendrá que convertir con el coeficiente que indican en la web del IDAE (1 MWh = 0,086 tep).
 
 
-En cuanto a la elección de las *features* o variables explicativas, se sabe que, históricamente, las variaciones interanuales de el consumo eléctrico dependen del comportamiento de la economía de una forma directa: si la economía crece, también crece el consumo eléctrico. Como indicador del comportamiento de la economía se decide tomar el PIB per cápita, que se puede encontrar en el siguiente enlace, disponible de forma pública en Expansión - datos macro: https://datosmacro.expansion.com/pib/espana. Además del PIB per cápita, se utilizarán otras dos variables explicativas: una relacionada con el mercado inmobiliario y otra relacionada con el empleo. Dado que no son públicas, están anonimizadas; también están escaladas entre 0 y 1 (dividiendo todos los valores de cada variable entre el mayor de su serie). Dado que se dispone de datos de estas dos variables desde el año 2000, el conjunto de datos comienza en este año.
+En cuanto a la elección de las *features* o variables explicativas, se sabe que, históricamente, las variaciones interanuales del consumo eléctrico dependen del comportamiento de la economía de una forma directa: si la economía crece, también crece el consumo eléctrico. Como indicador del comportamiento de la economía se decide tomar el PIB per cápita, que se puede encontrar en el siguiente enlace, disponible de forma pública en Expansión - datos macro: https://datosmacro.expansion.com/pib/espana. Además del PIB per cápita, se utilizarán otras dos variables explicativas: una relacionada con el mercado inmobiliario y otra relacionada con el empleo. Dado que no son públicas, están anonimizadas; también están escaladas entre 0 y 1 (dividiendo todos los valores de cada variable entre el mayor de su serie). Dado que se dispone de datos de estas dos variables desde el año 2000, el conjunto de datos comienza en este año.
 
 
 Una vez definido el conjunto de datos que se utiliza para determinar la RNA que mejor prediga el consumo eléctrico en España en los años 2018 y 2019, que como se verá a continuación es un conjunto de datos muy pequeño y sencillo, se puede comenzar a modelar la RNA en **R**.
@@ -30,7 +30,7 @@ Una vez definido el conjunto de datos que se utiliza para determinar la RNA que 
 
 ## Modelización
 
-En el siguiente fragmento de código (*chunck*) se lee el conjunto de datos, `consumoelectricoanual_2`,  del paquete `CDR`, se convierte el formato `data.table` al formato `data.frame` y se visualizan sus primeras 3 filas:
+En el siguiente fragmento de código (*chunk*) se lee el conjunto de datos, `consumoelectricoanual_2`,  del paquete `CDR`, se convierte el formato `data.table` al formato `data.frame` y se visualizan sus primeras 3 filas:
 
 
 
@@ -61,7 +61,7 @@ head(cormat)
 #> Empleo  0.93    0.71  0.99   1.00
 ```
 
-Como se puede observar en la matriz anterior, la correlación entre la variable a predecir y las distintas variables explicativas es fuerte y positiva (es decir, cuando crece una también crece la otra). Si, además, se visualiza la gráfica entre PIB y Consumo en el tiempo (Fig. \@ref(plot-ree1)), se aprecia de forma aún más clara esta intensa correlación:
+Como se puede observar en la matriz anterior, la correlación entre la variable a predecir y las distintas variables explicativas es fuerte y positiva (es decir, cuando crece una también crece la otra). Si, además, se visualiza la gráfica entre PIB y consumo en el tiempo (Fig. \@ref(fig:plot-ree1)), se aprecia de forma aún más clara esta intensa correlación:
 
 
 ```r
@@ -70,9 +70,9 @@ library("reshape2")
 
 df_m <- melt(df[c("Año","PIB","Consumo")], id.vars = "Año")
 df_m_plot <- df
-colnames(df_m_plot) <- c('Año','PIB per capita (k€/año)',
+colnames(df_m_plot) <- c('Año','PIB per cápita (k€/año)',
                          'Consumo eléctrico anual (ktep)')
-df_m_plot_melt <- melt(df_m_plot[c("Año","PIB per capita (k€/año)",
+df_m_plot_melt <- melt(df_m_plot[c("Año","PIB per cápita (k€/año)",
                                    "Consumo eléctrico anual (ktep)")], id.vars = "Año")
 options(repr.plot.width = 15, repr.plot.height = 8)
 ggplot(df_m_plot_melt, aes(Año, value, col = variable)) +
@@ -80,18 +80,18 @@ ggplot(df_m_plot_melt, aes(Año, value, col = variable)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="212054_cd_electricidad_files/figure-html/plot-ree1-1.png" alt="Evolución del PIB y el consumo electrico en España." width="60%" />
-<p class="caption">(\#fig:plot-ree1)Evolución del PIB y el consumo electrico en España.</p>
+<img src="212054_cd_electricidad_files/figure-html/plot-ree1-1.png" alt="Evolución del PIB y el consumo eléctrico en España." width="80%" />
+<p class="caption">(\#fig:plot-ree1)Evolución del PIB y el consumo eléctrico en España.</p>
 </div>
 
-En la Fig. \@ref(fig:plot-ree1) se observa que hasta 2005  las curvas que representan la evolución temporal de ambas variables están prácticamente superpuestas, pero desde 2006 líneas se separan. ¿A qué puede deberse? Uno de los principales motivos probablemente sean las medidas de eficiencia energética que se han ido introduciendo en los últimos lustros (iluminación led, electrodomésticos, dispositivos con menor consumo, etc.).
+En la Fig. \@ref(fig:plot-ree1) se observa que hasta 2005  las curvas que representan la evolución temporal de ambas variables están prácticamente superpuestas, pero desde 2006 las líneas se separan. ¿A qué puede deberse? Uno de los principales motivos probablemente sea las medidas de eficiencia energética que se han ido introduciendo en los últimos lustros (iluminación led, electrodomésticos, dispositivos con menor consumo, etc.).
 
 Una vez se han explorado los datos (en este caso la exploración ha sido muy breve, pero es muy habitual en proyectos reales que la exploración y limpieza de los datos requiera en torno al 80% del tiempo), se procede a dividir el conjunto de datos (desde 2000 hasta 2017, ya que 2018 y 2019 son los años en los que se pretende predecir) en dos partes: 
 
 (i) Subconjunto de entrenamiento y la validación (90% de las filas);
-(ii) Subconjunto de test (10% restante).
+(ii) subconjunto de test (10% restante).
 
-Previamente, se debe escalar también la variable PIB per capita para que sus valores varíen entre 0 y 1 (las otras dos variables explicativas ya venían escaladas en la fuente de la cual se tomaron), para que la RNA funcione de forma correcta:[^Note-RNA-2]
+Previamente, se debe escalar también la variable PIB per cápita para que sus valores varíen entre 0 y 1 (las otras dos variables explicativas ya venían escaladas en la fuente de la cual se tomaron) y que la RNA funcione de forma correcta:[^Note-RNA-2]
 
 [^Note-RNA-2]: De esta manera se evita que una variable explicativa tenga más "influencia" que otra en la salida de la RNA.
 
@@ -110,15 +110,15 @@ df_test
 ```
 
 
-El siguiente paso sería modelizar los datos con distintos modelos de *machine learning* \index{machine learning} y comparar sus resultados para determinar cuál es el más preciso para este conjunto de datos. En este ejemplo, por simplicidad no se incluye este proceso de prueba y comparación entre distintos modelos, que en el caso de uso real da lugar a elegir una red neuronal \index{red neuronal} simple o  perceptrón multicapa  (véase Cap. \@ref(capNN)), también conocido por su acrónimo en inglés MLP (*multi layer perceptron*).
+El siguiente paso sería modelizar los datos con distintos modelos de *machine learning* \index{machine learning@\textit{machine learning}} y comparar sus resultados para determinar cuál es el más preciso para este conjunto de datos. En este ejemplo, por simplicidad no se incluye este proceso de prueba y comparación entre distintos modelos, que en el caso de uso real da lugar a elegir una red neuronal \index{red neuronal} simple o  perceptrón multicapa  (véase Cap. \@ref(capNN)), también conocido por su acrónimo en inglés MLP (*multi layer perceptron*).
 
-Para elegir el valor de los hiperparámetros \index{hiperparámetros} que faciliten el mejor resultado (en este caso el número de capas ocultas y el número de neuronas en cada una de estas capas) se utiliza las dos siguientes técnicas: (i) *grid search* (para probar distintas combinaciones de hiperparámetros) y (ii) *cross-validation* (para entrenar y validar aprovechando todos los registros del conjunto de entrenamiento-validación).
+Para elegir el valor de los hiperparámetros \index{hiperparámetros} que faciliten el mejor resultado (en este caso el número de capas ocultas y el número de neuronas en cada una de estas capas) se utilizan las dos siguientes técnicas: $(i)$ *grid search* (para probar distintas combinaciones de hiperparámetros) y $(ii)$ *cross-validation* (para entrenar y validar aprovechando todos los registros del conjunto de entrenamiento-validación).
 
-En este caso de uso, se realizan distintas pruebas combinando el número de neuronas de cada capa oculta. En concreto, en la primera y la segunda capa oculta se deja un número constante de neuronas (5), y en la tercera se prueba con 4 y 5 neuronas. Es decir, se entrenará un modelo tres capas ocultas y con 5 neuronas en cada capa oculta y otro con 5 neuronas en las dos primeras capas y 4 neuronas en la tercera.
+En este caso de uso, se realizan distintas pruebas combinando el número de neuronas de cada capa oculta. En concreto, en la primera y la segunda capa oculta se deja un número constante de neuronas (5), y en la tercera se prueba con 4 y 5 neuronas. Es decir, se entrenará un modelo con tres capas ocultas y con 5 neuronas en cada capa oculta y otro con 5 neuronas en las dos primeras capas y 4 neuronas en la tercera.
 
 En la siguiente *chunk* se importan los paquetes necesarios, `neuralnet` y `caret`, se construye la estructura de la red en la variable `grid` y se define el número de *folds* (en cuántas partes se divide en conjunto de entrenamiento para entrenar y validar con todos los datos del conjunto) de la validación cruzada (véase Cap. \@ref(chap-herramientas), Sec. \@ref(enfoque-validacion)). Por último, se entrena el modelo.
 
-El proceso está muy simplificado para que sea fácil de entender. No obstante, lo habitual en la práctica es probar más opciones de *grid search* y hacer una división mayor del conjunto de datos para *cross-validation* \index{cross validation} (es bastante habitual entre 5 y 10 partes):
+El proceso está muy simplificado para que sea fácil de entender. No obstante, lo habitual en la práctica es probar más opciones de *grid search* y hacer una división mayor del conjunto de datos para *cross-validation* \index{cross validation@\textit{cross-validation}} (es bastante habitual entre 5 y 10 partes):
 
 ```r
 # lee paquetes
@@ -165,7 +165,7 @@ print(model)
 #> RMSE was used to select the optimal model using the smallest value.
 #> The final values used for the model were layer1 = 5, layer2 = 5 and layer3 = 5.
 ```
-La RNA con mejor resultado (menor error en el conjunto de entrenamiento / validación) es el que tiene 3 capas con 5 neuronas cada una. Con esta arquitectura de red  se predice el consumo eléctrico para el conjunto de datos que se habían reservado para test (años 2006, 2007 y 2017), para comprobar que el modelo generaliza bien (es decir, para datos nuevos los resultados de las predicciones tienen un error del orden de los que resultan del entrenamiento del modelo). Para ello, se calcula una métrica de error, por ejemplo, el *mean absoute error* (MAE) de las predicciones para dicho conjunto de test:
+La RNA con mejor resultado (menor error en el conjunto de entrenamiento / validación) es la que tiene 3 capas con 5 neuronas cada una. Con esta arquitectura de red  se predice el consumo eléctrico para el conjunto de datos que se habían reservado para test (años 2006, 2007 y 2017), para comprobar que el modelo generaliza bien (es decir, para datos nuevos los resultados de las predicciones tienen un error del orden de los que resultan del entrenamiento del modelo). Para ello, se calcula una métrica de error, por ejemplo, el *mean absolute error* (MAE) de las predicciones para dicho conjunto de test:
 
 
 
@@ -217,9 +217,9 @@ tail(df, 3)
 #> 20 2019 1.0000000  20.166 1.0000000 1.0000000       20.16409
 ```
 
-Estos son los datos que se entregarían como resultado de la petición de información (convertidos a MWh aplicando el coeficiente que se mencionó en la Secc. \ref{ree-datos}).
+Estos son los datos que se entregarían como resultado de la petición de información (convertidos a MWh aplicando el coeficiente que se mencionó en la Sec. \ref{ree-datos}).
 
-Claro está, en el momento que se entregan las predicciones para 2018 y 2019 todavía no se sabe cuál es su precisión, pero a principios de 2020 ya es posible calcular la bondad del modelo seleccionado, y es lo que se hace en las siguientes *chunks*:
+Claro está, en el momento en que se entregan las predicciones para 2018 y 2019 todavía no se sabe cuál es su precisión, pero a principios de 2020 ya es posible calcular la bondad del modelo seleccionado, y es lo que se hace en las siguientes *chunks*:
 
 
 
@@ -238,12 +238,9 @@ ggplot(df_m_mlp_plot, aes(Año, value, col = variable)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/212054PIBConsumoPrediccion.png" alt="Consumo electrico real y predicho en España: 2018 y 2019." width="80%" />
+<img src="img/212054PIBConsumoPrediccion.png" alt="Consumo electrico real y predicho en España: 2018 y 2019." width="100%" />
 <p class="caption">(\#fig:reshape-plot-ree2)Consumo electrico real y predicho en España: 2018 y 2019.</p>
 </div>
 
-En la Fig. \@ref(fig:reshape-plot-ree2), que las predicciones (puntos azules) las predicciones son bastante buenas, con unos errores del orden de los que se habían obtenido en el conjunto de test, por lo que parece que no hay sobreentrenamiento\index{sobreentrenamiento}.
-
-
-<img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;" />
+En la Fig. \@ref(fig:reshape-plot-ree2), se puede comprobar que las predicciones (puntos azules) las predicciones son bastante buenas, con unos errores del orden de los que se habían obtenido en el conjunto de test, por lo que parece que no hay sobreentrenamiento\index{sobreentrenamiento}.
 

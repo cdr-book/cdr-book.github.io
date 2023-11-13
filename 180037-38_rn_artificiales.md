@@ -12,13 +12,13 @@ $^{b}$Ubotica Technologies
 
 ## ¿Qué es el *deep learning*?
 
-\index{deep learning}
+\index{deep learning@\textit{deep learning}}
 
-La inteligencia artificial (IA)\index{inteligencia artificial} es una disciplina científica que se ocupa de crear programas informáticos que ejecutan operaciones comparables a las que realiza la mente humana, como el aprendizaje o el razonamiento lógico [@definicionIA]. Entre otros ejemplos, se pueden encontrar en la actualidad tanto robots que son capaces de realizar tareas de manera similar a un humano en una fábrica, las denominadas casas inteligentes o los vehículos autónomos.
+La inteligencia artificial (IA)\index{inteligencia artificial} es una disciplina científica que se ocupa de crear programas informáticos que ejecutan operaciones comparables a las que realiza la mente humana, como el aprendizaje o el razonamiento lógico [@definicionIA]. Entre otros ejemplos, se pueden encontrar en la actualidad tanto robots que son capaces de realizar tareas de manera similar a un humano en una fábrica, como las denominadas casas inteligentes o los vehículos autónomos.
 
-Dentro de las técnicas utilizadas para la IA\index{inteligencia artificial} se encuentran las técnicas clásicas de *machine learning*\index{machine learning} (véase Parte VI de este manual), las cuales tienen la habilidad de aprender sin haber sido explícitamente programadas para una tarea en particular, pudiendo ser utilizadas para varios fines y aplicaciones.
+Dentro de las técnicas utilizadas para la IA\index{inteligencia artificial} se encuentran las técnicas clásicas de *machine learning*\index{machine learning@\textit{machine learning}} (véase Parte VI de este manual), las cuales tienen la habilidad de aprender sin haber sido explícitamente programadas para una tarea en particular, pudiendo ser utilizadas para varios fines y aplicaciones.
 
-A su vez, dentro de las técnicas de *machine learning*, se enmarcan, como un subconjunto de ellas, las técnicas de *deep learning*\index{deep learning}, las cuales intentan simular tanto la arquitectura como el comportamiento del sistema nervioso humano -- en particular, de las redes de neuronas que componen el encéfalo y que se encargan de realizar tareas específicas (véase la Fig. \@ref(fig:iaMLDL)). Para ello, estas técnicas se basan en el concepto de redes neuronales, que intentan emular la forma de aprendizaje de los humanos [@goodfellow2016deep].
+A su vez, dentro de las técnicas de *machine learning*, se enmarcan, como un subconjunto de ellas, las técnicas de *deep learning*, las cuales intentan simular tanto la arquitectura como el comportamiento del sistema nervioso humano -- en particular, de las redes de neuronas que componen el encéfalo y que se encargan de realizar tareas específicas (véase la Fig. \@ref(fig:iaMLDL)). Para ello, estas técnicas se basan en el concepto de redes neuronales, que intentan emular la forma de aprendizaje de los humanos [@goodfellow2016deep].
 
 <div class="figure" style="text-align: center">
 <img src="img/conc_dl_01_iaMLDL.png" alt="Inteligencia artificial, $machine$ $learning$ y $deep$ $learning$." width="90%" />
@@ -27,10 +27,10 @@ A su vez, dentro de las técnicas de *machine learning*, se enmarcan, como un su
 
 ### Diferencias entre las técnicas de *machine learning* tradicional y el *deep learning*
 
-\index{deep learning}
-\index{machine learning}
+\index{deep learning@\textit{deep learning}}
+\index{machine learning@\textit{machine learning}}
 
-Como se vio en el Cap. \@ref(metodologia), los métodos de ciencia de datos tienen una etapa llamada preparación de datos que incluye la tarea de selección de variables (véase Cap. \@ref(chap-feature))  para determinar las mejores características o variables predictoras/clasificadoras en el marco del problema a resolver, características que, a su vez, deben ser entendidas por el algoritmo de *machine learning*\index{machine learning} seleccionado, de tal forma que éste sea capaz de solucionar el problema planteado. 
+Como se vio en el Cap. \@ref(metodologia), los métodos de ciencia de datos tienen una etapa llamada preparación de datos que incluye la tarea de selección de variables (véase Cap. \@ref(chap-feature))  para determinar las mejores características o variables predictoras/clasificadoras en el marco del problema a resolver, características que, a su vez, deben ser entendidas por el algoritmo de *machine learning* seleccionado, de tal forma que este sea capaz de solucionar el problema planteado (véase Fig. \@ref(fig:iaMLDL)). 
 
 Por ejemplo, en el caso de querer detectar una cara dentro de una imagen, sería necesario definir qué tipo de características servirían para detectar la misma, como podrían ser, a bajo nivel, determinados tipos de bordes de la imagen (véase la Fig. \@ref(fig:scharrpitu)). Estas características proporcionarían la base para detectar a nivel medio elementos de la cara como ojos, narices, orejas, etc. y, definitivamente, a alto nivel, reconocer dónde hay una cara dentro de la imagen.
 
@@ -39,26 +39,28 @@ Por ejemplo, en el caso de querer detectar una cara dentro de una imagen, sería
 <p class="caption">(\#fig:scharrpitu)Detección de bordes de una imagen mediante el método de Scharr.</p>
 </div>
 
-En muchas ocasiones, la selección de características requiere la intervención humana, por lo que puede llevar mucho tiempo y diversos experimentos de prueba y error hasta poder encontrar una combinación de características que permita resolver el problema planteado. Pues bien, las técnicas de *deep learning*\index{deep learning}, a diferencia de las de *machine learning*\index{machine learning} tradicional, son capaces de aprender cuáles son las características que permiten representar mejor el problema que se quiere resolver sin necesidad de la interacción humana a la vez que buscan la solución al mismo. 
+En muchas ocasiones, la selección de características requiere la intervención humana, por lo que puede llevar mucho tiempo y diversos experimentos de prueba y error hasta poder encontrar una combinación de características que permita resolver el problema planteado. Pues bien, las técnicas de *deep learning*\index{deep learning@\textit{deep learning}}, a diferencia de las de *machine learning*\index{machine learning@\textit{machine learning}} tradicional, son capaces de aprender cuáles son las características que permiten representar mejor el problema que se quiere resolver sin necesidad de la interacción humana a la vez que buscan la solución al mismo. 
 
-Continuando con el ejemplo anterior de la detección de caras, mientras que en las técnicas de *machine learning*\index{machine learning} es necesario indicar al algoritmo cuales son las características base que componen una cara para que sea capaz de reconocerlas, en las técnicas de *deep learning*\index{deep learning} únicamente es necesario mostrarle suficientes imágenes de caras para conseguir que el algoritmo sea capaz de aprender a identificar una cara por sí mismo, identificando de forma automática las características más importantes de una cara.
+Continuando con el ejemplo anterior de la detección de caras, mientras que en las técnicas de *machine learning* es necesario indicar al algoritmo cuáles son las características base que componen una cara para que sea capaz de reconocerlas, en las técnicas de *deep learning* únicamente es necesario mostrarle suficientes imágenes de caras para conseguir que el algoritmo sea capaz de aprender a identificar una cara por sí mismo, estableciendo de forma automática las características más importantes de una cara.
 
-Esta capacidad de aprender por sí mismo las características determinantes a la hora de resolver un problema hace que, a nivel teórico, las técnicas de *deep learning*\index{deep learning} puedan llegar a ser más potentes que las del *machine learning*\index{machine learning} clásico.
+Esta capacidad de aprender por sí mismo las características determinantes a la hora de resolver un problema hace que, a nivel teórico, las técnicas de *deep learning* puedan llegar a ser más potentes que las del *machine learning* clásico.
 Sin embargo, dado que las técnicas de *deep learning* enfrentan problemas más complejos y, por consiguiente, procesos de entrenamiento más complicados, necesitan muchos más datos y una mayor potencia de cálculo para entrenar sus algoritmos.
 
-Este hecho explica que, aunque las bases de las técnicas de *deep learning*\index{deep learning} como el algoritmo del descenso del gradiente\index{descenso del gradiente} [@kiefer1952stochastic], el perceptrón\index{perceptrón} [@rosenblatt1958perceptron], los algoritmos de retropropagación y el perceptrón\index{perceptrón} multicapa [@rumelhart1986learning] y la primera red neuronal convolucional [@lecun1995convolutional], datan de varios años atrás, no sea hasta hace relativamente poco tiempo cuando se han podido empezar a utilizar. Esto se debe a diversos factores:
+Este hecho explica que, aunque las bases de las técnicas de *deep learning*\index{deep learning@\textit{deep learning}} como el algoritmo del descenso del gradiente\index{descenso del gradiente} [@kiefer1952stochastic], el perceptrón\index{perceptrón} [@rosenblatt1958perceptron], los algoritmos de retropropagación y el perceptrón\index{perceptrón} multicapa [@rumelhart1986learning] y la primera red neuronal convolucional [@lecun1995convolutional] datan de varios años atrás, no sea hasta hace relativamente poco tiempo cuando se han podido empezar a utilizar. Esto se debe a diversos factores:
 
-1. **La evolución en el hardware de procesamiento.** En particular, debido a la mejora de la capacidad de paralelismo masivo durante el cómputo que proporcionaron las nuevas tarjetas gráficas (GPU), al incorporar una gran cantidad de microprocesadores específicos, han podido ser utilizadas para las técnicas de *deep learning*\index{deep learning}. Originalmente su principal uso era representar modelos complejos 3D en los monitores, pero su utilización para técnicas de *deep learning*\index{deep learning} ha llevado recientemente al desarrollo de tarjetas específicas para este fin. Además, es posible disponer bajo demanda de estos recursos de computación como servicios a través de Internet. Esto es lo que se conoce como *cloud computing*. 
+1. **La evolución en el hardware de procesamiento.** En particular, debido a la mejora de la capacidad de paralelismo masivo durante el cómputo que proporcionaron las nuevas tarjetas gráficas (GPU), al incorporar una gran cantidad de microprocesadores específicos, han podido ser utilizadas para las técnicas de *deep learning*\index{deep learning@\textit{deep learning}}. Originalmente su principal uso era representar modelos complejos 3D en los monitores, pero su utilización para técnicas de *deep learning* ha llevado recientemente al desarrollo de tarjetas específicas para este fin. Además, es posible disponer bajo demanda de estos recursos de computación como servicios a través de Internet. Esto es lo que se conoce como *cloud computing*. 
 
 2. **El *big data*.** La gran cantidad de datos que se generan y almacenan en la actualidad, así como la mayor facilidad a la hora de trabajar con esos conjuntos de datos (gracias a las nuevas herramientas disponibles), han permitido cubrir la necesidad del gran volumen de datos iniciales necesarios en estas técnicas.
 
 3. **La evolución del software.** Recientemente ha habido un amplio interés tanto en buscar nuevos modelos para resolver todo tipo de problemas como en mejorar las técnicas utilizadas para entrenar redes neuronales. Esto ha llevado a la creación y mejora de diversos *frameworks*, librerías y aplicaciones relacionadas con el entrenamiento y despliegue de redes neuronales. Entre ellos destacan Keras, Tensorflow, Pytorch, Caffe2, Matlab y OpenVINO. 
 
-## Aplicaciones del *deep learning*\index{deep learning}
+## Aplicaciones del *deep learning*
 
-Las posibles aplicaciones de las técnicas de *deep learning*\index{deep learning} son muy diversas y, gracias a la continua investigación desarrollada en el área en la actualidad, no hacen más que aumentar. A continuación se comentan algunas de ellas:
+\index{deep learning@\textit{deep learning}}
 
-1. **Clasificación de imágenes.** \index{clasificación} Aunque la clasificación de imágenes dentro del área de la visión por computador, o artificial, es una realidad hace muchos años, es con las técnicas de *deep learning*\index{deep learning} con las que se han logrado los mayores avances (en particular, utilizando las redes neuronales convolucionales)\index{red neuronal!convolucional}. Estas redes permiten determinar a qué clase, perteneciente al conjunto de categorías utilizado para entrenar, corresponde una determinada imagen.
+Las posibles aplicaciones de las técnicas de *deep learning* son muy diversas y, gracias a la continua investigación desarrollada en el área en la actualidad, no hacen más que aumentar. A continuación se comentan algunas de ellas:
+
+1. **Clasificación de imágenes.** \index{clasificación} Aunque la clasificación de imágenes dentro del área de la visión por computador, o artificial, es una realidad hace muchos años, es con las técnicas de *deep learning* con las que se han logrado los mayores avances (en particular, utilizando las redes neuronales convolucionales)\index{red neuronal!convolucional}. Estas redes permiten determinar a qué clase, perteneciente al conjunto de categorías utilizado para entrenar, corresponde una determinada imagen.
 
 2. **Detección de objetos.** \index{detección} Permite localizar los objetos contenidos en una imagen mediante un rectángulo, clasificándolo a su vez por su tipología. Por ejemplo, con este tipo de modelos es posible localizar y diferenciar entre peatones y vehículos utilizando una cámara de seguridad instalada en una calle (Fig. \@ref(fig:camaraTermica)).
 
@@ -71,7 +73,7 @@ Las posibles aplicaciones de las técnicas de *deep learning*\index{deep learnin
 
 4. **Reconocimiento del habla.**\index{reconocimiento} Permite a un computador procesar y comprender el habla humana. Ya existen varios asistentes inteligentes basados en esta tecnología que, además, son capaces de interpretar órdenes o instrucciones sencillas y actuar en consecuencia.
 
-5. **Traducción automática.** Consiste en utilizar las técnicas de *deep learning*\index{deep learning} para traducir un texto automáticamente de una lengua a otra sin la necesidad de intervención humana. En la actualidad, no se limita únicamente a la traducción literal, palabra por palabra, del texto, sino que también tiene en cuenta el significado que tendría en el idioma original para adaptarlo al idioma destino (Fig. \@ref(fig:deepL)).
+5. **Traducción automática.** Consiste en utilizar las técnicas de *deep learning* para traducir un texto automáticamente de una lengua a otra sin la necesidad de intervención humana. En la actualidad, no se limita únicamente a la traducción literal, palabra por palabra, del texto, sino que también tiene en cuenta el significado que tendría en el idioma original para adaptarlo al idioma destino (Fig. \@ref(fig:deepL)).
 
 <div class="figure" style="text-align: center">
 <img src="img/conc_dl_05_deepL.png" alt="Traductor automático basado en $deep$ $learning$." width="100%" />
@@ -85,9 +87,9 @@ Las posibles aplicaciones de las técnicas de *deep learning*\index{deep learnin
 <p class="caption">(\#fig:DallE)Algunas salidas posibles del generador de imágenes a partir de texto Dall-E, para el texto: $A$ $cat$ $with$ $glasses$ $studying$ $computer$ $vision$ $in$ $the$ $space$ $with$ $the$ $Earth$ $in$ $the$ $background$.</p>
 </div>
 
-7. **Automóvil autónomo.** Las técnicas de *deep learning*\index{deep learning} están siendo claves para el desarrollo del vehículo autónomo, capaz de circular sin necesidad de la interacción de un conductor humano. Para lograr definitivamente un vehículo con estas características, es necesario que sea capaz de ver, tomar decisiones y conducir al mismo tiempo. Esto se consigue en la actualidad integrando la información de gran cantidad de sensores que obtienen datos en tiempo real sobre el entorno -- como serían cámaras, LIDAR, radares o ultrasónicos, entre otros -- que es procesada por varias redes neuronales con el fin de que el sistema de conducción sea capaz de tomar una decisión en cuestión de milisegundos (Fig. \@ref(fig:camaraTermica)).
+7. **Automóvil autónomo.** Las técnicas de *deep learning*\index{deep learning@\textit{deep learning}} están siendo claves para el desarrollo del vehículo autónomo, capaz de circular sin necesidad de la interacción de un conductor humano. Para lograr definitivamente un vehículo con estas características, es necesario que sea capaz de ver, tomar decisiones y conducir al mismo tiempo. Esto se consigue en la actualidad integrando la información de gran cantidad de sensores que obtienen datos en tiempo real sobre el entorno --como serían cámaras, LIDAR, radares o ultrasónicos, entre otros-- que es procesada por varias redes neuronales con el fin de que el sistema de conducción sea capaz de tomar una decisión en cuestión de milisegundos (Fig. \@ref(fig:camaraTermica)).
 
-8. **Chatbots con IA.** Son aplicaciones software que, utilizando la IA conversacional, son capaces de conversar mediante un chat escrito como si fueran un ser humano. Caben destacar los asistentes virtuales existentes en diversas páginas web y el reciente ChatGPT [@chatGPT], el cual es capaz de mantener conversaciones con el usuario, resolver problemas sencillos, generar textos y resúmenes sobre cualquier tema o generar código en diversos lenguajes de programación a partir de una petición realizada mediante lenguaje natural.
+8. ***Chatbots*** **con IA.** Son aplicaciones software que, utilizando la IA conversacional, son capaces de conversar mediante un chat escrito como si fueran un ser humano. Cabe destacar los asistentes virtuales existentes en diversas páginas web y el reciente ChatGPT [@chatGPT], el cual es capaz de mantener conversaciones con el usuario, resolver problemas sencillos, generar textos y resúmenes sobre cualquier tema o generar código en diversos lenguajes de programación a partir de una petición realizada mediante lenguaje natural.
 
 ## Redes neuronales
 
@@ -129,7 +131,7 @@ Por tanto, cada neurona\index{neurona} actúa como un clasificador lineal que pu
 
 ### Aprendizaje {#aprendizaje-perceptron}
 
-Durante el proceso de aprendizaje, el perceptrón\index{perceptrón} busca el ajuste automático de los valores de los pesos. Éstos deben seleccionarse de forma que minimicen el error de clasificación (predicción en su caso)\index{clasificación} cometido sobre un conjunto de entrenamiento. El conjunto de entrenamiento, $D$, está compuesto por un conjunto de $h$ observaciones de las que se conoce su clase:
+Durante el proceso de aprendizaje, el perceptrón\index{perceptrón} busca el ajuste automático de los valores de los pesos. Estos deben seleccionarse de forma que minimicen el error de clasificación (predicción en su caso)\index{clasificación} cometido sobre un conjunto de entrenamiento. El conjunto de entrenamiento, $D$, está compuesto por un conjunto de $h$ observaciones de las que se conoce su clase:
 
 \begin{equation} 
 D = \{ ({\bf x}_1 , y_1 ), ({\bf x}_2 , y_2 ), \dots, ({\bf x}_h , y_h ) \},
@@ -224,13 +226,13 @@ plot_activation_function <- function(f, title, range){
 
 
 
-- **Función lineal.** Se trata de una función identidad donde la salida tiene el mismo valor que la entrada. Normalmente se aplica en problemas de regresión lineal. Por ejemplo, si se quiere predecir el número de días que lloverá en un mes determinado. Su expresión es:
+- **Función lineal.** Se trata de una función identidad donde la salida tiene el mismo valor que la entrada. Normalmente se aplica en problemas de regresión lineal, por ejemplo, si se quiere predecir el número de días que lloverá en un mes determinado. Su expresión es:
 
 \begin{equation} 
 f({\bf w}^{\prime} \bf x)={\bf w}^{\prime} \bf x,
 \end{equation}
 
-| y su representación gráfica es de la siguiente forma:
+y su representación gráfica es de la siguiente forma (Fig \@ref(fig:red-lineal)):
 
 
 ```r
@@ -238,18 +240,21 @@ f <- function(x){ x }
 plot_activation_function(f, 'Lineal', c(-4,4))
 ```
 
-<img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-3-1.png" width="60%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="180037-38_rn_artificiales_files/figure-html/red-lineal-1.png" alt="Representación gráfica de la función lineal." width="50%" />
+<p class="caption">(\#fig:red-lineal)Representación gráfica de la función lineal.</p>
+</div>
 
 - **Función umbral.** Esta función recibe también el nombre de función escalón. Si el valor de entrada es menor que el umbral, $u$, la salida es 0. En caso contrario, la salida es 1. Si el umbral es 0, la función se reduce a observar el signo del valor de la salida.
 
 \begin{equation} 
 f({\bf w}^{\prime} {\bf x})=\begin{cases}
 0 & \text{si ${\bf w}^{\prime} {\bf x}<u$}\\
-1 & \text{en otro caso},
+1 & \text{en otro caso}.
 \end{cases}
 \end{equation}
 
-Se representa gráficamente mediante el código que aparece a continuación, el cual se corresponde con una modificación de la función `plot_activation_function()`, ya que la versión original no mostraría de forma correcta la gráfica al requerir representar dos valores en la posición 0: el valor 0 y el valor 1 del escalón:
+Se representa gráficamente mediante el código que aparece a continuación, el cual se corresponde con una modificación de la función `plot_activation_function()`, ya que la versión original no mostraría de forma correcta la gráfica al requerir representar dos valores en la posición 0: el valor 0 y el valor 1 del escalón (Fig. \@ref(fig:red-umbral)):
 
 
 
@@ -265,7 +270,10 @@ ggplot(data=df, aes(x=x, y=f, group=1)) +
     geom_step(color='red')
 ```
 
-<img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-4-1.png" width="60%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="180037-38_rn_artificiales_files/figure-html/red-umbral-1.png" alt="Representación gráfica de la función umbral." width="50%" />
+<p class="caption">(\#fig:red-umbral)Representación gráfica de la función umbral.</p>
+</div>
 
 - **Función sigmoide.** También conocida como función logística, se trata de una de las funciones más utilizadas para asignar una clase. Si el punto de evaluación de la función es un valor negativo muy bajo, la función da como resultado un valor muy cercano a 0, si se evalúa en 0 el resultado es 0,5 y si se evalúa en un valor positivo alto el resultado es aproximadamente 1.
 
@@ -273,7 +281,7 @@ ggplot(data=df, aes(x=x, y=f, group=1)) +
 f( {\bf w}^{\prime} {\bf x})=\frac{1}  {1-e^{-{\bf w}^{\prime} {\bf x}}}. 
 \end{equation}
 
-|    Su representación gráfica es como sigue:
+|    Su representación gráfica es como sigue (Fig. \@ref(fig:red-sigmoide)):
 
 
 ```r
@@ -281,14 +289,17 @@ f <- function(x){1 / (1 + exp(-x))}
 plot_activation_function(f, 'Sigmoide', c(-4,4))
 ```
 
-<img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;" />
-- **Función tangente hiperbólica.** El rango de valores de salida es [-1, 1], donde para valores altos de ${\bf w}^{\prime} \bf x$ la función tiende de manera asintótica a 1 y los valores muy bajos tiende,  también de manera asintótica, a -1, de forma similar a la sigmoide.
+<div class="figure" style="text-align: center">
+<img src="180037-38_rn_artificiales_files/figure-html/red-sigmoide-1.png" alt="Representación gráfica de la función sigmoide." width="50%" />
+<p class="caption">(\#fig:red-sigmoide)Representación gráfica de la función sigmoide.</p>
+</div>
+- **Función tangente hiperbólica.** El rango de valores de salida es [-1, 1], donde para valores altos de ${\bf w}^{\prime} \bf x$ la función tiende de manera asintótica a 1 y los valores muy bajos tiende,  también de manera asintótica, a $-1$, de forma similar a la sigmoide.
 
 \begin{equation} 
 f({\bf w}^{\prime} \bf x)=\frac{e^{{\bf w}^{\prime} {\bf x}} -e^{-{\bf w}^{\prime} \bf x}}     {e^{{\bf w}^{\prime} \bf x}+e^{-{\bf w}^{\prime} \bf x}}. 
 \end{equation}
 
-|    Su representación gráfica es como sigue:
+|    Su representación gráfica es como sigue (Fig. \@ref(fig:red-hiperbo)):
 
 
 ```r
@@ -296,7 +307,10 @@ tanh_func <- function(x){tanh(x)}
 plot_activation_function(tanh_func, 'Tangente Hiperbólica', c(-4,4))
 ```
 
-<img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-6-1.png" width="60%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="180037-38_rn_artificiales_files/figure-html/red-hiperbo-1.png" alt="Representación gráfica de la función tangente hiperbólica." width="50%" />
+<p class="caption">(\#fig:red-hiperbo)Representación gráfica de la función tangente hiperbólica.</p>
+</div>
 - **Función ReLU.** Se trata de la unidad lineal rectificada (del inglés *rectified linear unit*). Es posiblemente la función de activación más utilizada actualmente en *deep learning* [@nair2010rectified].
 
 \begin{equation} 
@@ -306,7 +320,7 @@ f({\bf w}^{\prime} {\bf x})=\begin{cases}
 \end{cases} 
 \end{equation}
 
-|    y se representa gráficamente de la siguiente manera:
+|    y se representa gráficamente de la siguiente manera (Fig. \@ref(fig:red-relu)):
 
 
 ```r
@@ -314,15 +328,20 @@ rec_lu_func <- function(x){ ifelse(x < 0 , 0, x )}
 plot_activation_function(rec_lu_func, 'ReLU', c(-4,4))
 ```
 
-<img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-7-1.png" width="60%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="180037-38_rn_artificiales_files/figure-html/red-relu-1.png" alt="Representación gráfica de la función ReLU." width="50%" />
+<p class="caption">(\#fig:red-relu)Representación gráfica de la función ReLU.</p>
+</div>
 
 
 
 
 ## Perceptrón multicapa
-\index{perceptrón!multicapa}
 
-Aunque el perceptrón\index{perceptrón} puede aprender muchos tipos de lógica, no es posible que aprenda la operación XOR (OR exclusivo), que se diferencia del OR en que asigna un 1 a la salida cuando las dos entradas son distintas [@minsky1969introduction]. El perceptrón multicapa\index{perceptrón!multicapa} o, en inglés, *multilayer perceptron* (MLP) surge para dar una solución a este problema, que es un paradigma de los problemas linealmente no separables, que realmente son la mayoría en el mundo real.
+
+Aunque el perceptrón\index{perceptrón} puede aprender muchos tipos de lógica, no es posible que aprenda la operación XOR (OR exclusivo), que se diferencia del OR en que asigna un 1 a la salida cuando las dos entradas son distintas [@minsky1969introduction]. El perceptrón multicapa o, en inglés, *multilayer perceptron* (MLP) surge para dar una solución a este problema, que es un paradigma de los problemas linealmente no separables, que realmente son la mayoría en el mundo real.
+
+\index{perceptrón!multicapa}
 
 Un MLP está compuesto por varias capas con neuronas. La primera capa es la de entrada, que recibe las variables seleccionadas para dar solución al problema a resolver. La última, la salida del MLP, representa las clases de salida (en las que hay que clasificar las entradas). Entre ambas capas hay una o más capas intermedias u "ocultas". Las neuronas de una capa intermedia tienen como entrada la salida de la capa anterior y su salida es la entrada de las neuronas de la siguiente capa (Fig. \@ref(fig:ann)). Este tipo de capas también son llamadas **densas** o **totalmente conectadas**. En la práctica, tanto las capas intermedias como la capa de salida están compuestas por neuronas totalmente conectadas.
 
@@ -357,19 +376,19 @@ donde  ${\bf b}_{1} \in \mathbb{R}^{p}$ es un vector con las constantes de la pr
 Tras aplicar la función de activación, $g(\cdot)$, al vector de sumas ponderadas de las neuronas de la primera capa intermedia, ${\bf z}_1\in \mathbb{R}^{c_1}$, se obtiene el vector de salidas de dichas neuronas:
 
 \begin{equation}
-{\bf h}_{1}= g({\bf z}_1), \hspace{0,1cm}.
+{\bf h}_{1}= g({\bf z}_1).
 \end{equation}
 
 Como las salidas de las neuronas de una capa intermedia son las entradas de las neuronas de la siguiente capa, en la siguiente capa el vector que contiene las salidas de sus neuronas es:
 
 \begin{equation}
-{\bf h}_{2} = g ( {\bf W}_{(2)}^{\prime}   {\bf h_1)} + {\bf b}_2), \hspace{0,1cm}.
+{\bf h}_{2} = g ( {\bf W}_{(2)}^{\prime}   {\bf h_1)} + {\bf b}_2).
 \end{equation}
 
-En general, el vector de salidas de las neuronas de la $c$-ésima ($c=1,2,...,C$) capa intermedia se obtiene como:
+En general, el vector de salidas de las neuronas de la $c$-ésima capa intermedia ($c=1,2,...,C$)  se obtiene como:
 
 \begin{equation}
-{\bf h}_{c} = g ( {\bf W}_{(c)}^{\prime}  {\bf h}_{c-1}) + {\bf b}_c), \hspace{0,1cm}.
+{\bf h}_{c} = g ( {\bf W}_{(c)}^{\prime}  {\bf h}_{c-1}) + {\bf b}_c).
 \end{equation}
 
 Siguiendo el mismo razonamiento, en una red con $C$ capas densas o totalmente conectadas ($C-1$ capas ocultas o intermedias y una capa de salida), la salida de la red, $\hat y$, para una entrada $\bf x$, viene dada por:
@@ -388,7 +407,7 @@ Por ejemplo, en una red con tres capas densas, dos intermedias y una de salida, 
 \end{equation}
 
 
-Para entrenar y ajustar los pesos de este tipo de redes es necesario realizar el ajuste de la combinación de todos los pesos de la red. De forma similar a la búsqueda de los pesos óptimos en el caso de una sola neurona (véase Sec. \@ref(aprendizaje-perceptron)\index{neurona}, será necesario encontrar la combinación de valores que clasifiquen bien todas las muestras del conjunto de entrenamiento o, en su defecto, que fallen en el menor número de muestras posible o minimicen alguna otra función de coste. En este punto es donde entra en juego la propagación hacia atrás o *backpropagation*.
+Para entrenar y ajustar los pesos de este tipo de redes es necesario realizar el ajuste de la combinación de todos los pesos de la red. De forma similar a la búsqueda de los pesos óptimos en el caso de una sola neurona (véase Sec. \@ref(aprendizaje-perceptron)\index{neurona}), será necesario encontrar la combinación de valores que clasifiquen bien todas las muestras del conjunto de entrenamiento o, en su defecto, que fallen en el menor número de muestras posible o minimicen alguna otra función de coste. En este punto es donde entra en juego la propagación hacia atrás o *backpropagation*.
 
 
 La propagación hacia atrás es el mecanismo por el que el MLP ajusta de forma iterativa los pesos de la red con el objetivo de minimizar una función de coste que mide lo bueno o malo que es el resultado obtenido en un momento determinado [@rumelhart1986learning]. Su único requisito de aplicación es que todas las operaciones de la red (incluidas las funciones de activación) sean diferenciables ya que se utiliza el algoritmo del descenso del gradiente\index{descenso del gradiente} para optimizar la función de coste.
@@ -396,7 +415,7 @@ La propagación hacia atrás es el mecanismo por el que el MLP ajusta de forma i
 
 
 
-El MLP utiliza diferentes funciones de coste o pérdida según el tipo de problema a resolver. Para los problemas de clasificación\index{clasificación}, la función de coste más utilizada es la **entropía cruzada media** (en inglés *average cross-entropy*, ACE). Para un problema binario esta función de coste se calcula como;
+El MLP utiliza diferentes funciones de coste o pérdida según el tipo de problema a resolver. Para los problemas de clasificación\index{clasificación}, la función de coste más utilizada es la **entropía cruzada media** (en inglés *average cross-entropy*, ACE). Para un problema binario esta función de coste se calcula como:
 
 
 \begin{equation} 
@@ -429,20 +448,21 @@ donde $t$ es el estado de la red en una iteración determinada y $\lambda$ es la
 
 Al igual que en el caso del perceptrón\index{perceptrón} único, el entrenamiento terminará cuando se alcance un número máximo de iteraciones o la mejora en la función de coste entre dos iteraciones consecutivas no supere cierto umbral.
 
-Durante el proceso de aprendizaje, es necesario guardar en memoria los resultados de cada una de las muestras del conjunto de entrenamiento. Si el número de muestras o el tamaño de la red son grandes, es posible que no se disponga del espacio suficiente. Para resolver este problema, en una iteración no se utiliza todo el conjunto de entrenamiento, sino que se utiliza un subconjunto del mismo llamado *batch*\index{batch}. El conjunto de entrenamiento se divide en cada iteración, por tanto, en un número de *batches* disjuntos con un número de observaciones por *batch*\index{batch}. Atendiendo a esta división, es posible definir una serie de hiperparámetros:
+Durante el proceso de aprendizaje, es necesario guardar en la memoria los resultados de cada una de las muestras del conjunto de entrenamiento. Si el número de muestras o el tamaño de la red son grandes, es posible que no se disponga del espacio suficiente. Para resolver este problema, en una iteración no se utiliza todo el conjunto de entrenamiento, sino que se emplea un subconjunto del mismo llamado *batch*\index{batch@\textit{batch}}. El conjunto de entrenamiento se divide en cada iteración, por tanto, en un número de *batches* disjuntos con un número de observaciones por *batch*. Atendiendo a esta división, es posible definir una serie de hiperparámetros:
 
-- Tamaño del *batch*\index{batch}. Número de observaciones utilizadas en cada iteración para actualizar los pesos.
+- Tamaño del *batch*. Número de observaciones utilizadas en cada iteración para actualizar los pesos.
 - Número de épocas. Número de pasadas completas sobre el conjunto de entrenamiento hasta terminar el proceso de aprendizaje.
-- Número de iteraciones por época. Es el resultado de dividir el número total de observaciones por el tamaño del *batch*\index{batch}.
+- Número de iteraciones por época. Es el resultado de dividir el número total de observaciones por el tamaño del *batch*.
 
-Por ejemplo, si se tiene un conjunto de 55000 observaciones y el tamaño del *batch*\index{batch} es de 100, cada época tendrá 550 iteraciones.
+Por ejemplo, si se tiene un conjunto de 55.000 observaciones y el tamaño del *batch* es de 100, cada época tendrá 550 iteraciones.
 
 
-## Instalación de librerías de *deep learning*\index{deep learning} en **R**: Tensorflow/Keras
+## Instalación de librerías de *deep learning* en **R**: Tensorflow/Keras
+\index{deep learning@\textit{deep learning}}
 
-El *framework* que se utiliza en este libro para trabajar con técnicas de *deep learning*\index{deep learning} es Tensorflow/Keras, debido a que $(i)$ es uno de los más completos en la actualidad, $(ii)$  permite realizar una configuración completa del proceso de entrenamiento y $(iii)$ permite trabajar con diversos tipos de redes neuronales. 
+El *framework* que se utiliza en este libro para trabajar con técnicas de *deep learning* es Tensorflow/Keras, debido a que $(i)$ es uno de los más completos en la actualidad, $(ii)$  permite realizar una configuración completa del proceso de entrenamiento y $(iii)$ permite trabajar con diversos tipos de redes neuronales. 
 
-Para poder utilizar Tensorflow/Keras en **R**, es necesario realizar la instalación de la librería fuera de **R**. Por ello, si ya se dispone de una instalación del mismo sería posible utilizarla. No obstante, se recomienda seguir los pasos indicados a continuación para tener una instalación nativa de Tensorflow/Keras asociada directamente a **R**.
+Para poder utilizar Tensorflow/Keras en **R**, es necesario realizar la instalación de la librería fuera de **R**. Por ello, si ya se dispone de una instalación de la misma sería posible utilizarla. No obstante, se recomienda seguir los pasos indicados a continuación para tener una instalación nativa de Tensorflow/Keras asociada directamente a **R**.
 
 - **Paso 1**: instalación de la librería de `tensorflow` en **R**.
 
@@ -502,7 +522,7 @@ tf.Tensor(b'Hellow Tensorflow', shape=(), dtype=string)
 
 En esta sección se entrena una red neuronal artificial para reconocer o clasificar los dígitos manuscritos del conjunto de datos MNIST (https://en.wikipedia.org/wiki/MNIST_database). Cada una de las imágenes de este conjunto de datos tiene un tamaño de $28\times28$ píxeles[^Note-RNA-000] en escala de grises. En vez de extraer una serie de variables a partir de cada imagen, en este caso se utilizan cada uno de los $28\times28=784$ píxeles como variable de entrada  (véase Fig. \@ref(fig:mlpmnhist)). 
 
-[^Note-RNA-000]: Para aquellos no familiarizados con la cuestión, un pixel es la menor unidad homogénea en color que forma parte de una imagen digital. Cuanto mayor sea la cantidad de píxeles, mejor calidad tendrá la imagen. En otros término, son los puntos de color (siendo la escala de grises una gama de color monocromática). Las imágenes se forman como una sucesión de píxeles. En las imágenes de mapa de bits, o en los dispositivos gráficos, cada píxel se codifica mediante un conjunto de bits de longitud determinada (la profundidad de color); por ejemplo, se puede codificar con un byte (8 bits), de manera que cada píxel admite hasta 256 variaciones de color ($2^8$ posibilidades binarias), de 0 a 255. En las denominadas imágenes llamadas de color verdadero se suelen utilizar tres bytes (24 bits) para definir el color de un píxel; por consiguiente, cada píxel permite representar $2^{24}=16.777.216$ variaciones de color. 
+[^Note-RNA-000]: Para aquellos no familiarizados con la cuestión, un píxel es la menor unidad homogénea en color que forma parte de una imagen digital. Cuanto mayor sea la cantidad de píxeles, mejor calidad tendrá la imagen. En otros términos, son los puntos de color (siendo la escala de grises una gama de color monocromática). Las imágenes se forman como una sucesión de píxeles. En las imágenes de mapa de bits, o en los dispositivos gráficos, cada píxel se codifica mediante un conjunto de bits de longitud determinada (la profundidad de color); por ejemplo, se puede codificar con un byte (8 bits), de manera que cada píxel admite hasta 256 variaciones de color ($2^8$ posibilidades binarias), de 0 a 255. En las denominadas imágenes llamadas de color verdadero se suelen utilizar tres bytes (24 bits) para definir el color de un píxel; por consiguiente, cada píxel permite representar $2^{24}=16.777.216$ variaciones de color. 
 
 <div class="figure" style="text-align: center">
 <img src="img/mlpmnhist.png" alt="MLP para reconocimiento de dígitos manuscritos." width="100%" />
@@ -519,7 +539,7 @@ library("keras")
 mnist <- dataset_mnist()
 ```
 
-A continuación, se puede ver el contenido de las variables generadas, que en este caso contienen los valores de los píxeles de las imágenes. Cabe destacar que el conjunto de datos MNIST ya viene separado en dos subconjuntos, uno para entrenamiento y otro para test, compuestos por 60000 y 10000 imágenes respectivamente. En ambos casos, estos datos se almacenan en la variable de nombre *x*.
+A continuación, se puede ver el contenido de las variables generadas, que en este caso contienen los valores de los píxeles de las imágenes. Cabe destacar que el conjunto de datos MNIST ya viene separado en dos subconjuntos, uno para entrenamiento y otro para test, compuestos por 60.000 y 10.000 imágenes, respectivamente. En ambos casos, estos datos se almacenan en la variable de nombre *x*.
 
 
 ```r
@@ -535,7 +555,7 @@ dim(mnist$test$y)
 #> [1] 10000
 ```
 
-Además, las imágenes de cada subconjunto vienen acompañadas de la clase a la que pertenecen (dígito contenido en la imagen). En ambos casos, esta etiqueta se almacena en la variable con nombre *y*. A continuación se muestra un pequeño ejemplo que permitirá visualizar alguna de las imágenes contenidas en el conjunto de datos de entrenamiento junto con la etiqueta que indica el dígito contenido:
+Además, las imágenes de cada subconjunto vienen acompañadas de la clase a la que pertenecen (dígito contenido en la imagen). En ambos casos, esta etiqueta se almacena en la variable con nombre *y*. A continuación se muestra un pequeño ejemplo que permitirá visualizar alguna de las imágenes contenidas en el conjunto de datos de entrenamiento junto con la etiqueta que indica el dígito contenido (Fig. \@ref(fig:img-entrenamiento)):
 
 
 ```r
@@ -550,15 +570,15 @@ for (j in 1:16) {
 ```
 
 <div class="figure" style="text-align: center">
-<img src="180037-38_rn_artificiales_files/figure-html/unnamed-chunk-15-1.png" alt="Algunas imágenes del conjunto de entrenamiento." width="60%" />
-<p class="caption">(\#fig:unnamed-chunk-15)Algunas imágenes del conjunto de entrenamiento.</p>
+<img src="180037-38_rn_artificiales_files/figure-html/img-entrenamiento-1.png" alt="Algunas imágenes del conjunto de entrenamiento." width="60%" />
+<p class="caption">(\#fig:img-entrenamiento)Algunas imágenes del conjunto de entrenamiento.</p>
 </div>
 
 ### Preprocesamiento
 
 Una vez cargados los datos y comprobado su contenido se puede llevar a cabo algún tipo de preprocesado. Dependiendo del tipo de problema, se podrán realizar unas operaciones u otras. Por ejemplo, cuando se trabaja con imágenes es muy típico estandarizar los valores de color de las imágenes para mitigar las diferencias producidas por las diferentes condiciones de iluminación.
 
-En este caso, sólo se van a transformar los valores originales de los píxeles de cada imagen (en rango de 0 a 255, véase nota a pie de página 1)  a valores entre 0 y 1 dividiendo cada valor por el máximo, 255:
+En este caso, solo se van a transformar los valores originales de los píxeles de cada imagen (en rango de 0 a 255, véase nota a pie de página 1)  a valores entre 0 y 1 dividiendo cada valor por el máximo, 255:
 
 
 ```r
@@ -578,14 +598,14 @@ model <- keras_model_sequential() |>
   layer_dense(10, activation = "softmax")
 ```
 
-Como se puede observar, la red definida está compuesta por una capa de tipo `flatten`[^Note-RNA-0] que se encarga de transformar los 28x28 valores en un vector de 784 elementos, para que a continuación una capa oculta `dense` [^Note-RNA-00] de 15 neuronas con activación `relu` se encargue de realizar las primeras operaciones con esos datos. Al final, una última capa `dense` se encarga de obtener la probabilidad de que la imagen represente cada una de las posibles clases mediante una activación `softmax`:[^Note-RNA-1]
+Como se puede observar, la red definida está compuesta por una capa de tipo `flatten`[^Note-RNA-0] que se encarga de transformar los $28 \times 28$ valores en un vector de 784 elementos, para que a continuación una capa oculta `dense` [^Note-RNA-00] de 15 neuronas con activación `relu` se encargue de realizar las primeras operaciones con esos datos. Al final, una última capa `dense` se encarga de obtener la probabilidad de que la imagen represente cada una de las posibles clases mediante una activación `softmax`:[^Note-RNA-1]
 
-[^Note-RNA-00]: Una capa densa es aquella en las que todas las neuronas de la capa están conectadas con todas las de la capa anterior.
+[^Note-RNA-00]: Una capa densa es aquella en la que todas las neuronas de la capa están conectadas con todas las de la capa anterior.
 
 
 [^Note-RNA-0]: Una capa *flatten* "aplana" la entrada, es decir, unidimensionaliza la entrada multidimensional o, en otros términos, convierte una matriz en un vector. Normalmente se usa en la transición de la capa convolucional a la capa completamente conectada.
 
-[Note-RNA-1]: La función de activación `softmax` convierte un vector de número reales en una distribución de probabilidad de tal manera que la probabilidad de pertenecer a cada una de las categoría de salida siempre sume el $100\%$.]
+[^Note-RNA-1]: La función de activación `softmax` convierte un vector de números reales en una distribución de probabilidad de tal manera que la probabilidad de pertenecer a cada una de las categoría de salida siempre sume el $100\%$.
 
 
 ```r
@@ -621,7 +641,7 @@ model |>
 
 ### Entrenamiento {#nntrain}
 
-Una vez generada la estructura de la red neuronal y definida la anterior configuración, es posible entrenarla mediante la función `fit()`. Para ello, se le debe indicar el conjunto de imágenes de entrenamiento, *x*, que debe utilizar y sus clases correspondientes, *y*. Además de otros parámetros, se podrá configurar el número de épocas a entrenar (`epochs`, pasadas sobre el conjunto completo de entrenamiento), el tamaño del *batch*\index{batch} que se utilizará en cada iteración (`batch_size`, número de imágenes por iteración), qué porcentaje de elementos del conjunto de datos se utilizan para validar el modelo (`validation_split`, imágenes utilizadas durante el entrenamiento pero solo para obtener una estimación real del error cometido) y la tasa de aprendizaje (`learning_rate`).
+Una vez generada la estructura de la red neuronal y definida la anterior configuración, es posible entrenarla mediante la función `fit()`. Para ello, se le debe indicar el conjunto de imágenes de entrenamiento, *x*, que debe utilizar y sus clases correspondientes, *y*. Además de otros parámetros, se podrá configurar el número de épocas a entrenar (`epochs`, pasadas sobre el conjunto completo de entrenamiento), el tamaño del *batch*\index{batch@\textit{batch}} que se utilizará en cada iteración (`batch_size`, número de imágenes por iteración), qué porcentaje de elementos del conjunto de datos se utilizan para validar el modelo (`validation_split`, imágenes utilizadas durante el entrenamiento pero solo para obtener una estimación real del error cometido) y la tasa de aprendizaje (`learning_rate`).
 
 
 ```r
@@ -659,7 +679,7 @@ training_evolution <- model |>
 #> 375/375 - 1s - loss: 0.3571 - accuracy: 0.8997 - val_loss: 0.3289 - val_accuracy: 0.9064 - 1s/epoch - 3ms/step
 ```
 
-Las gráficas de coste/pérdida y precisión permiten ver su evolución durante el proceso de entrenamiento:
+Las gráficas de coste/pérdida y precisión permiten ver su evolución durante el proceso de entrenamiento (Fig. \@ref(fig:plot-curve1)):
 
 
 ```r
@@ -667,7 +687,7 @@ plot(training_evolution)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/curve1.png" alt="Evolución durante el entrenamiento de la función de precisión y de coste/pérdida: conjuntos de entrenamiento y validación." width="60%" />
+<img src="img/curve1.png" alt="Evolución durante el entrenamiento de la función de precisión y de coste/pérdida: conjuntos de entrenamiento y validación." width="70%" />
 <p class="caption">(\#fig:plot-curve1)Evolución durante el entrenamiento de la función de precisión y de coste/pérdida: conjuntos de entrenamiento y validación.</p>
 </div>
 
@@ -691,7 +711,7 @@ head(round(predictions, digits=3), 5)
 
 
 
-También se puede utilizar la función `evaluate()` para calcular tanto el coste o pérdida como la precisión de la red neuronal sobre el conjunto de *test*. Como se puede observar, se obtienen valores muy similares a los obtenidos durante el entrenamiento:
+También se puede utilizar la función `evaluate()` para calcular tanto el coste o pérdida como la precisión de la red neuronal sobre el conjunto de test. Como se puede observar, se obtienen valores muy similares a los conseguidos durante el entrenamiento:
 
 
 ```r
@@ -726,7 +746,7 @@ confusion_matrix
 #>   9    0    0   11    5   47    7    0   44   19  898
 ```
 
-La diagonal principal contiene el número de aciertos del modelo entrenado para el conjunto de test, mientras que el resto de valores indican en cuántas ocasiones una clase es clasificada de manera incorrecta como otra diferente. A partir de esta matriz de confusión se puede calcular el valor de `accuracy` calculado mediante la función `evaluate()`.
+La diagonal principal contiene el número de aciertos del modelo entrenado para el conjunto de test, mientras que el resto de valores indican en cuántas ocasiones una clase es clasificada de manera incorrecta como otra diferente. A partir de esta matriz de confusión se puede calcular el valor de `accuracy` mediante la función `evaluate()`.
 
 ### Guardado y reutilización del modelo
 
@@ -780,7 +800,7 @@ y_madrid <- Madrid_Sale$PRICE
 y_madrid_mat <- matrix(y_madrid,nrow = length(y_madrid),byrow = TRUE)
 ```
 
-El conjunto de datos contiene un total de 94815 elementos. El 90% ellos se destinarán al conjunto de entrenamiento y el 10% restante al de validación o test:
+El conjunto de datos contiene un total de 94.815 elementos. El 90% ellos se destinará al conjunto de entrenamiento y el 10% restante al de validación o test:
 
 
 ```r
@@ -793,7 +813,7 @@ madrid_dat_test_y <- y_madrid_mat[!ind, ]
 
 ### Preprocesamiento
 
-Una vez cargados los datos y comprobado su contenido, se recomienda normalizar las variables seleccionadas como predictoras, puesto que normalmente son muy heterogéneas. Aunque la red neuronal podría adaptarse a una situación de heterogeneidad, dicha adaptación podría complicar el proceso de entrenamiento, lo cual se traduciría en mauyor imprecisión. Para llevar a cabo el proceso de normalización se utiliza la función `scale()` sobre las variables predictoras; adicionalmente, se divide la variable precio entre 100000 para reducir su escala: 
+Una vez cargados los datos y comprobado su contenido, se recomienda normalizar las variables seleccionadas como predictoras, puesto que normalmente son muy heterogéneas. Aunque la red neuronal podría adaptarse a una situación de heterogeneidad, dicha adaptación podría complicar el proceso de entrenamiento, lo cual se traduciría en mayor imprecisión. Para llevar a cabo el proceso de normalización se utiliza la función `scale()` sobre las variables predictoras; adicionalmente, se divide la variable precio entre 100.000 para reducir su escala: 
 
 
 ```r
@@ -839,7 +859,7 @@ summary(model, line_length=64)
 #> ________________________________________________________________
 ```
 
-Finalmente, se compila el modelo indicando los parámetros de configuración necesarios para el proceso de entrenamiento. En este caso la función de coste o pérdida es el error cuadrático medio y la métrica  el error absoluto medio:
+Finalmente, se compila el modelo indicando los parámetros de configuración necesarios para el proceso de entrenamiento. En este caso la función de coste o pérdida es el error cuadrático medio y la métrica, el error absoluto medio:
 
 
 ```r
@@ -867,7 +887,7 @@ training_evolution <- model |>
   )
 ```
 
-Las gráficas de coste/pérdida y error durante el proceso de entrenamiento puede verse en la Fig. \@ref(fig:plot-curve2).
+Las gráficas de coste/pérdida y error durante el proceso de entrenamiento pueden verse en la Fig. \@ref(fig:plot-curve2).
 
 
 ```r
@@ -875,7 +895,7 @@ plot(training_evolution)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/curve2.png" alt="Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación." width="60%" />
+<img src="img/curve2.png" alt="Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación." width="70%" />
 <p class="caption">(\#fig:plot-curve2)Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación.</p>
 </div>
 
@@ -914,11 +934,11 @@ model |>
 
 ### Resumen {-}
 
-* En este capítulo se ha explicado en detalle el concepto de redes neuronales artificiales\index{red neuronal!artificial}, incluyendo los elementos que la componen, desde el perceptrón\index{perceptrón} o neurona\index{neurona} básica hasta el perceptrón multicapa\index{perceptrón!multicapa}, pasando el perceptrón multiclase, junto al proceso de aprendizaje de los mismos.
+* En este capítulo se ha explicado en detalle el concepto de redes neuronales artificiales, incluyendo los elementos que la componen, desde el perceptrón o neurona básica hasta el perceptrón multicapa\index{perceptrón!multicapa}, pasando el perceptrón multiclase, junto al proceso de aprendizaje de los mismos.
 
-* Además, se han definido las funciones de activación clásicas utilizadas en las redes neuronales artificiales\index{red neuronal!artificial}, las cuales se encargan de transformar la suma ponderada de las entradas en el resultado final de la capa.
+* Además, se han definido las funciones de activación clásicas utilizadas en las redes neuronales artificiales, las cuales se encargan de transformar la suma ponderada de las entradas en el resultado final de la capa.
 
-* Finalmente, se han explicado los pasos necesarios para poder entrenar una red neuronal artificial utilizando la librería Tensorflow/Keras en **R**, resolviendo un problema de clasificación\index{clasificación} de dígitos manuscritos, a partir del conjunto de datos `MNIST`, y un problema de regresión para predecir el precio de la vivienda en Madrid en función de sus características, a parir del conjunto de datos de `Idealista18`.
+* Finalmente, se han explicado los pasos necesarios para poder entrenar una red neuronal artificial utilizando la librería Tensorflow/Keras en **R**, resolviendo un problema de clasificación de dígitos manuscritos, a partir del conjunto de datos `MNIST`, y un problema de regresión para predecir el precio de la vivienda en Madrid en función de sus características, a partir del conjunto de datos de `Idealista18`.
 
 :::
 

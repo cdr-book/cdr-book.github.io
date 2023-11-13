@@ -8,20 +8,13 @@ Universidad Rey Juan Carlos
 ## Introducción
 
 \index{R}
-\index{internet of things}
-\index{big data}
+\index{internet of things@\textit{internet of things}}
+\index{big data@\textit{big data}}
 
 
 El análisis estadístico de datos es una tarea fundamental 
 en la transformación digital de las empresas y organizaciones. 
-Siempre ha estado ahí, pero
-en la actualidad la disponibilidad de datos, la cantidad de los mismos  
-y la velocidad con la que se requieren resultados están haciendo
-necesario el capacitar a los profesionales
-para su análisis con nuevas herramientas. Nuevas tendencias (muchas veces
-malinterpretadas), como Inteligencia Artificial (IA), _Big Data_, Industria 4.0, _Internet of Things_ (IoT)
-o _Data Science_,  aumentan el interés por parte de las empresas, los profesionales 
-y los investigadores en estas técnicas.
+Siempre ha estado ahí, pero en la actualidad la disponibilidad de datos, la cantidad de los mismos y la velocidad con la que se requieren resultados están haciendo necesario el capacitar a los profesionales para su análisis con nuevas herramientas. Nuevas tendencias (muchas veces malinterpretadas), como Inteligencia Artificial (IA), _Big Data_, Industria 4.0, _Internet of Things_ (IoT) o _Data Science_,  aumentan el interés por parte de las empresas, los profesionales y los investigadores en estas técnicas.
 
 El tratamiento de datos y su análisis requiere el uso de
 software avanzado. Aunque algunas tareas como, por ejemplo, mecanizar y almacenar datos, se pueden realizar
@@ -56,7 +49,7 @@ Uno de los aspectos más espectaculares de **R** es la cantidad de **paquetes**
 disponibles. Un paquete (_package_) de **R** es un componente con funcionalidad adicional que se puede
 instalar en el sistema para ser utilizado por **R**. En el momento de 
 compilar este libro, el número de paquetes disponibles en el repositorio oficial 
-es de 19875.  
+es de 20042.  
 
 
 Una vez conocido el mundo de **R**, se plantea la siguiente pregunta: ¿y por qué
@@ -67,7 +60,7 @@ algunos de ellos:
 - Tiene una amplia comunidad de usuarios que proporciona recursos.
 - Es multiplataforma.
 - Se usa cada vez en más empresas e instituciones.
-- Es posible obtener soporte comercial, por ejemplo a través de Posit Software PBC[^nota-posit].
+- Es posible obtener soporte comercial, por ejemplo a través de Posit Software PBC.[^nota-posit]
 - Se ha alcanzado una masa crítica de usuarios que lo hace confiable.
 - Es extensible (desde pequeñas funciones, hasta paquetes).
 - Se puede implementar la innovación inmediatamente. En software comercial hay que esperar a nuevas versiones, en el mejor de los casos.
@@ -93,7 +86,7 @@ interactuar con **R**, pero es muy pobre a la hora de trabajar con ella. En su l
 es más conveniente utilizar el entorno de desarrollo [RStudio Desktop](http://www.rstudio.org) (o su versión en la nube https://posit.cloud/), 
 que es como un
 "envoltorio" del sistema **R** con más funcionalidades y ayudas, pero
-manteniendo el mismo nivel de interacción: consola y scripts[^nota-estilo]. Al igual que **R**, RStudio es una aplicación de software libre, pero, en este caso, desarrollada y mantenida por la compañía privada Posit PBC. 
+manteniendo el mismo nivel de interacción: consola y scripts.[^nota-estilo] Al igual que **R**, RStudio es una aplicación de software libre, pero, en este caso, desarrollada y mantenida por la compañía privada Posit PBC. 
 
 [^nota-estilo]: Lo importante
 es seguir un estilo consistente en cuanto a nombres de objetos, espacios
@@ -183,7 +176,7 @@ del proyecto de análisis de datos en sí. Por ejemplo, unas especificaciones de
 un producto o servicio, un artículo científico, fotografías de una fábrica, 
 comunicaciones con clientes, etc.
 - `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"/></svg>`{=html} `ejercicios`, `practicas`, ...: si nuestro proyecto
-forma parte de una asignatura, curso, o similar.
+forma parte de una asignatura, curso o similar.
 
 
 ::: {.infobox data-latex=""}
@@ -195,7 +188,7 @@ Un aspecto importante cuando se trabaja en proyectos colaborativos es el control
 
 ## Tratamiento de datos con **R**
 
-En este apartado se van a empezar a utilizar expresiones de **R**. Las expresiones se escribirán en scripts, que pueden contener "comentarios" (texto que no se ejecutará) utilizando el símbolo "almohadilla" (`#`). Muchas de las expresiones que se usan son llamadas a funciones[^nota-espacio]. La ayuda de cualquier función se puede obtener en la consola usando la expresión `?function`, donde `function` es el nombre de la función u objeto del que se quiere obtener ayuda.
+En este apartado se van a empezar a utilizar expresiones de **R**. Las expresiones se escribirán en scripts, que pueden contener "comentarios" (texto que no se ejecutará) utilizando el símbolo "almohadilla" (`#`). Muchas de las expresiones que se usan son llamadas a funciones.[^nota-espacio] La ayuda de cualquier función se puede obtener en la consola usando la expresión `?function`, donde `function` es el nombre de la función u objeto del que se quiere obtener ayuda.
 
 [^nota-espacio]: Por motivos de espacio, no se incluyen mayores explicaciones de las mismas, pero se anima al lector a explorar la ayuda de cada una de ellas para comprender mejor su funcionamiento.
 
@@ -228,8 +221,7 @@ nombre del `data.frame`, y a continuación el nombre de la variable.
 
 El operador `<-` asigna al "símbolo" que hay a su izquierda el resultado
 de la expresión que hay a su derecha, y lo guarda con ese nombre
-en el espacio de trabajo[^nota-igual]. Por ejemplo, la siguiente expresión extrae todas las filas de la
-columna `tmin` o, dicho de otra forma, el vector con todas las temperaturas mínimas registradas y lo guarda en el objeto `temp_min`.
+en el espacio de trabajo.[^nota-igual] Por ejemplo, la siguiente expresión extrae todas las filas de la columna `tmin` o, dicho de otra forma, el vector con todas las temperaturas mínimas registradas y lo guarda en el objeto `temp_min`.
 
 [^nota-igual]: También se puede utilizar el símbolo igual (`=`) para realizar asignaciones. No obstante, en el marco de este libro se recomienda el uso del operador específico `<-`.
 
@@ -277,7 +269,7 @@ en el sentido de que cada elemento de la lista puede ser
 de cualquier tipo. 
 
 
-A modo de ejemplo, se muestran los nombres  del objeto `tempmax_data` del paquete `CDR`, que contiene 6 elementos de distintas clases.
+A modo de ejemplo, se muestran los nombres  del objeto `tempmax_data` del paquete `CDR`, que contiene seis elementos de distintas clases.
 
 
 ```r
@@ -298,7 +290,8 @@ class(tempmin_data$fecha)
 #> [1] "Date"
 ```
 
-\index{cadenas de caracteres}\index{strings}
+\index{cadenas de caracteres}
+\index{cadenas de caracteres}\index{strings@\textit{string}}
 **Cadenas de texto**. Son estructuras de datos que aparecen en forma de vector de caracteres. La columna `indicativo` del conjunto de datos `tempmin_data` es un ejemplo de este tipo de datos. La ayuda de `?regexpr` proporciona la información necesaria sobre cómo extraer texto con expresiones regulares, y la de `?paste`, para aprender a unir cadenas de texto. El paquete `stringr` del _tidyverse_ contiene funciones para facilitar el trabajo con cadenas de texto. 
 
 
@@ -313,7 +306,7 @@ head(tempmin_data$indicativo)
 ### Importación de datos {#110003-importacion}
 
 \index{importar datos}
-En el apartado anterior se han utilizado tablas de datos que están incluidas en un paquete de **R**. Pero lo habitual es que los datos se tengan que importar de fuentes externas, como ficheros. A continuación, se describen algunas de las formas de importar los tipos de ficheros más habituales[^nota-datafolder].
+En el apartado anterior se han utilizado tablas de datos que están incluidas en un paquete de **R**. Pero lo habitual es que los datos se tengan que importar de fuentes externas, como ficheros. A continuación, se describen algunas de las formas de importar los tipos de ficheros más habituales.[^nota-datafolder]
 
 [^nota-datafolder]: Para poder reproducir los ejemplos, se debe tener una carpeta `data` en el directorio de trabajo.
 
@@ -321,7 +314,7 @@ En el apartado anterior se han utilizado tablas de datos que están incluidas en
 **Excel**. Sin duda una forma muy popular de organizar los datos en ficheros es
 mediante **hojas de cálculo como Microsoft Excel**. 
 Hay varios paquetes con los que se puede trabajar con archivos de Excel. En este libro se utiliza
-el paquete `readxl` del _tidyverse_. Con la siguiente expresión se puede descargar un archivo Excel de ejemplo[^nota-dl].
+el paquete `readxl` del _tidyverse_. Con la siguiente expresión se puede descargar un archivo Excel de ejemplo.[^nota-dl]
 
 [^nota-dl]: La función `download.file()` permite descargar cualquier archivo disponible en la `url` que se indique. Es obligatorio indicar el archivo de destino con el argumento `destfile`. Si el archivo no es de texto plano, se debe indicar `mode = "wb"`.
 
@@ -363,7 +356,7 @@ merma <- read.csv2("data/ejDatos.csv")
 
 La función genérica de **R** para importar datos de texto es `read.table()`, que puede importar cualquier especificación cambiando los argumentos adecuados.
 Por ejemplo, la siguiente expresión tendría el mismo resultado que se ha
-obtenido con la función `read.csv2`[^nota-rt]:
+obtenido con la función `read.csv2`:[^nota-rt]
 
 
 ```r
@@ -398,7 +391,7 @@ ccaa_ine <- url |>
   html_table(fill = TRUE)
 ```
 
-La ruta o "xpath" se puede obtener usando las herramientas de desarrollo del navegador, y puede que una vez importada la tabla se requiera algún post-procesamiento antes de poder analizar los datos.
+La ruta o "xpath" se puede obtener usando las herramientas de desarrollo del navegador, y puede que una vez importada la tabla se requiera algún postprocesamiento antes de poder analizar los datos.
 
 ### Exportación de datos y archivos de datos específicos de R
 
@@ -453,9 +446,8 @@ en detalle en este capítulo.
 
 ### El _tidyverse_ y su flujo de trabajo
 
-\index{tidyverse}
-El _tidyverse_ es, según se define en su propia [página web](http://tidyverse.org)[^note-tidy-opin],
-un conjunto de paquetes de **R** "opinables" diseñados para ciencia de datos.
+\index{tidyverse@\textit{tidyverse}}
+El _tidyverse_ es, según se define en su propia [página web](http://tidyverse.org),[^note-tidy-opin] un conjunto de paquetes de **R** "opinables" diseñados para ciencia de datos.
 Las principales ventajas (opinables) de utilizar el _tidyverse_ son tres:
 
 [^note-tidy-opin]: "_... an opinionated collection of R packages designed for data science_". Incluye actualmente 30 paquetes, véase la lista con `tidyverse::tidyverse_packages(include_self = TRUE)` y la ayuda de cada paquete para saber más. Los que se vayan usando en el libro se irán explicando oportunamente.
@@ -595,7 +587,7 @@ respectivamente (por defecto, una). Se puede especificar `n` (número) o `prop`
   - `slice_sample()` obtiene una muestra aleatoria de `n` filas (o proporción `prop`).
   - `slice_min()`, `slice_max()` obtienen las filas que contienen los menores o mayores
 valores respectivamente de la variable indicada en el argumento `order_by`. Si no
-se especifica `n` o `prop`, se obtienen sólo las filas que contienen el mínimo o el máximo. Nótese
+se especifica `n` o `prop`, se obtienen solo las filas que contienen el mínimo o el máximo. Nótese
 que puede haber más de una fila que cumpla la condición. 
 
 Véase el resultado de los siguientes ejemplos:
@@ -618,7 +610,7 @@ Los verbos definidos para estas operaciones son:
 
 \index{seleccionar columnas}
 
-- **`select()`**: indica cuando una columna se incluye o no. Se pueden utilizar _helpers_ para seleccionar columnas que cumplan cierta condición (por ejemplo, ser numéricas) y también para "quitar" columnas de la selección (con el signo menos,[`-`]).
+- **`select()`**: indica cuando una columna se incluye o no. Se pueden utilizar _helpers_ para seleccionar columnas que cumplan cierta condición (por ejemplo, ser numéricas) y también para "quitar" columnas de la selección (con el signo menos, [`-`]).
 
 
 ```r
@@ -777,7 +769,7 @@ En el Cap. \@ref(datos-sql) se tratarán las cuestiones relacionadas con los ges
 
 ### Reorganización de datos
 
-\index{extender datos}\index{apilar datos}
+\index{extender datos}
 A lo largo del capítulo se ha visto la importancia de disponer los
 datos de forma rectangular, de forma que se tenga una columna para
 cada variable y una fila para cada observación. Algunas veces es
@@ -833,7 +825,7 @@ El paquete `tidyr` también contiene funciones para reorganizar las columnas
 de la tabla uniendo columnas con la función `unite()`, o separando una columna
 en dos o más con la función `separate()` (véanse los detalles en la ayuda de las funciones).
 
-\index{missing}\index{valores perdidos}
+\index{missing}@\textit{missing}\index{valores perdidos}
 Para terminar este apartado de reorganización de datos, se da una
 primera aproximación al tratamiento de valores perdidos, que se abordará en el 
 Cap. \@ref(130009). En **R**, un valor
@@ -864,16 +856,25 @@ contam_mad |>
 ### Resumen {-}
 
 - **R** es software libre y gratuito, mantenido por una enorme comunidad.
+
 - La forma de interactuar con **R** es mediante expresiones, que se escriben en scripts, y al ejecutarlas se obtienen los resultados.
+
 - Los objetos de datos que se vayan a usar deben estar en el espacio de trabajo.
 - RStudio es un "envoltorio" de **R**, y por tanto **R** tiene que estar instalado
 en el sistema para poder usar RStudio.
+
 - Los paquetes se instalan una sola vez, y deben cargarse con `library()` para usar sus funciones.
+
 - La tabla de datos o `data.frame` es la estructura de datos más adecuada para análisis de datos y cada columna es un `vector`.
+
 - El _tidyverse_ es un conjunto de paquetes que facilita las tareas de análisis de datos.
+
 - El operador _pipe_, `|>`, permite "pasar" valores a funciones de forma encadenada.
+
 - Las operaciones básicas con una tabla son filtrado, selección y resumen.
+
 - Para crear nuevas columnas en las tablas de datos se usa la función `mutate`.
+
 - Para combinar tablas con columnas comunes se usan las funciones `xx_join`.
 :::
 

@@ -1,5 +1,5 @@
 
-# Segmentación de clientes en el comerico minorista {#cap-rfm}
+# Segmentación de clientes en el comercio minorista {#cap-rfm}
 
 *Jaime Fierro Martín*$^{a}$, *Rocío González Martínez*$^{a}$ y *Cristina Sánchez Figueroa*$^{b}$
 
@@ -11,7 +11,7 @@ $^{b}$Universidad Nacional de Educación a Distancia
 
 Los comercios minoristas (*retailers*) se mueven en un entorno
 turbulento y necesitan acercarse a sus clientes para asegurar su
-supervivencia. Su producto, o servicio, es nexo clave en dicho proceso.
+supervivencia. Su producto, o servicio, es nexo clave el proceso de segmentación.
 En este contexto, conocer el **perfil de los
 clientes**\index{perfil de los clientes} permitirá detectar en qué
 momento de su ciclo de vida con la empresa se encuentran y desarrollar
@@ -20,7 +20,7 @@ propuestas de valor que convengan en cada momento.
 **Segmentar** \index{segmentar}se define como el proceso de dividir a
 los clientes, actuales o potenciales, en diferentes grupos o segmentos
 consistentes en individuos con características y niveles similares de
-interés (véase el Cap. \@ref(no-jerarquico)) para una explicación detallada de 
+interés (véase el Cap. \@ref(no-jerarquico) para una explicación detallada de 
 las técnicas del clúster no jerárquico). Es un proceso creativo e iterativo con el fin de satisfacer con
 mayor acierto las necesidades de los clientes, proporcionando una
 ventaja competitiva y sostenible a la compañía. La segmentación viene
@@ -39,11 +39,11 @@ El **modelo RFM** (*recency*, *frequency*, *monetary*) \index{modelo RFM} es una
 utiliza para analizar el comportamiento de compra de los clientes: cómo
 compran, su frecuencia de compra y cuánto gastan. Es un método útil para
 enriquecer la segmentación de los clientes en varios grupos que permitan
-la personalización e identificación de los clientes más proclives a
+la personalización e identificación de aquellos clientes más proclives a
 responder a las promociones. El análisis RFM depende de las medidas de
-actualidad **(*recency*)**\index{recency} (R), frecuencia
-**(*frequency*)**\index{frequency} (F) y valor monetario
- **(*monetary*)**\index{monetary} (M), que son tres importantes
+actualidad **(*recency*)**\index{recency@\textit{recency}} (R), frecuencia
+**(*frequency*)**\index{frequency@\textit{frequency}} (F) y valor monetario
+ **(*monetary*)**\index{monetary@\textit{monetary}} (M), que son tres importantes
 variables relacionadas con la compra que influyen en las posibilidades
 de compra futura de los clientes.
 
@@ -52,14 +52,14 @@ dividiéndolas en quintiles, a partir de los cuales se calcula una
 puntuación única que representa el valor del cliente. Sin embargo, no es
 muy preciso. Si el intervalo de frecuencia de compras se fija entre 0 y
 20, en términos de negocio podría interpretarse como que un cliente con
-una sola compra será igual que otro que tenga 20. Por ello, os enfoques
+una sola compra será igual que otro que tenga 20. Por ello, los enfoques
 de conjuntos clásicos pueden resultar poco funcionales
 [@martinez2019comparison]. En este caso práctico, se propone una mejora
-en la definición de los intervalos mediante la aplicación del **ranking
-de percentiles**\index{ranking de percentiles}. Este método, que se ha
+en la definición de los intervalos mediante la aplicación del ***ranking***
+**de percentiles**\index{ranking de percentiles@\textit{ranking} de percentiles}. Este método, que se ha
 denominado **modelo RFM extendido**, proporciona un procedimiento robusto para
 tratar los valores atípicos (*outliers*) y además normaliza las
-variables entre 0 y 1 para evitar la diferencias de peso entre las
+variables entre 0 y 1 para evitar las diferencias de peso entre las
 variables, permitiendo así la correcta implementación del **algoritmo de
 segmentación**.
 
@@ -84,7 +84,7 @@ minorista tradicional cuentan con sistemas que permiten registrar los
 datos básicos de cada una de sus ventas (fecha, artículo, cantidad e
 importe), asociados a un código único de cliente. La información
 contenida en estos datos de compra atesora gran valor, ya que carecen
-del sesgo y subjetividad propias de otras informaciones obtenidas
+del sesgo y subjetividad propios de otras informaciones obtenidas
 mediante encuestas de opinión, estudios de mercado, entrevistas y grupos
 de discusión, etc. Estos datos suelen encontrarse en las plataformas ERP
 (*Enterprise Resource Planning*) de gestión de pedidos y ventas o CRM
@@ -115,7 +115,7 @@ exactitud, completitud, consistencia, credibilidad y actualidad
 las empresas pueden contener valores perdidos,
 inexactos, *outliers*, etc. Para determinar la acción a tomar, o no, de
 limpieza o corrección de los datos de partida, es esencial conocer el
-negocio y las consecuencias que éstas operaciones tendrán en el
+negocio y las consecuencias que estas operaciones tendrán en el
 resultado final de la segmentación.
 
 El conjunto de datos de muestra contiene 200.000 observaciones
@@ -178,9 +178,9 @@ Del análisis puede concluirse que:
 
 -   Se detecta una gran estacionalidad de las compras, como se puede
     apreciar en la agrupación de las observaciones de *recency*.
-    Teniendo en cuenta la fecha en la que ser realiza el análisis, los
+    Teniendo en cuenta la fecha en la que se realiza el análisis, los
     valores obtenidos en la variable *recency* se pueden interpretar
-    como el periodo de ventas de la campaña navideña.
+    como el período de ventas de la campaña navideña.
 
 
 ```r
@@ -197,13 +197,13 @@ plot_data |>
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/Rplot01.png" alt="Box-plot de las variables RFM." width="60%" />
-<p class="caption">(\#fig:imagen1)Box-plot de las variables RFM.</p>
+<img src="img/Rplot01.png" alt="$Box-plot$ de las variables RFM." width="60%" />
+<p class="caption">(\#fig:imagen1)$Box-plot$ de las variables RFM.</p>
 </div>
 
-### Cálculo del ranking de percentiles
+### Cálculo del *ranking* de percentiles
 
-Los valores de ranking son relativos entre clientes y no pueden ser
+Los valores de *ranking* son relativos entre clientes y no pueden ser
 utilizados para objetivos de negocio, basados en valores absolutos de
 puntuación por cliente.
 
@@ -215,13 +215,13 @@ rfm_rank <- rfm |>
 ```
 
 Se podría decir que el análisis RFM combina tres atributos clave de los
-clientes para construir un ranking que permite agruparlos de forma útil
+clientes para construir un *ranking* que permite agruparlos de forma útil
 para el negocio. Así, a un cliente que compró en una fecha reciente
 (*recency*) se le otorgan más puntos. Si compró muchas veces (*frecuency*),
-también se le coloca más arriba en el ranking. Finalmente, si gastó más
+también se le coloca más arriba en el *ranking*. Finalmente, si gastó más
 en el total de sus compras (*Monetary*), también se le puntúa más alto.
-Combinando estas tres puntuaciones se obtiene un ranking RFM. Para la
-elaboración de este ranking se parte del concepto de percentil. La idea
+Combinando estas tres puntuaciones se obtiene un *ranking* RFM. Para la
+elaboración de este *ranking* se parte del concepto de percentil. La idea
 es asignar a cada cliente una puntuación según las tres variables o
 factores clave del modelo RFM, de modo que los mejores clientes serán
 los que tengan una puntuación mayor.
@@ -231,22 +231,22 @@ los que tengan una puntuación mayor.
 head(rfm_rank) # el lector puede ver la puntuación del ranking
 ```
 
-Una vez que se tienen los rankings de percentiles en las tres variables
+Una vez que se tienen los *rankings* de percentiles en las tres variables
 para todos los clientes, se procede a su clusterización mediante el
-método *k*-means.
+método *k-means*.
 
-### Modelado: RFM mediante *k*-means
+### Modelado: RFM mediante *k-means*
 
 El modelo establecido debe proporcionar una segmentación de clientes con
 sentido de negocio. En este caso práctico se opta por el algoritmo de
-clustering estándar que presenta la ventaja de que es muy intuitivo y
+*clustering* estándar que presenta la ventaja de que es muy intuitivo y
 permite trabajar con grandes conjuntos de datos. Como el lector ha
 podido comprobar en la Parte VI de este manual, existen otros muchos algoritmos de aprendizaje no
 supervisado que pueden ser empleados.
 
 El número óptimo de clústeres (o segmentos, en la jerga del marketing)
 es uno de los retos a la hora de aplicar técnicas de *clustering*. No
-existe una manera exclusiva de encontrar el número adecuado de clusters.
+existe una manera exclusiva de encontrar el número adecuado de clústeres.
 Se trata de un proceso subjetivo que depende de los datos, del tipo de
 *clustering* empleado y, en este caso, de que el número elegido tenga
 sentido y utilidad en el negocio. Existen numerosos métodos para
@@ -269,15 +269,15 @@ fviz_nbclust(x = muestra_clusters, FUNcluster = kmeans, method = "wss", k.max = 
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/Rplot02.png" alt="Número óptimo de clusters (método Elbow)." width="60%" />
-<p class="caption">(\#fig:imagen2)Número óptimo de clusters (método Elbow).</p>
+<img src="img/Rplot02.png" alt="Número óptimo de clústeres (método Elbow)." width="60%" />
+<p class="caption">(\#fig:imagen2)Número óptimo de clústeres (método Elbow).</p>
 </div>
 
-En la Fig. \@ref(fig:imagen2) se observa que la varianza total *intra-cluster* apenas mejora a partir
-del cuarto *cluster*.
+En la Fig. \@ref(fig:imagen2) se observa que la varianza total intraclúster apenas mejora a partir
+del cuarto clúster.
 
-El algoritmo de clustering $k$-means se entrena con las variables R-F-M
-normalizadas con el ranking. La salida de la función `kmeans()` del
+El algoritmo de *clustering* *k-means* se entrena con las variables RFM
+normalizadas con el *ranking*. La salida de la función `kmeans()` del
 paquete base `stats` es un objeto que, entre otros componentes, ofrece
 un vector numérico indicativo del clúster al que pertenece cada uno
 de los clientes.
@@ -327,8 +327,8 @@ Interpretación de los segmentos:
     realizando compras desde hace poco tiempo y tienen un gran potencial
     de desarrollo. Es un segmento de clientes con interés para la
     empresa.
--   2-*No podemos perder*: se trata de los clientes *churn*[^segmentacion-1] que
-    fueron buenos clientes en términos monetarios y de frecuencia pero
+-   2-*No podemos perder*: se trata de aquellos *churn*[^segmentacion-1] que
+    fueron buenos clientes en términos monetarios y de frecuencia, pero
     que hace tiempo que no realizan nuevas compras. La compañía debe
     hacer un esfuerzo en recuperar estos clientes para convertirlos al
     segmento TOP.
@@ -369,22 +369,21 @@ ggdotchart(table_dot_plot, x = "Variable RFM", y = "Puntuación",
   rotate = TRUE, legend = "none")
 ```
 
-La Fig \@ref(fig:imagen3) muestra cada uno de los segmentos indicados. El ranking obtenido ayuda a identificar las diferencias en los tipos de clientes y es útil para decidir a qué segmentos enfocarse y qué estrategias usar para cada uno.
+La Fig \@ref(fig:imagen3) muestra cada uno de los segmentos indicados. El *ranking* obtenido ayuda a identificar las diferencias en los tipos de clientes y es útil para decidir a qué segmentos enfocarse y qué estrategias usar para cada uno.
 
 <div class="figure" style="text-align: center">
-<img src="img/Rplot03.png" alt="Lollipop de variables RFM." width="55%" />
-<p class="caption">(\#fig:imagen3)Lollipop de variables RFM.</p>
+<img src="img/Rplot03.png" alt="$Lollipop$ de variables RFM." width="90%" />
+<p class="caption">(\#fig:imagen3)$Lollipop$ de variables RFM.</p>
 </div>
 
 ### Puesta en producción
 
-Calculado el modelo RFM $k$-means, la compañía puede incorporar
+Calculado el modelo RFM *k-means*, la compañía puede incorporar
 periódicamente los datos de los clientes nuevos o actualizarlos. De este
 modo, los segmentos de clientes se actualizarán y, más allá de las
-acciones de *marketing mix* que realicen las compañías gracias a la
+acciones de marketing mix que realicen las compañías gracias a la
 segmentación, podrán analizarse las migraciones de clientes entre los
-diferentes segmentos en el periodo estudiado. La función `cl_predict()`
+diferentes segmentos en el período estudiado. La función `cl_predict()`
 facilita la actualización periódica de los segmentos con el modelo
 entrenado.
 
-<img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;" />

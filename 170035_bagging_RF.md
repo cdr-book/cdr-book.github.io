@@ -1,6 +1,6 @@
-# Métodos ensamblados: *bagging* y *random forest* {#cap-bagg-rf}
+# Métodos ensamblados: $\bf \textit {bagging}$ y $\bf \textit{random}$ $\bf \textit{forest}$ {#cap-bagg-rf}
 
-*Ramón A. Carrasco*$^{a}$, *Itzcóatl Bueno*$^{b,a}$ y *José-María Montero*$^{c}$
+*Ramón A. Carrasco*$^{a}$, *Itzcóatl Bueno*$^{a,\hspace{0,05cm}b}$ y *José-María Montero*$^{c}$
 
 $^{a}$Universidad Complutense de Madrid  
 $^{b}$Instituto Nacional de Estadística  
@@ -11,29 +11,27 @@ $^{c}$Universidad de Castilla-La Mancha
 Puede ocurrir que ninguno de los algoritmos hasta ahora presentados (Caps. \@ref(cap-arboles), \@ref(cap-svm), \@ref(cap-knn) y \@ref(cap-naive-bayes)) proporcionen resultados convincentes para el problema que se quiere modelar. El **aprendizaje ensamblado**\index{aprendizaje ensamblado} [@zhou2012ensemble] es un paradigma que, como muestra la Fig. \@ref(fig:metamodel), en lugar de entrenar un modelo que proporcione resultados muy precisos, entrena un gran número de modelos no tan precisos y después combina sus predicciones para obtener un metamodelo con una precisión superior.
 
 <div class="figure" style="text-align: center">
-<img src="img/metamodelo.png" alt="Esquema de un metamodelo." width="70%" />
+<img src="img/metamodelo.png" alt="Esquema de un metamodelo." width="100%" />
 <p class="caption">(\#fig:metamodel)Esquema de un metamodelo.</p>
 </div>
 
-A los modelos que se combinan se les suele denominar algoritmos "débiles" (con menor capacidad de aprender patrones complejos en los datos) y, generalmente, son rápidos tanto en tiempo de entrenamiento como de procesamiento. Existen dos paradigmas de aprendizaje ensamblado\index{aprendizaje ensamblado}: *bagging*\index{bagging} y *boosting*\index{boosting} (Cap. \@ref(cap-boosting-xgboost)).
+A los modelos que se combinan se les suele denominar algoritmos "débiles" (con menor capacidad de aprender patrones complejos en los datos) y, generalmente, son rápidos tanto en tiempo de entrenamiento como de procesamiento. Existen dos paradigmas de aprendizaje ensamblado\index{aprendizaje ensamblado}: *bagging*\index{bagging@\textit{bagging}} y *boosting*\index{boosting@\textit{boosting}} (Cap. \@ref(cap-boosting-xgboost)).
 
-## Bagging
+## $\bf \textit{Bagging}$
 
-Bagging es una técnica para reducir la varianza dentro de un conjunto de datos con "ruido". En *bagging*, se construyen múltiples árboles de decisión en cada uno de los cuales se utiliza una muestra aleatoria aleatoria con remplazamiento de los datos del conjunto de entrenamiento. Dichos modelos (débiles) se entrenan por separado y finalmente se combinan las predicciones de cada uno de ellos, calculando la media de dichas predicciones (en el caso de regresión) o mediante un sistema de votación (en el caso de un problema de clasificación)[^NOte-0-bagging]. El resultado de esta combinación de modelos débiles es una ganancia en la precisión o el sesgo de las predicciones. 
+*Bagging* es una técnica para reducir la varianza dentro de un conjunto de datos con "ruido". En *bagging*, se construyen múltiples árboles de decisión en cada uno de los cuales se utiliza una muestra aleatoria aleatoria con remplazamiento de los datos del conjunto de entrenamiento. Dichos modelos (débiles) se entrenan por separado y finalmente se combinan las predicciones de cada uno de ellos, calculando la media de dichas predicciones (en el caso de regresión) o mediante un sistema de votación (en el caso de un problema de clasificación)[^NOte-0-bagging]. El resultado de esta combinación de modelos débiles es una ganancia en la precisión o el sesgo de las predicciones. 
 
 [^NOte-0-bagging]: La filosofía detrás del *bagging* y otras técnicas similares es el aprendizaje por conjuntos, que se basa en la idea de que la "sabiduría de las masas" es mejor que la de una persona experta. Es decir, que una decisión tomada por un grupo grande de gente suele ser mejor que la de una persona experta. 
 
 Nótese que el algoritmo de un árbol de decisión no podado puede ser propenso a sobreajustarse (alta varianza y bajo sesgo) y que si es muy pequeño es propenso al subajuste (varianza pequeña y sesgo elevado). La combinación de árboles de decisión evita estas situaciones y busca el equilibrio varianza-sesgo, que permitirá mejores generalizaciones a nuevos conjuntos de datos.
 
 
-\index{bagging}
-\index{árbol!de decisión}
-\index{árbol!de regresión}
-\index{árbol!de clasificación}
 
-La principal característica del *bagging*\index{bagging} es el **muestreo bootstrap** (véanse Caps. \@ref(chap-herramientas) y \@ref(muestreo)). Una muestra *bootstrap* es  una muestra aleatoria de los datos tomados con reemplazamiento [@efron1986bootstrap]. Esto significa que, después de seleccionar una observación (una instancia) del conjunto de datos de entrenamiento para incluirla en la muestra, aún queda disponible para una selección posterior. Una muestra *bootstrap* tiene el mismo tamaño que el conjunto de datos original a partir del cual se construyó. 
 
-En el *bagging*, el objetivo de este remuestreo es que cada árbol\index{árbol!de decisión} esté entrenado con una muestra específica para él, y por tanto, los distintos árboles generen respuestas únicas, esto es, modelos débiles distintos. Aunque esta manera de proceder no elimina la problemática del sobreajuste\index{sobreajuste}, los patrones presentes en el conjunto de datos aparecerán en la mayoría de los árboles\index{árbol!de decisión} entrenados y, por tanto, en la predicción final. Es por ello que el *bagging*\index{bagging} es una técnica de gran eficacia para el tratamiento de los valores atípicos y para la reducción de la varianza, que generalmente afecta a un modelo compuesto por un único árbol de decisión\index{árbol!de decisión}.
+
+La principal característica del *bagging*\index{bagging@\textit{bagging}} es el **muestreo** ***bootstrap*** (véanse Caps. \@ref(chap-herramientas) y \@ref(muestreo)). Una muestra *bootstrap* es  una muestra aleatoria de los datos tomados con reemplazamiento [@efron1986bootstrap]. Esto significa que, después de seleccionar una observación (una instancia) del conjunto de datos de entrenamiento para incluirla en la muestra, aún queda disponible para una selección posterior. Una muestra *bootstrap* tiene el mismo tamaño que el conjunto de datos original a partir del cual se construyó. 
+
+En el *bagging*, el objetivo de este remuestreo es que cada árbol\index{a@árbol!de decisión} esté entrenado con una muestra específica para él, y por tanto, los distintos árboles generen respuestas únicas, esto es, modelos débiles distintos. Aunque esta manera de proceder no elimina la problemática del sobreajuste\index{sobreajuste}, los patrones presentes en el conjunto de datos aparecerán en la mayoría de los árboles\index{a@árbol!de decisión} entrenados y, por tanto, en la predicción final. Es por ello que el *bagging*\index{bagging@\textit{bagging}} es una técnica de gran eficacia para el tratamiento de los valores atípicos y para la reducción de la varianza, que generalmente afecta a un modelo compuesto por un único árbol de decisión\index{a@árbol!de decisión}.
 
 ### Procedimiento con **R**: la función `bagging()` {#rbagging}
 
@@ -44,15 +42,15 @@ Para entrenar un modelo *bagging* se utiliza la función `bagging()` del paquete
 bagging(formula, data, ...)
 ```
 
-+ `formula`: $Y \sim X_1 + ... + X_p$, indica cuál es la variable independiente y cuáles las predictivas. El signo $"+"$ indica "conjunto de" y no debe confundirse con la existencia de una relación lineal entre la variable respuesta y las predictoras (que pudiera existir o no).  
-+ `data`: conjunto de datos con el que se entrena el modelo.
-+ `nbagg`: número de replicaciones *bootstrap*.
-+ `coob`: indica si se debe calcular una estimación de la ratio de error de predicción. 
+- `formula`: $Y \sim X_1 + ... + X_p$ indica cuál es la variable independiente y cuáles las predictivas. El signo "+" indica "conjunto de" y no debe confundirse con la existencia de una relación lineal entre la variable respuesta y las predictoras (que pudiera existir o no).  
+- `data`: conjunto de datos con el que se entrena el modelo.
+- `nbagg`: número de replicaciones *bootstrap*.
+- `coob`: indica si se debe calcular una estimación de la ratio de error de predicción.
 
-### Implementando *bagging* en R
+### Implementando *bagging* en **R**
 
 
-Igual que en los capítulos anteriores, para ilustrar el algoritmo *bagging* se retoma el ejemplo de la compra de un tensiómetro digital por parte de los clientes de una empresa. Los datos sobre compras de clientes y el importe gastado en dichas compras se encuentran en el conjunto de datos `dp_entr` del paquete `CDR`. El objetivo es es clasificar a los clientes de la empresa en dos grupos: los que comprarían el tensiómetro digital y los que no. Aunque se utiliza la función `bagging()`, ya mencionada en la Sec. \@ref(rbagging), se pueden utilizar otras muchas funciones.
+Igual que en los capítulos anteriores, para ilustrar el algoritmo *bagging* se retoma el ejemplo de la compra de un tensiómetro digital por parte de los clientes de una empresa. Los datos sobre compras de clientes y el importe gastado en dichas compras se encuentran en el conjunto de datos `dp_entr` del paquete `CDR`. El objetivo es clasificar a los clientes de la empresa en dos grupos: los que comprarían el tensiómetro digital y los que no. Aunque se utiliza la función `bagging()`, ya mencionada en la Sec. \@ref(rbagging), se pueden utilizar otras muchas funciones.
 
 
 ```r
@@ -96,11 +94,11 @@ Call: bagging.data.frame(formula = CLS_PRO_pro13 ~ ., data = dp_entr,
 Out-of-bag estimate of misclassification error:  0.1416 
 ```
 
-Como puede observarse en los resultados anteriores, el número de muestras *bootstrap* es de 100; en otros términos, se entrenan, independientemente, 100 modelos débiles. El metamodelo, o modelo fuerte, generado mediante la combinación de los 100 modelos débiles proporciona un porcentaje de clasificación errónea del 14,16%. Desafortunadamente, la función `bagging()` no selecciona el número óptimo de replicaciones para hacer mínimo el porcentaje de clasificación errónea. Para seleccionar el número de replicaciones que minimice dicho porcentaje, se puede graficar la curva de porcentaje de clasificación errónea vs. número de replicaciones (`nbagg`), como en la Fig. \@ref(fig:bagg-plot). Si se itera el modelo variando los valores del hiperparámetro `nbagg` (en este ejemplo entre 10 y 150, incrementándose de cinco en cinco), se observa que el mínimo porcentaje de clasificación errónea (13,79%) se obtiene con 60 replicaciones. 
+Como puede observarse en los resultados anteriores, el número de muestras *bootstrap* es de 100; en otros términos, se entrenan, independientemente, 100 modelos débiles. El metamodelo, o modelo fuerte, generado mediante la combinación de los 100 modelos débiles proporciona un porcentaje de clasificación errónea del 14,16%. Desafortunadamente, la función `bagging()` no selecciona el número óptimo de replicaciones para hacer mínimo el porcentaje de clasificación errónea. Para seleccionar el número de replicaciones que minimice dicho porcentaje, se puede graficar la curva de porcentaje de clasificación errónea *vs.* el número de replicaciones (`nbagg`), como en la Fig. \@ref(fig:bagg-plot). Si se itera el modelo variando los valores del hiperparámetro `nbagg` (en este ejemplo entre 10 y 150, incrementándose de cinco en cinco), se observa que el mínimo porcentaje de clasificación errónea (13,79%) se obtiene con 60 replicaciones. 
 
 
 ```r
-missclass <- c() # vector vacio para recopilar el error en cada iteración
+missclass <- c() # vector vacío para recopilar el error en cada iteración
 for (n in seq(10,150,5)) { # valores a probar para nbagg
   # se establece la semilla aleatoria
   set.seed(101)
@@ -123,13 +121,13 @@ plot(seq(10,150,5),missclass,type = "l",xlab = "Número de árboles", ylab="Miss
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/bagging_missclass.png" alt="porcentaje de clasificación errónea vs. número de replicaciones." width="60%" />
-<p class="caption">(\#fig:bagg-plot)porcentaje de clasificación errónea vs. número de replicaciones.</p>
+<img src="img/bagging_missclass.png" alt="Porcentaje de clasificación errónea $vs.$ número de replicaciones." width="60%" />
+<p class="caption">(\#fig:bagg-plot)Porcentaje de clasificación errónea $vs.$ número de replicaciones.</p>
 </div>
 
-La función `train()` del paquete `caret` es otra alternativa para entrenar un algoritmo de *bagging* en **R**. Para ello, el argumento `method` debe tomar el valor `"treebag"`. Este algoritmo no incluye hiperparámetros a optimizar. Dado que se ha obtenido recursivamente el número óptimo de replicaciones, se puede entrenar el modelo con el valor obtenido y comprobar que el porcentaje de clasificación errónea es el mismo. Se observa que si se entrena un modelo *bagging* con 60 replicaciones, la `accuracy` del modelo (el porcentaje de observaciones clasificadas correctamente) es del 86,93%; es decir el porcentaje de clasificación errónea es del 13,07%, similar al obtenido anteriormente con la función `bagging` (13,79%).[^Note-1-bagging]
+La función `train()` del paquete `caret` es otra alternativa para entrenar un algoritmo de *bagging* en **R**. Para ello, el argumento `method` debe tomar el valor `"treebag"`. Este algoritmo no incluye hiperparámetros a optimizar. Dado que se ha obtenido recursivamente el número óptimo de replicaciones, se puede entrenar el modelo con el valor obtenido y comprobar que el porcentaje de clasificación errónea es el mismo. Se observa que si se entrena un modelo *bagging* con 60 replicaciones, la `accuracy` del modelo (el porcentaje de observaciones clasificadas correctamente) es del 86,93%; es decir, el porcentaje de clasificación errónea es del 13,07%, similar al obtenido anteriormente con la función `bagging` (13,79%).[^Note-1-bagging]
 
-[^Note-1-bagging]: La *kappa* de Cohen es una medida que compara la concordancia entre la realidad y la predicción con la que se daría entre ellas por mero azar.
+[^Note-1-bagging]: La kappa de Cohen es una medida que compara la concordancia entre la realidad y la predicción con la que se daría entre ellas por mero azar.
 
 
 ```r
@@ -168,7 +166,7 @@ Resampling results:
 
 ### Interpretación de variables en el *bagging*
 
-Una de las principales desventajas de los algoritmos ensamblados (incluido el *bagging*\index{bagging}) es que mientras que los modelos débiles son interpretables, el metamodelo resultante no lo es. Pese a esto, aún es posible hacer inferencias sobre la influencia (importancia) de cada una de las variables predictoras en el modelo entrenado. La manera de medir la importancia\index{importancia} de las variables incluidas en un árbol es medir, para cada una de ellas, la reducción de la función de pérdida que se le atribuye en cada partición. Dado que una variable puede utilizarse varias veces para dividir el árbol\index{árbol!de decisión}, la importancia total de esa variable será la suma de la reducción de la función de pérdida que se le atribuya por todas las particiones en las que intervenga. En el caso particular del *bagging* el proceso es similar: para cada árbol, se calcula la reducción de la función de pérdida en todas las divisiones y se obtiene la reducción total sumando las reducciones calculadas en cada uno de los árboles que forman el metamodelo.  El paquete `ipred`, en el que se encuentra la función `bagging()`, no captura la información requerida para calcular la importancia de las variables. Sin embargo, el paquete `caret` sí lo hace. La función `vip()` del paquete `vip` permite construir un gráfico de importancia (véase Fig. \@ref(fig:BAGGINGVIP)).
+Una de las principales desventajas de los algoritmos ensamblados (incluido el *bagging*\index{bagging@\textit{bagging}}) es que, mientras que los modelos débiles son interpretables, el metamodelo resultante no lo es. Pese a esto, aún es posible hacer inferencias sobre la influencia (importancia) de cada una de las variables predictoras en el modelo entrenado. La manera de medir la importancia\index{importancia} de las variables incluidas en un árbol es medir, para cada una de ellas, la reducción de la función de pérdida que se le atribuye en cada partición. Dado que una variable puede utilizarse varias veces para dividir el árbol\index{a@árbol!de decisión}, la importancia total de esa variable será la suma de la reducción de la función de pérdida que se le atribuya por todas las particiones en las que intervenga. En el caso particular del *bagging* el proceso es similar: para cada árbol, se calcula la reducción de la función de pérdida en todas las divisiones y se obtiene la reducción total sumando las reducciones calculadas en cada uno de los árboles que forman el metamodelo.  El paquete `ipred`, en el que se encuentra la función `bagging()`, no captura la información requerida para calcular la importancia de las variables. Sin embargo, el paquete `caret` sí lo hace. La función `vip()` del paquete `vip` permite construir un gráfico de importancia (véase Fig. \@ref(fig:BAGGINGVIP)).
 
 
 ```r
@@ -178,69 +176,57 @@ vip(model_bag, num_features = 15,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/model_bag_imp.png" alt="Importancia de las variables incluidas en el modelo bagging." width="60%" />
-<p class="caption">(\#fig:BAGGINGVIP)Importancia de las variables incluidas en el modelo bagging.</p>
+<img src="img/model_bag_imp.png" alt="Importancia de las variables incluidas en el modelo $bagging$." width="60%" />
+<p class="caption">(\#fig:BAGGINGVIP)Importancia de las variables incluidas en el modelo $bagging$.</p>
 </div>
 
 La Fig. \@ref(fig:BAGGINGVIP) muestra que las variables más importantes en el modelo *bagging* entrenado para predecir si un cliente comprará o no el *tensiómetro digital* son: si ha comprado la *depiladora eléctrica*, cuánto importe ha gastado en ese producto, si ha comprado el *estimulador muscular* y si ha comprado el *smartchwatch fitness*.
 
-## Random Forest
-**Random forest** (bosque aleatorio)\index{random forest} es un algoritmo básico en el marco del paradigma *bagging*\index{bagging}. Fue desarrollado por primera vez por @ho1995random. Sin embargo, fueron @cutler1999fast y @breiman2001random quienes formularon una versión extendida del modelo y registraron **Random Forest** como marca comercial. Funciona igual que el *bagging*, con la salvedad de que el *random forest* establece una limitación artificial a la selección de variables al no considerar todas en cada árbol. El *bagging*\index{bagging} considera las mismas variables para construir cada árbol\index{árbol!de decisión} con el objetivo de minimizar su entropía\index{entropía}, y, por tanto, todos los árboles suelen tener un aspecto similar. Esto lleva a que las predicciones dadas por los árboles estén altamente correlacionadas. El modelo *random forest*\index{random forest} evita este problema mediante la agregación de una fuente de variabilidad aleatoria adicional, provocando así una mayor diversidad entre los árboles del bosque. En concreto, se obligar a cada árbol a usar solo un subconjunto de los predictores a la hora de dividirse en la fase de crecimiento. Esta forma de proceder proporciona a algunas variables mayor probabilidad de ser seleccionadas, y, al generar árboles únicos y no correlacionados, proporciona una estructura de decisión final más fiable. En la Fig. \@ref(fig:ejemplo-rf) puede verse un ejemplo de *random forest*.
+## $\textit{Random}$ $\textit{forest}$
 
-<!-- ##### -->
-
-<!-- del siguiente modo: a partir del conjunto de datos de entrenamiento se generan $K$ muestras aleatorias $\mathbb{S}_{k}$, se entrena un modelo de árbol de decisión ($f_k$) utilizando la muestra $\mathbb{S}_{k}$ como conjunto de entrenamiento. Tras el entrenamiento, se dispone de $K$ árboles de decisión, como se observa en la Fig. \@ref(fig:ejemplo-rf). La predicción de una nueva observación $x$ se obtiene como la media de las $K$ predicciones: -->
-
-<!-- \begin{equation} -->
-<!-- y\leftarrow\hat{f}(x)=\frac{1}{K}\sum^{K}_{k=1}f_{k}(x) -->
-<!-- \end{equation} -->
-
-<!-- En el caso de regresión, o por la votación por mayoría en el caso de clasificación. -->
-
-
-
-<!-- Tanto el *bagging*\index{bagging} como el *random forest*\index{random forest} desarrollan múltiples árboles y utilizan el muestreo bootstrap\index{bootstrap} para la aleatorización de los datos. -->
-<!-- #### -->
+***Random forest*** (bosque aleatorio)\index{random forest@\textit{random forest}} es un algoritmo básico en el marco del paradigma *bagging*\index{bagging@\textit{bagging}}. Fue desarrollado por primera vez por @ho1995random. Sin embargo, fueron @cutler1999fast y @breiman2001random quienes formularon una versión extendida del modelo y registraron *Random forest* como marca comercial. Funciona igual que el *bagging*, con la salvedad de que el *random forest* establece una limitación artificial a la selección de variables al no considerar todas en cada árbol. El *bagging*\index{bagging@\textit{bagging}} considera las mismas variables para construir cada árbol\index{a@árbol!de decisión} con el objetivo de minimizar su entropía\index{entropía}, y, por tanto, todos los árboles suelen tener un aspecto similar. Esto lleva a que las predicciones dadas por los árboles estén altamente correlacionadas. El modelo *random forest*\index{random forest@\textit{random forest}} evita este problema mediante la agregación de una fuente de variabilidad aleatoria adicional, provocando así una mayor diversidad entre los árboles del bosque. En concreto, se obliga a cada árbol a usar solo un subconjunto de los predictores a la hora de dividirse en la fase de crecimiento. Esta forma de proceder proporciona a algunas variables mayor probabilidad de ser seleccionadas y, al generar árboles únicos y no correlacionados, proporciona una estructura de decisión final más fiable. En la Fig. \@ref(fig:ejemplo-rf) puede verse un ejemplo de *random forest*.
 
 
 <div class="figure" style="text-align: center">
-<img src="img/randomforest.png" alt="Ejemplo de random forest." width="60%" />
-<p class="caption">(\#fig:ejemplo-rf)Ejemplo de random forest.</p>
+<img src="img/randomforest.png" alt="Ejemplo de $random$ $forest$." width="60%" />
+<p class="caption">(\#fig:ejemplo-rf)Ejemplo de $random$ $forest$.</p>
 </div>
 
 En general, es mejor que el *random forest* esté formado por una gran cantidad de árboles (por lo menos 100) para suavizar el impacto de valores atípicos. Sin embargo, la tasa de efectividad disminuye a medida que se incorporan más árboles. Llegado a cierto punto, los nuevos árboles no aportan una mejora significativa al modelo, pero sí incrementan los tiempos de procesamiento. 
 
-El modelo *random forest* es rápido de entrenar y es una buena técnica para obtener un modelo de referencia. Aunque funcionan bien en la interpretación de patrones complejos y son versátiles, se ven superados, en muchas ocasiones, por otras técnicas, como por ejemplo el *gradient boosting*\index{gradient boosting} (Cap. \@ref(cap-boosting-xgboost)).
+El modelo *random forest* es rápido de entrenar y es una buena técnica para obtener un modelo de referencia. Aunque funcionan bien en la interpretación de patrones complejos y son versátiles, se ven superados, en muchas ocasiones, por otras técnicas, como por ejemplo el *gradient boosting*\index{gradient boosting@\textit{gradient boosting}} (Cap. \@ref(cap-boosting-xgboost)).
 
 Los *random forest* se han vuelto populares porque suelen proporcionar un muy buen rendimiento con los valores predeterminados de los hiperparámetros  en las distintas implementaciones. En efecto, a pesar de tener muchos hiperparámetros\index{hiperparámetro}, los valores por defecto de dichos hiperparámetros tienden a proporcionar buenos resultados en la predicción. Los hiperparámetros más importantes que hay que ajustar al entrenar un modelo *random forest* son: el número de árboles ($K$), el número de variables incluidas en el subconjunto aleatorio en cada división (`mtry`), la complejidad\index{complejidad} de cada árbol, el esquema de muestreo y la regla de división a utilizar durante la construcción del árbol.
 
-### Número de árboles ($K$)\index{número!de árboles}
+### Número de árboles ($K$)
+\index{número!de árboles}
 
-El primer hiperparámetro a ajustar es el número de árboles que componen el bosque aleatorio \index{random forest}. Su valor debe ser lo suficientemente grande como para que la tasa de error se estabilice. La regla general es que el valor mínimo de árboles sea 10 veces el número de variables incluidas en el modelo. Sin embargo, cuando se tienen en cuenta otros hiperparámetros, es posible que el número de árboles se vea afectado. El tiempo de procesamiento aumenta linealmente con la cantidad de árboles incluidos, pero cuantos más se incluyan, más estables serán las estimaciones del error de clasificación o predicción.
+\index{random forest@\textit{random forest}}
+El primer hiperparámetro a ajustar es el número de árboles que componen el bosque aleatorio. Su valor debe ser lo suficientemente grande como para que la tasa de error se estabilice. La regla general es que el valor mínimo de árboles sea 10 veces el número de variables incluidas en el modelo. Sin embargo, cuando se tienen en cuenta otros hiperparámetros, es posible que el número de árboles se vea afectado. El tiempo de procesamiento aumenta linealmente con la cantidad de árboles incluidos, pero cuantos más se incluyan, más estables serán las estimaciones del error de clasificación o predicción.
 
 ### Número de variables a considerar (`mtry`)
 
-`mtry` es el hiperparámetro\index{hiperparámetro} encargado de controlar la aleatorización de las variables utilizadas para las particiones de los árboles. Este hiperparámetro ayuda al equilibrio entre la baja correlación entre los árboles y una razonable potencia predictiva. Existe un valor predeterminado para este hiperparámetro que se puede utilizar en caso de no querer o no poder ajustarlo. En problemas de regresión\index{árbol!de regresión}, se determina que $mtry=\frac{p}{3}$ siendo $p$ el número de variables predictoras incluidas en el modelo. Cuando se trata de clasificar \index{árbol!de clasificación} el valor predeterminado es $mtry=\sqrt p$. Cuando hay pocas variables relevantes, es decir, los datos son "muy ruidosos", un valor elevado de `mtry` tiende a proporcionar mejores resultados, pues otorga mayor probabilidad a la selección de tales variables. En cambio, cuando muchas variables son importantes, funciona mejor un valor bajo de `mtry`.
+`mtry` es el hiperparámetro\index{hiperparámetro} encargado de controlar la aleatorización de las variables utilizadas para las particiones de los árboles. Este hiperparámetro ayuda al equilibrio entre la baja correlación entre los árboles y una razonable potencia predictiva. Existe un valor predeterminado para este hiperparámetro que se puede utilizar en caso de no querer o no poder ajustarlo. En problemas de regresión\index{a@árbol!de regresión}, se determina que $mtry=\frac{p}{3}$ siendo $p$ el número de variables predictoras incluidas en el modelo. Cuando se trata de clasificar \index{a@árbol!de clasificación} el valor predeterminado es $mtry=\sqrt p$. Cuando hay pocas variables relevantes, es decir, los datos son "muy ruidosos", un valor elevado de `mtry` tiende a proporcionar mejores resultados, pues otorga mayor probabilidad a la selección de tales variables. En cambio, cuando muchas variables son importantes, funciona mejor un valor bajo de `mtry`.
 
 ### Complejidad de los árboles
 
-A los árboles que forman parte de un bosque aleatorio \index{random forest} \index{árbol!de decisión} se les puede controlar su profundidad\index{profundidad!del árbol} y su complejidad \index{complejidad} como se vio en el Cap. \@ref(cap-arboles) ajustando los hiperparámetros\index{hiperparámetro} de profundidad máxima permitida, tamaño del nodo o cantidad máxima de nodos terminales. 
+A los árboles que forman parte de un bosque aleatorio \index{random forest@\textit{random forest}} \index{a@árbol!de decisión} se les puede controlar su profundidad\index{profundidad del árbol} y su complejidad \index{complejidad} como se vio en el Cap. \@ref(cap-arboles), ajustando los hiperparámetros\index{hiperparámetro} de profundidad máxima permitida, tamaño del nodo o cantidad máxima de nodos terminales. 
 
-El tamaño del nodo (número de observaciones en el nodo) es el hiperparámetro más común para controlar la complejidad\index{complejidad} del árbol y la mayoría de las implementaciones usan los valores predeterminados de 1 para árboles de clasificación\index{árbol!de clasificación} y 5 para los árboles de regresión\index{árbol!de regresión}, dado que estos valores tienden a producir buenos resultados. Si se quiere controlar el tiempo de procesamiento, se pueden conseguir reducciones significativas del tiempo aumentando el tamaño del nodo, si bien impactando de manera marginal en el error estimado.
+El tamaño del nodo (número de observaciones en el nodo) es el hiperparámetro más común para controlar la complejidad\index{complejidad} del árbol y la mayoría de las implementaciones usan los valores predeterminados de 1 para árboles de clasificación\index{a@árbol!de clasificación} y 5 para los árboles de regresión\index{a@árbol!de regresión}, dado que estos valores tienden a producir buenos resultados. Si se quiere controlar el tiempo de procesamiento, se pueden conseguir reducciones significativas del tiempo aumentando el tamaño del nodo, si bien impactando de manera marginal en el error estimado.
 
 
 ### Esquema de muestreo
 
-Por defecto, el *random forest*\index{random forest} tiene como esquema de muestreo el *bootstrapping*\index{bootstrap}, Sin embargo, el esquema de muestreo se puede ajustar tanto en el tamaño de la muestra como en el diseño muestral (con o sin reposición). El hiperparámetro de tamaño de muestra determina cuántas observaciones se extraen para el entrenamiento de cada árbol. Cuanto menor sea el tamaño muestral, menor será la correlación entre los árboles, lo cual puede llevar a mejores resultados de precisión en la predicción. La forma de determinar el tamaño muestral óptimo puede hallarse evaluando algunos valores que oscilen entre el 25% y el 100%, y en el caso de que haya variables categóricas con un número de observaciones muy distinto en sus categorías (lo cual implica un número pequeño en alguna de ellas) se puede proceder mediante muestreo con reposición. 
+Por defecto, el *random forest*\index{random forest@\textit{random forest}} tiene como esquema de muestreo el *bootstrapping*.\index{bootstrap@\textit{bootstrap}} Sin embargo, el esquema de muestreo se puede ajustar tanto en el tamaño de la muestra como en el diseño muestral (con o sin reposición). El hiperparámetro de tamaño de muestra determina cuántas observaciones se extraen para el entrenamiento de cada árbol. Cuanto menor sea el tamaño muestral, menor será la correlación entre los árboles, lo cual puede llevar a mejores resultados de precisión en la predicción. La forma de determinar el tamaño muestral óptimo puede hallarse evaluando algunos valores que oscilen entre el 25% y el 100%, y en el caso de que haya variables categóricas con un número de observaciones muy distinto en sus categorías (lo cual implica un número pequeño en alguna de ellas), se puede proceder mediante muestreo con reposición. 
 
 
 ### Regla de división
 
-Por defecto, la regla de división\index{partición} que utilizan los árboles de decisión\index{árbol!de decisión} que conforman un *random forest*\index{random forest} es la que se presentó en el Cap. \@ref(cap-arboles). Esto es, en el caso de regresión\index{árbol!de regresión} seleccionar la división que minimiza la desviación típica $(\sigma)$; y en el caso de clasificación\index{árbol!de clasificación} la división que minimiza la impureza de Gini\index{impureza!de Gini} o la entropía\index{entropía}.
+Por defecto, la regla de división\index{partición} que utilizan los árboles de decisión\index{a@árbol!de decisión} que conforman un *random forest*\index{random forest@\textit{random forest}} es la que se presentó en el Cap. \@ref(cap-arboles). Esto es, en el caso de regresión\index{a@árbol!de regresión} se selecciona la división que minimiza la desviación típica $(\sigma)$; y en el caso de clasificación,\index{a@árbol!de clasificación} la división que minimiza la impureza de Gini\index{impureza de Gini} o la entropía\index{entropía}.
 
-### Procedimiento con R: la función `randomForest()`
+### Procedimiento con **R**: la función `randomForest()`
 
-Para entrenar un modelo *random forest*  se utiliza la función la función `randomForest()`del paquete `randomForest` de **R**:
+Para entrenar un modelo *random forest* se utiliza la función `randomForest()` del paquete `randomForest` de **R**:
 
 
 ```r
@@ -271,7 +257,7 @@ library("ggplot2")
 data(dp_entr)
 ```
 
-Este algoritmo, al estar basado en árboles de clasificación, tiene los mismos requisitos para el entrenamiento que tenían dichos árboles. En el resultado obtenido, se puede ver que el hiperparámetro $mtry$ se ha fijado en a 10 variables, pues proporciona el mejor porcentaje de clasificaciopnes correctas (`accuracy`). 
+Este algoritmo, al estar basado en árboles de clasificación, tiene los mismos requisitos para el entrenamiento que tenían dichos árboles. En el resultado obtenido, se puede ver que el hiperparámetro `mtry` se ha fijado en 10 variables, pues proporciona el mejor porcentaje de clasificaciopnes correctas (`accuracy`). 
 
 
 
@@ -314,23 +300,20 @@ Accuracy was used to select the optimal model using the largest value.
 The final value used for the model was mtry = 10.
 ```
 
-Los resultados de la validación cruzada se pueden ver en la Fig. \@ref(RFRESULTS). Se observa como la el porcentaje de clasificaciones correctas oscila entre el 80% y el 95%. 
+Los resultados de la validación cruzada se pueden ver en la Fig. \@ref(fig:RFRESULTS). Se observa como la el porcentaje de clasificaciones correctas oscila entre el 80 % y el 95 %. 
 
 
 
 <div class="figure" style="text-align: center">
-<img src="img/rfboxplot.png" alt="Resultados del modelo random forest durante el proceso de validación cruzada." width="45%" />
-<p class="caption">(\#fig:RFRESULTS)Resultados del modelo random forest durante el proceso de validación cruzada.</p>
+<img src="img/rfboxplot.png" alt="Resultados del modelo $random$ $forest$ durante el proceso de validación cruzada." width="45%" />
+<p class="caption">(\#fig:RFRESULTS)Resultados del modelo $random$ $forest$ durante el proceso de validación cruzada.</p>
 </div>
 
 Finalmente, aunque el *random forest* generado está compuesto por 500 árboles, se puede acceder a cualquiera de ellos para estudiarlo en profundidad. Para ello, es necesario instalar el paquete `reprtree` desde el repositorio <https://github.com/araastat/reprtree>.
 
 
 ```r
-library("devtools")
-if(!('reprtree' %in% installed.packages())){
-  devtools::install_github('araastat/reprtree')
-}
+devtools::install_github('araastat/reprtree')
 ```
 
 En el siguiente resultado se pueden observar las decisiones que se toman en el árbol de forma tabulada: qué variable se utiliza para la partición, cuál es el valor que decide la división, si se trata de un nodo terminal (`-1`) o no (`1`) y la predicción del nodo, que es `NA` si no es un nodo terminal.
@@ -371,11 +354,11 @@ plot.getTree(rf, k=205)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/rf-tree205.png" alt="Árbol número 205 del random forest entrenado." width="60%" />
-<p class="caption">(\#fig:rf-tree205)Árbol número 205 del random forest entrenado.</p>
+<img src="img/rf-tree205.png" alt="Árbol número 205 del $random$ $forest$ entrenado." width="60%" />
+<p class="caption">(\#fig:rf-tree205)Árbol número 205 del $random$ $forest$ entrenado.</p>
 </div>
 
-Sin embargo, el método por el que se representa gráficamente no es muy claro y puede llevar a confusión o dificultar la interpretación del árbol. Si se desea estudiar el arbol, hasta cierto un nivel, se puede incluir el argumento `depth`. El árbol, ahora con una profundidad de 5 ramas, puede verse en la Fig. \@ref(fig:tree-plot2).
+Sin embargo, el método por el que se representa gráficamente no es muy claro y puede llevar a confusión o dificultar la interpretación del árbol. Si se desea estudiar el árbol, hasta un cierto nivel, se puede incluir el argumento `depth`. El árbol, ahora con una profundidad de 5 ramas, puede verse en la Fig. \@ref(fig:tree-plot2).
 
 
 ```r
@@ -383,8 +366,8 @@ plot.getTree(rf, k=205, depth = 5)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/rf_tree205_depth5.png" alt="Árbol número 205 del random forest entrenado hasta la capa 5." width="70%" />
-<p class="caption">(\#fig:tree-plot2)Árbol número 205 del random forest entrenado hasta la capa 5.</p>
+<img src="img/rf_tree205_depth5.png" alt="Árbol número 205 del $random$ $forest$ entrenado hasta la capa 5." width="80%" />
+<p class="caption">(\#fig:tree-plot2)Árbol número 205 del $random$ $forest$ entrenado hasta la capa 5.</p>
 </div>
 
 #### Aplicación del modelo *random forest* con ajuste automático
@@ -412,7 +395,6 @@ A continuación, se entrena el modelo para que se ajuste al valor de `mtry` que 
 ```r
 # se fija la semilla aleatoria
 set.seed(101)
-
 # se entrena el modelo
 model <- train(CLS_PRO_pro13 ~ ., data=dp_entr_NUM, 
                method = "rf", metric = "Accuracy",
@@ -428,7 +410,6 @@ model <- train(CLS_PRO_pro13 ~ ., data=dp_entr_NUM,
 model
 
 Random Forest 
-
 558 samples
  19 predictor
   2 classes: 'S', 'N' 
@@ -481,8 +462,12 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
 En este capítulo se introduce al lector en el *bagging* y el algoritmo de aprendizaje supervisado conocido como *random forest*. En concreto:
 
 - Se presenta el concepto de aprendizaje ensamblado y se profundiza en uno de sus paradigmas: el *bagging*.
+
 - Se implementa el *bagging* en **R** a través de un caso de clasificación binaria.
+
 - Se expone cómo medir la importancia de las variables incluidas en un modelo *bagging* para facilitar su interpretación.
-- Se explica el modelo *random forest*, fundamentado en los árboles decisión y en el *bagging*. Así como se exponen los hiperparámetros más importantes para ajustar el modelo con mayor porcentaje de clasificaciones correctas.
+
+- Se explica el modelo *random forest*, fundamentado en los árboles decisión y en el *bagging*. También se exponen los hiperparámetros más importantes para ajustar el modelo con mayor porcentaje de clasificaciones correctas.
+
 - Se presenta un ejemplo de clasificación binaria utilizando el modelo *random forest* en **R**.
 :::

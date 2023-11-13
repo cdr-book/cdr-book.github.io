@@ -1,5 +1,5 @@
 
-# El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha {#paro-clm}
+# El impacto de las crisis financiera y de la COVID-19 en el paro de CLM {#paro-clm}
 
 *Isidro Hidalgo Arellano*$^{a}$ y *Ángel Jiménez Rojas*$^{a}$  
 
@@ -8,8 +8,8 @@ $^{a}$Observatorio del Mercado de Trabajo de Castilla-La Mancha
 
 ## Planteamiento
 
-En los últimos 15 años el mundo ha sufrido dos grandes periodos de **crisis económica**: en **2008**, de tipo financiero; y en **2020**, a causa de la pandemia de **COVID-19**\index{COVID-19}. Una de las variables socioeconómicas que se ven más afectados por este tipo de procesos es el paro registrado. El paro registrado se define como el conjunto de los demandantes inscritos en las oficinas de empleo, una vez excluidos los inscritos sin disponibilidad para trabajar y los demandantes no parados, tales como estudiantes, desempleados en formación, etc. [@TOHARIA].
-**Castilla-La Mancha**, comunidad autónoma interior de España, no ha sido ajena a las crisis económicas mencionadas, por lo que en este caso de uso se analiza el impacto de las mismas en la estructura del **paro registrado**\index{paro registrado} de la región. Para ello se utilizan las siguientes variables explicativas: **sexo**\index{sexo} y **edad**\index{edad} de la persona desempleada, **sector de actividad económica de procedencia**\index{sector} y **tiempo de búsqueda de empleo**\index{tiempo de búsqueda de empleo}. El conjunto de datos utilizado comprende la **media anual del paro registrado en la comunidad autónoma de Castilla-La Mancha** desagregado según estas variables, a lo largo de los años que van desde 2007 a 2022.  
+En los últimos 15 años el mundo ha sufrido dos grandes períodos de **crisis económica**: en **2008**, de tipo financiero, y en **2020**, a causa de la pandemia de **COVID-19**\index{COVID-19}. Una de las variables socioeconómicas que se ven más afectadas por este tipo de procesos es el paro registrado. El paro registrado se define como el conjunto de los demandantes inscritos en las oficinas de empleo, una vez excluidos los inscritos sin disponibilidad para trabajar y los demandantes no parados, tales como estudiantes, desempleados en formación, etc. [@TOHARIA].
+**Castilla-La Mancha** (CLM), comunidad autónoma interior de España, no ha sido ajena a las crisis económicas mencionadas, por lo que en este caso de uso se analiza el impacto de las mismas en la estructura del **paro registrado**\index{paro registrado} de la región. Para ello se utilizan las siguientes variables explicativas: **sexo**\index{sexo} y **edad**\index{edad} de la persona desempleada, **sector de actividad económica de procedencia**\index{sector} y **tiempo de búsqueda de empleo**\index{tiempo de búsqueda de empleo}. El conjunto de datos utilizado comprende la **media anual del paro registrado en la comunidad autónoma de Castilla-La Mancha** desagregado según estas variables, a lo largo de los años que van desde 2007 a 2022.  
 
 Para el análisis se usan las librerías y objetos (paletas de colores para los gráficos) siguientes:
 
@@ -20,7 +20,7 @@ library("ggpubr")
 paleta_heatmaps <- c(rgb(.7,1,0,.5),  rgb(.13,.22,.58,1))
 paleta_lineas <- c("blue4", "orange","darkgreen")
 ```
-Para cargar el conjunto de datos, `parados_clm`, incluido en el paquete `CDR`, y mostrar la estructura de la `tibble`\index{tibble} se usa:
+Para cargar el conjunto de datos, `parados_clm`, incluido en el paquete `CDR`, y mostrar la estructura de la `tibble`\index{tibble@\textit{tibble}} se usa:
 
 ```r
 data("parados_clm")
@@ -67,12 +67,12 @@ graf <- ggplot(resumen, aes(anyo, parados)) +
 graf
 ```
 <div class="figure" style="text-align: center">
-<img src="img/empleo-total.jpeg" alt="Evolución del paro medio anual en CLM." width="60%" />
+<img src="img/empleo-total.jpeg" alt="Evolución del paro medio anual en CLM." width="50%" />
 <p class="caption">(\#fig:empleo-total)Evolución del paro medio anual en CLM.</p>
 </div>
 
 
-La Fig. \@ref(fig:empleo-total) se puede observar el devastador impacto de la crisis de 2008 en la economía castellano-manchega (el paro registrado más que se triplicó), mucho mayor que el de la  **COVID-19** que, además, como se  verá posteriormente, se localizó, básicamente, en el sector servicios. Sin embargo, a partir de 2013 el paro registrado inició una tendencia a la baja muy pronunciada que aún hoy continúa, después de haber repuntado ligeramente por la pandemia. En consonancia con los anteriores comentarios, en lo que sigue se toman como puntos de referencia los años previos a las crisis financiera y de la COVID-19 (2007 y 2019, respectivamente) y el último año, 2022. 
+En la Fig. \@ref(fig:empleo-total) se puede observar el devastador impacto de la crisis de 2008 en la economía castellano-manchega (el paro registrado fue más del triple), mucho mayor que el de la  **COVID-19** que, además, como se  verá posteriormente, se localizó básicamente en el sector servicios. Sin embargo, a partir de 2013 el paro registrado inició una tendencia a la baja muy pronunciada que aún hoy continúa, después de haber repuntado ligeramente por la pandemia. En consonancia con los anteriores comentarios, en lo que sigue se toman como puntos de referencia los años previos a las crisis financiera y de la COVID-19 (2007 y 2019, respectivamente) y el último año, 2022. 
 
 
 ## Evolución del paro medio anual en función de la edad y el sexo
@@ -164,7 +164,7 @@ Se deja al lector ejecutar la función `heatmap_anyos()` para las variables `sex
 heatmap_anyos("sexo", "t_bus_e")
 ```
 ## Evolución del paro medio anual según sexo, edad y sector de procedencia
-La variable **sector de procedencia** es un tanto particular, ya que, cuando un parado lleva mucho tiempo buscando empleo ininterrumpidamente, "pierde" el sector de procedencia y se clasifica automáticamente en la rúbrica "sin actividad". A la hora de analizar esta variable, por tanto, es importante tener en cuenta que una parte de los parados ubicados en la rúbrica "sin actividad", realmente tuvieron un trabajo hace mucho tiempo.  
+La variable **sector de procedencia** es un tanto particular, ya que, cuando un parado lleva mucho tiempo buscando empleo ininterrumpidamente, "pierde" el sector de procedencia y se clasifica automáticamente en la rúbrica "sin actividad". A la hora de analizar esta variable, por tanto, es importante tener en cuenta que una parte de los parados ubicados en la rúbrica "sin actividad" realmente tuvo un trabajo hace mucho tiempo.  
 La visualización de los cambios producidos en estas variables con un mapa de calor se puede llevar a cabo ejecutando de nuevo la función `heatmap_anyos()`, obteniendo la Fig. \@ref(fig:empleo-heatmap-sexo-sector):
 
 ```r
@@ -184,12 +184,17 @@ densidad_compara("sector")
 <img src="img/empleo-densidad-sector.jpeg" alt="Distribución del paro medio anual por edad y tiempo de búsqueda de empleo." width="60%" />
 <p class="caption">(\#fig:empleo-densidad-sector)Distribución del paro medio anual por edad y tiempo de búsqueda de empleo.</p>
 </div>
-Como se observa en la dicha figura, las diferencias a lo largo del tiempo del número de parados por sector de actividad económica revelan algunas particularidades interesantes. **Industria**\index{industria} y **construcción**\index{construcción} se comportan de modo similar: hay un fuerte desplazamiento en edad desde 2007, pero se mantiene el volumen de paro en ambos sectores a lo largo de los 15 años de estudio. El paro en el sector **agropecuario** y en el sector **servicios** también presenta desplazamiento en edad, pero además se ha incrementado notablemente en estos 15 años; ambos efectos son mucho más evidentes en el sector **servicios**. Finalmente, en el colectivo **sin actividad** se aprecian dos características: en primer lugar, los parados menores de 30 años suponen el mayor volumen en este colectivo, como era de esperar, ya que la población joven que accede al mercado laboral por primera vez no cuenta con experiencia previa; en segundo lugar, desde 2007 a 2019, y algo menos desde 2019 a 2022, hay un incremento de volumen de paro en los **mayores de 45 años**\index{mayores de 45 años} que, con toda probabilidad, corresponde a los parados de larga duración de mayor edad.  
+Como se observa en la Fig. \@ref(fig:empleo-densidad-sector), las diferencias a lo largo del tiempo del número de parados por sector de actividad económica revelan algunas particularidades interesantes. **Industria**\index{industria} y **construcción**\index{construcción} se comportan de modo similar: hay un fuerte desplazamiento en edad desde 2007, pero se mantiene el volumen de paro en ambos sectores a lo largo de los 15 años de estudio. El paro en el sector **agropecuario** y en el sector **servicios** también presenta desplazamiento en edad, pero además se ha incrementado notablemente en estos 15 años; ambos efectos son mucho más evidentes en el sector **servicios**. Finalmente, en el colectivo **sin actividad** se aprecian dos características: en primer lugar, los parados menores de 30 años suponen el mayor volumen en este colectivo, como era de esperar, ya que la población joven que accede al mercado laboral por primera vez no cuenta con experiencia previa; en segundo lugar, desde 2007 a 2019, y algo menos desde 2019 a 2022, hay un incremento de volumen de paro en los **mayores de 45 años**\index{mayores de 45 años} que, con toda probabilidad, corresponde a los parados de larga duración de mayor edad.  
+
 En todos los sectores se aprecia el descenso del volumen total de paro registrado desde 2019 a 2022, a pesar de la crisis sanitaria de la COVID-19.  
 
 ## Conclusiones
-La crisis de 2008 tuvo un gran impacto en el paro registrado de Castilla-La Mancha, multiplicándolo por un factor mayor de 3 desde 2007. Sin embargo, a partir del año 2013 el paro registrado inicia una tendencia a la baja muy pronunciada que aún hoy continúa, después de haber sufrido un rebote debido a la crisis de la COVID-19.  
+
+La crisis de 2008 tuvo un gran impacto en el paro registrado de Castilla-La Mancha, multiplicándolo por un factor mayor que 3 desde 2007. Sin embargo, a partir del año 2013 el paro registrado inicia una tendencia a la baja muy pronunciada que aún hoy continúa, después de haber sufrido un rebote debido a la crisis de la COVID-19.  
+
 La estructura interna de la población parada en la región ha cambiado sustancialmente atendiendo a las variables analizadas. En efecto, la población mayor de 45 años, las mujeres, los parados de larga duración y el sector servicios son los grandes perjudicados por ambos procesos de crisis.
 
 
-<img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;" />
+<!-- ```{r img-paq-cdr, echo=FALSE, out.width='15%',} -->
+<!-- knitr::include_graphics("img/LogoCDR_transparente.png") -->
+<!-- ``` -->

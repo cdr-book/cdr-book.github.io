@@ -1,20 +1,21 @@
-# Análisis electoral: de Rstudio a su periódico {#cap-periodismo}
+# Análisis electoral: de RStudio a su periódico {#cap-periodismo}
 
 *Borja Andrino Turón*
 
-EL PAÍS
+El País
 
 \index{periódico}
-\index{elecciones Andaluzas}
+\index{elecciones}
 
 ## Motivación
 
-El uso de **R** en el entorno profesional ha llegado también a los periódicos. Cada vez es más habitual encontrar en los medios analistas de datos que lo utilizan en su día a día. En EL PAÍS, muchos de los contenidos que se publican en la Unidad de Datos surgen de un notebook de RStudio. A continuación se muestra un análisis sobre las últimas elecciones andaluzas bajo el título "De RStudio a su periódico favorito".
+El uso de **R** en el entorno profesional ha llegado también a los periódicos. Cada vez es más habitual encontrar en los medios analistas de datos que lo utilizan en su día a día. En El País, muchos de los contenidos que se publican en la Unidad de Datos surgen de un *notebook* de RStudio. A continuación se muestra un análisis sobre las últimas elecciones andaluzas bajo el título *De RStudio a su periódico favorito*.
 
 ## Obtención de los datos
-Los datos electorales no siempre son igual de accesibles. Los de las elecciones que dependen del Ministerio del Interior se publican en el portal [Infoelectoral](https://infoelectoral.interior.gob.es/opencms/es/inicio/) https://infoelectoral.interior.gob.es/opencms/es/inicio/. En el caso de las elecciones andaluzas, los resultados a nivel de mesa se han publicado en los portales de cada convocatoria, si bien pueden encontrarse en el paquete `CDR` del libro los necesarios para replicar este capítulo.
 
-En primer lugar, se compone un diccionario de municipios que se usará para filtrar y agrupar los resultados por provincia. Primero se escrapea de la web del INE la relación de códigos de provincia con la librería `rvest`. Se lee el código HTML de la página y se buscan los elementos table con clase `miTabla`. A continuación, se usa la función `html_table()` para convertir las tres tablas en un objeto `tibble`. La información con los nombres de municipios y provincias se leerá de la web del INE.
+Los datos electorales no siempre son igual de accesibles. Los de las elecciones que dependen del Ministerio del Interior se publican en el portal Infoelectoral [https://infoelectoral.interior.gob.es/opencms/es/inicio/](https://infoelectoral.interior.gob.es/opencms/es/inicio/). En el caso de las elecciones andaluzas, los resultados a nivel de mesa se han publicado en los portales de cada convocatoria, si bien pueden encontrarse en el paquete `CDR` del libro los necesarios para replicar este capítulo.
+
+En primer lugar, se compone un diccionario de municipios que se usará para filtrar y agrupar los resultados por provincia. Primero se escrapea de la web del INE la relación de códigos de provincia con la librería `rvest`. Se lee el código HTML de la página y se buscan los elementos `table` con clase `miTabla`. A continuación, se usa la función `html_table()` para convertir las tres tablas en un objeto `tibble`. La información con los nombres de municipios y provincias se leerá de la web del INE.
 
 \index{Instituto Nacional de Estadística, INE}
 
@@ -63,7 +64,7 @@ datos_elecciones <-
 
 ## Transformación de variables y visualización de resultados
 
-En el primer gráfico (Fig. \@#ref(fig:plot-voto-and)) se muestra la evolución de los votos a partidos de izquierda y de derecha en toda Andalucía desde 2015. Primero se calculan los votos válidos en cada convocatoria. Como en la estructura de datos ese dato está repetido para cada combinación de convocatoria-sección-partido se usa la función `distinct()` antes de agrupar y sumar los votos validos de todas las secciones. 
+En el primer gráfico (Fig. \@ref(fig:plot-voto-and)) se muestra la evolución de los votos a partidos de izquierda y de derecha en toda Andalucía desde 2015. Primero se calculan los votos válidos en cada convocatoria. Como en la estructura de datos ese dato está repetido para cada combinación de convocatoria-sección-partido, se usa la función `distinct()` antes de agrupar y sumar los votos válidos de todas las secciones. 
 
 
 ```r
@@ -146,7 +147,7 @@ datos_bloques |>
 </div>
 
 
-Replicar la Fig. \@ref(fig:plot-voto-and) para cada provincia no es complicado. ünicamente hay que descartar los datos de toda Andalucía y usar la función `facet_wrap()`, que genera el mismo gráfico con el mismo estilo para cada provincia. 
+Replicar la Fig. \@ref(fig:plot-voto-and) para cada provincia no es complicado. Únicamente hay que descartar los datos de toda Andalucía y usar la función `facet_wrap()`, que genera el mismo gráfico con el mismo estilo para cada provincia. 
 
 ```r
 datos_bloques |> 
@@ -201,7 +202,8 @@ datos_winners_muns <-
 ```
 
 Para crear el gráfico de la Fig. \@ref(fig:plot-voto-pro) se toma el objeto `sf` con los recintos de los municipios andaluces y se les añaden los datos de ganadores calculados anteriormente con la función `left_join()`. Se usa el color del bloque para el relleno y el porcentaje de votos que suma el bloque ganador para la transparencia[^transparencia], de forma que de un vistazo se pueden encontrar feudos de uno u otro bloque.
-[^transparencia]: La transparencia en diseño gráfico se refiere al grado de opacidad de una imagen.
+
+[^transparencia]: La transparencia, en diseño gráfico, se refiere al grado de opacidad de una imagen.
 
 
 ```r
@@ -229,6 +231,5 @@ map_munis |>
 </div>
 
 
-En los mapas de la Fig. \@ref(fig:plot-voto-andalucia-muni) se encuentran nuevas historias. En 2015 la derecha era fuerte en la costa de Almería y Málaga. Su presencia creció en 2018, aunque la izquierdas seguía ganando el interior de la comunidad. En 2018 el dominio del bloque de derechas se extendió por casi todo el territorio, en especial en las zonas donde ya era fuerte en 2015.
+En los mapas de la Fig. \@ref(fig:plot-voto-andalucia-muni) se encuentran nuevas historias. En 2015 la derecha era fuerte en la costa de Almería y Málaga. Su presencia creció en 2018, aunque la izquierda seguía ganando el interior de la comunidad. En 2018 el dominio del bloque de derechas se extendió por casi todo el territorio, en especial en las zonas donde ya era fuerte en 2015.
 
-<img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;" />

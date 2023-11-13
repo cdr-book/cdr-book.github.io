@@ -8,15 +8,15 @@ $^{b}$Universidad de Castilla-La Mancha
 
 ## Introducción
 
-Como se indicó en el Cap. \@ref(130009), la preparación de datos, en un contexto de ciencia de datos, consiste en transformarlos de tal forma que se puedan utilizar adecuadamente en las fases posteriores de modelado. Esta preparación o pre-preprocesamiento puede ser un proceso laborioso e incluye tareas como la integración y limpieza de datos, que se detallaron en dicho capítulo.
+Como se indicó en el Cap. \@ref(130009), la preparación de datos, en un contexto de ciencia de datos, consiste en transformarlos de tal forma que se puedan utilizar adecuadamente en las fases posteriores de modelado. Esta preparación o prepreprocesamiento puede ser un proceso laborioso e incluye tareas como la integración y limpieza de datos, que se detallaron en dicho capítulo.
 
 El presente capítulo aborda las tareas relativas a la **selección de variables** (*feature selection*) y  **transformación de variables**. 
-La selección de variables tiene como objetivo elegir el elenco de variables más relevantes para el análisis. La transformación de variables hace referencia, básicamente, al uso de determinados procedimientos para modificar la distribución de la variable objetivo, a la ingeniería de variables (*feature engineering*), la normalización y a la reducción de la dimensionalidad del problema de interés.
+La selección de variables tiene como objetivo elegir el elenco de variables más relevantes para el análisis. La transformación de variables hace referencia, básicamente, al uso de determinados procedimientos para modificar la distribución de la variable objetivo, a la ingeniería de variables (*feature engineering*), a la normalización y a la reducción de la dimensionalidad del problema de interés.
 
 \index{selección de variables}
-\index{feature selection}
+\index{feature selection @ \textit{feature selection}} \index{selección de variables}
 \index{transformación de variables}
-\index{feature engineering}
+\index{feature engineering@\textit{featuring engineering}}
 
 
 Se usará el conjunto de datos `Madrid_Sale` (disponibles en el paquete de **R** `idealista18`), con datos inmobiliarios del año 2018 para el municipio de Madrid, y los paquetes `caret` [@kuhn2008building], para diversas tareas de preparación de datos y `corrplot` [@wei2017package], para visualizar correlaciones, entre otros.
@@ -25,7 +25,7 @@ Se usará el conjunto de datos `Madrid_Sale` (disponibles en el paquete de **R**
 
 ## Selección de variables {#feature}
 
-\index{feature selection} \index{selección de variables}
+
 
 Quizás, el primer gran reto al que se enfrenta el científico de datos cuando maneja grandes conjuntos de datos es la identificación de las variables que proporcionen información valiosa sobre la variable objetivo, bien se trate de un problema de regresión, bien de clasificación. En caso de que el científico de datos salga exitoso de este primer gran reto, un determinado subconjunto de variables del conjunto de datos de interés proporcionará la misma información sobre la variable objetivo que la totalidad de variables incluidas en el conjunto de datos.
 
@@ -42,7 +42,7 @@ En consecuencia, la selección de variables involucra un conjunto de técnicas c
 
 Una adecuada selección de variables tiene ventajas importantes: $(i)$ elimina las variables con información redundante; $(ii)$ reduce el grado de complejidad de los modelos; $(iii)$ evita o reduce el sobreajuste; $(iv)$ incrementa de la precisión de las predicciones;  y $(v)$ reduce la carga computacional. 
 
-No obstante, es importante señalar que, antes de llevarse a cabo la selección de variables propiamente dicha, debe comprobarse la magnitud de la varianza de las variables candidatas a ser seleccionadas y de sus  correlaciones dos a dos, así como si existen combinaciones lineales entre ellas (multicolinealidad). Y ello, porque estas tres comprobaciones sirven para realizar una primera preselección de variables, si bien por razones técnicas y no de capacidad de explicación del comportamiento de la variable respuesta.  
+No obstante, es importante señalar que, antes de llevarse a cabo la selección de variables propiamente dicha, debe comprobarse la magnitud de la varianza de las variables candidatas a ser seleccionadas y de sus  correlaciones dos a dos, así como si existen combinaciones lineales entre ellas (multicolinealidad). Y ello porque estas tres comprobaciones sirven para realizar una primera preselección de variables, si bien por razones técnicas y no de capacidad de explicación del comportamiento de la variable respuesta.  
 
 
 Los métodos de selección de variables (tras la preselección anteriormente mencionada) se suelen clasificar en: $(i)$ los que utilizan la variable objetivo (supervisados); y $(ii)$ los que no (no supervisados). Debido a la complejidad de la cuestión, se pasará revista únicamente a los métodos supervisados más relevantes, que se pueden dividir en: 
@@ -64,7 +64,7 @@ Los métodos de selección de variables (tras la preselección anteriormente men
 \index{varianza cercana a cero}
 
 
-Uno de los aspectos fundamentales en la selección de variables es comprobar si su varianza es cero o cercana a cero porque, si es así, sus valores son iguales o similares, respectivamente, y, por tanto, esas variables estarán perfectamente o cuasiperfectamente correladas con el término independiente del modelo, con lo cual, en el mejor de los casos, solo añadirán ruido al modelo. Además, este tipo de variables causan problemas a la hora de dividir el conjunto de datos en subconjuntos de entrenamiento, validación y test. Las causas de una nula o muy pequeña variabilidad pueden estar en haber medido la variable en una escala inapropiada para la variable  o en haber expandido una variable politómica en varias dicotómicas (una por categoría), entre otras. En el primer caso, un cambio de escala puede evitar el problema de la colinealidad. Otra opción más drástica es la eliminación de la variable.
+Uno de los aspectos fundamentales en la selección de variables es comprobar si su varianza es cero o cercana a cero porque, si es así, sus valores son iguales o similares, respectivamente, y, por tanto, esas variables estarán perfectamente o cuasiperfectamente correlacionadas con el término independiente del modelo, con lo cual, en el mejor de los casos, solo añadirán ruido al modelo. Además, este tipo de variables causan problemas a la hora de dividir el conjunto de datos en subconjuntos de entrenamiento, validación y test. Las causas de una nula o muy pequeña variabilidad pueden estar en haber medido la variable en una escala inapropiada para la variable  o en haber expandido una variable politómica en varias dicotómicas (una por categoría), entre otras. En el primer caso, un cambio de escala puede evitar el problema de la colinealidad. Otra opción más drástica es la eliminación de la variable.
 
 
 A continuación, se comprueba si las variables del conjunto de datos `Madrid_Sale` tienen **varianza cero**. Para ello se utiliza la función `nearZeroVar()` del paquete `caret`.
@@ -134,7 +134,7 @@ Se aprecia que ya no hay variables altamente correlacionadas.
 
 #### Combinaciones lineales {#combinaciones-lineales}
 
-En la práctica, en la mayoría de los casos, por ejemplo en las regresiones lineales, las variables que se utilizan como predictoras no son ortogonales sino que tienen cierto grado de dependencia lineal entre ellas. Si dicho grado es moderado, las consecuencias de la no ortogonalidad en la predicción no son graves, pero en los casos de dependencia lineal cuasiperfecta las inferencias resultantes del modelo estimado distan mucho de la realidad. Dichas consecuencias son aún más graves en el caso de que las combinaciones lineales sean perfectas. Por ello, la existencia de colinealidad o combinaciones lineales entre las variables seleccionables también es una circunstancia a evitar. En el caso de que los predictores (o varios de ellos) conformen una o varias combinaciones (o cuasicombinaciones) lineales,  no se puede conocer el impacto específico de cada uno de ellos en la variable objetivo, pues dichos impactos se solapan unos con otros. Además, como se ha avanzado, las predicciones no son fiables, entre otras cosas [véase @pena2002analisis]. Y es que se le está pidiendo al conjunto de datos en estudio más información sobre la variable objetivo de la que realmente tiene. Entre otros modelos, la regresión lineal y la regresión logística parten del supuesto de no colinealidad o multicolinealidad entre las variables, por lo que no debería haber variables correlacionadas, ni dos a dos, ni en forma de combinación lineal entre varias de ellas. 
+En la práctica, en la mayoría de los casos, por ejemplo en las regresiones lineales, las variables que se utilizan como predictoras no son ortogonales, sino que tienen cierto grado de dependencia lineal entre ellas. Si dicho grado es moderado, las consecuencias de la no ortogonalidad en la predicción no son graves, pero en los casos de dependencia lineal cuasiperfecta las inferencias resultantes del modelo estimado distan mucho de la realidad. Dichas consecuencias son aún más graves en el caso de que las combinaciones lineales sean perfectas. Por ello, la existencia de colinealidad o combinaciones lineales entre las variables seleccionables también es una circunstancia a evitar. En el caso de que los predictores (o varios de ellos) conformen una o varias combinaciones (o cuasicombinaciones) lineales,  no se puede conocer el impacto específico de cada uno de ellos en la variable objetivo, pues dichos impactos se solapan unos con otros. Además, como se ha avanzado, las predicciones no son fiables, entre otras cosas [véase @pena2002analisis]. Y es que se le está pidiendo al conjunto de datos en estudio más información sobre la variable objetivo de la que realmente tiene. Entre otros modelos, la regresión lineal y la regresión logística parten del supuesto de no colinealidad o multicolinealidad entre las variables, por lo que no debería haber variables correlacionadas, ni dos a dos, ni en forma de combinación lineal entre varias de ellas. 
 
 \index{combinación lineal}
 \index{cuasicombinación lineal}
@@ -155,7 +155,7 @@ En cuanto al detalle de las consecuencias más importantes de la multicolinealid
 \index{multicolinealidad!consecuencias}
 
 - Los estimadores tendrán grandes varianzas y covarianzas.
-- Las estimaciones de los coeficientes del modelos serán demasiado grandes.
+- Las estimaciones de los coeficientes del modelo serán demasiado grandes.
 - Los signos de los coeficientes estimados suelen ser distintos a los esperados.
 - Pequeñas variaciones en los datos, o en la especificación del modelo, provocarán grandes cambios en los coeficientes.
 
@@ -198,25 +198,29 @@ Tras la preselección de variables llevada a cabo en el epígrafe anterior, proc
 - Reducir la probabilidad de sobreajuste.
 
 
-#### Métodos tipo filtro {#metfiltro}
-\index{selección!tipo filtro}
-Los **métodos de selección de variables tipo filtro** usan técnicas estadísticas para evaluar la relación entre cada variable predictora (o de entrada, o independiente) y la variable objetivo (o de salida, o dependiente). Generalmente, consideran la influencia de cada variable predictora sobre la variable objetivo por separado. Las puntuaciones obtenidas se utilizan como base para clasificar y elegir las variables predictoras que se utilizarán en el modelo. 
-
-La elección de las técnicas estadísticas depende del tipo de variables (objetivo y predictoras). Por ejemplo, si las variables de entrada (predictoras) y salida (objetivo) fueran numéricas, se utilizaría 
-el coeficiente de correlación de Pearson o el de Spearman (dependiendo de si la relación entre la variable predictora y la variable objetivo es lineal o no) o el método de información mutua [véase @vergara2014review]. Si ambas fuesen categóricas, podrían usarse medidas de asociación para tablas de contingencia $2\times 2$ o $R\times C$ (véanse Sec. \@ref(medidas) y \@ref(medidas-rxc)). Si la de entrada fuese categórica y la de salida, numérica, la técnica adecuada sería el Análisis de la Varianza (ANOVA, véase Sec. \@ref(anova)). Si la categórica fuese la de salida y la numérica la de entrada, entonces habría que acudir a la regresión logística (véase Sec. \@ref(reg-logistica)), por ejemplo. Sin embargo, el conjunto de datos no tiene porqué tener solo un tipo de variable de entrada. Para manejar diferentes tipos de variables de entrada, se pueden seleccionar, por separado, variables de entrada numéricas y variables de entrada categóricas, usando en cada caso las técnicas apropiadas.
-
-
-
-
-
 
 \index{coeficiente!de correlación!de Pearson}
 \index{coeficiente!de correlación!de Spearman}
 \index{método de información mutua}
-\index{tablas de contingencia}
+\index{tabla!de contingencia}
 \index{medidas de asociación}
+
+
+
+#### Métodos tipo filtro {#metfiltro}
+\index{selección!tipo filtro}
+Los **métodos de selección de variables tipo filtro** usan técnicas estadísticas para evaluar la relación entre cada variable predictora (o de entrada, o independiente) y la variable objetivo (o de salida, o dependiente). Generalmente, consideran la influencia de cada variable predictora sobre la variable objetivo por separado. Las puntuaciones obtenidas se utilizan como base para clasificar y elegir las variables predictoras que se utilizarán en el modelo. 
+
 \index{análisis de la varianza}
 \index{regresión logística}
+
+La elección de las técnicas estadísticas depende del tipo de variables (objetivo y predictoras). Por ejemplo, si las variables de entrada (predictoras) y salida (objetivo) fueran numéricas, se utilizaría 
+el coeficiente de correlación de Pearson o el de Spearman (dependiendo de si la relación entre la variable predictora y la variable objetivo es lineal o no) o el método de información mutua [véase @vergara2014review]. Si ambas fuesen categóricas, podrían usarse medidas de asociación para tablas de contingencia $2\times 2$ o $R\times C$ (véanse Sec. \@ref(medidas) y \@ref(medidas-rxc)). Si la de entrada fuese categórica y la de salida, numérica, la técnica adecuada sería el Análisis de la Varianza (ANOVA, véase Sec. \@ref(anova)). Si la categórica fuese la de salida y la numérica la de entrada, entonces habría que acudir a la regresión logística (véase Sec. \@ref(reg-logistica)), por ejemplo. Sin embargo, el conjunto de datos no tiene por qué tener solo un tipo de variable de entrada. Para manejar diferentes tipos de variables de entrada, se pueden seleccionar, por separado, variables de entrada numéricas y variables de entrada categóricas, usando en cada caso las técnicas apropiadas.
+
+
+
+
+
 
 Estos métodos suelen eliminar solo las variables de menor interés a la hora de predecir/clasificar. Permiten ahorrar tiempo y son especialmente robustos para el sobreaprendizaje. Sin embargo, no tienen en cuenta las relaciones entre las variables, lo que puede dar lugar a seleccionar variables redundantes si es que no se ha llevado a cabo una fase de preselección.
 
@@ -232,9 +236,9 @@ Existen diversos paquetes, como `FSelector` [@romanski2013package] y el mismo `c
 La selección de variables o características se lleva a cabo con la función `FeatureSelection()`, y la del algoritmo de búsqueda que se utilizará en el proceso de selección de funciones se realiza con la función `searchAlgorithm()`. Por su parte, los métodos de filtrado se implementan a través de la función `filterEvaluator()`.
 No debe olvidarse que, antes de realizar el proceso de selección de variables, el usuario tiene que dividir el conjunto de datos convenientemente para llevar a cabo cada operación sobre el subconjunto correcto (véase Cap. \@ref(chap-herramientas)). Igualmente, también de manera previa, se tiene que resolver el problema de los datos faltantes.
 :::
-A continuación se muestra un ejemplo para variables predictoras numéricas. Para ello, se toma una muestra del conjunto de datos `Madrid_Sale_num`, obtenido en la Sec. \@ref(salenum). Una vez en disposición de la muestra, primeramente se transforma la variable objetivo en categórica, siendo las categorías (intervalos) cuatro cortes de la distribución de sus valores; dicha categorización se lleva a cabo mediante ***binning***[^fs-1]. También se eliminan los registros con datos faltantes.
+A continuación se muestra un ejemplo para variables predictoras numéricas. Para ello, se toma una muestra del conjunto de datos `Madrid_Sale_num`, obtenido en la Sec. \@ref(salenum). Una vez en disposición de la muestra, primeramente se transforma la variable objetivo en categórica, siendo las categorías (intervalos) cuatro cortes de la distribución de sus valores; dicha categorización se lleva a cabo mediante ***binning***.[^fs-1] También se eliminan los registros con datos faltantes.
 
-\index{binning}
+\index{binning @\textit{binning}}
 
 [^fs-1]: *Binning* (anglicismo que deriva de la palabra *bin*: cubo, cesta, contenedor) es una técnica de discretización que agrupa datos numéricos en intervalos. Se suele utilizar para simplificar el análisis de datos continuos y aumentar la interpretabilidad del modelo, si bien a costa de reducir las combinaciones de las categorías de las variables predictoras que pueden realizarse, con lo cual el modelo solo podrá hacer predicciones para unas pocas combinaciones de categorías de las variables predictoras. 
 El *binning* puede ser supervisado o no (agrupamiento automático o manual). En este último caso, hay que tomar muchas precauciones porque, como señala @kuhn2013applied, $(i)$ el *binning* en las variables predictoras puede llevar a una pérdida significativa en la capacidad del modelo a la hora de determinar la relación (sobre todo si es compleja) entre los predictores y la variable objetivo; y $(ii)$ en el entorno clasificatorio,  puede dar lugar a una alta tasa de falsos positivos. Estas limitaciones pueden superarse en el caso de que el *binning* se lleve a cabo de forma supervisada (tal es el caso de los árboles de regresión y clasificación y de la regresión adaptativa multivariante con *splines*), si bien debe tenerse en cuenta que, aunque se utilizan todos los predictores para llevar a cabo el proceso de *binning*, la categorización está guiada por un único objetivo (por ejemplo, maximizar la exactitud). 
@@ -293,7 +297,7 @@ Hay varias alternativas:
 - Evaluar las variables individualmente y seleccionar las $n$ variables principales que obtienen unas buenas prestaciones, aunque se pierde la información de las dependencias entre variables. 
 - Observar el rendimiento del modelo para todas las combinaciones de variables posibles. En este sentido, se puede utilizar un algoritmo de búsqueda global estocástica, como los algoritmos genéticos que, si bien pueden ser efectivos, también pueden ser computacionalmente muy costosos.
 
-Los métodos ***wrapper*** son de gran eficacia a la hora de eliminar variables irrelevantes y/o redundantes (cosa que no ocurre en los de tipo filtro porque se centran en el poder predictor de cada variable de forma aislada). Además, tienen en cuenta la circunstancia de que dos o más variables, aparentemente irrelevantes en cuanto a su capacidad predictiva o clasificatoria cuando se consideran una por una, pueden ser relevantes cuando se consideran conjuntamente. Sin embargo, son muy lentos, ya que tienen que aplicar muchísimas veces el algoritmo de búsqueda, cambiando, cada vez, el número de variables, siguiendo, cada vez, algún criterio tanto de búsqueda como de paro. En lo que respecta a los criterios de búsqueda, estos son similares a los de los métodos tipo filtro. Por lo que se refiere a los criterios de paro, los usados en los métodos *wrapper* son menos eficientes que los criterios basados en algún tipo de medida de ganancia de información, distancia o consistencia, entre el predictor y la 
+Los métodos ***wrapper*** son de gran eficacia a la hora de eliminar variables irrelevantes y/o redundantes (cosa que no ocurre en los de tipo filtro porque se centran en el poder predictor de cada variable de forma aislada). Además, tienen en cuenta la circunstancia de que dos o más variables, aparentemente irrelevantes en cuanto a su capacidad predictiva o clasificatoria cuando se consideran una por una, pueden ser relevantes cuando se consideran conjuntamente. Sin embargo, son muy lentos, ya que tienen que aplicar muchísimas veces el algoritmo de búsqueda, cambiando cada vez el número de variables, siguiendo cada vez algún criterio tanto de búsqueda como de paro. En lo que respecta a los criterios de búsqueda, estos son similares a los de los métodos tipo filtro. Por lo que se refiere a los criterios de paro, los usados en los métodos *wrapper* son menos eficientes que los criterios basados en algún tipo de medida de ganancia de información, distancia o consistencia, entre el predictor y la 
 variable objetivo (o clase) que utilizan los de tipo filtro. 
 
 
@@ -368,7 +372,7 @@ un componente técnico y otro más creativo; en este último, son de gran releva
 ::: {.infobox data-latex=""}
 **Nota**
 
-`Caret` se ha elegido como herramienta principal para la parte de preprocesamiento por su amplia difusión y porque también se utiliza en la parte de *machine learning* supervisado de este libro. No obstante, se podrían usar otros paquetes, como `recipes`, incluido en `tidymodels`. Este tipo de paquetes, comúnmente llamados metapaquete (*meta-packages*), permiten agrupar varios programas junto a sus dependencias para su instalación de una vez. Por tanto, un metapaquete permite ahorrar tiempo y esfuerzo a la vez que facilita la implementación de múltiples modelos en paralelo para, posteriormente, vincular sus resultados. 
+`Caret` se ha elegido como herramienta principal para la parte de preprocesamiento por su amplia difusión y porque también se utiliza en la parte de *machine learning* supervisado de este libro. No obstante, se podrían usar otros paquetes, como `recipes`, incluido en `tidymodels`. Este tipo de paquetes, comúnmente llamados metapaquetes (*meta-packages*), permiten agrupar varios programas junto a sus dependencias para su instalación de una vez. Por tanto, un metapaquete permite ahorrar tiempo y esfuerzo a la vez que facilita la implementación de múltiples modelos en paralelo para, posteriormente, vincular sus resultados. 
 
 :::
 
@@ -403,7 +407,7 @@ respuesta_log <- log(Madrid_Sale$PRICE)
 <img src="img/logidealista.png" alt="Normalización logarítmica." width="60%" />
 <p class="caption">(\#fig:log)Normalización logarítmica.</p>
 </div>
-- Como segunda opción, se puede usar una transformación de la familia de transformaciones Box-Cox (o simplemente una **transformación de Box-Cox**), de carácter potencial y con mayor flexibilidad que la transformación logarítmica. Generalmente, se puede encontrar la función adecuada a partir de una familia de transformadas de potencia, que llevarán la distribución de la variable transformada tan cerca como sea posible de la distribución normal[^fs-4] [@sakia1992box].  No obstante, igual que la transformación logarítmica, las transformaciones del tipo Box-Cox también tienen la limitación de ser solo aplicables a variables cuyos valores sean positivos. Por consiguiente, tanto si se usa una transformación logarítmica como una Box-Cox, no se deben centrar los datos primero, ni realizar ninguna operación que pueda hacer que los valores de la variable transformada no sean positivos.
+- Como segunda opción, se puede usar una transformación de la familia de transformaciones Box-Cox (o simplemente una **transformación de Box-Cox**), de carácter potencial y con mayor flexibilidad que la transformación logarítmica. Generalmente, se puede encontrar la función adecuada a partir de una familia de transformadas de potencia, que llevarán la distribución de la variable transformada tan cerca como sea posible de la distribución normal [@sakia1992box].[^fs-4]  No obstante, igual que la transformación logarítmica, las transformaciones del tipo Box-Cox también tienen la limitación de ser solo aplicables a variables cuyos valores sean positivos. Por consiguiente, tanto si se usa una transformación logarítmica como una Box-Cox, no se deben centrar los datos primero, ni realizar ninguna operación que pueda hacer que los valores de la variable transformada no sean positivos.
 
 - En caso de valores nulos o negativos, una muy buena opción, la tercera, es la transformación Yeo-Johnson, que es una extensión de la transformación Box-Cox que no está limitada a los valores positivos. 
 
@@ -439,7 +443,7 @@ crear variables ficticias manualmente.
 :::
 
 ### Cambios de origen y escala en las variables (normalizaciones)
-La escala en que se miden las variables individuales no es una cuestión baladí a la hora de la modelización. Los modelos que incorporan funciones lineales en las variables predictoras  son sensibles a la escala de esas variables. Lo mismo puede decirse de los algoritmos que utilizan medidas de distancia, como los de agrupación y clasificación, o los de escalamiento multidimensional, entre otros; o los de reducción de la dimensionalidad. Cuando se estiman modelos, a menudo es aconsejable modificar la escala de las variables predictoras; el objetivo es evitar que unas variables tengan mayor influencia que otras en el resultado obtenido. Por ejemplo, en el conjunto de datos `Madrid_Sale` la superficie de las viviendas, medida en metros cuadrados, tiene una media y una desviación típica mayores que la antigüedad de la misma, medida en años. En consecuencia, los algoritmos basados en la magnitud de los errores pueden dar más importancia a las variables con mayor desviación típica, pero no porque tengan mayor variabilidad real que las otras, sino porque la medida de dicha variabilidad (la desviación típica) es más grande debido a la distinta escala en la que están medidas dichas variables. La consecuencia: efectos perniciosos indeseados sobre las predicción o la clasificación.
+La escala en que se miden las variables individuales no es una cuestión baladí a la hora de la modelización. Los modelos que incorporan funciones lineales en las variables predictoras  son sensibles a la escala de esas variables. Lo mismo puede decirse de los algoritmos que utilizan medidas de distancia, como los de agrupación y clasificación, o los de escalamiento multidimensional, entre otros; o los de reducción de la dimensionalidad. Cuando se estiman modelos, a menudo es aconsejable modificar la escala de las variables predictoras; el objetivo es evitar que unas variables tengan mayor influencia que otras en el resultado obtenido. Por ejemplo, en el conjunto de datos `Madrid_Sale` la superficie de las viviendas, medida en metros cuadrados, tiene una media y una desviación típica mayores que la antigüedad de la misma, medida en años. En consecuencia, los algoritmos basados en la magnitud de los errores pueden dar más importancia a las variables con mayor desviación típica, pero no porque tengan mayor variabilidad real que las otras, sino porque la medida de dicha variabilidad (la desviación típica) es más grande debido a la distinta escala en la que están medidas dichas variables. La consecuencia: efectos perniciosos indeseados sobre la predicción o la clasificación.
 
 \index{normalización}
 
@@ -447,7 +451,7 @@ La normalización de variables tiene como objetivo que las comparaciones entre e
 
 La estandarización (o normalización *z-score*) es el método de normalización de variables más popular. Consiste en restar la media de la variable a sus valores y, posteriormente, dividir esta diferencia entre la desviación típica de la variable. De esta manera, las variables (numéricas) transformadas tendrán media nula y varianza unitaria, lo que proporciona una unidad de medida comparable común a todas las variables: la distancia a la media medida en términos de desviaciones típicas.
 
-\index{normalización! z-score}
+\index{normalización!z-score@\textit{z-score}}
 
 
 A modo de ejemplo, a continuación se estandarizan las variables del conjunto de datos `Madrid_Sale` con la función `preProcess()` de `caret` y el `method=c('center', 'scale')`, de tal manera que su media sea nula y su desviación típica unitaria. 
@@ -479,12 +483,14 @@ Otras opciones de normalización pueden verse en la amplia literatura sobre la c
 
 Finalmente, conviene recordar que, cuando se lleva a cabo un proceso de normalización de variables, hay que hacerlo tanto en el subconjunto de entrenamiento como en el de test, para que ambos se basen en la misma media y varianza.  
 
-### Ingeniería de variables (*feature engineering*) \index{feature engineering}
+### Ingeniería de variables (*feature engineering*)
+
+\index{feature engineering @\textit{feature engineering}}
 
 La ingeniería de variables consiste en el proceso de conseguir, a partir de la información disponible, las variables idóneas (y en el número apropiado) para que los modelos o clasificadores proporcionen los mejores resultados posibles, dados los datos disponibles y el modelo a ejecutar. En otros términos, es el proceso de transformación de las variables seleccionadas, de forma que se obtenga el mejor rendimiento posible de los modelos de *machine learning*. Por ejemplo, transformar las variables relacionadas con la fecha de tal manera que se diferencie según el tipo de horario  ("de oficina" y "de descanso"), o que se considere la cercanía al momento actual (los datos más cercanos contienen más información); los filtros de imagen (desenfocar una imagen) y la conversión de texto en números (utilizando el procesamiento avanzado del lenguaje natural, que asigna palabras a un espacio vectorial) son también ejemplos interesantes. 
 
 La mayoría de los modelos requieren que los predictores tengan forma numérica, por lo que, en caso de tener predictores de carácter categórico, hay que transformarlos en numéricos. Para implementar otro tipo de modelos, conviene transformar 
-alguna(s) variable(s) numérica(s) en categórica(s). En el primer caso, conviene aplicar técnicas de **agrupamiento** (o *binning*), que crean agrupaciones o intervalos a partir de variables continuas; en el segundo, las técnicas de **codificación**, permiten tratar variables categóricas como si fueran continuas.   Hay casos, como el de los modelos basados en árboles, que manejan, de manera natural, variables numéricas y categóricas; pero incluso en estos modelos se puede mejorar su rendimiento si se preprocesan las variables categóricas.
+alguna(s) variable(s) numérica(s) en categórica(s). En el primer caso, conviene aplicar técnicas de **agrupamiento** (o *binning*), que crean agrupaciones o intervalos a partir de variables continuas; en el segundo, las técnicas de **codificación** permiten tratar variables categóricas como si fueran continuas.   Hay casos, como el de los modelos basados en árboles, que manejan, de manera natural, variables numéricas y categóricas; pero incluso en estos modelos se puede mejorar su rendimiento si se preprocesan las variables categóricas.
 
 La identificación entre las labores de selección y de transformación de variables es bastante frecuente; sin embargo, es errónea, pues, si bien tienen algunos solapamientos, sus objetivos son claramente distintos. La ingeniería de variables tiene como objetivo la construcción de modelos más sofisticados y más interpretables que los que se pueden implementar con los datos tal y como están en el fichero raíz. La selección de variables permite que el modelo sea manejable, mejorando su interpretabilidad sin que por ello se reduzca significativamente el rendimiento del modelo. 
 
@@ -492,10 +498,10 @@ La identificación entre las labores de selección y de transformación de varia
 
 <!-- A continuación, se exponen algunos métodos de transformación de variables que generan nuevas variables, lo que aumenta la precisión del modelo y las predicciones generales. Son de dos tipos, de **agrupamiento** (o *binning*), donde se crean agrupaciones para variables continuas y de **codificación**, donde las variables numéricas se forman a partir de variables categóricas. -->
 
-\index{binning}
+\index{binning @\textit{binning}}
 \index{codificación}
 \index{codificación!de etiquetas}
-\index{codificación!one-hot}
+\index{codificación!one-hot @\textit{one-hot}}
 
 <!-- Hay dos tipos de agrupamiento, 1) no supervisado (agrupamiento automático o manual) y 2) supervisado, que implica la creación de *bins* para la variable continua mientras se tiene en cuenta también la variable objetivo. -->
 <!-- Sin embargo, el *binning* debe usarse con precaución, ya que puede haber una pérdida en la precisión del modelo [@kuhn2013applied]. -->

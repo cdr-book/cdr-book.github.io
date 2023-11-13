@@ -15,9 +15,9 @@ Producto de la **incertidumbre**, las decisiones que se toman (o la validez de l
 
 Así pues, resulta importante poder "**medir**" la incertidumbre, es decir, cuantificar su magnitud y establecer reglas de medida que permitan su tratamiento --la estimación de riesgo-- y ayuden a la toma de decisiones. La **teoría de la probabilidad**\index{probabilidad} se puede entender como un ente que proporciona reglas de comportamiento que ayudan a conseguir los objetivos anteriores, siendo el campo de aplicación tan amplio que puede cubrir cualquier rama de las ciencias sociales, técnicas y naturales.
 
-El concepto de probabilidad apareció en la antiguedad, asociado a los juegos de azar, y se ha ido refinando y formalizando a lo largo de la historia. Sin embargo, la mayoría de las definiciones tradicionales presentan limitaciones que impiden su uso riguroso en cualquier situación. Aún así, siguen estando en el subconsciente colectivo, de forma que se entienden expresiones como "es muy probable que llueva mañana", "es improbable que me toque la lotería de Navidad", o "es probable que se obtenga en breve una vacuna contra cierta enfermedad", cuando responden a conceptualizaciones diferentes y, en muchos casos, vagas e imprecisas. 
+El concepto de probabilidad apareció en la antiguedad, asociado a los juegos de azar, y se ha ido refinando y formalizando a lo largo de la historia. Sin embargo, la mayoría de las definiciones tradicionales presenta limitaciones que impiden su uso riguroso en cualquier situación. Aún así, siguen estando en el subconsciente colectivo, de forma que se entienden expresiones como "es muy probable que llueva mañana", "es improbable que me toque la lotería de Navidad", o "es probable que se obtenga en breve una vacuna contra cierta enfermedad", cuando responden a conceptualizaciones diferentes y, en muchos casos, vagas e imprecisas. 
 
-Aunque sigue habiendo debates filosóficos y epistemológicos sobre el concepto de probabilidad [véase, por ejemplo, @Hajek2016], su uso generalizado en muchos campos científicos está más relacionado con el desarrollo de su carácter de **medida de la incertidumbre** que con un tratamiento matemático que permite su aplicación práctica [véase, por ejemplo, @Ross2012, @Morin2016 o @Balakrishnanetal2019]. Es este enfoque el que se desarrolla sucintamente en este capítulo.
+Aunque sigue habiendo debates filosóficos y epistemológicos sobre el concepto de probabilidad [véase, por ejemplo, @Hajek2016], su uso generalizado en muchos campos científicos está más relacionado con el desarrollo de su carácter de **medida de la incertidumbre** que con un tratamiento matemático que permite su aplicación práctica [véase, por ejemplo, @Ross2012; @Morin2016; o @Balakrishnanetal2019]. Es este enfoque el que se desarrolla sucintamente en este capítulo.
 
 ## Probabilidad: elementos básicos, definición y teoremas
 
@@ -51,7 +51,7 @@ Sin embargo, esta definición es formal, en el sentido de que indica qué requis
 P(S_i)=\frac {\text{casos favorables a la ocurrencia de } S_i}{\text{casos posibles}}=\frac{n_i}{n}=f_i.
 \end{equation}
 
-Por "igualmente verosímiles" se entiende que "no hay razón para afirmar que uno suceda más veces que otro", conocido como "principio de razón insuficiente". Es fácilmente comprobable que esta regla cumple la axiomática de Kolmogorov e interpreta la probabilidad como la **frecuencia** de ocurrencia de cada suceso. A pesar de sus limitaciones (utiliza la equiprobabilidad de los sucesos elementales para definir la probabilida de y asume un conjunto finito de ellos), su fácil comprensión y utilidad en casos sencillos hace que esta regla sea muy utilizada (e incluso confundida con una "definición" de probabilidad).
+Por "igualmente verosímiles" se entiende que "no hay razón para afirmar que uno suceda más veces que otro", conocido como "principio de razón insuficiente". Es fácilmente comprobable que esta regla cumple la axiomática de Kolmogorov e interpreta la probabilidad como la **frecuencia** de ocurrencia de cada suceso. A pesar de sus limitaciones (utiliza la equiprobabilidad de los sucesos elementales para definir la probabilidad y asume un conjunto finito de ellos), su fácil comprensión y utilidad en casos sencillos hace que esta regla sea muy utilizada (e incluso confundida con una "definición" de probabilidad).
 
 - **Concepción frecuentista**: se consideran $n$ repeticiones de un experimento aleatorio, manteniendo idénticas condiciones. Sea $n_i$ el número de veces que se presenta el suceso $S_i$; entonces se le asigna la probabilidad:
 \begin{equation}
@@ -118,7 +118,7 @@ En esta sección se presentan los modelos más utilizados en la práctica, disti
 
 Los modelos de distribución discretos más populares son el binomial, el binomial negativo y el de Poisson. Los dos primeros se asientan sobre el **fenómeno de Bernoulli** con independencia, que, de manera general, consiste en un experimento dicotómico (o que puede considerarse dicotómico), es decir, que se consideran solo dos posibles resultados (uno identificado con el **éxito** del experimento, cuya probabildad se denota por $p$, y el otro con el **fracaso**, con probabilidad $q=(1-p)$) tal que los resultados producidos por el experimento son independientes de los precedentes.
 
-- **Distribución binomial B($n$, $p$)**
+- **Distribución binomial,** **B****(*****n***, ***p*****)**
 
 La distribución binomial $(n,p)$ es una distribución de probabilidad discreta que asigna probabilidades al número de éxitos en una secuencia de *n* experimentos independientes de Bernoulli con una probabilidad fija de éxito $p$. Puede tomar los valores $x=0,1,...,n$ y su función de cuantía es:
 \begin{equation}
@@ -138,13 +138,13 @@ plot(x, pbinom(x, 10, 0.5), ylab = "F(x)", xlab = "x", type = "s", main = "Funci
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/150014img01.png" alt="Función de cuantía y de distribución para una variable B(10, 0.5)." width="60%" />
-<p class="caption">(\#fig:150014binomd)Función de cuantía y de distribución para una variable B(10, 0.5).</p>
+<img src="img/150014img01.png" alt="Función de cuantía y de distribución para una variable B(10;0,5)." width="60%" />
+<p class="caption">(\#fig:150014binomd)Función de cuantía y de distribución para una variable B(10;0,5).</p>
 </div>
 
-En el **caso particular** de que *n*=1, B(1, *p*), se denomina **distribución Bernoulli, B(*p*)**.
+En el **caso particular** de que *n*=1, B(1, *p*), se denomina **distribución de Bernoulli, B(*p*)**.
 
-- **Distribución Binomial negativa o de Pascal BN($r$, $p$)**
+- **Distribución binomial negativa o de Pascal,** **BN****(*****r*****, *****p*****)**
 
 La distribución binomial negativa surge en el contexto de una serie de experimentos de Bernoulli independientes, con probabilidad constante de éxito $p$, donde la v.a. $X$ denota el número de experimentos fracasados ($x$) hasta que se produce un número determinado de éxitos ($r$). Puede tomar los valores $x=0,1,...$ y su función de cuantía es:
 \begin{equation}
@@ -158,18 +158,18 @@ La representación gráfica de las funciones de cuantía y distribución se mues
 ```r
 par(mfrow = c(1, 2))
 x <- 0:20
-plot(x, dnbinom(x, 3, 0.35), type = "h", ylab = "P(x)", xlab = "x", main = "Función de cuantía", col = "pink", lwd = 2)
-plot(x, pnbinom(x, 3, 0.35), ylab = "F(x)", xlab = "x", type = "s", main = "Función de distribución", lwd = 2)
+plot(x, dnbinom(x, 3, 0,35), type = "h", ylab = "P(x)", xlab = "x", main = "Función de cuantía", col = "pink", lwd = 2)
+plot(x, pnbinom(x, 3, 0,35), ylab = "F(x)", xlab = "x", type = "s", main = "Función de distribución", lwd = 2)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/150014img02.png" alt="Función de cuantía y de distribución para una variable BN(3, 0.35)." width="60%" />
-<p class="caption">(\#fig:150014nbin)Función de cuantía y de distribución para una variable BN(3, 0.35).</p>
+<img src="img/150014img02.png" alt="Función de cuantía y de distribución para una variable BN(3; 0,35)." width="60%" />
+<p class="caption">(\#fig:150014nbin)Función de cuantía y de distribución para una variable BN(3; 0,35).</p>
 </div>
 
-En el **caso particular** de que $r=1$, BN(1, $p$), se denomina **distribución geométrica G($p$)**.
+En el **caso particular** de que $r=1$, BN(1, $p$), se denomina **distribución geométrica, G($p$)**.
 
-- **Distribución de Poisson P($\lambda)$**
+- **Distribución de Poisson, ****P**($\bf{\lambda}$**)**
 
 Se denominan **fenómenos de Poisson** a aquellos en los que la ocurrencia de un suceso se encuentra distribuida a lo largo de un tiempo (o espacio) dado, cumpliendo que el proceso es estable, con una media de ocurrencias $\lambda$ por unidad de tiempo, ocurrencias que se presentan de forma aleatoria e independiente. La variable que mide el número $x$ de ocurrencias puede tomar los valores $x=0,1,2,...$ y se dice que sigue una distribución de Poisson, con función de cuantía:
 \begin{equation}
@@ -188,15 +188,15 @@ plot(x, ppois(x, 3), ylab = "F(x)", xlab = "x", type = "s", main = "Función de 
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/150014img03.png" alt="Función de cuantía y de distribución para una variable P(2.5)." width="60%" />
-<p class="caption">(\#fig:150014poisson)Función de cuantía y de distribución para una variable P(2.5).</p>
+<img src="img/150014img03.png" alt="Función de cuantía y de distribución para una variable P(2,5)." width="60%" />
+<p class="caption">(\#fig:150014poisson)Función de cuantía y de distribución para una variable P(2,5).</p>
 </div>
 
 ### Modelos continuos
 
-Los modelos de distribución para variables continuas más habituales son el normal, el gamma, el chi-cuadrado ($\chi ^2_n$), el $t$--Student y el $F$ de Snedecor.
+Los modelos de distribución para variables continuas más habituales son el normal, el gamma, el Chi-cuadrado ($\chi ^2_n$), el $t$--Student y el $F$ de Snedecor.
 
-- **Distribución normal $N(\mu, \sigma)$**
+- **Distribución normal,** **N****(**$\bf\mu$**,** $\bf\sigma$**)**
 
 La distribución normal\index{distribución normal}, de Gauss o gaussiana tiene una gran importancia debido a que un gran número de fenómenos aleatorios se puede modelizar a partir de ella  (véase la Sec. \@ref(tcl) sobre el teorema central del límite). Además, es la distribución que se toma como supuesto y en la que se basan muchas de las técnicas estadísticas que se ven en este libro.
 
@@ -222,8 +222,8 @@ curve(pnorm(x, 0, 2), ylab = "P(x)", add = TRUE, type = "l", col = "darkgreen")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/150014img04.png" alt="Función de densidad y de distribución de variables normales, con media 0 y desviación típica 1 (azul), 1,5 (rojo), y 2 (verde)." width="60%" />
-<p class="caption">(\#fig:150014norm)Función de densidad y de distribución de variables normales, con media 0 y desviación típica 1 (azul), 1,5 (rojo), y 2 (verde).</p>
+<img src="img/150014img04.png" alt="Función de densidad y de distribución de variables normales, con media 0 y desviación típica 1 (azul), 1,5 (rojo) y 2 (verde)." width="60%" />
+<p class="caption">(\#fig:150014norm)Función de densidad y de distribución de variables normales, con media 0 y desviación típica 1 (azul), 1,5 (rojo) y 2 (verde).</p>
 </div>
 
 Una característica importante de la distribución normal es que verifica la 
@@ -236,7 +236,7 @@ En particular, si $X\sim N(\mu,\sigma)$, la variable  $Z=\frac{X-\mu}{\sigma} \s
 
 [^Prob5]: También es posible interpretar que toda distribución normal es una transformada de la distribución $Z$, ya que $X=\mu+\sigma Z$.
 
-- **Distribución gamma $\Gamma ( \alpha, \beta )$**
+- **Distribución gamma**, $\bf\Gamma$**(**$\bf\alpha$**, **$\bf\beta$**)**
 
 La **distribución gamma** es útil en el contexto de los fenómenos de Poisson o cuando se trata de asignar probabilidades al tiempo de espera (o la vida útil) hasta que ocurre un número determinado de sucesos  ($\alpha$), suponiendo que $\beta$ es el tiempo medio entre ocurrencias de un suceso.
 
@@ -269,28 +269,28 @@ curve(pgamma(x, 1, 2), type = "l", add = TRUE, col = "blue", lwd = 2)
 
 El **caso particular** de que $\alpha=1$ se denomina **distribución exponencial** de parámetro $\beta$.
 
-- **Distribución $\chi_n ^2$ de Pearson**
+- **Distribución Chi--cuadrado de Pearson**,  $\bf \chi_n ^2$
 
-Sean $X_1, X_2, ....,X_n$ v.a. independientes, todas distribuidas según una $N(0,1)$. La suma de sus cuadrados sigue una distribución $\Gamma (\frac {n}{2} , 2 )$, que se denomina **distribución Chi-cuadrado**:[^Prob6]
+Sean $X_1, X_2, ....,X_n$ v.a. independientes, todas distribuidas según una $N(0,1)$. La suma de sus cuadrados sigue una distribución $\Gamma (\frac {n}{2} , 2 )$, que se denomina **distribución Chi--cuadrado**:[^Prob6]
 \begin{equation}
 \sum_{i=1}^n X_i^2 \sim \chi^2_n \equiv \Gamma (\frac {n}{2} , 2 ).
 \end{equation}
 
 [^Prob6]: Como se verá en la Sec. \@ref(pobnormales), esta distribución aparece en el muestreo de poblaciones normales, en concreto al trabajar con varianzas, y también resulta fundamental en el Cap. \@ref(tablas-contingencia). Además de otras aplicaciones, estos dos casos justifican su interés.
 
-Al parámetro $n$ se le llama **grados de libertad**. Su media es $E(X)=n$ y su varianza es $Var(X)=2n$ y la forma funcional de su densidad y distribución son casos particulares de la gamma. De hecho, la Fig. \@ref(fig:150014gamma) corresponde a distribuciones $\chi^2_n$ con *n=2, 4, 10* y *20*.
+Al parámetro $n$ se le llama **grados de libertad**. Su media es $E(X)=n$ y su varianza es $Var(X)=2n$ y la forma funcional de su densidad y distribución son casos particulares de la gamma. De hecho, la Fig. \@ref(fig:150014gamma) corresponde a distribuciones $\chi^2_n$ con *n*= 2, 4, 10 y 20.
 
-- **Distribución** ***t--Student$***
+- **Distribución** ***t***--**Student**
 
-La distribución $t-Student$ surge, entre otros contextos, en el muestreo de poblaciones normales (véase la Sec. \@ref(pobnormales)), asociada al uso de medias. Se dice que una v.a. $X$ sigue una distribución $t-student$ con $n$ **grados de libertad** si es el cociente entre una distribución normal estándar y la raíz de una $\chi^2_n$ dividida entre sus grados de libertad, ambas independientes: $X \sim \frac{N(0,1)}{\sqrt{\chi^2_n /n}}$.
+La distribución *t*--Student surge, entre otros contextos, en el muestreo de poblaciones normales (véase la Sec. \@ref(pobnormales)), asociada al uso de medias. Se dice que una v.a. $X$ sigue una distribución *t*--Student con $n$ **grados de libertad** si es el cociente entre una distribución normal estándar y la raíz de una $\chi^2_n$ dividida entre sus grados de libertad, ambas independientes: $X \sim \frac{N(0,1)}{\sqrt{\chi^2_n /n}}$.
 
 Su función de densidad viene dada por:
 \begin{equation}
 f(x)=\frac{\Gamma((n+1)/2)}{\sqrt{n\pi}\Gamma(n/2)}(1+x^2/n)^{-(n+1)/2},
 \end{equation}
-con media $E(X)=0$ y varianza $Var(X)=\frac{n}{n-2}$, siendo $n>2$. Su densidad tiene forma acampanada, simétrica respecto a cero y parecida a la de la normal, pero con mayor probabilidad en las colas. En la Fig. \@ref(fig:150014student) se muestran las funciones de densidad y distribución para tres $t-Student$.[^Prob7]
+con media $E(X)=0$ y varianza $Var(X)=\frac{n}{n-2}$, siendo $n>2$. Su densidad tiene forma acampanada, simétrica respecto a cero y parecida a la de la normal, pero con mayor probabilidad en las colas. En la Fig. \@ref(fig:150014student) se muestran las funciones de densidad y distribución para tres *t*--Student.[^Prob7]
 
-[^Prob7]: Para valores de $n$ mayores que 30, la distribución $t-Student$ y la $N(0,1)$ prácticamente coinciden.
+[^Prob7]: Para valores de $n$ mayores que 30, la distribución *t*--Student y la $N(0,1)$ prácticamente coinciden.
 
 
 ```r
@@ -305,11 +305,11 @@ curve(pt(x, df = 3), type = "l", add = TRUE, col = "darkgreen", lwd = 2)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/150014img06.png" alt="Función de densidad y de distribución de variables $t-Student$, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad." width="60%" />
-<p class="caption">(\#fig:150014student)Función de densidad y de distribución de variables $t-Student$, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad.</p>
+<img src="img/150014img06.png" alt="Función de densidad y de distribución de variables *t*--Student, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad." width="60%" />
+<p class="caption">(\#fig:150014student)Función de densidad y de distribución de variables *t*--Student, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad.</p>
 </div>
 
-- **Distribución $F$ de Snedecor**
+- **Distribución** ***F*** **de Snedecor**
 
 Este modelo también está asociado al muestreo sobre poblaciones normales, en este caso, a la comparación de varianzas. Se define una distribución $F$ de Snedecor con $n$ y $m$ grados de libertad como el cociente de dos distribuciones $\chi^2$ independientes divididas entre sus grados de libertad, $F_{n,m} = \frac {\chi^2_{n}/n}{\chi^2_{m}/m}$.
 
@@ -319,7 +319,7 @@ f(x)=\frac{\Gamma(\frac{n+m}{2})}{\Gamma(\frac{n}{2})\Gamma(\frac{m}{2})}\left(\
 \end{equation}
 con media $E(X)=\frac{m}{m-2}$, siendo $m>2$ y varianza $Var(X)=\frac{2m^2(n+m-2)}{n(m-2)^2(m-4)}$, cuando $m>4$.
 
-La gráfica de la función de densidad es parecida a la de la $\chi_n^2$. Así, solo está definida para el semieje positivo y su apariencia variará según los grados de libertad. La Fig. \@ref(fig:150014FSnedecor) muestra las funciones de densidad y distribución para varias distribuciones $F$ de $Snedecor$.
+La gráfica de la función de densidad es parecida a la de la $\chi_n^2$. Así, solo está definida para el semieje positivo y su apariencia variará según los grados de libertad. La Fig. \@ref(fig:150014FSnedecor) muestra las funciones de densidad y distribución para varias distribuciones $F$ de Snedecor.
 
 
 ```r
@@ -334,8 +334,8 @@ curve(pf(x, 5, 5), type = "l", add = TRUE, col = "darkgreen")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/150014img07.png" alt="Función de densidad y de distribución de variables $F$ de $Snedecor$, en azul con (5, 10) grados de libertad, en rojo con (10, 5) y en verde con (5, 5)." width="60%" />
-<p class="caption">(\#fig:150014FSnedecor)Función de densidad y de distribución de variables $F$ de $Snedecor$, en azul con (5, 10) grados de libertad, en rojo con (10, 5) y en verde con (5, 5).</p>
+<img src="img/150014img07.png" alt="Función de densidad y de distribución de variables $F$ de Snedecor, en azul con (5, 10) grados de libertad, en rojo con (10, 5) y en verde con (5, 5)." width="60%" />
+<p class="caption">(\#fig:150014FSnedecor)Función de densidad y de distribución de variables $F$ de Snedecor, en azul con (5, 10) grados de libertad, en rojo con (10, 5) y en verde con (5, 5).</p>
 </div>
 
 
@@ -368,9 +368,9 @@ Poisson | discreto | P($\lambda$)| `pois()`
 Normal | continuo | $N(\mu, \sigma)$| `norm()`
 Gamma | continuo  | $\Gamma(\alpha,\beta)$ | `gamma()`
 Exponencial | continuo | $exp (\beta)$| `exp()` 
-Chi-cuadrado | continuo | $\chi^2_n$ |`chisq()`
-$t-student$ | continuo | $t_n$ | `t()`
-*F de Snedecor* | continuo  | $F_{n,m}$ | `f()`
+Chi--cuadrado | continuo | $\chi^2_n$ |`chisq()`
+*t*--Student | continuo | $t_n$ | `t()`
+*F* de Snedecor | continuo  | $F_{n,m}$ | `f()`
 
 A continuación se realizan dos ejemplos con **R**, uno para modelos discretos y otro para la normal. La adaptación a cualquier otro modelo de probabilidad consiste, básicamente, en sustituir las funciones de **R**.
 
@@ -382,7 +382,7 @@ Sea un algoritmo de identificación que trata un número muy elevado de imágene
 
 a) Si se analizan 10 imágenes de personas, calcúlese la probabilidad de que identifique correctamente siete.
 
-Denominando $X$ al número de imágenes de personas correctamente clasificadas, se tiene que $X \sim B(10; 0,8)$. Se pide $P(X=7)$:
+Denominando $X$ al número de imágenes de personas correctamente clasificadas, se tiene que $X \sim B(10;0,8)$. Se pide $P(X=7)$:
 
 ```r
 dbinom(7, size = 10, prob = 0.8)
@@ -390,7 +390,7 @@ dbinom(7, size = 10, prob = 0.8)
 ```
 b) Para el resto de imágenes, calcúlese la probabilidad de que identifique correctamente como mucho 50 hasta que se produzca el segundo error.
 
-Denominando $Y$ al número de imágenes correctamente identificadas hasta el segundo error, se tiene que $Y \sim BN(2; 0,05)$. Se pide $P(Y \leq 50)$:
+Denominando $Y$ al número de imágenes correctamente identificadas hasta el segundo error, se tiene que $Y \sim BN(2;0,05)$. Se pide $P(Y \leq 50)$:
 
 ```r
 pnbinom(50, size = 2, prob = 0.05)
@@ -504,9 +504,9 @@ La teoría de la probabilidad proporciona reglas de comportamiento que permiten 
 
 Los modelos de distribución de probabilidad más usuales en la práctica son:
 
-+ Para variables discretas, el Binomial, el Binomial negativo y el Poisson (junto a sus casos particulares). 
++ Para variables discretas, el binomial, el binomial negativo y el Poisson (junto a sus casos particulares). 
 
-+ Para el caso de variables continuas, los modelos más frecuentes son el normal, el gamma, el $t-Student$, el Chi cuadrado y el $F$ de Snedecor (así como sus casos particulares). 
++ Para el caso de variables continuas, los modelos más frecuentes son el normal, el gamma, el *t*-Student, el Chi--cuadrado y el $F$ de Snedecor (así como sus casos particulares). 
 
 Estos modelos facilitan el cálculo de probabilidades en, prácticamente, cualquier proyecto de las ciencias sociales, técnicas y naturales.
 :::

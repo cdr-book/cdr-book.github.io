@@ -66,8 +66,7 @@ datos. Las principales metodologías se presentan a continuación.
 
 ## Principales metodologías en ciencia de datos
 
-\index{metodología!KDD} \index{metodología!SEMMA}
-\index{metodología!CRISP-DM}
+\index{metodología!KDD} 
 
 En un proyecto de ciencia de datos es muy importante la metodología, pues proporciona al
 científico de datos una estrategia y un marco con el que trabajar. Desde finales del siglo XX se
@@ -95,7 +94,7 @@ de datos.
 (ii) **SEMMA**, acrónimo que coincide con las etapas de las que consta (en inglés,
 *Sample*, *Explore*, *Modify*, *Model  and Assess*) fue desarrollada y mantenida
 por el Instituto SAS en 2012. Se define como el proceso de selección, exploración y modelización de grandes
-bases de datos para descubrir patrones de negocio desconocidos.
+bases de datos para descubrir patrones de negocio desconocidos. \index{metodología!SEMMA}
 
 (iii) **CRISP-DM**, acrónimo en inglés de *Cross Industry Standard Process for Data Mining*, planteada
 inicialmente en 1996, publicada formalmente en @chapman_2000 y mantenida durante varios años por
@@ -103,8 +102,8 @@ la compañía SPSS, posteriormente adquirida por IBM, que se ha encargado de man
 refinarla hasta la actualidad. Esta metodología define una secuencia flexible de
 seis fases que permiten la construcción e implementación de un modelo de minería de datos para
 ser utilizado en un entorno real, que contribuya a respaldar la toma de decisiones de negocio.
-Se considera la metodología más utilizada en la actualidad [@azevedo_2008; @shafique_2014], entre otros y
-se describe en la siguiente sección.
+Se considera la metodología más utilizada en la actualidad [@azevedo_2008; @shafique_2014, entre otros] y
+se describe en la siguiente sección. \index{metodología!CRISP-DM}
 
 
 
@@ -143,7 +142,7 @@ De manera esquemática, dichas etapas son:
 
 
     -   *Recopilación*, tanto de datos internos como externos a la organización. Esta fase
-    incluye, si es necesario, la obtención de datos adicionales, y el etiquetado de casos no
+    incluye, si es necesario, la obtención de datos adicionales y el etiquetado de casos no
     clasificados con anterioridad.
 
     - *Descripción*, especificando aspectos como la cantidad de datos disponibles,

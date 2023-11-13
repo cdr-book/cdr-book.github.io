@@ -14,7 +14,7 @@ La inferencia estadística proporciona las herramientas y técnicas que permiten
 Es habitual que se conozca (o se asuma) que la distribución poblacional $F(x)$ pertenezca a alguna familia paramétrica, es decir, que se asuma su forma funcional pero que dependa de algunos parámetros (lo más frecuente es que se asuma la normalidad, pero podría ser cualquiera de los modelos paramétricos existentes). Se habla entonces de **inferencia paramétrica**, ya que se usa la información muestral para determinar los "mejores" valores (bajo algún criterio) de los parámetros que rigen la distribución poblacional, existiendo tres planteamientos básicos: estimación puntual\index{estimación!puntual} (Sec. \@ref(estimpuntual)), por intervalo\index{intervalos de confianza} (Sec. \@ref(estimintervalos)) y contraste de hipótesis\index{contraste de hipótesis} (Sec. \@ref(contrhip)).
 \index{estimación!por intervalos}
 
-También hay situaciones en las que la forma funcional de la distribución poblacional es desconocida, o se duda de que la familia paramétrica considerada sea adecuada. En estos casos, bajo el nombre genérico de **inferencia no paramétrica**, se plantean contrastes que buscan determinar cuándo es posible asumir un modelo concreto de distribución, entre los que destacan, por su frecuente uso, los contrastes de normalidad (Sec. \@ref(contrnormalidad)). Otra alternativa que permite aproximar características poblacionales sin asumir ninguna distribución poblacional concreta es el **remuestreo**, fundamentalmente el denominado "*bootstrap*" (se aborda en el Cap. \@ref(muestreo)).
+También hay situaciones en las que la forma funcional de la distribución poblacional es desconocida, o se duda de que la familia paramétrica considerada sea adecuada. En estos casos, bajo el nombre genérico de **inferencia no paramétrica**, se plantean contrastes que buscan determinar cuándo es posible asumir un modelo concreto de distribución, entre los que destacan, por su frecuente uso, los contrastes de normalidad (Sec. \@ref(contrnormalidad)). Otra alternativa que permite aproximar características poblacionales sin asumir ninguna distribución poblacional concreta es el **remuestreo**, fundamentalmente el denominado *bootstrap* (se aborda en el Cap. \@ref(muestreo)).
 
 ## Muestreo aleatorio simple {#mas}
 
@@ -69,7 +69,7 @@ curve(pnorm, add = TRUE, col = "red")
 <p class="caption">(\#fig:150015distrempir)Distribución empírica para muestras de diferente tamaño de una distribución normal.</p>
 </div>
 
-Es muy frecuente que, a efectos de inferencia, no se estudie el comportamiento aleatorio de toda la muestra (su distribución conjunta) sino que interese el comportamiento de una función de la muestra que no dependa de ningún valor desconocido, $T(X)=T(X_1,...,X_n)$, llamada genéricamente **estadístico muestral**; dicho comportamiento vendrá determinado por la **distribución en el muestreo** del estadístico $T(X)$. El hecho de utilizar una m.a.s. permite establecer resultados de interés sobre los estadísticos o, en algunos casos, incluso obtener la distribución en el muestreo exacta de los estadísticos más usuales (Sec. \@ref(pobnormales)).
+Es muy frecuente que, a efectos de inferencia, no se estudie el comportamiento aleatorio de toda la muestra (su distribución conjunta), sino que interese el comportamiento de una función de la muestra que no dependa de ningún valor desconocido, $T(X)=T(X_1,...,X_n)$, llamada genéricamente **estadístico muestral**; dicho comportamiento vendrá determinado por la **distribución en el muestreo** del estadístico $T(X)$. El hecho de utilizar una m.a.s. permite establecer resultados de interés sobre los estadísticos o, en algunos casos, incluso obtener la distribución en el muestreo exacta de los estadísticos más usuales (Sec. \@ref(pobnormales)).
 
 Así, dadas una variable poblacional $X$ con varianza finita y una m.a.s., se define la **media muestral** (aleatoria) como:
 
@@ -86,7 +86,7 @@ E[\bar X] = E[X] \ \text{;} \ Var(\bar X)=\frac{Var(X)}{n}.
 
 Este resultado es muy útil, ya que indica que la variabilidad de la media muestral es más pequeña que la variabilidad de la variable poblacional, siendo inversamente proporcional al tamaño muestral.
 
-Otro estadístico muy utilizado es la **varianza muestral**,^[La varianza muestral, como estadístico, también es aleatorio] que se define como:
+Otro estadístico muy utilizado es la **varianza muestral**,^[La varianza muestral, como estadístico, también es aleatorio.] que se define como:
 
 \begin{equation}
 (\#eq:varmuestral)
@@ -111,7 +111,7 @@ estadístico para el que sí se cumple que $E[S_c ^2] = Var[X]$, ya que existe u
 [^Infe3]: Muchos textos, sobre todo anglosajones, no hacen esta distinción, sino que denominan directamente "varianza muestral" a la cuasivarianza. En **R**, por ejemplo, las funciones `var()` o `sd()` proporcionan la cuasivarianza y cuasidesviación típica muestrales respectivamente, matiz que hay que tener siempre presente.
 
 ## Estimación puntual {#estimpuntual}
-
+\index{estimación!puntual}
 Sea una población caracterizada por una distribución poblacional, $F (x,\theta)$, de una familia paramétrica de la que se desconoce el valor del parámetro $\theta \in \Theta$, donde $\Theta$ es el espacio paramétrico (conjunto de posibles valores de $\theta$). Dada una m.a.s. $X=(X_1,...,X_n)$, se considera como *estimador* de $\theta$ a un estadístico muestral cuyo resultado sea un posible valor del parámetro:
 
 \begin{equation}
@@ -168,7 +168,7 @@ Este método suele proporcionar estimadores con buenas propiedades estadísticas
 
 [^Infe4]: En las distribuciones usuales es así, salvo que el estimador de máxima verosimilitud sea sesgado, como es el caso de estimar la varianza en una distibución normal.
 
-Una alternativa computacionalmente más sencilla es la basada en el conocido como **método de los momentos**. El planteamiento básico es expresar el parámetro en función de los momentos poblacionales (esperanza, varianza, etc.) y utilizar como estimador la misma función pero de los momentos muestrales (media muestral, varianza muestral, etc.). En las distribuciones más usuales, los parámetros suelen ser momentos poblacionales o tranformaciones simples de estos, por lo que el método de los momentos es muy sencillo. Como contrapartida, es más difícil evaluar las propiedades estadísticas de estos estimadores, salvo que coincidan con los de mínimos cuadrados o de máxima verosimilitud.
+Una alternativa computacionalmente más sencilla es la basada en el conocido como **método de los momentos**. El planteamiento básico es expresar el parámetro en función de los momentos poblacionales (esperanza, varianza, etc.) y utilizar como estimador la misma función pero de los momentos muestrales (media muestral, varianza muestral, etc.). En las distribuciones más usuales, los parámetros suelen ser momentos poblacionales o transformaciones simples de estos, por lo que el método de los momentos es muy sencillo. Como contrapartida, es más difícil evaluar las propiedades estadísticas de estos estimadores, salvo que coincidan con los de mínimos cuadrados o de máxima verosimilitud.
 
 En **R**, el paquete `fdistrplus` dispone de la función `fitdist()`, que permite la obtención de los estimadores para las distribuciones usuales por diversos métodos, incluidos el de máxima verosimilitud (`mle`) y el de los momentos (`mme`).
 
@@ -176,7 +176,7 @@ En **R**, el paquete `fdistrplus` dispone de la función `fitdist()`, que permit
 
 
 ## Estimación por intervalos {#estimintervalos}
-
+\index{intervalos de confianza}
 Dado que todo estimador es una variable aleatoria, su valor concreto, la "estimación" del parámetro $\hat\theta$, depende de la muestra. Esta variación muestral ocasiona incertidumbre sobre la estimación. Una forma de incluir esta variabilidad en la estimación puede consistir en sustituir la estimación puntual por un intervalo de valores en el que se tenga un cierto nivel de confianza de que contenga al verdadero valor del parámetro.
 
 El método más extendido para obtener **intervalos de confianza** consiste en utilizar un estimador puntual y su distribución en el muestreo para construir un intervalo que contenga, con cierta probabilidad $(1-\alpha)$, el verdadero valor $\theta$:
@@ -194,8 +194,8 @@ En **R**, el paquete `Rlab` permite obtener los valores críticos de las distrib
 
 
 ## Contrastes de hipótesis {#contrhip}
-
-Hay situaciones donde no interesa tanto estimar el valor de un parámetro sino decidir si la información muestral es congruente con algún valor concreto del parámetro. En estos casos, se puede establecer como **hipótesis** que el parámetro toma un valor concreto y **contrastar** si es verosímil haber obtenido el resultado muestral dado. Este planteamiento se conoce como **contrastes de significación**.
+\index{contraste de hipótesis}
+Hay situaciones donde no interesa tanto estimar el valor de un parámetro, sino decidir si la información muestral es congruente con algún valor concreto del parámetro. En estos casos, se puede establecer como **hipótesis** que el parámetro toma un valor concreto y **contrastar** si es verosímil haber obtenido el resultado muestral dado. Este planteamiento se conoce como **contrastes de significación**.
 
 Así, se establece una hipótesis, históricamente conocida como **hipótesis nula**, que determina un valor del parámetro:
 
@@ -203,17 +203,17 @@ Así, se establece una hipótesis, históricamente conocida como **hipótesis nu
 H_0 \equiv \theta = \theta_0.
 \end{equation}
 
-Suponiendo cierta la hipótesis nula, la distribución muestral del estimador permite obtener la probabilidad de observar un valor del estimador más "distante" del valor del parámetro fijado en la hipótesis nula que el obtenido en la muestra, probabilidad conocida como **$p-$valor**:\index{p-valor} si es muy pequeño, es muy poco probable que se observe el valor obtenido en la muestra cuando la hipótesis es cierta, por lo que la evidencia empírica no es congruente con ella; si no es pequeño, dicho valor es probable que se observe (bajo la hipótesis nula), por lo que no habría evidencia empírica "en contra" de ella.
+Suponiendo cierta la hipótesis nula, la distribución muestral del estimador permite obtener la probabilidad de observar un valor del estimador más "distante" del valor del parámetro fijado en la hipótesis nula que el obtenido en la muestra, probabilidad conocida como **$p-$valor**:\index{p-valor@\textit{p}-valor} si es muy pequeño, es muy poco probable que se observe el valor obtenido en la muestra cuando la hipótesis es cierta, por lo que la evidencia empírica no es congruente con ella; si no es pequeño, dicho valor es probable que se observe (bajo la hipótesis nula), por lo que no habría evidencia empírica "en contra" de ella.
 
-Se habla de **$p-$valor bilateral** o "a dos colas" cuando la distancia se considera tanto por la derecha como por la izquierda de la distribución del estimador bajo la hipótesis nula. En caso de que se considere sólo por la izquierda o por la derecha, se habla de **$p-$valor unilateral** (a la izquierda o a la derecha, respectivamente) o "a una cola". La comparación (distancia) entre el valor del parámetro establecido en la hipótesis nula y el del estimador de dicho parámetro puede llevarse a cabo por diferencia (tal es el caso del contraste de medias) o por cociente (caso de los contrastes de varianzas).
+Se habla de **$p-$valor bilateral** o "a dos colas" cuando la distancia se considera tanto por la derecha como por la izquierda de la distribución del estimador bajo la hipótesis nula. En caso de que se considere solo por la izquierda o por la derecha, se habla de **$p-$valor unilateral** (a la izquierda o a la derecha, respectivamente) o "a una cola". La comparación (distancia) entre el valor del parámetro establecido en la hipótesis nula y el del estimador de dicho parámetro puede llevarse a cabo por diferencia (tal es el caso del contraste de medias) o por cociente (caso de los contrastes de varianzas).
 
 Habitualmente, se considera que un $p-$valor por debajo de 0,05 ya indica que la evidencia empírica no permite asumir como cierta la hipótesis nula, expresándose como que el valor del parámetro es "significativamente distinto (menor o mayor)" que $\theta_0$. También es posible interpretar el $p-$valor como "la probabilidad máxima de cometer el error de rechazar la hipótesis nula cuando es cierta", abreviado como "tamaño del error si se rechaza la hipótesis nula".
 
-Estos contrastes de significación, originalmente desarrollados por Ronald Fisher, fueron incluidos en un esquema de toma de decisiones por Jerzy Neyman y Egon Pearson, planteando que, de no ser cierta la hipótesis nula, se debe plantear una hipótesis alternativa $H_1$. La decisión de qué hipótesis resulta más congruente con los datos se basa en la comparación por cociente de las verosimilitudes de la muestra bajo cada una de ellas, decidiendo el rechazo de la hipótesis nula a favor de la alternativa cuando dicho cociente es, en probabilidad, inferior a un valor prefijado, $\alpha$, conocido como **nivel de significación**. Dependiendo de la estructura de las hipótesis (simples, si solo determinan un valor del parámetro, o compuestas, si determinan más de uno; a su vez, unilaterales si los valores son todos menores, o mayores, que uno dado, o bilaterales en caso contrario) la regla de decisión del contrate resulta más o menos compleja de obtener.
+Estos contrastes de significación, originalmente desarrollados por Ronald Fisher, fueron incluidos en un esquema de toma de decisiones por Jerzy Neyman y Egon Pearson, planteando que, de no ser cierta la hipótesis nula, se debe plantear una hipótesis alternativa $H_1$. La decisión de qué hipótesis resulta más congruente con los datos se basa en la comparación por cociente de las verosimilitudes de la muestra bajo cada una de ellas, decidiendo el rechazo de la hipótesis nula a favor de la alternativa cuando dicho cociente es, en probabilidad, inferior a un valor prefijado, $\alpha$, conocido como **nivel de significación**. Dependiendo de la estructura de las hipótesis (simples, si solo determinan un valor del parámetro, o compuestas, si determinan más de uno; a su vez, unilaterales si los valores son todos menores, o mayores, que uno dado, o bilaterales en caso contrario) la regla de decisión del contraste resulta más o menos compleja de obtener.
 
 Cuando se adopta el planteamiento decisional de Neyman-Pearson, el nivel de significación permite evaluar la probabilidad de rechazar la hipótesis nula cuando es cierta (conocida también como **probabilidad de error de tipo I**, $\alpha$), pero también la probabilidad de aceptar como cierta $H_0$ cuando es más correcta $H_1$ (denominada **probabilidad de error de tipo II**, $\beta$) o, equivalentemente, su complementario: la probabilidad de rechazar $H_0$ cuando $H_1$ es más correcta, probabilidad conocida como **potencia del contraste**, $(1-\beta)$. Si la hipótesis alternativa es simple, es posible evaluar la potencia, por lo que se tiene una medida probabilística de la magnitud de ambos errores (de tipo I y de tipo II), lo cual permite una valoración completa del resultado de la regla de decisión (contraste de hipótesis). Sin embargo, si la hipótesis $H_1$ es compuesta, la magnitud de la potencia es una función evaluada en el rango de valores que establezca dicha hipótesis. En este caso, se dispone de una medida probabilística del error de tipo I pero no del error de tipo II, puesto que depende de valores concretos del parámetro que no son especificados en la hipótesis alternativa, $H_1$.
 
-Computacionalmente, dada la información muestral, es más fácil calcular el $p-$valor que plantear el esquema de decisión de Neyman-Pearson, por lo que es la estrategia utilizada en la práctica. 
+Computacionalmente, dada la información muestral, es más fácil calcular el *p*--valor que plantear el esquema de decisión de Neyman-Pearson, por lo que es la estrategia utilizada en la práctica. 
 
 Dado el carácter breve e introductorio de este capítulo, no se profundizará más en este esquema de decisión, que puede consultarse, por ejemplo, en @CasellaBerger2007, @Blais2020 o @Almudevar2021, entre otros muchos.
 
@@ -246,7 +246,7 @@ IC_{(1-\alpha)} = \left [ {(n-1) s_c^2 \over {\chi^2_{n-1,\alpha /2}}} , {(n-1) 
 
 donde $\chi ^2 _{n-1,\alpha / 2}$ representa el cuantil en la distribución.^[Nótese que en los IC se utilizan los valores observados del estimador,  $s^2$ o $S_c^2$, según se haya utilizado como estimador la varianza o la cuasivarianza. Lo mismo ocurre en los demás intervalos.] 
 
-Para el contraste de $H_0 \equiv \sigma^2 = \sigma_0^2$, la "distancia" es ${n s^2 \over \sigma^2_0} = {(n-1) s_c^2 \over \sigma_0^2}$, lo que permite calcular los $p-$valores mediante una distribución $\chi^2_{n-1}$.^[Nótese que la "distancia" no involucra solo al valor observado del estimador y el valor del parámetro bajo la hipótesis nula, sino también una constante (en este caso $n$ o $n-1$). Ello se hace porque así el valor de esta "distancia" puede compararse directamente con el facilitado por las tablas de la distribución probabilística correspondiente (en este caso una Chi-cuadrado).]
+Para el contraste de $H_0 \equiv \sigma^2 = \sigma_0^2$, la "distancia" es ${n s^2 \over \sigma^2_0} = {(n-1) s_c^2 \over \sigma_0^2}$, lo que permite calcular los *p*--valores mediante una distribución $\chi^2_{n-1}$.^[Nótese que la "distancia" no involucra solo al valor observado del estimador y el valor del parámetro bajo la hipótesis nula, sino también una constante (en este caso $n$ o $n-1$). Ello se hace porque así el valor de esta "distancia" puede compararse directamente con el facilitado por las tablas de la distribución probabilística correspondiente (en este caso una Chi-cuadrado).]
 
 Para el caso de querer estimar la desviación típica, basta con calcular la raíz cuadrada del estimador de la varianza, o si se busca un intervalo de confianza, la raíz de los extremos del intervalo para la varianza. Los contrastes de hipótesis son equivalentes, ya que $\sigma^2=\sigma_0^2 \equiv \sigma = \sigma_0$.
 
@@ -286,9 +286,9 @@ o, equivalentemente:
 IC_{(1-\alpha)} = \left [ \bar x - t_{n-1,\alpha / 2} {s_c \over \sqrt n} , \bar x + t_{n-1, \alpha / 2} {s_c \over \sqrt n}  \right ],
 \end{equation}
 
-donde $t_{n-1,\alpha/2}$ representa el cuantil de la distribución $t-Student$.
+donde $t_{n-1,\alpha/2}$ representa el cuantil de la distribución *t*--Student.
 
-Para el contraste de $H_0 \equiv \mu = \mu_0$, la "distancia" es ${\bar X - \mu_0 \over S / \sqrt {n-1}} = {\bar X - \mu_0 \over S_c / \sqrt n}$, lo que permite calcular los $p-$valores mediante una distribución $t_{n-1}$.
+Para el contraste de $H_0 \equiv \mu = \mu_0$, la "distancia" es ${\bar X - \mu_0 \over S / \sqrt {n-1}} = {\bar X - \mu_0 \over S_c / \sqrt n}$, lo que permite calcular los *p*--valores mediante una distribución $t_{n-1}$.
 
 A continuación, el interés se centra en la comparación de dos poblaciones normales independientes, X e Y, a partir de muestras $(X_1,...,X_n)$ y $(Y_1,...,Y_m)$:
 
@@ -314,7 +314,7 @@ si se utiliza la varianza muestral como estimador de su homónima poblacional, o
 \end{equation}
 si se utiliza la cuasivarianza muestral.
 
-Al utilizarse distribuciones $t-Student$, los intervalos de confianza y contrastes de hipótesis son similares a los del caso de una única población con las correcciones pertinentes.
+Al utilizarse distribuciones *t*--Student, los intervalos de confianza y contrastes de hipótesis son similares a los del caso de una única población con las correcciones pertinentes.
 
 ## Inferencia sobre poblaciones normales con **R** {#ejemplopobnorm}
 
@@ -344,9 +344,9 @@ mle_y
 #> sd   3.142891  0.2532613
 ```
 
-El resultado muestra las estimaciones de la media y la desviación típica de la velocidad del viento ( junto al "error estandar" o desviación típica de los estimadores respectivos) para las dos variables anteriormente creadas.
+El resultado muestra las estimaciones de la media y la desviación típica de la velocidad del viento (junto al "error estándar" o desviación típica de los estimadores respectivos) para las dos variables anteriormente creadas.
 
-La orden `plot(mle_x)` permite visualizar la congruencia entre la muestra y la distribución probabilística basada en las estimaciones realizadas; por ejemplo, optando por el primer período, se obtiene la Fig.\@ref(fig:150015mle), que representa el histograma de los valores muestrales junto a la distribución teórica construida con las estimaciones.
+La orden `plot(mle_x)` permite visualizar la congruencia entre la muestra y la distribución probabilística basada en las estimaciones realizadas; por ejemplo, optando por el primer período, se obtiene la Fig. \@ref(fig:150015mle), que representa el histograma de los valores muestrales junto a la distribución teórica construida con las estimaciones.
 
 
 ```r
@@ -415,7 +415,7 @@ t.test(x, y, conf.level = 0.99, alternative = "greater", var.equal = TRUE)
 #> 10.640789  9.283117
 ```
 
-Un $p-$valor tan bajo (0,008, inferior al nivel de significación prefijado) indica que existe suficiente evidencia empírica como para rechazar la hipótesis nula de igualdad de medias; en otros términos, la evidencia empírica no es suficiente para rechazar, con un nivel de confianza del 99%, que la velocidad media del viento en el primer período se superior a la del segundo.
+Un *p*--valor tan bajo (0,008, inferior al nivel de significación prefijado) indica que existe suficiente evidencia empírica como para rechazar la hipótesis nula de igualdad de medias; en otros términos, la evidencia empírica no es suficiente para rechazar, con un nivel de confianza del 99%, que la velocidad media del viento en el primer período es superior a la del segundo.
 
 
 ## Inferencia estadística no paramétrica: contrastes de normalidad {#contrnormalidad}
@@ -444,7 +444,7 @@ shapiro.test(airquality$Wind)
 #> W = 0.98575, p-value = 0.1178
 ```
 
-Para la variable `Temp` el $p-$valor (0,0093) es muy bajo en comparación con los niveles de significación habituales (0,01; 0,05), por lo que hay suficiente evidencia empírica como para rechazar que dicha variable tenga una distribución normal. Por el contrario, en el caso de la variable `Wind`, el $p-$valor (0,1178) no es pequeño, por lo que no hay suficiente evidencia como para rechazar que esté generada por una distribución normal. La Fig. \@ref(fig:150015qqplots) muestra la comparación entre los cuantiles empíricos de ambas variables y los teóricos de una distribución normal.
+Para la variable `Temp` el *p*--valor (0,0093) es muy bajo en comparación con los niveles de significación habituales (0,01; 0,05), por lo que hay suficiente evidencia empírica como para rechazar que dicha variable tenga una distribución normal. Por el contrario, en el caso de la variable `Wind`, el *p*--valor (0,1178) no es pequeño, por lo que no hay suficiente evidencia como para rechazar que esté generada por una distribución normal. La Fig. \@ref(fig:150015qqplots) muestra la comparación entre los cuantiles empíricos de ambas variables y los teóricos de una distribución normal.
 
 
 ```r
@@ -454,8 +454,8 @@ qqnorm(airquality$Wind, main = "Normal Q-Q Plot for Wind")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/150015img03.png" alt="Gráficos Q-Q normales para las variables Temp (izq.) y Wind (dcja.)." width="60%" />
-<p class="caption">(\#fig:150015qqplots)Gráficos Q-Q normales para las variables Temp (izq.) y Wind (dcja.).</p>
+<img src="img/150015img03.png" alt="Gráficos Q-Q normales para las variables Temp (izq.) y Wind (dcha.)." width="60%" />
+<p class="caption">(\#fig:150015qqplots)Gráficos Q-Q normales para las variables Temp (izq.) y Wind (dcha.).</p>
 </div>
 
 ::: {.infobox_resume data-latex=""}

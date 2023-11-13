@@ -15,7 +15,7 @@ En los proyectos de ciencia de datos, generalmente es necesario realizar un **pr
 En **R**, existen varios paquetes para llevar a cabo estos trabajos: `tidyverse`, para la manipulación de ficheros y variables que se han ilustrado en el Cap. \@ref(ch-110003); `dlookr` [@staniak2019landscape]; `validate`, `errorlocate` y `dcmodify` [@van2019data], para realizar validaciones y transformaciones a los datos; `caret` [@kuhn2008building], para imputar los datos faltantes o perdidos (*missing data*); `sf` [@pebesma2018simple], para el manejo de conjuntos de datos espaciales; y `GGally` [@schloerke2021ggally] y `naniar` [@tierney2018expanding] para labores de visualización.
 
 ## Integración de datos \index{datos!integración}
-La **integración** es un conjunto de procesos técnicos y de negocio que se utilizan para combinar información proveniente de diferentes fuentes. En términos generales, se puede decir que consiste en acceder a los datos desde todas las fuentes y localizaciones, tanto en entorno local, como en la nube o en una combinación de ambos, de modo que los registros de una fuente de datos enlacen con los registros de otra. 
+La **integración** es un conjunto de procesos técnicos y de negocio que se utilizan para combinar información proveniente de diferentes fuentes. En términos generales, se puede decir que consiste en acceder a los datos desde todas las fuentes y localizaciones, tanto en entorno local como en la nube o en una combinación de ambos, de modo que los registros de una fuente de datos enlacen con los registros de otra. 
 
 Para ilustrar el proceso de integración, a continuación se integran, por separado,[^Note_Jorge_1-1] el conjunto de datos `Madrid_Sale` (incluido en el paquete `idealista18`), que contiene el identificador de las viviendas en venta en el municipio de Madrid, y 41 variables relativas a dichos inmuebles (como su antigüedad y precio, por ejemplo) con otros dos conjuntos de datos del mismo paquete: `Madrid_POIS`, donde se listan, entre otras, las coordenadas de las estaciones de metro de la ciudad de Madrid; y `Madrid_Polygons`, que contiene los polígonos (en este caso, distritos) del municipio. Ello redundará en un enriquecimiento de los análisis que se lleven a cabo, al disponer en un mismo conjunto de datos un número mayor de variables relativas al problema a solucionar. A modo de ejemplo, la integración de `Madrid_Sale` con `Madrid_POIS` permitirá determinar el número de estaciones de metro a menos de 500 metros de la vivienda y la distancia de cada vivienda a la estación de metro más cercana;  la integración de `Madrid_Sale` y `Madrid_Polygons` permitirá la construcción de un mapa de precios medios del metro cuadrado de vivienda por distritos. Ambos ejemplos se ilustrarán con detalle en las dos subsecciones siguientes.
 
@@ -178,7 +178,7 @@ Es más habitual de lo deseable que algunas variables presenten problemas en la 
 
 En la Fig. \@ref(fig:limpieza) se muestra un proceso general de limpieza de datos. Cada rectángulo azul representa datos en un estado determinado, mientras que cada flecha representa las actividades necesarias para pasar de un estado a otro. En el primer estado están los datos tal y como se recogen (**datos en bruto** o **sin procesar**). Pueden carecer de encabezados, contener tipos de datos incorrectos, etiquetas de categoría incorrectas, codificación de caracteres desconocida o inesperada, etc. Una vez realizadas las correcciones necesarias, los datos pueden considerarse **datos técnicamente correctos**. Es decir, en este estado, los datos se pueden leer en un `data.frame` de **R**, con los nombres, tipos y etiquetas correctos. Sin embargo, esto no significa que los valores estén libres de errores o completos. Los **datos consistentes** son aquellos que están preparados para las fases de modelado. 
 <div class="figure" style="text-align: center">
-<img src="img/limpieza.png" alt="Flujo del proceso de limpieza de datos." width="80%" />
+<img src="img/limpieza.png" alt="Flujo del proceso de limpieza de datos." width="100%" />
 <p class="caption">(\#fig:limpieza)Flujo del proceso de limpieza de datos.</p>
 </div>
 
@@ -312,7 +312,7 @@ Madrid_Polygons1 <-
   Madrid_Polygons |> filter(substr(Madrid_Polygons$LOCATIONID, 1, 10) != "0-EU-ES-28")
 ```
 ### Gestión de valores atípicos no deseados
-\index{datos!atípicos} \index{outlier}
+\index{datos!atípicos} \index{outlier@\textit{outlier}}
 A menudo, hay observaciones distintas que, aparentemente, no encajan en los datos que se están analizando. Si existe una razón coherente para eliminar un valor atípico (un *outlier*), como una entrada de datos incorrecta, hacerlo mejorará el rendimiento que proporcionan los datos con los que se está trabajando. Sin embargo, el hecho de que exista un valor atípico no significa que sea incorrecto. Si un valor atípico resulta ser irrelevante para el análisis, o es un error, debe considerarse su eliminación.
 El número de posibles valores atípicos en el conjunto de datos `Madrid_Sale_red` se determina con el siguiente código, que avisa de la posibilidad de que existan para cada una de las variables.
 
@@ -330,8 +330,8 @@ ggplot(Madrid_Sale_int, aes(x = reorder(LOCATIONNAME, PRICE / CONSTRUCTEDAREA, n
   labs(x = "Distrito", y = "Precio metro cuadrado")
 ```
 <div class="figure" style="text-align: center">
-<img src="img/idealistagraf1.png" alt="Precio medio del metro cuadrado por distritos" width="80%" />
-<p class="caption">(\#fig:idealistagraf1)Precio medio del metro cuadrado por distritos</p>
+<img src="img/idealistagraf1.png" alt="Precio medio del metro cuadrado por distritos." width="95%" />
+<p class="caption">(\#fig:idealistagraf1)Precio medio del metro cuadrado por distritos.</p>
 </div>
 
 
@@ -355,13 +355,13 @@ ggpairs(Madrid_Sale_red2,
 
 
 <div class="figure" style="text-align: center">
-<img src="img/idealistagraf2.png" alt="Distribuciones y correlaciones cruzadas algunas variables de $Madrid-Sale-red$." width="60%" />
-<p class="caption">(\#fig:idealistagraf2)Distribuciones y correlaciones cruzadas algunas variables de $Madrid-Sale-red$.</p>
+<img src="img/idealistagraf2.png" alt="Distribuciones y correlaciones cruzadas algunas variables de $Madrid$-$Sale$-$red$." width="95%" />
+<p class="caption">(\#fig:idealistagraf2)Distribuciones y correlaciones cruzadas algunas variables de $Madrid$-$Sale$-$red$.</p>
 </div>
 
 
 
-En dicha figura, la diagonal descendente muestra la función de cuantía (para precio medio del metro cuadrado) y las funciones de densidad de `CONSTRUCTEDAREA`, `DISTANCE_TO_METRO` y `ROOMNUMBER`. Los tres últimos paneles de la primera columna muestran los histogramas de estas tres últimas variables. Los tres últimos paneles de la primera fila proporcionan los box-plots de estas variables para los cuatro *bins* de la variable `price_bin` (primer cuartil en rosa, segundo en verde, tercero en azul y cuarto en morado). Los paneles del triángulo lateral derecho muestran sus correlaciones, mientras que los del triángulo inferior izquierdo presentan sus gráficos de dispersión.  Dicho lo anterior, por ejemplo, en la primera fila se observa que las viviendas más económicas suelen tener menos superficie construida (segunda columna), que suelen estar ligeramente más alejadas del metro (tercera) y suelen tener menos habitaciones. Sin embargo, se aprecian algunas cuestiones que llaman la atención. Por ejemplo, que hay una vivienda muy alejadas (a casi 400 kilómetros) de la estación de metro más cercana, lo cual distorsiona algunas de las figuras e impide ver la información que contienen; o que hay  viviendas cuyo precio por metro cuadrado pertenece a la primera categoría de la variable `price_bin` (las más económicas) con muchas habitaciones o con mucha superficie construida.  A continuación, por ejemplo, se filtran las viviendas con 30 o más habitaciones (aunque la lógica sería válida para muchas menos). Se observa que la superficie construida es de menos de 120 metros lo que, sin mayor conocimiento del conjunto de datos, no parece ser coherente y podrían excluirse (filtrarse) del conjunto de datos, o tratar de recabar la información correcta. 
+En dicha figura, la diagonal descendente muestra la función de cuantía (para precio medio del metro cuadrado) y las funciones de densidad de `CONSTRUCTEDAREA`, `DISTANCE_TO_METRO` y `ROOMNUMBER`. Los tres últimos paneles de la primera columna muestran los histogramas de estas tres últimas variables. Los tres últimos paneles de la primera fila proporcionan los *box-plots* de estas variables para los cuatro *bins* de la variable `price_bin` (primer cuartil en rosa, segundo en verde, tercero en azul y cuarto en morado). Los paneles del triángulo lateral derecho muestran sus correlaciones, mientras que los del triángulo inferior izquierdo presentan sus gráficos de dispersión.  Dicho lo anterior, por ejemplo, en la primera fila se observa que las viviendas más económicas suelen tener menos superficie construida (segunda columna), que suelen estar ligeramente más alejadas del metro (tercera) y suelen tener menos habitaciones. Sin embargo, se aprecian algunas cuestiones que llaman la atención. Por ejemplo, que hay una vivienda muy alejada (a casi 400 kilómetros) de la estación de metro más cercana, lo cual distorsiona algunas de las figuras e impide ver la información que contienen; o que hay  viviendas cuyo precio por metro cuadrado pertenece a la primera categoría de la variable `price_bin` (las más económicas) con muchas habitaciones o con mucha superficie construida.  A continuación, por ejemplo, se filtran las viviendas con 30 o más habitaciones (aunque la lógica sería válida para muchas menos). Se observa que la superficie construida es de menos de 120 metros, lo que, sin mayor conocimiento del conjunto de datos, no parece ser coherente y podrían excluirse (filtrarse) del conjunto de datos, o tratar de recabar la información correcta. 
 
 
 
@@ -389,7 +389,7 @@ Madrid_Sale_red2$ROOMNUMBER[Madrid_Sale_red2$ROOMNUMBER >= 30 & Madrid_Sale_red2
 
 
 ### Gestión de datos faltantes (*missing*)
-\index{datos!missing}
+\index{datos!missing @\textit{missing}}
 Los datos pueden faltar por multitud de razones, aunque generalmente se suelen agrupar en dos categorías: **valores faltantes informativos** [@kuhn2013applied] y **valores faltantes aleatorios** [@little2019statistical]. Los informativos implican una causa estructural, ya sea por deficiencias en la forma en que se recopilaron los datos o por anomalías en el entorno de observación. Los aleatorios son aquellos que tienen lugar independientemente del proceso de recopilación de datos.
 
 Dependiendo de si los valores faltantes son de uno u otro tipo, se procederá de una u otra manera. A los informativos, en general, se les puede asignar un valor concreto (por ejemplo,
@@ -424,7 +424,7 @@ También se puede optar por reemplazarlos, por ejemplo por un 0, de la siguiente
 Madrid_Sale_red3[is.na(Madrid_Sale_red3)] <- 0
 # También puede usarse la función `replace_na()`, que sustituye los valores perdidos en cada variable por el valor especificado.
 ```
-No obstante, estas dos opciones no son acciones recomendables en primera instancia, porque eliminar los registros con valores faltantes, o introducir valores que podrían no respetar la semántica de los datos, puede ocasionar un alto impacto negativo en los niveles globales de calidad de datos del conjunto de datos.
+No obstante, estas dos opciones no son acciones recomendables en primera instancia, porque eliminar los registros con valores faltantes o introducir valores que podrían no respetar la semántica de los datos puede ocasionar un alto impacto negativo en los niveles globales de calidad de datos del conjunto de datos.
 
 Se puede ir más allá de la eliminación de valores faltantes. A través de diversos métodos se pueden imputar valores que, con mayor o menor probabilidad, podrían ser los que realmente correspondieran a estos valores faltantes. Estos métodos se conocen como **métodos de imputación de valores**. Para imputar valores faltantes se pueden usar diversas alternativas, como la función `preProcess()` del paquete `caret` o la función `imputate_na()` del paquete `dlookr`. 
 A continuación, se imputan los valores faltantes del conjunto de datos `Madrid_Sale_red2` con dos métodos. En primer lugar, con el algoritmo de KNN ($k$ vecinos más cercanos), que sustituye el valor faltante por la media de los valores de los $k$ vecinos más próximos. Después de realizar el preprocesamiento, se comprueba que las imputaciones han sido realizadas.
@@ -459,10 +459,10 @@ El paquete `recipes` también es recomendable. Por ejemplo, para la imputación 
 :::
   
 ### Validación y control de calidad
-  \index{control calidad} \index{validación}
-Al final del proceso de limpieza de datos, éstos deberían ser consistentes y seguir las reglas apropiadas para su campo de negocio. De no ser así, los modelos que se estimen en base a ellos no representarán convenientemente la realidad objeto de estudio y las conclusiones que se obtengan de dichos modelos no serán de utilidad para dicha realidad.
+  \index{control de calidad del dato} \index{validación}
+Al final del proceso de limpieza de datos, estos deberían ser consistentes y seguir las reglas apropiadas para su campo de negocio. De no ser así, los modelos que se estimen en base a ellos no representarán convenientemente la realidad objeto de estudio y las conclusiones que se obtengan de dichos modelos no serán de utilidad para dicha realidad.
 
-La verificación de si los datos son o no consistentes y si siguen o no las reglas del campo de negocio del cual proceden, se puede llevar a cabo con el paquete `tidyverse`, que permite hacer selecciones, filtrados o tablas de frecuencias, entre otras acciones. A modo de ejemplo, en el caso del precio medio del metro cuadrado de los distritos de la ciudad de Madrid, se puede usar la función `count()` para obtener la distribución de frecuencias de la variable `METRO_STOP_MASCERCANO_DISTANCIA` y comprobar si es consistente con el conocimiento que se tiene de esa variable y del conjunto de datos. Se muestran las distancias a la estación más cercana para las viviendas correspondientes a los seis primeros registros.
+La verificación de si los datos son o no consistentes y si siguen o no las reglas del campo de negocio del cual proceden se puede llevar a cabo con el paquete `tidyverse`, que permite hacer selecciones, filtrados o tablas de frecuencias, entre otras acciones. A modo de ejemplo, en el caso del precio medio del metro cuadrado de los distritos de la ciudad de Madrid, se puede usar la función `count()` para obtener la distribución de frecuencias de la variable `METRO_STOP_MASCERCANO_DISTANCIA` y comprobar si es consistente con el conocimiento que se tiene de esa variable y del conjunto de datos. Se muestran las distancias a la estación más cercana para las viviendas correspondientes a los seis primeros registros.
 
 ```r
 head(count(as.data.frame(Madrid_Sale_red), METRO_STOP_MASCERCANO_DISTANCIA))
@@ -476,7 +476,7 @@ head(count(as.data.frame(Madrid_Sale_red), METRO_STOP_MASCERCANO_DISTANCIA))
 ```
 
 
-Una opción más sofisticada es el paquete `validate`, donde se pueden introducir las reglas de negocio dentro del propio código o bien desde un fichero externo. A continuación, se realiza un ejemplo con las reglas incrustadas en el propio código. Estas reglas pueden ser avisos o normas que indican error en esos datos. En este ejemplo, se han definido siete reglas: por ejemplo,  `PRICE`$\ge$ 0, o que la suma de las variables `HASNORTHORIENTATION`, `HASSOUTHORIENTATION`  `HASEASTORIENTATION` y `HASWESTORIENTATION` sea la unidad. La salida que se obtiene se presenta a continuación. A modo de ejemplo, la regla `HASNORTHORIENTATION + HASSOUTHORIENTATION + HASEASTORIENTATION +HASWESTORIENTATION` $=$ 1 es la número 3, que, como se puede ver, no se cumple en 48.446 ocasiones. 
+Una opción más sofisticada es el paquete `validate`, donde se pueden introducir las reglas de negocio dentro del propio código o bien desde un fichero externo. A continuación, se realiza un ejemplo con las reglas incrustadas en el propio código. Estas reglas pueden ser avisos o normas que indican error en esos datos. En este ejemplo, se han definido siete reglas: por ejemplo,  `PRICE`$\ge$ 0, o que la suma de las variables `HASNORTHORIENTATION`, `HASSOUTHORIENTATION`  `HASEASTORIENTATION` y `HASWESTORIENTATION` sea la unidad. La salida que se obtiene se presenta a continuación. A modo de ejemplo, la regla `HASNORTHORIENTATION + HASSOUTHORIENTATION + HASEASTORIENTATION + HASWESTORIENTATION = 1` es la número 3, que, como se puede ver, no se cumple en 48.446 ocasiones. 
 
 ```r
 library("validate")
@@ -509,7 +509,7 @@ El proceso de validación puede ser más o menos complejo, según afecte a una �
 :::
 
 
-En un esquema tradicional de validación, además de las reglas de validación aportadas por los expertos en el tema del que se trate, debe incluirse también un listado de reglas de corrección (igualmente aportado por los expertos en la materia) que indiquen cómo hay que corregir un registro cuando no cumple con una determinada regla de validación. Este modo de proceder, además de suponer un doble esfuerzo, puede conducir a inconsistencias o validaciones cíclicas. 
+En un esquema tradicional de validación, además de las reglas de validación aportadas por los expertos en el tema del que se trate, debe incluirse también un listado de reglas de corrección (igualmente aportado por los expertos en la materia) que indique cómo hay que corregir un registro cuando no cumple con una determinada regla de validación. Este modo de proceder, además de suponer un doble esfuerzo, puede conducir a inconsistencias o validaciones cíclicas. 
 
 El Método de Fellegi y Holt[^Note_Jorge_1-3] (MFH) da una solución a este problema, evitando dichas inconsistencias, proporcionando un procedimiento que genera un conjunto completo de reglas de validación, incorporando reglas implícitas a las formuladas por los expertos de manera explícita. 
 
@@ -528,7 +528,7 @@ El MFH no está exento de limitaciones. La primera es el incremento del coste co
 
 
 A efectos prácticos, el MFH se puede aplicar con la función `locate_errors()` del paquete `errorlocate`, determinándose así cuáles son las variables a corregir para solventar los errores 
-en las reglas de negocio establecidas (objeto `rules`). Por ejemplo, en el conjunto de datos `Madrid_Sale_red2` (donde se definía la variable `price_bin`), se establecen ahora unas reglas básicas algo más laxas (específicamente una: más de 10 habitaciones los tres primeros cuartiles), obteniéndose que habría que depurar la variable ROOMNUMBER en dos ocasiones para que el conjunto de datos quedase totalmente limpio (o depurado).
+en las reglas de negocio establecidas (objeto `rules`). Por ejemplo, en el conjunto de datos `Madrid_Sale_red2` (donde se definía la variable `price_bin`), se establecen ahora unas reglas básicas algo más laxas (específicamente una: más de 10 habitaciones los tres primeros cuartiles), obteniéndose que habría que depurar la variable `ROOMNUMBER` en dos ocasiones para que el conjunto de datos quedase totalmente limpio (o depurado).
 
 
 
@@ -551,7 +551,7 @@ el
 ¿Y qué se debe hacer con los registros que no cumplen las normas de validación? La respuesta es, como norma, "siempre que se disponga de información de negocio, esta debe preponderar sobre cualquier tipo de imputación".
 A partir de este punto se puede proceder a realizar imputaciones determinísticas para solucionar los problemas detectados.
 
-En el ejemplo anterior, se propone imputar el valor `ROOMNUMBER=5` a los casos de los tres primeros cuartiles (todos menos el más caro) que tengan más de 10 habitaciones. Para ello, se utiliza la función `modify_so()` del paquete `dcmodify`. Para comprobar que la imputación se ha llevado a cabo con éxito, se pueden comparar los conjuntos de datos antes y después de la imputación con la función `compare()`, comprobándose que tal imputación se ha realizado exitosamente en los 2 registros que presentaban problemas con la regla $ROOMNUMBER >= 10$.
+En el ejemplo anterior, se propone imputar el valor `ROOMNUMBER=5` a los casos de los tres primeros cuartiles (todos menos el más caro) que tengan más de 10 habitaciones. Para ello, se utiliza la función `modify_so()` del paquete `dcmodify`. Para comprobar que la imputación se ha llevado a cabo con éxito, se pueden comparar los conjuntos de datos antes y después de la imputación con la función `compare()`, comprobándose que tal imputación se ha realizado exitosamente en los 2 registros que presentaban problemas con la regla `ROOMNUMBER >= 10`.
 
 
 
@@ -581,7 +581,7 @@ compare(rules, raw = Madrid_Sale_red2, modified = out)
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}
   
-- En un proyecto de ciencia de datos deben realizarse procesos de integración y limpieza previos a la fase de modelización, para asegurar niveles adecuados de calidad. Por ello, tras las labores iniciales de depuración, debe comprobarse si los datos son o no consistentes, y si siguen o no las reglas del campo de negocio del cual proceden. En este capítulo se abordan las cuestiones relativas a la integración de conjuntos de datos, su limpieza y depuración, y se proponen procedimientos para la validación de los mismos. 
+- En un proyecto de ciencia de datos deben realizarse procesos de integración y limpieza previos a la fase de modelización para asegurar niveles adecuados de calidad. Por ello, tras las labores iniciales de depuración, debe comprobarse si los datos son o no consistentes, y si siguen o no las reglas del campo de negocio del cual proceden. En este capítulo se abordan las cuestiones relativas a la integración de conjuntos de datos, su limpieza y depuración, y se proponen procedimientos para la validación de los mismos. 
 
 - El conjunto de datos utilizado en este capítulo está disponible en el paquete `idealista18`; en concreto, se utilizan los datos de Madrid.
 

@@ -9,8 +9,7 @@ FDS, a DXC Technology Company
 
 ## Introducción
 
-En un informe publicado en diciembre de 2021 por Nilson Report
-(<https://nilsonreport.com/upload/content_promo/NilsonReport_Issue1209.pdf>),
+En un informe publicado en diciembre de 2021 por Nilson Report^[https://nilsonreport.com/newsletters/1209/],
 se informó de que los emisores de tarjetas de crédito, comerciantes y
 consumidores sufrieron un total de 28.580 millones de dólares de
 pérdidas por fraude en 2020, es decir, 6,8 centavos por cada 100 dólares
@@ -19,11 +18,9 @@ total mundial.
 
 \index{fraude}
 
-En Europa la situación no es más alentadora. Según un informe del Banco
-Central Europeo publicado en 2020
-(<https://www.ecb.europa.eu/pub/cardfraud/html/ecb.cardfraudreport202008~521edb602b.en.html#toc2>),
+En Europa la situación no es más alentadora. Según un informe del [Banco Central Europeo publicado en 2020]^[https://www.ecb.europa.eu/pub/cardfraud/html/ecb.cardfraudreport202008~521edb602b.en.html#toc2],
 el valor total de las transacciones con tarjeta en la zona SEPA
-ascendió a 4.84 billones de euros en 2018, de los cuales 1.800
+ascendió a 4,84 billones de euros en 2018, de los cuales 1.800
 millones correspondieron a operaciones fraudulentas.
 
 Las entidades financieras trabajan a diario en el desarrollo de modelos
@@ -33,11 +30,11 @@ crédito, débito o prepago que puedan ser sospechosas de fraude, o que al
 menos puedan ser identificadas como anómalas. En este sentido, es
 importante destacar que no existe una única solución posible, ya que el
 problema presenta, en la mayoría de los casos, múltiples variantes que
-hacen de éste un problema complejo y que puede y debe ser abordado
+hacen de este un problema complejo y que puede y debe ser abordado
 desde múltiples perspectivas y con diferentes enfoques.
 
-\index{machine learning}
-\index{deeep learning}
+\index{machine learning@\textit{machine learning}}
+\index{deep learning@\textit{deep learning}}
 
 En primer lugar, es posible identificar dos tipos de fraude. Por un
 lado, el que se comete físicamente, como, por ejemplo, la compra o la
@@ -53,27 +50,27 @@ gran diversidad de fuentes de datos que forman parte de una transacción
 y que pueden dar lugar a divergencias metodológicas, tanto en la
 recogida y transmisión de los datos como en su posterior almacenaje, lo
 que ocasiona que, en muchos casos, la calidad de los datos disponibles
-no sea la esperada, o simplemente que los *datasets*
+no sea la esperada, o simplemente que los datasets
 sean inconsistentes. Los datos requeridos para este caso de uso pueden
 categorizarse en variables relativas a:
 
-- Cliente 
+- Cliente.
 
-- Transacción 
+- Transacción.
 
-- Geolocalización 
+- Geolocalización.
 
-- Comercio 
+- Comercio.
 
-- Tarjetas 
+- Tarjetas.
 
-- Hábitos de compra
+- Hábitos de compra.
 
 Cada una de estas categorías, y otras que puedan aparecer, aportan
 información que permite abordar el problema desde diferentes ángulos.
 Se puede enfocar el problema desde el punto de vista del
-cliente y sus hábitos de compra, para ver si existe alguna característica
-anómala en una transacción como, por ejemplo la hora de la compra. También se pueden analizar los datos de geolocalización junto con los del comercio para
+cliente y sus hábitos de compra para ver si existe alguna característica
+anómala en una transacción como, por ejemplo, la hora de la compra. También se pueden analizar los datos de geolocalización junto con los del comercio para
 analizar si es una compra en un comercio habitual y desde una
 localización conocida, etc.
 
@@ -92,8 +89,8 @@ con el nombre `creditcard`.
 
 El conjunto de datos consta de 
 284.807 transacciones, de las cuales 492 están
-etiquetadas como fraudulentas, es decir, sólo un 0,172% del total de las
-transacciones. Como puede apreciarse, se trata de un  *dataset* muy desequilibrado, lo que
+etiquetadas como fraudulentas, es decir, solo un 0,172% del total de las
+transacciones. Como puede apreciarse, se trata de un dataset muy desequilibrado, lo que
 añade cierto grado de dificultad al análisis. El dataset `creditcard` incluye 31
 variables, de las cuales 28 están identificadas como `V1`, ..., `V28`, una
 identificada como `Time` que registra los segundos transcurridos entre una
@@ -140,8 +137,8 @@ escenarios es lo que se conoce como "datos desequilibrados". \index{datos!desequ
 Se dice que un conjunto de datos está desequilibrado cuando la variable dependiente
 presenta más observaciones de una clase que de otra. En el caso de
 transacciones con tarjeta de crédito, es evidente que la
-mayoría de las operaciones son legítimas y que sólo un
-pequeño porcentaje resultan ser fraudulentas. ¿Cuál es el problema?
+mayoría de las operaciones son legítimas y que solo un
+pequeño porcentaje resulta ser fraudulento. ¿Cuál es el problema?
 
 El problema es que, por lo general, los modelos entrenados con conjuntos de datos desequilibrados no
 se comportan bien cuando tienen que generalizar, es decir, cuando tienen
@@ -166,7 +163,7 @@ Para la creación de datos sintéticos \index{datos!sintéticos} con *oversampli
 existen varios algoritmos que proporcionan buenos resultados. Quizás el
 más conocido y utilizado sea *Synthetic Minority Oversampling
 TEchnique* (SMOTE). SMOTE no realiza una copia de las observaciones del
-*dataset*, sino que, en su lugar, genera nuevos datos de forma sintética
+dataset, sino que, en su lugar, genera nuevos datos de forma sintética
 utilizando los vecinos más cercanos de esos casos, respetando las
 características estadísticas de la clase. Además, los ejemplos de la
 clase mayoritaria también son submuestreados, lo que da lugar a un
@@ -182,12 +179,12 @@ instalación, se debe ejecutar el siguiente código:
 ```r
 #install.packages("devtools") # descomentar para instalar 
 library("devtools")
-devtools::install_github("dalpozz/unbalanced")
+# devtools::install_github("dalpozz/unbalanced") # descomentar para instalar 
 library("unbalanced")
 ```
 
 Una vez instalado `unbalanced` y todas sus dependencias, se realiza el
-submuestreo del *dataset* siguiendo los siguientes pasos:
+submuestreo del dataset siguiendo los siguientes pasos:
 
 1. Convertir la variable dependiente `Class` en factor:
 
@@ -251,11 +248,11 @@ ggplot(data = undersampled_combined, aes(fill = Class))+
 A continuación se procede a la construcción de un modelo de regresión
 logística (véase Cap. \@ref(cap-glm)) para una clasificación binaria
 en relación al fraude en transacciones con tarjeta de crédito a partir
-de los datos equilibrados \index{equilibrados} obtenidos anteriormente. Por tanto, el *dataframe* que se utiliza es `undersampled_combined`, que contiene 984
+de los datos equilibrados \index{datos!equilibrados} obtenidos anteriormente. Por tanto, el *dataframe* que se utiliza es `undersampled_combined`, que contiene 984
 observaciones, un 50% de las cuales son transacciones identificadas como
 fraude.
 
-Lo primero que hay que hacer es realizar un par de pequeños cambios en el *dataset*; concretamente, $(i)$ eliminar las variables `Time` y `Amount`, ya que no son relevantes en el modelo, y $(ii)$ cambiar por 0 y 1 las etiquetas `Legitima`
+Lo primero que hay que hacer es realizar un par de pequeños cambios en el dataset; concretamente, $(i)$ eliminar las variables `Time` y `Amount`, ya que no son relevantes en el modelo, y $(ii)$ cambiar por 0 y 1 las etiquetas `Legitima`
 y `Fraude`, respectivamente.
 
 
@@ -310,50 +307,50 @@ summary(undersampledModel)
 #> glm(formula = Class ~ ., family = binomial(), data = training)
 #> 
 #> Deviance Residuals: 
-#>    Min      1Q  Median      3Q     Max  
-#> -2.241  -0.220   0.000   0.000   3.138  
+#>     Min       1Q   Median       3Q      Max  
+#> -2.0987  -0.1592   0.0000   0.0000   3.0812  
 #> 
 #> Coefficients:
-#>              Estimate Std. Error z value Pr(>|z|)  
-#> (Intercept)  -1.33646    1.33197  -1.003   0.3157  
-#> V1           -5.78659    3.27029  -1.769   0.0768 .
-#> V2            5.58180    3.19552   1.747   0.0807 .
-#> V3          -14.13711    7.40912  -1.908   0.0564 .
-#> V4            9.68978    4.48722   2.159   0.0308 *
-#> V5           -9.43145    5.13312  -1.837   0.0662 .
-#> V6           -3.80143    1.75916  -2.161   0.0307 *
-#> V7          -18.18673    9.64043  -1.887   0.0592 .
-#> V8            3.24669    2.23029   1.456   0.1455  
-#> V9           -9.35454    4.86128  -1.924   0.0543 .
-#> V10         -22.18345   11.23267  -1.975   0.0483 *
-#> V11          15.56779    7.79878   1.996   0.0459 *
-#> V12         -27.84083   14.03605  -1.984   0.0473 *
-#> V13          -0.03394    0.27432  -0.124   0.9015  
-#> V14         -29.28905   14.51798  -2.017   0.0437 *
-#> V15          -0.62553    0.35357  -1.769   0.0769 .
-#> V16         -26.01558   13.15698  -1.977   0.0480 *
-#> V17         -46.33473   23.91770  -1.937   0.0527 .
-#> V18         -17.47970    8.90688  -1.962   0.0497 *
-#> V19           5.62789    2.94275   1.912   0.0558 .
-#> V20           3.00946    1.65663   1.817   0.0693 .
-#> V21           4.10390    2.01734   2.034   0.0419 *
-#> V22           0.45056    0.37927   1.188   0.2348  
-#> V23          -0.31489    0.33023  -0.954   0.3403  
-#> V24          -0.59762    0.52662  -1.135   0.2564  
-#> V25           1.06455    0.73707   1.444   0.1487  
-#> V26           0.06735    0.53050   0.127   0.8990  
-#> V27           6.19502    2.62267   2.362   0.0182 *
-#> V28           2.66473    1.69093   1.576   0.1151  
+#>              Estimate Std. Error z value Pr(>|z|)    
+#> (Intercept)    3.8094     1.7450   2.183 0.029032 *  
+#> V1           -19.0331     4.6648  -4.080 4.50e-05 ***
+#> V2            18.7482     4.6323   4.047 5.18e-05 ***
+#> V3           -43.4539    10.6362  -4.085 4.40e-05 ***
+#> V4            27.3720     6.4574   4.239 2.25e-05 ***
+#> V5           -29.9269     7.3501  -4.072 4.67e-05 ***
+#> V6           -10.6367     2.5432  -4.182 2.88e-05 ***
+#> V7           -57.0813    13.9819  -4.083 4.46e-05 ***
+#> V8            11.9796     3.1289   3.829 0.000129 ***
+#> V9           -28.4932     6.9250  -4.115 3.88e-05 ***
+#> V10          -66.9780    16.1276  -4.153 3.28e-05 ***
+#> V11           46.8740    11.3097   4.145 3.40e-05 ***
+#> V12          -84.4147    20.3425  -4.150 3.33e-05 ***
+#> V13            0.5548     0.2927   1.895 0.058048 .  
+#> V14          -88.0917    21.1443  -4.166 3.10e-05 ***
+#> V15           -2.1462     0.5004  -4.289 1.80e-05 ***
+#> V16          -78.9665    19.1157  -4.131 3.61e-05 ***
+#> V17         -142.7119    34.6257  -4.122 3.76e-05 ***
+#> V18          -53.0532    12.8923  -4.115 3.87e-05 ***
+#> V19           17.2989     4.2060   4.113 3.91e-05 ***
+#> V20           10.0577     2.5388   3.962 7.44e-05 ***
+#> V21           11.5363     2.8501   4.048 5.17e-05 ***
+#> V22            1.1963     0.3957   3.024 0.002498 ** 
+#> V23           -1.8545     0.4880  -3.800 0.000144 ***
+#> V24           -0.9444     0.5020  -1.881 0.059949 .  
+#> V25            2.7501     0.9194   2.991 0.002780 ** 
+#> V26            0.8596     0.5251   1.637 0.101625    
+#> V27           14.0535     3.4618   4.060 4.92e-05 ***
+#> V28            9.0147     2.5708   3.507 0.000454 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> 
 #> (Dispersion parameter for binomial family taken to be 1)
 #> 
 #>     Null deviance: 1092.40  on 787  degrees of freedom
-#> Residual deviance:  184.62  on 759  degrees of freedom
-#> AIC: 242.62
+#> Residual deviance:  169.28  on 759  degrees of freedom
+#> AIC: 227.28
 #> 
-#> Number of Fisher Scoring iterations: 18
+#> Number of Fisher Scoring iterations: 19
 ```
 
 Con el modelo ya entrenado, se realizan las predicciones para los datos
@@ -371,8 +368,8 @@ variable dependiente.
 fraud_prob = predict(undersampledModel, type = "response", 
                      newdata = test[,-29])
 head(fraud_prob)
-#>          585         2523         2640         4246         6109         6720 
-#> 0.0070385428 0.0393980874 0.0759365686 0.0003095184 1.0000000000 1.0000000000
+#>          624         1395         6109         6330         6337         6447 
+#> 0.6802523792 0.0001122147 1.0000000000 0.9999616004 1.0000000000 1.0000000000
 ```
 
 La visualización del vector con las predicciones puede parecer algo
@@ -406,9 +403,7 @@ confusionMatrix = table(test[, 29], y_pred)
 confusionMatrix
 #>    y_pred
 #>      0  1
-#>   0 94  4
+#>   0 96  2
 #>   1  8 90
 ```
 
-
-<img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;" />

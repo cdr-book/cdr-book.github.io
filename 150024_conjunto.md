@@ -8,7 +8,7 @@ Universidad de Castilla-La Mancha
 
 ## Introducción y conceptos clave
 
-  El **análisis conjunto**\index{análisis conjunto} (o *conjoint analysis*) estudia situaciones de elección múltiple. Funciona dividiendo un producto o servicio en sus componentes (atributos y niveles) y analizando las utilidades parciales de cada uno; después se realizan diferentes combinaciones de éstos para identificar las preferencias del consumidor. Permite conocer las preferencias del público ante el lanzamiento de nuevos productos o servicios, para adaptarlos a ellas y maximizar el éxito. Evalúa la sensibilidad al precio u otras características del producto y predice su comportamiento en el mercado. Mediante este análisis se puede establecer qué atributo y qué categoría (nivel) son los más valorados y cuantificarlos de forma relativa.
+El **análisis conjunto**\index{análisis conjunto} (o *conjoint analysis*) estudia situaciones de elección múltiple. Funciona dividiendo un producto o servicio en sus componentes (atributos y niveles) y analizando las utilidades parciales de cada uno; después se realizan diferentes combinaciones de estos para identificar las preferencias del consumidor. Permite conocer las preferencias del público ante el lanzamiento de nuevos productos o servicios, para adaptarlos a ellas y maximizar el éxito. Evalúa la sensibilidad al precio u otras características del producto y predice su comportamiento en el mercado. Mediante este análisis se puede establecer qué atributo y qué categoría (nivel) son los más valorados y cuantificarlos de forma relativa.
 
   Los principales elementos de un análisis conjunto son:
 
@@ -27,11 +27,11 @@ Universidad de Castilla-La Mancha
 
 **Ejemplo: elección de gimnasio**. Sea una muesta de gimnasios en la que se identifican 4 atributos (características) con distintos niveles. Se realiza una encuesta sobre qué gimnasio se prefiere. Los participantes eligen una opción entre las distintas combinaciones ofrecidas (**preguntas**). Mediante el análisis de los resultados de la encuesta se extrae el peso de cada atributo y nivel en las respuestas (**utilidades parciales**), que describen las preferencias medias de los encuestados; así mismo, se identifican los atributos y niveles más valorados y su importancia relativa.
 
-Por ejemplo, los resultados pueden indicar que el horario más demandado es el de 09:00 a 23:00 durante 7 días a la semana.
+Por ejemplo, los resultados pueden indicar que el horario más demandado es el de 09:00 a 23:00 durante 7 días a la semana (Fig. \@ref(fig:150024-gim)).
 
 <div class="figure" style="text-align: center">
-<img src="img/150024-gim.jpg" alt="Elección de gimnasio. Atributos: horario, clases programadas, limpieza y precio" width="90%" />
-<p class="caption">(\#fig:150024-gim)Elección de gimnasio. Atributos: horario, clases programadas, limpieza y precio</p>
+<img src="img/150024-gim.jpg" alt="Elección de gimnasio. Atributos: horario, clases programadas, limpieza y precio." width="100%" />
+<p class="caption">(\#fig:150024-gim)Elección de gimnasio. Atributos: horario, clases programadas, limpieza y precio.</p>
 </div>
 
 ## Tipos de análisis conjunto
@@ -40,7 +40,7 @@ En la literatura científica sobre el análisis conjunto se diferencian tres for
 
 **El análisis tradicional de perfil completo (*full profile*)**
 
-Este análisis, también llamado *conjoint value analysis (CVA)*, muestra al entrevistado una selección de productos resultantes de la combinación de determinados niveles de una serie de atributos (es decir, una serie de perfiles) y se le pide que los valore según su preferencia en una escala numérica (utilidad). Las preferencias globales de cada individuo se descomponen en utilidades independientes y compatibles para cada atributo y nivel mediante métodos basados en regresión lineal múltiple (véase Cap. \@ref(cap-lm)), que proporcionan las utilidades para los distintos niveles, *partworth utilities* o, simplemente, *partworths*.
+Este análisis, también llamado *conjoint value analysis* (CVA), muestra al entrevistado una selección de productos resultantes de la combinación de determinados niveles de una serie de atributos (es decir, una serie de perfiles) y se le pide que los valore según su preferencia en una escala numérica (utilidad). Las preferencias globales de cada individuo se descomponen en utilidades independientes y compatibles para cada atributo y nivel mediante métodos basados en regresión lineal múltiple (véase Cap. \@ref(cap-lm)), que proporcionan las utilidades para los distintos niveles, *partworth utilities* o, simplemente, *partworths*.
 
 En el diseño original se detallan todos los perfiles hipotéticos (perfiles completos). Sin embargo, su número suele ser alto y se hace uso de técnicas de investigación que indiquen los más significativos. Está limitado a un análisis con muy pocos atributos y niveles.
 
@@ -59,28 +59,28 @@ Para la aplicación correcta de un análisis conjunto es conveniente seguir una 
 
 **Planteamiento del problema**. Se analiza la oportunidad de aplicar esta técnica dados el objetivo y los datos del proyecto. Para ello, se debe especificar tanto el producto o servicio como los atributos que se quieren estudiar. 
 
-**Elección de la metodología conjoint a aplicar**. Ésta dependerá, básicamente, de las características y cantidad de atributos estudiados; también se debe considerar la forma en que se valorarán por parte de los individuos. A modo de guía:
+**Elección de la metodología** ***conjoint*** **a aplicar**. Esta dependerá, básicamente, de las características y cantidad de atributos estudiados; también se debe considerar la forma en que se valorarán por parte de los individuos. A modo de guía:
 
 - Se opta por CVA cuando se analizan hasta 6 atributos, de productos o servicios habituales, de forma que el encuestado pueda hacer una elección rápida, sin demasiada reflexión.
 
 - Se elige ACA cuando se analizan más de 10 atributos, procediendo de manera que la elección sea rápida pero reflexiva, ya que se trata de un proceso adaptativo cuyo resultado final depende, en buena medida, de la idoneidad de las primeras valoraciones.
 
-- Se usar CBC si se analizan entre 6 y 10 atributos y con elecciones reflexivas sobre productos, puesto que el encuestado no asigna directamente utilidades, sino que se limita a elegir una (o ninguna) de las opciones presentadas.
+- Se usa CBC si se analizan entre 6 y 10 atributos y con elecciones reflexivas sobre productos, puesto que el encuestado no asigna directamente utilidades, sino que se limita a elegir una (o ninguna) de las opciones presentadas.
   
-**La selección de elementos**. Se escogen sólo los **atributos** que condicionan la elección, es decir, los que expliquen las preferencias de los individuos y permitan diferenciar bien entre los productos o servicios; deben estar lo más cercanos posible a la independencia entre ellos. Para cada atributo se eligen sus **niveles**; deben ser mutuamente excluyentes y cubrir todo el rango de posibilidades. Por último, y dependiendo de la metodología utilizada, se determinan los **perfiles y escenarios**.
+**La selección de elementos**. Se escogen solo los **atributos** que condicionan la elección, es decir, los que expliquen las preferencias de los individuos y permitan diferenciar bien entre los productos o servicios; deben estar lo más cercanos posible a la independencia entre ellos. Para cada atributo se eligen sus **niveles**; deben ser mutuamente excluyentes y cubrir todo el rango de posibilidades. Por último, y dependiendo de la metodología utilizada, se determinan los **perfiles y escenarios**.
 
-**Creación de estímulos**. Se utilizarán diseños factoriales fraccionados ortogonales, que reducen el número de perfiles que se le muestran al entrevistado. Como el número de posibles perfiles es la multiplicación del número de niveles de todos los atributos, puede ser imposible en la práctica que el individuo indique sus preferencias entre todos ellos. Por ello, se seleccionan sólo algunos de los perfiles, que sean representativos del resto, es decir, que en los perfiles incluidos en los estímulos aparezca cada nivel de cada factor combinado con el resto de niveles de forma lo más proporcional posible.[^nota1] La selección se efectúa mediante diseño factorial de experimentos, fraccionado (que jerarquiza los efectos, permitiendo la reducción de perfiles) y ortogonal (equilibrado en los niveles).
+**Creación de estímulos**. Se utilizarán diseños factoriales fraccionados ortogonales, que reducen el número de perfiles que se le muestran al entrevistado. Como el número de posibles perfiles es la multiplicación del número de niveles de todos los atributos, puede ser imposible en la práctica que el individuo indique sus preferencias entre todos ellos. Por ello, se seleccionan solo algunos de los perfiles, que sean representativos del resto, es decir, que en los perfiles incluidos en los estímulos aparezca cada nivel de cada factor combinado con el resto de niveles de forma lo más proporcional posible.[^nota1] La selección se efectúa mediante diseño factorial de experimentos, fraccionado (que jerarquiza los efectos, permitiendo la reducción de perfiles) y ortogonal (equilibrado en los niveles).
 
-[^nota1]: Por ejemplo, si se consideran 4 atributos con 3 niveles cada uno, habría un total de 81 perfiles diferentes. Se elige un número menor de perfiles (suele ser habitual considerar como mínimo el número total de niveles menos el de atributos más uno; en este ejemplo 4x3-4+1=9 perfiles) y se busca que en ellos aparezca, aproximadamente, el mismo número de veces cada nivel de cada atributo. 
+[^nota1]: Por ejemplo, si se consideran 4 atributos con 3 niveles cada uno, habría un total de 81 perfiles diferentes. Se elige un número menor de perfiles (suele ser habitual considerar como mínimo el número total de niveles menos el de atributos más uno; en este ejemplo $4\cdot 3-4+1=9$ perfiles) y se busca que en ellos aparezca, aproximadamente, el mismo número de veces cada nivel de cada atributo. 
   
 **Forma de presentación**. Dependerá de la metodología elegida. La Fig. \@ref(fig:150024-pres) muestra algunos ejemplos. 
 
 <div class="figure" style="text-align: center">
-<img src="img/150024-pres.jpg" alt="Formas de presentación" width="100%" />
-<p class="caption">(\#fig:150024-pres)Formas de presentación</p>
+<img src="img/150024-pres.jpg" alt="Formas de presentación." width="100%" />
+<p class="caption">(\#fig:150024-pres)Formas de presentación.</p>
 </div>
 
-- CVA: *matriz de comparaciones o trade-off"*, en la que el entrevistado valora la combinación de atributos y niveles (sólo es válida para dos atributos). *Perfiles completos para ordenar*, donde se elaboran perfiles de cada producto o servicio utilizando sólo un nivel de cada atributo y el encuestado los valora (ordena) según sus preferencias. *Perfil determinado para valorar*, combinación que el encuestado valora según sus preferencias.
+- CVA: *matriz de comparaciones o trade-off*, en la que el entrevistado valora la combinación de atributos y niveles (solo es válida para dos atributos). *Perfiles completos para ordenar*, donde se elaboran perfiles de cada producto o servicio utilizando solo un nivel de cada atributo y el encuestado los valora (ordena) según sus preferencias. *Perfil determinado para valorar*, combinación que el encuestado valora según sus preferencias.
 
 - ACA: *comparaciones pareadas*, en las que se comparan dos perfiles incompletos.
 
@@ -94,9 +94,9 @@ Para la aplicación correcta de un análisis conjunto es conveniente seguir una 
 
 **Estimación de las utilidades**
 
-Con CVA se utiliza, por lo general, un modelo regresión por mínimos cuadrados ordinarios (OLS), mediante el cual se determinan las utilidades parciales o *parthworths*, que indican las preferencias del encuestado mediante un modelo aditivo lineal en relación a los niveles de los atributos considerados como referencia.
+Con CVA se utiliza, por lo general, un modelo regresión por mínimos cuadrados ordinarios (OLS), mediante el cual se determinan las utilidades parciales o *partworths*, que indican las preferencias del encuestado mediante un modelo aditivo lineal en relación con los niveles de los atributos considerados como referencia.
 
-Sea la variable $X_{jk}^i$, que indica si el nivel $k$ del *j*-ésimo atributo está o no en el *i*-ésimo perfil. Dicha variable toma sólo los valores $X_{jk}^i=1$ (si está) y $X_{jk}^i=0$ si no lo está. Sea $Y^{i}$ la preferencia que tiene un individuo sobre el *i*-ésimo perfil. Entonces la función de utilidad a estimar es:
+Sea la variable $X_{jk}^i$, que indica si el nivel $k$ del *j*-ésimo atributo está o no en el *i*-ésimo perfil. Dicha variable toma solo los valores $X_{jk}^i=1$ (si está) y $X_{jk}^i=0$ si no lo está. Sea $Y^{i}$ la preferencia que tiene un individuo sobre el *i*-ésimo perfil. Entonces la función de utilidad a estimar es:
 
 \begin{equation}
 (\#eq:utilidad)
@@ -105,7 +105,7 @@ Sea la variable $X_{jk}^i$, que indica si el nivel $k$ del *j*-ésimo atributo e
 
 donde los coeficientes $U_{jk}$ son las utilidades parciales, o *partial partworths*, que indican la utilidad que el individuo asigna a cada nivel de cada atributo, y $\varepsilon^{i}$ denota el término de error.
 
-En el modelo \@ref(eq:utilidad) habrá multicolinealidad[^nota1bis], ya que todos los atributos deben estar presentes en todos los perfiles, es decir $\sum_k X_{jk}^{i}=1$. Para evitar las consecuencias indeseadas de la multicolinealidad en la estimación de las utilidades parciales, se elimina uno de los niveles de cada factor (sin pérdida de generalidad, el último, $K$), estimándose por OLS la función de utilidad (que ahora se denomina "restringida"):
+En el modelo \@ref(eq:utilidad) habrá multicolinealidad,[^nota1bis] ya que todos los atributos deben estar presentes en todos los perfiles, es decir, $\sum_k X_{jk}^{i}=1$. Para evitar las consecuencias indeseadas de la multicolinealidad en la estimación de las utilidades parciales, se elimina uno de los niveles de cada factor (sin pérdida de generalidad, el último, $K$), estimándose por OLS la función de utilidad (que ahora se denomina "restringida"):
 
 [^nota1bis]: En otros términos, el modelo no tendrá rango completo y las estimaciones no serán únicas.
 
@@ -118,11 +118,11 @@ donde $\delta = \beta_0 + \sum_{j} U_{jK}$ y $\gamma_{jk}=U_{jk}-U_{jK}$. A part
 
 [^nota2]: Los valores $U_{j1}$ se pueden calcular imponiendo que $\sum_{k} U_{jk}=1$ para cada atributo $j$. Menos frecuente, aunque también válido, es expresar la utilidades relativas a un nivel de referencia (en este caso, el último) por lo que se consideraría cada $U_{jK}=0$.
 
-Si hay $Z$ individuos, cada uno de ellos, $z$, dará una valoración diferente a los perfiles $i$, es decir los valores de $Y_{z}^{i}$ serán diferentes, produciendo una estimación diferente de la función de utilidad \@ref(eq:utilidad) y, por tanto, diferentes utilidades parciales $\widehat{U}_{jk,z}$. Para obtener las utilidades para el conjunto de individuos, se procede al cálculo de sus valores medios:
+Si hay $Z$ individuos, cada uno de ellos, $z$, dará una valoración diferente a los perfiles $i$, es decir, los valores de $Y_{z}^{i}$ serán diferentes, produciendo una estimación diferente de la función de utilidad \@ref(eq:utilidad) y, por tanto, diferentes utilidades parciales $\widehat{U}_{jk,z}$. Para obtener las utilidades para el conjunto de individuos, se procede al cálculo de sus valores medios:
 
 \begin{equation}
 (\#eq:utilglobal)
-  \widehat{U}_{jk} = \frac{\sum_{z} \widehat{U}_{jk,z}}{Z}
+  \widehat{U}_{jk} = \frac{\sum_{z} \widehat{U}_{jk,z}}{Z}.
 \end{equation}
 
 Se obtienen, así, las **utilidades** de cada nivel $k$ de cada atributo $j$, reflejando la importancia que conceden los individuos a cada uno de esos niveles.
@@ -131,10 +131,10 @@ Para determinar la importancia de cada atributo $j$ se utiliza la diferencia ent
 
 \begin{equation}
 (\#eq:importancia)
-  Imp_{j}=\max_{k} \lbrace {U_{jk}} \rbrace - \min_{k} \lbrace {U_{jk}} \rbrace
+  Imp_{j}=\max_{k} \lbrace {U_{jk}} \rbrace - \min_{k} \lbrace {U_{jk}} \rbrace .
 \end{equation}
 
-En términos relativos, la importancia de cada atributo $j$ respecto al conjunto de atributos, se puede expresar como:
+En términos relativos, la importancia de cada atributo $j$ respecto al conjunto de atributos se puede expresar como:
 
 \begin{equation}
 (\#eq:imprel)
@@ -156,20 +156,20 @@ En los casos de las metodologías ACA y CBC, la estimación de las utilidades pa
 
 **Interpretación de resultados**. Algunos de los resultados del análisis conjunto que frecuentemente se analizan son:
 
-  - La importancia de los atributos y niveles. La importancias relativa de cada atributo ($ImpRel_{j}$) refleja la opinión de los individuos sobre la relevancia (en porcentaje) de dichos atributos a la hora de evaluar los perfiles. Igualmente, para cada atributo $j$, las utilidades de sus niveles $U_{jk}$ muestran la importancia relativa asignada a dichos niveles en la valoración de cada atributo.
+  - La importancia de los atributos y niveles. La importancia relativa de cada atributo ($ImpRel_{j}$) refleja la opinión de los individuos sobre la relevancia (en porcentaje) de dichos atributos a la hora de evaluar los perfiles. Igualmente, para cada atributo $j$, las utilidades de sus niveles $U_{jk}$ muestran la importancia relativa asignada a dichos niveles en la valoración de cada atributo.
 
   - Las utilidades totales de cada perfil, o la comparación relativa entre un conjunto determinado de perfiles, permiten detectar cuáles son los preferidos por los individuos. Esta información puede orientar en la determinación de la configuración final del producto o servicio analizado.
 
-  - La influencia de un determinado atributo sobre la elección de los individuos. Así, es posible estimar el cambios en la utilidad que se produciría por la modificación de sus niveles (cambio generalmente conocido como *elasticidad*); por ejemplo, si un atributo fuese el precio, se podría dar una aproximación a la variación de utilidad producida por un incremento del precio.
+  - La influencia de un determinado atributo sobre la elección de los individuos. Así, es posible estimar el cambio en la utilidad que se produciría por la modificación de sus niveles (cambio generalmente conocido como *elasticidad*); por ejemplo, si un atributo fuese el precio, se podría dar una aproximación a la variación de utilidad producida por un incremento del precio.
 
-  - Al disponer de las utilidades parciales de cada individuo, es posible estudiar si éstas son homogéneas para toda la muestra o si, por el contrario, existen *grupos* de individuos con utilidades parecidas entre ellos y diferenciadas del resto. Este planteamiento podría ayudar a segmentar el mercado y a ofrecer productos o servicios diferenciados a cada nicho de mercado.
+  - Al disponer de las utilidades parciales de cada individuo, es posible estudiar si estas son homogéneas para toda la muestra o si, por el contrario, existen *grupos* de individuos con utilidades parecidas entre ellos y diferenciadas del resto. Este planteamiento podría ayudar a segmentar el mercado y a ofrecer productos o servicios diferenciados a cada nicho de mercado.
 
 
 ## Procedimiento con **R**: la función `Conjoint()`
 
-Para ejemplificar la puesta en práctica del análisis conjunto, con el método de perfil completo (*CVA*), se utiliza el paquete `conjoint` y su base de datos `tea`, compuesta por 5 listados: niveles (`tlevn`), perfiles (`tprof`), preferencias (`tpref`), preferencias en forma matricial (`tprefm`) y la simulación de perfiles (`tsimp`).
+Para ejemplificar la puesta en práctica del análisis conjunto, con el método de perfil completo (CVA), se utiliza el paquete `conjoint` y su base de datos `tea`, compuesta por 5 listados: niveles (`tlevn`), perfiles (`tprof`), preferencias (`tpref`), preferencias en forma matricial (`tprefm`) y la simulación de perfiles (`tsimp`).
 
-El listado `tprof` recoge los 13 perfiles que se presentan a los individuos, cada uno de ellos con una combinación de niveles de cada factor. El hecho de utilizar un diseño factorial fraccionario ortogonal ha permitido encontrar una muestra de perfiles *representativa* del total (habría 3x3x3x2=54 perfiles distintos) donde cada nivel de cada atributo está representado, aproximadamente, de forma proporcional.
+El listado `tprof` recoge los 13 perfiles que se presentan a los individuos, cada uno de ellos con una combinación de niveles de cada factor. El hecho de utilizar un diseño factorial fraccionario ortogonal ha permitido encontrar una muestra de perfiles *representativa* del total (habría $3 \cdot 3 \cdot 3 \cdot 2=54$ perfiles distintos) donde cada nivel de cada atributo está representado, aproximadamente, de forma proporcional.
 
 La matriz `tprefm` contiene las preferencias que cada uno de los 100 individuos asigna a cada uno de los perfiles $i$ que se le presentan (estas preferencias se recogen ordenadas en el vector `tpref`). Por último, `tsimp` muestra cuatro simulaciones de perfiles distintos a los mostrados a los individuos.
 
@@ -194,7 +194,7 @@ data("tea")
 
 La función `Conjoint()` devolverá las utilidades de los niveles, el vector de porcentajes de la importancia de los atributos y las gráficas correspondientes.[^nota4_conjoint]
 
-[^nota4_conjoint]: La función `Conjoint()` proporciona una salida matricial donde, además de los resultados numéricos, proporciona una gráfica de utilidad para cada atributo más una para la utilidad media de cada atributo. Dada la cantidad de información, los gráficos no se reproducen en el texto.
+[^nota4_conjoint]: La función `Conjoint()` proporciona una salida matricial donde, además de los resultados numéricos, facilita una gráfica de utilidad para cada atributo más una para la utilidad media de cada atributo. Dada la cantidad de información, los gráficos no se reproducen en el texto.
 
 
 ```r
@@ -207,15 +207,15 @@ Table: (\#tab:funcionR) Funciones en **R** para cálculos sobre análisis conjun
 
 Función en **R** | Utilidad-resultado
 :----------|:---------
-caUtilities(y=tprefm , x=tprof, z=tlevn) |  Utilidades medias para cada nivel
-caPartUtilities(y=tprefm , x=tprof, z=tlevn) | Matriz de utilidades de los niveles para cada individuo
-caTotalUtilities(y=tprefm , x=tprof) | Utilidades totales de los perfiles mostrados para cada individuo
-colMeans(caTotalUtilities(y=tprefm , x=tprof)) | Utilidades totales medias para cada perfil
-ShowAllUtilities(y=tprefm , x=tprof, z=tlevn) | Todas las utilidades
-caImportance(y=tprefm , x=tprof) | Importancia relativa media de cada atributo
-caModel(y=tprefm[20,], x=tprof) | Utilidades para un solo individuo, por ejemplo el 20.
+`caUtilities(y=tprefm , x=tprof, z=tlevn)` |  Utilidades medias para cada nivel
+`caPartUtilities(y=tprefm , x=tprof, z=tlevn)` | Matriz de utilidades de los niveles para cada individuo
+`caTotalUtilities(y=tprefm , x=tprof)` | Utilidades totales de los perfiles mostrados para cada individuo
+`colMeans(caTotalUtilities(y=tprefm , x=tprof))` | Utilidades totales medias para cada perfil
+`ShowAllUtilities(y=tprefm , x=tprof, z=tlevn)` | Todas las utilidades
+`caImportance(y=tprefm , x=tprof)` | Importancia relativa media de cada atributo
+`caModel(y=tprefm[20,], x=tprof)` | Utilidades para un solo individuo, por ejemplo, el 20
 
-Así, es posible obtener sólo la información relativa a las utilidades, mediante la función `caUtilities()`, o sólo la correspondiente a la importancia de los atributos, usando la función `caImportance()`:
+Así, es posible obtener solo la información relativa a las utilidades, mediante la función `caUtilities()`, o solo la correspondiente a la importancia de los atributos, usando la función `caImportance()`:
 
 
 ```r
@@ -250,27 +250,27 @@ caImportance(y=tprefm , x=tprof)
 #> [1] 24.76 32.22 27.15 15.88
 ```
 
-**Interpretación del resultado:**
+**Interpretación del resultado**
 
 - La primera parte de la salida corresponde a los coeficientes del modelo de regresión \@ref(eq:utilrest), donde no se incluye el último nivel de cada atributo (para evitar la multicolinealidad); se señalan con asteriscos los que resultan estadísticamente significativos. También se indica el grado de ajuste del modelo. A continuación, están las utilidades parciales para todos los niveles de todos los atributos:
 
-- El primer valor (3.5534) corresponde al término independiente del modelo, por lo que no está asociado a ningún atributo.
+- El primer valor (3,5534) corresponde al término independiente del modelo, por lo que no está asociado a ningún atributo.
 
-- Para el atributo **precio**, es el nivel bajo (*low*) el que recibe mayor preferencia (0.2402), siendo el nivel medio (*medium*) el menos preferido (-0.1431), algo por debajo de la preferencia del nivel alto (*high*), -0.0971.
+- Para el atributo **precio**, es el nivel bajo (*low*) el que recibe mayor preferencia (0,2402), siendo el nivel medio (*medium*) el menos preferido (-0,1431), algo por debajo de la preferencia del nivel alto (*high*), -0,0971.
 
-- Para el atributo **variedad**, el té negro (*black*) es el nivel con mayor utilidad (0.6149), seguido del té verde (0.0349), quedando el nivel de té rojo con una preferencia mucho menor (-0.6498).
+- Para el atributo **variedad**, el té negro (*black*) es el nivel con mayor utilidad (0.6149), seguido del té verde (0,0349), quedando el nivel de té rojo con una preferencia mucho menor (-0,6498).
 
-- En el caso del atributo **presentación**, en hojas (*leafy*) es el nivel más preferido (0.7529), seguido de la modalidad en bolsitas (*bags*), con una utilidad de 0.1369; el nivel granulado presenta la preferencia más baja (-0.8898).
+- En el caso del atributo **presentación**, en hojas (*leafy*) es el nivel más preferido (0,7529), seguido de la modalidad en bolsitas (*bags*), con una utilidad de 0.1369; el nivel granulado presenta la preferencia más baja (-0,8898).
 
-- Por último, para el atributo **aroma**, que sea aromático (*yes*) es el nivel más preferido, con una utilidad de 0.4108; al ser un atributo con solo dos niveles, la preferencia del otro nivel (no) es -0.4108.
+- Por último, para el atributo **aroma**, que sea aromático (*yes*) es el nivel más preferido, con una utilidad de 0,4108; al ser un atributo con solo dos niveles, la preferencia del otro nivel (no) es -0,4108.
 
 La última parte de la salida recoge la importancia relativa de cada atributo, calculada a partir de la importancia de cada atributo \@ref(eq:importancia) pero expresada como proporción de la suma de importancias de todos ellos \@ref(eq:imprel).
 
-En este ejemplo, el atributo con más peso es la **variedad de té**, con una importancia relativa del 32.22%; el siguiente es la **presentación**, con un 27.15%; después, el **precio**, con un 24.76%; y por último, el **aroma**, con un 15.88%. Es decir, el conjunto de 100 individuos, al valorar los perfiles que se les presentan, consideran principalmente el atributo variedad, seguido de forma de presentación y precio; por el contrario, que sea aromático o no aporta relativamente poca valoración.
+En este ejemplo, el atributo con más peso es la **variedad de té**, con una importancia relativa del 32,22%; el siguiente es la **presentación**, con un 27,15%; después, el **precio**, con un 24,76%; y por último, el **aroma**, con un 15,88%. Es decir, el conjunto de 100 individuos, al valorar los perfiles que se les presentan, consideran principalmente el atributo variedad, seguido de forma de presentación y precio; por el contrario, que sea aromático o no aporta relativamente poca valoración.
 
-De forma adicional, el análisis conjunto también permite profundizar en el conocimiento de los individuos en función de sus preferencias. Como ejemplo, se puede abordar cuestión de si existen *grupos* de individuos con preferencias similares entre ellos y diferentes de las del resto de grupos, cuestión conocida generalmente como *segmentación*. En este caso, el objetivo del proyecto sería identificar grupos de encuestados con preferencias similares, segmentando el mercado y permitiendo adaptar los atributos de cada producto o servicio a las características concretas de ese nicho de mercado.
+De forma adicional, el análisis conjunto también permite profundizar en el conocimiento de los individuos en función de sus preferencias. Como ejemplo, se puede abordar la cuestión de si existen *grupos* de individuos con preferencias similares entre ellos y diferentes de las del resto de grupos, cuestión conocida generalmente como *segmentación*. En este caso, el objetivo del proyecto sería identificar grupos de encuestados con preferencias similares, segmentando el mercado y permitiendo adaptar los atributos de cada producto o servicio a las características concretas de ese nicho de mercado.
 
-Para ello, se puede utilizar la función `caSegmentation()`, que devuelve un análisis de conglomerados dividiendo a los individuos en $k$ *clusters*, usando el método *k-means* (véase Sec. \@ref(no-jerarquico)). Como ejemplo, se consideran tres clusters.
+Para ello, se puede utilizar la función `caSegmentation()`, que devuelve un análisis de conglomerados dividiendo a los individuos en $k$ clústeres, usando el método *k-means* (véase Sec. \@ref(no-jerarquico)). Como ejemplo, se consideran tres clústeres.
 
 El vector de agrupación resume las características de los tres grupos formados.
 
@@ -304,11 +304,15 @@ segments$segm
 #> [6] "betweenss"    "size"         "iter"         "ifault"
 ```
 
-La salida contiene, en el apartado *Cluster means*, las utilidades medias de cada nivel (recogidas en las 13 columnas) para cada uno de los tres grupos (en filas), mostrando las diferencias entre ellas. La composición de cada cluster se muestra en el apartado *Clustering vector*, que recoge el cluster de pertenencia de cada uno de los cien individuos.
+La salida contiene, en el apartado *Cluster means*, las utilidades medias de cada nivel (recogidas en las 13 columnas) para cada uno de los tres grupos (en filas), mostrando las diferencias entre ellas. La composición de cada clúster se muestra en el apartado *Clustering vector*, que recoge el clúster de pertenencia de cada uno de los cien individuos.
 
 ::: {.infobox_resume data-latex=""}
-**Resumen**
+### Resumen {-}
 
-El **análisis conjunto** estudia situaciones de elección múltiple. Divide un producto o servicio en atributos y niveles y analiza las utilidades parciales de cada uno; después, se realizan diferentes combinaciones de éstos para identificar las preferencias del consumidor, estableciendo qué atributos y niveles son los más valorados, cuantificando dicha valoración de forma relativa. Permite evaluar las preferencias del público ante el lanzamiento de nuevos productos o su sensibilidad de alguna característica, como el precio, el formato, cambios en la imagen del producto, etc.
+- El análisis conjunto estudia situaciones de elección múltiple. 
+
+- Divide un producto o servicio en atributos y niveles y analiza las utilidades parciales de cada uno; después, se realizan diferentes combinaciones de estos para identificar las preferencias del consumidor, estableciendo qué atributos y niveles son los más valorados, cuantificando dicha valoración de forma relativa. 
+
+- Permite evaluar las preferencias del público ante el lanzamiento de nuevos productos o su sensibilidad ante alguna característica, como el precio, el formato, cambios en la imagen del producto, etc.
 
 :::

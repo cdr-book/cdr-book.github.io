@@ -2,7 +2,7 @@
 
 # Árboles de clasificación y regresión {#cap-arboles}
 
-*Ramón A. Carrasco*$^{a}$, *Itzcóatl Bueno*$^{b,a}$ y *José-María Montero*$^{c}$
+*Ramón A. Carrasco*$^{a}$, *Itzcóatl Bueno*$^{a,\hspace{0,05cm} b}$ y *José-María Montero*$^{c}$
 
 $^{a}$Universidad Complutense de Madrid  
 $^{b}$Instituto Nacional de Estadística  
@@ -28,14 +28,14 @@ conocidos como árboles de clasificación y regresión (CART,
 Específicamente, lo que hacen los árboles de decisión es utilizar una serie de reglas de decisión para dividir el espacio de características predictoras en un número menor de regiones disjuntas en cada una de las cuales los valores de la variable respuesta son similares. 
 
 
-Un árbol de decisión parte del conjunto de datos de entrenamiento, correspondiente a un **nodo raíz**, y lo va dividiendo recursivamente en subconjuntos de datos homogéneos, dando lugar a nuevos **nodos**. La manera de formar los subgrupos es mediante la formulación de preguntas con respuesta binaria (si la variable respuesta es "jugar al tenis" se formula la pregunta ¿Sí o No juega al tenis?; si es "pesa más o menos de 75 kg.", la pregunta es ¿El peso es $\leq 75$ o $>75$?). El proceso de partición se lleva a cabo hasta que se alcanza algún criterio de parada previamente establecido. Es resultado que produce dicho proceso es el valor medio de la variable respuesta en las observaciones incluidas en cada subgrupo (en árboles de regresión) o la clase de la variable respuesta con presencia mayoritaria en ellos (cuando se trata de árboles de clasificación). En este último caso también proporciona, en cada subgrupo, una estimación de la probabilidad de pertenencia a cada clase. 
+Un árbol de decisión parte del conjunto de datos de entrenamiento, correspondiente a un **nodo raíz**, y lo va dividiendo recursivamente en subconjuntos de datos homogéneos, dando lugar a nuevos **nodos**. La manera de formar los subgrupos es mediante la formulación de preguntas con respuesta binaria (si la variable respuesta es "jugar al tenis" se formula la pregunta ¿Sí o No juega al tenis?; si es "pesa más o menos de 75 kg." la pregunta es ¿el peso es $\leq 75$ o $>75$?). El proceso de partición se lleva a cabo hasta que se alcanza algún criterio de parada previamente establecido. Es resultado que produce dicho proceso es el valor medio de la variable respuesta en las observaciones incluidas en cada subgrupo (en árboles de regresión) o la clase de la variable respuesta con presencia mayoritaria en ellos (cuando se trata de árboles de clasificación). En este último caso también proporciona, en cada subgrupo, una estimación de la probabilidad de pertenencia a cada clase. 
 
 
-Algunos ejemplos de árboles de decisión son:\index{árbol!de decisión}
+Algunos ejemplos de árboles de decisión son:\index{a@árbol!de decisión}
 
--   **Clasificación**:\index{árbol!de clasificación} en la medida que
+-   **Clasificación**:\index{a@árbol!de clasificación} en la medida que
     la variable objetivo debe ser categórica, se podrían usar, por ejemplo,
-    para tomar la decisión de qué empleados deberían de promocionar
+    para tomar la decisión de qué empleados deberían promocionar
     (variable con dos categorías: sí promocionar o no promocionar) en
     base a sus méritos, capacidades, edad, etc. Otro ejemplo podría ser
     su uso para decidir si se juega o no un partido de tenis en base a
@@ -44,8 +44,7 @@ Algunos ejemplos de árboles de decisión son:\index{árbol!de decisión}
     se utilice indicará la decisión a tomar en base a los registros
     climatológicos de los partidos que ya se hayan jugado. Así, si un
     determinado día se quiere jugar al tenis, se deberán tomar como
-    datos de entrada las previsiones de las variables (en este caso atributos) Tipo de día (soleado,
-    nublado o lluvioso), Fuerza del Viento y Humedad. En caso de
+    datos de entrada las previsiones de las variables (en este caso atributos) *Tipo de día* (soleado, nublado o lluvioso), *Fuerza del Viento* y *Humedad*. En caso de
     ser un día nublado, el algoritmo sugerirá que se juegue. En caso de
     ser soleado, comprobará el nivel de humedad y, si no es muy elevada,
     recomendará que se juegue el partido. Lo mismo pasará si la
@@ -58,16 +57,16 @@ Algunos ejemplos de árboles de decisión son:\index{árbol!de decisión}
 <p class="caption">(\#fig:dectree-plot)Ejemplo de árbol de decisión.</p>
 </div>
 
--   **Regresión**:\index{árbol!de regresión} siguiendo con el ejemplo
+-   **Regresión**:\index{a@árbol!de regresión} siguiendo con el ejemplo
     del partido de tenis, también se puede utilizar un árbol de decisión
     para determinar cuántas horas jugar de acuerdo a las condiciones
     climatológicas. En la Fig. \@ref(fig:dectree-plot) se sustituirían la predicciones
     dicotómicas SÍ/NO por valores numéricos, como se muestra en la Fig. \@ref(fig:regtree-plot). Por ejemplo, el algoritmo puede sugerir jugar 5 horas si el día está soleado pero la humedad
-    es del 30% de vapor de agua por $m^3$; y 3,5 horas si está soleado
+    es del 30% de vapor de agua por $\text{m}^3$; y 3,5 horas si está soleado
     pero la humedad es del 80%. También puede decidir que si el día está
     nublado se jueguen 4 horas. O en caso de lluvia, podría decidir que
-    el partido dure 0,75 horas si la fuerza del viento es de 62km/h y
-    1,15 horas si es de 27km/h.
+    el partido dure 0,75 horas si la fuerza del viento es de 62 km/h y
+    1,15 horas si es de 27 km/h.
    
 
 <div class="figure" style="text-align: center">
@@ -84,13 +83,13 @@ trees*), o el C4.5, que está basado en el ID3. En la Tabla
 \@ref(tab:alg-dectree) se muestra una pequeña comparativa de estos tres
 algoritmos:
 
-| Algoritmo | Criterio de división    | Tipo de variables input |           Estrategia de poda           |
+| Algoritmo | Criterio de división    | Tipo de variables *input* |           Estrategia de poda           |
 |----------:|:--------------------|--------------------------|:---------------------------:|
 |       ID3 | Ganancia de información | Solo categóricas        |                No poda                 |
 |      CART | Índice de Gini          | Categóricas y numéricas | Poda basada en el coste de complejidad |
 |      C4.5 | Ratio de ganancia       | Categóricas y numéricas |        Poda basada en el error         |
 
-: (#tab:alg-dectree) Características de los principales algoritmos de árboles de decisión.
+: (#tab:alg-dectree) Características de los principales algoritmos de árboles de decisión
 
 
 
@@ -102,7 +101,7 @@ Los árboles de decisión tienen múltiples ventajas. Entre ellas destacan:
     un conjunto de condicionantes.
 -   El mismo algoritmo incorporado en **R** (`CART`) es válido tanto para
     problemas de clasificación como de regresión y, por tanto, la
-    variable objetivo puede ser continua o categórica. Respecto a las variables de entrada, las independientes, pueden ser
+    variable objetivo puede ser continua o categórica. Respecto a las variables de entrada, las independientes pueden ser
     tanto categóricas como numéricas. Al contrario de lo que ocurre con otros
     algoritmos, este último tipo de variables no necesitan ser estandarizadas, puesto que los árboles de decisión se basan en reglas y no en el cálculo de
     distancias entre observaciones.
@@ -125,7 +124,7 @@ Sin embargo, también tienen ciertas desventajas:
     entrenamiento pero no la generalidad del problema, que es lo que
     normalmente se pretende. El sobreajuste da lugar también a una
     varianza elevada.
--   Tienen una capacidad predictiva inferior a la de otros algoritmos más complejos, como las      redes neuronales artificiales y los splines de regresión adaptativos multivariantes (MARS),     aunque es cierto que si se combinan adecuadamente un número elevado de árboles de decisión,     mediante las técnicas de *bagging* y *boosting* (véanse Caps. \@ref(cap-bagg-rf) y         \@ref(cap-boosting-xgboost), respectivamente), la potencia predictiva mejora sustancialmente.
+-   Tienen una capacidad predictiva inferior a la de otros algoritmos más complejos, como las      redes neuronales artificiales y los *splines* de regresión adaptativos multivariantes (MARS),     aunque es cierto que si se combina adecuadamente un número elevado de árboles de decisión,     mediante las técnicas de *bagging* y *boosting* (véanse Caps. \@ref(cap-bagg-rf) y         \@ref(cap-boosting-xgboost), respectivamente), la potencia predictiva mejora sustancialmente.
 
 
 
@@ -147,14 +146,15 @@ rpart(formula, data, ...)
 
 
 
-## Árboles de clasificación\index{árbol!de clasificación}
+## Árboles de clasificación
+\index{a@árbol!de clasificación}
 
 Como se avanzó en la sección anterior, formalmente, un árbol de decisión es un grafo acíclico (un grafo sin ciclos, siendo un ciclo un circuito completo) que se inicia en un **nodo
 raíz**\index{nodo raíz}, el cual se divide en **ramas**\index{rama},
 también conocidas como **aristas**\index{arista}. De las ramas salen las
 **hojas**\index{hoja}, también denominadas **nodos**.\index{nodo} Estos
 nodos pueden ser **nodos finales**, o **puntos de
-decisión**,\index{punto!de decisión} (si de ellos no salen nuevas ramas
+decisión**,\index{punto de decisión} (si de ellos no salen nuevas ramas
 con nuevos nodos) o no ( si de ellos salen nuevas ramas con nuevas hojas o
 nodos) y así hasta que todos los nodos sean puntos de decisión. En el
 ejemplo de la Fig. \@ref(fig:dectree-plot) el nodo raíz es la caja *Tipo
@@ -163,7 +163,7 @@ de día*. Las ramas o aristas son sus tres niveles o categorías:
 nueva hoja o nodo: *Humedad* o *Viento* en los casos de soleado o
 lluvia, respectivamente. Sin embargo, en ese ejemplo, *Nublado*
 representa un nodo terminal, puesto que, llegados a ese punto, la salida
-que proporcionaría el árbol es *"Jugar al tenis"*. Este proceso se
+que proporcionaría el árbol es *Jugar al tenis*. Este proceso se
 repite utilizando el conjunto de datos disponible en cada hoja,
 generándose una clasificación final cuando una hoja no tenga ramas
 nuevas, en cuyo caso recibe la denominación de nodo final. El objetivo
@@ -175,12 +175,13 @@ clase objetivo.
 La Fig. \@ref(fig:form-arbol) ilustra la nomenclatura relativa a los elementos del árbol mencionados anteriormente. 
 
 <div class="figure" style="text-align: center">
-<img src="img/formacion-arbol.png" alt="Ejemplo de formación de árbol de decisión." width="60%" />
+<img src="img/formacion-arbol.png" alt="Ejemplo de formación de árbol de decisión." width="90%" />
 <p class="caption">(\#fig:form-arbol)Ejemplo de formación de árbol de decisión.</p>
 </div>
 
 
-### ¿Cómo se va formando el árbol de clasificación? \index{partición}
+### ¿Cómo se va formando el árbol de clasificación? 
+\index{partición}
 
 Como ya se ha mencionado, la construcción de un árbol de decisión se basa en la división recursiva en nuevas ramas, es decir, cada división
 está condicionada por las anteriores. El objetivo en cada nodo es
@@ -191,7 +192,7 @@ impureza de Gini para generar las particiones, mientras que los
 algoritmos ID3 y C4.5 están basados en medidas de entropía.
 
 
-#### Impureza de Gini\index{impureza!de Gini}
+#### Impureza de Gini\index{impureza de Gini}
 
 La **impureza de Gini** es una medida
 de la frecuencia con la que una observación elegida aleatoriamente de un
@@ -223,7 +224,7 @@ donde las probabilidades se computan a partir de las correspondientes frecuencia
 
 
 En el ejemplo de la Fig. \@ref(fig:dectree-plot) considérese la
-siguiente situación:
+situación reflejada en la Tabla \@ref(tab:data-imp-gini):
 
 | Día | Tipo de día | Humedad | Viento | Decisión |
 |-----|:-----------:|:-------:|:------:|:--------:|
@@ -243,11 +244,11 @@ siguiente situación:
 | 14  |   Lluvia    | Fuerte  | Fuerte |    SÍ    |
 | 15  |   Soleado   | Fuerte  | Fuerte |    NO    |
 
-: (#tab:data-imp-gini) Datos para decidir si se juega el partido.
+: (#tab:data-imp-gini) Datos para decidir si se juega el partido
 
 Lo primero que se ha de decidir es cuál es el nodo raíz del árbol (el punto de partida del proceso recursivo de partición).  Hay tres candidaturas: la de *Tipo de día*, la de *Humedad* y la de *Fuerza del viento*. Se elegirá aquella con menor impureza ponderada de Gini. 
 
-Comenzando, por ejemplo, con el *Tipo de día*, el conjunto de datos se divide en tres subconjuntos (de t6,4 y 5 observaciones, respectivamente), tal y como muestra la Tabla
+Comenzando, por ejemplo, con el *Tipo de día*, el conjunto de datos se divide en tres subconjuntos (de 6, 4 y 5 observaciones, respectivamente), tal y como muestra la Tabla
 \@ref(tab:data-td-imp-gini):
 
 | Tipo de día | SÍ  | NO  | \# observaciones |
@@ -257,18 +258,18 @@ Comenzando, por ejemplo, con el *Tipo de día*, el conjunto de datos se divide e
 | Lluvia      |  4  |  1  |        5         |
 
 : (#tab:data-td-imp-gini) Días que se juega o no de acuerdo al *Tipo de
-día.*
+día*
 
 
 La impureza de Gini para cada una de las tres categorías es:
 \begin{equation*}
-Gini(Soleado) = 1 - \Bigl(\frac{2}{6}\Bigr)^{2} - \Bigl(\frac{4}{6}\Bigr)^{2} = 0,45
+Gini(Soleado) = 1 - \Bigl(\frac{2}{6}\Bigr)^{2} - \Bigl(\frac{4}{6}\Bigr)^{2} = \text {0,45},
 \end{equation*}
 \begin{equation*}
-Gini(Nublado) = 1 - \Bigl(\frac{4}{4}\Bigr)^{2} = 0
+Gini(Nublado) = 1 - \Bigl(\frac{4}{4}\Bigr)^{2} = 0,
 \end{equation*}
 \begin{equation*}
-Gini(Lluvia) = 1 - \Bigl(\frac{4}{5}\Bigr)^{2} - \Bigl(\frac{1}{5}\Bigr)^{2} = 0,32
+Gini(Lluvia) = 1 - \Bigl(\frac{4}{5}\Bigr)^{2} - \Bigl(\frac{1}{5}\Bigr)^{2} = \text {0,32}.
 \end{equation*}
 
 siendo la pregunta que se formula: ¿Se juega al tenis?, con respuestas SÍ y NO.
@@ -278,22 +279,22 @@ variable *Tipo de día*:
 
 ```{=tex}
 \begin{equation*}
-Gini(Tipo \hspace{0,1cm}de \hspace{0,1cm} día) = 0,45\cdot\Bigl(\frac{6}{15}\Bigr) + 0\cdot\Bigl(\frac{4}{15}\Bigr) + 0,32\cdot\Bigl(\frac{5}{15}\Bigr) = 0,29
+Gini(Tipo \hspace{0,1cm}de \hspace{0,1cm} día) = \text {0,45}\cdot\Bigl(\frac{6}{15}\Bigr) + 0\cdot\Bigl(\frac{4}{15}\Bigr) + \text {0,32}\cdot\Bigl(\frac{5}{15}\Bigr) = \text {0,29}.
 \end{equation*}
 ```
 Del mismo modo, se puede calcular la impureza ponderada de Gini de *Humedad* y *Viento*, los dos nodos candidatos a ser nodo raíz. La Tabla \@ref(tab:hum-imp-gini) y la Tabla
-\@ref(tab:wind-imp-gini) presentan los subconjuntos de datos que se forman para cada una de sus categorías, respectivamente. A partir de dichas impurezas, debajo de cada tabla, se calcula la la impureza ponderada de cada uno de estos dos nodos candidatos.
+\@ref(tab:wind-imp-gini) presentan los subconjuntos de datos que se forman para cada una de sus categorías, respectivamente. A partir de dichas impurezas, debajo de cada tabla, se calcula la impureza ponderada de cada uno de estos dos nodos candidatos.
 
 | Humedad | SÍ  | NO  | \# observaciones | $p_{SÍ}$ | $p_{NO}$ | Impureza de Gini |
 |---------|:---:|:---:|:----------------:|:--------:|:--------:|:----------------:|
 | Fuerte  |  4  |  4  |        8         |   0,50   |   0,50   |       0,50       |
 | Débil   |  6  |  1  |        7         |   0,86   |   0,14   |       0,76       |
 
-: (#tab:hum-imp-gini) Impureza de Gini para las categorías de *Humedad.*
+: (#tab:hum-imp-gini) Impureza de Gini para las categorías de *Humedad*
 
 ```{=tex}
 \begin{equation*}
-Gini(Humedad) = 0,5\cdot\Bigl(\frac{8}{15}\Bigr) + 0,76\cdot\Bigl(\frac{7}{15}\Bigr) = 0,62
+Gini(Humedad) = \text {0,5}\cdot\Bigl(\frac{8}{15}\Bigr) + \text {0,76}\cdot\Bigl(\frac{7}{15}\Bigr) = \text {0,62}.
 \end{equation*}
 ```
 
@@ -302,13 +303,13 @@ Gini(Humedad) = 0,5\cdot\Bigl(\frac{8}{15}\Bigr) + 0,76\cdot\Bigl(\frac{7}{15}\B
 | Fuerte |  4  |  3  |        7         |   0,57   |   0,43   |       0,49       |
 | Débil  |  6  |  2  |        8         |   0,75   |   0,25   |       0,38       |
 
-: (#tab:wind-imp-gini) Impureza de Gini para las categorías de *Viento.*
+: (#tab:wind-imp-gini) Impureza de Gini para las categorías de *Viento*
 
 
 
 ```{=tex}
 \begin{equation*}
-Gini(Viento) = 0,49\cdot\Bigl(\frac{7}{15}\Bigr) + 0,38\cdot\Bigl(\frac{8}{15}\Bigr) = 0,43
+Gini(Viento) = \text {0,49}\cdot\Bigl(\frac{7}{15}\Bigr) + \text{0,38}\cdot\Bigl(\frac{8}{15}\Bigr) = \text{0,43}.
 \end{equation*}
 ```
 
@@ -322,7 +323,7 @@ En la Tabla \@ref(tab:features-imp-gini)  se muestran las impurezas ponderadas d
 | Viento      |       0,43       |
 
 : (#tab:features-imp-gini) Impureza de Gini para las variables de
-entrada.
+entrada
 
 
 La siguiente decisión a tomar es: en cada categoría de *Tipo de día*, ¿qué variable (*Humedad* o *Viento*) se elige para llevar a cabo una nueva partición del subconjunto de datos correspondiente cada una de ellas? La respuesta a esta pregunta la proporciona la ganancia de información,  $\Delta Gini()$, correspondiente a cada una de estas dos variables:
@@ -333,7 +334,7 @@ La siguiente decisión a tomar es: en cada categoría de *Tipo de día*, ¿qué 
 \Delta Gini(\varphi) =  Gini({\bf{X}}) - Gini_{\varphi}({\bf{X}}),
 \end{equation}
 ```
-si bien, como puede comprobarse, la mayor ganancia de información corresponde a la menor impureza ponderada de Gini. puesto que $Gini({\bf{X}})$ permanece constante.
+si bien, como puede comprobarse, la mayor ganancia de información corresponde a la menor impureza ponderada de Gini, puesto que $Gini({\bf{X}})$ permanece constante.
 
 Por ejemplo, para obtener la ganancia de información para *Humedad* en cada una de las categorías de *Tipo de día*,[^Nota-0-arboles] la impureza
 ponderada de *Humedad* se resta de la impureza de cada una de las tres categorías de *Tipo de día*. Lo mismo se haría con *Viento*. 
@@ -348,82 +349,33 @@ Dicho lo anterior, para la categoría *Tipo de día: soleado*, la Tabla \@ref(ta
 | Viento   |       0,44       |
 
 : (#tab:sunfeat-imp-gini) Impureza de Gini para las variables en días
-soleados.
+soleados
 
 Entonces, la ganancia de Gini para cada variable es:
 
 ```{=tex}
 \begin{center}
-$\Delta Gini(Humedad) = 0,45-0=0,45$,\\
-$\Delta Gini(Viento) =0,45-0,44=0,01$.
+$\Delta Gini(Humedad) = \text{0,45}-0=\text{0,45}$,\\
+$\Delta Gini(Viento) =\text{0,45}-\text{0,44}=\text{0,01}$.
 \end{center}
 ```
 Puede observarse que, en la categoría *Tipo de día: soleado*, la ganancia de información que se obtiene al particionar el subconjunto de datos correspondiente a dicha categoría según *Humedad* es mayor (en realidad mucho mayor) que al hacerlo según *Viento*, por lo que *Humedad* es la variable elegida para realizar la partición del subconjunto de datos de la categoría *Tipo de día: soleado*, como se observa en la Fig. \@ref(fig:dectree-plot).
 
-[^Nota-0-arboles]: Aunque se utilice el término "variable", por simplicidad, es válido para variables propiamente dichas como para atributos.
+[^Nota-0-arboles]: Aunque se utilice el término "variable", por simplicidad, es válido tanto para variables propiamente dichas como para atributos.
 
 En el caso de la categoría *Tipo de día: nublado*, el subconjunto de observaciones es de tamaño 4 y en todas ellas la categoría de la variable respuesta es SÍ (se juega al tenis); su impureza es nula. Por tanto, no tiene sentido realizar partición alguna del subconjunto de datos, ni según *Humedad* ni según *Viento*. Se trata de un punto de decisión final.
 
 
-Finalmente, para la categoría *Tipo de día: con lluvia*, con un subconjunto de 5 observaciones y una impureza de Gini de 0,32, la impureza ponderada correspondiente a *Humedad* es de $0,26\hat{7}$, mientras que la correspondiente a *Viento* es 0,20, por lo que la ganancia de información de tomar como variable divisora *Humedad* es $0,05\hat{3}$ mientras que se eleva a 0,12 cuando la variable divisora es *Viento* (se deja al lector la labor de comprobar etos cálculos). Es por eso que, como puede verse en Fig.  \@ref(fig:dectree-plot), se elige esta última para realizar una nueva partición en el subconjunto de datos *Tipo de día: con lluvia*.
+Finalmente, para la categoría *Tipo de día: con lluvia*, con un subconjunto de 5 observaciones y una impureza de Gini de 0,32, la impureza ponderada correspondiente a *Humedad* es de 0,267, mientras que la correspondiente a *Viento* es 0,20, por lo que la ganancia de información de tomar como variable divisora *Humedad* es 0,053 mientras que se eleva a 0,12 cuando la variable divisora es *Viento* (se deja al lector la labor de comprobar etos cálculos). Es por eso que, como puede verse en Fig.  \@ref(fig:dectree-plot), se elige esta última para realizar una nueva partición en el subconjunto de datos *Tipo de día: con lluvia*.
 
 
-En este punto del proceso de partición (o crecimiento del árbol) ya se tiene primer nivel de nodos, que surgen del nodo raíz. A partir de este primer nivel, siguiendo el mismo proceso llevado a cabo más arriba, se obtendría un segundo nivel de nodos, y a partir de estos, un  tercero, y así sucesivamente hasta que el criterio de parada pre-establecido indique que el proceso de finalización ha terminado. En el ejemplo propuesto, al ser tan sencillo, pues el conjunto de datos solo cuenta con tres variables predictoras, solo se va a decidir cuál es el nodo raíz y cuáles los que componen el primer nivel de nodos. Con tres variables predictoras no se pueden obtener más niveles de nodos.
+En este punto del proceso de partición (o crecimiento del árbol) ya se tiene primer nivel de nodos, que surgen del nodo raíz. A partir de este primer nivel, siguiendo el mismo proceso llevado a cabo más arriba, se obtendría un segundo nivel de nodos, y a partir de estos, un  tercero, y así sucesivamente hasta que el criterio de parada preestablecido indique que el proceso de finalización ha terminado. En el ejemplo propuesto, al ser tan sencillo, pues el conjunto de datos solo cuenta con tres variables predictoras, solo se va a decidir cuál es el nodo raíz y cuáles los que componen el primer nivel de nodos. Con tres variables predictoras no se pueden obtener más niveles de nodos.
 
 
 
-<!-- #### -->
-
-<!-- \textcolor{red}{El conjunto de datos lo he denotado como X negrita porque será una matriz de datos. Confirma que es correcto} -->
 
 
-<!-- \textcolor{red}{La fórmula de arriba no está clara porque no se distinguir entre varphi y X} -->
 
-<!-- Siguiendo con el ejemplo del árbol de clasificación, para saber si se puede -->
-<!-- jugar al tenis o no, se tendría que obtener la impureza ponderada de Gini para el -->
-<!-- nodo *Humedad* y el nodo *Viento*. Repitiendo el proceso anteriormente -->
-<!-- mostrado, dado que el *Tipo de día* sea soleado (nodo raíz), se obtienen los -->
-<!-- resultados de . -->
-
-
-<!-- Al entrenar un árbol de decisión se repite este proceso, y a la hora de -->
-<!-- dividir cada nodo (que se denominará "padre"), se elige el atributo (nodo "hijo") con menor impureza de Gini ($Gini_{\varphi}({\bf{X}})$, donde $\varphi$ representa la variable o nodo "hijo"). -->
-<!-- \textcolor{red}{ESTO DE DEBAJO NECESITA UNA INTRO DE QUE AHORA, PARA VER COMO SE SIGUE, SE UTILIZA LA GANANCIA DE INFORMACIÓN} -->
-
-
-<!-- Siguiendo con el ejemplo del árbol de clasificación, para saber si se puede -->
-<!-- jugar al tenis o no, se tendría que obtener la impureza ponderada de Gini para el -->
-<!-- nodo *Humedad* y el nodo *Viento*. Repitiendo el proceso anteriormente -->
-<!-- mostrado, dado que el *Tipo de día* sea soleado (nodo raíz), se obtienen los -->
-<!-- resultados de la Tabla \@ref(tab:sunfeat-imp-gini). -->
-
-<!-- | Variable | Impureza ponderada de Gini | -->
-<!-- |----------|:----------------:| -->
-<!-- | Humedad  |       0,00       | -->
-<!-- | Viento   |       0,44       | -->
-
-<!-- : (#tab:sunfeat-imp-gini) Impureza de Gini para las variables en días -->
-<!-- soleados -->
-
-<!-- Entonces, la ganancia de Gini para cada variable será: -->
-
-<!-- ```{=tex} -->
-<!-- \begin{center} -->
-<!-- $\Delta Gini(Humedad) = 0,45-0=0,45$\\ -->
-<!-- $\Delta Gini(Viento) =0,45-0,44=0,01$ -->
-<!-- \end{center} -->
-<!-- ``` -->
-<!-- Puede observarse que la ganancia de información al dividir el nodo raíz *Soleado* por *Humedad* -->
-<!-- es mayor que al hacerlo por *Viento*, por lo que el árbol se dividirá -->
-<!-- respecto a la *Humedad*, como se observa en la Fig. \@ref(fig:dectree-plot). -->
-
-
-<!-- \textcolor{blue}{En cuanto a los nodos "no raíz", en el caso de *Nublado*, el árbol deja de desarrollarse porque siempre se juega cuando está nublado, y ese nodo ya toma esa decisión. En el caso de *Humedad*... LA FIGURA DA PREVISIONES PARA SUS DOS NIVELES.} -->
-
-<!-- \textcolor{red}{Hay algo que no entiendo: Si el nodo raíz es el Tipo de día, y el árbol crece por ese nodo, ¿Por qué se dan previsiones SI, NO, para las otras variables candidatas a ser nodo raíz? O es que se desarrolla el arbol por el nodo raíz y por los otros nodos solo se dan previsiones para sus niveles} -->
-
-
-<!-- \textcolor{red}{EN ESTE EPÍGRAFE ME PREOCUPA MUCHO LA DISTINCIÓN DE NOMECLATURA ENTRE VARPHI Y x} -->
 
 #### Entropía \index{entropía}
 
@@ -442,10 +394,9 @@ de las clases de la variable respuesta (en este caso dos) en ese nodo, y se esti
 unidad de medida. 
 
 
-Se denomina entropía ponderada de la variable a la suma ponderada de las entropias correspondientes a sus categorías, siendo las ponderaciones el número de observaciones en cada categoría dividido por el número de observaciones correspondientes a la variable en el nodo del que se trate.
+Se denomina entropía ponderada de la variable a la suma ponderada de las entropías correspondientes a sus categorías, siendo las ponderaciones el número de observaciones en cada categoría dividido por el número de observaciones correspondientes a la variable en el nodo del que se trate.
 
 Finalmente, se define ganancia de información, $IG$, como:
-como: 
 
 ```{=tex}
 \begin{equation}
@@ -455,7 +406,7 @@ IG = E_{\varkappa} - E_{\varkappa + 1},
 donde $E_\varkappa$ representa la entropía en el nodo "padre" (en el conjunto de datos que se está particionando), mientras
 que $E_{\varkappa+1}$ representa la entropía en cada categoría de dicho nodo padre (en el conjunto de datos de cada categoría de la variable del nodo padre).
 
-Lógicamente, se elige como variable "particionadora" aquélla en la que que se obtiene mayor ganancia de información con la partición. 
+Lógicamente, se elige como variable "particionadora" aquella en la que que se obtiene mayor ganancia de información con la partición. 
 
 Volviendo de nuevo al ejemplo basado en los datos de la
 Tabla \@ref(tab:data-td-imp-gini), para generar el árbol de clasificación se siguen los mismos pasos que en la subsección anterior, pero sustituyendo la medida de impureza por la medida de entropía. 
@@ -466,56 +417,56 @@ Se parte de la entropía existente en el conjunto total de datos:
 
 ```{=tex}
 \begin{equation*}
-E = -\frac{10}{15}\log_2 \Bigl(\frac{10}{15}\Bigr) - \frac{5}{15}\log_2 \Bigl(\frac{5}{15}\Bigr) = 0,9183
+E = -\frac{10}{15}\log_2 \Bigl(\frac{10}{15}\Bigr) - \frac{5}{15}\log_2 \Bigl(\frac{5}{15}\Bigr) = \text {0,9183}.
 \end{equation*}
 ```
 
 y, en cada nodo, se va dividiendo el árbol en función de la variable que más reduzca la entropía existente en dicho nodo.   
 
-La primera decisión es la relativa a cuál de las tres variables predictoras ocupará el nodo raíz. Para ello, se procede como sigue[^Nota_arbloes7]:
+La primera decisión es la relativa a cuál de las tres variables predictoras ocupará el nodo raíz. Para ello, se procede como sigue:[^Nota_arbloes7]
 
 1) Para cada una de las variables predictoras se calcula la entropía de cada una de sus categorías o niveles.
 2) A partir de dichas entropías, ponderándolas adecuadamente, se calcula la entropía de cada una de las variables predictoras. 
-3) Se calcula la ganancia de información que se obtiene al dividir el conjunto de datos según dicha variable restando de la entropía del conjunto de datos total la entropía ponderada de cada variable
-4) El conjunto de datos se divide en función de la variable con la que se tenga más ganancia de información
+3) Se calcula la ganancia de información que se obtiene al dividir el conjunto de datos según dicha variable restando de la entropía del conjunto de datos total la entropía ponderada de cada variable.
+4) El conjunto de datos se divide en función de la variable con la que se tenga más ganancia de información.
 
 [^Nota_arbloes7]: Aunque nos estamos centrando en la primera división que se lleva a cabo, la del conjunto total de datos, los pasos son los mismos para dividir, posteriormente, el conjunto de datos correspondiente a cualquier nodo del árbol.
 
 Comenzando por la variable *Tipo de día* se calcula:
 
 \begin{equation*}
-E_{Soleado} = -\frac{2}{6}\log_2 \Bigl(\frac{2}{6}\Bigr) - \frac{4}{6}\log_2 \Bigl(\frac{4}{6}\Bigr) = 0,9183.
+E_{Soleado} = -\frac{2}{6}\log_2 \Bigl(\frac{2}{6}\Bigr) - \frac{4}{6}\log_2 \Bigl(\frac{4}{6}\Bigr) = \text{0,9183},
 \end{equation*}
 \begin{equation*}
-E_{Nublado} = -\frac{4}{4}\log_2 \Bigl(\frac{4}{4}\Bigr) - \frac{0}{4}\log_2 \Bigl(\frac{0}{4}\Bigr) = 0.
+E_{Nublado} = -\frac{4}{4}\log_2 \Bigl(\frac{4}{4}\Bigr) - \frac{0}{4}\log_2 \Bigl(\frac{0}{4}\Bigr) = 0,
 \end{equation*}
 \begin{equation*}
-E_{Lluvia} = -\frac{4}{5}\log_2 \Bigl(\frac{4}{5}\Bigr) - \frac{1}{5}\log_2 \Bigl(\frac{1}{5}\Bigr) = 0,7219.
+E_{Lluvia} = -\frac{4}{5}\log_2 \Bigl(\frac{4}{5}\Bigr) - \frac{1}{5}\log_2 \Bigl(\frac{1}{5}\Bigr) = \text {0,7219}.
 \end{equation*}
 
 Con lo que se tiene que:
 
 ```{=tex}
 \begin{equation*}
-E_{\text{Tipo de día}} = \frac{6}{15}\cdot 0,9183 + \frac{4}{15}\cdot 0 + \frac{5}{15}\cdot 0,7219 = 0,608,
+E_{\text{Tipo de día}} = \frac{6}{15}\cdot \text {0,9183} + \frac{4}{15}\cdot 0 + \frac{5}{15}\cdot \text {0,7219} = \text {0,608},
 \end{equation*}
 ```
 
 y que:
 
 \begin{equation*}
-IG_{\text{Tipo de día}} = E - E_{\text{Tipo de día}} = 0,918 - 0,608 = 0,31.
+IG_{\text{Tipo de día}} = E - E_{\text{Tipo de día}} = \text {0,918} - \text {0,608} = \text {0,310}.
 \end{equation*}
 
 
 Repitiendo el mismo procedimiento con las variables *Viento* y *Humedad*
-se puede comprobar que $E(Viento) = 0,893$ y $E(Humedad) = 0,809$, con lo que:
+se puede comprobar que $E(Viento) = \text {0,893}$ y $E(Humedad) = \text{0,809}$, con lo que:
 
 \begin{equation*}
-IG_{Viento} = E - E_{Viento} = 0,918 - 0,893 = 0,025,
+IG_{Viento} = E - E_{Viento} = \text {0,918 - 0,893 = 0,025},
 \end{equation*}
 \begin{equation*}
-IG_{Humedad} = E - E_{Humedad} = 0,918 - 0,809 = 0,109,
+IG_{Humedad} = E - E_{Humedad} = \text {0,918 - 0,809 = 0,109},
 \end{equation*}
 
 pudiéndose comprobar que la disminución de la aleatoriedad, o la ganancia
@@ -535,8 +486,9 @@ Basándose en las observaciones utilizadas en la fase de entrenamiento,
 un árbol de decisión puede extraer los patrones presentes en el conjunto
 de observaciones de entrenamiento y ser muy preciso en el ajuste de
 dichas observaciones. Sin embargo, puede ocurrir que el árbol resultante
-no sea capaz de clasificar correctamente ni el conjunto de validación ni con
-nuevas observaciones. Esta circunstancia puede ocurrir porque haya
+no sea capaz de clasificar correctamente 
+ni el conjunto de validación aun con nuevas observaciones.
+Esta circunstancia puede ocurrir porque haya
 patrones no observados en los datos de entrenamiento que el modelo no es
 capaz de detectar, o porque la división de los datos entre entrenamiento
 y validación no se realizó correctamente siendo los datos de
@@ -548,7 +500,7 @@ controlar el crecimiento del árbol para evitar que se vuelva
 excesivamente complejo.
 
 ### ¿Cuánto debe crecer un árbol de clasificación?
-\index{profundidad!del árbol}
+\index{profundidad del árbol}
 
 En cada paso de construcción del árbol se determina la variable óptima
 para realizar la división de las observaciones de un nodo padre en sus
@@ -556,9 +508,9 @@ nodos hijos. La pregunta es: ¿cuándo se detiene?, ¿cuál es el criterio
 de parada? Por ejemplo, se puede utilizar como criterio de parada que el
 árbol alcance un tamaño o profundidad determinado, para que no sea
 excesivamente complejo y así no tengan lugar las consecuencias derivadas
-del sobreajuste\index{sobreajuste}.
+del sobreajuste.\index{sobreajuste}
 
-En consecuencia, se debe llegar a un equilibrio entre la profundidad y
+Por consiguiente, se debe llegar a un equilibrio entre la profundidad y
 complejidad\index{complejidad} del árbol para optimizar la predicción de
 observaciones futuras. Este equilibrio se puede lograr siguiendo alguno
 de los siguientes enfoques: la parada temprana o la poda.
@@ -589,7 +541,7 @@ El otro enfoque es el de la poda, que consiste en construir un árbol muy
 profundo y complejo y después podarlo para encontrar el subárbol óptimo.
 En este proceso, se utiliza un hiperparámetro de complejidad
 $(\zeta)$ que penaliza la función objetivo de la partición por el número
-de nodos terminales del árbol $(\tau)$. El subárbol óptimo es aquél que minimiza:
+de nodos terminales del árbol $(\tau)$. El subárbol óptimo es aquel que minimiza:
 
 ```{=tex}
 \begin{equation}
@@ -611,18 +563,20 @@ que el término de penalización por complejidad.
 ### Ejemplo: árbol de clasificación para determinar la intención de compra
 
 A continuación se describe el caso que se va a resolver mediante modelos
-de clasificación tanto en este como en los siguientes capítulos. Existen
+de clasificación tanto en este como en los siguientes capítulos. 
+
+Existen
 diversas aserciones para definir Comercio Electrónico (CE). Entre ellas,
 la Organización para la Cooperación y el Desarrollo Económico (OCDE) lo
 define como el proceso de compra, venta o intercambio de bienes,
 servicios e información a través de redes de comunicación, comúnmente
 Internet. La clasificación más básica del CE se hace en base al tipo de
-entes que se relacionan: empresas (businesses, B), consumidores
-(consumers, C) y entes públicos (governments, G). De esta forma, una
+entes que se relacionan: empresas (*businesses*, B), consumidores
+(*consumers*, C) y entes públicos (*governments*, G). De esta forma, una
 empresa de CE convencional suele ser B2B si vende a otras empresas, B2G
 si su relación comercial es con administraciones o B2C si vende a consumidores finales.
 
-En este caso, se puede considerar que la empresa "Beauty eSheep" lleva a
+En este caso, se puede considerar que la empresa Beauty eSheep lleva a
 cabo un CE de tipo B2C. Su producto estrella es una crema hidratante
 unisex, denominada internamente como "Crema Luxury", con mucho éxito
 entre su clientela. A partir de este producto inicial, la empresa ha ido
@@ -634,7 +588,7 @@ los clientes, de tal manera que han ido recabando diversos datos sobre ellos, in
 
 Basándose en los datos recopilados para cada cliente, la empresa quiere
 realizar una campaña para impulsar la venta de tensiómetros digitales.
-La empresa tiene acceso a un stock de estos productos, muy flexible en cuanto a fechas de envío, y el precio de los tensiómetros es muy bueno, por lo que
+La empresa tiene acceso a un *stock* de estos productos, muy flexible en cuanto a fechas de envío, y el precio de los tensiómetros es muy bueno, por lo que
 se espera una buena rentabilidad en su venta.
 
 Por tanto, en este proyecto hay que identificar el público objetivo
@@ -650,13 +604,13 @@ capítulos de *machine learning* supervisado para clasificación.
 
 | VARIABLE     | TIPO[^Note00_arborles] | DESCRIPCIÓN                                                                                              |
 |----------------|--------|---------------------------------------------------------------|
-| `CLS_PRO_pro13` | Factor | Clase objetivo, es un indicador de si el cliente es consumidor de ese producto "tensiómetro digital" ('S') o no ('N') |
-| `ind_pro11`     | Factor | Indicador de si el cliente es consumidor del producto "fragancia luxury" ('S') o no ('N')                             |
-| `ind_pro12`     | Factor | Indicador de si el cliente es consumidor del producto "depiladora eléctrica" ('S') o no ('N')                         |
-| `ind_pro14`     | Factor | Indicador de si el cliente es consumidor del producto "crema luxury" ('S') o no ('N')                                 |
-| `ind_pro15`     | Factor | Indicador de si el cliente es consumidor del producto "smartwatch fitness" ('S') o no ('N')                           |
-| `ind_pro16`     | Factor | Indicador de si el cliente es consumidor del producto "kit pesas inteligentes" ('S') o no ('N')                       |
-| `ind_pro17`     | Factor | Indicador de si el cliente es consumidor del producto "estimulador muscular" ('S') o no ('N')                         |
+| `CLS_PRO_pro13` | Factor | Clase objetivo, es un indicador de si el cliente es consumidor de ese producto "tensiómetro digital". Sí ('S') o no ('N') |
+| `ind_pro11`     | Factor | Indicador de si el cliente es consumidor del producto "fragancia luxury".  Sí ('S') o no ('N')                             |
+| `ind_pro12`     | Factor | Indicador de si el cliente es consumidor del producto "depiladora eléctrica".  Sí ('S') o no ('N')                         |
+| `ind_pro14`     | Factor | Indicador de si el cliente es consumidor del producto "crema luxury".  Sí ('S') o no ('N')                                 |
+| `ind_pro15`     | Factor | Indicador de si el cliente es consumidor del producto "smartwatch fitness". Sí ('S') o no ('N')                           |
+| `ind_pro16`     | Factor | Indicador de si el cliente es consumidor del producto "kit pesas inteligentes". Sí ('S') o no ('N')                       |
+| `ind_pro17`     | Factor | Indicador de si el cliente es consumidor del producto "estimulador muscular". Sí ('S') o no ('N')                         |
 | `importe_pro11` | Doble  | Importe neto global gastado por el cliente en ese producto, en euros                                                   |
 | `importe_pro12` | Doble  | Importe neto global gastado por el cliente en ese producto, en euros                                                   |
 | `importe_pro14` | Doble  | Importe neto global gastado por el cliente en ese producto, en euros                                                   |
@@ -669,12 +623,12 @@ capítulos de *machine learning* supervisado para clasificación.
 | `ingresos_ano`  | Doble  | Ingresos anuales del cliente, en euros                                                                                 |
 | `des_nivel_edu` | Factor | Descripción del nivel de educación del cliente                                                                        |
 
-: (#tab:dpentr) Descripción de las variables del conjunto de datos `dp_entr`.
+: (#tab:dpentr) Descripción de las variables del conjunto de datos `dp_entr`
 
 [^Note00_arborles]: Doble: puede tomar todos los valores en la recta numérica real; es decir, son variables numéricas que pueden tener decimales. Entero: variables numéricas que pueden tomar valores negativos y positivos pero que no tienen decimales. 
 
-
-A partir del conjunto de entrenamiento, se construye un árbol de clasificación \index{árbol!de clasificación}, tal y como se ha expuesto anteriormente, sin
+\index{a@árbol!de clasificación}
+A partir del conjunto de entrenamiento, se construye un árbol de clasificación, tal y como se ha expuesto anteriormente, sin
 transformar (en su escala original) mediante el algoritmo CART
 implementado en el paquete `rpart` con árboles de regresión y partición
 recursiva (*recursive partitioning and regression trees*, RPART), que se
@@ -779,26 +733,24 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/notune_rpart_boxplot.png" alt="Resultados del modelo durante la validación cruzada." width="60%" />
+<img src="img/notune_rpart_boxplot.png" alt="Resultados del modelo durante la validación cruzada." width="40%" />
 <p class="caption">(\#fig:006-002-001RPARTRESULTS)Resultados del modelo durante la validación cruzada.</p>
 </div>
 
 
-Los resultados de validación cruzada quedan recogidos en los boxplot,
-por lo que se pueden ver los valores entre los que oscilan las
-principales medidas de bondad de clasificación en los 10 grupos del proceso de validación. Estas
+Los resultados de validación cruzada quedan recogidos en los *box plots* de la Fig. \@ref(fig:006-002-001RPARTRESULTS), por lo que se pueden ver los valores entre los que oscilan las principales medidas de bondad de clasificación en los 10 grupos del proceso de validación. Estas
 medidas (ROC, sensibilidad y especificidad) se definieron en el Cap.
 \@ref(chap-herramientas), y en el caso de árboles de clasificación se
-utilizan para evaluar el modelo. El árbol generado se muestra en la Fig. \@ref(fig:006-002-001RPARTRESULTS2). Se puede observar que este árbol es muy sencillo (téngase en cuenta que se seleccionan las mejores particiones y que las que no aparecen carecen de interes a efectos predictivos) y,
+utilizan para evaluar el modelo. El árbol generado se muestra en la Fig. \@ref(fig:006-002-001RPARTRESULTS2). Se puede observar que este árbol es muy sencillo (téngase en cuenta que se seleccionan las mejores particiones y que las que no aparecen carecen de interés a efectos predictivos) y,
 por tanto, fácil de interpretar. En primer lugar decide si
 un cliente que compra el *smartchwatch fitness* comprará el nuevo
 producto. En caso de no comprar el *smartchwatch fitness* (No a
-ind_pro15S=1), pero sí la *depiladora eléctrica* (Yes a
-ind_pro12S=1), comprará el *tensiómetro digital*. Si no compra ninguno
+`ind_pro15S=1`), pero sí la *depiladora eléctrica* (Yes a
+`ind_pro12S=1`), comprará el *tensiómetro digital*. Si no compra ninguno
 de esos dos productos no comprará el nuevo producto.
 
 
-Se seleccionan las variables que generan las mejores particiones. Aquellas que no aparecen no generan particiones interesantes a nivel predictivo. Esto también se entiende con la importancia de variables explicado más abajo. 
+Se seleccionan las variables que generan las mejores particiones. Aquellas que no aparecen no generan particiones interesantes a nivel predictivo. Esto también se entiende con la importancia de variables explicada más abajo. 
 
 
 
@@ -809,20 +761,20 @@ rpart.plot(model$finalModel)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/notune_rpart_plot.png" alt="Árbol de clasificación sin ajuste automático de hiperparámetros." width="80%" />
+<img src="img/notune_rpart_plot.png" alt="Árbol de clasificación sin ajuste automático de hiperparámetros." width="60%" />
 <p class="caption">(\#fig:006-002-001RPARTRESULTS2)Árbol de clasificación sin ajuste automático de hiperparámetros.</p>
 </div>
 
 
 
 Este modelo se puede mejorar ajustando automáticamente
-\index{ajuste automático} el hiperparámetro[^Nota_arboles_1],[^Note_arboles_3]\index{hiperparámetro}
+\index{ajuste automático} el hiperparámetro[^Nota_arboles_1] [^Note_arboles_3]\index{hiperparámetro}
 incluido en `rpart` para el entrenamiento de árboles de decisión. Por consiguiente, primero
 es necesario conocer el hiperparámetro a optimizar en el algoritmo
 implementado en **R** que se esté utilizando. Esto se consigue mediante la
 siguiente instrucción, incluida en el paquete `caret`:
 
-[^Nota_arboles_1]: Como se expuso en el Cap. \@ref(chap-herramientas), los hiperparametros de un modelo son los valores de las configuraciones utilizadas durante el proceso de entrenamiento. A diferencia de los parámetros, son valores que no se obtienen a partir de los datos, sino que los propone el científico de datos. Podría decirse que son conjeturas (buenas conjeturas) realizadas sin utilizar las observaciones disponibles. Los hiperparámetros, a diferencia de los parámetros, se fijan antes del entrenamiento. Siendo más específicos, al entrenar un modelo de aprendizaje automático se fijan los valores de los hiperparámetros para que con estos se estimen los parámetros.  Podría decirse que son los ajustes del modelo para que este pueda resolver de manera óptima el problema de aprendizaje automático. En conclusión, hiperparámetros y parámetros son conceptos bien diferentes.
+[^Nota_arboles_1]: Como se expuso en el Cap. \@ref(chap-herramientas), los hiperparámetros de un modelo son los valores de las configuraciones utilizadas durante el proceso de entrenamiento. A diferencia de los parámetros, son valores que no se obtienen a partir de los datos, sino que los propone el científico de datos. Podría decirse que son conjeturas (buenas conjeturas) realizadas sin utilizar las observaciones disponibles. Los hiperparámetros, a diferencia de los parámetros, se fijan antes del entrenamiento. Siendo más específicos, al entrenar un modelo de aprendizaje automático se fijan los valores de los hiperparámetros para que con estos se estimen los parámetros.  Podría decirse que son los ajustes del modelo para que este pueda resolver de manera óptima el problema de aprendizaje automático. En conclusión, hiperparámetros y parámetros son conceptos bien diferentes.
 
 [^Note_arboles_3]: Cuando no se realiza el ajuste automático del hiperparámetro, el paquete `rpart` le asigna tres posibles valores de forma aleatoria: uno bajo, uno medio y uno alto.
 
@@ -839,7 +791,7 @@ El hiperparámetro\index{hiperparámetro} a optimizar es la complejidad
 del árbol, $\zeta$ (o `cp`), y se aplica en la fase de
 parada durante la construcción del árbol. Como se avanzó anteriormente, esta
 fase tiene como función principal evitar divisiones que no
-valgan la pena. El hiperparámetro de complejidad ($\zeta$ (o `cp` en los resultados) puede entenderse como un umbral que permite divisiones (*splits*) en cada nodo del modelo siempre y cuando haya una mejora mínima en las métricas. Es necesario definir los valores de dicho hiperparámetro que se
+valgan la pena. El hiperparámetro de complejidad $\zeta$ (o `cp` en los resultados) puede entenderse como un umbral que permite divisiones (*splits*) en cada nodo del modelo siempre y cuando haya una mejora mínima en las métricas. Es necesario definir los valores de dicho hiperparámetro que se
 quieren evaluar con el objetivo de obtener su valor óptimo.
 
 
@@ -894,16 +846,16 @@ The final value used for the model was cp = 0.01.
 ```
 
 De forma automática se construyen diversos árboles para cada uno de los
-valores explicitados del parámetro de complejdad, $\zeta$ (denominado `cp`en los resultados). Para cada uno de esos árboles se obtienen las siguientes correspondientes métricas: la área bajo la
+valores explicitados del parámetro de complejdad, $\zeta$ (denominado `cp`en los resultados). Para cada uno de esos árboles se obtienen las siguientes correspondientes métricas: el área bajo la
 curva ROC (denotada así por las siglas en inglés de *receiver operating
 characteristic*), sensibilidad (Sens) y especificidad (Spec), todas ellas
 definidas en el Cap. \@ref(chap-herramientas). El valor ROC[^Note_arboles_2] es el utilizado
 para la elección del valor óptimo del hiperparámetro de complejidad, por lo que se determina que
-finalmente el óptimo es $cp=0,01$, puesto que en ese caso la área bajo la curva ROC alcanza el valor máximo: 89,6%. Por tanto, ajustando el hiperparámetro se ha aumentado la
+finalmente el óptimo es $cp= \text {0,01}$, puesto que en ese caso el área bajo la curva ROC alcanza el valor máximo: 89,6%. Por tanto, ajustando el hiperparámetro se ha aumentado la
 precisión del modelo en casi 8 puntos porcentuales respecto al 81,7% que tenía el modelo
 sin ajuste automático de `cp`.
 
-[^Note_arboles_2]: La curva ROC es la que se obtiene al graficar la sensibilidad (tasa de verdaderos positivos) frente a la tasa de falsos positivos (también denominada 1-especificidad), se obtiene la curva ROC. Cuanto más grande sea el área bajo la curva ROC, mayor será la precisión obtenida.
+[^Note_arboles_2]: La curva ROC es la que se obtiene al graficar la sensibilidad (tasa de verdaderos positivos) frente a la tasa de falsos positivos (también denominada 1-especificidad). Cuanto más grande sea el área bajo la curva ROC, mayor será la precisión obtenida.
 
 
 En la Fig. \@ref(fig:006-002-003RPARTRESULTS1) se puede ver el
@@ -919,12 +871,12 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/tune_rpart_boxplot.png" alt="Resultados del modelo con ajuste automático durante la validación cruzada." width="60%" />
+<img src="img/tune_rpart_boxplot.png" alt="Resultados del modelo con ajuste automático durante la validación cruzada." width="40%" />
 <p class="caption">(\#fig:006-002-003RPARTRESULTS1)Resultados del modelo con ajuste automático durante la validación cruzada.</p>
 </div>
 
 En la Fig. \@ref(fig:006002003RPARTPLOT2) se muestra el árbol generado.
-La visualización del arbol se obtiene con el siguiente código:
+La visualización del árbol se obtiene con el siguiente código:
 
 
 ```r
@@ -933,13 +885,13 @@ rpart.plot(model$finalModel)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/classbigtree.png" alt="Árbol de clasificación con ajuste automático." width="80%" />
+<img src="img/classbigtree.png" alt="Árbol de clasificación con ajuste automático." width="100%" />
 <p class="caption">(\#fig:006002003RPARTPLOT2)Árbol de clasificación con ajuste automático.</p>
 </div>
 
 Con el objetivo de aumentar la generalidad del árbol y facilitar su
 interpretación, se procede a reducir su tamaño podándolo. Para ello se
-establece el criterio de que un nodo terminal tiene que tener, como mínimo, 50 observaciones El árbol resultante se muestra en la Fig. \@ref(fig:PLOTCLASSPRUNEDTREE).
+establece el criterio de que un nodo terminal tiene que tener, como mínimo, 50 observaciones. El árbol resultante se muestra en la Fig. \@ref(fig:PLOTCLASSPRUNEDTREE).
 
 
 
@@ -952,7 +904,7 @@ rpart.plot(prunedtree)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/pruned_class_tree.png" alt="Árbol de clasificación con ajuste automático y podado." width="100%" />
+<img src="img/pruned_class_tree.png" alt="Árbol de clasificación con ajuste automático y podado." width="60%" />
 <p class="caption">(\#fig:PLOTCLASSPRUNEDTREE)Árbol de clasificación con ajuste automático y podado.</p>
 </div>
 
@@ -965,7 +917,7 @@ Como puede observarse, el número de nodos terminales del árbol se ha reducido 
 2.  Compra el *smartwatch fitness* (`ind_pro15` = S - Yes) y el
     *estimulador muscular* (`ind_pro17` = S - Yes), pero no la *depiladora eléctrica* ( `ind_pro12` = S - No).
 
-3.  No compra ni el *smartwatch fitness* (`ind_pro15` = S - No), pero si la
+3.  No compra el *smartwatch fitness* (`ind_pro15` = S - No), pero sí la
     *depiladora eléctrica* (`ind_pro12` = S - Yes).
 
 Sin embargo, dos nodos terminales predicen que el cliente no comprará el
@@ -979,7 +931,8 @@ nuevo producto si:
 
 
 
-## Árboles de regresión \index{árbol!de regresión}
+## Árboles de regresión 
+\index{a@árbol!de regresión}
 
 Los árboles de decisión también pueden usarse para resolver problemas de regresión. En este caso, la idea es que la
 predicción sea un valor numérico en lugar de una categoría. En la Tabla \@ref(tab:dataregtree) se muestran los
@@ -1006,40 +959,40 @@ categórica, como ocurría en el ejemplo de clasificación con la variable
 | 14  |   Lluvia    | Fuerte  | Fuerte |      1,5      |
 | 15  |   Soleado   | Fuerte  | Fuerte |      1,5      |
 
-: (#tab:dataregtree) Datos de Horas jugadas dada la climatología del día.
+: (#tab:dataregtree) Datos de Horas jugadas dada la climatología del día
 
-Las principales medidas descriptivas de la variable respuesta (media, varianza, desviación típica y coeficiente de
-variación) son:
+Las principales medidas descriptivas de la variable respuesta (media, varianza, desviación típica y coeficiente de variación) son:
 
 ```{=tex}
 \begin{equation}
-\bar{x}_{\text{Horas jugadas}} = \frac{1}{n}\sum{x} = 1,91
+\bar{x}_{\text{Horas jugadas}} = \frac{1}{n}\sum{x} = \text {1,91},
 (\#eq:mean-horas)
 \end{equation}
 ```
 ```{=tex}
 \begin{equation}
-\sigma^{2}_{\text{Horas jugadas}} = \frac{\sum{(x-\bar{x}\Bigr)^{2}}}{n} = 0,25
+\sigma^{2}_{\text{Horas jugadas}} = \frac{\sum{(x-\bar{x}\Bigr)^{2}}}{n} = \text {0,25},
 (\#eq:varhoras)
 \end{equation}
 ```
 ```{=tex}
 \begin{equation}
-\sigma_{\text{Horas jugadas}} = \sqrt{\sigma^{2}} = 0,50
+\sigma_{\text{Horas jugadas}} = \sqrt{\sigma^{2}} = \text {0,50},
 (\#eq:sdhoras)
 \end{equation}
 ```
 ```{=tex}
 \begin{equation}
-CV_{\text{Horas jugadas}} = \frac{\sigma}{\bar{x}} = 0,26
+CV_{\text{Horas jugadas}} = \frac{\sigma}{\bar{x}} = \text {0,26}.
 (\#eq:cvhoras)
 \end{equation}
 ```
 
-De ellas, es de especial interés la desviación típica del conjunto de datos, pues en los árboles de regresión las divisiones que se harán en dicho conjunto conducirán a subconjuntos que, cada vez, tienen menor desviación típica
+De ellas, es de especial interés la desviación típica del conjunto de datos, pues en los árboles de regresión las divisiones que se harán en dicho conjunto conducirán a subconjuntos que, cada vez, tienen menor desviación típica.
 
 
-### ¿Cómo se va formando el árbol de regresión? \index{partición}
+### ¿Cómo se va formando el árbol de regresión? 
+\index{partición}
 
 Mientras que en los árboles de clasificación se utiliza la entropía o
 la impureza de Gini para medir la homogeneidad de un nodo, en los
@@ -1056,27 +1009,13 @@ cada una de ellas:
 (\#eq:sigmavar)
 \end{equation}
 ```
-donde $X$ es la variable de la cual se quiere obtener la desviación típica (también se podría hablar en términos de conjunto de datos), $r$ son las ramas, y $P(r)$ es la probabilidad de seleccionar cada una de esas ramas, que se puede estimar mediante el cociente entre el número de observaciones  de la rama y el total de las que se consideran en el nodo. 
+donde $X$ es la variable de la cual se quiere obtener la desviación típica (también se podría hablar en términos de conjunto de datos), $r$ son las ramas y $P(r)$ es la probabilidad de seleccionar cada una de esas ramas, que se puede estimar mediante el cociente entre el número de observaciones  de la rama y el total de las que se consideran en el nodo. 
 
 Siguiendo un proceso idéntico al que se ha mostrado en el caso de los árboles de clasificación,  para los datos mostrados en la Tabla
-\@ref(tab:dataregtree), la desviación típica es 0,50 horas jugadas (véase \@ref(eq:sdhoras), y entre las variables predictoras, *Tipo de
-día*, *Humedad* y *Viento* se seleccionará como nodo raíz aquella que genere una partición del conjunto inicial más homogénea (con menos desviación típica ponderada)
+\@ref(tab:dataregtree)), la desviación típica es 0,50 horas jugadas (véase ecuación \@ref(eq:sdhoras), y entre las variables predictoras, *Tipo de día*, *Humedad* y *Viento*, se seleccionará como nodo raíz aquella que genere una partición del conjunto inicial más homogénea (con menos desviación típica ponderada).
 
-Para cada una de las tres variables candidatas a nodo raíz, las desviaciones típicas en los subconjuntos correspondientes a cada una de sus ramas o categorías son las siguientes: 
+Para cada una de las tres variables candidatas a nodo raíz, las desviaciones típicas en los subconjuntos correspondientes a cada una de sus ramas o categorías son las que se indican en las Tablas \@ref(tab:sd-tipodia), \@ref(tab:sd-Humedad) y \@ref(tab:sd-Viento): 
  
-
-
-<!-- \textcolor{blue}{A continuación, se calcula la desviación típica de cada variable. Aquella con la que se maximice la reducción respecto a la desviación típica de los datos en el nodo padre, es la variable que se seleccionará para hacer la próxima partición.} -->
-
-
-<!-- \textcolor{red}{A continuación, se seleccionan posibles variables para hacer la -->
-<!-- división y se obtiene su desviación típica. Para cada una de estas -->
-<!-- variables se calcula el decremento de la desviación, y se selecciona -->
-<!-- aquel que introduzca la mayor reducción}. \textcolor{red}{no se entiende} -->
-
-
-
-
 | Tipo de día | \# observaciones | $\sigma_{\text{Horas jugadas}}$ |
 |-------------|:----------------:|:-------------------------------:|
 | Soleado     |        6         |              0,45               |
@@ -1084,7 +1023,7 @@ Para cada una de las tres variables candidatas a nodo raíz, las desviaciones t�
 | Lluvia      |        5         |              0,38               |
 
 : (#tab:sd-tipodia) Desviación típica en las ramas de la variable *Tipo
-de día*.
+de día*
 
 | Humedad | \# observaciones | $\sigma_{\text{Horas jugadas}}$ |
 |---------|:----------------:|:-------------------------------:|
@@ -1092,7 +1031,7 @@ de día*.
 | Débil   |        7         |              0,43               |
 
 : (#tab:sd-Humedad) Desviación típica en las ramas de la variable
-*Humedad*.
+*Humedad*
 
 | Viento | \# observaciones | $\sigma_{\text{Horas jugadas}}$ |
 |--------|:----------------:|:-------------------------------:|
@@ -1100,10 +1039,12 @@ de día*.
 | Débil  |        8         |              0,42               |
 
 : (#tab:sd-Viento) Desviación típica en las ramas de la variable
-*Viento*.
+*Viento*
 
 A partir de las desviaciones típicas en las ramas de cada variable, se obtiene la desviación típica (ponderada) de cada variable de acuerdo a la
-ecuación \@ref(eq:sigmavar). La reducción que se opera en la desviación típica de los valores de la variable respuesta del conjunto inicial (diferencia entre la desviación de la variable
+ecuación \@ref(eq:sigmavar). 
+
+La reducción que se opera en la desviación típica de los valores de la variable respuesta del conjunto inicial (diferencia entre la desviación de la variable
 respuesta y la que se obtiene cuando se divide el conjunto de datos en base a
 cada una de las variables) puede verse en la Tabla \@ref(tab:sdvars).
 
@@ -1114,12 +1055,12 @@ cada una de las variables) puede verse en la Tabla \@ref(tab:sdvars).
 | Viento      |              0,49               |    0,01    |
 
 : (#tab:sdvars) Desviación típica y reducción de de la desviación para cada
-variable.
+variable
 
 Dado que la partición del conjunto de datos según la variable *Tipo de día* es la que produce una mayor reducción
 en la desviación típica, dicha variable resulta elegida como nodo raíz. 
 
-A continuación, se procede a la partición de los subconjuntos de observaciones correspondientes a las ramas de la variable *Tipo de día*: *soleado*, *nublado* y *con lluvia* en función de *Humedad* o *Viento*. Comenzando con *Tipo de día: soleado*, se tiene que la partición del subconjunto de datos correspondientes a días soleados según la *Humedad* da lugar a los siguientes resultados:
+A continuación, se procede a la partición de los subconjuntos de observaciones correspondientes a las ramas de la variable *Tipo de día*: *soleado*, *nublado* y *con lluvia* en función de *Humedad* o *Viento*. Comenzando con *Tipo de día: soleado*, se tiene que la partición del subconjunto de datos correspondientes a días soleados según la *Humedad* da lugar a los resultados que se muestran en la Tabla \@ref(tab:sd-sol-Humedad):
 
 | Humedad | \# observaciones | $\sigma_{\text{Horas jugadas}}$ |
 |---------|:----------------:|:-------------------------------:|
@@ -1127,9 +1068,9 @@ A continuación, se procede a la partición de los subconjuntos de observaciones
 | Débil   |        2         |              0,05               |
 
 : (#tab:sd-sol-Humedad) Desviación típica en las ramas de la variable
-*Humedad* en días soleados.
+*Humedad* en días soleados
 
-Si la variable de partición fuese la fuerza del *Viento*, entonces se tendría que:
+Si la variable de partición fuese la fuerza del *Viento*, entonces se tendrían los resultados que figuran en la Tabla \@ref(tab:sd-sol-Viento):
 
 | Viento | \# observaciones | $\sigma_{\text{Horas jugadas}}$ |
 |--------|:----------------:|:-------------------------------:|
@@ -1137,10 +1078,10 @@ Si la variable de partición fuese la fuerza del *Viento*, entonces se tendría 
 | Débil  |        3         |              0,47               |
 
 : (#tab:sd-sol-Viento) Desviación típica en las ramas de la variable
-*Viento* en días soleados.
+*Viento* en días soleados
 
-En la Tabla \@ref(tab:sdvarssol) se la desviación típica para
-cada variable (obtenica como media ponderada de las desviaciones típicas correspondientes a sus ramas) así como la reducción de desviación que produce. Como la mayor reducción se produce en *Humedad*, la siguiente división se realizaría en función de las categorías de esta variable.
+En la Tabla \@ref(tab:sdvarssol) se muestra la desviación típica para
+cada variable (obtenida como media ponderada de las desviaciones típicas correspondientes a sus ramas), así como la reducción de desviación que produce. Como la mayor reducción se produce en *Humedad*, la siguiente división se realizaría en función de las categorías de esta variable.
 
 | Variable | $\sigma_{\text{Horas jugadas}}$ | Decremento |
 |----------|:-------------------------------:|:----------:|
@@ -1148,19 +1089,20 @@ cada variable (obtenica como media ponderada de las desviaciones típicas corres
 | Viento   |              0,31               |    0,14    |
 
 
-: (#tab:sdvarssol) Desviación típica y decremento de desviación de *Humedad* y *Viento* en la rama *Soleado*.
+: (#tab:sdvarssol) Desviación típica y decremento de desviación de *Humedad* y *Viento* en la rama *Soleado*
 
 
-De igual manera se procedería en el caso de días nublados o lluviosos. En el caso de días nublados la desviación típica (ponderada) del número de horas en los subconjuntos de datos que genera la partición por *Humedad* es 0,2208, mientras la de los subconjuntos que genera la partición por fuerza del *Viento* es 0,2775 (se dejan al lector estos cálculos) por lo cual la reducción en desviación típica (o el aumento de homogenidad en los valores de la variable respuesta) es mayor cuando se particiona por *Humedad*.  En el caso de los días lluviosos, la partición que da lugar a mayor homogeneidad en los subconjuntos que genera también es la que se lleva a cabo mediante la variable *Humedad* (la desviación típica ponderada en los subconjuntos de las ramas de *Humedad* es 0,1975 mientras que la de los subconjuntos generados al particionar por la fuerza del *Viento* es 0,3375; también se dejan al lector estos cálculos
+De igual manera se procedería en el caso de días nublados o lluviosos. En el caso de días nublados la desviación típica (ponderada) del número de horas en los subconjuntos de datos que genera la partición por *Humedad* es 0,2208, mientras la de los subconjuntos que genera la partición por fuerza del *Viento* es 0,2775 (se dejan al lector estos cálculos), por lo cual la reducción en desviación típica (o el aumento de homogenidad en los valores de la variable respuesta) es mayor cuando se particiona por *Humedad*.  En el caso de los días lluviosos, la partición que da lugar a mayor homogeneidad en los subconjuntos que genera también es la que se lleva a cabo mediante la variable *Humedad* (la desviación típica ponderada en los subconjuntos de las ramas de *Humedad* es 0,1975, mientras que la de los subconjuntos generados al particionar por la fuerza del *Viento* es 0,3375; también se dejan al lector estos cálculos.
 
-### ¿Cuánto debe crecer el árbol de regresión? \index{profundidad!del árbol}
+### ¿Cuánto debe crecer el árbol de regresión?
+\index{profundidad del árbol}
 
 Como en el caso de los árboles de clasificación, es necesario establecer
 reglas que pongan fin al proceso de crecimiento del árbol. Además de los
 criterios de parada que se utilizan en árboles de clasificación (número
-de elementos mínimos en un nodo y número de niveles máximo en la estructura del árbol), en los árboles de regresión se detiene su crecimiento estableciendo un *threshold* (umbral
+de elementos mínimos en un nodo y número de niveles máximos en la estructura del árbol), en los árboles de regresión se detiene su crecimiento estableciendo un *threshold* (umbral
 de decisión) sobre el coeficiente de variación del nodo. En el ejemplo
-expuesto sobre *Horas jugadas*, se puede ver qué nodos podrían seguir
+expuesto en la Tabla \@ref(tab:cv-nodos) sobre *Horas jugadas*, se puede ver qué nodos podrían seguir
 creciendo si se establece que el árbol continúe creciendo en nodos con
 un coeficiente de variación de un 15% o más y con al menos 5
 observaciones.
@@ -1172,15 +1114,15 @@ observaciones.
 | Humedad     | Fuerte  |     21,04%      |        4         |
 | Humedad     |  Débil  |      4,04%      |        2         |
 
-: (#tab:cv-nodos) Medidas para decidir si el árbol sigue creciendo.
+: (#tab:cv-nodos) Medidas para decidir si el árbol sigue creciendo
 
 En este ejemplo, el árbol seguiría creciendo por la rama *Lluvia*, donde
 habría que seleccionar la siguiente variable de división. En el resto de
 ramas no se supera el número mínimo establecido de observaciones en el
 nodo y en *Nublado* y *Débil* tampoco se alcanza el coeficiente de variación
 mínimo. Por otra parte, en los árboles de regresión la poda se lleva a
-cabo del mismo modo que para árboles de clasificación. Igual que en ecuación \@ref(eq:poda), el error de entrenamiento se mide a través de la suma
-de los cuadrados de los errores (en inglés *sum of squared (estimate) of
+cabo del mismo modo que para árboles de clasificación. Igual que en la ecuación \@ref(eq:poda), el error de entrenamiento se mide a través de la suma
+de los cuadrados de los errores (en inglés *sum of squared (estimated)
 errors*, SSE), es decir:
 
 ```{=tex}
@@ -1197,10 +1139,10 @@ paquete `CDR`, y que han sido utilizados en el Cap. \@ref(cap-glm) para
 estimar la variable *Días de hospitalización*,  `dhosp`. El conjunto de datos contiene información sobre pacientes que llegan a un hospital con dolor de pecho y de los
 cuales se han recogido distintas características. Se pretende predecir
 el número de días de hospitalización que necesitará un paciente en base
-al resto de características observadas:\index{árbol!de regresión} si
+al resto de características observadas:\index{a@árbol!de regresión} si
 el paciente está diagnosticado de accidente coronario o no, su edad, su sexo,
 el tipo de dolor que padece y la depresión en el segmento ST inducida
-por ejercicio en relación al reposo.
+por ejercicio en relación con el reposo.
 
 
 ```r
@@ -1231,12 +1173,11 @@ En la salida anterior `xerror` es el error de validación cruzada, `rel error` e
 
 Se observa que para valores muy altos del hiperparámetro de complejidad (`cp`en los resultados),
 SSE es muy elevado. Esto es, produce modelos muy sencillos pero con
-nula potencia predictiva. En el otro extremo, para $\zeta=0,01$, SSE
-se reduce hasta llegar a $SSE=0,54$, por lo que el árbol se poda de
+nula potencia predictiva. En el otro extremo, para $\zeta=\text {0,01}$, SSE
+se reduce hasta llegar a SSE = 0,54 por lo que el árbol se poda de
 acuerdo a la ecuación \@ref(eq:regpoda) con dicho valor de $\zeta$. El
 resultado del modelo se muestra en el árbol de la Fig.
 \@ref(fig:dhosp-plot). La interpretación de este árbol sería:
-
 
 1.  Si el paciente no tiene diagnóstico de accidente coronario, solo
     necesitará un día de hospitalización.
@@ -1246,10 +1187,10 @@ resultado del modelo se muestra en el árbol de la Fig.
     reposo, necesitará 2,8 días de hospitalización.
 
 3.  En un último ejemplo, si la depresión en el segmento ST inducida por
-    ejercicio en relación al reposo está entre 0,35 y 2, entonces el
-    paciente necesitará 3,8 días de hospitalización. Si por el
+    ejercicio en relación con el reposo está entre 0,35 y 2, entonces el
+    paciente necesitará 3,8 días de hospitalización. Si, por el
     contrario, la depresión en el segmento ST inducida por ejercicio en
-    relación al reposo es menor a 0,35, el número de días de
+    relación con el reposo es menor a 0,35, el número de días de
     hospitalización depende del sexo del paciente: los hombres
     necesitarán 3,2 días y las mujeres tan solo 1,9 días.
 
@@ -1260,7 +1201,7 @@ rpart.plot(model)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/regtree_dhosp.png" alt="Árbol de regresión para predecir el número de días de hospitalización." width="60%" />
+<img src="img/regtree_dhosp.png" alt="Árbol de regresión para predecir el número de días de hospitalización." width="55%" />
 <p class="caption">(\#fig:dhosp-plot)Árbol de regresión para predecir el número de días de hospitalización.</p>
 </div>
 
@@ -1321,7 +1262,6 @@ model <- rpart(UNITPRICE ~ ., Madrid_Sale, method = "anova")
 model
 
 n= 94815 
-
 node, split, n, deviance, yval
       * denotes terminal node
 
@@ -1345,22 +1285,22 @@ node, split, n, deviance, yval
 
 
 
-Como en el ejemplo anterior, para $\zeta=0,01$ SSE se reduce hasta $SSE=0,56$, por lo que el árbol se poda de acuerdo a la
+Como en el ejemplo anterior, para $\zeta=\text {0,01}$ SSE se reduce hasta SSE $=\text {0,56}$, por lo que el árbol se poda de acuerdo a la
 ecuación \@ref(eq:regpoda) con dicho valor de $\zeta$. El resultado del
-modelo se muestra en el árbol de la Fig. \@ref(fig:idealista-treeplot).
-La interpretación de este árbol sería:
+modelo se muestra en el árbol de la Fig. \@ref(fig:idealista-treeplot). La interpretación de este árbol sería:
 
-1.  Si una vivienda con ascensor se encuentra a menos de 3,2km del
-    centro de Madrid y a menos de 0,46km de una estación de Metro, el
-    precio por metro cuadrado predicho para esa vivienda será de 5.248€.
+1.  Si una vivienda con ascensor se encuentra a menos de 3,2 km del
+    centro de Madrid y a menos de 0,46 km de una estación de metro, el
+    precio por metro cuadrado predicho para esa vivienda será de 5.248 €.
 
-2.  Si una vivienda se encuentra a más de 3,2km del centro de Madrid y
+2.  Si una vivienda se encuentra a más de 3,2 km del centro de Madrid y
     no tiene ascensor, el precio predicho será de
-    2.160€ por metro cuadrado$.
+    2.160 € por metro cuadrado.
 
-3.  Si una vivienda se encuentra a menos de 3,2km del centro de Madrid y
-    a más de 0,46km de una estación de Metro, el precio unitario
-    predicho para esa vivienda será de 3.873€/$m^{2}$.
+3.  Si una vivienda se encuentra a menos de 3,2 km del centro de Madrid y
+    a más de 0,46 km de una estación de metro, el precio unitario
+    predicho para esa vivienda será de 3.873 €/$\text {m}^{2}$.
+    
 4.  Se deja al lector la interpretación de los casos donde, además, se tiene en cuenta el número de baños y de habitaciones.
 
 
@@ -1368,9 +1308,8 @@ La interpretación de este árbol sería:
 # se pinta el árbol obtenido
 rpart.plot(model)
 ```
-
 <div class="figure" style="text-align: center">
-<img src="img/regtree_idealista.png" alt="Árbol de regresión para predecir el precio por metro cuadrado de las viviendas en Madrid." width="80%" />
+<img src="img/regtree_idealista.png" alt="Árbol de regresión para predecir el precio por metro cuadrado de las viviendas en Madrid." width="60%" />
 <p class="caption">(\#fig:idealista-treeplot)Árbol de regresión para predecir el precio por metro cuadrado de las viviendas en Madrid.</p>
 </div>
 
@@ -1382,10 +1321,13 @@ abordar problemas de clasificación y regresión. En particular:
 
 -   Se muestra la lógica de la construcción de árboles de decisión,
     ya sean de regresión o clasificación.
+    
 -   Se contemplan diferentes medidas con las que el árbol decide avanzar
     hacia un nuevo punto de decisión.
+    
 -   Se abordan los conceptos de sobreajuste y complejidad del árbol,
     así como la forma de controlarlos.
+    
 -   Se muestra el uso de **R** para la clasificación en clases binarias y
     para la predicción de variables respuesta numéricas en casos
     aplicados.

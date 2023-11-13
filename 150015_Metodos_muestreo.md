@@ -14,9 +14,9 @@ Muchas investigaciones científicas abordan el estudio de características de un
 
 En otros casos, la conveniencia de muestrear una población está relacionada con la credibilidad de los resultados obtenidos o de las propiedades de los modelos utilizados. Así, muchas técnicas cuantitativas dividen la información (muestra) disponible en un subconjunto de **entrenamiento** o **estimación** y otro de **contraste** o **validación**; una elección inadecuada puede alterar los resultados e invalidar las conclusiones. Por último, caso muy común en ciencias sociales, no se puede acceder a la medición directa de los fenómenos (por ser una población muy grande o un fenómeno subjetivo), por lo que se accede a ella mediante encuestas, que precisan de una metodología de muestreo rigurosa y diseñada previamente.
 
-Para fijar terminología, se define **población** como el conjunto de casos de interés a los que se quieren generalizar los resultados de la investigación, denominados genéricamente **individuos**; a veces, sólo es posible acceder a una parte de la población, por lo que se utiliza el término **población objetivo** para el conjunto total y **población muestreable** al conjunto al que se tiene acceso. Por coherencia, cuando ambos colectivos no coincidan, los resultados deben extrapolarse sólo al último de ellos.
+Para fijar terminología, se define **población** como el conjunto de casos de interés a los que se quieren generalizar los resultados de la investigación, denominados genéricamente **individuos**; a veces, solo es posible acceder a una parte de la población, por lo que se utiliza el término **población objetivo** para el conjunto total y **población muestreable** al conjunto al que se tiene acceso. Por coherencia, cuando ambos colectivos no coincidan, los resultados deben extrapolarse solo al último de ellos.
 
-Las características de interés de la población se consideran **variables**, en el sentido estadístico del término, por lo que son estudiadas mediante su distribución. En algunos casos, esta será completamente desconocida, siendo de interés su determinación completa; en otros muchos, se buscará determinar sólo algunos aspectos (medidas de posición, dispersión, etc.) o los parámetros que rigen una distribución funcionalmente conocida. En todo caso, el objetivo del estudio es determinar la distribución estadística de estas variables, conocida como **distribución poblacional**; a veces, por simplicidad en el lenguaje, a esta distribución o, incluso, a las variables, se les denomina población (por ejemplo, no es infrecuente encontrar enunciados del tipo "la población sigue una distribución binomial", identificando población con variable, o "la población es una distribución normal", identificando población con distribución).
+Las características de interés de la población se consideran **variables**, en el sentido estadístico del término, por lo que son estudiadas mediante su distribución. En algunos casos, esta será completamente desconocida, siendo de interés su determinación completa; en otros muchos, se buscará determinar sólo algunos aspectos (medidas de posición, dispersión, etc.) o los parámetros que rigen una distribución funcionalmente conocida. En todo caso, el objetivo del estudio es determinar la distribución estadística de estas variables, conocida como **distribución poblacional**; a veces, por simplicidad en el lenguaje, a esta distribución o, incluso, a las variables, se las denomina población (por ejemplo, no es infrecuente encontrar enunciados del tipo "la población sigue una distribución binomial", identificando población con variable, o "la población es una distribución normal", identificando población con distribución).
 
 Se define **muestra** como un subconjunto de la población, que será utilizado para caracterizar la distribución poblacional y **unidad muestral** a cada individuo de la muestra. Si la muestra tiene la misma distribución que la población, se dice que es **representativa**, mientras que en caso contrario se denomina **sesgada**.
 
@@ -115,7 +115,7 @@ sample.size.mean(e, sd, N, level = 0.95)
 #> Sample size needed: 25
 ```
 
-[^mas3]: Dado el tamaño poblacional finito (*N*=150), la función utiliza una corrección de población finita para la obtención del tamaño muestral que garantice el error máximo prefijado.
+[^mas3]: Dado el tamaño poblacional finito $(N = 150)$, la función utiliza una corrección de población finita para la obtención del tamaño muestral que garantice el error máximo prefijado.
 
 Así, basta con una muestra aleatoria simple de tamaño 25 para poder estimar la longitud media de los sépalos con los requisitos dados. Para obtener la muestra concreta, la función `sample` proporciona los valores obtenidos (conjunto de 25 valores aleatorios entre 1 y N=150) y permite seleccionar los casos que conforman la muestra:
 
@@ -150,7 +150,7 @@ mean(datos_ej$Sepal.Length) # Valor de la media poblacional
 #> [1] 5.843333
 ```
 
-En este ejemplo, el error cometido sería de $5,976 - 5,843=0,133$ cm.
+En este ejemplo, el error cometido sería de 5,976 - 5,843 = 0,133 cm.
 
 Si interesa estimar el total poblacional, basta con multiplicar la estimación de la media por el tamaño poblacional, $N$. Por último, si se desea estimar una proporción poblacional, el proceso sería idéntico al descrito, pero usando la función `Sprop()`.
 
@@ -179,7 +179,7 @@ estratos
 
 puede observarse que las tres especies no se comportan igual respecto al parámetro de interés (longitud media de los sépalos). La especie *setosa* presenta unos valores menores de longitud media y desviación típica, mientras que la especie *virginica* presenta los valores más elevados.
 
-Si no se considerara la especie, un muestreo aleatorio simple podría sesgar los resultados, por ejemplo, con un predominio de las *setosas* o de las *virginicas*. En todo caso, la variabilidad del conjunto de datos es más elevada que en cualquiera de las especies, pues a la variación dentro de cada especie se une la variación entre especies. Este hecho hace aumentar el tamaño muestral necesario para estimar con un margen de error prefijado.
+Si no se considerara la especie, un muestreo aleatorio simple podría sesgar los resultados, por ejemplo, con un predominio de las *setosa* o de las *virginica*. En todo caso, la variabilidad del conjunto de datos es más elevada que en cualquiera de las especies, pues a la variación dentro de cada especie se une la variación entre especies. Este hecho hace aumentar el tamaño muestral necesario para estimar con un margen de error prefijado.
 
 En general, cuando existen grupos de individuos con un comportamiento más homogéneo dentro del grupo y diferenciado entre grupos, no resulta apropiado aplicar un m.a.s. En estos casos, es recomendable el denominado **muestreo estratificado**,\index{muestreo!estratificado} donde se realiza previamente una partición de la población en **estratos** y se selecciona una m.a.s. dentro de cada grupo.
 
@@ -261,25 +261,25 @@ Smean(datos_muestra_estr$Sepal.Length, N, level = 0.95)
 
 Existen otros métodos de muestreo probabilístico que buscan simplificar la extracción de una muestra representativa, entre los que destacan el **muestreo por conglomerados** y el **muestreo sistemático**.
 
-Cuando la población es muy grande, es frecuente que se puedan establecer (o construir a partir de alguna variable) subgrupos, o **clústers**, que tengan las mismas características que todo el conjunto respecto a la variable de interés. En esos casos, a efectos de estimación, sería equivalente muestrear toda la población o solo un clúster, con el consiguiente ahorro de tamaño muestral, tiempo y coste. Es el conocido como **muestreo por conglomerados**\index{muestreo!por conglomerados}.
+Cuando la población es muy grande, es frecuente que se puedan establecer (o construir a partir de alguna variable) subgrupos, o clústeres, que tengan las mismas características que todo el conjunto respecto a la variable de interés. En esos casos, a efectos de estimación, sería equivalente muestrear toda la población o solo un clúster, con el consiguiente ahorro de tamaño muestral, tiempo y coste. Es el conocido como **muestreo por conglomerados**\index{muestreo!por conglomerados}.
 
-Por ejemplo, se puede estar interesado en estimar el tiempo medio que el alumnado de E.S.O. dedica a estudiar matemáticas en España. Obtener una muestra para todo el país puede ser costoso en tiempo, recursos materiales y tamaño muestral; sin embargo, se puede asumir que no existen diferencias entre provincias respecto a esta variable, por lo que sería posible muestrear solo en una provincia (o pocas). En este caso, el muestreo por conglomerados consistiría en una primera etapa de selección aleatoria de clústers (provincia/s en este ejemplo) y, posteriormente, aplicar un método de muestreo sobre dicha selección (que, a su vez, podría ser un m.a.s. o un muestreo estratificado).
+Por ejemplo, se puede estar interesado en estimar el tiempo medio que el alumnado de educación secundaria obligatoria (ESO) dedica a estudiar matemáticas en España. Obtener una muestra para todo el país puede ser costoso en tiempo, recursos materiales y tamaño muestral; sin embargo, se puede asumir que no existen diferencias entre provincias respecto a esta variable, por lo que sería posible muestrear solo en una provincia (o pocas). En este caso, el muestreo por conglomerados consistiría en una primera etapa de selección aleatoria de clústeres (provincia/s en este ejemplo) y, posteriormente, aplicar un método de muestreo sobre dicha selección (que, a su vez, podría ser un m.a.s. o un muestreo estratificado).
 
 No conviene confundir los conceptos de estrato y clúster, aunque ambos sean subgrupos de la población total. En el primer caso, los individuos de cada estrato son muy homogéneos entre sí y diferenciados del resto de estratos. En el segundo caso, los individuos de cada clúster tienen la misma variabilidad que el conjunto de la población, no habiendo diferencias entre clústers respecto a la variable de interés. Así, la ganancia en el muestreo estratificado proviene de trabajar con menores variabilidades intraestratos, mientras que en el muestreo por conglomerados proviene de utilizar una subpoblación más pequeña.
 
 En otras situaciones, si se dispone de un marco poblacional (listado completo de los individuos), es posible plantear un mecanismo sencillo de obtención de la muestra. Si se tiene un tamaño poblacional $N$ y se quiere una muestra de tamaño $n$, se pueden establecer $k=N/n$ bloques, elegir al azar un número entre 1 y $k$ (que permite seleccionar el primer elemento de la muestra) y, a partir de esa posición, dar saltos de magnitud $k$ en el listado para seleccionar el resto de unidades muestrales. Es el método conocido como **muestreo sistemático**\index{muestreo!sistemático} o, más técnicamente, **muestreo sistemático uniforme de paso $k$**.
 
-Como ejemplo, supóngase que se quiere obtener una muestra de 50 individuos en una población de 2.000. El paso sería $k=2.000/50=40$ unidades y se selecciona aleatoriamente una unidad entre las 40 primeras (supóngase que la número 13); el resto de la muestra se obtendría sumándole el paso a la primera seleccionada (13, 53, 93, 133, 173, y así hasta la 1.973).
+Como ejemplo, supóngase que se quiere obtener una muestra de 50 individuos en una población de 2.000. El paso sería *k* = 2.000/50 = 40 unidades y se selecciona aleatoriamente una unidad entre las 40 primeras (supóngase que la número 13); el resto de la muestra se obtendría sumándole el paso a la primera seleccionada (13, 53, 93, 133, 173, y así hasta la 1.973).
 
 Por último, los métodos expuestos no son incompatibles, sino que se pueden combinar por etapas, dando lugar a los conocidos como **muestreos polietápicos**. Por ejemplo, la Encuesta de Población Activa, elaborada por el Instituto Nacional de Estadística, adopta un muestreo bietápico, en primer lugar, estratificado entre secciones censales y, en segundo lugar, muestreando entre las viviendas familiares de cada sección.
 
 
 
-## Técnicas de remuestreo: *bootstrap* {#bootstrap}
+## Técnicas de remuestreo: $\bf{\textit{bootstrap}}$ {#bootstrap}
 
 Cuando se infiere una característica poblacional a partir de una muestra, solo se dispone del valor concreto que el estadístico toma sobre dicha muestra. Salvo en raras ocasiones, no se dispone de su distribución en el muestreo, o solo se tiene una aproximación asintótica, por lo que no se pueden evaluar sus propiedades estadísticas con tamaños muestrales no elevados. En otros casos, es la complejidad analítica de muchas técnicas actuales de análisis de datos la que dificulta la determinación de la distribución de las estimaciones de los parámetros.
 
-En estos casos, el método ***bootstrap***\index{bootstrap} propone sustituir la distribución poblacional (desconocida) por una estimación conocida (como puede ser la distribución empírica o una aproximación paramétrica) que, mediante remuestreo, sirva para generar muestras aleatorias a partir de la muestra original. Se obtiene así una distribución de remuestreo, llamada también **distribución** ***bootstrap***, cuyo comportamiento sobre la estimación aproxima a la de la distribución muestral en torno al parámetro, lo que permite evaluar la precisión de las estimaciones.
+En estos casos, el método ***bootstrap***\index{bootstrap@\textit{bootstrap}} propone sustituir la distribución poblacional (desconocida) por una estimación conocida (como puede ser la distribución empírica o una aproximación paramétrica) que, mediante remuestreo, sirva para generar muestras aleatorias a partir de la muestra original. Se obtiene así una distribución de remuestreo, llamada también **distribución** ***bootstrap***, cuyo comportamiento sobre la estimación aproxima a la de la distribución muestral en torno al parámetro, lo que permite evaluar la precisión de las estimaciones.
 
 El método *bootstrap* más sencillo, llamado ***bootstrap*** **uniforme** o ***bootstrap naïve***, parte de la aproximación de la distribución poblacional por la distribución empírica de la muestra. Supóngase que se tiene una muestra $X=(x_1,...,x_n)$ que es utilizada para obtener un estimador $T(X)=\hat{\theta}$ para un parámetro poblacional $\theta$. Utilizando su distribución empírica (véase ecuación \@ref(eq:distrempirica)):
 
@@ -303,7 +303,7 @@ El objetivo es calcular una estimación de la temperatura media y dar un interva
 
 
 
-En este ejemplo, se utiliza la muestra para obtener un valor del estadístico **media muestral** ($\bar X = 77,88$), estimador insesgado de la media poblacional. Sin embargo, al no conocer la distribución en el muestreo (no se asume ningún tipo de distribución poblacional ni se puede hacer uso de aproximaciones asintóticas), no se podría construir un intervalo de confianza.
+En este ejemplo, se utiliza la muestra para obtener un valor del estadístico **media muestral** ($\bar X$ = 77,88), estimador insesgado de la media poblacional. Sin embargo, al no conocer la distribución en el muestreo (no se asume ningún tipo de distribución poblacional ni se puede hacer uso de aproximaciones asintóticas), no se podría construir un intervalo de confianza.
 
 Aplicando el método *bootstrap* (en su versión uniforme), se van a obtener 5.000 muestras de tamaño 20, mediante remuestreo con reemplazamiento:
 
@@ -398,9 +398,9 @@ La función `boot()` permite modificaciones del *bootstrap* uniforme mediante pa
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}
 
-El muestreo probabilístico busca seleccionar una muestra representativa de una población, que permita inferir la distribución poblacional o alguno de sus parámetros. Las decisiones básicas para un correcto proceso de muestreo son el método utilizado (aleatorio simple, estratificado, polietápico, etc.), que depende de la estructura de la población, y la determinación del tamaño muestral que garantice el margen de error asumible.
+- El muestreo probabilístico busca seleccionar una muestra representativa de una población, que permita inferir la distribución poblacional o alguno de sus parámetros. 
 
+- Las decisiones básicas para un correcto proceso de muestreo son el método utilizado (aleatorio simple, estratificado, polietápico, etc.), que depende de la estructura de la población, y la determinación del tamaño muestral que garantice el margen de error asumible.
 
-La técnica ***bootstrap*** de remuestreo permite aproximar la distribución de estadísticos muestrales sin asumir ninguna hipótesis sobre la distribución poblacional, ventaja muy útil para evaluar la precisión de los estimadores en muchísimas técnicas complejas.
-
+- La técnica *bootstrap* de remuestreo permite aproximar la distribución de estadísticos muestrales sin asumir ninguna hipótesis sobre la distribución poblacional, ventaja muy útil para evaluar la precisión de los estimadores en muchísimas técnicas complejas.
 :::

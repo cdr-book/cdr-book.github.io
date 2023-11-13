@@ -13,7 +13,7 @@ Universidad de Castilla-La Mancha
 
 No es posible determinar si la ciencia de datos es una ciencia sin
 previamente consensuar la definición de ciencia. La palabra *ciencia*
-deriva del latín (*scientia*), que deriva a su vez del verbo latino
+deriva del latín *scientia*, que deriva a su vez del verbo latino
 *scire* (saber). En este sentido, @Bunge_2004 distingue dos categorías
 fundamentales de conocimiento: el vulgar y el científico.
 El conocimiento vulgar se adquiere de manera cotidiana a partir de percepciones y
@@ -55,7 +55,7 @@ objeto. El método científico ha de recorrerse siguiendo cuatro fases
 significativos no rutinarios; ($ii$) planteamiento de un tema problemático
 que hace necesaria una explicación; ($iii$) ideación de conjeturas
 tendentes a darla, y ($iv$) tratamiento de las diversas hipótesis hasta
-que sólo una se mantenga.
+que solo una se mantenga.
 
 Por tanto, aunque no hay acuerdo a la hora de dar una definición exacta
 de ciencia, sí lo hay a la hora de aceptar el método
@@ -64,9 +64,9 @@ la finalidad a la cual se aplica (el conocimiento objetivo del mundo)
 constituyen la entera diferencia que existe entre la ciencia y la
 no-ciencia [...]. El método científico es un rasgo característico de la
 ciencia, tanto de la pura como de la aplicada: donde no hay método
-científico no hay ciencia", @Bunge_2004. "Una ciencia es una disciplina
+científico no hay ciencia", [@Bunge_2004]. "Una ciencia es una disciplina
 que utiliza el método científico con la finalidad de hallar estructuras
-generales (leyes)." @Montero_1997.
+generales (leyes)." [@Montero_1997].
 
 Dado que la utilización del método científico es la piedra angular alrededor  de la cual se articula el concepto de ciencia, a continuación se aborda la cuestión de si, en base a lo anterior, la ciencia de datos es o no una ciencia. No obstante, previamente, se abordará la cuestión de qué se entiende por ciencia de datos.
 
@@ -155,7 +155,7 @@ predictiva y comprobable (en el sentido amplio del término). Es por ello que el
 últimas décadas gracias a las contribuciones de diferentes teóricos de
 la ciencia [@chalmers_2000; @Bunge_2004; @Diez_Moulines_1999]. Por otra
 parte, las ciencias se clasifican, según el objeto de estudio [@Bunge_2018], 
-en: empíricas y formales[^nota-bunge1]. Dado que la ciencia de datos
+en: empíricas y formales.[^nota-bunge1] Dado que la ciencia de datos
 subsume diferentes disciplinas y se aplica a diferentes campos, puede
 tener características tanto de las ciencias empíricas como de las
 formales.
@@ -238,14 +238,14 @@ las que posibilitan las funciones **descriptiva**, **explicativa** y
     detalle sus características, es decir, el número de variables, el
     número de observaciones, los valores nulos, etc. Esta tarea se
     conoce como "comprensión de los datos" en la metodología
-    CRIPS-DM (véase Sec. \@ref(met-crisp-dm)).
+    CRISP-DM (véase Sec. \@ref(met-crisp-dm)).
 
 (ii)   La segunda, la **explicativa**, determina cómo se relacionan los
     fenómenos que se observan. En general, cuando un científico de
     datos emplea un modelo de regresión lineal, lo que hace es
     establecer una relación explicativa entre la variable dependiente y
     las independientes. Esta parte se
-    conoce como "modelado" en la metodología CRIPS-DM
+    conoce como "modelado" en la metodología CRISP-DM
     (véase Sec. \@ref(met-crisp-dm)).
 
 (iii)   La tercera, la **predictiva**, permite anticipar ciertos eventos en
@@ -254,7 +254,7 @@ las que posibilitan las funciones **descriptiva**, **explicativa** y
     ejemplo, el análisis de series temporales para pronosticar las
     ventas futuras y poder realizar una planificación del
     aprovisionamiento de existencias con mayor eficiencia. Esta parte
-    está incluida en la fase de "validación" en la metodología CRIPS-DM
+    está incluida en la fase de "validación" en la metodología CRISP-DM
     (véase Sec. \@ref(met-crisp-dm)).
 
 A la luz de lo expuesto hasta aquí, se puede sostener, sin lugar a dudas,

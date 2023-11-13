@@ -9,10 +9,6 @@ Universidad Rey Juan Carlos
 
 \index{análisis exploratorio de datos}
 \index{visualización}
-\index{población}
-\index{muestra}
-\index{estadística descriptiva}
-\index{inferencia estadística}
 
 
 El análisis exploratorio de datos (AED), y en particular su visualización,
@@ -71,9 +67,11 @@ erróneas. El cuarteto de Anscombe es muy ilustrativo, al igual que  _The Datasa
 
 ### Conceptos generales
 \index{población}\index{muestra}\index{estadística descriptiva}
+\index{estadística descriptiva}
+\index{inferencia estadística}
 
 Muy brevemente, se presenta una serie de conceptos esenciales para la mejor 
-comprensión de este manual[^nota-bib-ed]. Los datos que se analizan
+comprensión de este manual.[^nota-bib-ed] Los datos que se analizan
 provienen de una determinada **población**, y no son más que
 una **muestra**, es decir, un subconjunto de toda la población. 
 La **Estadística Descriptiva** se ocupa del AED en sentido amplio, que se aplica 
@@ -81,7 +79,7 @@ sobre los datos concretos de la muestra. La
 **Inferencia Estadística** (véase Cap. \@ref(Fundainfer)) hace referencia a los métodos mediante los cuales, a través de los datos muestrales, se toman decisiones, se analizan relaciones o se hacen predicciones sobre la población. Para ello, se hace uso de la **Probabilidad** aplicando el modelo adecuado (véase Cap. \@ref(Funda-probab)). Además, es muy importante considerar el método de obtención de la muestra (véase Cap. \@ref(muestreo)) que, en términos generales, debe ser representativa de la población para que las conclusiones sean válidas.
 La Fig. \@ref(fig:ch-120006-dogma1) representa la esencia de la Estadística y sus métodos.
 
-[^nota-bib-ed]: Para un análisis extenso de los conceptos aquí expuestos puede consultarse, por ejemplo, @montero2007. 
+[^nota-bib-ed]: Para un análisis extenso de los conceptos aquí expuestos puede consultarse, por ejemplo, @lorenzo2007estadistica. 
 
 <div class="figure" style="text-align: center">
 <img src="img/dogma1.png" alt="La esencia de los métodos estadísticos." width="60%" />
@@ -91,10 +89,10 @@ La Fig. \@ref(fig:ch-120006-dogma1) representa la esencia de la Estadística y s
 
 Las características a observar en los elementos de una población pueden dar lugar a diferentes tipos de datos o variables. El análisis a realizar dependerá del tipo de variable, que puede ser:
 
-1. **Cuantitativa** (se puede medir o contar). Se denomina **variable cuantitativa** a cualquier característica observable que pueda expresarse en valores numéricos. Se clasifican como **variables discretas** (se puede _contar_ el número de valores que toma) y **continuas** (pueden tomar cualquier valor en un intervalo dado).
+1. **Cuantitativa** (se puede medir o contar). Se denomina **variable cuantitativa** a cualquier característica observable que pueda expresarse en valores numéricos. Se clasifican como **variables discretas** (se puede _contar_ el número de valores que toma) y **continuas** (pueden tomar cualquier valor en un intervalo dado). \index{variable!cuantitativa}
     
 2. **Cualitativa** (no se puede expresar como un número). Se denomina **variable cualitativa, atributo o factor** a cualquier característica observable que indica una *cualidad* o *atributo*. Estas pueden tener varios niveles (politómicas) o solo dos (dicotómicas). Si en una variable categórica se pueden *ordenar* las categorías, entonces se denomina **variables ordinales**.
-
+\index{variable!cualitativa}
 
 ### Componentes de un gráfico y su representación en **R**
 \index{gráfico}
@@ -148,11 +146,11 @@ ggplot(data, aes(x = variable)) + geom_histogram() +
 
 El resumen numérico de variables cualitativas se muestra en la tabla de frecuencias,
 la cual se puede representar con un gráfico de barras o con un gráfico
-de sectores[^sectores]. Las frecuencias absolutas son el número de observaciones en cada categoría y las frecuencias relativas son la proporción de observaciones en cada categoría con respecto al total. Por ejemplo, el conjunto de datos `accidentes2020_data`
+de sectores.[^sectores] Las frecuencias absolutas son el número de observaciones en cada categoría y las frecuencias relativas son la proporción de observaciones en cada categoría con respecto al total. Por ejemplo, el conjunto de datos `accidentes2020_data`
 disponible en el paquete `CDR` describe los datos de accidentes de tráfico 
 con víctimas y/o daños al patrimonio en la ciudad de Madrid registrados por la Policía Municipal. Entre sus variables, contiene la variable cualitativa de tipología del accidente `tipo_accidente`. Un resumen puede obtenerse tanto con la función `table()` 
 como con el paquete `dplyr`, como se vio en la Sec. \@ref(110003-tidyverse). 
-En variables cualitativas, la categoría más frecuente se denomina **moda** de la variable[^nota-orden].
+En variables cualitativas, la categoría más frecuente se denomina **moda** de la variable.[^nota-orden]
 
 [^sectores]: El gráfico de sectores no es recomendable, ya que proporciona la misma 
 información que el gráfico de barras y para el ojo
@@ -238,14 +236,14 @@ waffle(m, rows = 4, colors = c("red", "green"))
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-gofre-1.png" alt="Gráfico waffle. Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político." width="60%" />
-<p class="caption">(\#fig:ch-120006-gofre)Gráfico waffle. Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político.</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-gofre-1.png" alt="Gráfico $waffle$. Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político." width="60%" />
+<p class="caption">(\#fig:ch-120006-gofre)Gráfico $waffle$. Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político.</p>
 </div>
 
 
 
 ### Variables cuantitativas
-\index{Variable!cuantitativa}\index{variable!continua}\index{variable!discreta}
+\index{variable!cuantitativa} \index{variable!continua} \index{variable!discreta}
 
 Los estadísticos descriptivos más importantes que se utilizan en un AED 
 se dividen en tres grandes grupos: 
@@ -257,7 +255,7 @@ se dividen en tres grandes grupos:
 \index{varianza}\index{desviación!típica}\index{rango intercuartílico}\index{desviación!absoluta mediana}\index{coeficiente!de variación}
 
 - **Medidas de forma**: asimetría (_skewness_) y apuntamiento (_kurtosis_).
-\index{coeficiente!de asimetría}\index{coeficinte!de apuntamiento}\index{curtosis}\index{asimetría}
+\index{coeficiente!de asimetría}\index{coeficiente!de apuntamiento}\index{kurtosis}\index{asimetría}
 
 La función `summary()` de **R** base es una función de las llamadas "genéricas"
 y solo aborda las medidas de posición.
@@ -315,7 +313,7 @@ $$s^2= \frac{\sum\limits_{i=1}^n (x_i- \bar{x})^2}{n-1}.$$
 
 * El mínimo (_Min_) y el máximo (_Max_) son los extremos de los datos.
 
-* La mediana (_Median_) es el segundo cuartil $Q_2$. Es el punto central de los datos, dejando la mitad de las observaciones por abajo y la otra mitad por arriba. Los cuartiles $Q_1$ y $Q_3$, dividen los datos dejando por debajo de su valor el 25% y el 75%, respectivamente.
+* La mediana (_Median_) es el segundo cuartil $Q_2$. Es el punto central de los datos, dejando la mitad de las observaciones por abajo y la otra mitad por arriba. Los cuartiles $Q_1$ y $Q_3$ dividen los datos dejando por debajo de su valor el 25% y el 75%, respectivamente.
 
 * La desviación absoluta mediana (_MAD_,  por sus siglas en inglés) es la mediana de las desviaciones a la mediana.
 
@@ -341,8 +339,8 @@ Los otros tres valores que aparecen en la salida de la función `descr()` son el
 \index{histograma}
 
 La representación gráfica de la tabla de frecuencias de una variable cuantitativa
-es el **histograma**[^nota-hist-disc]. 
-Para representarlo, se cuenta el número de observaciones (frecuencia) por intervalo (_bin_). Una posible regla sería el método de Sturges[^nota-sturges], que se puede hallar con la función `nclass.Sturges()`. 
+es el **histograma**.[^nota-hist-disc]
+Para representarlo, se cuenta el número de observaciones (frecuencia) por intervalo (_bin_). Una posible regla sería el método de Sturges,[^nota-sturges] que se puede hallar con la función `nclass.Sturges()`. 
 
 [^nota-hist-disc]: En el caso de las variables discretas con un número de posibles valores pequeños, 
 es mejor proceder igual que si fuera una variable cualitativa, obteniendo una tabla de frecuencias y un gráfico de barras, con la diferencia de que el orden de los posibles valores será el numérico.
@@ -399,8 +397,8 @@ h1 + h2 + h3
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/plot-hist-bins.png" alt="Histogramas de la renta neta per cápita en 2019 con distintos bins. Izquierda: $bins$ por defecto (n = 30); Centro: $bins$ con la regla de Strurges; Derecha: $bins$ = 20." width="60%" />
-<p class="caption">(\#fig:ch-120006-plot-hist-bins)Histogramas de la renta neta per cápita en 2019 con distintos bins. Izquierda: $bins$ por defecto (n = 30); Centro: $bins$ con la regla de Strurges; Derecha: $bins$ = 20.</p>
+<img src="img/plot-hist-bins.png" alt="Histogramas de la renta neta per cápita en 2019 con distintos $bins$. Izquierda: $bins$ por defecto (n = 30); Centro: $bins$ con la regla de Strurges; Derecha: $bins$ = 20." width="60%" />
+<p class="caption">(\#fig:ch-120006-plot-hist-bins)Histogramas de la renta neta per cápita en 2019 con distintos $bins$. Izquierda: $bins$ por defecto (n = 30); Centro: $bins$ con la regla de Strurges; Derecha: $bins$ = 20.</p>
 </div>
 
 \index{gráfico!de densidad}
@@ -422,8 +420,8 @@ p + geom_histogram(aes(y = after_stat(density)),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-hist-density-1.png" alt="Histograma y linea de densidad de la renta neta per capita española en 2019." width="60%" />
-<p class="caption">(\#fig:ch-120006-hist-density)Histograma y linea de densidad de la renta neta per capita española en 2019.</p>
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-hist-density-1.png" alt="Histograma y línea de densidad de la renta neta per cápita española en 2019." width="60%" />
+<p class="caption">(\#fig:ch-120006-hist-density)Histograma y línea de densidad de la renta neta per cápita española en 2019.</p>
 </div>
 
 
@@ -456,7 +454,7 @@ secuencial de las observaciones, bien a través de puntos (`geom_point()`) o a t
 
 
 ## Análisis exploratorio de varias variables {#120006-aedmulti}
-
+\index{tabla!de contingencia}
 En la Sec. \@ref(120006-aeduni) se ha realizado un AED de
 variables aisladas, pero lo usual es incluir las relaciones entre variables 
 en el AED. 
@@ -464,16 +462,16 @@ Las herramientas estadísticas utilizadas son: ($i$) las tablas de frecuencias c
 con un atributo en filas y el otro en columnas, para determinar si existe asociación entre dichos atributos, como se verá en el Cap. \@ref(tablas-contingencia); 
 ($ii$) los resúmenes numéricos, como la covarianza, el coeficiente de correlación, coeficientes de asociación, etc. y ($iii$) los gráficos en los que se puede representar más de una variable. 
 
-\index{tabla!de contingencia}
+
 
 ### Variables cualitativas
 
 El resumen numérico sigue siendo la tabla
 de frecuencias, en este caso conjuntas para las distintas combinaciones de los niveles
-de las variables. Este tipo de tablas se denominan **tablas de contingencia** (véase Cap. \@ref(tablas-contingencia)). Para dos atributos, se puede representar en
+de las variables. Este tipo de tablas se denomina **tablas de contingencia** (véase Cap. \@ref(tablas-contingencia)). Para dos atributos, se puede representar en
 forma de tabla de doble entrada. 
 
-El resultado de la función `table()` se puede utilizar dentro de las funciones `prop.table()` y `addmargins()` para obtener las frecuencias relativas, añadir los totales marginales, o ambas cosas. Para el ejemplo de la prestación de un servicio "*X*" o no por parte de 80 ayuntamientos, `table()` podría utilizarse para dar respuesta a la siguiente pregunta: ¿La prestación pública del servicio *X* es independiente del signo político del ayuntamiento o depende de dicho signo?
+El resultado de la función `table()` se puede utilizar dentro de las funciones `prop.table()` y `addmargins()` para obtener las frecuencias relativas, añadir los totales marginales, o ambas cosas. Para el ejemplo de la prestación de un servicio *X* o no por parte de 80 ayuntamientos, `table()` podría utilizarse para dar respuesta a la siguiente pregunta: ¿La prestación pública del servicio *X* es independiente del signo político del ayuntamiento o depende de dicho signo?
 
 
 ```r
@@ -578,7 +576,7 @@ del grado de dependencia lineal entre dos variables numéricas.
 Si la covarianza es cero, no hay relación lineal (pero podría
 haber otro tipo de relación, recuérdese el cuarteto de Anscombe).
 Pero la covarianza es una medida que depende de la escala
-de las variables, por lo que es más fácil interpretar el coeficiente de correlación lineal $r_{xy}$ (función `cor()`), que está acotado entre -1 y 1. Cuanto más se acerque a 1, en valor absoluto,
+de las variables, por lo que es más fácil interpretar el coeficiente de correlación lineal $r_{xy}$ (función `cor()`), que está acotado entre $-1$ y 1. Cuanto más se acerque a 1, en valor absoluto,
 más fuerte será la dependencia lineal. Las fórmulas para calcular ambos estadísticos son 
 las siguientes:
 
@@ -590,7 +588,7 @@ Además, la matriz de correlación suele ser un punto de partida
 en las técnicas de reducción de la dimensionalidad (Véanse los Cap. \@ref(acp), \@ref(af) y \@ref(mds)). Si, por ejemplo, se desea 
 calcular la matriz de correlaciones del conjunto de datos `TIC2021`,
 que presenta las estadísticas de uso de las TIC en la Unión Europea en 2021,
-se puede utilizar el paquete `corrplot`, que proporciona una forma elegante y versátil de representarla[^nota-corrplot] (véase la Fig. \@ref(fig:ch-120006-correlacion)). 
+se puede utilizar el paquete `corrplot`, que proporciona una forma elegante y versátil de representarla (véase la Fig. \@ref(fig:ch-120006-correlacion)).[^nota-corrplot] 
 
 [^nota-corrplot]: Una gran cantidad de ejemplos puede verse ejecutando `example(corrplot)`. 
 
@@ -631,7 +629,7 @@ previo entre las variables `Ozone` y `Temp` con el gráfico de la Fig. \@ref(fig
 
 ```r
 airquality |>
-  select(Ozone,Temp) |>
+  #select(Ozone,Temp) |>
   ggplot(aes( x= Temp, y=Ozone)) +
   geom_point() +
   geom_smooth()

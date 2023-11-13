@@ -14,15 +14,15 @@ $^{c}$Universidad Nebrija
 ## La dependencia espacial 
 \index{dependencia espacial}
 
-En muchas ocasiones, los fenómenos de estudio no son independientes del espacio geográfico en el cual se producen. Esta circunstancia es precisamente la que se pone de manifiesto en la **primera ley de la Geografía** enunciada por @tobler1970computer: "Todas las cosas están relacionadas entre sí, pero las cosas más próximas en el espacio tienen una relación mayor que las distantes" [@tobler1970computer, p 236]. Esta situación produce una violación del supuesto básico de independencia de las variables aleatorias requerido por el método de estimación de mínimos cuadrados ordinarios (MCO).
+En muchas ocasiones, los fenómenos de estudio no son independientes del espacio geográfico en el cual se producen. Esta circunstancia es precisamente la que se pone de manifiesto en la **primera ley de la geografía** enunciada por @tobler1970computer: "Todas las cosas están relacionadas entre sí, pero las cosas más próximas en el espacio tienen una relación mayor que las distantes" [@tobler1970computer, 236]. Esta situación produce una violación del supuesto básico de independencia de las variables aleatorias requerido por el método de estimación de mínimos cuadrados ordinarios (MCO).
 
-En este contexto, los estimadores MCO ya no son óptimos y, por tanto, los estadísticos de contraste  $t$ y $F$  pueden llevar a conclusiones erróneas [@anselin1988spatial]. Por ello, es necesario encontrar la manera de incorporar el espacio geográfico en los procesos de modelización. En este capítulo se aborda esta cuestión, mostrando primero los métodos de exploración de datos espaciales, para luego presentar las formas de modelización del espacio  y los métodos de estimación en presencia de relaciones espaciales.[^Nota-CQC]
+En este contexto, los estimadores MCO ya no son óptimos y, por tanto, los estadísticos de contraste  $t$ y $F$  pueden llevar a conclusiones erróneas [@anselin1988spatial]. Por ello, es necesario encontrar la manera de incorporar el espacio geográfico en los procesos de modelización. En este capítulo se aborda esta cuestión, mostrando primero los métodos de exploración de datos espaciales, para luego presentar las formas de modelización de las relaciones espaciales  y los métodos de estimación en presencia de dichas relaciones.[^Nota-CQC]
 
 [^Nota-CQC]: En @Chasco04138 puede verse una ampliación de los contenidos de este capítulo.
 
 
 
-Los modelos econométricos espaciales se centran en manejar las situaciones de **dependencia espacial**\index{dependencia espacial}. Existe dependencia espacial cuando lo que sucede en una locación $i$ esta influenciado por lo que sucede en una locación $j$ y viceversa [@anselin2013]. La dependencia espacial se traduce en que los valores de la variable en las locaciones $i$ y $j$ con $i\neq j$ están correlacionados entre sí, hecho que se conoce como **autocorrelación espacial** \index{autocorrelación espacial} [@anselin2013]. La autocorrelación espacial puede ser positiva, cuando las locaciones con valores similares tienden a estar juntos (altos con altos, bajos con bajos), o negativa, cuando las unidades espaciales tienden a estar rodeadas de vecinos con valores diferentes. Los patrones espaciales formados por la existencia de autocorrelación se muestran en la Fig. \@ref(fig:plot-dep-W). La ausencia de autocorrelación es lo que se entiende como aleatoriedad espacial [@anselin2013].
+Los modelos econométricos espaciales se centran en manejar las situaciones de **dependencia espacial**\index{dependencia espacial}. Existe dependencia espacial cuando lo que sucede en una localización $i$ está influenciado por lo que sucede en una localización $j$ y viceversa [@anselin2013]. La dependencia espacial se traduce en que los valores de la variable en las localizaciones $i$ y $j$ con $i\neq j$ están correlacionados entre sí, hecho que se conoce como **autocorrelación espacial** \index{autocorrelación espacial} [@anselin2013]. La autocorrelación espacial puede ser positiva, cuando las localizaciones con valores similares tienden a estar juntos (altos con altos, bajos con bajos), o negativa, cuando las unidades espaciales tienden a estar rodeadas de vecinos con valores diferentes. Los patrones espaciales formados por la existencia de autocorrelación se muestran en la Fig. \@ref(fig:plot-dep-W). La ausencia de autocorrelación es lo que se entiende como aleatoriedad espacial [@anselin2013].
 
 
 
@@ -32,11 +32,11 @@ Los modelos econométricos espaciales se centran en manejar las situaciones de *
 </div>
 
 
-### Modelización del espacio
+### Modelización de las relaciones espaciales
 
-El espacio puede jugar un rol importante en la determinación de los procesos a modelizar. Por ello, es necesario encontrar una forma de incorporar el espacio en los procesos de estimación. Para modelizar la interacción de una variable consigo misma es natural pensar en el concepto de autocorrelación. No obstante, a diferencia de la autocorrelación temporal, que es unidireccional (sólo el pasado puede afectar el presente), en el caso del espacio la influencia es multidireccional en el entorno o vecindario de la localidad de análisis y, por tanto, es crucial definir el **vecindario**.
+El espacio puede jugar un rol importante en la determinación de los procesos a modelizar. Por ello, es necesario encontrar una forma de incorporar el espacio en los procesos de estimación. Para modelizar la interacción de una variable consigo misma es natural pensar en el concepto de autocorrelación. No obstante, a diferencia de la autocorrelación temporal, que es unidireccional (solo el pasado puede afectar el presente), en el caso del espacio la influencia es multidireccional en el entorno o vecindario de la localidad de análisis y, por tanto, es crucial definir el **vecindario**.
 
-La matriz de vecindad o contigüidad $\mathbf{W}_{n \times n}$ muestra la relación entre las $n$ localidades analizadas, y por tanto  la interacción existente entre ellas. Es una matriz  simétrica y binaria, de forma que  $w_{ij} = 1$ si las localidades $i$ y $j$ son vecinas y cero si no lo son. Por tanto, $w_{ii}=0$ puesto que una localidad no puede ser vecina de sí misma. Existen distintos criterios de definición de vecindad dependiendo del proceso que se desee modelizar y las características de los datos. Si se cuenta con un mapa de polígonos, entonces se puede utilizar alguno de los criterios que se presentan en la Figura \@ref(fig:plot-criterio-W) para configurar la matriz $\mathbf{W}$.
+La matriz de vecindad o contigüidad $\mathbf{W}_{n \times n}$ muestra la relación entre las $n$ localidades analizadas, y por tanto,  la interacción existente entre sí. Es una matriz  simétrica y binaria, de forma que  $w_{ij} = 1$ si las localidades $i$ y $j$ son vecinas y cero si no lo son. Por tanto, $w_{ii}=0$ puesto que una localidad no puede ser vecina de sí misma. Existen distintos criterios de definición de vecindad dependiendo del proceso que se desee modelizar y las características de los datos. Si se cuenta con un mapa de polígonos, entonces se puede utilizar alguno de los criterios que se presentan en la Fig. \@ref(fig:plot-criterio-W) para configurar la matriz $\mathbf{W}$.
 
 
 <div class="figure" style="text-align: center">
@@ -56,7 +56,7 @@ w^e_{ij}=\frac{w_{ij}}{\sum_{j=1}^n w_{ij}}
 ```
 En palabras simples, cada elemento de cada fila de la matriz $\mathbf{W}$ se divide por el total de dicha fila. Esto asegura que cada elemento de la matriz $\mathbf{W}$ estandarizada se encuentre entre 0 y 1, y que la suma de cada una de sus filas sea siempre 1. Las matrices de vecindad estandarizadas llevan el nombre de matrices de pesos espaciales. A partir de ahora, cuando se haga relación a la matriz $\mathbf{W}$ se estará haciendo referencia a una matriz de pesos espaciales.
 
-Para el cálculo de las matrices de vecindad se utiliza el paquete `spedep` [@R-spdep]. La función `poly2nb()` construye la relación de vecindad a partir de los polígonos de un objeto espacial según el criterio y el orden que se indique; la función `nb2listw()` transforma la relación de vecindad en una lista de pesos espaciales. Para el ejemplificar la construcción de la matriz $\mathbf{W}$, se utilizará el conjunto de datos del estudio de @guerry1833essai. Esta base de datos contiene información respecto a estadísticas morales, criminales y sociales de las distintas provincias de Francia en 1830.[^190043_econom_esp_coro-1]
+Para el cálculo de las matrices de vecindad se utiliza el paquete `spdep` [@R-spdep]. La función `poly2nb()` construye la relación de vecindad a partir de los polígonos de un objeto espacial según el criterio y el orden que se indique; la función `nb2listw()` transforma la relación de vecindad en una lista de pesos espaciales. Para ejemplificar la construcción de la matriz $\mathbf{W}$, se utilizará el conjunto de datos del estudio de @guerry1833essai. Esta base de datos contiene información respecto a estadísticas morales, criminales y sociales de las distintas provincias de Francia en 1830.[^190043_econom_esp_coro-1]
 
 [^190043_econom_esp_coro-1]: Una descripción completa de la base de datos está disponible en <https://geodacenter.github.io/data-and-lab/Guerry/>.
 
@@ -81,7 +81,7 @@ w_reina
 #> W 85 7225 85 37.2761 347.6683
 ```
 
-donde  S0, S1 y S2 son constantes que se utiizan en los procesos inferenciales de los estadísticos de autocorrelación espacial global, como los tests I de Moran, C de Geary y G de Getis-Ord, entre otros.
+En la salida anterio  S0, S1 y S2 son constantes que se utilizan en los procesos inferenciales de los estadísticos de autocorrelación espacial global, como los tests *I* de Moran, *C* de Geary y *G* de Getis-Ord, entre otros.
 
 
 
@@ -107,7 +107,7 @@ Cuando se trabaja con datos a escala puntual, o cuando existen situaciones geogr
 donde $d_i(k)$ es la *k*-ésima menor distancia entre las localidades $i$ y $j$. 
 
 
-A continuación se calcula la matriz de 5 vecinos más próximos de las áreas urbanas chilenas con más de 2000 habitantes. Para ello se utilizan funciones de @R-spdep y @sf y los datos de @valloneSpatiotemporalMethodsAnalysis2020.
+A continuación se calcula matriz de contigüidad basada en los 5 vecinos más próximos de las áreas urbanas chilenas con más de 2.000 habitantes. Para ello se utilizan funciones de @R-spdep y @sf y los datos de @valloneSpatiotemporalMethodsAnalysis2020.
 
 
 ```r
@@ -119,7 +119,7 @@ w5knn <- knearneigh(coord, k = 5, longlat = T) |> knn2nb()
 ```
 
 
-El uso de matrices de $k$ vecinos próximos puede forzar la vecindad entre localidades, considerando vecinas a localidades que estén muy distantes entre ellas. Para evitar este problema se puede usar una configuración de vecindad basada en una distancia limite $d_{max}$, de tal manera que:
+El uso de matrices de $k$ vecinos próximos puede forzar la vecindad entre localidades, considerando vecinas a localidades que estén muy distantes entre sí. Para evitar este problema se puede usar una configuración de vecindad basada en una distancia límite $d_{max}$, de tal manera que:
 
 ```{=tex}
 \begin{align}
@@ -129,7 +129,7 @@ El uso de matrices de $k$ vecinos próximos puede forzar la vecindad entre local
   \end{cases}
 \end{align}
 ```
-El problema de este criterio de vecindad es la posibilidad de generar unidades espaciales aisladas cuando $d_{max}$ se fija en un valor muy bajo.  Este problema se se evita fijando la distancia máxima de tal manera que se asegure que todas las unidades espaciales tengan al menos un vecino.
+El problema de este criterio de vecindad es la posibilidad de generar unidades espaciales aisladas cuando $d_{max}$ se fija en un valor muy bajo.  Este problema se evita fijando la distancia máxima de tal manera que se asegure que todas las unidades espaciales tengan al menos un vecino.
 
 
 ```r
@@ -137,7 +137,7 @@ El problema de este criterio de vecindad es la posibilidad de generar unidades e
 knn1 <- knearneigh(coord) |> knn2nb()
 # Obtiene la distancia critica
 distancia_critica <- max(unlist(nbdists(knn1, coord)))
-# genera la matriz de vecindad de distancia w_ij < d_max
+# genera la matriz de vecindad de distancia con w_ij distinto de cero para d_ij <= d_max
 k1 <- dnearneigh(coord, 0, distancia_critica)
 w_dist <- nb2listw(k1)
 ```
@@ -145,7 +145,7 @@ w_dist <- nb2listw(k1)
 
 Debe considerarse que la configuración basada en $k$ vecinos y en la distancia censurada dan lugar a matrices binarias, mientras que las matrices $\mathbf{W}$ basadas en distancias no. 
 
-Para realizar el cálculo de la matriz $\mathbf{W}$ basado en la distancia inversa ($1/d_{ij}$) se utilizará en mismo conjunto de datos que en las matrices $\mathbf{W}$  basadas en distancias. No obstante, hay que tener en cuenta que: $(i)$ hay    que  utilizar una función decreciente respecto distancia (en este caso una hipérbola) para satisfacer la ley de Tobler [@tobler1970computer]; y $(ii)$ dado que la incidencia que puede tener una localidad $j$ que se encuentre muy lejana a la localidad $i$ tiende a cero [@tobler1970computer], la matriz suele censurarse a una distancia máxima $d_{max}$ a partir de la cual la incidencia entre unidades espaciales es nula. El criterio para la fijación de $d_{max}$ es el mismo que el utilizado para evitar la existencia de unidades espaciales aisladas.
+Para realizar el cálculo de la matriz $\mathbf{W}$ basado en la distancia inversa ($1/d_{ij}$) se utilizará el mismo conjunto de datos que en las matrices $\mathbf{W}$  basadas en distancias. No obstante, hay que tener en cuenta que: $(i)$ hay    que  utilizar una función decreciente respecto a la distancia (en este caso una hipérbola) para satisfacer la ley de Tobler [@tobler1970computer]; y $(ii)$ dado que la incidencia que puede tener una localidad $j$ que se encuentre muy lejana a la localidad $i$ tiende a cero [@tobler1970computer], la matriz suele censurarse a una distancia máxima $d_{max}$ a partir de la cual la incidencia entre unidades espaciales es nula. El criterio para la fijación de $d_{max}$ es el mismo que el utilizado para evitar la existencia de unidades espaciales aisladas.
 
 
 ```r
@@ -165,7 +165,7 @@ Se ha indicado anteriormente que la matriz $\mathbf{W}$ se utiliza para capturar
 ## Medidas de autocorrelación espacial
 \index{autocorrelación espacial}
 
-Una buena herramienta para entender y comprender las medidas de autocorrelación espacial es el **diagrama de Moran** [@anselinMoranScatterplotESDA1996]. El diagrama de Moran \index{diagrama de Moran} relaciona una variable con lo que sucede en su entorno mediante su retardo espacial en una gráfico de puntos. La Fig. \@ref(fig:plot-moranplot) presenta un diagrama de Moran para la variable *clergy* del conjunto de datos `Guerry`. Esta variable hace referencia a la ratio de sacerdotes católicos sobre la población de cada provincia francesa. La linea horizontal discontinua en la Fig. \@ref(fig:plot-moranplot) indica el promedio del retardo espacial, mientras que la linea vertical discontinua indica el promedio de la variable *clergy*. La división del diagrama de Moran a partir de dichos promedios genera cuatro zonas:  $(i)$ el cuadrante superior derecho, que contiene las localidades en las que tanto en ellas como en su vecindario el valor de la variable *clergy* es superior al promedio correspondiente; $(ii)$ el cuadrante inferior izquierdo, en la que se ubican las localidades en las que tanto en ellas como en sus correspondientes vecindarios la variable *clergy* tiene valores inferiores a sus correspondientes promedios; $(iii)$ el cuadrante superior izquierdo, que contiene las localidades en las que el valor de la variable *clergy* es inferior al promedio, pero en su vecindario supera el valor promedio; y $(iv)$ el cuadrante inferior derecho, donde las localidades tienen un valor de la variable *clergy*  superior al promedio de localidades, pero su vecindario no supera el valor promedio de los vecindarios.
+Una buena herramienta para comprender las medidas de autocorrelación espacial es el **diagrama de Moran** [@anselinMoranScatterplotESDA1996]. El diagrama de Moran \index{diagrama de Moran} relaciona una variable con lo que sucede en su entorno mediante su retardo espacial en un gráfico de puntos. La Fig. \@ref(fig:plot-moranplot) presenta un diagrama de Moran para la variable *clergy* del conjunto de datos `Guerry`. Esta variable hace referencia a la ratio de sacerdotes católicos sobre la población de cada provincia francesa. La línea horizontal discontinua en la Fig. \@ref(fig:plot-moranplot) indica el promedio del retardo espacial, mientras que la línea vertical discontinua indica el promedio de la variable *clergy*. La división del diagrama de Moran a partir de dichos promedios genera cuatro zonas:  $(i)$ el cuadrante superior derecho, que contiene las localidades en las que tanto en ellas como en su vecindario el valor de la variable *clergy* es superior al promedio correspondiente; $(ii)$ el cuadrante inferior izquierdo, en la que se ubican las localidades en las que tanto en ellas como en sus correspondientes vecindarios la variable *clergy* tiene valores inferiores a sus correspondientes promedios; $(iii)$ el cuadrante superior izquierdo, que contiene las localidades en las que el valor de la variable *clergy* es inferior al promedio, pero en su vecindario supera el valor promedio; y $(iv)$ el cuadrante inferior derecho, donde las localidades tienen un valor de la variable *clergy*  superior al promedio de localidades, pero su vecindario no supera el valor promedio de los vecindarios.
 
 A partir del diagrama de Moran es posible observar la situación de una variable respecto a su entorno. Si las localidades se sitúan mayoritariamente en los cuadrantes inferior izquierdo y superior derecho,  las localidades con altos valores (superiores al promedio) de la variable de interés están rodeadas por localidades con altos valores de dicha variable, y las localidades con valores bajos (inferiores al promedio) están rodeadas de localidades con valores bajos, lo cual es una señal de existencia de autocorrelación espacial positiva. Si la concentración tiene lugar en los cuadrantes superior izquierdo e inferior derecho, la autocorrelación espacial es negativa.
  
@@ -187,18 +187,21 @@ moran.plot(guerry$clergy, w_reina_francia,
 <p class="caption">(\#fig:plot-moranplot)Diagrama de Moran de la variable Clergy.</p>
 </div>
 
-En la Fig. \@ref(fig:plot-moranplot) se pueden apreciar indicios de la existencia de autocorrelación positiva, es decir, que las localidades francesas tienden a estar rodeadas de localidades con una ratio similar de clérigos. El diagrama de Moran es una herramienta gráfica. Para comprobar estadísticamente la existencia de autocorrelación espacial se utiliza el indicador $I$ de Moran.
+En la Fig. \@ref(fig:plot-moranplot) se pueden apreciar indicios de la existencia de autocorrelación positiva, es decir, las localidades francesas tienden a estar rodeadas de localidades con una ratio similar de clérigos. El diagrama de Moran es una herramienta gráfica. Para comprobar estadísticamente la existencia de autocorrelación espacial se utiliza el indicador $I$ de Moran.
+
+
+
 
 ### El indicador *I* de Moran
 
-Sea una variable genérica $X$. Sea $Z=X- \bar{X}$ la variable $X$ centrada. Entonces, el indicador de Moran \index{I de Moran} valor delo indicador de Moran se obtiene como:
+Sea una variable genérica $X$. Sea $Z=X- \bar{X}$ la variable $X$ centrada. Entonces, el valor del indicador de Moran se obtiene como:
 
 ```{=tex}
 \begin{equation}
 I = \dfrac{n}{\sum_{i=1}^n\sum_{j=1}^n w_{ij}}\dfrac{\sum_{i=1}^{n}\sum_{j=1}^{n} z_{i}w_{ij}z_{j}}{\sum_{i=1}^{n}z_{i}^{2}}.  (\#eq:moranI)
 \end{equation}
 ```
-Su campo de variación es $[-1, 1]$ y el signo coincide con el tipo de autocorrelación: valores positivos son indicativos de autocorrelación positiva y valores negativos son indicadores de la existencia de autocorrelación negativa. Nótese que $I$ no es sino el cociente entre la covarianza de la variable $X$ y su retardo espacial y la varianza de la variable $X$. Por tanto,  coincide con el coeficiente de la regresión lineal del retardo espacial de  $X$ sobre la propia variable $X$. La linea con pendiente positiva en la Fig. \@ref(fig:plot-moranplot) es precisamente la recta de regresión del retardo espacial de *clergy* sobre la propia variable y, por tanto, su pendiente es el indicador $I$ de Moran. En este sentido, cuanto mayor sea la pendiente de esta recta mayor será el grado de autocorrelación espacial existente.  La significatividad estadística del indicador $I$  se establece bajo la hipótesis nula de **aleatoriedad espacial**.  La aleatoriedad espacial implica la inexistencia de autocorrelación espacial en la variable analizada; es decir,  considera que la variable que se analiza está distribuida en forma aleatoria entre las localidades. En este contexto, $p$-valores bajos permiten rechazar la hipótesis de aleatoriedad espacial, indicando la existencia de autocorrelación espacial en la variable estudiada [@anselin2013].
+Su campo de variación es $[-1, 1]$ y el signo coincide con el tipo de autocorrelación: valores positivos son indicativos de autocorrelación positiva y valores negativos son indicadores de la existencia de autocorrelación negativa. Nótese que $I$ no es sino el cociente entre la covarianza de la variable $X$ y su retardo espacial y la varianza de la variable $X$. Por tanto,  coincide con el coeficiente de la regresión lineal del retardo espacial de  $X$ sobre la propia variable $X$. La línea con pendiente positiva en la Fig. \@ref(fig:plot-moranplot) es precisamente la recta de regresión del retardo espacial de *clergy* sobre la propia variable y, por tanto, su pendiente es el indicador $I$ de Moran. En este sentido, cuanto mayor sea la pendiente de esta recta mayor será el grado de autocorrelación espacial existente.  La significatividad estadística del indicador $I$  se establece bajo la hipótesis nula de **aleatoriedad espacial**.  La aleatoriedad espacial implica la inexistencia de autocorrelación espacial en la variable analizada; es decir,  considera que la variable que se analiza está distribuida en forma aleatoria entre las localidades. En este contexto, $p$-valores bajos permiten rechazar la hipótesis de aleatoriedad espacial, indicando la existencia de autocorrelación espacial en la variable estudiada [@anselin2013].
 
 
 ```r
@@ -219,6 +222,8 @@ moran.test((guerry$clergy), w_reina_francia,
 #>       0.421118648      -0.011904762      0.004936422
 ```
 
+\index{I@\textit{I}de Moran}
+
 Como puede apreciarse en la salida de **R** anterior, en el ejemplo de la variable *clergy* el $p$-valor permite rechazar la hipótesis nula de aleatoriedad espacial en favor de la existencia de autocorrelación positiva.
 
 
@@ -228,7 +233,14 @@ Como puede apreciarse en la salida de **R** anterior, en el ejemplo de la variab
 
 Los modelos espaciales deben ser identificados antes de proceder a su estimación y contraste. Para ello, es importante disponer de una estrategia de identificación propia que permita al investigador estimar los parámetros poblacionales a partir de la observación de una muestra de datos.
 
-Tradicionalmente, la econometría espacial ha resuelto este problema asumiendo que la especificación de los modelos es algo que se conoce a priori, bien a partir de la teoría económica existente o bien aplicando ciertas estrategias consistentes en la comparación de varios modelos competitivos. Dentro de esta última opción, se pueden destacar dos estrategias de modelización ampliamente utilizadas: $(i)$ la que va de lo particular (modelo básico sin efectos de autocorrelación espacial) a lo general (modelo con variables explicativas espacialmente retardadas) y $(ii)$ la que parte de un modelo general para terminar en un modelo de autocorrelación espacial más sencillo. A partir estos los dos enfoques previos es posible plantear la estrategia híbrida de @elhorstAppliedSpatialEconometrics2010.
+Tradicionalmente, la econometría espacial ha resuelto este problema asumiendo que la especificación de los modelos es algo que se conoce *a priori*, bien a partir de la teoría económica existente o bien aplicando ciertas estrategias consistentes en la comparación de varios modelos competitivos. Dentro de esta última opción, se pueden destacar dos estrategias de modelización ampliamente utilizadas: $(i)$ la que va de lo particular (modelo básico sin efectos de autocorrelación espacial) a lo general (modelo con variables explicativas espacialmente retardadas) y $(ii)$ la que parte de un modelo general para terminar en un modelo de autocorrelación espacial más sencillo. A partir de estos dos enfoques previos es posible plantear la estrategia híbrida de @elhorstAppliedSpatialEconometrics2010.
+
+
+<div class="figure" style="text-align: center">
+<img src="img/Estrategia.png" alt="Estrategia de especificación híbrida Elhorst (2010)." width="90%" />
+<p class="caption">(\#fig:estrat)Estrategia de especificación híbrida Elhorst (2010).</p>
+</div>
+
 
 Como puede verse en la Fig. \@ref(fig:estrat), la estrategia híbrida comienza con la estimación de un **modelo básico sin efectos espaciales**:
 
@@ -237,12 +249,9 @@ Como puede verse en la Fig. \@ref(fig:estrat), la estrategia híbrida comienza c
 \mathbf{y} = \alpha \boldsymbol{\iota_n} + \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\epsilon},
 \end{equation}
 ```
-siendo $\mathbf{y}$ el vector de observaciones de la variable dependiente, de orden $(n\times 1)$; $\mathbf{X}$ la matriz que contiene los valores de las variables explicativas, de orden $(n\times k)$; $\boldsymbol{\iota_n}$ un vector formado por unos, de orden $(n \times 1)$; $\alpha$, $\boldsymbol{\beta}$ son el conjunto de $(p+1)$ parámetros a estimar; y $\boldsymbol{\epsilon}$ es el vector de perturbaciones aleatorias, de orden $(n\times 1)$, que se distribuye como $\boldsymbol{\epsilon} \sim N(\mathbf{0},\sigma_{\epsilon}\mathbf{I}_n)$, siendo $\mathbf{I}_n$ la matriz identidad de orden $n$.
+siendo $\mathbf{y}$ el vector de observaciones de la variable dependiente, de orden $(n\times 1)$; $\mathbf{X}$ la matriz que contiene los valores de las variables explicativas, de orden $(n\times k)$; $\boldsymbol{\iota_n}$ un vector formado por 1, de orden $(n \times 1)$; $\alpha$, $\boldsymbol{\beta}$ son el conjunto de $(p+1)$ parámetros a estimar; y $\boldsymbol{\epsilon}$ es el vector de perturbaciones aleatorias, de orden $(n\times 1)$, que se distribuye como $\boldsymbol{\epsilon} \sim N(\mathbf{0},\sigma_{\epsilon}\mathbf{I}_n)$, siendo $\mathbf{I}_n$ la matriz identidad de orden $n$.
 
-Este modelo se estima por MCO y luego se llevan a cabo dos contrastes del multiplicador de Lagrange (LM) sobre los errores de la regresión para contrastar si son ruido blanco desde el punto de vista espacial. Se trata de dos tests orientados a una única hipótesis alternativa cada uno de ellos: el LMLAG, para la hipótesis de variable dependiente espacialmente retardada, y el LMERR, para la hipótesis de dependencia residual. La hipótesis nula (el modelo básico MCO es válido) se rechaza si alguno de los estadísticos de contraste, que se distribuyen como una Chi cuadrado con 1 grado de libertad ($\chi_1^2$) bajo la hipótesis nula, resulta estadísticamente significativo.
-
-
-En primer lugar, si alguno de los tests LM resulta significativo, se recomienda seleccionar el **modelo Durbin espacial** (SDM), que es un modelo general [@anselin1988spatial]:
+Este modelo se estima por MCO y luego se llevan a cabo dos contrastes del multiplicador de Lagrange (LM) sobre los errores de la regresión para contrastar si son ruido blanco desde el punto de vista espacial. Se trata de dos tests orientados a una única hipótesis alternativa cada uno de ellos: el LMLAG, para la hipótesis de variable dependiente espacialmente retardada, y el LMERR, para la hipótesis de dependencia residual. La hipótesis nula (el modelo básico MCO es válido) se rechaza si alguno de los estadísticos de contraste, que se distribuyen como una Chi cuadrado con 1 grado de libertad ($\chi_1^2$) bajo la hipótesis nula, resulta estadísticamente significativo. En este caso, se recomienda seleccionar el **modelo Durbin espacial** (SDM), que es un modelo general [@anselin1988spatial]:
 
 
 ```{=tex}
@@ -252,7 +261,7 @@ En primer lugar, si alguno de los tests LM resulta significativo, se recomienda 
 ```
 siendo $\rho$ un parámetro autorregresivo espacial y $\boldsymbol{\theta}$ un vector de *p* parámetros autorregresivos espaciales.
 
-Este modelo general incluye dos tipos de interacción espacial: los efectos endógenos ($\mathbf{Wy}$) y exógenos ($\mathbf{WX}$). La variable endógena espacialmente retardada (cuyos valores son los componentes del vector $\mathbf{Wy}$) referida al mismo momento del tiempo que la variable dependiente (con vector de valores $\mathbf{y}$) produce  una situación de simultaneidad y, por tanto, de sesgo, ineficiencia e inconsistencia en los estimadores MCO. Por eso se recomienda su estimación por el método de máxima verosimilitud   (*maximum likelihood* en inglés, ML), que supone normalidad en la distribución de los errores (véase @anselin1988spatial, Cap. 6).
+Este modelo general incluye dos tipos de interacción espacial: los efectos endógenos ($\mathbf{Wy}$) y exógenos ($\mathbf{WX}$). La variable endógena espacialmente retardada (cuyos valores son los componentes del vector $\mathbf{Wy}$) referida al mismo momento del tiempo que la variable dependiente (con vector de valores $\mathbf{y}$) produce  una situación de simultaneidad y, por tanto, de sesgo, ineficiencia e inconsistencia en los estimadores MCO. Por eso se recomienda su estimación por el método de máxima verosimilitud   (*maximum likelihood* en inglés, ML), que supone normalidad en la distribución de los errores [véase @anselin1988spatial, Cap. 6].
 
 La estimación ML de este modelo permite utilizar la ratio de verosimilitud (*likelihood ratio* en inglés, LR) para contrastar, por separado, las hipótesis nulas $H_0 (\boldsymbol{\theta}=0)$ y $H_0(\rho=0)$, siendo las hipótesis alternativas las opciones contrarias. Dicho estadístico, bajo la hipótesis nula, se distribuye como una Chi cuadrado con $k$ grados de libertad. En este punto, se pueden dar tres casos:
 
@@ -264,7 +273,7 @@ La estimación ML de este modelo permite utilizar la ratio de verosimilitud (*li
 \mathbf{y} = \rho \mathbf{Wy} + \alpha \boldsymbol{\iota_n} + \mathbf{X}\boldsymbol{\beta} +\boldsymbol{\epsilon}.  (\#eq:sar)
 \end{equation}
 ```
-Este modelo se estima por ML si los errores de la estimación por MCO se distribuyen como una normal.
+Este modelo se estima por ML si los residuos de la estimación por MCO se distribuyen como una normal.
 
 2)  Si no se rechaza la segunda hipótesis, pero sí la primera, y los valores de los tests LMERR \> LMLAG, debería seleccionarse el **modelo del error espacial** (SEM):
 ```{=tex}
@@ -275,7 +284,7 @@ u=\lambda\mathbf{W}\boldsymbol{\epsilon} + \boldsymbol{\epsilon},
 \end{cases}
 \end{equation}
 ```
-siendo $\lambda$ un parámetro autorregresivo espacial a estimar. La estimación MCO produciría estimadores insesgados y consistentes, pero ineficientes. Por eso, se considera aceptable estimar el modelo SEM por MCO realizando una inferencia robusta de la matriz de varianzas y covarianzas de los estimadores por el método KP-HET propuesto por @kelejianSpecificationEstimationSpatial2010, que tiene en cuenta la existencia conjunta de heteroscedasticidad y autocorrelación espacial en los errores de la regresión.
+siendo $\lambda$ un parámetro autorregresivo espacial a estimar. La estimación MCO produciría estimadores insesgados y consistentes, pero ineficientes. Por eso, se considera aceptable estimar el modelo SEM por MCO realizando una inferencia robusta de la matriz de varianzas y covarianzas de los estimadores por el método KP-HET propuesto por @kelejianSpecificationEstimationSpatial2010, que tiene en cuenta la existencia conjunta de heterocedasticidad y autocorrelación espacial en los residuos de la regresión.
 
 
 3)  Si se rechazan ambas hipótesis nulas o no hubiera acuerdo entre los resultados del test LR y los tests LM, entonces el SDM sería el modelo que mejor describiría los datos.
@@ -287,19 +296,11 @@ En segundo lugar, si tras la estimación MCO del modelo básico ninguno de los t
 \mathbf{y} = \alpha \boldsymbol{\iota_n} + \mathbf{X}\boldsymbol{\beta} + \mathbf{WX}\boldsymbol{\theta} +\boldsymbol{\epsilon}.
 \end{equation}
 ```
-Este modelo puede estimarse por MCO, ya que si las variables explicativas son exógenas también lo serán sus correspondientes retardos espaciales. Este modelo puede considerar todas las variables exógenas espacialmente retardadas o un subconjunto de ellas. Si la hipótesis de que los retardos espaciales de todas ellas  fuese rechazada, debería elegirse el modelo básico como el que mejor describe los datos, es decir, no existiría evidencia alguna de la necesidad de efectos de autocorrelación espacial para explicar la variable dependiente. Pero si, por el contrario, la hipótesis $H_0(\boldsymbol{\theta}=0)$ no fuese rechazada, habría que estimar el modelo SDM con las variables $\mathbf{WX}$ estadísticamente significativas, para contrastar, de nuevo, la hipótesis nula $H_0(\rho=0)$. Si se rechaza esta hipótesis, el modelo seleccionado sería el SDM, pero en caso contrario, sería el modelo SLX el que mejor describiría los datos.
+Este modelo puede estimarse por MCO, ya que si las variables explicativas son exógenas también lo serán sus correspondientes retardos espaciales. Este modelo puede considerar todas las variables exógenas espacialmente retardadas o un subconjunto de ellas. Si la hipótesis de nulidad de los retardos espaciales de todas ellas  fuese rechazada, debería elegirse el modelo básico como el que mejor describe los datos, es decir, no existiría evidencia alguna de la necesidad de efectos de autocorrelación espacial para explicar la variable dependiente. Pero si, por el contrario, la hipótesis $H_0(\boldsymbol{\theta}=0)$ no fuese rechazada, habría que estimar el modelo SDM con las variables $\mathbf{WX}$ estadísticamente significativas para contrastar, de nuevo, la hipótesis nula $H_0(\rho=0)$. Si se rechaza esta hipótesis, el modelo seleccionado sería el SDM, pero en caso contrario, sería el modelo SLX el que mejor describiría los datos.
 
 Todos estos modelos pueden también estimarse con metodología bayesiana utilizando el enfoque *Markov Chains Monte Carlo* (MCMC), tal y como se explica en @lesage2009introduction Cap. 5.
 
-
-<div class="figure" style="text-align: center">
-<img src="img/Estrategia.png" alt="Estrategia de especificación híbrida Elhorst (2010)." width="90%" />
-<p class="caption">(\#fig:estrat)Estrategia de especificación híbrida Elhorst (2010).</p>
-</div>
-
-
-
-El siguiente conjunto de secuencias de código muestra cómo estimar los modelos que intervienen en la estrategia de modelización de Elhorst. Para ello, se utiliza un conjunto de datos de los 120 municipios grandes de España (capitales de provincia y ciudades con población superior a 50.000 habitantes) que forman parte de las áreas urbanas del país [@mellaUrbanGrowthTerritorial2006]. Con estos datos se formula un modelo de crecimiento económico urbano en España en el que la tasa media de variación del PIB per cápita, en logaritmos, durante el período 1985-2003 (LPGH), se explica en función del PIB per capita en logaritmos de 1985 (LGH85), la tasa de variación del número de entidades bancarias en el período 1985-2003 (BANK), el porcentaje de personas con educación secundaria y universitaria sobre la población de 16 y más años en el año 2001 (UNI01) y la tasa del número de patentes por habitante en el año 2000 (PAT00).
+El siguiente conjunto de secuencias de código muestra cómo estimar los modelos que intervienen en la estrategia de modelización de Elhorst. Para ello, se utiliza un conjunto de datos de los 120 municipios grandes de España (capitales de provincia y ciudades con población superior a 50.000 habitantes) que forman parte de las áreas urbanas del país [@mellaUrbanGrowthTerritorial2006]. Con estos datos se formula un modelo de crecimiento económico urbano en España en el que la tasa media de variación del PIB per cápita, en logaritmos, durante el período 1985-2003 (LPGH), se explica en función del PIB per cápita en logaritmos de 1985 (LGH85), la tasa de variación del número de entidades bancarias en el período 1985-2003 (BANK), el porcentaje de personas con educación secundaria y universitaria sobre la población de 16 y más años en el año 2001 (UNI01) y la tasa del número de patentes por habitante en el año 2000 (PAT00).
 
 
 ```r
@@ -320,7 +321,7 @@ lm.LMtests(gdp_ols, dmins, test = "all") # Grupo de tests LM
 gdp_sdm <- lagsarlm(LPGH ~ LGH85 + BANK + UNI01 + PAT00, data = gdpmap, listw = dmins, type = "mixed")
 summary(gdp_sdm)
 
-# Estimación modeelo SAR por ML
+# Estimación modelo SAR por ML
 gdp_sar <- lagsarlm(LPGH ~ LGH85 + BANK + UNI01 + PAT00, data = gdpmap, listw = dmins)
 summary(gdp_sar)
 LR.Sarlm(gdp_sdm, gdp_sar) # Test LR: SDM vs. SAR
@@ -364,7 +365,7 @@ library("spdep")
 coord <- st_coordinates(gdpmap)
 k6 <- knearneigh(coord, k = 6)
 dmins <- knn2nb(k6) |> nb2listw(style = "W")
-# Estimación modeelo SAR por ML
+# Estimación modelo SAR por ML
 gdpsar <- lagsarlm(LPGH ~ LGH85 + BANK + UNI01 + PAT00,
   data = gdpmap,
   listw = dmins
@@ -419,7 +420,7 @@ gdpsdm <- lagsarlm(LPGH ~ LGH85 + BANK + UNI01 + PAT00,
   listw = dmins, type = "mixed"
 )
 
-# Estimación modeelo SAR por ML
+# Estimación modelo SAR por ML
 gdpsar <- lagsarlm(LPGH ~ LGH85 + BANK + UNI01 + PAT00,
   data = gdpmap,
   listw = dmins
@@ -439,7 +440,7 @@ LR.Sarlm(gdpsdm, gdpsar) # Test LR: SDM vs. SAR
 ### Interpretación de los estimadores de los modelos de autocorrelación espacial
 \index{modelos de autocorrelación espacial!interpretación}
 
-Sólo en los modelos de autocorrelación espacial en los que el efecto endógeno ($\mathbf{Wy}$) no está presente en la parte derecha del modelo, los coeficientes estimados ($\hat{{\bf\beta}}$) pueden interpretarse de forma directa, como en el modelo básico sin efectos espaciales. Es decir, el efecto marginal en la variable explicada de un cambio del valor de una variable explicativa continua  coincide con la estimación del coeficiente correspondiente a dicha variable, para todas y cada una de las localizaciones. Por ejemplo, para la $k$-ésima variable explicativa, en la $i$-ésima localización, $i=1,...n$ se tiene:
+Solo en los modelos de autocorrelación espacial en los que el efecto endógeno ($\mathbf{Wy}$) no está presente en la parte derecha del modelo, los coeficientes estimados ($\hat{{\bf\beta}}$) pueden interpretarse de forma directa, como en el modelo básico sin efectos espaciales. Es decir, el efecto marginal en la variable explicada de un cambio del valor de una variable explicativa continua  coincide con la estimación del coeficiente correspondiente a dicha variable, para todas y cada una de las localizaciones. Por ejemplo, para la $k$-ésima variable explicativa, en la $i$-ésima localización $i=1,..., n$ se tiene:
 
 ```{=tex}
 \begin{equation}
@@ -460,7 +461,7 @@ El término $(\mathbf{I}-\rho\mathbf{W})^{-1}$ se denomina **multiplicador espac
 (\mathbf{I}-\rho\mathbf{W})^{-1}=\mathbf{I}+\rho\mathbf{W}+\rho^2\mathbf{W}^2+\dots
 \end{equation}
 ```
-Si se utiliza esta nueva expresión en la ecuación \@ref(eq:multiW) se observa más claramente que el valor de $Y$ en una determinada localización es función no sólo del valor de las variables explicativas en esa localización, sino también del valor de las explicativas en las localizaciones vecinas (a través de término $\rho\mathbf{WX}\boldsymbol{\beta}$), del valor de las explicativas en las localizaciones vecinas a las vecinas (a través del término $\rho^2\mathbf{W}^2\mathbf{X}\boldsymbol{\beta}$), etc., hasta llegar a los límites del sistema espacial en estudio.
+Si se utiliza esta nueva expresión en la ecuación \@ref(eq:multiW) se observa más claramente que el valor de $Y$ en una determinada localización es función no solo del valor de las variables explicativas en esa localización, sino también del valor de las explicativas en las localizaciones vecinas (a través del término $\rho\mathbf{WX}\boldsymbol{\beta}$), del valor de las explicativas en las localizaciones vecinas a las vecinas (a través del término $\rho^2\mathbf{W}^2\mathbf{X}\boldsymbol{\beta}$), etc., hasta llegar a los límites del sistema espacial en estudio.
 
 ```{=tex}
 \begin{equation}
@@ -480,11 +481,11 @@ E(Y|\mathbf{X})=\mathbf{X}\boldsymbol{\beta}+\rho\mathbf{W}\mathbf{X}\boldsymbol
 donde el elemento de la *i*-ésima columna y la *j*-ésima fila de la matriz es  $\frac{\partial Y_j}{\partial X_{ik}}$, el impacto de un incremento en la variable 
 $X_k$ en la *i*-ésima localización sobre la variable $Y$ en la *j*-ésima localización. 
 
-En los modelos SAR y SDM, también se puede distinguir entre efectos directos e indirectos. El efecto directo sería el efecto causado por cambios en el valor de $X_k$, en una localización $i$ sobre el valor de $Y$ en esa misma localización. Estos efectos son los valores de la diagonal principal de la matriz, $s_k(\mathbf{W})_{ii}$. El efecto indirecto viene dado por el resto de los valores de la matriz $\mathbf{S}_k(\mathbf{W})_{ij}$, que serían los "bucles de retroalimentación" en los que el valor de $X_k$, en una localización $j$ afecta al valor de $Y$ en la localización $i \neq j$, y viceversa, pudiéndose dar recorridos más largos en los que el efecto en una localización podría llegar a la última localización observada $n$ y luego volver de nuevo al punto de partida.
+En los modelos SAR y SDM, también se puede distinguir entre efectos directos e indirectos. El efecto directo sería el efecto causado por cambios en el valor de $X_k$, en una localización $i$ sobre el valor de $Y$ en esa misma localización. Estos efectos son los valores de la diagonal principal de la matriz, $s_k(\mathbf{W})_{ii}$. El efecto indirecto viene dado por el resto de los valores de la matriz $\mathbf{S}_k(\mathbf{W})_{ij}$, que serían los "bucles de retroalimentación" en los que el valor de $X_k$, en una localización $j$, afecta al valor de $Y$ en la localización $i \neq j$, y viceversa, pudiéndose dar recorridos más largos en los que el efecto en una localización podría llegar a la última localización observada $n$ y luego volver de nuevo al punto de partida.
 
-Por ejemplo, $s_k(\mathbf{W})_{11}$ es el efecto directo de un cambio unitario en el valor de la variable $X_k$ en la localización 1 ($\mathbf{x}_{k1}$) sobre el valor de la variable $Y$ en esa misma localización ($Y_1$), mientras que el valor $\mathbf{s}_k(\mathbf{W})_{12}$ es el efecto indirecto de un cambio unitario en el valor de la variable $X_{k}$ en la primera localización, sobre el valor de la variable $Y$ en la segunda ($Y_2$). En las filas, la matriz $\mathbf{S}_k(\mathbf{W})_{ij}$ tiene los efectos de un cambio unitario en $X_k$ en la $i$-ésima localización en la variable $Y$ y en cada una de sus localizaciones. Las columnas de la matriz contienen el efecto de un cambio unitario en $X_k$, en cada una de sus posibles localizaciones, sobre la variable $Y_j$. provocado "desde" todas y cada una de las localizaciones $i$ sobre la localización $j$.
+Por ejemplo, $s_k(\mathbf{W})_{11}$ es el efecto directo de un cambio unitario en el valor de la variable $X_k$ en la localización 1 ($\mathbf{x}_{k1}$) sobre el valor de la variable $Y$ en esa misma localización ($Y_1$), mientras que el valor $\mathbf{s}_k(\mathbf{W})_{12}$ es el efecto indirecto de un cambio unitario en el valor de la variable $X_{k}$ en la primera localización, sobre el valor de la variable $Y$ en la segunda ($Y_2$). En las filas, la matriz $\mathbf{S}_k(\mathbf{W})_{ij}$ tiene los efectos de un cambio unitario en $X_k$ en la $i$-ésima localización en la variable $Y$ y en cada una de sus localizaciones. Las columnas de la matriz contienen el efecto de un cambio unitario en $X_k$, en cada una de sus posibles localizaciones, sobre la variable $Y_j$, provocado "desde" todas y cada una de las localizaciones $i$ sobre la localización $j$.
 
-Dado que no es posible contrastar si todos los impactos directos e indirectos contenidos en la matriz $\mathbf{S}_k(\mathbf{W})_{ij}$ son significativamente distintos de cero, o construir intervalos de confianza para ellos, LeSage y Pace proponen llevar a cabo el proceso inferencial sobre el valor medio de los efectos directos y totales, extrayendo el promedio de los efectos indirectos por diferencia: \begin{align}
+Dado que no es posible contrastar si todos los impactos directos e indirectos contenidos en la matriz $\mathbf{S}_k(\mathbf{W})_{ij}$ son significativamente distintos de cero o construir intervalos de confianza para ellos, LeSage y Pace proponen llevar a cabo el proceso inferencial sobre el valor medio de los efectos directos y totales, extrayendo el promedio de los efectos indirectos por diferencia: \begin{align}
 \bar{M}(k)_{directo}=tr(\mathbf{S}_k(\mathbf{W}))/n \\
 \bar{M}(k)_{total}=\boldsymbol{\iota'_n}\mathbf{S}_k(\mathbf{W})\boldsymbol{\iota_n}/n \\
 \bar{M}(k)_{indirecto}=\bar{M}(k)_{total}- \bar{M}(k)_{directo},
@@ -492,7 +493,7 @@ Dado que no es posible contrastar si todos los impactos directos e indirectos co
 
 donde $\bar{M}$ indica que se trata de un efecto promedio.
 
-El siguiente conjunto de secuencias sirven para calcular las matrices de efectos directos, indirectos y totales, así como la inferencia para los modelos SAR y SDM, en el caso de de la modelización del crecimiento económico urbano en España.
+El siguiente conjunto de secuencias sirve para calcular las matrices de efectos directos, indirectos y totales, así como la inferencia para los modelos SAR y SDM, en el caso de la modelización del crecimiento económico urbano en España.
 
 
 ```r
@@ -543,7 +544,7 @@ plot(gdpsdm_impacts, trace = TRUE, density = FALSE, choice = "total")
 
 ### Impacto del SDM
 
-A continuación se presenta la salida del cálculo de los efectos para el modelo SDM [@lesage2009introduction], pudiéndose observar que todos son estadísticamente significativos y, salvo en el caso de la variable LGH85, todos ellos son positivos. El signo negativo del coeficiente de LGH85 demuestra la convergencia en renta en el grupo de grandes ciudades españolas. El impacto total de un crecimiento del 10% del PIB per cápita en una ciudad en el período inicial (1985) supuso una caída de la tasa media de variación del PIB per cápita en el período 1985-2003 del -0,63% en dicha ciudad. Este impacto es la suma del efecto directo causado por el crecimiento del PIB per cápita en la propia ciudad (-0,43), que es el efecto directo, y el efecto indirecto proveniente del crecimiento del PIB per cápita en el resto de ciudades (-0,20). Por su parte, el efecto total del crecimiento de 10 patentes por habitante supuso un crecimiento del PIB per cápita en el período del 2,12%, del cual un 0,5% procedía del crecimiento de las patentes per cápita en la propia ciudad (efecto directo) y el 1,62% restante fue causado indirectamente por el crecimiento de las patentes en el resto de ciudades.
+A continuación se presenta la salida del cálculo de los efectos para el modelo SDM [@lesage2009introduction], pudiéndose observar que todos son estadísticamente significativos y, salvo en el caso de la variable LGH85, todos ellos son positivos. El signo negativo del coeficiente de LGH85 demuestra la convergencia en renta en el grupo de grandes ciudades españolas. El impacto total de un crecimiento del 10% del PIB per cápita en una ciudad en el período inicial (1985) supuso una caída de la tasa media de variación del PIB per cápita en el período 1985-2003 del $-0,63$ % en dicha ciudad. Este impacto es la suma del efecto directo causado por el crecimiento del PIB per cápita en la propia ciudad ($-0,43$), que es el efecto directo, y el efecto indirecto proveniente del crecimiento del PIB per cápita en el resto de ciudades ($-0,20$). Por su parte, el efecto total del crecimiento de 10 patentes por habitante supuso un crecimiento del PIB per cápita en el período del $2,12$ %, del cual un $0,5$ % procedía del crecimiento de las patentes per cápita en la propia ciudad (efecto directo) y el $1,62$ % restante fue causado indirectamente por el crecimiento de las patentes en el resto de ciudades.
 
 
 ```r
@@ -620,7 +621,7 @@ Como puede observarse en las Figs. \@ref(fig:plot-imp-dir), \@ref(fig:plot-imp-i
 
 + Posteriormente, se construye la matriz de pesos espaciales bajo distintas especificaciones. 
 
-+ Por último, se muestra la taxonomía de los modelos econométricos espaciales, presentado la estrategia de especificación híbrida y se procede a la interpretación de los coeficientes estimados.
++ Por último, se muestra la taxonomía de los modelos econométricos espaciales, presentando la estrategia de especificación híbrida y se procede a la interpretación de los coeficientes estimados.
 :::
 
 

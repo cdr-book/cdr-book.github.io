@@ -37,7 +37,7 @@ En el ámbito de los Sistemas de Información, se han desarrollado programas que
 
 ### Gestión de los datos en una base o repositorio de datos
 
-\index{base de datos} \index{datos!repositorio}
+
 Las organizaciones usan datos para sus procesos de negocio. La Tabla \@ref(tab:TablaTiposDatos) muestra la tipología de datos sugerida por @Mahanti2019.
 
 
@@ -46,22 +46,23 @@ Las organizaciones usan datos para sus procesos de negocio. La Tabla \@ref(tab:T
 
 <img src="img/tabla-5-1-tipos-datos.png" width="100%" style="display: block; margin: auto;" />
 
+\index{base de datos} \index{datos!repositorio}
+
 \begin{sidewaystable}[]
 \caption{\label{tab:TablaTiposDatos}Tipos de datos}
 \begin{tabular}{p{2cm}p{2cm}p{2cm}p{2cm}p{2cm}p{3cm}p{2.2cm}p{3cm}}
 \hline
-\textbf{Tipo datos}    & \textbf{Amplitud datos}                 & \textbf{Volumen} & \textbf{Frec actualización} & \textbf{Nro columnas} & \textbf{Ejemplos}                                & \textbf{Propietarios}                                 & \textbf{Stma.  registro típico}              \\ \hline
+\textbf{Tipo datos}    & \textbf{Amplitud datos}                 & \textbf{Volumen} & \textbf{Freccuencia de actualización} & \textbf{Número de columnas} & \textbf{Ejemplos}                                & \textbf{Propietarios}                                 & \textbf{Sistemas registro típico}              \\ \hline
 Metadatos & Organización & Muy bajo & Casi estática & Varias & Definiciones de atributos & Organización & Repositorio de metadatos \\
-Datos de referencia clave & Organización, o casi toda & Bajo & Muy baja & Pocas & Códigos de países o de divisas, & Normalmente externos a la organización & Repositorio de datos de referencia corporativo \\
+Datos de referencia clave & Organización, o casi toda & Bajo & Muy baja & Pocas & Códigos de países o de divisas & Normalmente externos a la organización & Repositorio de datos de referencia corporativo \\
 Datos maestros comunes & Múltiples sistemas abarcando la organización & Medio & Baja & Muchas & Cliente, empleado, producto, cuentas bancarias & Principalmente usuarios que los crean o los necesitan & Varios escenarios \\
-Datos transaccionales & Transacciones actuales & Alto & Media & Muchas & Compras, inversiones... & Stmas. que generaron las transiciones & Stmas. que generaron las transiciones \\  \hline     
+Datos transaccionales & Transacciones actuales & Alto & Media & Muchas & Compras, inversiones... & Sistemas que generaron las transiciones & Sistemas que generaron las transiciones \\  \hline     
 \end{tabular}
 \end{sidewaystable}
 
 
 
-\index{operaciones CRUD}
-Para poder usar estos datos, las aplicaciones pueden realizar los siguientes cuatro tipo de operaciones (normalmente conocidas como "operaciones CRUD"):
+Para poder usar estos datos, las aplicaciones pueden realizar los siguientes cuatro tipo de operaciones (normalmente conocidas como "operaciones CRUD"): \index{operaciones CRUD} 
 
 1.    **Crear datos (*Create*)**: inserta datos en el repositorio de datos.
 2.    **Leer datos (*Read*)**: recupera datos del repositorio para aprovisionar el proceso de negocio, o bien para realizar alguna operación de análisis específica.
@@ -69,16 +70,14 @@ Para poder usar estos datos, las aplicaciones pueden realizar los siguientes cua
 4.    **Borrar datos (*Delete*)**: elimina en bloque o selectivamente los datos almacenados en el repositorio de los datos.
 
 En cualquier caso, estos procedimientos de inserción, actualización, recuperación y borrado deben garantizar siempre la seguridad del conjunto de los datos, de modo que solo sean accesibles por aquellos usuarios que estén autorizados a trabajar con ellos, y siempre para el propósito establecido para los datos [@Piattinietal2006].
-
+\index{SQL}
 La forma de implementar estas operaciones depende fuertemente del formato (modelo lógico) en el que estén almacenados los datos. Aunque existen diferentes modelos (estructurados, semiestructurados, no estructurados), en este capítulo el énfasis se pone en el modelo relacional [@codd1970relational], ya que es el más ampliamente usado en el ámbito organizacional y el que implementan los SGBDR. Para poder dar soporte a las operaciones CRUD anteriormente citadas en bases de datos relacionales, se desarrolló un lenguaje llamado "lenguaje estructurado de consulta" (_structured query language_, **SQL**), que se aborda en la siguiente sección.
 
-\index{SQL}
-\index{base de datos!SQL}
 \index{base de datos!relacionales}
 
 ## SQL: el lenguaje estructurado de consulta 
 
-Los principios de SQL están establecidos en el estándar internacional [ISO/IEC 9075:1989](https://www.iso.org/standard/16662.html)[^SQL2] como un mecanismo para identificar y regular las expresiones necesarias que permiten manejar bases de datos relacionales. Al ser un estándar, es importante señalar que cada fabricante de SGBDR, como Oracle con [Oracle Database Manager Server](https://www.oracle.com/database/)[^SQL4] o con [MySQL](https://www.mysql.com/products/enterprise/database/)[^SQL5], Microsoft con [SQL Server](https://www.microsoft.com/es-es/sql-server/)[^SQL6], IBM con [DB2](https://www.ibm.com/es-es/db2)[^SQL7]..., implementa en sus productos su propia versión del estándar SQL. Y aunque son prácticamente iguales, hay ligeros matices que les permiten diferenciarse de la competencia y que, por tanto, deben ser conocidos cuando se utilicen los correspondientes productos comerciales. No obstante, existen en el mercado algunas soluciones *open source* como [MariaDB](https://mariadb.org/)[^SQL8] o [PostgreSQL](https://www.postgresql.org/)[^SQL9]. En este capítulo, todos los ejemplos que se han desarrollado trabajan contra un servidor [MySQL 8](https://www.mysql.com/products/)[^SQL10].
+Los principios de SQL están establecidos en el estándar internacional [ISO/IEC 9075:1989](https://www.iso.org/standard/16662.html)[^SQL2] como un mecanismo para identificar y regular las expresiones necesarias que permiten manejar bases de datos relacionales. Al ser un estándar, es importante señalar que cada fabricante de SGBDR, como Oracle con [Oracle Database Manager Server](https://www.oracle.com/database/)[^SQL4] o con [MySQL](https://www.mysql.com/products/enterprise/database/),[^SQL5] Microsoft con [SQL Server](https://www.microsoft.com/es-es/sql-server/),[^SQL6] IBM con [DB2](https://www.ibm.com/es-es/db2)[^SQL7]..., implementa en sus productos su propia versión del estándar SQL. Y aunque son prácticamente iguales, hay ligeros matices que les permiten diferenciarse de la competencia y que, por tanto, deben ser conocidos cuando se utilicen los correspondientes productos comerciales. No obstante, existen en el mercado algunas soluciones *open source* como [MariaDB](https://mariadb.org/)[^SQL8] o [PostgreSQL](https://www.postgresql.org/).[^SQL9] En este capítulo, todos los ejemplos que se han desarrollado trabajan contra un servidor [MySQL 8](https://www.mysql.com/products/).[^SQL10]
 
 [^SQL2]: <https://www.iso.org/standard/16662.html>
 
@@ -97,8 +96,9 @@ Los principios de SQL están establecidos en el estándar internacional [ISO/IEC
 [^SQL10]: <https://www.mysql.com/products/>
 
 
+\index{base de datos!SQL}
 
-SQL tiene diferentes tipos de sentencias o instrucciones que dan soporte a los diferentes aspectos de las interacciones con la base de datos. Cualquier manual de SQL permite tratar en profundidad todos los elementos sintácticos del lenguaje, pero es importante señalar que los detalles específicos de la sintaxis específica dependerán fuertemente del SGBDR empleado. Para los ejemplos propuestos en este libro, puede consultarse el [manual de referencia de SQL de MySQL v8.0](https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html)[^SQL11]. Las siguientes secciones proporcionan una visión global de dichos grupos de sentencias.
+SQL tiene diferentes tipos de sentencias o instrucciones que dan soporte a los diferentes aspectos de las interacciones con la base de datos. Cualquier manual de SQL permite tratar en profundidad todos los elementos sintácticos del lenguaje, pero es importante señalar que los detalles específicos de la sintaxis específica dependerán fuertemente del SGBDR empleado. Para los ejemplos propuestos en este libro, puede consultarse el [manual de referencia de SQL de MySQL v8.0](https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html).[^SQL11] Las siguientes secciones proporcionan una visión global de dichos grupos de sentencias.
 
 [^SQL11]: <https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html> 
 
@@ -145,7 +145,7 @@ Las bases de datos relacionales se caracterizan por utilizar el lenguaje de cons
 
 En esta sección se describen las instrucciones más importantes de SQL para el soporte a las operaciones CRUD anteriormente introducidas. Existen, por tanto, cuatro tipos de sentencia para manipular los datos:
 
--   ***Create***: implementada mediante la instrucción `insert`,  sirve para insertar registros (también llamados **tuplas**) en una base de datos. En los ejemplos siguientes se insertan diversas tuplas en varias tablas, siguiendo el mismo orden en el que se especificaron los atributos cuando se creó la tabla. Así por ejemplo, se crean los códigos "_dbrown_" (como valor para el atributo `CodAutor`) para "Dan Brown" y "cdv" (como valor para el atributo `CodLibro`) para su libro "El Código da Vinci". El siguiente código SQL muestra las instrucciones necesarias:
+-   ***Create***: implementada mediante la instrucción `insert`,  sirve para insertar registros (también llamados **tuplas**) en una base de datos. En los ejemplos siguientes se insertan diversas tuplas en varias tablas, siguiendo el mismo orden en el que se especificaron los atributos cuando se creó la tabla. Así, por ejemplo, se crean los códigos "dbrown" (como valor para el atributo `CodAutor`) para "Dan Brown" y "cdv" (como valor para el atributo `CodLibro`) para su libro "El Código da Vinci". El siguiente código SQL muestra las instrucciones necesarias:
 
  
  ```r
@@ -167,7 +167,7 @@ En esta sección se describen las instrucciones más importantes de SQL para el 
  ```r
     update Autor set pseudonimo="El Manco de Lepanto" where CodAutor='mcervantes';
  ```
--   ***Delete***: su principal objetivo es eliminar, en bloque o de forma selectiva, una o varias tuplas o registros de datos que cumplan una determinada condición. En el siguiente código SQL se borra la(s) tupla(s) que contiene(n) datos del autor cuyo `CodAutor` es "perezreverte".
+-   ***Delete***: su principal objetivo es eliminar, en bloque o de forma selectiva, una o varias tuplas o registros de datos que cumplan una determinada condición. En el siguiente código SQL se borra(n) la(s) tupla(s) que contiene(n) datos del autor cuyo `CodAutor` es "perezreverte".
 
  
  ```r
@@ -179,7 +179,7 @@ En esta sección se describen las instrucciones más importantes de SQL para el 
  
 ### SQL como lenguaje de administración de datos
 
-SQL también puede ser usarse para administrar los usuarios de una base de datos. Esto implica crear usuarios de la base de datos y asignarles diferentes tipos de permisos para realizar los diferentes tipos de operaciones vistos anteriormente sobre los distintos componentes de datos. Por ejemplo, para crear un usuario llamado `Ismael.Caballero` que tenga por contraseña `LibroMDSR` se puede usar la siguiente instrucción:
+SQL también puede usarse para administrar los usuarios de una base de datos. Esto implica crear usuarios de la base de datos y asignarles diferentes tipos de permisos para realizar los diferentes tipos de operaciones vistos anteriormente sobre los distintos componentes de datos. Por ejemplo, para crear un usuario llamado `Ismael.Caballero` que tenga por contraseña `LibroMDSR` se puede usar la siguiente instrucción:
  
 
 ```r
@@ -198,7 +198,7 @@ Recuérdese que los ejemplos mostrados han sido realizados para MySQL 8, aunque 
 ## Acceso y explotación de bases de datos desde **R**
 \index{RMySQL} \index{DBI}
 
-Como el propósito de este manual es aprender los fundamentos de la ciencia de datos usando **R**, en las siguientes secciones se explicará cómo implementar las operaciones CRUD usando sentencias de paquetes específicos de **R**. Dado que en este capítulo se usa MySQL, se utiliza el  _driver_ específico de `RMySQL` [@RMySQL2022]. En caso de que se hubiese usado otro sistema gestor de bases de datos, se habría tenido que recurrir al paquete específico que contuviera el_driver_ correspondiente. En las siguientes secciones se explica cómo conectarse a una base de datos usando las funciones correspondientes y cómo se implementan las operaciones CRUD con funciones del paquete `RMySQL`.
+Como el propósito de este manual es aprender los fundamentos de la ciencia de datos usando **R**, en las siguientes secciones se explicará cómo implementar las operaciones CRUD usando sentencias de paquetes específicos de **R**. Dado que en este capítulo se usa MySQL, se utiliza el  *driver* específico de `RMySQL` [@RMySQL2022]. En caso de que se hubiese usado otro sistema gestor de bases de datos, se habría tenido que recurrir al paquete específico que contuviera el *driver* correspondiente. En las siguientes secciones se explica cómo conectarse a una base de datos usando las funciones correspondientes y cómo se implementan las operaciones CRUD con funciones del paquete `RMySQL`.
 
 ### Conexión a una base de datos
 
@@ -248,7 +248,7 @@ tblCustomers <- dbReadTable(mibbdd, "customers")
 summary (tblCustomers)
 ```
 
-2.    `dbGetQuery()`, que tiene más flexibilidad que `dbReadTable()` porque permite, mediante una sentencia SQL `select` (véase más información en [el tutorial de SQL en W3C](https://www.w3schools.com/mysql/mysql_select.asp)[^SQL14] o en la página oficial de ["select" sobre MySQL](https://dev.mysql.com/doc/refman/5.7/en/select.html)[^SQL15]), particularizar la consulta a la base de datos. Esto puede implicar la selección de atributos específicos o incluso el uso de filtros sobre los atributos seleccionados. Por ejemplo, si se quisieran recuperar el número y el nombre de los clientes de Madrid, se podría personalizar la consulta añadiendo las condiciones correspondientes en la cláusula `where`[^SQL16], como se muestra en siguiente código. Por comodidad, se escribe aparte la consulta SQL, en una variable, para poder manejar más fácilmente la operativa en **R**. Escribir esta consulta puede ser lo que entrañe más dificultad. A continuación, se ejecuta la consulta con `dbGetQuery()` y se almacenan los resultados en un `data.frame` para su uso posterior. Nuevamente, se comprueba el resultado con la instrucción `summary()`.
+2.    `dbGetQuery()`, que tiene más flexibilidad que `dbReadTable()` porque permite, mediante una sentencia SQL `select` (véase más información en [el tutorial de SQL en W3C](https://www.w3schools.com/mysql/mysql_select.asp)[^SQL14] o en la página oficial de ["select" sobre MySQL](https://dev.mysql.com/doc/refman/5.7/en/select.html),[^SQL15]) particularizar la consulta a la base de datos. Esto puede implicar la selección de atributos específicos o incluso el uso de filtros sobre los atributos seleccionados. Por ejemplo, si se quisieran recuperar el número y el nombre de los clientes de Madrid, se podría personalizar la consulta añadiendo las condiciones correspondientes en la cláusula `where`,[^SQL16] como se muestra en siguiente código. Por comodidad, se escribe aparte la consulta SQL, en una variable, para poder manejar más fácilmente la operativa en **R**. Escribir esta consulta puede ser lo que entrañe más dificultad. A continuación, se ejecuta la consulta con `dbGetQuery()` y se almacenan los resultados en un `data.frame` para su uso posterior. Nuevamente, se comprueba el resultado con la instrucción `summary()`.
 
 [^SQL14]: <https://www.w3schools.com/mysql/mysql_select.asp>
 
@@ -317,7 +317,7 @@ En cualquier caso, para considerar la opción más adecuada deben tenerse en cue
   
   -   Es posible recordar la consulta SQL que se utilizó en `dbSendQuery()` mediante la función `dbGetStatement()`.
     
-  -   La función `dbFetch()` tiene dos argumentos: la consulta y el número de registros a recuperar; si se quieren recuperar todos los registros que haya podido producir la consulta, debe pasarse el argumento `n = -1`.
+  -   La función `dbFetch()` tiene dos argumentos: la consulta y el número de registros a recuperar; si se quieren recuperar todos los registros que haya podido producir la consulta, debe pasarse el argumento `n=-1`.
     
   -   Si se quiere saber el número de elementos que se han traído con la función `dbFetch()` se puede usar la función `dbGetRowCount()`.
 
@@ -361,20 +361,20 @@ Con `dbColumnInfo()` se muestran los metadatos de implementación (operativos) d
 
 ### Operaciones de inserción (*create*) y actualización (*update*) de datos
 
-Antes de almacenar los datos en la base de datos, es necesario crear las estructuras necesarias, que, como se avanzó anteriormente, son las tablas y los atributos. Para ello se utilizan instrucciones especiales SQL como lenguaje de definición de datos (LDD); esto incluye instrucciones para crear tablas ([`create table`](https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html))[^SQL17], para modificarlas ([`alter table`](https://dev.mysql.com/doc/refman/8.0/en/alter-table.html))[^SQL18] o para borrarlas ([`drop table`](https://dev.mysql.com/doc/refman/8.0/en/drop-table.html))[^SQL19].
+Antes de almacenar los datos en la base de datos, es necesario crear las estructuras necesarias, que, como se avanzó anteriormente, son las tablas y los atributos. Para ello se utilizan instrucciones especiales SQL como lenguaje de definición de datos (LDD); esto incluye instrucciones para crear tablas ([`create table`](https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html)),[^SQL17] para modificarlas ([`alter table`](https://dev.mysql.com/doc/refman/8.0/en/alter-table.html))[^SQL18] o para borrarlas ([`drop table`](https://dev.mysql.com/doc/refman/8.0/en/drop-table.html)).[^SQL19]
 
 
 [^SQL17]: <https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html>
 [^SQL18]: <https://dev.mysql.com/doc/refman/8.0/en/alter-table.html>
 [^SQL19]: <https://dev.mysql.com/doc/refman/8.0/en/drop-table.html> 
 
-Para poder hacer operaciones con los datos, es preciso crear usuarios y asignarles los privilegios adecuados sobre las tablas y atributos. Ello también requiere las instrucciones especiales SQL como lenguaje de administración de datos (LAD), que incluye instrucciones para crear usuarios ([`create user`](https://dev.mysql.com/doc/refman/8.0/en/create-user.html))[^SQL20], modificar ciertos aspectos de los mismos ([`alter user`](https://dev.mysql.com/doc/refman/8.0/en/alter-user.html))[^SQL21] y borrarlos ([`drop user`](https://dev.mysql.com/doc/refman/5.6/en/drop-user.html))[^SQL22].
+Para poder hacer operaciones con los datos, es preciso crear usuarios y asignarles los privilegios adecuados sobre las tablas y atributos. Ello también requiere las instrucciones especiales SQL como lenguaje de administración de datos (LAD), que incluye instrucciones para crear usuarios ([`create user`](https://dev.mysql.com/doc/refman/8.0/en/create-user.html)),[^SQL20] modificar ciertos aspectos de los mismos ([`alter user`](https://dev.mysql.com/doc/refman/8.0/en/alter-user.html))[^SQL21] y borrarlos ([`drop user`](https://dev.mysql.com/doc/refman/5.6/en/drop-user.html)).[^SQL22]
 
 [^SQL20]: <https://dev.mysql.com/doc/refman/8.0/en/create-user.html>
 [^SQL21]: <https://dev.mysql.com/doc/refman/8.0/en/alter-user.html>
 [^SQL22]: <https://dev.mysql.com/doc/refman/5.6/en/drop-user.html>
 
-Un usuario de la base de datos que tenga privilegios suficientes sobre las estructuras creadas puede crear ([`insert`](https://dev.mysql.com/doc/refman/8.0/en/insert.html))[^SQL23] o modificar ([`update`](https://dev.mysql.com/doc/refman/8.0/en/update.html))[^SQL24] registros de datos usando las instrucciones específicas de SQL como lenguaje de manipulación de datos (LMD) [(véase cómo otorgar privilegios a un usuario para crear tablas)](https://dev.mysql.com/doc/refman/5.7/en/grant-tables.html)[^SQL25].
+Un usuario de la base de datos que tenga privilegios suficientes sobre las estructuras creadas puede crear ([`insert`](https://dev.mysql.com/doc/refman/8.0/en/insert.html))[^SQL23] o modificar ([`update`](https://dev.mysql.com/doc/refman/8.0/en/update.html))[^SQL24] registros de datos usando las instrucciones específicas de SQL como lenguaje de manipulación de datos (LMD) [(véase cómo otorgar privilegios a un usuario para crear tablas)](https://dev.mysql.com/doc/refman/5.7/en/grant-tables.html).[^SQL25]
 
 [^SQL23]: <https://dev.mysql.com/doc/refman/8.0/en/insert.html>
 [^SQL24]: <https://dev.mysql.com/doc/refman/8.0/en/update.html>
@@ -498,7 +498,7 @@ SentenciaSQL_Eliminación ="delete from DatosPrueba where CodPrueba > 10"
 dbSendQuery (mibbdd, SentenciaSQL_Eliminación)
 #> <MySQLResult:1,0,30>
 ```
-Finalmente, si fuera necesario eliminar toda la tabla, se podría usar una sentencia [drop table](https://dev.mysql.com/doc/refman/8.0/en/drop-table.html)[^SQL27]:
+Finalmente, si fuera necesario eliminar toda la tabla, se podría usar una sentencia [drop table](https://dev.mysql.com/doc/refman/8.0/en/drop-table.html):[^SQL27]
 
 [^SQL27]: <https://dev.mysql.com/doc/refman/8.0/en/drop-table.html>
 
@@ -518,12 +518,20 @@ dbDisconnect(mibbdd)
 En este capítulo se han presentado los fundamentos de las bases de datos relacionales. Es importante tener presentes los siguientes aspectos:
 
 -   Los datos en las bases de datos se corresponden a valores de atributos relevantes de entidades del mundo real.
+
 -   Los datos de una base de datos son una percepción u observación del mundo real.
+
 -   Los datos son la materia prima de los procesos de negocio.
+
 -   Los sistemas de información dan soporte a los procesos de negocio.
+
 -   Los datos son un elemento fundamental de los sistemas de información.
+
 -   SQL  es el lenguaje más comúnmente utilizado en operaciones sobre el modelo físico de bases de datos relacionales.
+
 -   SQL se puede utilizar como Lenguaje de Definición de Datos (LDD), como Lenguaje de Manipulación de Datos (LMD) y como Lenguaje de Administración de Datos (LAD).
+
 -   La sintaxis de SQL depende fuertemente del sistema gestor de bases de datos relacionales que lo implemente.
+
 -   **R** software, a través del _driver_ específico, permite manejar bases de datos implementando las operaciones CRUD.
 :::

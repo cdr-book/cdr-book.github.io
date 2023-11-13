@@ -7,21 +7,24 @@ Fundación de la Investigación del Clima
 
 ## Introducción
 
-El planteamiento de un problema basado en datos de diversos proveedores, habitualmente implica la descarga de grandes volúmenes. La actual proliferación de servicios de Open Data, despliegues de sensores y diversas fuentes, incluyendo los satélites, dificulta su procesamiento en equipos personales. El gran crecimiento en grandes volúmenes de datos espacio-temporales de tipo vectorial o ráster lleva a la necesidad en trabajar con servicios en nube para ahorrar tiempo computacional y espacio de almacenamiento. En la actualidad existen diferentes servicios de \index{geoprocesamiento} geoprocesamiento en \index{nube} nube que ayudan a hacer análisis online sin necesidad de descargar los datos ni preocuparse por el rendimiento computacional. Uno de estos servicios es \index{google earth engine, gee} *Google Earth Engine* (GEE), donde se combina un catálogo de varios petabytes de imágenes satelitales y conjuntos de datos geoespaciales multidimensionales (vectorial y ráster) de alta resolución con capacidades de análisis a escala planetaria. Este servicio gratuito para uso no comercial incluye incluso la posibilidad de crear aplicaciones. 
+El planteamiento de un problema basado en datos de diversos proveedores habitualmente implica la descarga de grandes volúmenes de datos. La actual proliferación de servicios de Open Data, despliegues de sensores y diversas fuentes, incluyendo los satélites, dificulta su procesamiento en equipos personales. El gran crecimiento en grandes volúmenes de datos espaciotemporales de tipo vectorial o *raster* lleva a la necesidad en trabajar con servicios en nube para ahorrar tiempo computacional y espacio de almacenamiento. En la actualidad existen diferentes servicios de \index{geoprocesamiento} geoprocesamiento en \index{nube} nube que ayudan a hacer análisis online sin necesidad de descargar los datos ni preocuparse por el rendimiento computacional. Uno de estos servicios es \index{Google Earth Engine, GEE} Google Earth Engine (GEE), donde se combina un catálogo de varios petabytes de imágenes satelitales y conjuntos de datos geoespaciales multidimensionales (vectorial y *raster*) de alta resolución con capacidades de análisis a escala planetaria. Este servicio gratuito para uso no comercial incluye incluso la posibilidad de crear aplicaciones. 
 
 GEE consiste en una API con bibliotecas de cliente para JavaScript y Python que traducen (a la lengua nativa que es JavaScript) los \index{análisis! geoespacial} análisis geoespaciales y hacen posible acceder a los datos. No es necesario descargar grandes volúmenes de datos ni configurar la computación. Para el lenguaje de **R** se puede hacer uso del paquete `rgee`, que hace puente entre **R** y la API GEE. 
 
-En este capítulo se utiliza el conjunto de datos "NOAA CDR OISST v02r01", una interpolación óptima de la temperatura diaria de la superficie del mar (OISST, por sus siglas en inglés) con una resolución de 1/4 grados (27 km). Los datos los proporciona la National Oceanic and Atmospheric Administration (NOAA) son campos completos de temperatura oceánica construidos mediante la combinación de observaciones ajustadas por sesgo de diferentes plataformas (satélites, barcos, boyas) en una cuadrícula global regular, con lagunas estimadas por interpolación. Los datos satelitales del radiómetro avanzado de muy alta resolución (AVHRR, por sus siglas en inglés) proporcionan la entrada principal que permite la alta cobertura temporal-espacial desde finales de 1981 hasta el presente[^geoproc-web] [@reynolds2008]. 
+En este capítulo se utiliza el conjunto de datos "NOAA CDR OISST v02r01", una interpolación óptima de la temperatura diaria de la superficie del mar (OISST, por sus siglas en inglés) con una resolución de 1/4 grados (27 km). Los datos los proporciona la National Oceanic and Atmospheric Administration (NOAA); son campos completos de temperatura oceánica construidos mediante la combinación de observaciones ajustadas por sesgo de diferentes plataformas (satélites, barcos, boyas) en una cuadrícula global regular, con lagunas estimadas por interpolación. Los datos satelitales del radiómetro avanzado de muy alta resolución (AVHRR, por sus siglas en inglés) proporcionan la entrada principal que permite la alta cobertura temporal-espacial desde finales de 1981 hasta el presente[^geoproc-web] [@reynolds2008]. 
 
-Dicho lo anterior, el objetivo de este capítulo es mostrar el potencial del uso de APIs directamente en **R**. El resultado se empleará en el Cap. \ref(cambioclimatico). 
+Dicho lo anterior, el objetivo de este capítulo es mostrar el potencial del uso de las API directamente en **R**. El resultado se empleará en el Cap. \@ref(cambioclimatico). 
 
-[^geoproc-web]: Véase https://developers.google.com/earth-engine/datasets/catalog/NOAA_CDR_OISST_V2_1
+[^geoproc-web]: Véase https://developers.google.com/earth-engine/datasets/catalog/NOAA_CDR_OISST_V2_1.
+
+
+
 
 ## Sintaxis de Google Earth Engine
 
-Con ayuda de GEE se preprocesan los datos de tal manera que el resultado son las anomalías estivales en forma de ráster para cada año entre 1981 y 2022. El primer paso consiste en crear el usuario en [earthengine.google.com](earthengine.google.com). Además, es necesario instalar *CLI* de *gcloud* (https://cloud.google.com/sdk/docs/install?hl=es-419). 
+Con ayuda de GEE se preprocesan los datos de tal manera que el resultado son las anomalías estivales en forma de *raster* para cada año entre 1981 y 2022. El primer paso consiste en crear el usuario en [earthengine.google.com](earthengine.google.com). Además, es necesario instalar CLI de gcloud (https://cloud.google.com/sdk/docs/install?hl=es-419). 
 
-No obsstante, antes se deben conocer algunos conceptos fundamentales sobre la sintaxis en GEE. En general, el lenguaje nativo es Javascript, que se caracteriza por una gramática en la que se combina funciones y variables usando el punto, que se sustituye por el **$** en **R**. Todas las funciones GEE en **R** empiezan por el prefijo ee_* (`ee_print()`, `ee_image_to_drive()`). Los términos más relevantes son los siguientes:
+No obstante, antes se deben conocer algunos conceptos fundamentales sobre la sintaxis en GEE. En general, el lenguaje nativo es Javascript, que se caracteriza por una gramática en la que se combinan funciones y variables usando el punto, que se sustituye por el "$" en **R**. Todas las funciones de GEE en **R** empiezan por el prefijo ee_* (`ee_print()`, `ee_image_to_drive()`). Los términos más relevantes son los siguientes:
 
 * *ImageCollection*: serie temporal de imágenes.
 * *Geometry*: dato vectorial.
@@ -33,14 +36,14 @@ Se puede obtener más información en https://r-spatial.github.io/rgee/reference
 
 ## Primeros pasos
 
-Después de darse de alta en GEE y haber instalado *CLI gcloud* en el sistema operativo, se crea un entorno virtual de Python con todas las dependencias de GEE usando la función `ee_install()`.
+Después de darse de alta en GEE y haber instalado CLI gcloud en el sistema operativo, se crea un entorno virtual de Python con todas las dependencias de GEE usando la función `ee_install()`.
 
 
 ```r
 library(rgee)
 
-ee_install() # crear entorno virtual de Python; ¡sólo una vez!
-ee_check() # comprobar si todo está correcto
+ee_install() # crear entorno virtual de Python; ¡solo una vez!
+ee_check()   # comprobar si todo está correcto
 ```
 
 Antes de pasar a programar con la sintaxis propia de GEE, se debe autenticar e inicializar GEE empleando la función `ee_Initialize()`.
@@ -51,10 +54,10 @@ ee_Initialize(drive = TRUE) # autenticar e inicializar GEE
 ee_user_info() # inf sobre usuario
 ```
 
-Hay que tener en cuenta que, únicamente cuando se envían tareas, GEE ejecuta el cálculo en los servidores enviando todos los objetos creados. En la mayoría de los pasos se crean objetos *EarthEngine* sin ejecutarse, que se en las últimas fases del análisis.
+Hay que tener en cuenta que, únicamente cuando se envían tareas, GEE ejecuta el cálculo en los servidores enviando todos los objetos creados. En la mayoría de los pasos se crean objetos *EarthEngine* sin ejecutarse, que se ejecutan en las últimas fases del análisis.
 
 
-Por ejemplo, se puede seleCcionar la banda NDVI del producto MODIS MOD13A2 e imprimir los metadatos del primer día disponible con `ee_print()`. El número de elementos que se pueden ver con esta función está limitado a 5.000. 
+Por ejemplo, se puede seleccionar la banda NDVI del producto MODIS MOD13A2 e imprimir los metadatos del primer día disponible con `ee_print()`. El número de elementos que se puede ver con esta función está limitado a 5.000. 
 
 
 ```r
@@ -96,7 +99,7 @@ startDate <- ee$Date('1982-01-01') # fecha inicio
 endDate <- ee$Date('2023-01-16') # fecha final
 ```
 
-Se puede acceder a todas las \index{colecciones} colecciones (*ImageCollection*) indicando su identifcación. Además, se filtran y se recortan los datos con respecto al periodo y a la extensión fijada. Finalmente se selecciona la banda o variable de de interés `sst` (*surface sea temperature*). 
+Se puede acceder a todas las \index{colecciones} colecciones (*ImageCollection*) indicando su identifcación. Además, se filtran y se recortan los datos con respecto al período y a la extensión fijada. Finalmente se selecciona la banda o variable de interés `sst` (*surface sea temperature*). 
 
 
 ```r
@@ -106,7 +109,7 @@ collection_era5 <- ee$ImageCollection("NOAA/CDR/OISST/V2_1")$
                        select('sst')
 ```
 
-Finalmente, se procede a calcular el número de años en el período fijado. 
+Por último, se procede a calcular el número de años en el período fijado. 
 
 
 ```r
@@ -115,7 +118,7 @@ numberOfyears <- endDate$difference(startDate, 'years')$round()
 
 ### Promedio estival 
 
-Después de las anteriores definiciones se crea una nueva colección con el promedio estival de cada año durante el periodo objeto de estudio. Para ello se crea una lista de los años sobre la que se mapea otra función. Esta función se debe pasar con  `ee_utilspyfunc()`, que traduce una función **R** a una de Python. 
+Después de las anteriores definiciones se crea una nueva colección con el promedio estival de cada año durante el período objeto de estudio. Para ello se crea una lista de los años sobre la que se mapea otra función. Esta función se debe pasar con  `ee_utilspyfunc()`, que traduce una función **R** a una de Python. 
 
 En la función personalizada se filtran los meses de verano, se calcula el promedio de sus valores diarios y se multiplica por 0,01, un factor de escala. Cuando se crean nuevas colecciones es importante fijar la nueva fecha con `set()`. 
 
@@ -147,7 +150,7 @@ msst <- collection_era5$filterDate('1982-01-01','2010-12-31')$
 
 ```
 
-Se aplica otra función personalizada sobre las medias estivales de todos los años, en la que se resta la temperatura del periodo de referencia, obteniéndose así las diferencias entre la temperatura media de cada año en el periodo estival y la temperatura media global del periodo estival en el periodo 1982-2010. 
+Se aplica otra función personalizada sobre las medias estivales de todos los años en la que se resta la temperatura del período de referencia, obteniéndose así las diferencias entre la temperatura media de cada año en el período estival y la temperatura media global del período estival en 1982-2010. 
 
 
 ```r
@@ -186,13 +189,13 @@ Map$addLegend(list(min = -3, max = 3,
 
 
 <div class="figure" style="text-align: center">
-<img src="img/interactivo_mapa_geopro.png" alt="Mapa interactivo del mar Mediterraneo (1982)." width="60%" />
-<p class="caption">(\#fig:interactive-map-plot)Mapa interactivo del mar Mediterraneo (1982).</p>
+<img src="img/interactivo_mapa_geopro.png" alt="Mapa interactivo del mar Mediterráneo (1982)." width="60%" />
+<p class="caption">(\#fig:interactive-map-plot)Mapa interactivo del mar Mediterráneo (1982).</p>
 </div>
 
 
 
-Hasta este momento no se ha enviado una tarea para que GEE la realice. Para ello hay que exportar las anomalías de cada año en formato `geotiff`. La función `ee_imagecollection_to_local()` facilita la exportación de todas las capas de una *ImageCollection*. En cambio, la función `ee_image_to_drive()` exporta datos individuales de una única imagen a *Google Drive*. El argumento `scale` indica con qué resolución se exporta. Aunque la resolución de los datos originales es de 27 km, se fija una resolución de 2 km, lo que implica una interpolación en la exportación por razones de estética en la visualización. 
+Hasta este momento no se ha enviado una tarea para que GEE la realice. Para ello hay que exportar las anomalías de cada año en formato `geotiff`. La función `ee_imagecollection_to_local()` facilita la exportación de todas las capas de una *ImageCollection*. En cambio, la función `ee_image_to_drive()` exporta datos individuales de una única imagen a Google Drive. El argumento `scale` indica con qué resolución se exporta. Aunque la resolución de los datos originales es de 27 km, se fija una resolución de 2 km, lo que implica una interpolación en la exportación por razones de estética en la visualización. 
 
 
 ```r
@@ -214,9 +217,9 @@ En resumen, este ejemplo ha mostrado una pequeña parte de la capacidad del geop
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}
 
-El aumento del volumen de datos que ha tenido lugar en los últimos años ha llevado a la necesidad de utilizar servicios de geoprocesamiento en nube que ayuden a llevar a cabo su análisis online, sin necesidad de descargar los datos ni de preocuparse por el rendimiento computacional. 
++ El aumento del volumen de datos que ha tenido lugar en los últimos años ha llevado a la necesidad de utilizar servicios de geoprocesamiento en nube que ayuden a llevar a cabo su análisis online, sin necesidad de descargar los datos ni de preocuparse por el rendimiento computacional. 
 
-Uno de estos servicios es *Google Earth Engine*, donde se combina un catálogo de imágenes satelitales y conjuntos de datos geoespaciales multidimensionales de alta resolución con capacidades de análisis a escala planetaria. 
++ Uno de estos servicios es Google Earth Engine, donde se combina un catálogo de imágenes satelitales y conjuntos de datos geoespaciales multidimensionales de alta resolución con capacidades de análisis a escala planetaria. 
 
-En este ejemplo que se utiliza en el capítulo, se muestra cómo procesar la temperatura oceánica superficial para calcular las anomalías de temperatura de la cuenca mediterránea en la estación estival, desde 1982 a 2022. 
++ En este ejemplo que se utiliza en el capítulo, se muestra cómo procesar la temperatura oceánica superficial para calcular las anomalías de temperatura de la cuenca mediterránea en la estación estival, desde 1982 a 2022. 
 :::

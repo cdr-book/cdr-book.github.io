@@ -1,18 +1,18 @@
 
-# ¿Cómo twitea Elon Musk? {#cap-twitter}
+# ¿Cómo tuitea Elon Musk? {#cap-twitter}
 
 *Mariluz Congosto*
 
 Universidad Carlos III de madrid
 
 ## Introducción 
-\index{twitter}
+\index{Twitter}
 
 El objetivo de este caso de uso es arrojar luz, de manera objetiva, sobre un **fenómeno social** de interés general: el uso de Twitter por parte de **Elon Musk**. Este multimillonario adquirió la red social el 28 de octubre de 2022 y desde entonces ha tomado decisiones drásticas, como reducir la plantilla y lanzar nuevos servicios de pago de manera apresurada. Su constante cambio de rumbo queda reflejado en su actividad frenética en Twitter, donde es un usuario muy activo.
 
-Este caso de estudio aborda, una vez descargados los *tweets* mediante las **APIs de Twitter**,[^Elon-1] cómo adaptarlos mediante minería de textos (Cap.\@ref(mineria-textos)) para su **análisis** y **visualización**. El contenido de estos mensajes se representa mediante nubes de palabras, *scatters plots* y *timelines*. Este conjunto de gráficas ofrece distintas perspectivas de los datos que, sin duda, ayudarán a comprender los cambios de comunicación desde que adquirió Twitter.
+Este caso de estudio aborda, una vez descargados los *tweets* mediante las **API de Twitter**,[^Elon-1] cómo adaptarlos mediante minería de textos (Cap.\@ref(mineria-textos)) para su **análisis** y **visualización**. El contenido de estos mensajes se representa mediante nubes de palabras, *scatter plots* y *timelines*. Este conjunto de gráficas ofrece distintas perspectivas de los datos que, sin duda, ayudarán a comprender los cambios de comunicación desde que adquirió Twitter.
 
-[^Elon-1]: Para el caso de estudio que se desarrolla se ha usado la librería `rtweet` para acceder a la **API Standard (V1.1)** (accesible a todo el mundo). Para obtener las credenciales que permiten trabajar en **modo usuario** se facilita el script de **python make_token_Twitter.ipynb** en github <https://github.com/congosto/token_API_V1.1**>. Este *script* se puede ejecutar en el entorno Google Colab <https://colab.research.google.com/>.
+[^Elon-1]: Para el caso de estudio que se desarrolla se ha usado la librería `rtweet` para acceder a la **API Standard (V1.1)** (accesible a todo el mundo). Para obtener las credenciales que permiten trabajar en **modo usuario** se facilita el *script* de **python make_token_Twitter.ipynb** en GitHub <https://github.com/congosto/token_API_V1.1**>. Este *script* se puede ejecutar en el entorno Google Colab <https://colab.research.google.com/>.
 
 ## Análisis visual de los *tweets* de Elon Musk \index{visualización}
 
@@ -30,7 +30,7 @@ library("RColorBrewer") # paleta de colores
 
 
 
-El rango de fechas elegido para delimitar temporalmente los tweets de Elon Musk va desde el 16-06-2022 hasta el 22-12-2022. Este rango es adecuado para visualizar la actividad e impacto del perfil de Elon Musk antes y después de la adquisición de Twitter.
+El rango de fechas elegido para delimitar temporalmente los *tweets* de Elon Musk va desde el 16-06-2022 hasta el 22-12-2022. Este rango es adecuado para visualizar la actividad e impacto del perfil de Elon Musk antes y después de la adquisición de Twitter.
 
 Se cargan los datos de la librería `CDR` del libro.
 
@@ -60,9 +60,9 @@ my_color <- c("retweeted" = "purple", "reply" = "blue", "quoted" = "green", "ori
 
 Para representar los términos más frecuentes en los *tweets* de Elon Musk se utiliza una nube de palabras. Esta representación gráfica se crea mediante la librería `ggwordcloud`, que funciona en el entorno `ggplot`.
 
-El texto de los mensajes se encuentra en la variable `full_text`, la cual se limpia eliminando las URLs y los *handles* de los usuarios. Además, se añade una columna para distinguir los textos anteriores y posteriores a la compra de Twitter.
+El texto de los mensajes se encuentra en la variable `full_text`, la cual se limpia eliminando las URL y los *handles* de los usuarios. Además, se añade una columna para distinguir los textos anteriores y posteriores a la compra de Twitter.
 
-Posteriormente, se descomponen los textos en palabras independientes, se eliminan las *stop words* y se calcula la frecuencia de aparición de cada palabra.
+Después, se descomponen los textos en palabras independientes, se eliminan las *stop words* y se calcula la frecuencia de aparición de cada palabra.
 
 
 ```r
@@ -73,7 +73,7 @@ corpus_text <- tweets_user |>
   mutate(text_plain = gsub("RT @\\w+:", "", text_plain)) |> # Quita los RTs
   mutate(text_plain = gsub("&amp;", "&", text_plain)) |> # Rectifica el &
   mutate(text_plain = gsub("@\\w+", "", text_plain)) |> # Quita las menciones
-  # Crea una columna para distinguir el periodo antes/después de la compra
+  # Crea una columna para distinguir el período antes/después de la compra
   mutate(periodo = ifelse(created_at < compra_twitter,
     "Antes de la compra", "Después de la compra" )) |>
   select(text_plain, periodo) |>
@@ -128,11 +128,11 @@ data(stop_words)
 corpus_menciones <- tweets_user |>
   # Extrae los handles de los comentarios con una expresión regular "@\\w+"
   mutate(mentions = ifelse(tipo_tweet == "reply", str_extract(full_text, "@\\w+"), NA)) |>
-  # Crea una columna para distinguir el periodo antes/después de la compra
+  # Crea una columna para distinguir el período antes/después de la compra
   mutate(periodo = ifelse(created_at < compra_twitter,
     "Antes de la compra", "Después de la compra" )) |>
   filter(!is.na(mentions)) |>    # elimina las filas vacías
-  select(mentions, periodo) |>   # selecciona menciones y periodo
+  select(mentions, periodo) |>   # selecciona menciones y período
   group_by(mentions, periodo) |>
   summarise( freq = n(),  .groups = "drop" ) |> # calcula frec. de palabra
   ungroup() |>
@@ -287,7 +287,9 @@ tweets_user_day <- tweets_user |>
 # print (tweets_user_day) # descomentar para ver el resultado
 ```
 
-En la Fig. \@ref(fig:elon-musk-line-chart) se puede observar un incremento en el número de publicaciones después de la compra de Twitter. De hecho, se publicaron casi el doble de *tweets* en comparación con el periodo anterior a la adquisición de la plataforma. Asimismo, se puede ver que, al igual que en la Fig. \@ref(fig:elon-musk-rutina), la mayoría de los *tweets* de Elon Musk fueron comentarios.
+En la Fig. \@ref(fig:elon-musk-line-chart) se puede observar un incremento en el número de publicaciones después de la compra de Twitter. De hecho, se publicaron casi el doble de *tweets* en comparación con el período anterior a la adquisición de la plataforma. Asimismo, se puede ver que, al igual que en la Fig. \@ref(fig:elon-musk-rutina), la mayoría de los *tweets* de Elon Musk fueron comentarios.
+
+<!-- fig.height=5, fig.width=9, -->
 
 
 ```r
@@ -327,13 +329,13 @@ ggplot(data = tweets_user_day) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="212050_cd_elon_musk_files/figure-html/elon-musk-line-chart-1.png" alt="Publicación de $tweets$ por día de Elon Musk." width="60%" />
+<img src="212050_cd_elon_musk_files/figure-html/elon-musk-line-chart-1.png" alt="Publicación de $tweets$ por día de Elon Musk." width="90%" />
 <p class="caption">(\#fig:elon-musk-line-chart)Publicación de $tweets$ por día de Elon Musk.</p>
 </div>
 
 ### ¿Cuál es el impacto de sus *tweets*? \index{diagrama de doble escala}
 
-Para comparar los *tweets* propios publicados (sin *retweets*) y el impacto que reciben (*retweets* recibidos) se utiliza una gráfica de doble escala. Dado que ambas variables tienen diferentes órdenes de magnitud, este tipo de gráfica permitirá una mejor comparación. Además, se incluiye una anotación con la fecha de compra de Twitter para distinguir los cambios antes y después de este evento.
+Para comparar los *tweets* propios publicados (sin *retweets*) y el impacto que reciben (*retweets* recibidos) se utiliza una gráfica de doble escala. Dado que ambas variables tienen diferentes órdenes de magnitud, este tipo de gráfica permitirá una mejor comparación. Además, se incluye una anotación con la fecha de compra de Twitter para distinguir los cambios antes y después de este evento.
 
 En esta gráfica se puede ver cómo se van superponiendo capas de dibujo.
 
@@ -382,7 +384,7 @@ ajuste_escala <- max_RT / max_tweets # Ajsute de escala
 my_color <- c("Num. original tweets" = "steelblue4", "RTs" = "red4")
 ```
 
-La Fig. \@ref(fig:elon-musk-impacto) muestra un incremento masivo de los *retweets* recibidos desde la compra de Twitter, siendo el día que tomó posesión el que generó el mayor pico: 800K RTs.
+La Fig. \@ref(fig:elon-musk-impacto) muestra un incremento masivo de los *retweets* recibidos desde la compra de Twitter, siendo el día que tomó posesión el que generó el mayor pico: 800.000 RT.
 
 
 ```r
@@ -398,7 +400,7 @@ ggplot() +
   geom_line( data = tweets_propios_day,
     aes(x = time_in_days, y = num_tweets, color = "Num. original tweets")
   ) +
-  # Pinta la evolución de los RTs/día
+  # Pinta la evolución de los RT/día
   geom_line(
     data = tweets_RT_day,
     aes(x = time_in_days, y = num_tweets / ajuste_escala, color = "RTs")
@@ -436,7 +438,7 @@ ggplot() +
     name = "Num. Original tweets por día",
     labels = label_number(scale_cut = cut_short_scale()),
     sec.axis = sec_axis(
-      trans = (~ . * ajuste_escala), name = "RTs por día",
+      trans = (~ . * ajuste_escala), name = "RT por día",
       labels = label_number(scale_cut = cut_short_scale())
     )
   ) +
@@ -453,9 +455,8 @@ ggplot() +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="212050_cd_elon_musk_files/figure-html/elon-musk-impacto-1.png" alt="$Tweets$ vs. $retweets$ de Elon Musk" width="60%" />
-<p class="caption">(\#fig:elon-musk-impacto)$Tweets$ vs. $retweets$ de Elon Musk</p>
+<img src="212050_cd_elon_musk_files/figure-html/elon-musk-impacto-1.png" alt="$Tweets$ $vs.$ $retweets$ de Elon Musk." width="100%" />
+<p class="caption">(\#fig:elon-musk-impacto)$Tweets$ $vs.$ $retweets$ de Elon Musk.</p>
 </div>
 
 
-<img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;" />

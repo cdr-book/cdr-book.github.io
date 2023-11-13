@@ -11,12 +11,12 @@
 *Ángela Celis*$^{a}$ y 
 *María Lozano Zahonero*$^{b}$
 
-$^{a}$Universidad de Castilla-La Mancha  
+$^{a}$Universidad de Castilla--La Mancha  
 $^{b}$Università degli Studi di Roma Tor Vergata
 
 ## Introducción 
 
-En la actualidad, entre el 80 % y el 90 % de los datos que se generan diariamente son datos no estructurados (véase Cap. \ref{datos-no-sql}). Un ejemplo típico de datos no estructurados son los textos, desde los comentarios o mensajes de las redes sociales, reseñas, blogs y microblogs, chats o whatsapp hasta las noticias periodísticas, los discursos políticos o las obras literarias. En consecuencia, aprender a procesar y analizar datos exige aprender a procesar y analizar textos.
+En la actualidad, entre el 80 % y el 90 % de los datos que se generan diariamente son datos no estructurados (véase Cap. \ref{datos-no-sql}). Un ejemplo típico de datos no estructurados son los textos, desde los comentarios o mensajes de las redes sociales, reseñas, blogs y microblogs, chats o WhatsApp hasta las noticias periodísticas, los discursos políticos o las obras literarias. En consecuencia, aprender a procesar y analizar datos exige aprender a procesar y analizar textos.
 
 Los textos precisan, sin embargo, un tratamiento especial. A diferencia de la mayoría de los datos que se tratan en este libro, que son datos estructurados, los datos textuales requieren que se les otorgue un orden y estructura para su manejo y análisis con el software **R**. Además, al utilizar un lenguaje natural --es decir, un idioma como, por ejemplo, el español, el chino o el inglés--, los textos no pueden ser procesados directamente por un ordenador. Es preciso "traducirlos" antes a un lenguaje formal que los ordenadores puedan entender. 
 
@@ -27,21 +27,26 @@ Cierra el capítulo un ejemplo (Sec. \@ref(secEJEMPLO)), en el que se aplica y s
 
 ## Conceptos y tareas fundamentales{#secCONCEPTOS}
 
-Lo primero que se necesita para hacer un análisis de textos son los textos. Esta afirmación podría parecer banal, pero no lo es. El volumen de textos en circulación es ingente, pero, en la mayor parte de los casos, es necesario realizar una serie de operaciones complejas para poder extraer y recopilar los datos textuales que se quiere analizar. En muchas ocasiones también es difícil acceder después a estos datos, ya que los textos pueden presentar formatos muy heterogéneos, no siempre interpretables o fáciles de convertir en un formato interpretable. Baste pensar, por ejemplo, en una nota escrita a mano. Dado que este capítulo es una primera aproximación a la minería de textos, se parte del supuesto de que el texto o los textos están disponibles ya en un fichero, denominado **corpus**\index{corpus}, legible por **R**. En este contexto, *corpus* es la colección de textos con el mismo origen: por ejemplo, el *corpus* de las obras de un autor, que para poder manejarse requiere metadatos con detalles adicionales.
+Lo primero que se necesita para hacer un análisis de textos son los textos. Esta afirmación podría parecer banal, pero no lo es. El volumen de textos en circulación es ingente, pero, en la mayor parte de los casos, es necesario realizar una serie de operaciones complejas para poder extraer y recopilar los datos textuales que se quieren analizar. En muchas ocasiones también es difícil acceder después a estos datos, ya que los textos pueden presentar formatos muy heterogéneos, no siempre interpretables o fáciles de convertir en un formato interpretable. Baste pensar, por ejemplo, en una nota escrita a mano. Dado que este capítulo es una primera aproximación a la minería de textos, se parte del supuesto de que el texto o los textos están disponibles ya en un fichero, denominado **corpus**\index{corpus}, legible por **R**. En este contexto, corpus es la colección de textos con el mismo origen: por ejemplo, el corpus de las obras de un autor, que para poder manejarse requiere metadatos con detalles adicionales.
 
-### Preparación de los datos{#secPREPARA}
-Una vez constituido el *corpus*, la primera fase es la **preparación de los datos**. Los textos suelen contener un cierto grado de "suciedad", es decir, elementos que alteran o impiden el análisis. La validez de los resultados que se obtengan dependerá, en gran parte,  de una buena "limpieza" inicial. Entre las operaciones de "limpieza" generales figuran una serie de transformaciones cuya finalidad es evitar el recuento incorrecto de palabras, como el cambio de mayúsculas por minúsculas y la eliminación de los signos de puntuación, los números y los espacios en blanco en exceso.
 
-La siguiente operación de preparación, que tiene un importante peso en el análisis, es la eliminación de las **palabras vacías**\index{palabras vacías} (en inglés, *stopwords*.\index{stopwords}) En la lengua no todas las palabras tienen el mismo tipo de significado. Las palabras con significado léxico, como *mesa* o *corpus*, son palabras a las que corresponde un concepto que se puede definir o explicar. Otras palabras, sin embargo, son palabras funcionales, cuyo contenido es puramente gramatical. Son palabras como el artículo *el*, la preposición *de* o la conjunción *o*: se puede explicar cómo se usan, pero no definirlas asociándolas a un concepto porque carecen de contenido léxico-semántico. 
 
-Las palabras vacías son, con gran diferencia respecto de las palabras léxicas, las más frecuentes de la lengua, pero, dado su escaso o nulo significado léxico, en los análisis de tipo semántico, como el análisis de sentimientos o el modelado de temas, carecen de valor informativo, por lo que es conveniente eliminarlas. No es aconsejable eliminarlas, sin embargo, en otros tipos de análisis, como los análisis estilométricos, donde tienen un importante valor informativo como se verá en la Sec.  \@ref(secESTILOM). Las palabras vacías pertenecen a clases cerradas, es decir, a clases de palabras con un número de elementos limitado, finito. Es posible confeccionar, por tanto, listas de palabras vacías para facilitar su eliminación. En el ejemplo de aplicación que se verá en la Sec. \@ref(secEJEMPLO), se aprenderá a usar estas listas y se podrá apreciar con detalle la diferente información que proporciona una tabla de frecuencias con y sin palabras vacías.
+### Preparación de los datos {#secPREPARA}
+
+Una vez constituido el corpus, la primera fase es la **preparación de los datos**. Los textos suelen contener un cierto grado de "suciedad", es decir, elementos que alteran o impiden el análisis. La validez de los resultados que se obtengan dependerá, en gran parte,  de una buena "limpieza" inicial. Entre las operaciones de "limpieza" generales figuran una serie de transformaciones cuya finalidad es evitar el recuento incorrecto de palabras, como el cambio de mayúsculas por minúsculas y la eliminación de los signos de puntuación, los números y los espacios en blanco en exceso.
+
+La siguiente operación de preparación, que tiene un importante peso en el análisis, es la eliminación de las **palabras vacías**\index{palabras vacías} (en inglés, *stopwords*\index{stopwords@\textit{stopwords}}). En la lengua no todas las palabras tienen el mismo tipo de significado. Las palabras con significado léxico, como *mesa* o corpus, son palabras a las que corresponde un concepto que se puede definir o explicar. Otras palabras, sin embargo, son palabras funcionales, cuyo contenido es puramente gramatical. Son palabras como el artículo *el*, la preposición *de* o la conjunción *o*: se puede explicar cómo se usan, pero no definirlas asociándolas a un concepto porque carecen de contenido léxico-semántico. 
+
+Las palabras vacías son, con gran diferencia respecto de las palabras léxicas, las más frecuentes de la lengua, pero, dado su escaso o nulo significado léxico, carecen de valor informativo en los análisis de tipo semántico, como el análisis de sentimientos o el modelado de temas, por lo que es conveniente eliminarlas. No es aconsejable eliminarlas, sin embargo, en otros tipos de análisis, como los análisis estilométricos, donde tienen un importante valor informativo como se verá en la Sec.  \@ref(secESTILOM). Las palabras vacías pertenecen a clases cerradas, es decir, a clases de palabras con un número de elementos limitado, finito. Es posible confeccionar, por tanto, listas de palabras vacías para facilitar su eliminación. En el ejemplo de aplicación que se verá en la Sec. \@ref(secEJEMPLO), se aprenderá a usar estas listas y se podrá apreciar con detalle la diferente información que proporciona una tabla de frecuencias con y sin palabras vacías.
 
 ### Segmentación del texto: tokenización {#secTOKEN}
-La segunda fase de la minería de textos consiste en la **segmentación del texto**, denominada también **tokenización**\index{tokenización}. El texto se divide en *tokens*\index{token}, secuencias de texto con valor informativo. De esta manera, se pasa del lenguaje natural a un lenguaje formal comprensible por el software, dándole formato de vector o tabla. Así se pueden aplicar algunas de las herramientas que se utilizan con datos numéricos para manejar el texto y obtener resúmenes y visualizaciones que muestren la información no explícita contenida en él en forma de patrones recurrentes.
 
-Generalmente, los *tokens* son **palabras**, es decir, secuencias de caracteres entre dos espacios en blanco y/o signos de puntuación, pero pueden ser también **oraciones**, **líneas**, **párrafos** o **${\bf n}$-gramas**. Como se verá en el ejemplo de aplicación, un primer análisis del significado consiste en eliminar las palabras vacías y obtener las frecuencias[^Note-mintext-1] de las palabras con valor informativo para responder a la pregunta "¿Qué se dice?" [@silge2017].
 
-[^Note-mintext-1]: Frecuencias relativas si se comparan distintos textos.
+La segunda fase de la minería de textos consiste en la **segmentación del texto**, denominada también **tokenización**\index{tokenización}. El texto se divide en *tokens*\index{token@\textit{token}}, secuencias de texto con valor informativo. De esta manera, se pasa del lenguaje natural a un lenguaje formal comprensible por el software, dándole formato de vector o tabla. Así se pueden aplicar algunas de las herramientas que se utilizan con datos numéricos para manejar el texto y obtener resúmenes y visualizaciones que muestren la información no explícita contenida en él en forma de patrones recurrentes.
+
+Generalmente, los *tokens* son **palabras**, es decir, secuencias de caracteres entre dos espacios en blanco y/o signos de puntuación, pero pueden ser también **oraciones**, **líneas**, **párrafos** o ***n*****-gramas**. Como se verá en el ejemplo de aplicación, un primer análisis del significado consiste en eliminar las palabras vacías y obtener las frecuencias[^Mintext1] de las palabras con valor informativo para responder a la pregunta "¿Qué se dice?" [@silge2017].
+
+[^Mintext1]: Frecuencias relativas si se comparan distintos textos.
 
 ::: {.infobox data-latex=""}
 **Nota** 
@@ -52,13 +57,17 @@ $$TTR=\dfrac{{Types}}{Tokens}$$
 
 
 #### $N$-gramas  
-El análisis puede proseguir estudiando la frecuencia de los *$n$-gramas*,\index{n-gramas} secuencias de *n* palabras consecutivas en el mismo orden. Se tienen así bigramas o 2-gramas (secuencias de dos palabras), trigramas o 3-gramas (secuencias de tres palabras), etc. El estudio de los *$n$-gramas* responde al principio de Firth: *"You shall know a word by the company it keeps"* [@firth, 11]. Este principio es el fundamento del llamado **análisis de colocaciones**\index{análisis!de colocaciones}: para conocer el significado de una palabra es preciso conocer las palabras con las que aparece, el contexto relevante. En un sentido amplio, el análisis de colocaciones consiste en examinar los contextos izquierdo y/o derecho de una palabra. La segmentación en *$n$-gramas* permite tener en cuenta este contexto relevante que indicará, por ejemplo, que *banco* es, con toda probabilidad, un asiento en las secuencias *banco de madera* o *banco en la terraza*, pero no lo es en secuencias como *banco de peces*, *banco de arena*, *banco de inversiones*, *banco de datos* o *banco de pruebas*. La división en *$n$-gramas* permitirá también considerar en el análisis, al menos hasta cierto punto, el peso de la ambigüedad, la negación o el distinto significado que pueden tener las palabras según el ámbito temático. Por ejemplo, la forma *larga* no tiene el mismo significado en los bigramas *falda larga*, *mano larga* y *cara larga*, ni tiene tampoco el mismo valor informativo en *es larga* / *no es larga* o en *de larga experiencia* (valor positivo) y en *se me hizo larga* (valor negativo). En el ejemplo de aplicación (Sec. \@ref(secEJEMPLO)), se verá la segmentación en *$n$-gramas* en la práctica, y cómo la visualización de redes contribuye a complementar el análisis.
+
+\index{n-gramas@\textit{n}-gramas}
+El análisis puede proseguir estudiando la frecuencia de los *n*-gramas, secuencias de *n* palabras consecutivas en el mismo orden. Se tienen así bigramas o 2-gramas (secuencias de dos palabras), trigramas o 3-gramas (secuencias de tres palabras), etc. El estudio de los *n*-gramas responde al principio de Firth: "You shall know a word by the company it keeps" [@firth, 11]. Este principio es el fundamento del llamado **análisis de colocaciones**\index{análisis!de colocaciones}: para conocer el significado de una palabra es preciso conocer las palabras con las que aparece, el contexto relevante. En un sentido amplio, el análisis de colocaciones consiste en examinar los contextos izquierdo y/o derecho de una palabra. La segmentación en *n*-gramas permite tener en cuenta este contexto relevante que indicará, por ejemplo, que *banco* es, con toda probabilidad, un asiento en las secuencias *banco de madera* o *banco en la terraza*, pero no lo es en secuencias como *banco de peces*, *banco de arena*, *banco de inversiones*, *banco de datos* o *banco de pruebas*. La división en *n*-gramas permitirá también considerar en el análisis, al menos hasta cierto punto, el peso de la ambigüedad, la negación o el distinto significado que pueden tener las palabras según el ámbito temático. Por ejemplo, la forma *larga* no tiene el mismo significado en los bigramas *falda larga*, *mano larga* y *cara larga*, ni tiene tampoco el mismo valor informativo en *es larga* / *no es larga* o en *de larga experiencia* (valor positivo) y en *se me hizo larga* (valor negativo). En el ejemplo de aplicación (Sec. \@ref(secEJEMPLO)), se verá la segmentación en *n*-gramas en la práctica, y cómo la visualización de redes contribuye a complementar el análisis.
 
 
 
 ### *Stemming* y lematización  
 
-La tokenización se puede refinar mediante el ***stemming***\index{stemming}, o reducción de las palabras "flexionadas" a su raíz, y la **lematización**\index{lematización}, o extracción del lema de cada palabra. Un ejemplo de *stemming* sería reducir las palabras *texto*, *textos*, *textual* y *textuales*, que **R** cuenta como cuatro palabras diferentes, a la raíz "text". El *stemming* puede proporcionar un recuento más preciso en algunos casos, pero en otros, al eliminar los sufijos de las palabras, puede crear confusión. Además, como en el ejemplo anterior, las raíces pueden no coincidir con palabras existentes, lo que hace que sean difíciles de interpretar y resulten extrañas si se visualizan en nubes de palabras. Con la lematización se reducen las formas flexionadas de una misma palabra al lema, que es la forma que encabeza la entrada de la palabra en el diccionario. Por ejemplo, si se quiere buscar el significado de la palabra *niñas* no se encontrará como tal sino bajo el lema *niño* y si se quiere buscar *iremos* se tendrá que buscar el lema *ir*. En el caso anterior, la lematización reduciría las formas *texto*, *textos*, *textual* y *textuales* a dos lemas: *texto* y *textual*. La lematización evita la dispersión de significado en varias formas, pero a veces es compleja y puede conducir a la pérdida de información pertinente.
+\index{stemming@\textit{stemming}}
+
+La tokenización se puede refinar mediante el ***stemming***, o reducción de las palabras flexionadas a su raíz, y la **lematización**\index{lematización}, o extracción del lema de cada palabra. Un ejemplo de *stemming* sería reducir las palabras *texto*, *textos*, *textual* y *textuales*, que **R** cuenta como cuatro palabras diferentes, a la raíz "text". El *stemming* puede proporcionar un recuento más preciso en algunos casos, pero en otros, al eliminar los sufijos de las palabras, puede crear confusión. Además, como en el ejemplo anterior, las raíces pueden no coincidir con palabras existentes, lo que hace que sean difíciles de interpretar y resulten extrañas si se visualizan en nubes de palabras. Con la lematización se reducen las formas flexionadas de una misma palabra al lema, que es la forma que encabeza la entrada de la palabra en el diccionario. Por ejemplo, si se quiere buscar el significado de la palabra *niñas* no se encontrará como tal sino bajo el lema *niño* y si se quiere buscar *iremos* se tendrá que buscar el lema *ir*. En el caso anterior, la lematización reduciría las formas *texto*, *textos*, *textual* y *textuales* a dos lemas: *texto* y *textual*. La lematización evita la dispersión de significado en varias formas, pero a veces es compleja y puede conducir a la pérdida de información pertinente.
 
 
 ### Campos de aplicación de la minería de textos{#secESTILOM}
@@ -67,16 +76,16 @@ La minería de textos tiene varios campos de aplicación. Entre ellos destacan t
 
 1. El **análisis de sentimientos**,\index{análisis!de sentimientos} que se tratará con detalle en la Sec. \@ref(secSENTIM) y en el ejemplo de aplicación (Sec. \@ref(secSENTYEMO)).
 
-2. El **modelado de temas**\index{modelado de temas} o **tópicos** (en inglés, *topic modelling*), que, como su propio nombre indica, tiene por objeto identificar los temas principales sobre los que versa el texto haciendo uso de técnicas de clasificación no supervisada del campo del aprendizaje automático, como por ejemplo LDA (*latent Dirichlet allocation*). Se ilustrará en el Cap. \ref{nlp-textil}.
+2. El **modelado de temas**\index{modelado de temas} o **tópicos** (en inglés, *topic modelling*), que, como su propio nombre indica, tiene por objeto identificar los temas principales sobre los que versa el texto haciendo uso de técnicas de clasificación no supervisada del campo del aprendizaje automático, como por ejemplo LDA (*Latent Dirichlet Allocation*). Se ilustrará en el Cap. \ref{nlp-textil}.
 
-3. La **estilometría**\index{estilometría} o **análisis estilométrico**, que es una aplicación de la minería de textos cuya finalidad consiste en determinar las relaciones existentes entre el estilo de los textos y los metadatos incluidos en ellos. Se utiliza principalmente en la atribución de autoría. El concepto base es el de **huella lingüística**\index{huella lingüistica}, constituida por el conjunto de rasgos lingüísticos que caracterizan el estilo de un autor como un estilo individual y único y permiten identificarlo. Un punto clave es que, contrariamente a lo que podría pensarse, los rasgos que conforman en mayor medida la huella lingüística son los que tienen un mayor índice de frecuencia. La mayor parte de los enfoques utilizan el vector de las "palabras más frecuentes" (MFW, por sus siglas en inglés), que son, como se ha visto antes, las palabras vacías y no las palabras con significado léxico, para determinar el estilo de un autor. Esto es debido fundamentalmente a que las palabras vacías se usan de manera involuntaria e inconsciente, configurando de esta manera, sin ningún tipo de filtros racionales, una clave estilística idiosincrásica [@zahonero2020]. De lo anterior se deduce fácilmente que en este tipo de análisis no deben eliminarse las palabras vacías. 
+3. La **estilometría**\index{estilometría} o **análisis estilométrico**, que es una aplicación de la minería de textos cuya finalidad consiste en determinar las relaciones existentes entre el estilo de los textos y los metadatos incluidos en ellos. Se utiliza principalmente en la atribución de autoría. El concepto base es el de **huella lingüística**\index{huella lingüística}, constituida por el conjunto de rasgos lingüísticos que caracterizan el estilo de un autor como un estilo individual y único y permiten identificarlo. Un punto clave es que, contrariamente a lo que podría pensarse, los rasgos que conforman en mayor medida la huella lingüística son los que tienen un mayor índice de frecuencia. La mayor parte de los enfoques utilizan el vector de las "palabras más frecuentes" (MFW, por sus siglas en inglés), que son, como se ha visto antes, las palabras vacías y no las palabras con significado léxico, para determinar el estilo de un autor. Esto es debido fundamentalmente a que las palabras vacías se usan de manera involuntaria e inconsciente, configurando de esta manera, sin ningún tipo de filtros racionales, una clave estilística idiosincrásica [@zahonero2020]. De lo anterior se deduce fácilmente que en este tipo de análisis no deben eliminarse las palabras vacías. 
 
 En la actualidad, el análisis estilométrico se usa en ámbitos muy dispares: desde la criminología o los servicios de inteligencia para identificar a los autores de mensajes o notas en casos de asesinatos, terrorismo, secuestro o acoso, por ejemplo, hasta el derecho civil o la literatura en cuestiones de derechos de autor o detección de plagio, entre muchas otras cuestiones.
 
 
 ## Análisis de sentimientos {#secSENTIM}
 
-El **análisis de sentimientos**\index{análisis!de sentimientos} (en inglés, *sentiment analysis*) es una aplicación de la minería de textos que tiene como finalidad la detección, extracción, clasificación, análisis y visualización de la dimensión subjetiva asociada a los temas o tópicos presentes en los textos. La dimensión subjetiva comprende no sólo los sentimientos, sino también las **emociones**\index{emociones}, sensaciones y estados afectivos y anímicos, así como las opiniones, creencias, percepciones, puntos de vista, actitudes, juicios y valoraciones. De ahí que reciba también el nombre de **minería de opinión**\index{minería!de opinión} (en inglés, *opinion mining*) [@zahonero2020].
+El **análisis de sentimientos**\index{análisis!de sentimientos} (en inglés, *sentiment analysis*) es una aplicación de la minería de textos que tiene como finalidad la detección, extracción, clasificación, análisis y visualización de la dimensión subjetiva asociada a los temas o tópicos presentes en los textos. La dimensión subjetiva comprende no solo los sentimientos, sino también las **emociones**\index{emociones}, sensaciones y estados afectivos y anímicos, así como las opiniones, creencias, percepciones, puntos de vista, actitudes, juicios y valoraciones. De ahí que reciba también el nombre de **minería de opinión**\index{minería!de opinión} (en inglés, *opinion mining*) [@zahonero2020].
 
 El análisis de sentimientos asigna a esta dimensión subjetiva una polaridad, que puede ser positiva o negativa [@pang2008opinion]. Algunas técnicas añaden además una polaridad neutra. En algunos casos, el análisis de sentimientos se refina hasta llegar a las emociones básicas: este subcampo del análisis de sentimientos se conoce como **detección de emociones**\index{detección de emociones}.
 
@@ -104,7 +113,7 @@ En **R** existen diversos paquetes y funciones que facilitan la minería de text
 
 * `gutenbergr`: almacena las obras del proyecto Gutenberg[^Note-mintext-2]; muy útil si se quieren analizar textos literarios.
 
-[^Note-mintext-2]: Proyecto desarrollado por Michael Hart en 1971 para crear una biblioteca de libros electrónicos gratuitos, y accesibles en Internet, a partir de libros en soporte físico, generalmente de dominio público. Cuenta con más de 50.000 libros.
+[^Note-mintext-2]: Proyecto desarrollado por Michael Hart en 1971 para crear una biblioteca de libros electrónicos gratuitos y accesibles en Internet, a partir de libros en soporte físico, generalmente de dominio público. Cuenta con más de 50.000 libros.
 
 ## Ejemplo de aplicación {#secEJEMPLO}
 
@@ -121,7 +130,7 @@ data("declaracion")
 
 ### Segmentación en palabras y oraciones
 
-Las primeras tareas del análisis son la preparación, limpieza y segmentación o tokenización de los textos, como se vió en las Sec. \@ref(secPREPARA) y \@ref(secTOKEN). A continuación, se verá una segmentación en palabras individuales. La función `tokenize_words()` del paquete `tokenizers` prepara el texto convirtiéndolo a minúsculas, elimina todos los signos de puntuación y finalmente segmenta el texto en palabras. 
+Las primeras tareas del análisis son la preparación, limpieza y segmentación o tokenización de los textos, como se vio en las Sec. \@ref(secPREPARA) y \@ref(secTOKEN). A continuación, se verá una segmentación en palabras individuales. La función `tokenize_words()` del paquete `tokenizers` prepara el texto convirtiéndolo a minúsculas, elimina todos los signos de puntuación y finalmente segmenta el texto en palabras. 
 
 
 ```r
@@ -141,9 +150,11 @@ y ordena la tabla de forma descendente, de mayor a menor frecuencia.
 ```r
 library("tidyverse")
 tabla <- table(palabras[[1]])
-( tabla <- tibble(palabra = names(tabla), 
-                  recuento = as.numeric(tabla)) |>
-    arrange(desc(recuento)) ) 
+(tabla <- tibble(
+  palabra = names(tabla),
+  recuento = as.numeric(tabla)
+) |>
+  arrange(desc(recuento)))
 #> # A tibble: 390 × 2
 #>    palabra recuento
 #>    <chr>      <dbl>
@@ -162,7 +173,7 @@ tabla <- table(palabras[[1]])
 En la primera fila de la salida se indican las dimensiones de la `tibble`, por lo que se puede ver que en la Declaración hay 390 "palabras" distintas (los números se consideran como palabras).
 
 
-El resultado son las palabras más utilizadas en el texto, que, como puede apreciarse, son palabras vacías. Esto no debería sorprender porque, como ya se ha visto, estas palabras son las más frecuentes. En la siguiente Sección se verá cómo eliminarlas para obtener datos con valor informativo.
+El resultado son las palabras más utilizadas en el texto, que, como puede apreciarse, son palabras vacías. Esto no debería sorprender porque, como ya se ha visto, estas palabras son las más frecuentes. En la siguiente sección se verá cómo eliminarlas para obtener datos con valor informativo.
 
 Para otras formas de segmentar el texto (oraciones, párrafos, *tweets*, etc.) véase `?tokenize_words.` Por ejemplo, para segmentar en oraciones: 
 
@@ -184,7 +195,7 @@ oraciones[[1]][count_sentences(declaracion)] # última oración
 #> [1] "Buenas tardes."
 ```
 
-También podría medirse la longitud de cada oración, en número de palabras, normalmente para comparaciones con otros textos. Para ello hay que separar cada oración en palabras y obtener la longitud de cada oración, con la función `sapply()`, que puede verse en la Fig. \@ref(fig:mintex-graf-long-o).
+También podría medirse la longitud de cada oración, en número de palabras, normalmente para hacer comparaciones con otros textos. Para ello hay que separar cada oración en palabras y obtener la longitud de cada oración, con la función `sapply()`, que puede verse en la Fig. \@ref(fig:mintex-graf-long-o).
 
 
 ```r
@@ -204,22 +215,24 @@ head(longitud_o)
 
 #### Eliminación de palabras vacías 
 
-Se lleva a cabo con el paquete `stopwords`, que contiene listas de *palabras vacías*\index{palabras vacías}\index{stopwords} en diferentes idiomas.
+Se lleva a cabo con el paquete `stopwords`, que contiene listas de *palabras vacías*\index{palabras vacías}\index{stopwords@\textit{stopwords}} en diferentes idiomas.
 Para el ejemplo, se define una tabla con la misma estructura que la tabla de la Declaración con las 308 palabras vacías españolas que tiene el paquete:
 
 
 ```r
 library("stopwords")
-tabla_stopwords <- tibble(palabra = stopwords("es")) 
+tabla_stopwords <- tibble(palabra = stopwords("es"))
 ```
 
 La siguiente sentencia "limpia" la tabla de la Declaración quitando las palabras vacías españolas. Además, se hace uso de la función `kable()` para una visualización más sofisticada de la tabla (con la longitud que se desee):
 
 
 ```r
-tabla <- tabla  |> anti_join(tabla_stopwords)
-knitr::kable(tabla[1:10,], 
-             caption = "Palabras más frecuentes (sin palabras vacías)")
+tabla <- tabla |>
+  anti_join(tabla_stopwords)
+knitr::kable(tabla[1:10, ],
+  caption = "Palabras más frecuentes (sin palabras vacías)"
+)
 ```
 
 
@@ -256,7 +269,7 @@ wordcloud(tabla$palabra, tabla$recuento, max.words = 50, colors = rainbow(3))
 ```
 
 <div class="figure" style="text-align: center">
-<img src="210045-mineria-textos_files/figure-html/mintex-nube-palabras-1.png" alt="Nube de palabras más frecuentes de la Declaración." width="60%" />
+<img src="210045-mineria-textos_files/figure-html/mintex-nube-palabras-1.png" alt="Nube de palabras más frecuentes de la Declaración." width="80%" />
 <p class="caption">(\#fig:mintex-nube-palabras)Nube de palabras más frecuentes de la Declaración.</p>
 </div>
 
@@ -268,8 +281,9 @@ El resultado se muestra en la Fig. \@ref(fig:mintex-nube-palabras). Como se pued
 
 
 #### Lexicón `bing`
-Como se ha visto en la Sec. \@ref(secSENTIM), el lexicón `bing`,  es uno de los repertorios léxicos  que se pueden encontrar en **R** para el análisis de sentimientos. \index{análisis!de sentimientos}. Es un diccionario de polaridad (positiva/negativa) cuyo idioma original es el inglés. Se puede obtener con la función `get_sentiments()` del paquete `tidytext`. Contiene 2005 palabras positivas y 4781 palabras negativas, por lo que tiene un marcado sesgo hacia la polaridad negativa.
+Como se ha visto en la Sec. \@ref(secSENTIM), el lexicón `bing`  es uno de los repertorios léxicos  que se pueden encontrar en **R** para el análisis de sentimientos.\index{análisis!de sentimientos} Es un diccionario de polaridad (positiva/negativa) cuyo idioma original es el inglés. Se puede obtener con la función `get_sentiments()` del paquete `tidytext`. Contiene 2.005 palabras positivas y 4.781 palabras negativas, por lo que tiene un marcado sesgo hacia la polaridad negativa.
 
+<!-- 4781 -->
 
 Para ilustrar el uso de `bing`, se ha traducido al inglés (automáticamente) la Declaración. A continuación se carga el texto y se genera el objeto `tabla`, replicando el procedimiento descrito anteriormente de preparación, limpieza, segmentación en palabras y eliminación de palabras vacías (obviamente, en idioma inglés). 
 
@@ -277,9 +291,12 @@ Para ilustrar el uso de `bing`, se ha traducido al inglés (automáticamente) la
 ```r
 data("EN_declaracion")
 tabla <- table(tokenize_words(EN_declaracion)[[1]])
-tabla <- tibble(word = names(tabla), 
-                recuento = as.numeric(tabla))
-tabla <- tabla |> anti_join(tibble(word=stopwords("en"))) |>
+tabla <- tibble(
+  word = names(tabla),
+  recuento = as.numeric(tabla)
+)
+tabla <- tabla |>
+  anti_join(tibble(word = stopwords("en"))) |>
   arrange(desc(recuento))
 ```
 
@@ -288,8 +305,8 @@ Los sentimientos positivos de la Declaración se obtienen con:
 
 ```r
 library("tidytext")
-pos <- get_sentiments("bing") |> 
-  dplyr::filter(sentiment=="positive")
+pos <- get_sentiments("bing") |>
+  filter(sentiment == "positive")
 pos_EN <- tabla |> semi_join(pos)
 knitr::kable(pos_EN)
 ```
@@ -324,18 +341,18 @@ Table: (\#tab:mintex-tablaBingNRC) Palabras más frecuentes de la Declaración u
 |adequate       |  1|unfortunately  |  2|good          |  2|combat        |  1|
 +===============+===+===============+===+==============+===+==============+===+
 
-Con el léxico `NRC` pueden detectarse emociones\index{detección de emociones}. La misma palabra puede tener asociada distintas emociones/sentimientos. En la Fig. \@ref(fig:mintex-barplot-NRC) se puede observar la dispar frecuencia de palabras de cada tipo:
+Con el léxico `NRC` pueden detectarse emociones\index{detección de emociones}. La misma palabra puede tener asociadas distintas emociones/sentimientos. En la Fig. \@ref(fig:mintex-barplot-NRC) se puede observar la dispar frecuencia de palabras de cada tipo:
 
 
 ```r
 emo <- get_sentiments("nrc")
 emo |> ggplot(aes(sentiment)) +
-  geom_bar(aes(fill=sentiment), show.legend = FALSE)
+  geom_bar(aes(fill = sentiment), show.legend = FALSE)
 ```
 
 
 <div class="figure" style="text-align: center">
-<img src="img/text-emo1.png" alt="Gráfico de barras con la frecuencia de las emociones del lexicón NRC." width="60%" />
+<img src="img/text-emo1.png" alt="Gráfico de barras con la frecuencia de las emociones del lexicón NRC." width="85%" />
 <p class="caption">(\#fig:mintex-barplot-NRC)Gráfico de barras con la frecuencia de las emociones del lexicón NRC.</p>
 </div>
 
@@ -345,7 +362,7 @@ El análisis de sentimientos y la detección de emociones de la Declaración med
 
 ```r
 emo_tab <- tabla |> inner_join(emo)
-head(emo_tab, n=7)
+head(emo_tab, n = 7)
 #> # A tibble: 7 x 3
 #> word recuento sentiment
 #> <chr> <dbl> <chr>
@@ -364,20 +381,20 @@ Como se ha mencionado anteriormente, algunas palabras tienen asociados distintos
 
 
 ```r
-emo_tab |> 
-  dplyr::count(sentiment) |> 
-  ggplot(aes(x=sentiment, y=n)) +
-  geom_bar(stat = "identity", aes(fill=sentiment), show.legend = FALSE) +
-  geom_text(aes(label = n), vjust=-0.25)
+emo_tab |>
+  count(sentiment) |>
+  ggplot(aes(x = sentiment, y = n)) +
+  geom_bar(stat = "identity", aes(fill = sentiment), show.legend = FALSE) +
+  geom_text(aes(label = n), vjust = -0.25)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/text-emo2.png" alt="Frecuencia de emociones de la Declaración utilizando NRC." width="60%" />
+<img src="img/text-emo2.png" alt="Frecuencia de emociones de la Declaración utilizando NRC." width="85%" />
 <p class="caption">(\#fig:mintex-emobarras)Frecuencia de emociones de la Declaración utilizando NRC.</p>
 </div>
 
 
-Entre las distintas opciones para dibujar nubes de palabras\index{nubes de palabras} para el análisis de sentimientos es interesante la que se obtiene con el paquete `syuzhet`, dado que permite visualizar las palabras agrupadas por emociones. Su obtención requiere distintos pasos en los que primero las palabras se agrupan por emoción y después se organizan en una **matriz de documentos**\index{matriz!de documentos} con la función `TermDocumentMatrix()` del paquete `tm`. Finalmente, la función `comparison.cloud()` permite visualizar el gráfico (tiene distintos argumentos opcionales que admiten distintas posibilidades). En el ejemplo que figura a continuación sólo se han escogido tres emociones:[^Note-mintex-3].
+Entre las distintas opciones para dibujar nubes de palabras\index{nubes de palabras} para el análisis de sentimientos es interesante la que se obtiene con el paquete `syuzhet`, dado que permite visualizar las palabras agrupadas por emociones. Su obtención requiere distintos pasos en los que primero las palabras se agrupan por emoción y después se organizan en una **matriz de documentos**\index{matriz!de documentos} con la función `TermDocumentMatrix()` del paquete `tm`. Finalmente, la función `comparison.cloud()` permite visualizar el gráfico (tiene distintos argumentos opcionales que admiten distintas posibilidades). En el ejemplo que figura a continuación solo se han escogido tres emociones.[^Note-mintex-3]
 
 [^Note-mintex-3]: Se deja al lector el análisis de la Declaración con más emociones, en castellano, etc.
 
@@ -385,51 +402,64 @@ Entre las distintas opciones para dibujar nubes de palabras\index{nubes de palab
 ```r
 library("syuzhet")
 palabras_EN2 <- get_tokens(EN_declaracion)
-emo_tab2 <- get_nrc_sentiment(palabras_EN2, lang = "english" )
+emo_tab2 <- get_nrc_sentiment(palabras_EN2, lang = "english")
 emo_vec <- c(
-  paste(palabras_EN2[emo_tab2$anger> 0], collapse = " "),
+  paste(palabras_EN2[emo_tab2$anger > 0], collapse = " "),
   paste(palabras_EN2[emo_tab2$anticipation > 0], collapse = " "),
-  paste(palabras_EN2[emo_tab2$disgust > 0], collapse = " "))
+  paste(palabras_EN2[emo_tab2$disgust > 0], collapse = " ")
+)
+
 library("tm")
 corpus <- Corpus(VectorSource(emo_vec))
 TDM <- as.matrix(TermDocumentMatrix(corpus))
-colnames(TDM) <- c('anger', 'anticipation', 'disgust')
+colnames(TDM) <- c("anger", "anticipation", "disgust")
+
 set.seed(1)
-comparison.cloud(TDM, random.order = FALSE,
-                 colors = c("firebrick", "forestgreen", "orange3"),
-                 title.size = 1.5, scale = c(3.5, 1), rot.per = 0)
+comparison.cloud(TDM,
+  random.order = FALSE,
+  colors = c("firebrick", "forestgreen", "orange3"),
+  title.size = 1.5, scale = c(3.5, 1), rot.per = 0
+)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/text-emo3.png" alt="Nube de palabras de la Declaración de tres emociones NRC seleccionadas." width="80%" />
+<img src="img/text-emo3.png" alt="Nube de palabras de la Declaración de tres emociones NRC seleccionadas." width="88%" />
 <p class="caption">(\#fig:mintex-emonube)Nube de palabras de la Declaración de tres emociones NRC seleccionadas.</p>
 </div>
 
-### *$N$-gramas*
+### *N*-gramas
+\index{n-gramas@\textit{n}-gramas}
 
-El siguiente código muestra la obtención de *$n$-gramas*\index{n-gramas} con `tokenizers`: 
+El siguiente código muestra la obtención de *n*-gramas con `tokenizers`: 
 
 ```r
-bigramas <- tokenize_ngrams(declaracion, n = 2, 
-                            stopwords = tabla_stopwords$palabra)
+bigramas <- tokenize_ngrams(declaracion,
+  n = 2,
+  stopwords = tabla_stopwords$palabra
+)
 head(bigramas[[1]], n = 3)
 #> [1] "buenas tardes"          "tardes estimados"       "estimados compatriotas"
-trigramas <- tokenize_ngrams(declaracion, n = 3, 
-                             stopwords = tabla_stopwords$palabra)
+
+trigramas <- tokenize_ngrams(declaracion,
+  n = 3,
+  stopwords = tabla_stopwords$palabra
+)
 head(trigramas[[1]], n = 3)
 #> [1] "buenas tardes estimados"       "tardes estimados compatriotas"
 #> [3] "estimados compatriotas día"
 ```
-Se han eliminado de los bigramas y trigramas aquellas combinaciones con al menos una palabra vacía\index{palabras vacías} (*stopword*)\index{stopwords}.
+Se han eliminado de los bigramas y trigramas aquellas combinaciones con al menos una palabra vacía\index{palabras vacías} (*stopword*).
+\index{stopwords@\textit{stopwords}}
 
-Se procede ahora a obtener los bigramas con `tidytext`. Para el resto de *$n$-gramas* el procedimiento es análogo, haciendo las modificaciones oportunas. 
+Se procede ahora a obtener los bigramas con `tidytext`. Para el resto de *n*-gramas el procedimiento es análogo, haciendo las modificaciones oportunas. 
 En el último paso se ordenan por frecuencia (de mayor a menor):
 
 ```r
 declara2 <- tibble(texto = declaracion)
 bigramas <- declara2 |>
-  unnest_tokens(bigram, texto, token = "ngrams", n = 2) |> 
-  dplyr::count(bigram, sort = TRUE)
+  unnest_tokens(bigram, texto, token = "ngrams", n = 2) |>
+  count(bigram, sort = TRUE)
+
 bigramas[1:5, ]
 #> # A tibble: 5 × 2
 #>   bigram         n
@@ -445,10 +475,11 @@ Una forma de eliminar las palabras vacías es:
 
 ```r
 bigramas_limpios <- bigramas |>
-  tidyr::separate(bigram, c("word1", "word2"), sep = " ") |> 
-  dplyr::filter(!word1 %in% tabla_stopwords$palabra) |> 
-  dplyr::filter(!word2 %in% tabla_stopwords$palabra) |> 
-  tidyr::unite(bigram, word1, word2, sep = " ")
+  separate(bigram, c("word1", "word2"), sep = " ") |>
+  filter(!word1 %in% tabla_stopwords$palabra) |>
+  filter(!word2 %in% tabla_stopwords$palabra) |>
+  unite(bigram, word1, word2, sep = " ")
+
 bigramas_limpios[1:5, ]
 #> # A tibble: 5 × 2
 #>   bigram                       n
@@ -461,14 +492,15 @@ bigramas_limpios[1:5, ]
 ```
 
 #### Significado y contexto
-Como se ha visto en la Sec. \@ref(secTOKEN), con los *$n$-gramas* se puede hacer un análisis de colocaciones para extraer los distintos significados y valores informativos a partir del contexto. En este caso, se puede ver cómo la palabra *atender* cambia de sentido cuando va precedida de *no* o *sin*. A continuación, se filtran los bigramas cuya primera palabra es *no*:
+Como se ha visto en la Sec. \@ref(secTOKEN), con los *n*-gramas se puede hacer un análisis de colocaciones para extraer los distintos significados y valores informativos a partir del contexto. En este caso, se puede ver cómo la palabra *atender* cambia de sentido cuando va precedida de *no* o *sin*. A continuación, se filtran los bigramas cuya primera palabra es *no*:
 
 
 ```r
 bigramas_no <- bigramas |>
-  tidyr::separate(bigram, c("word1", "word2"), sep = " ") |> 
-  dplyr::filter(word1 == "no") |> 
-  dplyr::count(word1, word2, sort = TRUE)
+  separate(bigram, c("word1", "word2"), sep = " ") |>
+  filter(word1 == "no") |>
+  count(word1, word2, sort = TRUE)
+
 bigramas_no
 #> # A tibble: 3 × 3
 #>   word1 word2       n
@@ -482,7 +514,7 @@ Estos resultados se pueden utilizar para el análisis de sentimientos y la detec
 
 ### Análisis de redes
 
-En esta Sección se proporcionan las instrucciones necesarias para realizar un **análisis** básico **de redes**\index{análisis!de redes} (véase Cap. \@ref(grafos)) utilizando los paquetes `igraph` y `ggraph`. Dada la corta extensión de la Declaración no es posible obtener conclusiones.
+En esta sección se proporcionan las instrucciones necesarias para realizar un **análisis** básico **de redes**\index{análisis!de redes} (véase Cap. \@ref(grafos)) utilizando los paquetes `igraph` y `ggraph`. Dada la corta extensión de la Declaración no es posible obtener conclusiones.
 En la Fig. \@ref(fig:mintex-figredes) se pueden ver los gráficos de redes de bigramas, tanto sin palabras vacías como con ellas. 
 
 
@@ -490,28 +522,32 @@ En la Fig. \@ref(fig:mintex-figredes) se pueden ver los gráficos de redes de bi
 library("igraph")
 library("ggraph")
 set.seed(1)
-graf_bigramas_l <- bigramas_limpios |>  
-  tidyr::separate(bigram, c("first", "second"), sep = " ") |> 
-  dplyr::filter(n > 1) |>
+graf_bigramas_l <- bigramas_limpios |>
+  separate(bigram, c("first", "second"), sep = " ") |>
+  filter(n > 1) |>
   graph_from_data_frame()
+
 g1 <- ggraph(graf_bigramas_l, layout = "fr") +
-  geom_edge_link(arrow = arrow(length = unit(4, 'mm'))) +
-  geom_node_point(size=0) +
-  geom_node_text(aes(label = name)) 
-graf_bigramas <- bigramas |>  
-  tidyr::separate(bigram, c("first", "second"), sep = " ") |> 
+  geom_edge_link(arrow = arrow(length = unit(4, "mm"))) +
+  geom_node_point(size = 0) +
+  geom_node_text(aes(label = name))
+
+graf_bigramas <- bigramas |>
+  tidyr::separate(bigram, c("first", "second"), sep = " ") |>
   dplyr::filter(n > 2) |>
   graph_from_data_frame()
-g2 <- ggraph(graf_bigramas, layout = 'fr') +
+
+g2 <- ggraph(graf_bigramas, layout = "fr") +
   geom_edge_link0() +
-  geom_node_point(size=0) +
-  geom_node_label(aes(label = name)) 
+  geom_node_point(size = 0) +
+  geom_node_label(aes(label = name))
+
 library("patchwork")
-g1+g2
+g1 + g2
 ```
 
 <div class="figure" style="text-align: center">
-<img src="210045-mineria-textos_files/figure-html/mintex-figredes-1.png" alt="Redes de bigramas de la Declaración sin palabras vacías y con ellas." width="60%" />
+<img src="210045-mineria-textos_files/figure-html/mintex-figredes-1.png" alt="Redes de bigramas de la Declaración sin palabras vacías y con ellas." width="85%" />
 <p class="caption">(\#fig:mintex-figredes)Redes de bigramas de la Declaración sin palabras vacías y con ellas.</p>
 </div>
 

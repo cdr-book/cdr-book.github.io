@@ -10,13 +10,13 @@ OKUANT
 ## ¿Qué es Git y GitHub?
 
 
-Git \index{git} es un sistema de control de versiones distribuido, diseñado para
+Git \index{Git} es un sistema de control de versiones distribuido, diseñado para
 registrar y rastrear los cambios realizados en un archivo o conjunto de
 archivos a lo largo del tiempo [@chacon2014pro]. Al utilizar Git, se pueden ver y
 restaurar versiones anteriores de un archivo, así como fusionar cambios
 realizados por diferentes personas en una única versión actualizada.
 
-Por otro lado, GitHub \index{github} es una plataforma de alojamiento de código *online*
+Por otro lado, GitHub \index{GitHub} es una plataforma de alojamiento de código online
 que utiliza Git como sistema de control de versiones subyacentes. Esta
 plataforma permite a los desarrolladores compartir y colaborar en
 proyectos de software, alojando el código fuente en la nube [@astigarraga2022]. Además de
@@ -59,14 +59,14 @@ Git y GitHub son herramientas para el desarrollo de software moderno que tienen 
     (CI/CD), que automatizan y agilizan el proceso de desarrollo de
     software.
 
-3.  **Fomenta la transparencia y la comunidad.** GitHub es una plataforma de alojamiento de código que facilita la colaboración y el versionado de código. Aunque gran parte del código alojado en GitHub es de acceso público debido a su modelo de código abierto, no todos los proyectos son accesibles para el público en general; algunos pueden ser privados y sólo estar disponibles para ciertos usuarios o equipos, proporcionando así la flexibilidad de mantener tanto la transparencia del código abierto como la privacidad del código interno dentro de una organización. Además, GitHub cuenta con una vasta comunidad de desarrolladores que pueden ofrecer apoyo y retroalimentación a otros miembros de la comunidad.
+3.  **Fomenta la transparencia y la comunidad.** GitHub es una plataforma de alojamiento de código que facilita la colaboración y el versionado de código. Aunque gran parte del código alojado en GitHub es de acceso público debido a su modelo de código abierto, no todos los proyectos son accesibles para el público en general; algunos pueden ser privados y solo estar disponibles para ciertos usuarios o equipos, proporcionando así la flexibilidad de mantener tanto la transparencia del código abierto como la privacidad del código interno dentro de una organización. Además, GitHub cuenta con una vasta comunidad de desarrolladores que pueden ofrecer apoyo y retroalimentación a otros miembros de la comunidad.
     
 \index{código abierto}
 
 
 
 ## Instalación y/o actualización de **R** y RStudio {#sec-instala-git}
-\index{Rstudio}
+\index{RStudio}
 
 **R** es un lenguaje de programación utilizado en la estadística y la
 ciencia de datos para realizar análisis, modelado y visualización de
@@ -119,18 +119,18 @@ trabajar en proyectos de software colaborativos. Los pasos son:
 equipo. Git puede descargarse desde la página oficial de
 [Git](https://git-scm.com/downloads). Una vez descargado el
 archivo, se debe seguir las instrucciones del asistente de instalación. Además, en la página oficial se encuentra un manual completo
-sobre el uso de Git. \index{git!instalar}
+sobre el uso de Git. \index{Git!instalar}
 
 2. **Configurar Git.** Una vez instalado Git, se debe configurar
 el nombre de usuario y la dirección de correo electrónico para que los
 cambios que se realicen en los repositorios estén correctamente
 etiquetados. Para ello, se debe abrir la línea de comandos, Git
-Bash, o la terminal de RStudio y ejecutar los siguientes comandos:
-\index{git!configurar}
+Bash, o la terminal de RStudio (Fig. \@ref(fig:c310003002)) y ejecutar los siguientes comandos:
+\index{Git!configurar}
 
 <div class="figure" style="text-align: center">
-<img src="img/terminal.jpg" alt="Terminal de RStudio.m " width="60%" />
-<p class="caption">(\#fig:c310003002)Terminal de RStudio.m </p>
+<img src="img/terminal.jpg" alt="Terminal de RStudio. " width="60%" />
+<p class="caption">(\#fig:c310003002)Terminal de RStudio. </p>
 </div>
 
 
@@ -144,13 +144,14 @@ $ git config --global user.email "su.correo@ejemplo.com"
 3. **Crear una cuenta en GitHub.** Para utilizar GitHub, es necesario crear
 una cuenta en la página oficial de GitHub (<https://github.com/join>).
 Una vez creada la cuenta, se debe iniciar sesión en GitHub.
-\index{git!crear cuenta}
+\index{Git!crear cuenta}
 
-4. El siguiente paso es la autentificación de las conexiones, que puede hacerse bien mediante clave SHH (Sec. \@ref(clavessh)) o bien mediante *token* de acceso personal (Sec. \@ref(token)).
+4. El siguiente paso es la autentificación de las conexiones, que puede hacerse bien mediante 
+clave SSH (Sec. \@ref(clavessh)) o bien mediante *token* de acceso personal (Sec. \@ref(token)).
 
 ### Autentificación de las conexiones mediante clave SSH {#clavessh}
 
-Si se quieren autentificar las conexiones con GitHub mediante una clave SSH  (protocolo *Secure Shell*), el primer paso será **configurar la clave SSH**. \index{ssh} La clave SSH es una credencial de acceso para el protocolo de red que permite el acceso remoto a través de una conexión cifrada. Para autentificar las conexiones con GitHub de
+Si se quieren autentificar las conexiones con GitHub mediante una clave SSH  (protocolo *Secure Shell*), el primer paso será **configurar la clave SSH**. \index{SSH} La clave SSH es una credencial de acceso para el protocolo de red que permite el acceso remoto a través de una conexión cifrada. Para autentificar las conexiones con GitHub de
 manera segura se recomienda configurar una clave SSH en el equipo y
 agregarla a la cuenta de GitHub [véase @happygitwithr, Cap. 10]. Para ello, se debe abrir la línea de
 comandos Git Bash o la terminal de RStudio y ejecutar el siguiente comando:
@@ -182,13 +183,13 @@ y agregarla a la cuenta de GitHub siguiendo las instrucciones en la página de c
 -   en la esquina superior derecha de la página del inicio, haga clic en la
     foto del perfil y, luego, en "Settings" (Configuración);
 
--   en la sección "Accsess" de la barra lateral, haga clic en "SSH and GPG keys";
+-   en la sección "Access" de la barra lateral, haga clic en "SSH and GPG keys";
 
 -   haga clic en "New SSH key" para agregar la clave SSH (Fig. \@ref(fig:c310003008));
 
 <div class="figure" style="text-align: center">
-<img src="img/ssh-add-ssh-key-with-auth.png" alt="Llaves SSH en GitHub" width="60%" />
-<p class="caption">(\#fig:c310003008)Llaves SSH en GitHub</p>
+<img src="img/ssh-add-ssh-key-with-auth.png" alt="Llaves SSH en GitHub." width="60%" />
+<p class="caption">(\#fig:c310003008)Llaves SSH en GitHub.</p>
 </div>
 
 -   en el campo "Title" (Título), agregue una etiqueta descriptiva para
@@ -198,7 +199,7 @@ y agregarla a la cuenta de GitHub siguiendo las instrucciones en la página de c
 -   seleccione el tipo de clave, ya sea de autentificación o de firma;[^git-firma]
     
 [^git-firma]: Para obtener más información sobre la firma de una confirmación,
-    consulte https://docs.github.com/es/authentication/managing-commit-signature-verification/about-commit-signature-verification
+    consulte https://docs.github.com/es/authentication/managing-commit-signature-verification/about-commit-signature-verification.
 
 
 -   pegue su clave pública en el campo "Key" (Fig. \@ref(fig:c310003009));
@@ -207,7 +208,7 @@ y agregarla a la cuenta de GitHub siguiendo las instrucciones en la página de c
 
 -   si se le solicita, confirme su contraseña en GitHub.
 
-[^git-token]: Para más información sobre el token de aceso personal consulte el 
+[^git-token]: Para más información sobre el *token* de acceso personal consulte el 
 Cap. 9 de @happygitwithr (https://happygitwithr.com/https-pat.html).
 
 <div class="figure" style="text-align: center">
@@ -216,11 +217,11 @@ Cap. 9 de @happygitwithr (https://happygitwithr.com/https-pat.html).
 </div>
 
 
-### Autentificación basada en token de acceso personal {#token}
+### Autentificación basada en *token* de acceso personal {#token}
 
 Además de utilizar una clave SSH para autentificar las conexiones con
 GitHub, también se puede utilizar la autentificación basada en un *token* de
-acceso personal (PAT, por sus iniciales en inglés), \index{pat} de GitHub. 
+acceso personal (PAT, por sus iniciales en inglés) \index{PAT} de GitHub. 
 
 Esta forma de autentificación es
 recomendada por GitHub por su seguridad,
@@ -230,13 +231,13 @@ requieren acceso a repositorios de GitHub.[^git-token]
 A continuación, se describen los pasos para utilizar la autentificación
 basada en el *token* de acceso personal de GitHub.
 
-1.  **Generar el token PAT:** existen dos librerías, `usethis` y `gitcreds,`
-    que facilitan la generación del PAT y almacenarlo. Para ello se
+1.  **Generar el** ***token*** **PAT**: existen dos librerías, `usethis` y `gitcreds,`
+    que facilitan la generación del PAT y su almacenamiento. Para ello se
     introduce en la consola de RStudio:
 
 
 ```r
-library(usethis)
+library("usethis")
 usethis::create_github_token()
 ```
 
@@ -252,7 +253,7 @@ usethis::create_github_token()
     
 
 ```r
-library(gitcreds)
+library("gitcreds")
 gitcreds::gitcreds_set()
 ```
 
@@ -279,15 +280,15 @@ Si la autentificación fue correcta se generará una salida similar a la
    password: <-- hidden -->
 ```
 
-Se ha detallado la instalación y configuración de Git, la creación de una cuenta en GitHub y la autentificación mediante clave SSH y token de acceso personal (PAT), estableciendo las bases para un control eficaz de versiones y colaboración.
+Se ha detallado la instalación y configuración de Git, la creación de una cuenta en GitHub y la autentificación mediante clave SSH y *token* de acceso personal (PAT), estableciendo las bases para un control eficaz de versiones y colaboración.
 
-A continuación, en el apartado "Conectar Git y GitHub con RStudio", se tratará la integración de estas herramientas con RStudio, proporcionando instrucciones para facilitar una incorporación fluida en dicho entorno de desarrollo integrado.
-
-
-## Conectar Git y GitHub con Rstudio
+A continuación, en la Sec. \@ref(git-rstudio), se tratará la integración de estas herramientas con RStudio, proporcionando instrucciones para facilitar una incorporación fluida en dicho entorno de desarrollo integrado.
 
 
-### RSstudio primero {#conectar-rstudio-primero}
+## Conectar Git y GitHub con RStudio {#git-rstudio}
+
+
+### RStudio primero {#conectar-rstudio-primero}
 
 Este apartado se centra en la creación de un nuevo proyecto
 en un ordenador local para posteriormente subirlo a GitHub, en remoto.
@@ -303,8 +304,8 @@ con RStudio:
     configurar la ubicación del ejecutable de Git en el sistema.
 
 <div class="figure" style="text-align: center">
-<img src="img/tools-general-options.png" alt="Tools de Rstudio." width="40%" />
-<p class="caption">(\#fig:c310003014)Tools de Rstudio.</p>
+<img src="img/tools-general-options.png" alt="Tools de RStudio." width="50%" />
+<p class="caption">(\#fig:c310003014)Tools de RStudio.</p>
 </div>
 
 <!-- \text -->
@@ -318,48 +319,47 @@ $ git --version
 
   Si la salida es la versión de Git, entonces la instalación fue ejecutada correctamente.
 
-\pagebreak
+<!-- \pagebreak -->
 
 3.  Crear un proyecto nuevo desde "File" -> "New project" (Fig. \@ref(fig:c310003016)).
 
-
 <div class="figure" style="text-align: center">
-<img src="img/new-project.png" alt="Nuevo proyecto de Rstudio." width="40%" />
-<p class="caption">(\#fig:c310003016)Nuevo proyecto de Rstudio.</p>
+<img src="img/new-project.png" alt="Nuevo proyecto de RStudio." width="50%" />
+<p class="caption">(\#fig:c310003016)Nuevo proyecto de RStudio.</p>
 </div>
 
 
 4.  En el cuadro de la Fig. \@ref(fig:c310003016) se procede dando clic en "New directory"
     y en la siguiente ventana se rellenan los datos, como el nombre del
     proyecto, y se marca la opción "Create a git repository" para crear
-    un nevo proyecto con repositorio de Git (Fig.\@ref( c310003017)).
+    un nuevo proyecto con repositorio de Git (Fig. \@ref(fig:c310003017)).
 
 <div class="figure" style="text-align: center">
-<img src="img/new-project-rstudo.png" alt="Nuevo proyecto en un directorio nuevo." width="40%" />
+<img src="img/new-project-rstudo.png" alt="Nuevo proyecto en un directorio nuevo." width="50%" />
 <p class="caption">(\#fig:c310003017)Nuevo proyecto en un directorio nuevo.</p>
 </div>
 
 
-\pagebreak
+<!-- \pagebreak -->
 
 5.  En el icono de Git, en la parte superior, se accede a la ventana de
     revisión de cambios, se añaden los ficheros pinchando en los ticks,
-    se añade el mensaje de confirmación y se hace clic en "commit" (Fig. \@ref( fig:c310003018)).
+    se añade el mensaje de confirmación y se hace clic en "commit" (Fig. \@ref(fig:c310003018)).
 
 <div class="figure" style="text-align: center">
-<img src="img/commit-rstudio.png" alt="Revisión de cambios." width="40%" />
+<img src="img/commit-rstudio.png" alt="Revisión de cambios." width="50%" />
 <p class="caption">(\#fig:c310003018)Revisión de cambios.</p>
 </div>
 
 
 6.  Alternativamente, se puede utilizar la pestaña de Git, marcando los
     ficheros modificados o creados y confirmando mediante clic en "commit"
-    tras el cual se abrirá el cuadro de diálogo anterior (Fig. \@ref( fig:c310003019).
+    tras el cual se abrirá el cuadro de diálogo anterior (Fig. \@ref(fig:c310003019)).
 
 
 <div class="figure" style="text-align: center">
-<img src="img/git-pestana.png" alt="Revisión de cambios" width="40%" />
-<p class="caption">(\#fig:c310003019)Revisión de cambios</p>
+<img src="img/git-pestana.png" alt="Revisión de cambios." width="60%" />
+<p class="caption">(\#fig:c310003019)Revisión de cambios.</p>
 </div>
 
 
@@ -384,7 +384,7 @@ consola `?usethis::use_github`.
 ### GitHub primero
 
 
-Este apartado se dedica a explicar el proceso de integración de Git y GitHub con RStudio, a partir de un repositorio ya creado en GitHub. El primer paso consiste en verificar si Git  está instalado correctamente en el sistema. Esto puede verificarse utilizando el comando `git--version` en la terminal de RStudio. Una vez confirmada la instalación de Git, se procederá a la configuración de la conexión entre RStudio y el repositorio existente en GitHub. Este proceso implica clonar el repositorio remoto en el sistema local, permitiendo así el acceso y la edición de los archivos de código localmente, al tiempo que se mantiene la capacidad de realizar *commits*, *pushes* y *pulls* hacia el repositorio remoto en GitHub.
+Este apartado se dedica a explicar el proceso de integración de Git y GitHub con RStudio a partir de un repositorio ya creado en GitHub. El primer paso consiste en verificar si Git  está instalado correctamente en el sistema. Esto puede verificarse utilizando el comando `git--version` en la terminal de RStudio. Una vez confirmada la instalación de Git, se procederá a la configuración de la conexión entre RStudio y el repositorio existente en GitHub. Este proceso implica clonar el repositorio remoto en el sistema local, permitiendo así el acceso y la edición de los archivos de código localmente, al tiempo que se mantiene la capacidad de realizar *commits*, *pushes* y *pulls* hacia el repositorio remoto en GitHub.
 
 
 ```git
@@ -392,40 +392,43 @@ $ git --version
 ```
 
 
-Cuando la salida de la terminal arroje la versión de Git entonces la instalación fue correcta. En el caso de que la salida no arroje la versión vuelva la Sec. \@ref(configurar-git-github) o consulte el manual de la página oficial de Git en: [https://git-scm.com](https://git-scm.com).
+Cuando la salida de la terminal arroje la versión de Git, entonces la instalación fue correcta. En el caso de que la salida no arroje la versión vuelva la Sec. \@ref(configurar-git-github) o consulte el manual de la página oficial de Git en: [https://git-scm.com](https://git-scm.com).
 
 
-A continuación, se describe paso a paso sobre cómo conectar GitHub y
+A continuación, se describe paso a paso cómo conectar GitHub y
 RStudio a partir de un proyecto ya existente en GitHub y con Git
 configurado previamente:
 
 
 1.  Abra RStudio y seleccione la opción "New Project" en la pestaña
     "File" del menú principal. Posteriormente haga clic en la opción
-    "Version Control" (Fig. \@ref(fig: c310003022)).
-
-<div class="figure" style="text-align: center">
-<img src="img/new-project.png" alt="Nuevo proyecto de Rstudio." width="40%" />
-<p class="caption">(\#fig:c310003022)Nuevo proyecto de Rstudio.</p>
-</div>
+    "Version Control" (Fig. \@ref(fig:c310003022)).
 
 \pagebreak
+
+<div class="figure" style="text-align: center">
+<img src="img/new-project.png" alt="Nuevo proyecto de RStudio." width="50%" />
+<p class="caption">(\#fig:c310003022)Nuevo proyecto de RStudio.</p>
+</div>
+
+
+
 
 2.  En la ventana emergente que aparece, elija "Git" (Fig. \@ref(fig:c310003023)).
 
 <div class="figure" style="text-align: center">
-<img src="img/new-project-git.png" alt="Crear proyecto desde control de versiones" width="40%" />
-<p class="caption">(\#fig:c310003023)Crear proyecto desde control de versiones</p>
+<img src="img/new-project-git.png" alt="Crear proyecto desde control de versiones." width="50%" />
+<p class="caption">(\#fig:c310003023)Crear proyecto desde control de versiones.</p>
 </div>
 
 
-3.  En la ventana que se muestra en la (Fig. \@ref(c310003024)), pegue la URL del repositorio que desee clonar y presione "Create Project". RStudio preguntará en qué
+3.  En la ventana que se muestra en la Fig. \@ref(fig:c310003024), pegue la URL del repositorio que desee clonar y presione "Create Project". RStudio preguntará en qué
     carpeta desea guardar el proyecto; una vez elegida la
     ubicación, el proyecto se clonará en la computadora.
 
 
 <div class="figure" style="text-align: center">
-<img src="img/new-project-git-repo.png" alt="Nuevo proyecto desde un repositorio de Git." width="40%" />
+<img src="img/new-project-git-repo.png" alt="Nuevo proyecto desde un repositorio de Git." width="50%" />
 <p class="caption">(\#fig:c310003024)Nuevo proyecto desde un repositorio de Git.</p>
 </div>
 
@@ -436,13 +439,13 @@ configurado previamente:
 A continuación se describe un flujo básico de trabajo, comenzando desde
 RStudio:
 
-1.  **Iniciar un repositorio local**: o primero que hay que hacer es
+1.  **Iniciar un repositorio local**: lo primero que hay que hacer es
     inicializar un repositorio local en RStudio. Para ello, abra RStudio
     y seleccione la opción "New Project" en la pestaña "File" del menú
     principal. Luego, seleccione la opción "New Directory" y elija una
     ubicación para su proyecto. A continuación, seleccione "Version
     Control" y luego "Git". RStudio le preguntará si desea inicializar
-    un repositorio en este directorio; haga clic en "Yes". Tal y como se
+    un repositorio en este directorio; haga clic en "Yes", tal y como se
     ha descrito en el punto 1 de la Sec. \@ref(conectar-rstudio-primero). 
 
 2.  **Añadir archivos al repositorio**: ahora debe añadir los archivos
@@ -462,8 +465,8 @@ RStudio:
     repositorio local.
 
 4.  **Crear una rama (opcional)**: si desea trabajar en una nueva
-    función o corregir un error sin afectar la rama principal (master o
-    main), debe crear una nueva rama. Para ello, haga clic en el botón
+    función o corregir un error sin afectar la rama principal (*master* o
+    *main*), debe crear una nueva rama. Para ello, haga clic en el botón
     "New Branch" en la pestaña "Git". Escriba un nombre para la nueva
     rama y haga clic en "Create". Ahora ya es posible hacer cambios en
     los archivos en la nueva rama sin afectar la rama principal.
@@ -474,7 +477,7 @@ RStudio:
     "Push" en la pestaña "Git". Los cambios se subirán al repositorio
     remoto en GitHub, que fue configurado en la Sec. \@ref(configurar-git-github).
 
-6.  **Solicitar un pull request (opcional)**: si trabaja en un proyecto
+6.  **Solicitar un** ***pull request*** **(opcional)**: si trabaja en un proyecto
     colaborativo con otros usuarios, debe solicitar un "pull request"
     antes de fusionar los cambios en la rama principal. Para hacerlo,
     haga clic en la pestaña "Pull Requests" en la interfaz de GitHub.
@@ -488,7 +491,7 @@ RStudio:
     fusionarán en la rama principal.
     
 ::: {.infobox data-latex=""}
-**Repositorio local y remoto**
+**Nota**
 
 -   El **repositorio local** \index{repositorio!local} en Git es una copia completa de un proyecto que se
     encuentra en el equipo del usuario. Con un repositorio local, los
@@ -507,7 +510,7 @@ RStudio:
 En resumen, el flujo de trabajo general de Git y GitHub en RStudio
 implica inicializar un repositorio local, añadir archivos al
 repositorio, hacer un "commit" de los cambios, crear una nueva rama si es
-necesario, subir los cambios al repositorio remoto en GitHub.
+necesario y subir los cambios al repositorio remoto en GitHub.
 
 Todas las operaciones se pueden realizar desde la terminal de RStudio.
 Aquí hay algunos de los comandos más comunes que se utilizan en Git:
@@ -560,7 +563,7 @@ Aquí hay algunos de los comandos más comunes que se utilizan en Git:
     cambio.
 
 Para conocer más a fondo la mecánica de Git es muy recomendable el
-manual [@chacon2014pro] o la hoja resumen proporcionada por GitHub,
+manual de @chacon2014pro o la hoja resumen proporcionada por GitHub,
 disponible en https://training.github.com/downloads/es_ES/github-git-cheat-sheet.pdf.
 
 
