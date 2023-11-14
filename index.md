@@ -1,7 +1,7 @@
 ---
 title: "Fundamentos de ciencia de datos con **R**"
 author: "Gema Fernández-Avilés y José-María Montero"
-date: "2023-09-11"
+date: "2023-11-13"
 output:
   html_document:
     df_print: paged
@@ -45,7 +45,7 @@ En resumen, la información masiva y el moderno tratamiento estadístico de la m
 
 Lo dicho anteriormente ya justifica por sí solo la aparición de este manual. Afortunadamente, no es el primero en la materia, pues son ya bastantes los materiales de calidad publicados sobre ciencia de datos. Sin embargo, quizás, este pueda ser considerado el más completo. Y ello por varias razones.
 
-La primera es su **completitud**: este manual lleva de la mano al lector desde el planteamiento del problema hasta el informe que contiene la solución al mismo; o desde no saber qué hacer con la información de la que dispone, hasta ser capaz de transformar tales bases de datos masivas, y casi imposibles de manejar, en respuestas a problemas fundamentales de una empresa, institución o cualquier agente social.
+La primera es su **completitud**: este manual lleva de la mano al lector desde el planteamiento del problema hasta el informe que contiene la solución al mismo; o desde no saber qué hacer con la información de la que dispone hasta ser capaz de transformar tales bases de datos masivas, y casi imposibles de manejar, en respuestas a problemas fundamentales de una empresa, institución o cualquier agente social.
 
 La segunda es su **amplitud temática**:
 
@@ -80,7 +80,7 @@ La cuarta es su **variedad de perspectivas**. Son **más de 40 los participantes
 
 También está destinado a todos aquellos que quieran sustituir la navegación por la web (la búsqueda del vídeo, publicación de blog o tutorial *online* que solucione su problema --frustración tras frustración por la falta de consistencia, rigor e integridad de dichos materiales, así como por su sesgo hacia paquetes singulares para la implementación de las cuestiones que tratan--), por una "**biblia de la ciencia de datos**" rigurosa pero sencilla, práctica y de aplicación inmediata sin ser ni un experto estadístico ni un experto informático.
 
-Pero si a alguien está destinado especialmente, es a la comunidad hispanohablante. Este manual es un guiño a dicha comunidad, para que tenga a su disposición, en su lengua nativa, uno de los mejores manuales de diencia de datos de la actualidad.
+Pero si a alguien está destinado especialmente, es a la comunidad hispanohablante. Este manual es un guiño a dicha comunidad, para que tenga a su disposición, en su lengua nativa, uno de los mejores manuales de ciencia de datos de la actualidad.
 
 
 ## El paquete `CDR` {-}
@@ -122,7 +122,7 @@ La comunidad **R** también es particularmente generosa e inclusiva, y hay grupo
 
 No queremos dar por finalizado este prefacio sin agradecer a los 44 autores participantes en esta obra su esfuerzo por condensar, en no más de 20 páginas, la teoría, práctica y tratamiento informático de la parte de la ciencia de datos que les fue encargada. Y no solo eso; el "más difícil todavía" fue que debían dirigirse a un abanico de potenciales lectores tan grande como personas haya con "el deseo de resolver problemas utilizando datos". Era misión imposible. Sin embargo, a la vista del resultado, ha sido misión cumplida. El esfuerzo mereció la pena.
 
-Además, nos gustaría agradecer el apoyo incondicional recibido por (en orden alfabético): Itzcoátl Bueno, Ismael Caballero,  Emilio L. Cano, Diego Hernangómez, Michal M. Kinel, Ricardo Pérez, Manuel Vargas y Jorge Velasco.
+Además, nos gustaría agradecer el apoyo incondicional recibido por (en orden alfabético): Itzcoátl Bueno, Ismael Caballero,  Emilio L. Cano, Diego Hernangómez, Isidro Hidalgo, Michal M. Kinel, Ricardo Pérez, Manuel Vargas y Jorge Velasco.
 
 También queremos poner de manifiesto que la edición de este texto ha sido financiada por diversos entes de la Universidad de Castilla-La Mancha. En su mayor parte, por el [**Máster en *Data Science* y *Business Analytics* (con R software)**](https://blog.uclm.es/tp-mbsba/) (a través de la orgánica: 02040M0280), pero también por la Facultad de Ciencias Jurídicas y Sociales de Toledo (a través de su contrato programa: orgánica 00440710), el Departamento de Economía Aplicada I (mediante sus fondos departamentales, DEAI 00421I126) y el Grupo de Investigación Economía Aplicada y Métodos Cuantitativos (que ha dedicado parte de sus fondos a la edición de esta obra, orgánica 01110G3044-2023-GRIN-34336).
 
@@ -137,4 +137,22 @@ Se ha dejado a disposición del lector una versión *online* de este manual en e
 ::: {.infobox_resume data-latex=""}
 ### Este manual está publicado por [McGraw Hill](https://www.mheducation.com/). Las copias físicas están disponibles en [McGraw Hill](https://www.mheducation.com/). La versión *online* se puede leer de forma gratuita en [https://cdr-book.github.io/](https://cdr-book.github.io/) y tiene la [licencia de Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional](https://creativecommons.org/licenses/by-nc-nd/4.0/). Si tiene algún comentario o sugerencia, no dude en contactar con los editores y los autores. ¡Gracias! {-} 
 :::
+
+
+
+# Prólogo {-}
+
+
+If you are a Spanish speaker interested in data science who has picked up this book, you are in for a treat, whether you are a student, researcher, or industry professional. Although there are many excellent introductory books for getting started with **R** and data science, they are almost all written in English; there has been a dearth of books written by Spanish speakers for Spanish speakers. *Fundamentals of Data Science with* **R** takes a comprehensive approach to learning **R** and data science, covering topics from descriptive statistics to spatial analysis to machine learning. I was particularly happy to see how this textbook focuses on case studies, from the fields of economics, medicine, politics, sports, marketing, and more, so that you can see real-world applications of these topics. Be sure to check out the `CDR` **R** package that the authors have created to give you access to these datasets for your own learning and practice.
+
+More than 40 collaborators have come together to contribute chapters to this textbook, providing you as the reader with a variety of perspectives on these important topics. These experts walk you through many of the abstract methodological concepts you will face doing data science, such as ethics in data science and data governance, as well as the practical tools you will need for data science tasks, such as Quarto, Shiny, and Git. I wish you all the best as you embark on your journey into learning **R** and growing as a responsible, effective data scientist and am so happy that you have this book as your Spanish language companion!
+
+
+                                                                    Julia Silge
+
+
+
+## Julia Silge Biography {-}
+
+Julia Silge is a data scientist and software engineer at Posit PBC where she works on open source modeling and MLOps tools. She is an author, an international keynote speaker, and a real-world practitioner focusing on data analysis and machine learning. She is an author of [Text Mining with R](https://www.tidytextmining.com/), [Supervised Machine Learning for Text Analysis in R](https://smltar.com/), and [Tidy Modeling with R](https://www.tmwr.org/).
 
