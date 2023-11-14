@@ -10,6 +10,7 @@ fig:FigNoSQL1
 fig:FigNoSQL3
 tab:tab2
 fig:FigNoSQL6
+fig:usuario-viaje
 fig:mamd-mrp
 fig:mamd-modelomadurez
 fig:propiedadesISO25024
@@ -157,6 +158,11 @@ eq:importancia
 eq:imprel
 eq:utilperfil
 tab:funcionR
+tab:tabla-contingencia
+tab:tabla-contin-totmarg
+tab:tabla-contin-totmarg-fijo1
+tab:tabla-contin-totmarg-filas
+tab:tabla-fisher1
 fig:dectree-plot
 fig:regtree-plot
 tab:alg-dectree
@@ -203,6 +209,8 @@ fig:knn-ejemplo
 fig:006-002-102KNNKCHOOSING3
 fig:006-002-102KNNRESULTS3
 tab:tenis-freq
+tab:tenis-freq2
+tab:tenis-freq3
 tab:tenis-likelihood
 tab:probs-tipodia
 tab:probs-humedad
@@ -228,6 +236,7 @@ tab:vle-cualitativas
 fig:cluster-compara
 fig:cluster-compara2
 fig:plot-igraph
+tab:lancewill
 tab:cluster1
 tab:cluster2
 tab:cluster3
@@ -246,7 +255,7 @@ eq:ecuacion8
 fig:lee-datos-ch11
 fig:autovalores-ch11
 fig:corrvariablecp-ch11
-fig:gráfico-contribución-ch11
+fig:grafico-contribucion-ch11
 eq:acp1
 eq:eqaf1
 eq:eqaf2
@@ -273,17 +282,22 @@ fig:140013mdsnm05
 fig:140013mdsnm07
 tab:tabconting
 fig:150023proyecciones
-fig:150023sunetrica
-fig:150023accid
+fig:150023simetrica2
+fig:150023accid2
 fig:iaMLDL
 fig:scharrpitu
 fig:camaraTermica
 fig:deepL
 fig:DallE
 fig:perceptron
+fig:red-lineal
+fig:red-umbral
+fig:red-sigmoide
+fig:red-hiperbo
+fig:red-relu
 fig:ann
 fig:mlpmnhist
-fig:unnamed-chunk-15
+fig:img-entrenamiento
 fig:plot-curve1
 fig:plot-curve2
 fig:cnn
@@ -298,6 +312,7 @@ fig:lenet
 fig:overfitting
 fig:early
 fig:dataAugmentation
+fig:cifar-eti
 fig:plot-curve3
 fig:mintex-graf-long-o
 tab:mintex-MFW-tabla
@@ -319,7 +334,8 @@ fig:grafo-Betweenness-Walktrap
 fig:marvel1
 fig:grafo-relaciones-comunidades
 fig:marvel5
-fig:grafo-relaciones-color
+fig:grafo-relaciones
+fig:grafo-color
 fig:marvel11
 fig:snow-cholera-map-ch40
 fig:hengl-cressie
@@ -351,8 +367,8 @@ fig:plot-dep-W
 fig:plot-criterio-W
 fig:plot-moranplot
 eq:moranI
-eq:sar
 fig:estrat
+eq:sar
 eq:dpdyx
 eq:multiW
 fig:plot-imp-dir
@@ -373,6 +389,7 @@ eq:eqlu
 eq:eqljd
 fig:titleV
 fig:VlcK
+fig:problem2
 fig:ch-120007-captura-quarto
 fig:ch-120007-ref-fig
 tab:ch-120007-ref-tab
@@ -398,7 +415,7 @@ fig:interactive-map-plot
 fig:vis-red1
 fig:vis-red2
 fig:red-centralidad
-fig:unnamed-chunk-5
+fig:com-mafia
 fig:red-fr
 fig:comparativa-modelos
 fig:output-robyn
@@ -421,6 +438,7 @@ fig:imagen2
 fig:imagen3
 tab:tabla1
 tab:tab1-corregida
+fig:survplot
 fig:pplot-goals1
 fig:pplot-goals2
 fig:pplot-goals3
@@ -491,7 +509,7 @@ operaciones-de-borrado-de-datos-delete
 cap-nosql
 introducción-al-big-data
 VsBigData
-tipos-de-datos-en-entornos-big-data
+tipos-de-datos-en-entornos
 por-qué-bases-de-datos-nosql
 bases-de-datos-nosql
 FundamentosNoSQL
@@ -679,12 +697,19 @@ conceptos
 modelos-arima
 análisis-de-series-temporales-con-r
 identificación-o-especificación-del-modelo
+ejemplo-de-las-acf-y-pacf-teóricas-de-los-procesos-estacionarios-ma1
+ejemplo-de-las-acf-y-pacf-teóricas-de-los-procesos-estacionarios-ar1
+ejemplo-de-las-acf-y-pacf-teóricas-de-los-procesos-estacionarios-arma11
 estimación-del-modelo
 validación-1
 predicción-2
 cap-discriminante
 introducción-10
 id_150025lda
+dos-grupos-y-una-variable-clasificadora
+dos-grupos-y-dos-variables-clasificadoras
+dos-grupos-y-p-variables-clasificadoras
+k-grupos-y-p-variables
 discriminante-lineal-con-r-la-función-lda
 id_150025qda
 discriminante-cuadrático-con-r-la-función-qda
@@ -710,9 +735,9 @@ contaprox
 contraste-aproximado-con-corrección-de-continuidad-1
 medidas
 la-q-de-yule
-otras-medidas-de-asociación-para-tablas-2times-2
+otras-medidas-de-asociación-para-tablas-2-times-2
 cmc
-odds-ratio-o-cociente-de-posibilidadestablas_conting-6
+odds-ratio-o-cociente-de-posibilidades150022_tablas_conting-13
 medidas-rxc
 medidas-derivadas-del-estadístico-chi-cuadrado
 medidas-basadas-en-la-reducción-proporcional-del-error-lambda-de-goodman-y-kruskal
@@ -759,11 +784,11 @@ procedimiento-con-r-la-función-naive_bayes
 clasificación-de-clientes-utilizando-el-modelo-naive-bayes
 cap-bagg-rf
 introducción-a-los-métodos-ensamblados
-bagging
+bf-textitbagging
 rbagging
 implementando-bagging-en-r
 interpretación-de-variables-en-el-bagging
-random-forest
+textitrandom-textitforest
 número-de-árboles-k
 número-de-variables-a-considerar-mtry
 complejidad-de-los-árboles
@@ -775,7 +800,7 @@ aplicación-del-modelo-random-forest-con-ajuste-automático
 cap-boosting-xgboost
 métodos-ensamblados-bagging-vs.-boosting
 qué-es-el-boosting
-gradient-boosting
+bf-textitgradient-boosting
 hiperparámetros-del-modelo-gradient-boosting
 hiperparámetros-de-boosting
 hiperparámetros-de-árbol
@@ -783,7 +808,7 @@ estrategia-de-ajuste-de-hiperparámetros
 procedimiento-con-r-la-función-gbm
 aplicación-del-modelo-gradient-boosting-en-r
 gradient-boosting-con-ajuste-automático
-extreme-gradient-boosting-xgb
+bftextitextreme-bftextitgradient-bftextitboosting
 hiperparámetros-del-modelo-xgboost
 procedimiento-con-r-la-función-xgboost
 aplicación-del-modelo-xgboost-en-r
@@ -797,8 +822,6 @@ introac
 técnicas-jerárquicas-aglomerativas
 técnicas-jerárquicas-divisivas
 calidad-de-la-agrupación-y-número-de-clústeres
-el-coeficiente-de-correlación-lineal-cofenético
-número-óptimo-de-clústeres
 no-jerarquico
 introducción-13
 métodos-de-reasignación
@@ -833,7 +856,7 @@ elementos-teóricos-del-análisis-factorial
 modelobasicoaf
 patrón-y-estructura-factorial
 el-análisis-factorial-en-la-práctica
-pre-análisis-factorial
+preanálisis-factorial
 procede-la-realización-de-un-análisis-factorial
 el-problema-de-la-comunalidad-yo-del-número-de-factores-comunes
 análisis-factorial-1
@@ -858,7 +881,7 @@ metodología-del-análisis-de-correspondencias
 proyecciones-fila-columna-y-simétrica
 procedimiento-con-r-la-función-ca
 caso-práctico-1-tareas-del-hogar
-caso-práctico-2-accidentes-2020
+caso-práctico-2-accidentes-de-tráfico-en-madrid-2020
 capNN
 qué-es-el-deep-learning
 diferencias-entre-las-técnicas-de-machine-learning-tradicional-y-el-deep-learning
@@ -929,7 +952,7 @@ introducción-19
 teoría-de-grafos
 elementos-de-un-grafo
 procedimiento-con-r-el-paquete-igraph
-análisis-de-influencia-en-un-grafo-aplicado-a-rrss
+análisis-de-influencia-en-un-grafo-aplicado-a-rr.-ss.
 centralidad
 detección-de-comunidades
 representación-con-grafos
@@ -944,7 +967,7 @@ vec
 raster
 primer-mapa
 no-mentir
-mapas-espacio-temporales
+mapas-espaciotemporales
 mapas-interactivos
 geo
 introducción-21
@@ -960,7 +983,7 @@ ajuste-semivariográfico
 kriging
 cap-econom-esp
 la-dependencia-espacial
-modelización-del-espacio
+modelización-de-las-relaciones-espaciales
 medidas-de-autocorrelación-espacial
 el-indicador-i-de-moran
 modelos-econométricos-espaciales-de-corte-transversal
@@ -1020,7 +1043,7 @@ sec-instala-git
 configurar-git-github
 clavessh
 token
-conectar-git-y-github-con-rstudio
+git-rstudio
 conectar-rstudio-primero
 github-primero
 flujo-de-trabajo-general-de-git-y-github-en-rstudio
@@ -1074,7 +1097,7 @@ descriptivos-e-interpretación-de-los-segmentos
 puesta-en-producción
 cap-medicina
 justificación
-uso-de-datos-en-investigación-clínica-y-ensayos-clínicos
+datos-en-investigación-clínica-y-ensayos-clínicos
 qué-es-un-ensayo-clínico
 limitaciones-de-los-estudios-observacionales
 índice-de-propensión
@@ -1096,6 +1119,7 @@ preparación-de-los-datos
 construcción-del-gráfico-de-facetas
 mapa-de-orientación
 exportación-del-mapa-final
+conclusión-1
 cap-sist-exp
 introducción-28
 marco-teórico
@@ -1117,3 +1141,4 @@ cap-fraude
 introducción-31
 modelización-del-fraude-en-la-compra-con-tarjetas-de-crédito
 modelo-de-clasificación-mediante-regresión-lógística
+info-session

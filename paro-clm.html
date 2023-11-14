@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Capítulo 52 El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha | Fundamentos de ciencia de datos con R</title>
+<title>Capítulo 52 El impacto de las crisis financiera y de la COVID-19 en el paro de CLM | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Isidro Hidalgo Arellano\(^{a}\) y Ángel Jiménez Rojas\(^{a}\) \(^{a}\)Observatorio del Mercado de Trabajo de Castilla-La Mancha  52.1 Planteamiento En los últimos 15 años el mundo ha sufrido dos...">
 <meta name="generator" content="bookdown 0.28 with bs4_book()">
-<meta property="og:title" content="Capítulo 52 El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha | Fundamentos de ciencia de datos con R">
+<meta property="og:title" content="Capítulo 52 El impacto de las crisis financiera y de la COVID-19 en el paro de CLM | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
 <meta property="og:description" content="Isidro Hidalgo Arellano\(^{a}\) y Ángel Jiménez Rojas\(^{a}\) \(^{a}\)Observatorio del Mercado de Trabajo de Castilla-La Mancha  52.1 Planteamiento En los últimos 15 años el mundo ha sufrido dos...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Capítulo 52 El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha | Fundamentos de ciencia de datos con R">
+<meta name="twitter:title" content="Capítulo 52 El impacto de las crisis financiera y de la COVID-19 en el paro de CLM | Fundamentos de ciencia de datos con R">
 <meta name="twitter:description" content="Isidro Hidalgo Arellano\(^{a}\) y Ángel Jiménez Rojas\(^{a}\) \(^{a}\)Observatorio del Mercado de Trabajo de Castilla-La Mancha  52.1 Planteamiento En los últimos 15 años el mundo ha sufrido dos...">
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,8 +21,7 @@
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
 <link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
-<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -47,6 +46,7 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -79,8 +79,8 @@
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
 <li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
-<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
-<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
 <li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
@@ -107,10 +107,10 @@
 <li class="book-part">Casos de estudio en ciencia de datos</li>
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
-<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="active" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
-<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="active" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
 <li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
@@ -118,6 +118,9 @@
 <li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -127,7 +130,7 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="paro-clm" class="section level1" number="52">
 <h1>
-<span class="header-section-number">Capítulo 52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha<a class="anchor" aria-label="anchor" href="#paro-clm"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Capítulo 52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM<a class="anchor" aria-label="anchor" href="#paro-clm"><i class="fas fa-link"></i></a>
 </h1>
 <p><em>Isidro Hidalgo Arellano</em><span class="math inline">\(^{a}\)</span> y <em>Ángel Jiménez Rojas</em><span class="math inline">\(^{a}\)</span></p>
 <p><span class="math inline">\(^{a}\)</span>Observatorio del Mercado de Trabajo de Castilla-La Mancha</p>
@@ -135,8 +138,8 @@
 <h2>
 <span class="header-section-number">52.1</span> Planteamiento<a class="anchor" aria-label="anchor" href="#planteamiento"><i class="fas fa-link"></i></a>
 </h2>
-<p>En los últimos 15 años el mundo ha sufrido dos grandes periodos de <strong>crisis económica</strong>: en <strong>2008</strong>, de tipo financiero; y en <strong>2020</strong>, a causa de la pandemia de <strong>COVID-19</strong>. Una de las variables socioeconómicas que se ven más afectados por este tipo de procesos es el paro registrado. El paro registrado se define como el conjunto de los demandantes inscritos en las oficinas de empleo, una vez excluidos los inscritos sin disponibilidad para trabajar y los demandantes no parados, tales como estudiantes, desempleados en formación, etc. <span class="citation">(<a href="cap-fraude.html#ref-TOHARIA">Toharia 2012</a>)</span>.
-<strong>Castilla-La Mancha</strong>, comunidad autónoma interior de España, no ha sido ajena a las crisis económicas mencionadas, por lo que en este caso de uso se analiza el impacto de las mismas en la estructura del <strong>paro registrado</strong> de la región. Para ello se utilizan las siguientes variables explicativas: <strong>sexo</strong> y <strong>edad</strong> de la persona desempleada, <strong>sector de actividad económica de procedencia</strong> y <strong>tiempo de búsqueda de empleo</strong>. El conjunto de datos utilizado comprende la <strong>media anual del paro registrado en la comunidad autónoma de Castilla-La Mancha</strong> desagregado según estas variables, a lo largo de los años que van desde 2007 a 2022.</p>
+<p>En los últimos 15 años el mundo ha sufrido dos grandes períodos de <strong>crisis económica</strong>: en <strong>2008</strong>, de tipo financiero, y en <strong>2020</strong>, a causa de la pandemia de <strong>COVID-19</strong>. Una de las variables socioeconómicas que se ven más afectadas por este tipo de procesos es el paro registrado. El paro registrado se define como el conjunto de los demandantes inscritos en las oficinas de empleo, una vez excluidos los inscritos sin disponibilidad para trabajar y los demandantes no parados, tales como estudiantes, desempleados en formación, etc. <span class="citation">(<a href="referncias.html#ref-TOHARIA">Toharia 2012</a>)</span>.
+<strong>Castilla-La Mancha</strong> (CLM), comunidad autónoma interior de España, no ha sido ajena a las crisis económicas mencionadas, por lo que en este caso de uso se analiza el impacto de las mismas en la estructura del <strong>paro registrado</strong> de la región. Para ello se utilizan las siguientes variables explicativas: <strong>sexo</strong> y <strong>edad</strong> de la persona desempleada, <strong>sector de actividad económica de procedencia</strong> y <strong>tiempo de búsqueda de empleo</strong>. El conjunto de datos utilizado comprende la <strong>media anual del paro registrado en la comunidad autónoma de Castilla-La Mancha</strong> desagregado según estas variables, a lo largo de los años que van desde 2007 a 2022.</p>
 <p>Para el análisis se usan las librerías y objetos (paletas de colores para los gráficos) siguientes:</p>
 <div class="sourceCode" id="cb775"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
@@ -190,11 +193,11 @@
 <span><span class="va">graf</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:empleo-total"></span>
-<img src="img/empleo-total.jpeg" alt="Evolución del paro medio anual en CLM." width="60%"><p class="caption">
+<img src="img/empleo-total.jpeg" alt="Evolución del paro medio anual en CLM." width="50%"><p class="caption">
 Figura 52.1: Evolución del paro medio anual en CLM.
 </p>
 </div>
-<p>La Fig. <a href="paro-clm.html#fig:empleo-total">52.1</a> se puede observar el devastador impacto de la crisis de 2008 en la economía castellano-manchega (el paro registrado más que se triplicó), mucho mayor que el de la <strong>COVID-19</strong> que, además, como se verá posteriormente, se localizó, básicamente, en el sector servicios. Sin embargo, a partir de 2013 el paro registrado inició una tendencia a la baja muy pronunciada que aún hoy continúa, después de haber repuntado ligeramente por la pandemia. En consonancia con los anteriores comentarios, en lo que sigue se toman como puntos de referencia los años previos a las crisis financiera y de la COVID-19 (2007 y 2019, respectivamente) y el último año, 2022.</p>
+<p>En la Fig. <a href="paro-clm.html#fig:empleo-total">52.1</a> se puede observar el devastador impacto de la crisis de 2008 en la economía castellano-manchega (el paro registrado fue más del triple), mucho mayor que el de la <strong>COVID-19</strong> que, además, como se verá posteriormente, se localizó básicamente en el sector servicios. Sin embargo, a partir de 2013 el paro registrado inició una tendencia a la baja muy pronunciada que aún hoy continúa, después de haber repuntado ligeramente por la pandemia. En consonancia con los anteriores comentarios, en lo que sigue se toman como puntos de referencia los años previos a las crisis financiera y de la COVID-19 (2007 y 2019, respectivamente) y el último año, 2022.</p>
 </div>
 <div id="evolución-del-paro-medio-anual-en-función-de-la-edad-y-el-sexo" class="section level2" number="52.3">
 <h2>
@@ -267,7 +270,7 @@ Figura 52.3: Distribución del paro medio anual por edad y sexo (2007, 2019 y 20
 <h2>
 <span class="header-section-number">52.4</span> Evolución del paro medio anual según el tiempo de búsqueda de empleo<a class="anchor" aria-label="anchor" href="#evoluci%C3%B3n-del-paro-medio-anual-seg%C3%BAn-el-tiempo-de-b%C3%BAsqueda-de-empleo"><i class="fas fa-link"></i></a>
 </h2>
-<p>Se define el <strong>tiempo de búsqueda de empleo</strong> como el tiempo transcurrido ininterrumpidamente desde la última inscripción de la persona en el paro registrado <span class="citation">(<a href="cap-fraude.html#ref-JIPINFANTE">Pérez Infante 2006</a>)</span>. Si, para simplificar, se agregan los doce intervalos que considera la estadística de paro registrado para el tiempo de búsqueda de empleo en tan solo cuatro, ejecutando la función <code>densidad_compara()</code> para la variable <code>t_bus_e_agr</code> se obtiene la Fig. <a href="paro-clm.html#fig:empleo-densidad-bus-agr">52.4</a>.</p>
+<p>Se define el <strong>tiempo de búsqueda de empleo</strong> como el tiempo transcurrido ininterrumpidamente desde la última inscripción de la persona en el paro registrado <span class="citation">(<a href="referncias.html#ref-JIPINFANTE">Pérez Infante 2006</a>)</span>. Si, para simplificar, se agregan los doce intervalos que considera la estadística de paro registrado para el tiempo de búsqueda de empleo en tan solo cuatro, ejecutando la función <code>densidad_compara()</code> para la variable <code>t_bus_e_agr</code> se obtiene la Fig. <a href="paro-clm.html#fig:empleo-densidad-bus-agr">52.4</a>.</p>
 <div class="sourceCode" id="cb782"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">densidad_compara</span><span class="op">(</span><span class="st">"t_bus_e_agr"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -285,7 +288,7 @@ Figura 52.4: Distribución del paro medio anual por edad y tiempo de búsqueda d
 <h2>
 <span class="header-section-number">52.5</span> Evolución del paro medio anual según sexo, edad y sector de procedencia<a class="anchor" aria-label="anchor" href="#evoluci%C3%B3n-del-paro-medio-anual-seg%C3%BAn-sexo-edad-y-sector-de-procedencia"><i class="fas fa-link"></i></a>
 </h2>
-<p>La variable <strong>sector de procedencia</strong> es un tanto particular, ya que, cuando un parado lleva mucho tiempo buscando empleo ininterrumpidamente, “pierde” el sector de procedencia y se clasifica automáticamente en la rúbrica “sin actividad”. A la hora de analizar esta variable, por tanto, es importante tener en cuenta que una parte de los parados ubicados en la rúbrica “sin actividad”, realmente tuvieron un trabajo hace mucho tiempo.<br>
+<p>La variable <strong>sector de procedencia</strong> es un tanto particular, ya que, cuando un parado lleva mucho tiempo buscando empleo ininterrumpidamente, “pierde” el sector de procedencia y se clasifica automáticamente en la rúbrica “sin actividad”. A la hora de analizar esta variable, por tanto, es importante tener en cuenta que una parte de los parados ubicados en la rúbrica “sin actividad” realmente tuvo un trabajo hace mucho tiempo.<br>
 La visualización de los cambios producidos en estas variables con un mapa de calor se puede llevar a cabo ejecutando de nuevo la función <code>heatmap_anyos()</code>, obteniendo la Fig. <a href="paro-clm.html#fig:empleo-heatmap-sexo-sector">52.5</a>:</p>
 <div class="sourceCode" id="cb784"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">heatmap_anyos</span><span class="op">(</span><span class="st">"sexo"</span>, <span class="st">"sector"</span><span class="op">)</span></span></code></pre></div>
@@ -305,26 +308,28 @@ Ejecutando la función <code>densidad_compara()</code> para la variable <code>se
 Figura 52.6: Distribución del paro medio anual por edad y tiempo de búsqueda de empleo.
 </p>
 </div>
-<p>Como se observa en la dicha figura, las diferencias a lo largo del tiempo del número de parados por sector de actividad económica revelan algunas particularidades interesantes. <strong>Industria</strong> y <strong>construcción</strong> se comportan de modo similar: hay un fuerte desplazamiento en edad desde 2007, pero se mantiene el volumen de paro en ambos sectores a lo largo de los 15 años de estudio. El paro en el sector <strong>agropecuario</strong> y en el sector <strong>servicios</strong> también presenta desplazamiento en edad, pero además se ha incrementado notablemente en estos 15 años; ambos efectos son mucho más evidentes en el sector <strong>servicios</strong>. Finalmente, en el colectivo <strong>sin actividad</strong> se aprecian dos características: en primer lugar, los parados menores de 30 años suponen el mayor volumen en este colectivo, como era de esperar, ya que la población joven que accede al mercado laboral por primera vez no cuenta con experiencia previa; en segundo lugar, desde 2007 a 2019, y algo menos desde 2019 a 2022, hay un incremento de volumen de paro en los <strong>mayores de 45 años</strong> que, con toda probabilidad, corresponde a los parados de larga duración de mayor edad.<br>
-En todos los sectores se aprecia el descenso del volumen total de paro registrado desde 2019 a 2022, a pesar de la crisis sanitaria de la COVID-19.</p>
+<p>Como se observa en la Fig. <a href="paro-clm.html#fig:empleo-densidad-sector">52.6</a>, las diferencias a lo largo del tiempo del número de parados por sector de actividad económica revelan algunas particularidades interesantes. <strong>Industria</strong> y <strong>construcción</strong> se comportan de modo similar: hay un fuerte desplazamiento en edad desde 2007, pero se mantiene el volumen de paro en ambos sectores a lo largo de los 15 años de estudio. El paro en el sector <strong>agropecuario</strong> y en el sector <strong>servicios</strong> también presenta desplazamiento en edad, pero además se ha incrementado notablemente en estos 15 años; ambos efectos son mucho más evidentes en el sector <strong>servicios</strong>. Finalmente, en el colectivo <strong>sin actividad</strong> se aprecian dos características: en primer lugar, los parados menores de 30 años suponen el mayor volumen en este colectivo, como era de esperar, ya que la población joven que accede al mercado laboral por primera vez no cuenta con experiencia previa; en segundo lugar, desde 2007 a 2019, y algo menos desde 2019 a 2022, hay un incremento de volumen de paro en los <strong>mayores de 45 años</strong> que, con toda probabilidad, corresponde a los parados de larga duración de mayor edad.</p>
+<p>En todos los sectores se aprecia el descenso del volumen total de paro registrado desde 2019 a 2022, a pesar de la crisis sanitaria de la COVID-19.</p>
 </div>
 <div id="conclusiones" class="section level2" number="52.6">
 <h2>
 <span class="header-section-number">52.6</span> Conclusiones<a class="anchor" aria-label="anchor" href="#conclusiones"><i class="fas fa-link"></i></a>
 </h2>
-<p>La crisis de 2008 tuvo un gran impacto en el paro registrado de Castilla-La Mancha, multiplicándolo por un factor mayor de 3 desde 2007. Sin embargo, a partir del año 2013 el paro registrado inicia una tendencia a la baja muy pronunciada que aún hoy continúa, después de haber sufrido un rebote debido a la crisis de la COVID-19.<br>
-La estructura interna de la población parada en la región ha cambiado sustancialmente atendiendo a las variables analizadas. En efecto, la población mayor de 45 años, las mujeres, los parados de larga duración y el sector servicios son los grandes perjudicados por ambos procesos de crisis.</p>
-<div class="inline-figure"><img src="img/LogoCDR_transparente.png" width="15%" style="display: block; margin: auto;"></div>
+<p>La crisis de 2008 tuvo un gran impacto en el paro registrado de Castilla-La Mancha, multiplicándolo por un factor mayor que 3 desde 2007. Sin embargo, a partir del año 2013 el paro registrado inicia una tendencia a la baja muy pronunciada que aún hoy continúa, después de haber sufrido un rebote debido a la crisis de la COVID-19.</p>
+<p>La estructura interna de la población parada en la región ha cambiado sustancialmente atendiendo a las variables analizadas. En efecto, la población mayor de 45 años, las mujeres, los parados de larga duración y el sector servicios son los grandes perjudicados por ambos procesos de crisis.</p>
+<!-- ```{r img-paq-cdr, echo=FALSE, out.width='15%',} -->
+<!-- knitr::include_graphics("img/LogoCDR_transparente.png") -->
+<!-- ``` -->
 
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></div>
-<div class="next"><a href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></div>
+<div class="prev"><a href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></div>
+<div class="next"><a href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#paro-clm"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
+<li><a class="nav-link" href="#paro-clm"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="nav-link" href="#planteamiento"><span class="header-section-number">52.1</span> Planteamiento</a></li>
 <li><a class="nav-link" href="#evoluci%C3%B3n-del-paro-medio-anual-en-castilla-la-mancha"><span class="header-section-number">52.2</span> Evolución del paro medio anual en Castilla-La Mancha</a></li>
 <li><a class="nav-link" href="#evoluci%C3%B3n-del-paro-medio-anual-en-funci%C3%B3n-de-la-edad-y-el-sexo"><span class="header-section-number">52.3</span> Evolución del paro medio anual en función de la edad y el sexo</a></li>
@@ -347,7 +352,7 @@ La estructura interna de la población parada en la región ha cambiado sustanci
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -6,23 +6,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 47 Geoprocesamiento en nube | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
-<meta name="description" content="Dominic Royé Fundación de la Investigación del Clima  47.1 Introducción El planteamiento de un problema basado en datos de diversos proveedores, habitualmente implica la descarga de grandes...">
+<meta name="description" content="Dominic Royé Fundación de la Investigación del Clima  47.1 Introducción El planteamiento de un problema basado en datos de diversos proveedores habitualmente implica la descarga de grandes...">
 <meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 47 Geoprocesamiento en nube | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
-<meta property="og:description" content="Dominic Royé Fundación de la Investigación del Clima  47.1 Introducción El planteamiento de un problema basado en datos de diversos proveedores, habitualmente implica la descarga de grandes...">
+<meta property="og:description" content="Dominic Royé Fundación de la Investigación del Clima  47.1 Introducción El planteamiento de un problema basado en datos de diversos proveedores habitualmente implica la descarga de grandes...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 47 Geoprocesamiento en nube | Fundamentos de ciencia de datos con R">
-<meta name="twitter:description" content="Dominic Royé Fundación de la Investigación del Clima  47.1 Introducción El planteamiento de un problema basado en datos de diversos proveedores, habitualmente implica la descarga de grandes...">
+<meta name="twitter:description" content="Dominic Royé Fundación de la Investigación del Clima  47.1 Introducción El planteamiento de un problema basado en datos de diversos proveedores habitualmente implica la descarga de grandes...">
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
 <link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
-<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -47,6 +46,7 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -79,8 +79,8 @@
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
 <li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
-<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
-<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
 <li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
@@ -107,10 +107,10 @@
 <li class="book-part">Casos de estudio en ciencia de datos</li>
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
-<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
-<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
 <li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
@@ -118,6 +118,9 @@
 <li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -135,17 +138,17 @@
 <h2>
 <span class="header-section-number">47.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-24"><i class="fas fa-link"></i></a>
 </h2>
-<p>El planteamiento de un problema basado en datos de diversos proveedores, habitualmente implica la descarga de grandes volúmenes. La actual proliferación de servicios de Open Data, despliegues de sensores y diversas fuentes, incluyendo los satélites, dificulta su procesamiento en equipos personales. El gran crecimiento en grandes volúmenes de datos espacio-temporales de tipo vectorial o ráster lleva a la necesidad en trabajar con servicios en nube para ahorrar tiempo computacional y espacio de almacenamiento. En la actualidad existen diferentes servicios de geoprocesamiento en nube que ayudan a hacer análisis online sin necesidad de descargar los datos ni preocuparse por el rendimiento computacional. Uno de estos servicios es <em>Google Earth Engine</em> (GEE), donde se combina un catálogo de varios petabytes de imágenes satelitales y conjuntos de datos geoespaciales multidimensionales (vectorial y ráster) de alta resolución con capacidades de análisis a escala planetaria. Este servicio gratuito para uso no comercial incluye incluso la posibilidad de crear aplicaciones.</p>
+<p>El planteamiento de un problema basado en datos de diversos proveedores habitualmente implica la descarga de grandes volúmenes de datos. La actual proliferación de servicios de Open Data, despliegues de sensores y diversas fuentes, incluyendo los satélites, dificulta su procesamiento en equipos personales. El gran crecimiento en grandes volúmenes de datos espaciotemporales de tipo vectorial o <em>raster</em> lleva a la necesidad en trabajar con servicios en nube para ahorrar tiempo computacional y espacio de almacenamiento. En la actualidad existen diferentes servicios de geoprocesamiento en nube que ayudan a hacer análisis online sin necesidad de descargar los datos ni preocuparse por el rendimiento computacional. Uno de estos servicios es Google Earth Engine (GEE), donde se combina un catálogo de varios petabytes de imágenes satelitales y conjuntos de datos geoespaciales multidimensionales (vectorial y <em>raster</em>) de alta resolución con capacidades de análisis a escala planetaria. Este servicio gratuito para uso no comercial incluye incluso la posibilidad de crear aplicaciones.</p>
 <p>GEE consiste en una API con bibliotecas de cliente para JavaScript y Python que traducen (a la lengua nativa que es JavaScript) los análisis geoespaciales y hacen posible acceder a los datos. No es necesario descargar grandes volúmenes de datos ni configurar la computación. Para el lenguaje de <strong>R</strong> se puede hacer uso del paquete <code>rgee</code>, que hace puente entre <strong>R</strong> y la API GEE.</p>
-<p>En este capítulo se utiliza el conjunto de datos “NOAA CDR OISST v02r01”, una interpolación óptima de la temperatura diaria de la superficie del mar (OISST, por sus siglas en inglés) con una resolución de 1/4 grados (27 km). Los datos los proporciona la National Oceanic and Atmospheric Administration (NOAA) son campos completos de temperatura oceánica construidos mediante la combinación de observaciones ajustadas por sesgo de diferentes plataformas (satélites, barcos, boyas) en una cuadrícula global regular, con lagunas estimadas por interpolación. Los datos satelitales del radiómetro avanzado de muy alta resolución (AVHRR, por sus siglas en inglés) proporcionan la entrada principal que permite la alta cobertura temporal-espacial desde finales de 1981 hasta el presente<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Véase &lt;a href="https://developers.google.com/earth-engine/datasets/catalog/NOAA_CDR_OISST_V2_1" class="uri"&gt;https://developers.google.com/earth-engine/datasets/catalog/NOAA_CDR_OISST_V2_1&lt;/a&gt;&lt;/p&gt;'><sup>282</sup></a> <span class="citation">(<a href="cap-fraude.html#ref-reynolds2008">R. W. Reynolds, Banzon, and Program 2008</a>)</span>.</p>
-<p>Dicho lo anterior, el objetivo de este capítulo es mostrar el potencial del uso de APIs directamente en <strong>R</strong>. El resultado se empleará en el Cap. (cambioclimatico).</p>
+<p>En este capítulo se utiliza el conjunto de datos “NOAA CDR OISST v02r01”, una interpolación óptima de la temperatura diaria de la superficie del mar (OISST, por sus siglas en inglés) con una resolución de 1/4 grados (27 km). Los datos los proporciona la National Oceanic and Atmospheric Administration (NOAA); son campos completos de temperatura oceánica construidos mediante la combinación de observaciones ajustadas por sesgo de diferentes plataformas (satélites, barcos, boyas) en una cuadrícula global regular, con lagunas estimadas por interpolación. Los datos satelitales del radiómetro avanzado de muy alta resolución (AVHRR, por sus siglas en inglés) proporcionan la entrada principal que permite la alta cobertura temporal-espacial desde finales de 1981 hasta el presente<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Véase &lt;a href="https://developers.google.com/earth-engine/datasets/catalog/NOAA_CDR_OISST_V2_1" class="uri"&gt;https://developers.google.com/earth-engine/datasets/catalog/NOAA_CDR_OISST_V2_1&lt;/a&gt;.&lt;/p&gt;'><sup>290</sup></a> <span class="citation">(<a href="referncias.html#ref-reynolds2008">R. W. Reynolds, Banzon, and Program 2008</a>)</span>.</p>
+<p>Dicho lo anterior, el objetivo de este capítulo es mostrar el potencial del uso de las API directamente en <strong>R</strong>. El resultado se empleará en el Cap. <a href="cambioclimatico.html#cambioclimatico">56</a>.</p>
 </div>
 <div id="sintaxis-de-google-earth-engine" class="section level2" number="47.2">
 <h2>
 <span class="header-section-number">47.2</span> Sintaxis de Google Earth Engine<a class="anchor" aria-label="anchor" href="#sintaxis-de-google-earth-engine"><i class="fas fa-link"></i></a>
 </h2>
-<p>Con ayuda de GEE se preprocesan los datos de tal manera que el resultado son las anomalías estivales en forma de ráster para cada año entre 1981 y 2022. El primer paso consiste en crear el usuario en <a href="earthengine.google.com">earthengine.google.com</a>. Además, es necesario instalar <em>CLI</em> de <em>gcloud</em> (<a href="https://cloud.google.com/sdk/docs/install?hl=es-419" class="uri">https://cloud.google.com/sdk/docs/install?hl=es-419</a>).</p>
-<p>No obsstante, antes se deben conocer algunos conceptos fundamentales sobre la sintaxis en GEE. En general, el lenguaje nativo es Javascript, que se caracteriza por una gramática en la que se combina funciones y variables usando el punto, que se sustituye por el <strong>$</strong> en <strong>R</strong>. Todas las funciones GEE en <strong>R</strong> empiezan por el prefijo ee_* (<code><a href="https://r-spatial.github.io/rgee/reference/ee_print.html">ee_print()</a></code>, <code><a href="https://r-spatial.github.io/rgee/reference/ee_image_to_drive.html">ee_image_to_drive()</a></code>). Los términos más relevantes son los siguientes:</p>
+<p>Con ayuda de GEE se preprocesan los datos de tal manera que el resultado son las anomalías estivales en forma de <em>raster</em> para cada año entre 1981 y 2022. El primer paso consiste en crear el usuario en <a href="earthengine.google.com">earthengine.google.com</a>. Además, es necesario instalar CLI de gcloud (<a href="https://cloud.google.com/sdk/docs/install?hl=es-419" class="uri">https://cloud.google.com/sdk/docs/install?hl=es-419</a>).</p>
+<p>No obstante, antes se deben conocer algunos conceptos fundamentales sobre la sintaxis en GEE. En general, el lenguaje nativo es Javascript, que se caracteriza por una gramática en la que se combinan funciones y variables usando el punto, que se sustituye por el “$” en <strong>R</strong>. Todas las funciones de GEE en <strong>R</strong> empiezan por el prefijo ee_* (<code><a href="https://r-spatial.github.io/rgee/reference/ee_print.html">ee_print()</a></code>, <code><a href="https://r-spatial.github.io/rgee/reference/ee_image_to_drive.html">ee_image_to_drive()</a></code>). Los términos más relevantes son los siguientes:</p>
 <ul>
 <li>
 <em>ImageCollection</em>: serie temporal de imágenes.</li>
@@ -161,18 +164,18 @@
 <h2>
 <span class="header-section-number">47.3</span> Primeros pasos<a class="anchor" aria-label="anchor" href="#primeros-pasos"><i class="fas fa-link"></i></a>
 </h2>
-<p>Después de darse de alta en GEE y haber instalado <em>CLI gcloud</em> en el sistema operativo, se crea un entorno virtual de Python con todas las dependencias de GEE usando la función <code><a href="https://r-spatial.github.io/rgee/reference/ee_install.html">ee_install()</a></code>.</p>
+<p>Después de darse de alta en GEE y haber instalado CLI gcloud en el sistema operativo, se crea un entorno virtual de Python con todas las dependencias de GEE usando la función <code><a href="https://r-spatial.github.io/rgee/reference/ee_install.html">ee_install()</a></code>.</p>
 <div class="sourceCode" id="cb716"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/rgee/">rgee</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_install.html">ee_install</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># crear entorno virtual de Python; ¡sólo una vez!</span></span>
-<span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_check-tools.html">ee_check</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># comprobar si todo está correcto</span></span></code></pre></div>
+<span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_install.html">ee_install</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># crear entorno virtual de Python; ¡solo una vez!</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_check-tools.html">ee_check</a></span><span class="op">(</span><span class="op">)</span>   <span class="co"># comprobar si todo está correcto</span></span></code></pre></div>
 <p>Antes de pasar a programar con la sintaxis propia de GEE, se debe autenticar e inicializar GEE empleando la función <code><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html">ee_Initialize()</a></code>.</p>
 <div class="sourceCode" id="cb717"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html">ee_Initialize</a></span><span class="op">(</span>drive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># autenticar e inicializar GEE</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_user_info.html">ee_user_info</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># inf sobre usuario</span></span></code></pre></div>
-<p>Hay que tener en cuenta que, únicamente cuando se envían tareas, GEE ejecuta el cálculo en los servidores enviando todos los objetos creados. En la mayoría de los pasos se crean objetos <em>EarthEngine</em> sin ejecutarse, que se en las últimas fases del análisis.</p>
-<p>Por ejemplo, se puede seleCcionar la banda NDVI del producto MODIS MOD13A2 e imprimir los metadatos del primer día disponible con <code><a href="https://r-spatial.github.io/rgee/reference/ee_print.html">ee_print()</a></code>. El número de elementos que se pueden ver con esta función está limitado a 5.000.</p>
+<p>Hay que tener en cuenta que, únicamente cuando se envían tareas, GEE ejecuta el cálculo en los servidores enviando todos los objetos creados. En la mayoría de los pasos se crean objetos <em>EarthEngine</em> sin ejecutarse, que se ejecutan en las últimas fases del análisis.</p>
+<p>Por ejemplo, se puede seleccionar la banda NDVI del producto MODIS MOD13A2 e imprimir los metadatos del primer día disponible con <code><a href="https://r-spatial.github.io/rgee/reference/ee_print.html">ee_print()</a></code>. El número de elementos que se puede ver con esta función está limitado a 5.000.</p>
 <div class="sourceCode" id="cb718"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># imageCollection NDVI</span></span>
 <span><span class="va">img</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">'MODIS/006/MOD13A2'</span><span class="op">)</span><span class="op">$</span><span class="fu">select</span><span class="op">(</span><span class="st">'NDVI'</span><span class="op">)</span></span>
@@ -207,13 +210,13 @@
 <div class="sourceCode" id="cb720"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startDate</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">Date</span><span class="op">(</span><span class="st">'1982-01-01'</span><span class="op">)</span> <span class="co"># fecha inicio</span></span>
 <span><span class="va">endDate</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">Date</span><span class="op">(</span><span class="st">'2023-01-16'</span><span class="op">)</span> <span class="co"># fecha final</span></span></code></pre></div>
-<p>Se puede acceder a todas las colecciones (<em>ImageCollection</em>) indicando su identifcación. Además, se filtran y se recortan los datos con respecto al periodo y a la extensión fijada. Finalmente se selecciona la banda o variable de de interés <code>sst</code> (<em>surface sea temperature</em>).</p>
+<p>Se puede acceder a todas las colecciones (<em>ImageCollection</em>) indicando su identifcación. Además, se filtran y se recortan los datos con respecto al período y a la extensión fijada. Finalmente se selecciona la banda o variable de interés <code>sst</code> (<em>surface sea temperature</em>).</p>
 <div class="sourceCode" id="cb721"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">collection_era5</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"NOAA/CDR/OISST/V2_1"</span><span class="op">)</span><span class="op">$</span></span>
 <span>                    <span class="fu">filterDate</span><span class="op">(</span><span class="va">startDate</span>, <span class="va">endDate</span><span class="op">)</span><span class="op">$</span></span>
 <span>                      <span class="fu">filterBounds</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span><span class="op">$</span></span>
 <span>                       <span class="fu">select</span><span class="op">(</span><span class="st">'sst'</span><span class="op">)</span></span></code></pre></div>
-<p>Finalmente, se procede a calcular el número de años en el período fijado.</p>
+<p>Por último, se procede a calcular el número de años en el período fijado.</p>
 <div class="sourceCode" id="cb722"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">numberOfyears</span> <span class="op">&lt;-</span> <span class="va">endDate</span><span class="op">$</span><span class="fu">difference</span><span class="op">(</span><span class="va">startDate</span>, <span class="st">'years'</span><span class="op">)</span><span class="op">$</span><span class="fu">round</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -221,7 +224,7 @@
 <h3>
 <span class="header-section-number">47.4.2</span> Promedio estival<a class="anchor" aria-label="anchor" href="#promedio-estival"><i class="fas fa-link"></i></a>
 </h3>
-<p>Después de las anteriores definiciones se crea una nueva colección con el promedio estival de cada año durante el periodo objeto de estudio. Para ello se crea una lista de los años sobre la que se mapea otra función. Esta función se debe pasar con <code>ee_utilspyfunc()</code>, que traduce una función <strong>R</strong> a una de Python.</p>
+<p>Después de las anteriores definiciones se crea una nueva colección con el promedio estival de cada año durante el período objeto de estudio. Para ello se crea una lista de los años sobre la que se mapea otra función. Esta función se debe pasar con <code>ee_utilspyfunc()</code>, que traduce una función <strong>R</strong> a una de Python.</p>
 <p>En la función personalizada se filtran los meses de verano, se calcula el promedio de sus valores diarios y se multiplica por 0,01, un factor de escala. Cuando se crean nuevas colecciones es importante fijar la nueva fecha con <code><a href="http://talgalili.github.io/dendextend/reference/set.html">set()</a></code>.</p>
 <div class="sourceCode" id="cb723"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">yearly</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span></span>
@@ -243,7 +246,7 @@
 <span>         <span class="fu">filter</span><span class="op">(</span><span class="va">ee</span><span class="op">$</span><span class="va">Filter</span><span class="op">$</span><span class="fu">calendarRange</span><span class="op">(</span><span class="fl">12L</span>,<span class="fl">2L</span>,<span class="st">'month'</span><span class="op">)</span><span class="op">)</span><span class="op">$</span></span>
 <span>          <span class="fu">mean</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
 <span>            <span class="fu">multiply</span><span class="op">(</span><span class="fl">0.01</span><span class="op">)</span></span></code></pre></div>
-<p>Se aplica otra función personalizada sobre las medias estivales de todos los años, en la que se resta la temperatura del periodo de referencia, obteniéndose así las diferencias entre la temperatura media de cada año en el periodo estival y la temperatura media global del periodo estival en el periodo 1982-2010.</p>
+<p>Se aplica otra función personalizada sobre las medias estivales de todos los años en la que se resta la temperatura del período de referencia, obteniéndose así las diferencias entre la temperatura media de cada año en el período estival y la temperatura media global del período estival en 1982-2010.</p>
 <div class="sourceCode" id="cb725"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">anom</span> <span class="op">&lt;-</span> <span class="va">yearly</span><span class="op">$</span><span class="fu">map</span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_utils_pyfunc.html">ee_utils_pyfunc</a></span><span class="op">(</span><span class="kw">function</span> <span class="op">(</span><span class="va">im</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">im</span><span class="op">$</span><span class="fu">subtract</span><span class="op">(</span><span class="va">msst</span><span class="op">)</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span><span class="st">'system:time_start'</span>,           </span>
@@ -274,11 +277,11 @@
 <span>              bins <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:interactive-map-plot"></span>
-<img src="img/interactivo_mapa_geopro.png" alt="Mapa interactivo del mar Mediterraneo (1982)." width="60%"><p class="caption">
-Figura 47.1: Mapa interactivo del mar Mediterraneo (1982).
+<img src="img/interactivo_mapa_geopro.png" alt="Mapa interactivo del mar Mediterráneo (1982)." width="60%"><p class="caption">
+Figura 47.1: Mapa interactivo del mar Mediterráneo (1982).
 </p>
 </div>
-<p>Hasta este momento no se ha enviado una tarea para que GEE la realice. Para ello hay que exportar las anomalías de cada año en formato <code>geotiff</code>. La función <code><a href="https://r-spatial.github.io/rgee/reference/ee_imagecollection_to_local.html">ee_imagecollection_to_local()</a></code> facilita la exportación de todas las capas de una <em>ImageCollection</em>. En cambio, la función <code><a href="https://r-spatial.github.io/rgee/reference/ee_image_to_drive.html">ee_image_to_drive()</a></code> exporta datos individuales de una única imagen a <em>Google Drive</em>. El argumento <code>scale</code> indica con qué resolución se exporta. Aunque la resolución de los datos originales es de 27 km, se fija una resolución de 2 km, lo que implica una interpolación en la exportación por razones de estética en la visualización.</p>
+<p>Hasta este momento no se ha enviado una tarea para que GEE la realice. Para ello hay que exportar las anomalías de cada año en formato <code>geotiff</code>. La función <code><a href="https://r-spatial.github.io/rgee/reference/ee_imagecollection_to_local.html">ee_imagecollection_to_local()</a></code> facilita la exportación de todas las capas de una <em>ImageCollection</em>. En cambio, la función <code><a href="https://r-spatial.github.io/rgee/reference/ee_image_to_drive.html">ee_image_to_drive()</a></code> exporta datos individuales de una única imagen a Google Drive. El argumento <code>scale</code> indica con qué resolución se exporta. Aunque la resolución de los datos originales es de 27 km, se fija una resolución de 2 km, lo que implica una interpolación en la exportación por razones de estética en la visualización.</p>
 <div class="sourceCode" id="cb727"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># carpeta temporal o cualquier otra ruta</span></span>
 <span></span>
@@ -293,12 +296,14 @@ Figura 47.1: Mapa interactivo del mar Mediterraneo (1982).
 <span><span class="op">)</span></span></code></pre></div>
 <p>En resumen, este ejemplo ha mostrado una pequeña parte de la capacidad del geoprocesamiento en manejar grandes volúmenes de datos sin que implique su descarga ni el cálculo localmente. Pero también es posible manejar datos vectoriales u otros datos de alta resolución. Incluso se puede llegar a crear apliaciones basadas en GEE.</p>
 </div>
-<div id="resumen-43" class="section level3 unnumbered infobox_resume">
-<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-43"><i class="fas fa-link"></i></a>
+<div id="resumen-46" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-46"><i class="fas fa-link"></i></a>
 </h3>
-<p>El aumento del volumen de datos que ha tenido lugar en los últimos años ha llevado a la necesidad de utilizar servicios de geoprocesamiento en nube que ayuden a llevar a cabo su análisis online, sin necesidad de descargar los datos ni de preocuparse por el rendimiento computacional.</p>
-<p>Uno de estos servicios es <em>Google Earth Engine</em>, donde se combina un catálogo de imágenes satelitales y conjuntos de datos geoespaciales multidimensionales de alta resolución con capacidades de análisis a escala planetaria.</p>
-<p>En este ejemplo que se utiliza en el capítulo, se muestra cómo procesar la temperatura oceánica superficial para calcular las anomalías de temperatura de la cuenca mediterránea en la estación estival, desde 1982 a 2022.</p>
+<ul>
+<li><p>El aumento del volumen de datos que ha tenido lugar en los últimos años ha llevado a la necesidad de utilizar servicios de geoprocesamiento en nube que ayuden a llevar a cabo su análisis online, sin necesidad de descargar los datos ni de preocuparse por el rendimiento computacional.</p></li>
+<li><p>Uno de estos servicios es Google Earth Engine, donde se combina un catálogo de imágenes satelitales y conjuntos de datos geoespaciales multidimensionales de alta resolución con capacidades de análisis a escala planetaria.</p></li>
+<li><p>En este ejemplo que se utiliza en el capítulo, se muestra cómo procesar la temperatura oceánica superficial para calcular las anomalías de temperatura de la cuenca mediterránea en la estación estival, desde 1982 a 2022.</p></li>
+</ul>
 </div>
 
 </div>
@@ -321,7 +326,7 @@ Figura 47.1: Mapa interactivo del mar Mediterraneo (1982).
 <a class="nav-link" href="#c%C3%A1lculo-de-anomal%C3%ADas-en-la-temperatura-del-mar-mediterr%C3%A1neo"><span class="header-section-number">47.4</span> Cálculo de anomalías en la temperatura del mar Mediterráneo</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#definiciones-previas"><span class="header-section-number">47.4.1</span> Definiciones previas</a></li>
 <li><a class="nav-link" href="#promedio-estival"><span class="header-section-number">47.4.2</span> Promedio estival</a></li>
-<li><a class="nav-link" href="#resumen-43">Resumen</a></li>
+<li><a class="nav-link" href="#resumen-46">Resumen</a></li>
 </ul>
 </li>
 </ul>
@@ -340,7 +345,7 @@ Figura 47.1: Mapa interactivo del mar Mediterraneo (1982).
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

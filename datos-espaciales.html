@@ -6,23 +6,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 40 Trabajando con datos espaciales | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
-<meta name="description" content="Gema Fernández-Avilés252 Universidad de Castilla-La Mancha   40.1 Introducción Los datos espaciales, también conocidos como datos geográficos o datos geo-referenciados, son aquellos que contienen...">
+<meta name="description" content="Gema Fernández-Avilés259 Universidad de Castilla-La Mancha   40.1 Introducción Los datos espaciales, también conocidos como datos geográficos o datos georreferenciados, son aquellos que contienen...">
 <meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Capítulo 40 Trabajando con datos espaciales | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
-<meta property="og:description" content="Gema Fernández-Avilés252 Universidad de Castilla-La Mancha   40.1 Introducción Los datos espaciales, también conocidos como datos geográficos o datos geo-referenciados, son aquellos que contienen...">
+<meta property="og:description" content="Gema Fernández-Avilés259 Universidad de Castilla-La Mancha   40.1 Introducción Los datos espaciales, también conocidos como datos geográficos o datos georreferenciados, son aquellos que contienen...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 40 Trabajando con datos espaciales | Fundamentos de ciencia de datos con R">
-<meta name="twitter:description" content="Gema Fernández-Avilés252 Universidad de Castilla-La Mancha   40.1 Introducción Los datos espaciales, también conocidos como datos geográficos o datos geo-referenciados, son aquellos que contienen...">
+<meta name="twitter:description" content="Gema Fernández-Avilés259 Universidad de Castilla-La Mancha   40.1 Introducción Los datos espaciales, también conocidos como datos geográficos o datos georreferenciados, son aquellos que contienen...">
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
 <link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
-<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -47,6 +46,7 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -79,8 +79,8 @@
 <li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
 <li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
 <li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
-<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: bagging y random forest</a></li>
-<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> Boosting y el algoritmo XGBoost</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
 <li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
@@ -107,10 +107,10 @@
 <li class="book-part">Casos de estudio en ciencia de datos</li>
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
-<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo twitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de Rstudio a su periódico</a></li>
-<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID en el paro de Castilla-La Mancha</a></li>
-<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comerico minorista</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
 <li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
 <li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
@@ -118,6 +118,9 @@
 <li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
 <li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referncias.html">Referncias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -129,7 +132,7 @@
 <h1>
 <span class="header-section-number">Capítulo 40</span> Trabajando con datos espaciales<a class="anchor" aria-label="anchor" href="#datos-espaciales"><i class="fas fa-link"></i></a>
 </h1>
-<p><em>Gema Fernández-Avilés<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Quisiera agradecer a Diego Hernangómez la ayuda prestada en la elaboración de este capítulo.&lt;/p&gt;"><sup>252</sup></a></em></p>
+<p><em>Gema Fernández-Avilés<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Quisiera agradecer a Diego Hernangómez la ayuda prestada en la elaboración de este capítulo.&lt;/p&gt;"><sup>259</sup></a></em></p>
 <p>Universidad de Castilla-La Mancha</p>
 <p>
 </p>
@@ -137,25 +140,20 @@
 <h2>
 <span class="header-section-number">40.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-20"><i class="fas fa-link"></i></a>
 </h2>
-<p>Los <strong>datos espaciales</strong>, también conocidos como <strong>datos geográficos</strong> o <strong>datos geo-referenciados</strong>, son aquellos que contienen información de una localización o área geográfica de la superficie de la Tierra o que están relacionados con dicha localización. Se podría decir también que son aquellos que están anclados al espacio. El primer análisis de datos espaciales fue realizado por el médico John Snow en 1854. Éste construyó un famoso mapa que muestraba las muertes causadas por un brote de cólera (que mató a 127 personas en 3 días) en le barrio del Soho de Londres junto con la ubicación de las bombas de agua en el área (véase Fig. <a href="datos-espaciales.html#fig:snow-cholera-map-ch40">40.1</a>). Snow descubrió que había un agrupamiento significativo de muertes alrededor de una determinada bomba, y al quitar la manija de la bomba se detuvo el brote. Tanto los datos de muertes con los que trabajó Snow como aquellos que contienen las coordenadas de las ubicaciones donde estaban situadas las bombas de agua son datos espaciales.</p>
+<p>Los <strong>datos espaciales</strong>, también conocidos como <strong>datos geográficos</strong> o <strong>datos georreferenciados</strong>, son aquellos que contienen información de una localización o área geográfica de la superficie de la Tierra o que están relacionados con dicha localización. Se podría decir también que son aquellos que están anclados al espacio. El primer análisis de datos espaciales fue realizado por el médico John Snow en 1854 <span class="citation">(<a href="referncias.html#ref-snow1856cholera">Snow 1856</a>)</span>. Él construyó un famoso mapa que mostraba las muertes causadas por un brote de cólera (que mató a 127 personas en 3 días) en el barrio del Soho de Londres junto con la ubicación de las bombas de agua en el área (véase Fig. <a href="datos-espaciales.html#fig:snow-cholera-map-ch40">40.1</a>). Snow descubrió que había un agrupamiento significativo de muertes alrededor de una determinada bomba, y al quitar la manija de la bomba se detuvo el brote. Tanto los datos de muertes con los que trabajó Snow como aquellos que contienen las coordenadas de las ubicaciones donde estaban situadas las bombas de agua son datos espaciales.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:snow-cholera-map-ch40"></span>
-<img src="img/Snow-cholera-map.JPG" alt="Mapa de cólera en Londres según Snow. Fuente: Wikipedia." width="60%"><p class="caption">
-Figura 40.1: Mapa de cólera en Londres según Snow. Fuente: Wikipedia.
+<img src="img/colera_new.png" alt="Mapa de cólera en Londres según Snow. Fuente: adaptado de Snow (1856)." width="45%"><p class="caption">
+Figura 40.1: Mapa de cólera en Londres según Snow. Fuente: adaptado de Snow (1856).
 </p>
 </div>
-<p>El análisis espacial de Snow es considerado el antecedente conocido más antiguo de la ciencia de datos <span class="citation">(<a href="cap-fraude.html#ref-Baumer_et_el_2021">Baumer, Kaplan, and Horton 2021</a>)</span>, porque: (i) la información clave se obtuvo mediante la combinación de tres fuentes de datos (las muertes por cólera, las ubicaciones de las bombas de agua y el mapa de calles de Londres); (ii) se puede crear un modelo espacial directamente a partir de los datos; y (iii) el problema sólo se resolvió cuando la evidencia basada en datos se combinó con un modelo plausible que explicaba el fenómeno físico. Es decir, Snow era médico y su conocimiento sobre la transmisión de enfermedades fue suficiente para convencer a sus colegas de que el cólera no se transmitía por el aire.</p>
+<p>El análisis espacial de Snow es considerado el antecedente conocido más antiguo de la ciencia de datos <span class="citation">(<a href="referncias.html#ref-Baumer_et_el_2021">Baumer, Kaplan, and Horton 2021</a>)</span>, porque: (i) la información clave se obtuvo mediante la combinación de tres fuentes de datos (las muertes por cólera, las ubicaciones de las bombas de agua y el mapa de calles de Londres); (ii) se puede crear un modelo espacial directamente a partir de los datos; y (iii) el problema solo se resolvió cuando la evidencia basada en datos se combinó con un modelo plausible que explicaba el fenómeno físico. Es decir, Snow era médico y su conocimiento sobre la transmisión de enfermedades fue suficiente para convencer a sus colegas de que el cólera no se transmitía por el aire.</p>
 <div id="estadística-para-datos-espaciales" class="section level3" number="40.1.1">
 <h3>
 <span class="header-section-number">40.1.1</span> Estadística para datos espaciales<a class="anchor" aria-label="anchor" href="#estad%C3%ADstica-para-datos-espaciales"><i class="fas fa-link"></i></a>
 </h3>
-<p>El área que se encarga de estudiar y analizar los datos espaciales es la <strong>estadística espacial</strong> o la estadística para datos espaciales <span class="citation">(<a href="cap-fraude.html#ref-cressie1993">N. A. C. Cressie 1993</a>; <a href="cap-fraude.html#ref-montero2015spatial">J. M. Montero, Fernández-Avilés, and Mateu 2015</a>)</span>.</p>
-<p>Debido a que los datos espaciales surgen en múltiples campos y aplicaciones, hay una gran variedad de tipos de datos, estructuras y escenarios espaciales <span class="citation">(<a href="cap-fraude.html#ref-Schabenberger_Gotway_2005">Schabenberger and Gotway 2005, 6</a>)</span>. La Fig. <a href="datos-espaciales.html#fig:hengl-cressie">40.2</a> representa la clasificación de datos espaciales proporcionada por <span class="citation">N. A. C. Cressie (<a href="cap-fraude.html#ref-cressie1993">1993</a>)</span>, basada en la naturaleza del dominio espacial en estudio. Cressie distingue tres tipos de datos espaciales:</p>
-<ul>
-<li><p>datos geoestadísticos,</p></li>
-<li><p>datos lattice o reticulares. </p></li>
-<li><p>datos de patrones de puntos y</p></li>
-</ul>
+<p>El área que se encarga de estudiar y analizar los datos espaciales es la <strong>estadística espacial</strong> o la estadística para datos espaciales <span class="citation">(<a href="referncias.html#ref-cressie1993">N. A. C. Cressie 1993</a>; <a href="referncias.html#ref-montero2015spatial">J. M. Montero, Fernández-Avilés, and Mateu 2015</a>)</span>.</p>
+<p>Debido a que los datos espaciales surgen en múltiples campos y aplicaciones, hay una gran variedad de tipos de datos, estructuras y escenarios espaciales <span class="citation">(<a href="referncias.html#ref-Schabenberger_Gotway_2005">Schabenberger and Gotway 2005</a>)</span>. La Fig. <a href="datos-espaciales.html#fig:hengl-cressie">40.2</a> representa la clasificación de datos espaciales proporcionada por <span class="citation">N. A. C. Cressie (<a href="referncias.html#ref-cressie1993">1993</a>)</span>, basada en la naturaleza del dominio espacial en estudio. Cressie distingue tres tipos de datos espaciales: (<span class="math inline">\(i\)</span>) datos geoestadísticos, (<span class="math inline">\(ii\)</span>) datos <em>lattice</em> o reticulares y (<span class="math inline">\(iii\)</span>) datos de patrones de puntos.</p>
 <p>En este libro, el estudio de los datos geoestadísticos se aborda en el Cap. <a href="geo.html#geo">41</a>, el análisis de los datos <em>lattice</em> se lleva a cabo en el Cap. <a href="cap-econom-esp.html#cap-econom-esp">42</a>, dedicado a la econometría espacial, y los datos de patrones de puntos se analizan en el Cap. <a href="cap-pp.html#cap-pp">43</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:hengl-cressie"></span>
@@ -169,8 +167,8 @@ Figura 40.2: Clasificación de datos espaciales propuesta por Cressie (1993).
 <h2>
 <span class="header-section-number">40.2</span> Conceptos clave<a class="anchor" aria-label="anchor" href="#conceptos-clave"><i class="fas fa-link"></i></a>
 </h2>
-<p>Visto el contexto original de los datos espaciales, y antes de entrar en detalle en su análisis, se deben tener en cuenta una serie de conceptos clave. La Fig. <a href="datos-espaciales.html#fig:fig-accidentes1">40.3</a> representa la localización de los accidentes de tráfico registrados en la ciudad de Madrid durante el año 2020. Sin embargo, tal representación no aporta información útil para su análisis. Por ejemplo, sería interesante añadir un mapa de carreteras junto con la localización de los accidentes.</p>
-<div class="sourceCode" id="cb601"><pre class="downlit sourceCode r">
+<p>Visto el contexto original de los datos espaciales, y antes de entrar en detalle en su análisis, se debe tener en cuenta una serie de conceptos clave. La Fig. <a href="datos-espaciales.html#fig:fig-accidentes1">40.3</a> representa la localización de los accidentes de tráfico registrados en la ciudad de Madrid durante el año 2020. Sin embargo, tal representación no aporta información útil para su análisis. Por ejemplo, sería interesante añadir un mapa de carreteras junto con la localización de los accidentes.</p>
+<div class="sourceCode" id="cb602"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">accidentes2020_data</span>,</span>
@@ -183,8 +181,8 @@ Figura 40.2: Clasificación de datos espaciales propuesta por Cressie (1993).
 Figura 40.3: Accidentes de tráfico en Madrid (2020).
 </p>
 </div>
-<p>Además de las coordenadas, en la representación de geodatos es importante el marco o contexto espacial, así como el conocimiento del (i) <strong>sistema de referencia de coordenadas</strong> o <em>coordinate reference system</em> (<strong>CRS</strong>) en el que están goe-referenciadas o proyectadas las coordenadas y (ii) el formato de los datos con los que se está trabajando: vector o <em>raster</em>.</p>
-<div class="sourceCode" id="cb602"><pre class="downlit sourceCode r">
+<p>Además de las coordenadas, en la representación de geodatos es importante el marco o contexto espacial, así como el conocimiento del (i) <strong>sistema de referencia de coordenadas</strong> o <em>coordinate reference system</em> (<strong>CRS</strong>) en el que están goerreferenciadas o proyectadas las coordenadas y (ii) el formato de los datos con los que se está trabajando: vector o <em>raster</em>.</p>
+<div class="sourceCode" id="cb603"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/">"sf"</a></span><span class="op">)</span></span>
 <span><span class="va">accidentes2020_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">accidentes2020_data</span>,</span>
 <span>  coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"coordenada_x_utm"</span>, <span class="st">"coordenada_y_utm"</span><span class="op">)</span>,</span>
@@ -205,7 +203,7 @@ Figura 40.3: Accidentes de tráfico en Madrid (2020).
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fig-accidentes2"></span>
-<img src="img/accidentes2.png" alt="Accidentes de tráfico en Madrid proyectados y con mapa de carreteras (2020)." width="60%"><p class="caption">
+<img src="img/accidentes2.png" alt="Accidentes de tráfico en Madrid proyectados y con mapa de carreteras (2020)." width="80%"><p class="caption">
 Figura 40.4: Accidentes de tráfico en Madrid proyectados y con mapa de carreteras (2020).
 </p>
 </div>
@@ -214,9 +212,9 @@ Figura 40.4: Accidentes de tráfico en Madrid proyectados y con mapa de carreter
 <h3>
 <span class="header-section-number">40.2.1</span> Sistema de referencia de coordenadas<a class="anchor" aria-label="anchor" href="#CRS"><i class="fas fa-link"></i></a>
 </h3>
-<p>Los CRS permiten identificar con exactitud la posición de los datos sobre el globo terráqueo. Cuando se trabaja con datos espaciales procedentes de distintas fuentes de información es necesario comprobar que las coordenadas correspondientes a dichos datos se encuentran definidas en el mismo CRS. Ésto se consigue transformándolas (o proyectándolas) a un CRS común. Una buena referencia para profundizar esta cuestión es el Cap. 2 de <span class="citation">E. Pebesma and Bivand (<a href="cap-fraude.html#ref-pebesma2022spatial">2023</a>)</span>.</p>
-<p>En la Fig. <a href="datos-espaciales.html#fig:plot-puertos-error">40.5</a> se muestran los puertos en un mapa mundial. Todos los vienen representados por el punto rojo. ¿A qué se debe? A que los datos están en distintos CRS.</p>
-<div class="sourceCode" id="cb603"><pre class="downlit sourceCode r">
+<p>Los CRS permiten identificar con exactitud la posición de los datos sobre el globo terráqueo. Cuando se trabaja con datos espaciales procedentes de distintas fuentes de información es necesario comprobar que las coordenadas correspondientes a dichos datos se encuentran definidas en el mismo CRS. Esto se consigue transformándolas (o proyectándolas) a un CRS común. Una buena referencia para profundizar esta cuestión es el Cap. 2 de <span class="citation">E. Pebesma and Bivand (<a href="referncias.html#ref-pebesma2022spatial">2023</a>)</span>.</p>
+<p>En la Fig. <a href="datos-espaciales.html#fig:plot-puertos-error">40.5</a> se muestran los puertos en un mapa mundial. Todos vienen representados por el punto rojo. ¿A qué se debe? A que los datos están en distintos CRS.</p>
+<div class="sourceCode" id="cb604"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ropengov.github.io/giscoR/">"giscoR"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">paises</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -234,7 +232,7 @@ Figura 40.5: Localización de los puertos en el mapamundi (distinto CRS en los p
 <p>Los dos tipos de CRS que existen se describen a continuación:</p>
 <ol style="list-style-type: lower-roman">
 <li>
-<strong>Geográficos</strong>: aquellos en los que los parámetros empleados para localizar una posición espacial son la latitud (Norte-Sur [-90º, 90º]) y la longitud (Este-Oeste [-180º, 180º]). Están basados en la geometría esférica. En este caso las distancias entre dos puntos son <strong>distancias angulares</strong><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Distancia del arco que une dos puntos, medida en grados o radianes.&lt;/p&gt;"><sup>253</sup></a>.</li>
+<strong>Geográficos</strong>: aquellos en los que los parámetros empleados para localizar una posición espacial son la latitud (Norte-Sur [-90º, 90º]) y la longitud (Este-Oeste [-180º, 180º]). Están basados en la geometría esférica. En este caso las distancias entre dos puntos son <strong>distancias angulares</strong><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Distancia del arco que une dos puntos, medida en grados o radianes.&lt;/p&gt;"><sup>260</sup></a>.</li>
 </ol>
 <ol start="2" style="list-style-type: lower-roman">
 <li>
@@ -242,7 +240,7 @@ Figura 40.5: Localización de los puertos en el mapamundi (distinto CRS en los p
 </ol>
 <p></p>
 <p>Retomando el ejemplo de los puertos marítimos, tras proyectar los puertos al mismo CRS que el mapamundi utilizando la proyección de Robinson (la proyección cartográfica más popular para mapamundis), la Fig. <a href="datos-espaciales.html#fig:plot-puertos-ok">40.6</a> ya muestra adecuadamente la localización de los puertos en el mapamundi.</p>
-<div class="sourceCode" id="cb604"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb605"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">puertos</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">paises_robin</span><span class="op">)</span> <span class="co"># Comprueba CRS</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span>
 <span><span class="va">puertos_robin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">puertos</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">paises_robin</span><span class="op">)</span><span class="op">)</span></span>
@@ -250,24 +248,24 @@ Figura 40.5: Localización de los puertos en el mapamundi (distinto CRS en los p
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">puertos_robin</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, col<span class="op">=</span><span class="fl">4</span>, pch<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-puertos-ok"></span>
-<img src="img/mapa-muni-ok.png" alt="Localización de los puertos en el mapa mundi (mismo CRS puertos y mapa)." width="80%"><p class="caption">
-Figura 40.6: Localización de los puertos en el mapa mundi (mismo CRS puertos y mapa).
+<img src="img/mapa-muni-ok.png" alt="Localización de los puertos en el mapamundi (mismo CRS en los puertos y el mapa)." width="80%"><p class="caption">
+Figura 40.6: Localización de los puertos en el mapamundi (mismo CRS en los puertos y el mapa).
 </p>
 </div>
-<p>Nótese que en el paso de tres a dos dimensiones en el ejemplo de los puertos marítimos en el globo terráqueo, se ha utilizado la transformación o proyección Robin. El lector podría preguntarse ¿por qué esa y no otra? ¿Es que no hay más? Hay muchas, pero la proyección adecuada, y en general el CRS adecuado, en cada caso depende de la localización y el rango espacial de los datos (pequeño-geográfico; grande-proyección). El paquete <code>crsuggest</code> <span class="citation">(<a href="cap-fraude.html#ref-R-crsuggest">Walker 2022</a>)</span> facilita la labor de elección de la proyección más conveniente, al sugerir transformaciones de sistemas de referencia de coordenadas adecuadas para conjuntos de datos espaciales. Devuelve un marco de datos con códigos <code>CRS</code> que se pueden utilizar para proyectos de transformación y mapeo <code>CRS</code>.</p>
+<p>Nótese que en el paso de tres a dos dimensiones en el ejemplo de los puertos marítimos en el globo terráqueo, se ha utilizado la transformación o proyección Robinson. El lector podría preguntarse ¿por qué esa y no otra? ¿Es que no hay más? Hay muchas, pero la proyección adecuada, y en general el CRS adecuado, en cada caso depende de la localización y el rango espacial de los datos (pequeño-geográfico; grande-proyección). El paquete <code>crsuggest</code> <span class="citation">(<a href="referncias.html#ref-R-crsuggest">Walker 2022</a>)</span> facilita la labor de elección de la proyección más conveniente, al sugerir transformaciones de sistemas de referencia de coordenadas adecuadas para conjuntos de datos espaciales. Devuelve un marco de datos con códigos <code>CRS</code> que se pueden utilizar para proyectos de transformación y mapeo <code>CRS</code>.</p>
 </div>
 <div id="formatos" class="section level3" number="40.2.2">
 <h3>
 <span class="header-section-number">40.2.2</span> Formatos de datos espaciales<a class="anchor" aria-label="anchor" href="#formatos"><i class="fas fa-link"></i></a>
 </h3>
-<p>Como se avanzó anteriormente, en el ámbito del análisis espacial los datos espaciales pueden tener formato vector o formato ráster, dependiendo de cómo sean los datos<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Un análisis detallado puede verse en &lt;a href="https://mdsr-2122-visualizacion.netlify.app/"&gt;&lt;span class="citation"&gt;Hernangómez and Fernández-Avilés (&lt;span&gt;2022&lt;/span&gt;)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;'><sup>254</sup></a> <span class="citation">(<a href="cap-fraude.html#ref-Lovelance_et_al_2019">Lovelace, Nowosad, and Münchow 2019</a>)</span>. También se denominan datos vectoriales y <em>raster</em> o rasterizados (o mapas de bits).</p>
+<p>Como se avanzó anteriormente, en el ámbito del análisis espacial los datos espaciales pueden tener formato vector o formato <em>raster</em>, dependiendo de cómo sean los datos<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Un análisis detallado puede verse en &lt;a href="https://mdsr-2122-visualizacion.netlify.app/"&gt;&lt;span class="citation"&gt;Hernangómez and Fernández-Avilés (&lt;span&gt;2022&lt;/span&gt;)&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>261</sup></a> <span class="citation">(<a href="referncias.html#ref-Lovelance_et_al_2019">Lovelace, Nowosad, and Munchow 2019</a>)</span>. También se denominan datos vectoriales y <em>raster</em> o rasterizados (o mapas de bits).</p>
 <p>Los datos vectoriales pueden representar tres tipos distintos de entidades: puntos, líneas y polígonos, y, quizás, su característica más importante es que cada punto, línea o polígono puede tener una tabla de atributos asociados. Los datos <em>raster</em>, en cambio, son una malla (en términos matemáticos, una matriz) donde cada celda (o píxel) tiene un tamaño similar y un valor específico. En el caso de las imágenes a color, el <em>raster</em> estaría compuesto por tres matrices sobrepuestas, cada una con celdas que tienen el valor correspondiente a un color primario. Cuando se utilizan imágenes de satélite u otros sensores cada archivo puede contener hasta cientos de matrices que representan distintos rangos de lo observado.</p>
 <div id="vec" class="section level4" number="40.2.2.1">
 <h4>
 <span class="header-section-number">40.2.2.1</span> Datos de vectores<a class="anchor" aria-label="anchor" href="#vec"><i class="fas fa-link"></i></a>
 </h4>
-<p>Este modelo de datos está basado en puntos georeferenciados. Los <strong>puntos</strong>, por ejemplo, representan localizaciones específicas. Un ejemplo es la localización de los hospitales y centros de salud de la ciudad de Toledo representados en la Fig. <a href="datos-espaciales.html#fig:plot-puntos">40.7</a>.</p>
-<div class="sourceCode" id="cb605"><pre class="downlit sourceCode r">
+<p>Este modelo de datos está basado en puntos georreferenciados. Los <strong>puntos</strong>, por ejemplo, representan localizaciones específicas. Un ejemplo es la localización de los hospitales y centros de salud de la ciudad de Toledo representados en la Fig. <a href="datos-espaciales.html#fig:plot-puntos">40.7</a>.</p>
+<div class="sourceCode" id="cb606"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hosp_toledo</span>, </span>
 <span>          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Hospitales y Centros Sanitarios"</span><span class="op">)</span>, </span>
@@ -277,12 +275,12 @@ Figura 40.6: Localización de los puertos en el mapa mundi (mismo CRS puertos y 
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-puntos"></span>
-<img src="img/centros-toledo.png" alt="Hospitales y centros de salud en Toledo." width="60%"><p class="caption">
+<img src="img/centros-toledo.png" alt="Hospitales y centros de salud en Toledo." width="75%"><p class="caption">
 Figura 40.7: Hospitales y centros de salud en Toledo.
 </p>
 </div>
 <p>Los puntos también pueden estar conectados entre sí, de manera que formen geometrías más complejas, como <strong>líneas</strong> y <strong>polígonos</strong>. En la Fig. <a href="datos-espaciales.html#fig:plot-lineas-pol">40.8</a>, el río Tajo está representado como una línea (<code>tajo</code>, sucesión de puntos unidos entre sí) y la ciudad de Toledo como un polígono (<code>toledo</code>, línea de puntos cerrada formando un espacio continuo).</p>
-<div class="sourceCode" id="cb606"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb607"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">toledo</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"cornsilk2"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">tajo</span>, col <span class="op">=</span> <span class="st">"lightblue2"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
@@ -291,8 +289,8 @@ Figura 40.7: Hospitales y centros de salud en Toledo.
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-lineas-pol"></span>
-<img src="img/rio-toledo.png" alt="Datos vector: Puntos, líneas y polígonos" width="60%"><p class="caption">
-Figura 40.8: Datos vector: Puntos, líneas y polígonos
+<img src="img/rio-toledo.png" alt="Datos vector: Puntos, líneas y polígonos." width="75%"><p class="caption">
+Figura 40.8: Datos vector: Puntos, líneas y polígonos.
 </p>
 </div>
 <p>Las extensiones más habituales de los archivos que contienen datos de vectores se muestran en la Tabla <a href="datos-espaciales.html#tab:geo-ficheros-vector">40.1</a>:</p>
@@ -347,8 +345,8 @@ Figura 40.8: Datos vector: Puntos, líneas y polígonos
 <h4>
 <span class="header-section-number">40.2.2.2</span> Datos <em>raster</em><a class="anchor" aria-label="anchor" href="#raster"><i class="fas fa-link"></i></a>
 </h4>
-<p>Los datos <em>raster</em> son datos proporcionados en una rejilla de píxeles (regulares o no) denominada <strong>matriz</strong>. El caso más popular de un <em>raster</em> es una fotografía, donde la imagen se representa como una serie de celdas, determinadas por la resolución de la imagen, es decir, el tamaño del píxel (por ejemplo, 5 <span class="math inline">\(\times\)</span> 5 unidades, si es regular, 5 <span class="math inline">\(\times\)</span> 10 unidades, si es irregular) y el valor del pixel (RGB –red, green, blue– por ejemplo) que determina el color que presenta cada uno de estos píxeles. En el ámbito de los datos espaciales, un archivo <em>raster</em> está formado por una malla de píxeles georreferenciada, tal y como muestra la Fig. <a href="datos-espaciales.html#fig:plot-raster-to">40.9</a>. En ella se visualiza el conjunto de datos <code>elev</code> incluido en el paquete <code>CDR</code>, que contiene los datos de altitud de la provincia de Toledo en metros.</p>
-<div class="sourceCode" id="cb607"><pre class="downlit sourceCode r">
+<p>Los datos <em>raster</em> son datos proporcionados en una rejilla de píxeles (regulares o no) denominada <strong>matriz</strong>. El caso más popular de un <em>raster</em> es una fotografía, donde la imagen se representa como una serie de celdas, determinadas por la resolución de la imagen, es decir, el tamaño del píxel (por ejemplo, 5 <span class="math inline">\(\times\)</span> 5 unidades, si es regular, 5 <span class="math inline">\(\times\)</span> 10 unidades, si es irregular) y el valor del píxel (RGB –<em>red</em>, <em>green</em>, <em>blue</em>–, por ejemplo) que determina el color que presenta cada uno de estos píxeles. En el ámbito de los datos espaciales, un archivo <em>raster</em> está formado por una malla de píxeles georreferenciada, tal y como muestra la Fig. <a href="datos-espaciales.html#fig:plot-raster-to">40.9</a>. En ella se visualiza el conjunto de datos <code>elev</code> incluido en el paquete <code>CDR</code>, que contiene los datos de altitud de la provincia de Toledo en metros.</p>
+<div class="sourceCode" id="cb608"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rspatial.org/terra/">"terra"</a></span><span class="op">)</span></span>
 <span><span class="va">elev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/rast.html">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"external/Toledo_DEM.asc"</span>, package <span class="op">=</span> <span class="st">"CDR"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html">plot</a></span><span class="op">(</span><span class="va">elev</span>, main <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
@@ -357,7 +355,7 @@ Figura 40.8: Datos vector: Puntos, líneas y polígonos
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">Tol_prov</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-raster-to"></span>
-<img src="img/elev-toledo.png" alt="Datos $raster$. Altitud de la provincia de Toledo." width="60%"><p class="caption">
+<img src="img/elev-toledo.png" alt="Datos $raster$. Altitud de la provincia de Toledo." width="70%"><p class="caption">
 Figura 40.9: Datos <span class="math inline">\(raster\)</span>. Altitud de la provincia de Toledo.
 </p>
 </div>
@@ -396,9 +394,9 @@ tiene únicamente una capa. Eso implica que cada píxel tiene asociado un único
 <h2>
 <span class="header-section-number">40.3</span> Mi primer mapa<a class="anchor" aria-label="anchor" href="#primer-mapa"><i class="fas fa-link"></i></a>
 </h2>
-<p>Definidos los elementos clave de los datos espaciales, a continuación se lleva a cabo un primer mapa, el resultado esperado cuando se trabaja con datos espaciales. Concretamente, se representa la distribución de la renta neta per cápita (<code>renta_municipio_data</code>) por municipio (<code>municipios</code>) en España en el año 2019.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Un análisis detallado puede verse en &lt;span class="citation"&gt;(&lt;a href="cap-fraude.html#ref-hernangomez_fernandezaviles_2022"&gt;Hernangómez and Fernández-Avilés 2022&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>255</sup></a> Los datos están incluidos en el paquete <code>CDR</code>. </p>
-<p>La integración de conjuntos de datos es una de las tareas iniciales al llevar a cabo un análisis de datos (véase Cap. <a href="#130009"><strong>??</strong></a>). En el caso de la representación de la renta neta per cápita a escala municipal, el los ficheros que hay que integrar son <code>renta_municipio-data</code> y <code>municipios</code>, los cuales deben tener, al menos, un campo en común, en este caso <code>codigo_ine</code>, para poder proceder a su unión. El siguiente código muestra cómo realizar esta unión con la función <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>.</p>
-<div class="sourceCode" id="cb608"><pre class="downlit sourceCode r">
+<p>Definidos los elementos clave de los datos espaciales, a continuación se lleva a cabo un primer mapa, el resultado esperado cuando se trabaja con datos espaciales. Concretamente, se representa la distribución de la renta neta per cápita (<code>renta_municipio_data</code>) por municipio (<code>municipios</code>) en España en el año 2019.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Un análisis detallado puede verse en &lt;a href="https://mdsr-2122-visualizacion.netlify.app/"&gt;&lt;span class="citation"&gt;Hernangómez and Fernández-Avilés (&lt;span&gt;2022&lt;/span&gt;)&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>262</sup></a> Los datos están incluidos en el paquete <code>CDR</code>. </p>
+<p>La integración de conjuntos de datos es una de las tareas iniciales al llevar a cabo un análisis de datos (véase Cap. <a href="#130009"><strong>??</strong></a>). En el caso de la representación de la renta neta per cápita a escala municipal, los ficheros que hay que integrar son <code>renta_municipio-data</code> y <code>municipios</code>, los cuales deben tener, al menos, un campo en común, en este caso <code>codigo_ine</code>, para poder proceder a su unión. El siguiente código muestra cómo realizar esta unión con la función <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>.</p>
+<div class="sourceCode" id="cb609"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/">"sf"</a></span><span class="op">)</span></span>
 <span><span class="va">munis_renta</span> <span class="op">&lt;-</span> <span class="va">municipios</span> <span class="op">|&gt;</span></span>
@@ -406,7 +404,7 @@ tiene únicamente una capa. Eso implica que cada píxel tiene asociado un único
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">cpro</span>, <span class="va">cmun</span>, <span class="va">`2019`</span><span class="op">)</span>     <span class="co"># selecciona variables</span></span>
 <span><span class="co">#&gt; Joining, by = "codigo_ine"</span></span></code></pre></div>
 <p>El siguiente paso es la representación gráfica de estos datos en el mapa. En la <em>chunk</em> se muestra como llevar a cabo dicha representación con la función <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>.</p>
-<div class="sourceCode" id="cb609"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb610"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">munis_renta</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">`2019`</span><span class="op">)</span>, color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_continuous.html">scale_fill_continuous</a></span><span class="op">(</span></span>
@@ -415,12 +413,12 @@ tiene únicamente una capa. Eso implica que cada píxel tiene asociado un único
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-renta-ko"></span>
-<img src="img/renta-ko.png" alt="Renta neta media por persona (€) a escala municipal en España en 2019." width="60%"><p class="caption">
+<img src="img/renta-ko.png" alt="Renta neta media por persona (€) a escala municipal en España en 2019." width="75%"><p class="caption">
 Figura 40.10: Renta neta media por persona (€) a escala municipal en España en 2019.
 </p>
 </div>
-<p>La Fig. <a href="datos-espaciales.html#fig:plot-renta-ko">40.10</a> muestra un mapa temático de coropletas,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Una cloropeta es un simbolo o área marcada y delimitada en un mapa que denota la distribución de alguna característica de interés. Un mapa de coropletas es una representación planimétrica de un modelo de datos tridimensional, en donde se consideran superficies y no puntos.&lt;/p&gt;"><sup>256</sup></a> es decir, una visualización sencilla de cómo varía la distribución de una variable (en este caso la renta neta media por persona) en un área geográfica (España). En la información contenida en el objeto <code>munis_renta</code> pueden verse una serie de elementos gráficos característicos de los objetos espaciales: los datos son de tipo vector, el tipo de geometría es MULTIPOLYGON, el CRS es ETRS89 y una leyenda explica el significado de la variable.</p>
-<div class="sourceCode" id="cb610"><pre class="downlit sourceCode r">
+<p>La Fig. <a href="datos-espaciales.html#fig:plot-renta-ko">40.10</a> muestra un mapa temático de coropletas,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Una coropleta es un símbolo o área marcada y delimitada en un mapa que denota la distribución de alguna característica de interés. Un mapa de coropletas es una representación planimétrica de un modelo de datos tridimensional, en donde se consideran superficies y no puntos.&lt;/p&gt;"><sup>263</sup></a> es decir, una visualización sencilla de cómo varía la distribución de una variable (en este caso la renta neta media por persona) en una área geográfica (España). En la información contenida en el objeto <code>munis_renta</code> pueden verse una serie de elementos gráficos característicos de los objetos espaciales: los datos son de tipo vector, el tipo de geometría es MULTIPOLYGON, el CRS es ETRS89 y una leyenda explica el significado de la variable.</p>
+<div class="sourceCode" id="cb611"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html">head</a></span><span class="op">(</span><span class="va">munis_renta</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span>
 <span><span class="co">#&gt; Simple feature collection with 3 features and 4 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
@@ -437,24 +435,26 @@ Figura 40.10: Renta neta media por persona (€) a escala municipal en España e
 <span class="header-section-number">40.4</span> Cómo (no) mentir con la visualización<a class="anchor" aria-label="anchor" href="#no-mentir"><i class="fas fa-link"></i></a>
 </h2>
 <p></p>
-<p>Si se construye un mapa de coropletas como el de la Fig. <a href="datos-espaciales.html#fig:plot-renta-ko">40.10</a>, puede que la información aparezca distorsionada. Por ello, en aras de una correcta visualización de los datos que favorezca una interpretación realista de los mismo, es necesario tomar una serie de decisiones, entre las cuales están las relativas a:</p>
+<p>Si se construye un mapa de coropletas como el de la Fig. <a href="datos-espaciales.html#fig:plot-renta-ko">40.10</a>, puede que la información aparezca distorsionada. Por ello, en aras de una correcta visualización de los datos que favorezca una interpretación realista de los mismos, es necesario tomar una serie de decisiones, entre las cuales están las relativas a:</p>
 <ol style="list-style-type: lower-roman">
-<li>El número de intervalos (o el establecimiento de los cortes o límites de tales intervalos) en caso de que haya que recurrir a una distribución por intervalos;</li>
-<li>La escala de color a utilizar;</li>
-<li>El tratamiento de los valores perdidos.</li>
+<li>el número de intervalos (o el establecimiento de los cortes o límites de tales intervalos) en caso de que haya que recurrir a una distribución por intervalos;</li>
+<li>la escala de color a utilizar;</li>
+<li>el tratamiento de los valores perdidos.</li>
 </ol>
-<p>Recuérdese que los mapas de coropletas muestran la distribución espacial de una variable cuyos valores se dividen en clases o intervalos a los cuales se les aplica un esquema de colores, también llamado paleta, de tal manera que a cada clase le corresponde un color de la paleta. Aunque hay muchas formas en las que pueden agrupar los valores de una variable en clases, el <strong>método de Fisher-Jenks</strong> es el más popular en los mapas temáticos y en especial en los de cloropetas. Entrando un poco más en detalle, el método de agrupación de datos de Fisher-Jenks trata de minimizar la varianza intra-clases y maximizar la varianza inter-clases.</p>
-<p>En el caso que nos ocupa, la distribución de la renta se divide en clases o intervalos cuyos límites se establecen donde hay saltos relativamente grandes en los valores de los datos, traducción visual del criterio de Fisher-Jenks de determinar las clases o intervalos minimizando la varianza intra-clases y maximizando la varianza inter-clases. Los mapas de coropletas que utilizan este método representan con precisión las tendencias encontradas en los datos. Lógicamente, cuando los valores con los que se trabaja tienen poca variabilidad no es recomendable la metodología agrupatoria de Fisher-Jenks.</p>
+<p>Recuérdese que los mapas de coropletas muestran la distribución espacial de una variable cuyos valores se dividen en clases o intervalos a los cuales se les aplica un esquema de colores, también llamado paleta, de tal manera que a cada clase le corresponde un color de la paleta. Aunque hay muchas formas en las que pueden agrupar los valores de una variable en clases, el <strong>método de Fisher-Jenks</strong> es el más popular en los mapas temáticos y en especial, en los de coropletas.</p>
+<div class="infobox">
+<p><strong>Nota</strong></p>
+<p>El método de agrupación de datos de Fisher-Jenks utiliza un algoritmo no lineal para agrupar observaciones de modo que se maximice la homogeneidad dentro del grupo y la heterogeneidad entre los mismos. Este algoritmo está desarrollado específicamente para la clasificación de datos espaciales y su visualización en mapas <span class="citation">(<a href="referncias.html#ref-slocum2022thematic">Slocum et al. 2022</a>)</span>.</p>
+</div>
 <p>A la luz de las consideraciones anteriores, en el ejemplo que nos ocupa, cabe plantear una serie de preguntas:</p>
 <ul>
-<li><p><strong>¿Es necesario discretizar la variable? En caso afirmativo, ¿Cómo se lleva a cabo tal discrtetización?</strong>. Si el objetivo es mostrar patrones espaciales de la variable, para una mejor representación, será necesario dividir los datos en clases. Una buena opción para llevar a cabo esta discretización es el paquete <code>classInt</code> <span class="citation">(<a href="cap-fraude.html#ref-R-classint">Bivand 2020</a>)</span> y, concretamente, la función <code><a href="https://r-spatial.github.io/classInt/reference/classIntervals.html">classIntervals()</a></code>. De entre las distintas posibilidades que ofrece <code><a href="https://r-spatial.github.io/classInt/reference/classIntervals.html">classInt::classIntervals()</a></code> se utiliza el método de Fisher-Jenks, que consiste en un mapa de cortes naturales que utiliza un algoritmo no lineal para agrupar observaciones de modo que se maximice la homogeneidad dentro del grupo y la heterogeneidad entre los mismos. Este algoritmo está desarrollado específicamente para la clasificación de datos espaciales y su visualización en mapas.
-El algoritmos de Fisher-Jenks permite identificar puntos de ruptura lógicos en un conjunto de datos al agrupar valores similares que minimizan las diferencias entre los valores de datos en la misma clase y maximizan las diferencias entre clases <span class="citation">(<a href="cap-fraude.html#ref-slocum2022thematic">Slocum et al. 2022</a>)</span>.</p></li>
+<li><p><strong>¿Es necesario discretizar la variable? En caso afirmativo, ¿cómo se lleva a cabo tal discretetización?</strong> Si el objetivo es mostrar patrones espaciales de la variable, para una mejor representación, será necesario dividir los datos en clases. Una buena opción para llevar a cabo esta discretización es el paquete <code>classInt</code> <span class="citation">(<a href="referncias.html#ref-R-classint">Bivand 2020</a>)</span> y, concretamente, la función <code><a href="https://r-spatial.github.io/classInt/reference/classIntervals.html">classIntervals()</a></code>. De entre las distintas posibilidades que ofrece <code><a href="https://r-spatial.github.io/classInt/reference/classIntervals.html">classInt::classIntervals()</a></code> se utiliza el método de Fisher-Jenks.</p></li>
 <li><p><strong>¿Cuál es la escala de color adecuada?</strong> Las decisiones sobre los colores son cruciales para hacer un mapa visualmente efectivo. En este caso se ha elegido la paleta de color <code>inferno</code>.</p></li>
 <li><p><strong>¿Son necesarias más transformaciones?</strong> Sí. En este caso se eliminan los municipios sin datos (sombreados en color gris).</p></li>
 </ul>
 <p>El mapa de la Fig. <a href="datos-espaciales.html#fig:plot-mapa-fisher">40.11</a> proporciona ahora una visualización adecuada de la renta neta per cápita en España, a escala municipal, en 2019.</p>
 <p></p>
-<div class="sourceCode" id="cb611"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb612"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">munis_renta_clean</span> <span class="op">&lt;-</span> <span class="va">munis_renta</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">`2019`</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -473,49 +473,48 @@ El algoritmos de Fisher-Jenks permite identificar puntos de ruptura lógicos en 
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-mapa-fisher"></span>
-<img src="img/renta-fj.png" alt="Renta neta per cápita en España, a escala municipal, en 2019, con Fisher-Jenks." width="80%"><p class="caption">
+<img src="img/renta-fj.png" alt="Renta neta per cápita en España, a escala municipal, en 2019, con Fisher-Jenks." width="70%"><p class="caption">
 Figura 40.11: Renta neta per cápita en España, a escala municipal, en 2019, con Fisher-Jenks.
 </p>
 </div>
 </div>
-<div id="mapas-espacio-temporales" class="section level2" number="40.5">
+<div id="mapas-espaciotemporales" class="section level2" number="40.5">
 <h2>
-<span class="header-section-number">40.5</span> Mapas espacio-temporales<a class="anchor" aria-label="anchor" href="#mapas-espacio-temporales"><i class="fas fa-link"></i></a>
+<span class="header-section-number">40.5</span> Mapas espaciotemporales<a class="anchor" aria-label="anchor" href="#mapas-espaciotemporales"><i class="fas fa-link"></i></a>
 </h2>
 <p></p>
-<p>La dimensión temporal cobra cada vez más relevancia en el ámbito espacial, y por ello es importante representar en el tiempo los procesos espaciales.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;En especial la interacción espacio-tiempo que da lugar a los datos espacio-temporales.&lt;/p&gt;"><sup>257</sup></a> A modo de ejemplo, la Fig. <a href="datos-espaciales.html#fig:plot-tmin-st">40.13</a> representa la temperatura mínima registrada en España del 6 al 10 de enero de 2021, <code><a href="https://rdrr.io/pkg/CDR/man/tempmin_data.html">CDR::tempmin_data</a></code>, durante la <a href="https://es.wikipedia.org/wiki/Borrasca_Filomena">Borrasca Filomena</a>. Al igual que en ejemplo anterior, para la representación se disponen de dos ficheros <code>tempmin_data</code>, con los datos de temperatura y <code>esp</code>, un objeto <strong>R</strong> que se crea con <code><a href="https://ropenspain.github.io/mapSpain/reference/esp_get_ccaa.html">mapSpain::esp_get_ccaa()</a></code>.</p>
-<div class="sourceCode" id="cb612"><pre class="downlit sourceCode r">
+<p>La dimensión temporal cobra cada vez más relevancia en el ámbito espacial, y por ello es importante representar en el tiempo los procesos espaciales.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;En especial la interacción espacio-tiempo que da lugar a los datos espaciotemporales.&lt;/p&gt;"><sup>264</sup></a> A modo de ejemplo, la Fig. <a href="datos-espaciales.html#fig:plot-tmin-st">40.13</a> representa la temperatura mínima registrada en España del 6 al 10 de enero de 2021, <code><a href="https://rdrr.io/pkg/CDR/man/tempmin_data.html">CDR::tempmin_data</a></code>, durante la <a href="https://es.wikipedia.org/wiki/Borrasca_Filomena">Borrasca Filomena</a>. Al igual que en ejemplo anterior, para la representación se dispone de dos ficheros <code>tempmin_data</code>, con los datos de temperatura y <code>esp</code>, un objeto <strong>R</strong> que se crea con <code><a href="https://ropenspain.github.io/mapSpain/reference/esp_get_ccaa.html">mapSpain::esp_get_ccaa()</a></code>.</p>
+<div class="sourceCode" id="cb613"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmin_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">tempmin_data</span>, </span>
 <span>  coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"longitud"</span>, <span class="st">"latitud"</span><span class="op">)</span>,</span>
 <span>  crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span> <span class="co"># coordenadas geográficas longitud/latitud WGS84</span></span>
 <span></span>
 <span><span class="va">esp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropenspain.github.io/mapSpain/reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># sf objeto, contorno de España</span></span>
 <span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ine.ccaa.name</span> <span class="op">!=</span> <span class="st">"Canarias"</span><span class="op">)</span> <span class="co"># excluye Canarias</span></span></code></pre></div>
-<p>Recuérdese que, la primera pregunta que se debe formular es: ¿el CRS de las estaciones de medición de la temperatura está en la misma proyección que el contorno de España?</p>
-<div class="sourceCode" id="cb613"><pre class="downlit sourceCode r">
+<p>Recuérdese que la primera pregunta que se debe formular es: ¿el CRS de las estaciones de medición de la temperatura está en la misma proyección que el contorno de España?</p>
+<div class="sourceCode" id="cb614"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">tmin_sf</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">esp</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span>
 <span><span class="va">esp2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">esp</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">tmin_sf</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">tmin_sf</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">esp2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>Comprobado el CRS, es habitual representar las coordenadas con las que se trabaja. La Fig. <a href="datos-espaciales.html#fig:plot-aemet">40.12</a> muestra la localización de las estaciones que registran la temperatura en España.</p>
-<div class="sourceCode" id="cb614"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb615"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">esp2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>   </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">tmin_sf</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">tmin_sf</span><span class="op">)</span> </span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-aemet"></span>
 <img src="img/ms-spain.png" alt="Estaciones de la AEMET en la Península Ibérica." width="50%"><p class="caption">
 Figura 40.12: Estaciones de la AEMET en la Península Ibérica.
 </p>
 </div>
-<p>Por último, se representa el mapa espacio-temporal con la función <code>gglot()</code> indicando en el argumento <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> la dimensión temporal.</p>
+<p>Por último, se representa el mapa espaciotemporal con la función <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>, indicando en el argumento <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> la dimensión temporal.</p>
 <div class="infobox">
 <p><strong>Nota</strong></p>
-<p>Los paquetes <strong>tmap</strong> <span class="citation">(<a href="cap-fraude.html#ref-R-tmap">Tennekes 2018</a>)</span> y <strong>mapsf</strong> <span class="citation">(<a href="cap-fraude.html#ref-R-mapsf">Giraud 2022</a>)</span> son referentes en la construcción de mapas temáticos y pueden utilizarse como alternativa.</p>
+<p>Los paquetes <code>tmap</code> <span class="citation">(<a href="referncias.html#ref-R-tmap">Tennekes 2018</a>)</span> y <code>mapsf</code> <span class="citation">(<a href="referncias.html#ref-R-mapsf">Giraud 2022</a>)</span> son referentes en la construcción de mapas temáticos y pueden utilizarse como alternativa.</p>
 </div>
-<div class="sourceCode" id="cb615"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb616"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># definición de intervalos</span></span>
 <span><span class="va">cortes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">2.5</span><span class="op">)</span>, <span class="cn">Inf</span><span class="op">)</span></span>
 <span><span class="va">colores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">hcl.colors</a></span><span class="op">(</span><span class="fl">15</span>, <span class="st">"PuOr"</span>, rev <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -532,7 +531,8 @@ Figura 40.12: Estaciones de la AEMET en la Península Ibérica.
 <span>    colours <span class="op">=</span> <span class="va">colores</span>,</span>
 <span>    breaks <span class="op">=</span> <span class="va">cortes</span>,</span>
 <span>    labels <span class="op">=</span> <span class="op">~</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="va">.</span> , <span class="st">"º"</span><span class="op">)</span>,</span>
-<span>    guide <span class="op">=</span> <span class="st">"legend"</span><span class="op">)</span></span></code></pre></div>
+<span>    guide <span class="op">=</span> <span class="st">"legend"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-tmin-st"></span>
 <img src="img/st-spain.png" alt="Temperatura mínima en España (6-10 enero 2021)." width="90%"><p class="caption">
@@ -546,8 +546,8 @@ Figura 40.13: Temperatura mínima en España (6-10 enero 2021).
 </h2>
 <p>
 El desarrollo de la informática ha propiciado también el desarrollo de la geocomputación, que está relacionada con los desarrollos webs y permite, entre otras cosas, la representación de mapas interactivos.</p>
-<p>A modo de ejemplo, en la Fig. <a href="datos-espaciales.html#fig:snow-map-png-ch40">40.14</a> se representa la versión interactiva del mapa Fig. <a href="datos-espaciales.html#fig:snow-cholera-map-ch40">40.1</a>. Para ello se utiliza la librería <code>leaflef</code>. Estos mapas dinámicos, ampliables y desplazables son más informativos que los mapas estáticos y, además, constituyen una alternativa que puede proporcionar al usuario una experiencia diferente, además de una mayor interacción.</p>
-<div class="sourceCode" id="cb616"><pre class="downlit sourceCode r">
+<p>A modo de ejemplo, en la Fig. <a href="datos-espaciales.html#fig:snow-map-png-ch40">40.14</a> se representa la versión interactiva del mapa de la Fig. <a href="datos-espaciales.html#fig:snow-cholera-map-ch40">40.1</a>. Para ello se utiliza la librería <code>leaflet</code>. Estos mapas dinámicos, ampliables y desplazables son más informativos que los mapas estáticos y, además, constituyen una alternativa que puede proporcionar al usuario una experiencia diferente, además de una mayor interacción.</p>
+<div class="sourceCode" id="cb617"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rstudio.github.io/leaflet/">"leaflet"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/paezha/isdas">"isdas"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"snow_deaths"</span><span class="op">)</span></span>
@@ -562,18 +562,19 @@ El desarrollo de la informática ha propiciado también el desarrollo de la geoc
 <span>    group <span class="op">=</span> <span class="st">"Deaths"</span> <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">snow_pumps</span>, <span class="op">~</span><span class="va">long</span>, <span class="op">~</span><span class="va">lat</span>,</span>
 <span>    group <span class="op">=</span> <span class="st">"Pumps"</span> <span class="op">)</span></span>
+<span></span>
 <span><span class="va">snow_map</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:snow-map-png-ch40"></span>
-<img src="img/snow_map.png" alt="Mapa interactivo de las muertes por cólera en barrio del Soho (Londres) según Snow en 1854." width="80%"><p class="caption">
+<img src="img/snow_map.png" alt="Mapa interactivo de las muertes por cólera en barrio del Soho (Londres) según Snow en 1854." width="50%"><p class="caption">
 Figura 40.14: Mapa interactivo de las muertes por cólera en barrio del Soho (Londres) según Snow en 1854.
 </p>
 </div>
-<div id="resumen-36" class="section level3 unnumbered infobox_resume">
-<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-36"><i class="fas fa-link"></i></a>
+<div id="resumen-39" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-39"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
-<li><p>Los datos espaciales son aquellos que contienen información de una zona geográfica de la tierra. Vienen definidos por coordenadas y por un sistema de referencia de coordenadas que debe tenerse en cuenta para su representación.</p></li>
+<li><p>Los datos espaciales son aquellos que contienen información de una zona geográfica de la Tierra. Vienen definidos por coordenadas y por un sistema de referencia de coordenadas que debe tenerse en cuenta para su representación.</p></li>
 <li><p>Los datos espaciales pueden venir dados en dos tipos de formato: vector y <em>raster</em>.</p></li>
 <li><p>Los datos espaciales pueden clasificarse en: geoestadísticos, reticulares y puntuales.</p></li>
 </ul>
@@ -600,9 +601,9 @@ Figura 40.14: Mapa interactivo de las muertes por cólera en barrio del Soho (Lo
 </li>
 <li><a class="nav-link" href="#primer-mapa"><span class="header-section-number">40.3</span> Mi primer mapa</a></li>
 <li><a class="nav-link" href="#no-mentir"><span class="header-section-number">40.4</span> Cómo (no) mentir con la visualización</a></li>
-<li><a class="nav-link" href="#mapas-espacio-temporales"><span class="header-section-number">40.5</span> Mapas espacio-temporales</a></li>
+<li><a class="nav-link" href="#mapas-espaciotemporales"><span class="header-section-number">40.5</span> Mapas espaciotemporales</a></li>
 <li>
-<a class="nav-link" href="#mapas-interactivos"><span class="header-section-number">40.6</span> Mapas interactivos</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#resumen-36">Resumen</a></li></ul>
+<a class="nav-link" href="#mapas-interactivos"><span class="header-section-number">40.6</span> Mapas interactivos</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#resumen-39">Resumen</a></li></ul>
 </li>
 </ul>
 
@@ -620,7 +621,7 @@ Figura 40.14: Mapa interactivo de las muertes por cólera en barrio del Soho (Lo
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-09-11.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
