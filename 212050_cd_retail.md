@@ -196,10 +196,14 @@ plot_data |>
   theme(strip.text.x = element_blank(), text = element_text(size = 9))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/Rplot01.png" alt="$Box-plot$ de las variables RFM." width="60%" />
-<p class="caption">(\#fig:imagen1)$Box-plot$ de las variables RFM.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/Rplot01} 
+
+}
+
+\caption{$Box-plot$ de las variables RFM.}(\#fig:imagen1)
+\end{figure}
 
 ### Cálculo del *ranking* de percentiles
 
@@ -268,10 +272,14 @@ muestra_clusters <- rfm_rank |>
 fviz_nbclust(x = muestra_clusters, FUNcluster = kmeans, method = "wss", k.max = 10)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/Rplot02.png" alt="Número óptimo de clústeres (método Elbow)." width="60%" />
-<p class="caption">(\#fig:imagen2)Número óptimo de clústeres (método Elbow).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/Rplot02} 
+
+}
+
+\caption{Número óptimo de clústeres (método Elbow).}(\#fig:imagen2)
+\end{figure}
 
 En la Fig. \@ref(fig:imagen2) se observa que la varianza total intraclúster apenas mejora a partir
 del cuarto clúster.
@@ -371,10 +379,14 @@ ggdotchart(table_dot_plot, x = "Variable RFM", y = "Puntuación",
 
 La Fig \@ref(fig:imagen3) muestra cada uno de los segmentos indicados. El *ranking* obtenido ayuda a identificar las diferencias en los tipos de clientes y es útil para decidir a qué segmentos enfocarse y qué estrategias usar para cada uno.
 
-<div class="figure" style="text-align: center">
-<img src="img/Rplot03.png" alt="$Lollipop$ de variables RFM." width="90%" />
-<p class="caption">(\#fig:imagen3)$Lollipop$ de variables RFM.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{img/Rplot03} 
+
+}
+
+\caption{$Lollipop$ de variables RFM.}(\#fig:imagen3)
+\end{figure}
 
 ### Puesta en producción
 

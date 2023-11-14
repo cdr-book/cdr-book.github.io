@@ -37,9 +37,9 @@ net <- graph_from_data_frame(d=oversize_edges,
                              vertices=oversize_nodes, 
                              directed=F) 
 net
-#> IGRAPH b585934 UN-- 182 247 -- 
+#> IGRAPH 3edb85e UN-- 182 247 -- 
 #> + attr: name (v/c)
-#> + edges from b585934 (vertex names):
+#> + edges from 3edb85e (vertex names):
 #>  [1] Casto Ben          --Gustavo Mango          
 #>  [2] Casto Ben          --Metrofane Abbatiello   
 #>  [3] Uranio Natoli      --Fidenziano Marcellino  
@@ -72,10 +72,14 @@ Para hacerse una idea de qué aspecto tiene el grafo, se procede a su visualizac
 plot(net, asp=0)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="212048_cd_policia_files/figure-html/vis-red1-1.png" alt="Grafo básico de la red mafiosa." width="60%" />
-<p class="caption">(\#fig:vis-red1)Grafo básico de la red mafiosa.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{212048_cd_policia_files/figure-latex/vis-red1-1} 
+
+}
+
+\caption{Grafo básico de la red mafiosa.}(\#fig:vis-red1)
+\end{figure}
 
 Tal y como se aprecia en la Fig. \@ref(fig:vis-red1), el resultado no es muy claro. Todos los nodos tienen el mismo tamaño y se solapan entre ellos. Además, se muestran los nombres de todos los actores dentro de la red, lo cual dificulta ulteriormente su interpretación.
 
@@ -90,10 +94,14 @@ Se puede mejorar esta presentación usando unos parámetros de `plot()`  especí
 plot(net, vertex.size=2, vertex.label=c(''),  asp=0)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="212048_cd_policia_files/figure-html/vis-red2-1.png" alt="Grafo básico de la red mafiosa (mejorado)." width="60%" />
-<p class="caption">(\#fig:vis-red2)Grafo básico de la red mafiosa (mejorado).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{212048_cd_policia_files/figure-latex/vis-red2-1} 
+
+}
+
+\caption{Grafo básico de la red mafiosa (mejorado).}(\#fig:vis-red2)
+\end{figure}
 
 En la Fig. \@ref(fig:vis-red2) se observa cómo el grafo permite una mejor valoración de la distribución de los actores dentro de la red. Por ejemplo, hay dos grupos pequeños (de cuatro y dos actores) completamente desconectados de la red principal.
 
@@ -148,10 +156,14 @@ plot(net2,
      asp = 0) # visualización subgrafo
 ```
 
-<div class="figure" style="text-align: center">
-<img src="212048_cd_policia_files/figure-html/red-centralidad-1.png" alt="Grafo de la red mafiosa (mejorado con medidas de cetralidad)." width="60%" />
-<p class="caption">(\#fig:red-centralidad)Grafo de la red mafiosa (mejorado con medidas de cetralidad).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{212048_cd_policia_files/figure-latex/red-centralidad-1} 
+
+}
+
+\caption{Grafo de la red mafiosa (mejorado con medidas de cetralidad).}(\#fig:red-centralidad)
+\end{figure}
 
 Como se puede apreciar en la Fig. \@ref(fig:red-centralidad), gracias a las medidas de centralidad se consigue tener una mejor idea de cómo se configura la red respecto a sus actores más importantes.
 
@@ -189,10 +201,14 @@ E(net2)$color <- V(net2)$color[edge.start]
 plot(net2, asp=0) # Los resultados puede ser distintos con cada ejecución
 ```
 
-<div class="figure" style="text-align: center">
-<img src="212048_cd_policia_files/figure-html/com-mafia-1.png" alt="Visualización de comunidades de la mafia." width="100%" />
-<p class="caption">(\#fig:com-mafia)Visualización de comunidades de la mafia.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{212048_cd_policia_files/figure-latex/com-mafia-1} 
+
+}
+
+\caption{Visualización de comunidades de la mafia.}(\#fig:com-mafia)
+\end{figure}
 
 Se puede mejorar aún más el aspecto del grafo. Para ello, se va a experimentar con una disposición diferente de los nodos. En este ejemplo, se usa el algoritmo Fruchterman-Reingold [@fruchterman1991graph]. Además, se aplica un efecto de curvatura a las aristas asignando un valor positivo al parámetro `edge.curved`. El resultado se puede ver en la Fig. \@ref(fig:red-fr).
 
@@ -205,10 +221,14 @@ plot(net2,
      edge.curved=0.5) # Los resultados pueden ser distintos con cada ejecución
 ```
 
-<div class="figure" style="text-align: center">
-<img src="212048_cd_policia_files/figure-html/red-fr-1.png" alt="Visualización de comunidades de la mafia con el algoritmo Fruchterman-Reingold." width="100%" />
-<p class="caption">(\#fig:red-fr)Visualización de comunidades de la mafia con el algoritmo Fruchterman-Reingold.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{212048_cd_policia_files/figure-latex/red-fr-1} 
+
+}
+
+\caption{Visualización de comunidades de la mafia con el algoritmo Fruchterman-Reingold.}(\#fig:red-fr)
+\end{figure}
 
 \index{algoritmo Fruchterman-Reingold}
 

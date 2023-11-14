@@ -57,10 +57,14 @@ Uno de los algoritmos de *boosting* más conocidos es el ***gradient boosting***
 [^Note-0-boosting]: El término *gradient boosting machine* viene del hecho de  que este procedimiento puede generalizarse a funciones de pérdida distintas a la suma del cuadrado del error de predicción. Por otra parte, el *gradient descent* (descenso por el gradiente) es un algoritmo de optimización muy genérico capaz de ajustar parámetros iterativamente con el objetivo de minimizar una función de coste. La idea es descender por la "montaña" de la función de coste buscando, en cada punto, la parte más empinada, para llegar antes al mínimo (a la base de la montaña, donde el gradiente es nulo).
 
 
-<div class="figure" style="text-align: center">
-<img src="img/boosting.png" alt="Ejemplo de $gradient$ $boosting$." width="100%" />
-<p class="caption">(\#fig:boosting)Ejemplo de $gradient$ $boosting$.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/boosting} 
+
+}
+
+\caption{Ejemplo de $gradient$ $boosting$.}(\#fig:boosting)
+\end{figure}
 
 
 Matemáticamente, un algoritmo *gradient boosting*\index{gradient boosting@\textit{gradient boosting}} para clasificación sigue los pasos que se detallan a continuación. Sea un problema de clasificación binaria. Asumiendo que se tienen $K$ árboles de clasificación, la predicción del *gradient boosting* se obtiene utilizando la función sigmoide, como en la regresión logística (véase Cap. \@ref(cap-glm)), tal que:
@@ -237,10 +241,14 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
   xlab(NULL) + ylab(NULL)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/boxplotgbm.png" alt="Resultados del modelo GB obtenidos durante el proceso de validación cruzada." width="60%" />
-<p class="caption">(\#fig:GBMBOXPLOT)Resultados del modelo GB obtenidos durante el proceso de validación cruzada.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/boxplotgbm} 
+
+}
+
+\caption{Resultados del modelo GB obtenidos durante el proceso de validación cruzada.}(\#fig:GBMBOXPLOT)
+\end{figure}
 
 ### *Gradient Boosting* con ajuste automático
 
@@ -305,10 +313,14 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
   xlab(NULL) + ylab(NULL)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/boxplottunedgbm.png" alt="Resultados del modelo GB con ajuste automático obtenidos durante el proceso de validación cruzada." width="60%" />
-<p class="caption">(\#fig:modelgbmboxplot)Resultados del modelo GB con ajuste automático obtenidos durante el proceso de validación cruzada.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/boxplottunedgbm} 
+
+}
+
+\caption{Resultados del modelo GB con ajuste automático obtenidos durante el proceso de validación cruzada.}(\#fig:modelgbmboxplot)
+\end{figure}
 
 ## $\bf\textit{eXtreme}$ $\bf\textit{gradient}$ $\bf\textit{boosting}$ 
 
@@ -399,10 +411,14 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
   xlab(NULL) + ylab(NULL)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/boxplotxgbm.png" alt="Resultados del modelo durante la validación cruzada." width="60%" />
-<p class="caption">(\#fig:XGBRESULTS)Resultados del modelo durante la validación cruzada.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/boxplotxgbm} 
+
+}
+
+\caption{Resultados del modelo durante la validación cruzada.}(\#fig:XGBRESULTS)
+\end{figure}
 
 ### XGBoost con ajuste automático
 
@@ -455,10 +471,14 @@ Como puede verse en los resultados obtenidos, el modelo resultante establece que
 
 
 
-<div class="figure" style="text-align: center">
-<img src="img/boxplottunedxgbm.png" alt="Resultados del modelo durante la validación cruzada." width="50%" />
-<p class="caption">(\#fig:xgb-tuned-RESULTS)Resultados del modelo durante la validación cruzada.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/boxplottunedxgbm} 
+
+}
+
+\caption{Resultados del modelo durante la validación cruzada.}(\#fig:xgb-tuned-RESULTS)
+\end{figure}
 
 Los resultados obtenidos durante la validación cruzada (Fig. \@ref(fig:xgb-tuned-RESULTS)) muestran que la precisión es muy similar a la del modelo de la sección anterior (entre el 85% y el 95%); sin embargo, el valor mediano de la precisión aumenta hasta el 90%.
 

@@ -79,13 +79,13 @@ datos_observacional <- datos_observacional |>
   mutate(comorbilidades = recode(comorbilidades, 
                                  `1 o más comorbilidades` = "1 o más", No = "No"))
 head(datos_observacional, 3)
-#> # A tibble: 3 × 8
+#> # A tibble: 3 x 8
 #>      ID fecha_hospitalizacion sexo    edad comorbilidades fecha_alta exitus
 #>   <dbl> <dttm>                <chr>  <dbl> <chr>          <chr>       <dbl>
 #> 1     1 2015-04-17 00:00:00   Mujer     76 1 o más        17/04/2020      1
 #> 2     2 2015-03-21 00:00:00   Mujer     64 1 o más        31/03/2020      0
 #> 3     3 2015-04-09 00:00:00   Hombre    65 1 o más        16/04/2020      0
-#> # ℹ 1 more variable: fecha_exitus <dttm>
+#> # i 1 more variable: fecha_exitus <dttm>
 ```
 
 
@@ -124,70 +124,26 @@ add_footnote(knitr::kable(tab1[,-5], booktabs=TRUE,
              c("Median = Mediana","IQR = Rango intercuartílico"), notation = "number")
 ```
 
-<table>
-<caption>(\#tab:tabla1)Características basales de la población</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:left;"> Nivel </th>
-   <th style="text-align:left;"> Vivo </th>
-   <th style="text-align:left;"> Exitus </th>
-   <th style="text-align:left;"> p-valor </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> n </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> 79 </td>
-   <td style="text-align:left;"> 21 </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sexo (%) </td>
-   <td style="text-align:left;"> Hombre </td>
-   <td style="text-align:left;"> 28 (35.4) </td>
-   <td style="text-align:left;"> 2 ( 9.5) </td>
-   <td style="text-align:left;"> 0.042 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> Mujer </td>
-   <td style="text-align:left;"> 51 (64.6) </td>
-   <td style="text-align:left;"> 19 (90.5) </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> edad (median [IQR]) </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> 64.00 [53.00, 73.00] </td>
-   <td style="text-align:left;"> 82.00 [72.00, 85.00] </td>
-   <td style="text-align:left;"> &lt;0.001 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> comorbilidades (%) </td>
-   <td style="text-align:left;"> 1 o más </td>
-   <td style="text-align:left;"> 43 (54.4) </td>
-   <td style="text-align:left;"> 18 (85.7) </td>
-   <td style="text-align:left;"> 0.018 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> No </td>
-   <td style="text-align:left;"> 36 (45.6) </td>
-   <td style="text-align:left;"> 3 (14.3) </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-</tbody>
-<tfoot>
-<tr>
-<td style = 'padding: 0; border:0;' colspan='100%'><sup>1</sup> Median = Mediana</td>
-</tr>
-<tr>
-<td style = 'padding: 0; border:0;' colspan='100%'><sup>2</sup> IQR = Rango intercuartílico</td>
-</tr>
-</tfoot>
-</table>
+\begin{table}
+
+\caption{(\#tab:tabla1)Características basales de la población}
+\centering
+\begin{tabular}[t]{lllll}
+\toprule
+  & Nivel & Vivo & Exitus & p-valor\\
+\midrule
+n &  & 79 & 21 & \\
+sexo (\%) & Hombre & 28 (35.4) & 2 ( 9.5) & 0.042\\
+ & Mujer & 51 (64.6) & 19 (90.5) & \\
+edad (median [IQR]) &  & 64.00 [53.00, 73.00] & 82.00 [72.00, 85.00] & <0.001\\
+comorbilidades (\%) & 1 o más & 43 (54.4) & 18 (85.7) & 0.018\\
+\addlinespace
+ & No & 36 (45.6) & 3 (14.3) & \\
+\bottomrule
+\multicolumn{5}{l}{\textsuperscript{1} Median = Mediana}\\
+\multicolumn{5}{l}{\textsuperscript{2} IQR = Rango intercuartílico}\\
+\end{tabular}
+\end{table}
 
 
 La Tabla \@ref(tab:tabla1) confirma los resultados anteriormente publicados en la literatura: el sesgo de selección que provoca el desequilibrio en los totales marginales de los dos niveles la variable principal (`exitus`) en las variables `sexo`, `edad` y `comorbilidades` se evidencia a través de la significación de estas.[^Note-medicina-significacion] Por consiguiente, para llevar a cabo cualquier análisis estadístico de los datos, por ejemplo, para estimar un modelo predictivo, se hace absolutamente necesaria la aplicación del índice de propensión; en otro caso, los resultados no serán fiables. 
@@ -251,70 +207,26 @@ add_footnote(knitr::kable(tab1_corregida[,-5], booktabs=TRUE,
              c("Median = Mediana","IQR = Rango intercuartílico"), notation = "number")
 ```
 
-<table>
-<caption>(\#tab:tab1-corregida)Características basales de la población tras la aplicación del índice de propensión</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:left;"> Nivel </th>
-   <th style="text-align:left;"> Vivo </th>
-   <th style="text-align:left;"> Exitus </th>
-   <th style="text-align:left;"> p-valor </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> n </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> 21 </td>
-   <td style="text-align:left;"> 21 </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sexo (%) </td>
-   <td style="text-align:left;"> Hombre </td>
-   <td style="text-align:left;"> 2 ( 9.5) </td>
-   <td style="text-align:left;"> 2 ( 9.5) </td>
-   <td style="text-align:left;"> 1.000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> Mujer </td>
-   <td style="text-align:left;"> 19 (90.5) </td>
-   <td style="text-align:left;"> 19 (90.5) </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> edad (median [IQR]) </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> 72.00 [69.00, 84.00] </td>
-   <td style="text-align:left;"> 82.00 [72.00, 85.00] </td>
-   <td style="text-align:left;"> 0.182 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> comorbilidades (%) </td>
-   <td style="text-align:left;"> 1 o más </td>
-   <td style="text-align:left;"> 18 (85.7) </td>
-   <td style="text-align:left;"> 18 (85.7) </td>
-   <td style="text-align:left;"> 1.000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> No </td>
-   <td style="text-align:left;"> 3 (14.3) </td>
-   <td style="text-align:left;"> 3 (14.3) </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-</tbody>
-<tfoot>
-<tr>
-<td style = 'padding: 0; border:0;' colspan='100%'><sup>1</sup> Median = Mediana</td>
-</tr>
-<tr>
-<td style = 'padding: 0; border:0;' colspan='100%'><sup>2</sup> IQR = Rango intercuartílico</td>
-</tr>
-</tfoot>
-</table>
+\begin{table}
+
+\caption{(\#tab:tab1-corregida)Características basales de la población tras la aplicación del índice de propensión}
+\centering
+\begin{tabular}[t]{lllll}
+\toprule
+  & Nivel & Vivo & Exitus & p-valor\\
+\midrule
+n &  & 21 & 21 & \\
+sexo (\%) & Hombre & 2 ( 9.5) & 2 ( 9.5) & 1.000\\
+ & Mujer & 19 (90.5) & 19 (90.5) & \\
+edad (median [IQR]) &  & 72.00 [69.00, 84.00] & 82.00 [72.00, 85.00] & 0.182\\
+comorbilidades (\%) & 1 o más & 18 (85.7) & 18 (85.7) & 1.000\\
+\addlinespace
+ & No & 3 (14.3) & 3 (14.3) & \\
+\bottomrule
+\multicolumn{5}{l}{\textsuperscript{1} Median = Mediana}\\
+\multicolumn{5}{l}{\textsuperscript{2} IQR = Rango intercuartílico}\\
+\end{tabular}
+\end{table}
 
 
 ## Análisis de supervivencia
@@ -329,7 +241,7 @@ El dataset utilizado, `datos_supervivencia`, está incluido en el paquete `CDR` 
 
 ```r
 head(datos_supervivencia, 3)
-#> # A tibble: 3 × 7
+#> # A tibble: 3 x 7
 #>      id EXITUS_TIME DIAG_COVID EXITUS N_COMORBIDITIES SEX     EDAD
 #>   <dbl>       <dbl>      <dbl>  <dbl>           <dbl> <chr>  <dbl>
 #> 1   262           0          1      1               5 Hombre    83
@@ -386,10 +298,14 @@ ggsurvplot(fit,
 )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="212051_cd_medicina_files/figure-html/survplot-1.png" alt="Probabilidades de supervivencia de pacientes con COVID-19." width="90%" />
-<p class="caption">(\#fig:survplot)Probabilidades de supervivencia de pacientes con COVID-19.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{212051_cd_medicina_files/figure-latex/survplot-1} 
+
+}
+
+\caption{Probabilidades de supervivencia de pacientes con COVID-19.}(\#fig:survplot)
+\end{figure}
 
 En la Fig. \@ref(fig:survplot), donde el eje X corresponde al tiempo en días y el eje Y a la probabilidad de supervivencia, se observa que la probabilidad de supervivencia de las personas expuestas a COVID-19 es significativamente menor ($p$-valor < 0,001) que la de las personas sanas. La mediana de supervivencia (línea trazada desde el 0,5 del eje Y, correspondiente al 50% de la probabilidad de supervivencia) corresponde a los 120 días, es decir, el 50% de los sujetos diagnosticados por COVID-19 y objeto de estudio sobrevivieron, al menos, 120 días. Por tanto, se puede concluir que se ha encontrado evidencia sobre el aumento de mortalidad asociada a la enfermedad COVID-19.
 

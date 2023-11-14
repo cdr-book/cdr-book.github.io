@@ -95,10 +95,14 @@ acontecimientos fueron consolidando el término **ciencia de datos**
 como una nueva disciplina. Una breve descripción de los acontecimientos
 se muestran en la Fig. \@ref(fig:time-line-ds).
 
-<div class="figure" style="text-align: center">
-<img src="img/time-line-ds6.png" alt="Línea del tiempo de la ciencia de datos. Elaboración propia." width="100%" />
-<p class="caption">(\#fig:time-line-ds)Línea del tiempo de la ciencia de datos. Elaboración propia.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/time-line-ds6} 
+
+}
+
+\caption{Línea del tiempo de la ciencia de datos. Elaboración propia.}(\#fig:time-line-ds)
+\end{figure}
 
 La ciencia de datos implica la limpieza, la agregación y la manipulación
 de datos recabados de la web, de teléfonos inteligentes, de clientes,

@@ -49,7 +49,7 @@ Uno de los aspectos más espectaculares de **R** es la cantidad de **paquetes**
 disponibles. Un paquete (_package_) de **R** es un componente con funcionalidad adicional que se puede
 instalar en el sistema para ser utilizado por **R**. En el momento de 
 compilar este libro, el número de paquetes disponibles en el repositorio oficial 
-es de 20042.  
+es de 20051.  
 
 
 Una vez conocido el mundo de **R**, se plantea la siguiente pregunta: ¿y por qué
@@ -158,24 +158,24 @@ y depende del proyecto particular. Las siguientes carpetas pueden ser
 útiles en un amplio abanico de proyectos, y 
 las tres primeras se pueden usar prácticamente en cualquier proyecto:
 
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"/></svg>`{=html} `data`: en esta carpeta se tienen los archivos de
+- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-816289cbefb2f9f4bc7e08a916884bf2.pdf){height=1em width=1em} `data`: en esta carpeta se tienen los archivos de
 datos, tanto aquellos orígenes de datos que se quieran importar como los
 que se puedan guardar desde un script.
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"/></svg>`{=html} `R`: para los scripts. Es posible que solamente haya un script
+- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-816289cbefb2f9f4bc7e08a916884bf2.pdf){height=1em width=1em} `R`: para los scripts. Es posible que solamente haya un script
 en nuestro proyecto, pero si hubiera más se pueden guardar en esta carpeta.
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"/></svg>`{=html} `inform`: aquí se pueden guardar los archivos Quarto o R Markdown
+- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-816289cbefb2f9f4bc7e08a916884bf2.pdf){height=1em width=1em} `inform`: aquí se pueden guardar los archivos Quarto o R Markdown
 que se utilicen para generar informes o presentaciones.
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"/></svg>`{=html} `img`: si en nuestro proyecto se utilizan imágenes
+- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-816289cbefb2f9f4bc7e08a916884bf2.pdf){height=1em width=1em} `img`: si en nuestro proyecto se utilizan imágenes
 de cualquier tipo, es una buena idea tenerlas en una carpeta aparte.
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"/></svg>`{=html} `test`: si se quieren separar los scripts que se utilicen para 
+- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-816289cbefb2f9f4bc7e08a916884bf2.pdf){height=1em width=1em} `test`: si se quieren separar los scripts que se utilicen para 
 pruebas y no se quieren mezclar con los "buenos" en la carpeta `R`.
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"/></svg>`{=html} `aux`, `tmp`, `util`, `notas`, `doc`, ...: 
+- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-841ecb1734e7cbe7af1b18addbe114b1.pdf){height=1em width=1em} `aux`, `tmp`, `util`, `notas`, `doc`, ...: 
 este tipo de carpetas vienen bien cuando
 hay información que está relacionada o es útil para un proyecto, pero el archivo no es 
 del proyecto de análisis de datos en sí. Por ejemplo, unas especificaciones de
 un producto o servicio, un artículo científico, fotografías de una fábrica, 
 comunicaciones con clientes, etc.
-- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"/></svg>`{=html} `ejercicios`, `practicas`, ...: si nuestro proyecto
+- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-841ecb1734e7cbe7af1b18addbe114b1.pdf){height=1em width=1em} `ejercicios`, `practicas`, ...: si nuestro proyecto
 forma parte de una asignatura, curso o similar.
 
 
@@ -463,10 +463,14 @@ El flujo de trabajo propuesto por el _tidyverse_ se describe en el libro
 *R for Data Science* [@wickham2016r] y se sintetiza en la Fig. \@ref(fig:ch-110003-flujods).
 
 
-<div class="figure" style="text-align: center">
-<img src="img/data-science.png" alt="Flujo de trabajo en ciencia de datos propuesto por el $tidyverse$. Fuente: Wickham and Grolemund (2016)." width="80%" />
-<p class="caption">(\#fig:ch-110003-flujods)Flujo de trabajo en ciencia de datos propuesto por el $tidyverse$. Fuente: Wickham and Grolemund (2016).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{img/data-science} 
+
+}
+
+\caption{Flujo de trabajo en ciencia de datos propuesto por el $tidyverse$. Fuente: Wickham and Grolemund (2016).}(\#fig:ch-110003-flujods)
+\end{figure}
 
 
 Además del mencionado libro, la web del _tidyverse_ (http://tidyverse.org) contiene

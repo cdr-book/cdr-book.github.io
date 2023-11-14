@@ -20,10 +20,14 @@ Dentro de las técnicas utilizadas para la IA\index{inteligencia artificial} se 
 
 A su vez, dentro de las técnicas de *machine learning*, se enmarcan, como un subconjunto de ellas, las técnicas de *deep learning*, las cuales intentan simular tanto la arquitectura como el comportamiento del sistema nervioso humano -- en particular, de las redes de neuronas que componen el encéfalo y que se encargan de realizar tareas específicas (véase la Fig. \@ref(fig:iaMLDL)). Para ello, estas técnicas se basan en el concepto de redes neuronales, que intentan emular la forma de aprendizaje de los humanos [@goodfellow2016deep].
 
-<div class="figure" style="text-align: center">
-<img src="img/conc_dl_01_iaMLDL.png" alt="Inteligencia artificial, $machine$ $learning$ y $deep$ $learning$." width="90%" />
-<p class="caption">(\#fig:iaMLDL)Inteligencia artificial, $machine$ $learning$ y $deep$ $learning$.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{img/conc_dl_01_iaMLDL} 
+
+}
+
+\caption{Inteligencia artificial, $machine$ $learning$ y $deep$ $learning$.}(\#fig:iaMLDL)
+\end{figure}
 
 ### Diferencias entre las técnicas de *machine learning* tradicional y el *deep learning*
 
@@ -34,10 +38,14 @@ Como se vio en el Cap. \@ref(metodologia), los métodos de ciencia de datos tien
 
 Por ejemplo, en el caso de querer detectar una cara dentro de una imagen, sería necesario definir qué tipo de características servirían para detectar la misma, como podrían ser, a bajo nivel, determinados tipos de bordes de la imagen (véase la Fig. \@ref(fig:scharrpitu)). Estas características proporcionarían la base para detectar a nivel medio elementos de la cara como ojos, narices, orejas, etc. y, definitivamente, a alto nivel, reconocer dónde hay una cara dentro de la imagen.
 
-<div class="figure" style="text-align: center">
-<img src="img/conc_dl_02_Pitu.png" alt="Detección de bordes de una imagen mediante el método de Scharr." width="100%" />
-<p class="caption">(\#fig:scharrpitu)Detección de bordes de una imagen mediante el método de Scharr.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/conc_dl_02_Pitu} 
+
+}
+
+\caption{Detección de bordes de una imagen mediante el método de Scharr.}(\#fig:scharrpitu)
+\end{figure}
 
 En muchas ocasiones, la selección de características requiere la intervención humana, por lo que puede llevar mucho tiempo y diversos experimentos de prueba y error hasta poder encontrar una combinación de características que permita resolver el problema planteado. Pues bien, las técnicas de *deep learning*\index{deep learning@\textit{deep learning}}, a diferencia de las de *machine learning*\index{machine learning@\textit{machine learning}} tradicional, son capaces de aprender cuáles son las características que permiten representar mejor el problema que se quiere resolver sin necesidad de la interacción humana a la vez que buscan la solución al mismo. 
 
@@ -64,10 +72,14 @@ Las posibles aplicaciones de las técnicas de *deep learning* son muy diversas y
 
 2. **Detección de objetos.** \index{detección} Permite localizar los objetos contenidos en una imagen mediante un rectángulo, clasificándolo a su vez por su tipología. Por ejemplo, con este tipo de modelos es posible localizar y diferenciar entre peatones y vehículos utilizando una cámara de seguridad instalada en una calle (Fig. \@ref(fig:camaraTermica)).
 
-<div class="figure" style="text-align: center">
-<img src="img/conc_dl_04_camaraTermica.png" alt="Detección de peatones y vehículos utilizando una cámara térmica y técnicas de $deep$ $learning$." width="75%" />
-<p class="caption">(\#fig:camaraTermica)Detección de peatones y vehículos utilizando una cámara térmica y técnicas de $deep$ $learning$.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth]{img/conc_dl_04_camaraTermica} 
+
+}
+
+\caption{Detección de peatones y vehículos utilizando una cámara térmica y técnicas de $deep$ $learning$.}(\#fig:camaraTermica)
+\end{figure}
 
 3. **Segmentación semántica/de instancias.**\index{segmentación} De forma similar a la detección de objetos, la segmentación semántica permite localizar objetos contenidos en una imagen, además de su tipología, pero en este caso se marcan utilizando una máscara a nivel de píxel. La segmentación de instancias además es capaz de diferenciar entre diferentes instancias de una misma clase aun cuando se encuentren situadas de forma contigua.
 
@@ -75,17 +87,25 @@ Las posibles aplicaciones de las técnicas de *deep learning* son muy diversas y
 
 5. **Traducción automática.** Consiste en utilizar las técnicas de *deep learning* para traducir un texto automáticamente de una lengua a otra sin la necesidad de intervención humana. En la actualidad, no se limita únicamente a la traducción literal, palabra por palabra, del texto, sino que también tiene en cuenta el significado que tendría en el idioma original para adaptarlo al idioma destino (Fig. \@ref(fig:deepL)).
 
-<div class="figure" style="text-align: center">
-<img src="img/conc_dl_05_deepL.png" alt="Traductor automático basado en $deep$ $learning$." width="100%" />
-<p class="caption">(\#fig:deepL)Traductor automático basado en $deep$ $learning$.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/conc_dl_05_deepL} 
+
+}
+
+\caption{Traductor automático basado en $deep$ $learning$.}(\#fig:deepL)
+\end{figure}
 
 6. **Generación automática de imágenes/texto.** Permite obtener, desde una imagen, un texto descriptivo que indique el contenido de la imagen; o al contrario, a partir de un texto descriptivo generar una imagen basada en dicha descripción. Un ejemplo de este último caso sería Dall-E [@borji2022generated], que puede verse en la Fig. \@ref(fig:DallE).
 
-<div class="figure" style="text-align: center">
-<img src="img/conc_dl_06_DallE.png" alt="Algunas salidas posibles del generador de imágenes a partir de texto Dall-E, para el texto: $A$ $cat$ $with$ $glasses$ $studying$ $computer$ $vision$ $in$ $the$ $space$ $with$ $the$ $Earth$ $in$ $the$ $background$." width="100%" />
-<p class="caption">(\#fig:DallE)Algunas salidas posibles del generador de imágenes a partir de texto Dall-E, para el texto: $A$ $cat$ $with$ $glasses$ $studying$ $computer$ $vision$ $in$ $the$ $space$ $with$ $the$ $Earth$ $in$ $the$ $background$.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/conc_dl_06_DallE} 
+
+}
+
+\caption{Algunas salidas posibles del generador de imágenes a partir de texto Dall-E, para el texto: $A$ $cat$ $with$ $glasses$ $studying$ $computer$ $vision$ $in$ $the$ $space$ $with$ $the$ $Earth$ $in$ $the$ $background$.}(\#fig:DallE)
+\end{figure}
 
 7. **Automóvil autónomo.** Las técnicas de *deep learning*\index{deep learning@\textit{deep learning}} están siendo claves para el desarrollo del vehículo autónomo, capaz de circular sin necesidad de la interacción de un conductor humano. Para lograr definitivamente un vehículo con estas características, es necesario que sea capaz de ver, tomar decisiones y conducir al mismo tiempo. Esto se consigue en la actualidad integrando la información de gran cantidad de sensores que obtienen datos en tiempo real sobre el entorno --como serían cámaras, LIDAR, radares o ultrasónicos, entre otros-- que es procesada por varias redes neuronales con el fin de que el sistema de conducción sea capaz de tomar una decisión en cuestión de milisegundos (Fig. \@ref(fig:camaraTermica)).
 
@@ -122,10 +142,14 @@ f (\bf w^{\prime}   \bf x) =
 
 Por tanto, cada neurona\index{neurona} actúa como un clasificador lineal que puede separar dos conjuntos diferentes dependiendo de si la salida es positiva o negativa (Fig. \@ref(fig:perceptron)).
 
-<div class="figure" style="text-align: center">
-<img src="img/perceptron.png" alt="Estructura del perceptrón o neurona." width="80%" />
-<p class="caption">(\#fig:perceptron)Estructura del perceptrón o neurona.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{img/perceptron} 
+
+}
+
+\caption{Estructura del perceptrón o neurona.}(\#fig:perceptron)
+\end{figure}
 
 
 
@@ -240,10 +264,14 @@ f <- function(x){ x }
 plot_activation_function(f, 'Lineal', c(-4,4))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="180037-38_rn_artificiales_files/figure-html/red-lineal-1.png" alt="Representación gráfica de la función lineal." width="50%" />
-<p class="caption">(\#fig:red-lineal)Representación gráfica de la función lineal.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{180037-38_rn_artificiales_files/figure-latex/red-lineal-1} 
+
+}
+
+\caption{Representación gráfica de la función lineal.}(\#fig:red-lineal)
+\end{figure}
 
 - **Función umbral.** Esta función recibe también el nombre de función escalón. Si el valor de entrada es menor que el umbral, $u$, la salida es 0. En caso contrario, la salida es 1. Si el umbral es 0, la función se reduce a observar el signo del valor de la salida.
 
@@ -270,10 +298,14 @@ ggplot(data=df, aes(x=x, y=f, group=1)) +
     geom_step(color='red')
 ```
 
-<div class="figure" style="text-align: center">
-<img src="180037-38_rn_artificiales_files/figure-html/red-umbral-1.png" alt="Representación gráfica de la función umbral." width="50%" />
-<p class="caption">(\#fig:red-umbral)Representación gráfica de la función umbral.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{180037-38_rn_artificiales_files/figure-latex/red-umbral-1} 
+
+}
+
+\caption{Representación gráfica de la función umbral.}(\#fig:red-umbral)
+\end{figure}
 
 - **Función sigmoide.** También conocida como función logística, se trata de una de las funciones más utilizadas para asignar una clase. Si el punto de evaluación de la función es un valor negativo muy bajo, la función da como resultado un valor muy cercano a 0, si se evalúa en 0 el resultado es 0,5 y si se evalúa en un valor positivo alto el resultado es aproximadamente 1.
 
@@ -289,10 +321,14 @@ f <- function(x){1 / (1 + exp(-x))}
 plot_activation_function(f, 'Sigmoide', c(-4,4))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="180037-38_rn_artificiales_files/figure-html/red-sigmoide-1.png" alt="Representación gráfica de la función sigmoide." width="50%" />
-<p class="caption">(\#fig:red-sigmoide)Representación gráfica de la función sigmoide.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{180037-38_rn_artificiales_files/figure-latex/red-sigmoide-1} 
+
+}
+
+\caption{Representación gráfica de la función sigmoide.}(\#fig:red-sigmoide)
+\end{figure}
 - **Función tangente hiperbólica.** El rango de valores de salida es [-1, 1], donde para valores altos de ${\bf w}^{\prime} \bf x$ la función tiende de manera asintótica a 1 y los valores muy bajos tiende,  también de manera asintótica, a $-1$, de forma similar a la sigmoide.
 
 \begin{equation} 
@@ -307,10 +343,14 @@ tanh_func <- function(x){tanh(x)}
 plot_activation_function(tanh_func, 'Tangente Hiperbólica', c(-4,4))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="180037-38_rn_artificiales_files/figure-html/red-hiperbo-1.png" alt="Representación gráfica de la función tangente hiperbólica." width="50%" />
-<p class="caption">(\#fig:red-hiperbo)Representación gráfica de la función tangente hiperbólica.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{180037-38_rn_artificiales_files/figure-latex/red-hiperbo-1} 
+
+}
+
+\caption{Representación gráfica de la función tangente hiperbólica.}(\#fig:red-hiperbo)
+\end{figure}
 - **Función ReLU.** Se trata de la unidad lineal rectificada (del inglés *rectified linear unit*). Es posiblemente la función de activación más utilizada actualmente en *deep learning* [@nair2010rectified].
 
 \begin{equation} 
@@ -328,10 +368,14 @@ rec_lu_func <- function(x){ ifelse(x < 0 , 0, x )}
 plot_activation_function(rec_lu_func, 'ReLU', c(-4,4))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="180037-38_rn_artificiales_files/figure-html/red-relu-1.png" alt="Representación gráfica de la función ReLU." width="50%" />
-<p class="caption">(\#fig:red-relu)Representación gráfica de la función ReLU.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{180037-38_rn_artificiales_files/figure-latex/red-relu-1} 
+
+}
+
+\caption{Representación gráfica de la función ReLU.}(\#fig:red-relu)
+\end{figure}
 
 
 
@@ -345,10 +389,14 @@ Aunque el perceptrón\index{perceptrón} puede aprender muchos tipos de lógica,
 
 Un MLP está compuesto por varias capas con neuronas. La primera capa es la de entrada, que recibe las variables seleccionadas para dar solución al problema a resolver. La última, la salida del MLP, representa las clases de salida (en las que hay que clasificar las entradas). Entre ambas capas hay una o más capas intermedias u "ocultas". Las neuronas de una capa intermedia tienen como entrada la salida de la capa anterior y su salida es la entrada de las neuronas de la siguiente capa (Fig. \@ref(fig:ann)). Este tipo de capas también son llamadas **densas** o **totalmente conectadas**. En la práctica, tanto las capas intermedias como la capa de salida están compuestas por neuronas totalmente conectadas.
 
-<div class="figure" style="text-align: center">
-<img src="img/ann.png" alt="Estructura del perceptrón multicapa (MLP)." width="80%" />
-<p class="caption">(\#fig:ann)Estructura del perceptrón multicapa (MLP).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{img/ann} 
+
+}
+
+\caption{Estructura del perceptrón multicapa (MLP).}(\#fig:ann)
+\end{figure}
 
 
 ### Aprendizaje
@@ -524,10 +572,14 @@ En esta sección se entrena una red neuronal artificial para reconocer o clasifi
 
 [^Note-RNA-000]: Para aquellos no familiarizados con la cuestión, un píxel es la menor unidad homogénea en color que forma parte de una imagen digital. Cuanto mayor sea la cantidad de píxeles, mejor calidad tendrá la imagen. En otros términos, son los puntos de color (siendo la escala de grises una gama de color monocromática). Las imágenes se forman como una sucesión de píxeles. En las imágenes de mapa de bits, o en los dispositivos gráficos, cada píxel se codifica mediante un conjunto de bits de longitud determinada (la profundidad de color); por ejemplo, se puede codificar con un byte (8 bits), de manera que cada píxel admite hasta 256 variaciones de color ($2^8$ posibilidades binarias), de 0 a 255. En las denominadas imágenes llamadas de color verdadero se suelen utilizar tres bytes (24 bits) para definir el color de un píxel; por consiguiente, cada píxel permite representar $2^{24}=16.777.216$ variaciones de color. 
 
-<div class="figure" style="text-align: center">
-<img src="img/mlpmnhist.png" alt="MLP para reconocimiento de dígitos manuscritos." width="100%" />
-<p class="caption">(\#fig:mlpmnhist)MLP para reconocimiento de dígitos manuscritos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/mlpmnhist} 
+
+}
+
+\caption{MLP para reconocimiento de dígitos manuscritos.}(\#fig:mlpmnhist)
+\end{figure}
 
 ### Carga y visualización de los datos
 
@@ -569,10 +621,14 @@ for (j in 1:16) {
 }
 ```
 
-<div class="figure" style="text-align: center">
-<img src="180037-38_rn_artificiales_files/figure-html/img-entrenamiento-1.png" alt="Algunas imágenes del conjunto de entrenamiento." width="60%" />
-<p class="caption">(\#fig:img-entrenamiento)Algunas imágenes del conjunto de entrenamiento.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{180037-38_rn_artificiales_files/figure-latex/img-entrenamiento-1} 
+
+}
+
+\caption{Algunas imágenes del conjunto de entrenamiento.}(\#fig:img-entrenamiento)
+\end{figure}
 
 ### Preprocesamiento
 
@@ -686,10 +742,14 @@ Las gráficas de coste/pérdida y precisión permiten ver su evolución durante 
 plot(training_evolution)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/curve1.png" alt="Evolución durante el entrenamiento de la función de precisión y de coste/pérdida: conjuntos de entrenamiento y validación." width="70%" />
-<p class="caption">(\#fig:plot-curve1)Evolución durante el entrenamiento de la función de precisión y de coste/pérdida: conjuntos de entrenamiento y validación.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/curve1} 
+
+}
+
+\caption{Evolución durante el entrenamiento de la función de precisión y de coste/pérdida: conjuntos de entrenamiento y validación.}(\#fig:plot-curve1)
+\end{figure}
 
 Como se puede observar, la red entrenada tiene alrededor de un 90% de precisión (porcentaje de aciertos al clasificar las imágenes) tanto para las imágenes del conjunto de entrenamiento como para las del conjunto de validación. En el caso de la función de pérdida o coste, que mide el error cometido al realizar la clasificación, se aprecia que se reduce conforme la precisión del modelo aumenta.
 
@@ -894,10 +954,14 @@ Las gráficas de coste/pérdida y error durante el proceso de entrenamiento pued
 plot(training_evolution)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/curve2.png" alt="Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación." width="70%" />
-<p class="caption">(\#fig:plot-curve2)Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/curve2} 
+
+}
+
+\caption{Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación.}(\#fig:plot-curve2)
+\end{figure}
 
 Como se puede observar, en este caso el modelo tiene aún posibilidad de mejora, ya que la pérdida es elevada y no se ha estancado, por lo que incrementando el número de épocas y el tiempo de entrenamiento se podría obtener un mejor resultado.
 

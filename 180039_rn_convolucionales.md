@@ -13,10 +13,14 @@ $^{b}$Ubotica Technologies
 
 Las redes neuronales convolucionales (en inglés *convolutional neural network*, CNN) son una extensión de las redes neuronales artificiales (ANN)\index{red neuronal!artificial} en las que se incluyen capas convolucionales, explicadas en detalle en las siguientes secciones, para aprender a extraer, de forma automática, las características de los datos de entrenamiento al inicio de la arquitectura (Fig. \@ref(fig:cnn)). 
 
-<div class="figure" style="text-align: center">
-<img src="img/cnn.png" alt="Estructura general de una CNN." width="90%" />
-<p class="caption">(\#fig:cnn)Estructura general de una CNN.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{img/cnn} 
+
+}
+
+\caption{Estructura general de una CNN.}(\#fig:cnn)
+\end{figure}
 Las primeras capas convolucionales de la red aprenden a extraer características generales de los datos de entrada, mientras que las últimas capas convolucionales extraen características mucho más específicas. Cuanto más larga (o más **profunda**) es la red,  mayor cantidad de detalles podrá aprender a distinguir. Esto es lo que ha propiciado la aparición del término ``aprendizaje profundo" [@goodfellow2016deep].
 
 Tras las capas convolucionales suelen encontrarse las capas **densas** o **totalmente conectadas** de la misma tipología de las vistas en el Cap. \@ref(capNN). Esta parte de la red será la encargada de realizar la clasificación\index{clasificación} de las observaciones en función de los valores de las características extraídas en la parte convolucional. Por tanto, se dice que este tipo de redes tiene dos partes: una de extracción de características (realizada por la red convolucional) y otra de clasificación o regresión (como las vistas en el Cap. \@ref(capNN)).
@@ -33,10 +37,14 @@ La Fig. \@ref(fig:convolution) muestra el resultado de aplicar la operación de 
 
 [^Note-Redesconv-1]: Nótese que el filtro no puede aplicarse a los bordes de la matriz de entrada. En la Sec. \@ref(relleno) se tratan algunas soluciones a este problema. 
 
-<div class="figure" style="text-align: center">
-<img src="img/convolution.png" alt="Ejemplo de convolución. De izquierda a derecha: entrada (negro = 0, blanco = 1), filtro y salida." width="75%" />
-<p class="caption">(\#fig:convolution)Ejemplo de convolución. De izquierda a derecha: entrada (negro = 0, blanco = 1), filtro y salida.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth]{img/convolution} 
+
+}
+
+\caption{Ejemplo de convolución. De izquierda a derecha: entrada (negro = 0, blanco = 1), filtro y salida.}(\#fig:convolution)
+\end{figure}
 
 En general, una convolución en dos dimensiones se define como:
 
@@ -62,10 +70,14 @@ M_{3,3} = 1\cdot1+ 0\cdot 1+1 \cdot 0+0 \cdot 1 + & 1 \cdot 1 + 0 \cdot 0+ 1\cdo
 
 La elección de unos u otros valores del filtro dará lugar a matrices de salida que realcen o suavicen ciertas partes de la entrada. Por ejemplo, si la entrada es una imagen, es posible definir filtros que realcen los bordes, que los suavicen o incluso que detecten dichos bordes y cómo de marcados están. La Fig. \@ref(fig:filtros) muestra el resultado de aplicar distintos filtros a una imagen de entrada.
 
-<div class="figure" style="text-align: center">
-<img src="img/filtros.png" alt="Resultado de aplicar diferentes filtros de convolución sobre una imagen dada." width="70%" />
-<p class="caption">(\#fig:filtros)Resultado de aplicar diferentes filtros de convolución sobre una imagen dada.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/filtros} 
+
+}
+
+\caption{Resultado de aplicar diferentes filtros de convolución sobre una imagen dada.}(\#fig:filtros)
+\end{figure}
 
 Los valores (o pesos) de los filtros se ajustaban tradicionalmente de forma
 manual según el problema a resolver. En los *frameworks* actuales se ajustan durante el proceso de entrenamiento de la CNN junto con el resto de pesos de la red, lo cual permite encontrar los valores del filtro que maximicen la precisión de la red.
@@ -74,10 +86,14 @@ manual según el problema a resolver. En los *frameworks* actuales se ajustan du
 
 Las capas convolucionales de la CNN no están compuestas por perceptrones, sino por neuronas convolucionales que aplican los filtros de convolución sobre la salida de la capa anterior. Por tanto, los pesos de estas neuronas convolucionales se organizan en forma de matriz, siendo cada matriz un filtro. Cada neurona\index{neurona} da lugar a una matriz cuyos valores pasarán por la función de activación para obtener finalmente lo que se conoce como **mapa de activaciones**. Por tanto, la salida de una capa convolucional compuesta por varias de estas neuronas está formada por un conjunto de estos mapas y tiene forma de matriz 3D (Fig. \@ref(fig:mapas)). 
 
-<div class="figure" style="text-align: center">
-<img src="img/mapas.png" alt="Conjunto de mapas de activaciones de una determinada capa (cada filtro de la capa da lugar a un mapa diferente)." width="60%" />
-<p class="caption">(\#fig:mapas)Conjunto de mapas de activaciones de una determinada capa (cada filtro de la capa da lugar a un mapa diferente).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/mapas} 
+
+}
+
+\caption{Conjunto de mapas de activaciones de una determinada capa (cada filtro de la capa da lugar a un mapa diferente).}(\#fig:mapas)
+\end{figure}
 
 Al igual que los perceptrones, las neuronas convolucionales incluyen términos independientes que se suman al resultado de realizar la convolución con el filtro. Por ejemplo, una capa con 64 filtros de tamaño 7 $\times$ 7 tendrá 64 de estos valores, uno para cada filtro. A estos valores se les conoce también con el nombre de *bias*. Por tanto, la salida de una neurona convolucional, $\bf Y$, se obtiene como sigue:
 
@@ -92,10 +108,14 @@ La mayoría de las CNN utilizan la ReLU como función de activación, o alguna v
 
 En el caso de que la entrada no sea una matriz 2D sino una matriz 3D como, por ejemplo, una imagen con varios canales de color o un conjunto de mapas de activación, los filtros contarán con una tercera dimensión. La Fig. \@ref(fig:relu) muestra el resultado de aplicar un filtro de tamaño $3 \times 3 \times 3$ sobre una imagen con 3 canales de color antes y después de pasar por una función de activación de tipo ReLU. 
 
-<div class="figure" style="text-align: center">
-<img src="img/relu.png" alt="Resultado de aplicar un filtro 3D a una imagen antes y después de pasar por el filtro de activación." width="100%" />
-<p class="caption">(\#fig:relu)Resultado de aplicar un filtro 3D a una imagen antes y después de pasar por el filtro de activación.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/relu} 
+
+}
+
+\caption{Resultado de aplicar un filtro 3D a una imagen antes y después de pasar por el filtro de activación.}(\#fig:relu)
+\end{figure}
 
 
 
@@ -103,10 +123,14 @@ En el caso de que la entrada no sea una matriz 2D sino una matriz 3D como, por e
 
 Si se aplica el filtro convolucional a una entrada, la matriz resultante será algo más pequeña ya que no se puede  centrar el filtro en los bordes de la matriz. Para poder hacerlo, se suele incrementar la entrada con un relleno (en inglés *padding*\index{padding@\textit{padding}}). El relleno se puede realizar con ceros, con algún valor, con el valor más cercano del borde, etc. La Fig. \@ref(fig:padding) muestra algunos de los rellenos más empleados. 
 
-<div class="figure" style="text-align: center">
-<img src="img/padding.png" alt="Distintos tipos de relleno del borde." width="100%" />
-<p class="caption">(\#fig:padding)Distintos tipos de relleno del borde.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/padding} 
+
+}
+
+\caption{Distintos tipos de relleno del borde.}(\#fig:padding)
+\end{figure}
 
 \index{stride@\textit{stride}}
 
@@ -114,10 +138,14 @@ Si se aplica el filtro convolucional a una entrada, la matriz resultante será a
 
 El desplazamiento (en inglés *stride*) básico con el que se aplica un filtro convolucional es de 1. Sin embargo, la aplicación de muchos filtros repartidos en capas a lo largo de la red hace que sea especialmente difícil mantener todos los datos generados en un momento determinado del entrenamiento. Para reducir este volumen de datos, se suelen aplicar las convoluciones con un desplazamiento mayor que 1. Esto reduce el tamaño del mapa de activaciones obtenido por una determinada capa (véase Fig. \@ref(fig:stride)). 
 
-<div class="figure" style="text-align: center">
-<img src="img/stride.png" alt="Desplazamiento 2 x 2 del filtro. El punto es el centro de la zona en la que se aplica el filtro en cada momento." width="25%" />
-<p class="caption">(\#fig:stride)Desplazamiento 2 x 2 del filtro. El punto es el centro de la zona en la que se aplica el filtro en cada momento.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.25\linewidth]{img/stride} 
+
+}
+
+\caption{Desplazamiento 2 x 2 del filtro. El punto es el centro de la zona en la que se aplica el filtro en cada momento.}(\#fig:stride)
+\end{figure}
 
 
 
@@ -127,10 +155,14 @@ La ejecución en secuencia de varias capas convolucionales es muy efectiva a la 
 
 Una forma de mitigar este problema es usar capas de agrupación (en inglés *pooling*\index{pooling@\textit{pooling}}). Estas capas agrupan un número de valores adyacentes de los mapas de características obteniendo un nuevo conjunto de mapas más pequeños. Es posible emplear distintos tipos de operaciones con las que realizar la agrupación. Los más empleados suelen ser el *max pooling* y el *average pooling* [@goodfellow2016deep], que seleccionan el máximo de los valores o su media, respectivamente (Fig. \@ref(fig:pooling)). El tamaño más típico es 2 $\times$ 2.
 
-<div class="figure" style="text-align: center">
-<img src="img/pooling.png" alt="Resultado de emplear dos métodos de agrupación diferentes para reducir la dimensión de los datos." width="80%" />
-<p class="caption">(\#fig:pooling)Resultado de emplear dos métodos de agrupación diferentes para reducir la dimensión de los datos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{img/pooling} 
+
+}
+
+\caption{Resultado de emplear dos métodos de agrupación diferentes para reducir la dimensión de los datos.}(\#fig:pooling)
+\end{figure}
 
 
 ## Desvanecimiento del gradiente
@@ -138,10 +170,14 @@ Una forma de mitigar este problema es usar capas de agrupación (en inglés *poo
 La primera red convolucional fue propuesta en 1982 [@fukushima1982neocognitron]. Esta arquitectura recibió el nombre de Neocognitron y ya constaba de capas convolucionales y capas de *pooling*\index{pooling@\textit{pooling}}. 
 Siguiendo la misma idea, en 1998 se diseñó otra CNN para resolver el problema de reconocimiento de dígitos manuscritos, MNIST [@lecun1998gradient]. A esta arquitectura de CNN se la conoce con el nombre de LeNet y es una de las arquitecturas más pequeñas que se puede definir para resolver un problema de clasificación\index{clasificación} (Fig. \@ref(fig:lenet)). El extractor de características consta de dos capas convolucionales alternadas con 2 capas de *pooling* que obtienen un total de 400 variables. La parte final con el clasificador está compuesta por 3 capas densas de 120, 84 y 10 neuronas.
 
-<div class="figure" style="text-align: center">
-<img src="img/lenet.png" alt="Arquitectura LeNet." width="80%" />
-<p class="caption">(\#fig:lenet)Arquitectura LeNet.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{img/lenet} 
+
+}
+
+\caption{Arquitectura LeNet.}(\#fig:lenet)
+\end{figure}
 
 A pesar de los buenos resultados obtenidos por la arquitectura, el uso de estos métodos para resolver problemas reales estaba aún lejos debido a la carga computacional requerida para su entrenamiento. No fue hasta el año 2012, cuando los ganadores del concurso ImageNet Challenge presentaron una nueva arquitectura llamada AlexNet, que las CNN volvieron a estar en el punto de mira de los investigadores [@deng2012imagenet]. A partir de ese momento, y teniendo en cuenta los grandes avances computacionales de las tarjetas gráficas (GPU), que permitían ejecutar operaciones matriciales de forma eficiente, se empezaron a desarrollar cada vez más arquitecturas diferentes. 
 
@@ -166,10 +202,14 @@ Cuanto mayor es el número de parámetros de la red, mayor probabilidad hay de q
 Además de esto, la no linealidad que añaden las funciones de activación puede hacer que se encuentren fronteras de decisión que modelen datos que no son linealmente separables, pero también facilita que se produzca el sobreajuste (Fig. \@ref(fig:overfitting)).
 
 
-<div class="figure" style="text-align: center">
-<img src="img/overfitting.png" alt="Tipos de ajuste del modelo a los datos." width="80%" />
-<p class="caption">(\#fig:overfitting)Tipos de ajuste del modelo a los datos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{img/overfitting} 
+
+}
+
+\caption{Tipos de ajuste del modelo a los datos.}(\#fig:overfitting)
+\end{figure}
 
 
 Para evitar que se produzca el sobreajuste se suelen emplear técnicas de regularización. Se trata de técnicas que impiden que los modelos sean demasiado complejos mejorando su capacidad de generalización. Algunas de estas técnicas son:
@@ -193,10 +233,14 @@ Para evitar que se produzca el sobreajuste se suelen emplear técnicas de regula
 \end{equation}
 
 
-<div class="figure" style="text-align: center">
-<img src="img/early.png" alt="Selección del modelo antes del sobreajuste." width="80%" />
-<p class="caption">(\#fig:early)Selección del modelo antes del sobreajuste.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{img/early} 
+
+}
+
+\caption{Selección del modelo antes del sobreajuste.}(\#fig:early)
+\end{figure}
 
 ## Generación de datos de entrenamiento artificiales
 
@@ -206,10 +250,14 @@ Esta técnica realiza pequeñas variaciones en los datos del conjunto de entrena
 
 Algunos ejemplos de técnicas de *data augmentation* \index{data augmentation@\textit{data augmentation}} en imagen pueden ser: la realización de rotaciones, modificación del contraste o cambios en la iluminación, reescalados, adición/eliminación de ruido o cambio en las proyecciones de las mismas (Fig. \@ref(fig:dataAugmentation)).
 
-<div class="figure" style="text-align: center">
-<img src="img/data_augmentation.png" alt="Ejemplos de técnicas de generación de datos artificiales." width="100%" />
-<p class="caption">(\#fig:dataAugmentation)Ejemplos de técnicas de generación de datos artificiales.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/data_augmentation} 
+
+}
+
+\caption{Ejemplos de técnicas de generación de datos artificiales.}(\#fig:dataAugmentation)
+\end{figure}
 
 
 Para utilizar las técnicas de *data augmentation* en **R**, se pueden incluir capas específicas de preprocesado durante la definición del modelo, que serán ejecutadas durante el entrenamiento de forma aleatoria. Es decir, cada vez que el proceso de entrenamiento necesite una imagen, decidirá de forma aleatoria si aplicar cada una de las capas o no. En el siguiente ejemplo se realizan rotaciones aleatorias, volteados horizontales y acercamientos a la imagen:
@@ -306,10 +354,14 @@ cifar$train$x[index,,,] |>
   purrr::iwalk(~{plot(.x); title(.y)})
 ```
 
-<div class="figure" style="text-align: center">
-<img src="180039_rn_convolucionales_files/figure-html/cifar-eti-1.png" alt="Imágenes del conjunto de datos de entrenamiento con su etiqueta." width="60%" />
-<p class="caption">(\#fig:cifar-eti)Imágenes del conjunto de datos de entrenamiento con su etiqueta.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{180039_rn_convolucionales_files/figure-latex/cifar-eti-1} 
+
+}
+
+\caption{Imágenes del conjunto de datos de entrenamiento con su etiqueta.}(\#fig:cifar-eti)
+\end{figure}
 
 ### Preprocesamiento
 \index{preprocesamiento}
@@ -468,10 +520,14 @@ Tras el entrenamiento, se puede observar la evolución del mismo mediante las gr
 ```r
 plot(training_evolution)
 ```
-<div class="figure" style="text-align: center">
-<img src="img/curve3.png" alt="Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación." width="60%" />
-<p class="caption">(\#fig:plot-curve3)Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/curve3} 
+
+}
+
+\caption{Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación.}(\#fig:plot-curve3)
+\end{figure}
 
 Como se puede apreciar, la red entrenada es capaz de alcanzar un 60% de precisión tanto en el conjunto de entrenamiento como en el de validación.
 

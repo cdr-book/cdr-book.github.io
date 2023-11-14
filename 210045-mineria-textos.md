@@ -155,7 +155,7 @@ tabla <- table(palabras[[1]])
   recuento = as.numeric(tabla)
 ) |>
   arrange(desc(recuento)))
-#> # A tibble: 390 × 2
+#> # A tibble: 390 x 2
 #>    palabra recuento
 #>    <chr>      <dbl>
 #>  1 de            43
@@ -168,7 +168,7 @@ tabla <- table(palabras[[1]])
 #>  8 el            17
 #>  9 al            14
 #> 10 para          14
-#> # ℹ 380 more rows
+#> # i 380 more rows
 ```
 En la primera fila de la salida se indican las dimensiones de la `tibble`, por lo que se puede ver que en la Declaración hay 390 "palabras" distintas (los números se consideran como palabras).
 
@@ -205,10 +205,14 @@ head(longitud_o)
 #> [1]  2  2 39 33 33 32
 ```
 
-<div class="figure" style="text-align: center">
-<img src="210045-mineria-textos_files/figure-html/mintex-graf-long-o-1.png" alt="Número de palabras en cada oración de la Declaración." width="60%" />
-<p class="caption">(\#fig:mintex-graf-long-o)Número de palabras en cada oración de la Declaración.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{210045-mineria-textos_files/figure-latex/mintex-graf-long-o-1} 
+
+}
+
+\caption{Número de palabras en cada oración de la Declaración.}(\#fig:mintex-graf-long-o)
+\end{figure}
 
 
 ### Análisis exploratorio 
@@ -235,22 +239,36 @@ knitr::kable(tabla[1:10, ],
 )
 ```
 
+\begin{table}
 
-
-Table: (\#tab:mintex-MFW-tabla)Palabras más frecuentes (sin palabras vacías)
-
-|palabra    | recuento|
-|:----------|--------:|
-|virus      |        9|
-|recursos   |        7|
-|social     |        5|
-|alarma     |        4|
-|conjunto   |        4|
-|emergencia |        4|
-|españa     |        4|
-|semanas    |        4|
-|va         |        4|
-|cada       |        3|
+\caption{(\#tab:mintex-MFW-tabla)Palabras más frecuentes (sin palabras vacías)}
+\centering
+\begin{tabular}[t]{l|r}
+\hline
+palabra & recuento\\
+\hline
+virus & 9\\
+\hline
+recursos & 7\\
+\hline
+social & 5\\
+\hline
+alarma & 4\\
+\hline
+conjunto & 4\\
+\hline
+emergencia & 4\\
+\hline
+españa & 4\\
+\hline
+semanas & 4\\
+\hline
+va & 4\\
+\hline
+cada & 3\\
+\hline
+\end{tabular}
+\end{table}
 
 El resultado, Tabla \@ref(tab:mintex-MFW-tabla), se puede considerar el primer análisis léxico con valor informativo: la palabra más frecuente es *virus*, seguida de *recursos* y *social*. Se podría ver que en total hay 319 palabras no vacías distintas.
 
@@ -268,10 +286,14 @@ library("wordcloud")
 wordcloud(tabla$palabra, tabla$recuento, max.words = 50, colors = rainbow(3))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="210045-mineria-textos_files/figure-html/mintex-nube-palabras-1.png" alt="Nube de palabras más frecuentes de la Declaración." width="80%" />
-<p class="caption">(\#fig:mintex-nube-palabras)Nube de palabras más frecuentes de la Declaración.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{210045-mineria-textos_files/figure-latex/mintex-nube-palabras-1} 
+
+}
+
+\caption{Nube de palabras más frecuentes de la Declaración.}(\#fig:mintex-nube-palabras)
+\end{figure}
 
 El resultado se muestra en la Fig. \@ref(fig:mintex-nube-palabras). Como se puede observar, el tamaño de letra de la palabra, y en este caso también el color, están relacionados con su frecuencia.
 
@@ -351,10 +373,14 @@ emo |> ggplot(aes(sentiment)) +
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/text-emo1.png" alt="Gráfico de barras con la frecuencia de las emociones del lexicón NRC." width="85%" />
-<p class="caption">(\#fig:mintex-barplot-NRC)Gráfico de barras con la frecuencia de las emociones del lexicón NRC.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth]{img/text-emo1} 
+
+}
+
+\caption{Gráfico de barras con la frecuencia de las emociones del lexicón NRC.}(\#fig:mintex-barplot-NRC)
+\end{figure}
 
 
 El análisis de sentimientos y la detección de emociones de la Declaración mediante NRC se puede realizar con el siguiente código, mediante el cual se obtiene la tabla de frecuencias por emociones y sentimientos:
@@ -388,10 +414,14 @@ emo_tab |>
   geom_text(aes(label = n), vjust = -0.25)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/text-emo2.png" alt="Frecuencia de emociones de la Declaración utilizando NRC." width="85%" />
-<p class="caption">(\#fig:mintex-emobarras)Frecuencia de emociones de la Declaración utilizando NRC.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth]{img/text-emo2} 
+
+}
+
+\caption{Frecuencia de emociones de la Declaración utilizando NRC.}(\#fig:mintex-emobarras)
+\end{figure}
 
 
 Entre las distintas opciones para dibujar nubes de palabras\index{nubes de palabras} para el análisis de sentimientos es interesante la que se obtiene con el paquete `syuzhet`, dado que permite visualizar las palabras agrupadas por emociones. Su obtención requiere distintos pasos en los que primero las palabras se agrupan por emoción y después se organizan en una **matriz de documentos**\index{matriz!de documentos} con la función `TermDocumentMatrix()` del paquete `tm`. Finalmente, la función `comparison.cloud()` permite visualizar el gráfico (tiene distintos argumentos opcionales que admiten distintas posibilidades). En el ejemplo que figura a continuación solo se han escogido tres emociones.[^Note-mintex-3]
@@ -422,10 +452,14 @@ comparison.cloud(TDM,
 )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/text-emo3.png" alt="Nube de palabras de la Declaración de tres emociones NRC seleccionadas." width="88%" />
-<p class="caption">(\#fig:mintex-emonube)Nube de palabras de la Declaración de tres emociones NRC seleccionadas.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.88\linewidth]{img/text-emo3} 
+
+}
+
+\caption{Nube de palabras de la Declaración de tres emociones NRC seleccionadas.}(\#fig:mintex-emonube)
+\end{figure}
 
 ### *N*-gramas
 \index{n-gramas@\textit{n}-gramas}
@@ -461,7 +495,7 @@ bigramas <- declara2 |>
   count(bigram, sort = TRUE)
 
 bigramas[1:5, ]
-#> # A tibble: 5 × 2
+#> # A tibble: 5 x 2
 #>   bigram         n
 #>   <chr>      <int>
 #> 1 todos los      6
@@ -481,7 +515,7 @@ bigramas_limpios <- bigramas |>
   unite(bigram, word1, word2, sep = " ")
 
 bigramas_limpios[1:5, ]
-#> # A tibble: 5 × 2
+#> # A tibble: 5 x 2
 #>   bigram                       n
 #>   <chr>                    <int>
 #> 1 autoridades sanitarias       2
@@ -502,7 +536,7 @@ bigramas_no <- bigramas |>
   count(word1, word2, sort = TRUE)
 
 bigramas_no
-#> # A tibble: 3 × 3
+#> # A tibble: 3 x 3
 #>   word1 word2       n
 #>   <chr> <chr>   <int>
 #> 1 no    atiende     1
@@ -546,10 +580,14 @@ library("patchwork")
 g1 + g2
 ```
 
-<div class="figure" style="text-align: center">
-<img src="210045-mineria-textos_files/figure-html/mintex-figredes-1.png" alt="Redes de bigramas de la Declaración sin palabras vacías y con ellas." width="85%" />
-<p class="caption">(\#fig:mintex-figredes)Redes de bigramas de la Declaración sin palabras vacías y con ellas.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth]{210045-mineria-textos_files/figure-latex/mintex-figredes-1} 
+
+}
+
+\caption{Redes de bigramas de la Declaración sin palabras vacías y con ellas.}(\#fig:mintex-figredes)
+\end{figure}
 
 
 ::: {.infobox_resume data-latex=""}

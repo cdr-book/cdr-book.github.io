@@ -23,10 +23,14 @@ Uno de los principales retos a los que se enfrentan los departamentos de marketi
 
 En la comparativa que se muestra en la Fig. \@ref(fig:comparativa-modelos) se resume el objetivo de cada uno de los modelos, así como las preguntas que permiten responder:
 
-<div class="figure" style="text-align: center">
-<img src="img/Comparativa_modelos2.png" alt="Comparativa de metodologías de medición." width="100%" />
-<p class="caption">(\#fig:comparativa-modelos)Comparativa de metodologías de medición.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/Comparativa_modelos2} 
+
+}
+
+\caption{Comparativa de metodologías de medición.}(\#fig:comparativa-modelos)
+\end{figure}
 
 En los últimos años se han producido una serie de cambios en el entorno de la industria del marketing digital enfocados a garantizar el más estricto control de la privacidad de los usuarios. Desde el lanzamiento de la nueva ley de protección de datos (GDPR), en 2018, hasta la reciente confirmación por parte de Google de la prohibición de uso de *cookies* de tercera parte en Chrome, la posibilidad de acceder a datos de identificación personal para la medición y optimización del impacto de las campañas de publicidad digital está cada vez más limitada. 
 
@@ -243,10 +247,14 @@ print(OutputCollect)
 
 Para finalizar, se revisan los distintos modelos obtenidos y el resumen gráfico proporcionado por `Robyn`. Se recomienda profundizar en la interpretación de uno de los modelos obtenidos con buen ajuste. A través del *one-pager* (Fig. \@ref(fig:output-robyn)), se puede consultar toda la información relativa al impacto de la publicidad, incluyendo métricas relativas a la bondad del ajuste como el coeficiente de determinación o R2 y el NRMSE (panel superior izquierdo).
 
-<div class="figure" style="text-align: center">
-<img src="img/Output_Robyn_7_394_4.PNG" alt="One-pager de resultados de Robyn." width="100%" />
-<p class="caption">(\#fig:output-robyn)One-pager de resultados de Robyn.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/Output_Robyn_7_394_4} 
+
+}
+
+\caption{One-pager de resultados de Robyn.}(\#fig:output-robyn)
+\end{figure}
 
 Los principales *outputs* a evaluar de los modelos se visualizan en los gráficos del *one-pager*:
 

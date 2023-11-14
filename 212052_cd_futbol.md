@@ -55,10 +55,14 @@ datos_players |>
                                       size=12))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/plot-goals-assists-1.png" alt="Evolución de goles y asistencias por 90 minutos de Cristiano y Messi desde 2005." width="80%" />
-<p class="caption">(\#fig:pplot-goals1)Evolución de goles y asistencias por 90 minutos de Cristiano y Messi desde 2005.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{img/plot-goals-assists-1} 
+
+}
+
+\caption{Evolución de goles y asistencias por 90 minutos de Cristiano y Messi desde 2005.}(\#fig:pplot-goals1)
+\end{figure}
 
 
 La Fig. \@ref(fig:pplot-goals1) arroja un dato increíble: durante 10 años, tener a Messi o Cristiano en el campo significaba contar en ese partido con un gol y casi media asistencia. 
@@ -103,10 +107,14 @@ percentiles_to_plot |>
         plot.title = element_markdown(margin=margin(0,0,0,-30), size=12))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/plot-goals-assists-2.png" alt="Percentil de goles y asistencias por 90 minutos cada temporada desde 2005." width="100%" />
-<p class="caption">(\#fig:pplot-goals2)Percentil de goles y asistencias por 90 minutos cada temporada desde 2005.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/plot-goals-assists-2} 
+
+}
+
+\caption{Percentil de goles y asistencias por 90 minutos cada temporada desde 2005.}(\#fig:pplot-goals2)
+\end{figure}
 
 En esta web se publican estadísticas avanzadas de jugadores por partido y temporada desde la temporada 2017/18. En la Fig. \@ref(fig:pplot-goals3) se representan los goles esperados (miden cómo de probable es el gol dado un disparo) y las asistencias esperadas (suma de los goles esperados que suman los pases que desembocan en un tiro) por 90 minutos de los jugadores con más de 1.000 minutos. De nuevo el gráfico destaca a los dos protagonistas, que se sitúan en el arco más alejado del origen de coordenadas, donde se juntan los jugadores con mejores números de asistencias y goles esperados.
 \index{goles esperados}
@@ -148,10 +156,14 @@ expected_data |>
         legend.title = element_blank())
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/plot-goals-assists-3.png" alt="Goles y asistencias por jugador y temporada." width="70%" />
-<p class="caption">(\#fig:pplot-goals3)Goles y asistencias por jugador y temporada.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/plot-goals-assists-3} 
+
+}
+
+\caption{Goles y asistencias por jugador y temporada.}(\#fig:pplot-goals3)
+\end{figure}
 
 
 La métrica de goles esperados permite también hablar de efectividad. Cuando un jugador suma más goles con sus disparos de lo que era esperable su efectividad es alta; cuando, por el contrario, el jugador termina anotando menos goles de los que se preveían por sus disparos su efectividad es baja. En la Fig. \@ref(fig:plot-goals-assists-4) se muestra para cada jugador y temporada esta relación. Se vuelve a observar cómo Cristiano y Messi destacan en la generación de goles esperados, aunque hay una ligera diferencia: entre 2018 y 2021 la efectividad del argentino fue mayor que la del portugués. Los puntos de Cristiano se sitúan sobre la línea que representa lo esperado: mismo número de goles que probabilidad de que los disparos acaben en gol. Los de Messi se sitúan por encima: ha anotado más goles que los que sus disparos hacían prever.
@@ -190,8 +202,12 @@ expected_data |>
 
 Con estos gráficos se puede hacer una primera evaluación de los datos de estos dos grandes jugadores (y de cualquier otro) y quizás no se logre contestar a la pregunta de quién ha sido el mejor, aunque para algunos con esto ya esté claro. 
 
-<div class="figure" style="text-align: center">
-<img src="img/plot-goals-assists-4.png" alt="Goles esperados y anotados por jugador y temporada." width="70%" />
-<p class="caption">(\#fig:plot-goals-assists-4)Goles esperados y anotados por jugador y temporada.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/plot-goals-assists-4} 
+
+}
+
+\caption{Goles esperados y anotados por jugador y temporada.}(\#fig:plot-goals-assists-4)
+\end{figure}
 

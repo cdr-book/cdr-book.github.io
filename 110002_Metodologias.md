@@ -114,10 +114,14 @@ La metodología CRISP-DM consta de seis etapas, que no han variado desde su publ
 [(CRISP-DM, 2021)](https://www.ibm.com/docs/es/spss-modeler/saas?topic=dm-crisp-help-overview).
 De manera esquemática, dichas etapas son:
 
-<div class="figure" style="text-align: center">
-<img src="img/crisp-dm2.png" alt="Etapas de la metodología CRISP-DM." width="60%" />
-<p class="caption">(\#fig:crisp-dm)Etapas de la metodología CRISP-DM.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/crisp-dm2} 
+
+}
+
+\caption{Etapas de la metodología CRISP-DM.}(\#fig:crisp-dm)
+\end{figure}
 
 1.  **Entendimiento del negocio**. Fundamental para el éxito del mismo.
     Consta de cuatro fases:

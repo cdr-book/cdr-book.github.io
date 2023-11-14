@@ -91,10 +91,14 @@ En el ejemplo, el $R^2$ ajustado mayor corresponde al modelo con 11 variables.
 
 Los resultados también se se pueden mostrar y dibujar simultáneamente; por ejemplo, los valores de RSS y $R^2$ ajustado de todos los modelos se muestran en la Fig. \@ref(fig:chunk7). 
 
-<div class="figure" style="text-align: center">
-<img src="150020_sparse_prm_files/figure-html/chunk7-1.png" alt="Valores de $R^2$ y $R^2$ ajustados correspondientes a modelos con distinto número de variables." width="60%" />
-<p class="caption">(\#fig:chunk7)Valores de $R^2$ y $R^2$ ajustados correspondientes a modelos con distinto número de variables.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/chunk7-1} 
+
+}
+
+\caption{Valores de $R^2$ y $R^2$ ajustados correspondientes a modelos con distinto número de variables.}(\#fig:chunk7)
+\end{figure}
 
 
 Otra manera de visualizar los resultados es:
@@ -104,10 +108,14 @@ Otra manera de visualizar los resultados es:
 plot(regfit_full, scale = "adjr2")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="150020_sparse_prm_files/figure-html/chunk10-1.png" alt="Variables seleccionadas en cada uno de los modelos y su correspondiente valor de $R^2$ ajustado." width="60%" />
-<p class="caption">(\#fig:chunk10)Variables seleccionadas en cada uno de los modelos y su correspondiente valor de $R^2$ ajustado.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/chunk10-1} 
+
+}
+
+\caption{Variables seleccionadas en cada uno de los modelos y su correspondiente valor de $R^2$ ajustado.}(\#fig:chunk10)
+\end{figure}
 
 La primera fila tiene un cuadrado negro en cada una de las variables explicativas del modelo con mayor $R^2$ ajustado (en este caso, sería similar para los otros criterios).
 
@@ -350,10 +358,14 @@ La Fig. \@ref(fig:chunk292) muestra el efecto de $\lambda$ en los coeficientes d
 plot(ridge_mod, xvar = "lambda", label = TRUE)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="150020_sparse_prm_files/figure-html/chunk292-1.png" alt="Coeficientes estimados para distintos valores del parámetro de penalización (en la escala logarítmica)." width="60%" />
-<p class="caption">(\#fig:chunk292)Coeficientes estimados para distintos valores del parámetro de penalización (en la escala logarítmica).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/chunk292-1} 
+
+}
+
+\caption{Coeficientes estimados para distintos valores del parámetro de penalización (en la escala logarítmica).}(\#fig:chunk292)
+\end{figure}
 
 El lado izquierdo de la Fig. \@ref(fig:chunk292) corresponde a valores de $\lambda$ muy pequeños, y por lo tanto no existen restricciones sobre los coeficientes. Conforme aumenta el valor de $\lambda$ los coeficientes se aproximan rápidamente a cero. Pero no todos se aproximan a cero de la misma manera: hay un conjunto de variables cuyo coeficiente es prácticamente cero para cualquier valor de $\lambda$, mientras que para un valor de $log(\lambda)=3$ parece que hay solo $4$ coeficientes distintos de $0$.
 
@@ -435,10 +447,14 @@ cv_out <- cv.glmnet(x[entreno, ], y[entreno], alpha = 0)
 plot(cv_out)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="150020_sparse_prm_files/figure-html/sparse2-1.png" alt="Valor del error cuadrático medio y su intervalo de confianza (calculado sobre los 10 grupos) para distintos valores del parámetro de penalización." width="60%" />
-<p class="caption">(\#fig:sparse2)Valor del error cuadrático medio y su intervalo de confianza (calculado sobre los 10 grupos) para distintos valores del parámetro de penalización.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/sparse2-1} 
+
+}
+
+\caption{Valor del error cuadrático medio y su intervalo de confianza (calculado sobre los 10 grupos) para distintos valores del parámetro de penalización.}(\#fig:sparse2)
+\end{figure}
 
 ```r
 mejorlam <- cv_out$lambda.min
@@ -477,10 +493,14 @@ Supóngase que se hacen mínimos cuadrados y se obtienen las estimaciones de los
 
 La Fig. \@ref(fig:lassoridge) [tomada de @james2013introduction] muestra por qué el modelo de regresión Lasso es *sparse*. El gráfico corresponde a un modelo de regresión con dos variables predictoras. El punto donde está el vector de coeficientes, $\hat{\boldsymbol{\beta}}$, es donde se alcanza el valor mínimo de la suma de los cuadrados de los residuos del modelo (RSS) y los contornos son combinaciones de valores de $\beta_1$ y $\beta_2$ que dan lugar al mismo valor de RSS, pero que ya no sería el mínimo. Las regiones de restricción son $|\beta_1|+|\beta_2|<s$ (Lasso) y $\beta_1^2 +\beta_2^2<s$ (*ridge*). En el caso de la regresión *ridge*, el *presupuesto* es el radio del círculo y la regresión *ridge* busca el primer lugar en el que el contorno toca a la región de restricción, pero, al ser un círculo, difícilmente uno u otro coeficiente va a ser $0$. En el caso de la regresión Lasso, la región de restricción tiene forma de diamante y, por lo tanto, tiene vértices. Como puede apreciarse, en la Fig. \@ref(fig:lassoridge) el contorno toca a la región de restricción en el caso en que $\beta_1=0$.
 
-<div class="figure" style="text-align: center">
-<img src="./img/lasso_ridge.png" alt="Contornos (rojo) de RSS y regiones de restricción (en azul) para la regresión Lasso (izquierda) y $ridge$ (derecha)." width="60%" />
-<p class="caption">(\#fig:lassoridge)Contornos (rojo) de RSS y regiones de restricción (en azul) para la regresión Lasso (izquierda) y $ridge$ (derecha).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{./img/lasso_ridge} 
+
+}
+
+\caption{Contornos (rojo) de RSS y regiones de restricción (en azul) para la regresión Lasso (izquierda) y $ridge$ (derecha).}(\#fig:lassoridge)
+\end{figure}
 
 
 
@@ -492,10 +512,14 @@ lasso_mod <- glmnet(x[entreno, ], y[entreno], alpha = 1, lambda = grid)
 plot(lasso_mod)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="150020_sparse_prm_files/figure-html/sparse3-1.png" alt="Valor de los parámetros estimados para distintos valores de la penalización (que depende del parámetro de penalización)." width="60%" />
-<p class="caption">(\#fig:sparse3)Valor de los parámetros estimados para distintos valores de la penalización (que depende del parámetro de penalización).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/sparse3-1} 
+
+}
+
+\caption{Valor de los parámetros estimados para distintos valores de la penalización (que depende del parámetro de penalización).}(\#fig:sparse3)
+\end{figure}
 
 
 En la Fig. \@ref(fig:sparse3) se puede ver que, dependiendo del valor del parámetro de penalización, algunos de los coeficientes se hacen exactamente $0$. Para elegir el valor de dicho parámetro y calcular el MSE resultante en el conjunto de test se procede como sigue:
@@ -507,10 +531,14 @@ cv_out <- cv.glmnet(x[entreno, ], y[entreno], alpha = 1)
 plot(cv_out)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="150020_sparse_prm_files/figure-html/sparse4-1.png" alt="Valor del error cuadrático medio y su intervalo de confianza para distintos valores del parámetro de penalización." width="60%" />
-<p class="caption">(\#fig:sparse4)Valor del error cuadrático medio y su intervalo de confianza para distintos valores del parámetro de penalización.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/sparse4-1} 
+
+}
+
+\caption{Valor del error cuadrático medio y su intervalo de confianza para distintos valores del parámetro de penalización.}(\#fig:sparse4)
+\end{figure}
 
 ```r
 mejorlab <- cv_out$lambda.min
@@ -561,10 +589,14 @@ cv_glmnet$bestTune
 ggplot(cv_glmnet)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="150020_sparse_prm_files/figure-html/sparse5-1.png" alt="Valor de la raíz cuadrada del error cudrático medio para distintas combinaciones de $\alpha$ y $\lambda$." width="60%" />
-<p class="caption">(\#fig:sparse5)Valor de la raíz cuadrada del error cudrático medio para distintas combinaciones de $\alpha$ y $\lambda$.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/sparse5-1} 
+
+}
+
+\caption{Valor de la raíz cuadrada del error cudrático medio para distintas combinaciones de $\alpha$ y $\lambda$.}(\#fig:sparse5)
+\end{figure}
 
 La Fig. \@ref(fig:sparse5) muestra cómo la combinación de $\alpha$ y $\lambda$ da lugar a diferentes MSE (en la figura aparece el RMSE, o sea, su raíz cuadrada). Cada línea corresponde a un valor de $\lambda$ distinto, y en el eje $x$ se representan los valores de $\alpha$.
 

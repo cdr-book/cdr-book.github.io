@@ -113,10 +113,14 @@ points.geodata(sim_indep,
 )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/dep-aleatoriedad.png" alt="Dependencia espacial frente a aleatoriedad." width="60%" />
-<p class="caption">(\#fig:plot-dep-iid-ch41)Dependencia espacial frente a aleatoriedad.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/dep-aleatoriedad} 
+
+}
+
+\caption{Dependencia espacial frente a aleatoriedad.}(\#fig:plot-dep-iid-ch41)
+\end{figure}
 
 Pasando del terreno de las simulaciones a la realidad, la Fig. \@ref(fig:plot-temp-max-ch41) muestra la temperatura máxima en España el 6 de agosto de 2022,[^Note-data] en plena ola de calor (este es el ejemplo real que se utilizará a lo largo del capítulo). En ella puede observarse claramente una estructura de dependencia espacial, con máximas cercanas a 40 grados en la meseta central y Extremadura, de 30 grados o menos en la cordillera Cantábrica y las costas atlántica, cantábrica y andaluza, y entre 30 y 35 grados en el resto del país (básicamente Murcia, Comunidad Valenciana y Cataluña). 
 
@@ -144,10 +148,14 @@ ggplot(ESP_utm) +
   scale_color_gradientn(colours = pal_paper)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/tem-max-spain.png" alt="Temperatura máxima en España peninsular, 6 de agosto de 2022." width="60%" />
-<p class="caption">(\#fig:plot-temp-max-ch41)Temperatura máxima en España peninsular, 6 de agosto de 2022.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/tem-max-spain} 
+
+}
+
+\caption{Temperatura máxima en España peninsular, 6 de agosto de 2022.}(\#fig:plot-temp-max-ch41)
+\end{figure}
 
 
 
@@ -205,10 +213,14 @@ fa_sph <- grf(1225, grid = "reg", cov.pars = c(1, .25), cov.model = "spherical")
 image(fa_sph, col = tim.colors())
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/gauss-sph.png" alt="Representacion bidimensional de dos $f.a.$: con semivariograma parabólico en el origen (izquierda); con semivariograma lineal en el origen (derecha)." width="60%" />
-<p class="caption">(\#fig:gauss-sph-plot)Representacion bidimensional de dos $f.a.$: con semivariograma parabólico en el origen (izquierda); con semivariograma lineal en el origen (derecha).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/gauss-sph} 
+
+}
+
+\caption{Representacion bidimensional de dos $f.a.$: con semivariograma parabólico en el origen (izquierda); con semivariograma lineal en el origen (derecha).}(\#fig:gauss-sph-plot)
+\end{figure}
 Las *v.r.* regulares (aquellas cuya gráfica tridimensional no tiene picos) se identifican con un **comportamiento semivariográfico parabólico en el origen**. Si dicho comportamiento persiste a largas distancias, puede que exista una fuerte deriva.
 
 Las discontinuidades en el origen (que teóricamente no pueden darse) son frecuentes en la práctica. Su amplitud se denomina **efecto pepita**
@@ -238,10 +250,14 @@ legend(0.25, 0.5, "Alcance")
 legend(0.5, 0.75, "Ausencia de dependencia")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/semivar-parts.png" alt="Elementos del semivariograma (meseta unitaria)." width="60%" />
-<p class="caption">(\#fig:plot-partes-sem)Elementos del semivariograma (meseta unitaria).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/semivar-parts} 
+
+}
+
+\caption{Elementos del semivariograma (meseta unitaria).}(\#fig:plot-partes-sem)
+\end{figure}
 
 \index{semivariograma}  \index{dependencia espacial}
 
@@ -330,10 +346,14 @@ library("gstat")
 show.vgms(models = c("Sph", "Exp", "Gau", "Nug", "Bes", "Wav"))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="190041_geoestadistica_files/figure-html/semivar-teo-sill-ch41-1.png" alt="Representación de semivariogramas con meseta válidos  (meseta y alcance efectivo unitarios; a excepción del efecto pepita puro)." width="60%" />
-<p class="caption">(\#fig:semivar-teo-sill-ch41)Representación de semivariogramas con meseta válidos  (meseta y alcance efectivo unitarios; a excepción del efecto pepita puro).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{190041_geoestadistica_files/figure-latex/semivar-teo-sill-ch41-1} 
+
+}
+
+\caption{Representación de semivariogramas con meseta válidos  (meseta y alcance efectivo unitarios; a excepción del efecto pepita puro).}(\#fig:semivar-teo-sill-ch41)
+\end{figure}
 
 #### Semivariogramas sin meseta \index{semivariograma!sin meseta}
 
@@ -362,10 +382,14 @@ Una representación gráfica de ambos semivariogramas puede verse en la Fig. \@r
 show.vgms(models = c("Pow", "Log"), sill = 1, range = c(2, 1), nugget = 0)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="190041_geoestadistica_files/figure-html/semivar-teo-no-sill-ch41-1.png" alt="Representación de semivariogramas sin meseta válidos." width="60%" />
-<p class="caption">(\#fig:semivar-teo-no-sill-ch41)Representación de semivariogramas sin meseta válidos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{190041_geoestadistica_files/figure-latex/semivar-teo-no-sill-ch41-1} 
+
+}
+
+\caption{Representación de semivariogramas sin meseta válidos.}(\#fig:semivar-teo-no-sill-ch41)
+\end{figure}
 
 
 ### Semivariograma empírico
@@ -395,10 +419,14 @@ vgm_tmax <- variogram(tmax ~ 1, temp_max_utm_sf,
 plot(vgm_tmax, plot.numbers = TRUE, pch = "+", lwd = 2, cex = 2)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/emp-semivar.png" alt="Valores semivariográficos. Temperaturas máximas (06/08/2022)." width="60%" />
-<p class="caption">(\#fig:plot-semivar-emp)Valores semivariográficos. Temperaturas máximas (06/08/2022).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/emp-semivar} 
+
+}
+
+\caption{Valores semivariográficos. Temperaturas máximas (06/08/2022).}(\#fig:plot-semivar-emp)
+\end{figure}
 
 
 En el ejemplo ilustrado, la distancia mínima entre dos estaciones meteorológicas es 1.125 m y la máxima 1.027.597 m. Sin embargo, dada la geometría del mapa de España (aunque de Huelva a Gerona hay 987 km en línea recta, más de dos terceras partes de las ciudades españolas no están separadas más de 500 km), se consideró 250.000 m (1/4 de la distancia máxima) como distancia máxima a la hora de calcular los valores semivariográficos, ya que a partir de dicha distancia el número de parejas no es lo suficientemente grande como para obtener resultados fiables. Por convenio, `gstat` divide la distancia en 15 intervalos (`geoR` la divide en 13 porque los autores lo hicieron un viernes 13).  \index{valores semivariográficos}
@@ -430,10 +458,14 @@ plot(vgm_tmax, fit_vgm_tmax, lwd = 2, col = "2", pch = "*", cex = 3)
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/emp-teo-semivar.png" alt="Semivariograma empírico. Temperaturas máximas (06/08/2022)." width="60%" />
-<p class="caption">(\#fig:plot-fit-semivar)Semivariograma empírico. Temperaturas máximas (06/08/2022).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/emp-teo-semivar} 
+
+}
+
+\caption{Semivariograma empírico. Temperaturas máximas (06/08/2022).}(\#fig:plot-fit-semivar)
+\end{figure}
 
 
 El método de ajuste ha sido el que figura por defecto en la función `vgm`: mínimos cuadrados ponderados con ponderaciones $\frac {N_{\bf |h|}} {|\bf h|^2}$, que funciona bien en la práctica y selecciona el semivariograma que mejor ajusta cuando el número de parejas es elevado y la distancia pequeña, que es la parte del semivariograma que hay que ajustar bien porque a pequeñas distancias es cuando más dependencia espacial hay. Respecto a los parámetros iniciales, aunque el investigador puede especificar los que considere convenientes, se recomienda utilizar los que tiene la función por defecto: $(i)$ alcance igual a 1/3 de la distancia máxima en la muestra; $(ii)$ como efecto pepita se toma la media de los tres primeros valores semivariográficos; y $(iii)$ como meseta parcial (meseta menos efecto pepita), la media de los cinco últimos valores semivariográficos.
@@ -510,10 +542,14 @@ ggplot() +
   )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/tmax-kriged.png" alt="$Mapping$ de temperaturas máximas (06/08/2022)." width="85%" />
-<p class="caption">(\#fig:plot-kriging-pred)$Mapping$ de temperaturas máximas (06/08/2022).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth]{img/tmax-kriged} 
+
+}
+
+\caption{$Mapping$ de temperaturas máximas (06/08/2022).}(\#fig:plot-kriging-pred)
+\end{figure}
 
 El *mapping* de la Fig. \@ref(fig:plot-kriging-pred) tiene poco valor si no se acompaña de otro que muestre la desviación típica de los errores de predicción. \index{error de predicción}  \index{mapping@\textit{mapping}}
 
@@ -536,10 +572,14 @@ ggplot(kriged_df) +
   )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/tmax-sd-error.png" alt="Desviaciones típicas del error de predicción." width="85%" />
-<p class="caption">(\#fig:plot-sd-error)Desviaciones típicas del error de predicción.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth]{img/tmax-sd-error} 
+
+}
+
+\caption{Desviaciones típicas del error de predicción.}(\#fig:plot-sd-error)
+\end{figure}
 
 
 

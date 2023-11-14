@@ -125,10 +125,14 @@ library("corrplot")
 matriz_corr <- cor(Madrid_Sale_num[, 1:8])
 corrplot(matriz_corr, method = "circle")
 ```
-<div class="figure" style="text-align: center">
-<img src="img/corridealista.png" alt="Matriz de correlaciones topada en 0,9." width="60%" />
-<p class="caption">(\#fig:corr)Matriz de correlaciones topada en 0,9.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/corridealista} 
+
+}
+
+\caption{Matriz de correlaciones topada en 0,9.}(\#fig:corr)
+\end{figure}
 
 Se aprecia que ya no hay variables altamente correlacionadas.
 
@@ -403,10 +407,14 @@ Para simetrizar la distribución de probabilidad de la variable objetivo (mejora
 ```r
 respuesta_log <- log(Madrid_Sale$PRICE)
 ```
-<div class="figure" style="text-align: center">
-<img src="img/logidealista.png" alt="Normalización logarítmica." width="60%" />
-<p class="caption">(\#fig:log)Normalización logarítmica.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/logidealista} 
+
+}
+
+\caption{Normalización logarítmica.}(\#fig:log)
+\end{figure}
 - Como segunda opción, se puede usar una transformación de la familia de transformaciones Box-Cox (o simplemente una **transformación de Box-Cox**), de carácter potencial y con mayor flexibilidad que la transformación logarítmica. Generalmente, se puede encontrar la función adecuada a partir de una familia de transformadas de potencia, que llevarán la distribución de la variable transformada tan cerca como sea posible de la distribución normal [@sakia1992box].[^fs-4]  No obstante, igual que la transformación logarítmica, las transformaciones del tipo Box-Cox también tienen la limitación de ser solo aplicables a variables cuyos valores sean positivos. Por consiguiente, tanto si se usa una transformación logarítmica como una Box-Cox, no se deben centrar los datos primero, ni realizar ninguna operación que pueda hacer que los valores de la variable transformada no sean positivos.
 
 - En caso de valores nulos o negativos, una muy buena opción, la tercera, es la transformación Yeo-Johnson, que es una extensión de la transformación Box-Cox que no está limitada a los valores positivos. 

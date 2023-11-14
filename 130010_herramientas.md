@@ -195,17 +195,25 @@ En la práctica, normalmente se usa $k=5$ o $k=10$ (las Fig. \@ref(fig:kfold1) y
 
 \index{validación!dejando uno fuera}
 
-<div class="figure" style="text-align: center">
-<img src="img/kfold1.png" alt="VC 5-grupos (i)." width="70%" />
-<p class="caption">(\#fig:kfold1)VC 5-grupos (i).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/kfold1} 
+
+}
+
+\caption{VC 5-grupos (i).}(\#fig:kfold1)
+\end{figure}
 
 Y si la exactitud de las predicciones en el subconjunto de entrenamiento propiamente dicho y en el de validación es similar (y aceptable para la exigencia que se requiere):
 
-<div class="figure" style="text-align: center">
-<img src="img/kfold2.png" alt="VC 5-grupos (ii)." width="70%" />
-<p class="caption">(\#fig:kfold2)VC 5-grupos (ii).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/kfold2} 
+
+}
+
+\caption{VC 5-grupos (ii).}(\#fig:kfold2)
+\end{figure}
 
 
 
@@ -257,10 +265,14 @@ control <- trainControl(method = "repeatedcv", number = 10, repeats = 3)
 
 La Fig. \@ref(fig:bootstrap) (adaptada de @boehmke2019hands), muestra un esquema de muestreo *bootstrap*, donde cada muestra contiene 12 observaciones, al igual que en el conjunto de datos original. Como puede observarse, el muestreo *bootstrap* lleva aproximadamente a la misma distribución de valores (representados por colores) que el conjunto de datos original.
 
-<div class="figure" style="text-align: center">
-<img src="img/bootstrap.png" alt="Remuestreo $bootstrap$. Elaboración propia a partir de  Boehmke and Greenwell (2019)." width="70%" />
-<p class="caption">(\#fig:bootstrap)Remuestreo $bootstrap$. Elaboración propia a partir de  Boehmke and Greenwell (2019).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/bootstrap} 
+
+}
+
+\caption{Remuestreo $bootstrap$. Elaboración propia a partir de  Boehmke and Greenwell (2019).}(\#fig:bootstrap)
+\end{figure}
 
 El hecho de que *bootstrapping* replique el conjunto de observaciones implica,  como se dijo anteriormente, que la variablidad del error es menor que en VC *k*-grupos. Sin embargo, dicha replicación puede aumentar el sesgo de la estimación de dicho error. Esto puede ser un problema con conjuntos de datos muy pequeños, pero no para la mayoría de los conjuntos de datos, que suelen ser de tamaño medio o grande (por ejemplo, $n \geq 1000$). 
 
@@ -315,10 +327,14 @@ Lógicamente, el modelo predictivo o clasificador deseado es el que tenga el men
 
 
 
-<div class="figure" style="text-align: center">
-<img src="img/tradeoff.png" alt="$Trade$ $off$ entre sesgo y varianza." width="60%" />
-<p class="caption">(\#fig:tradeoff)$Trade$ $off$ entre sesgo y varianza.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/tradeoff} 
+
+}
+
+\caption{$Trade$ $off$ entre sesgo y varianza.}(\#fig:tradeoff)
+\end{figure}
   
 
 
@@ -445,10 +461,14 @@ En dicho entorno clasificatorio, es muy frecuente el uso de la **matriz de confu
 En la diagonal ascendente figura el número de flores, de cada color, cuya clase ha sido correctamente predicha. Los elementos fuera de dicha diagonal indican las flores, de cada clase, que el clasificador utilizado ha clasificado erróneamente. Como puede apreciarse, 47 de las 50 flores iris que se consideran fueron bien clasificadas. Sin embargo, dicho clasificador clasificó una flor versicolor como virgínica, y dos virgínicas como versicolores.
 
 
-<div class="figure" style="text-align: center">
-<img src="img/iris_mat_confusion.png" alt="Matriz de confusión con tres clases." width="60%" />
-<p class="caption">(\#fig:iris-mat-con)Matriz de confusión con tres clases.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/iris_mat_confusion} 
+
+}
+
+\caption{Matriz de confusión con tres clases.}(\#fig:iris-mat-con)
+\end{figure}
 
 
 Aunque el concepto de matriz de confusión es muy sencillo, la terminología que lo rodea no lo es tanto; incluso podría decirse que es confusa. La predicción proporcionada por el modelo puede ser (véase Fig. \@ref(fig:matrizconfusion2)):
@@ -465,10 +485,14 @@ Aunque el concepto de matriz de confusión es muy sencillo, la terminología que
 
 
 
-<div class="figure" style="text-align: center">
-<img src="img/Mat_Confusion.png" alt="Terminología de una matriz de confusión." width="70%" />
-<p class="caption">(\#fig:matrizconfusion2)Terminología de una matriz de confusión.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/Mat_Confusion} 
+
+}
+
+\caption{Terminología de una matriz de confusión.}(\#fig:matrizconfusion2)
+\end{figure}
 
 
 Como se avanzó anteriormente, esta terminología es confusa y, por ello, se ilustra a continuación con un ejemplo. Supóngase que se está interesado en conocer si un determinado tratamiento médico tiene efectos positivos sobre una enfermedad. Echando mano de la teoría de la contrastación de hipótesis (véase Sec. \@ref(contrhip)), supóngase que se toma como hipótesis nula ($H_0$): SÍ y como hipótesis alternativa ($H_1$): NO. Pues bien:
@@ -501,10 +525,14 @@ Las siguientes medidas se pueden calcular a partir de una matriz de confusión (
 - **Área bajo la curva de características operativas del receptor (área bajo la curva ROC)**.  Al graficar la sensibilidad (tasa de verdaderos positivos) frente a la tasa de falsos positivos (también denominada 1-especificidad), se obtiene la curva ROC. La diagonal ascendente representa la aleatoriedad. Cuanto más grande sea el área bajo la curva ROC, mejor será la precisión obtenida. \index{area bajo la curva ROC@área bajo la curva ROC} Es una medida recomendable en el caso de clases desequilibradas. Un ejemplo de área bajo la curva ROC puede verse en el Cap. \@ref(cap-glm), y se reproduce en la parte derecha de la Fig. \@ref(fig:roc3bis).
 
 
-<div class="figure" style="text-align: center">
-<img src="img/roc3bis.png" alt="Ejemplo de curva ROC a partir de la estimación de un modelo lineal generalizado (parte derecha)." width="70%" />
-<p class="caption">(\#fig:roc3bis)Ejemplo de curva ROC a partir de la estimación de un modelo lineal generalizado (parte derecha).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/roc3bis} 
+
+}
+
+\caption{Ejemplo de curva ROC a partir de la estimación de un modelo lineal generalizado (parte derecha).}(\#fig:roc3bis)
+\end{figure}
 
 
 - **Índice de Gini**. Bien conocido en la literatura estadística sobre concentración, se trata de un indicador útil en el caso de clases desequilibradas. Su campo de variación es [0, 1], donde 0 representa la igualdad perfecta y 1 la concentración en una única clase. Puede calcularse a partir del área bajo la curva ROC de la siguiente manera: $IG=2\hspace{0,1cm} \acute{A}rea\hspace{0,1cm} bajo \hspace{0,1cm} la\hspace{0,1cm}curva\hspace{0,1cm} ROC-1$. En caso de IG = 0, el área bajo la curva ROC es 1/2 y la curva ROC coincide con la diagonal ascendente. En caso de IG = 1, el área bajo la curva ROC será 0 y dicha curva vale 0 para todos los valores del eje de abscisas, excepto para el último, para el cual vale 1. En caso de que las observaciones no se vayan acumulando de una en una para la configuración de la curva bajo ROC, o para el cálculo directo del índice de Gini, es mejor utilizar una versión del mismo denominada "índice E" [IE, véase Cap. 3 de @lorenzo2007estadistica], pues el índice de Gini tan solo proporcionará una aproximación de la concentración existente; buena aproximación, pero aproximación.

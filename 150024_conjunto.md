@@ -29,10 +29,14 @@ El **análisis conjunto**\index{análisis conjunto} (o *conjoint analysis*) estu
 
 Por ejemplo, los resultados pueden indicar que el horario más demandado es el de 09:00 a 23:00 durante 7 días a la semana (Fig. \@ref(fig:150024-gim)).
 
-<div class="figure" style="text-align: center">
-<img src="img/150024-gim.jpg" alt="Elección de gimnasio. Atributos: horario, clases programadas, limpieza y precio." width="100%" />
-<p class="caption">(\#fig:150024-gim)Elección de gimnasio. Atributos: horario, clases programadas, limpieza y precio.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/150024-gim} 
+
+}
+
+\caption{Elección de gimnasio. Atributos: horario, clases programadas, limpieza y precio.}(\#fig:150024-gim)
+\end{figure}
 
 ## Tipos de análisis conjunto
 
@@ -75,10 +79,14 @@ Para la aplicación correcta de un análisis conjunto es conveniente seguir una 
   
 **Forma de presentación**. Dependerá de la metodología elegida. La Fig. \@ref(fig:150024-pres) muestra algunos ejemplos. 
 
-<div class="figure" style="text-align: center">
-<img src="img/150024-pres.jpg" alt="Formas de presentación." width="100%" />
-<p class="caption">(\#fig:150024-pres)Formas de presentación.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/150024-pres} 
+
+}
+
+\caption{Formas de presentación.}(\#fig:150024-pres)
+\end{figure}
 
 - CVA: *matriz de comparaciones o trade-off*, en la que el entrevistado valora la combinación de atributos y niveles (solo es válida para dos atributos). *Perfiles completos para ordenar*, donde se elaboran perfiles de cada producto o servicio utilizando solo un nivel de cada atributo y el encuestado los valora (ordena) según sus preferencias. *Perfil determinado para valorar*, combinación que el encuestado valora según sus preferencias.
 

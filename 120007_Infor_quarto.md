@@ -22,10 +22,14 @@ que generarlos en distintos formatos (por ejemplo, HTML o PDF, entre otros) para
 presentaciones. Finalmente, como es muy probable que intervengan varias personas en el proceso, la **trazabilidad** (reproducibilidad) del análisis
 mejorará el proyecto de forma global. 
 
-<div class="figure" style="text-align: center">
-<img src="img/problem2.png" alt="Esquema del proceso de información de análisis de datos." width="80%" />
-<p class="caption">(\#fig:problem2)Esquema del proceso de información de análisis de datos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{img/problem2} 
+
+}
+
+\caption{Esquema del proceso de información de análisis de datos.}(\#fig:problem2)
+\end{figure}
 
 La forma típica de abordar el problema es mediante un enfoque "corta-pega",
 en el que primero se realiza todo el análisis de datos con el software
@@ -130,7 +134,7 @@ con la función `Sweave` [@leisch2002sweave]. Para usar **Quarto** se necesita t
 [^Note-inform-6]: La instalación es trivial para cualquier sistema desde la web de Quarto, https://quarto.org.
 
 Para crear un nuevo documento **Quarto**, se selecciona _Quarto Document..._ en el
-icono `<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 64C0 28.65 28.65 0 64 0H229.5C246.5 0 262.7 6.743 274.7 18.75L365.3 109.3C377.3 121.3 384 137.5 384 154.5V448C384 483.3 355.3 512 320 512H64C28.65 512 0 483.3 0 448V64zM336 448V160H256C238.3 160 224 145.7 224 128V48H64C55.16 48 48 55.16 48 64V448C48 456.8 55.16 464 64 464H320C328.8 464 336 456.8 336 448z"/></svg>`{=html} "New file" de la barra de herramientas o en el menú _File_. Entonces
+icono ![](120007_Infor_quarto_files/figure-latex/fa-icon-7051ce29d7d8b2b71b7dd9e55305a2f2.pdf){height=1em width=0.75em} "New file" de la barra de herramientas o en el menú _File_. Entonces
 se abre el cuadro de diálogo _New Quarto Document_. Hay varios
 tipos de archivos que se pueden crear, que producirán formatos diferentes: _Document_ (documento),
 _Presentation_ (presentación de diapositivas) e _Interactive_ (aplicación web interactiva con Shiny u Observable JS). De momento se verán los documentos. Se puede crear un archivo **Quarto** vacío si no se quiere crear la estructura. Para que se cree con una estructura mínima,
@@ -193,10 +197,14 @@ instalado **Microsoft Word** o algún otro programa que pueda abrirlo, como **Li
 ligera de LaTeX con el paquete `tinytex` ejecutando `tinytex::install_tinytex()`
 habiendo instalado previamente dicho paquete.
 
-<div class="figure" style="text-align: center">
-<img src="img/cdr_quarto.png" alt="Informe Quarto y el documento de salida que produce su conversión (renderizado) con algunas opciones adicionales." width="60%" />
-<p class="caption">(\#fig:ch-120007-captura-quarto)Informe Quarto y el documento de salida que produce su conversión (renderizado) con algunas opciones adicionales.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/cdr_quarto} 
+
+}
+
+\caption{Informe Quarto y el documento de salida que produce su conversión (renderizado) con algunas opciones adicionales.}(\#fig:ch-120007-captura-quarto)
+\end{figure}
 
 \index{Pandoc}
 
@@ -502,10 +510,14 @@ Tanto las tablas como las figuras se deben referenciar adecuadamente en los info
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="120007_Infor_quarto_files/figure-html/ch-120007-ref-fig-1.png" alt="Ventas vs. \% de empresas con banda ancha." width="55%" />
-<p class="caption">(\#fig:ch-120007-ref-fig)Ventas vs. \% de empresas con banda ancha.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.55\linewidth]{120007_Infor_quarto_files/figure-latex/ch-120007-ref-fig-1} 
+
+}
+
+\caption{Ventas vs. \% de empresas con banda ancha.}(\#fig:ch-120007-ref-fig)
+\end{figure}
 
 
 En cuanto a las tablas, también el _chunk_ que las crea debe tener una etiqueta. El título de la tabla en este caso lo proporciona la propia función que la crea. A modo de ejemplo, el siguiente _chunk_ crea la Tabla \@ref(tab:ch-120007-ref-tab) ya formateada con la función `flextable()` del paquete homónimo [@R-flextable], y en el texto se referenciaría como "`Tabla @tab-tic`".
@@ -531,66 +543,44 @@ En cuanto a las tablas, también el _chunk_ que las crea debe tener una etiqueta
      ```
 ```
 
-```{=html}
-<template id="e7cc31a4-19e3-4020-9f83-7b8482d95f16"><style>
-.tabwid table{
-  border-spacing:0px !important;
-  border-collapse:collapse;
-  line-height:1;
-  margin-left:auto;
-  margin-right:auto;
-  border-width: 0;
-  display: table;
-  border-color: transparent;
-  caption-side: top;
-}
-.tabwid-caption-bottom table{
-  caption-side: bottom;
-}
-.tabwid_left table{
-  margin-left:0;
-}
-.tabwid_right table{
-  margin-right:0;
-}
-.tabwid td {
-    padding: 0;
-}
-.tabwid a {
-  text-decoration: none;
-}
-.tabwid thead {
-    background-color: transparent;
-}
-.tabwid tfoot {
-    background-color: transparent;
-}
-.tabwid table tr {
-background-color: transparent;
-}
-.katex-display {
-    margin: 0 0 !important;
-}
-</style><div class="tabwid"><style>.cl-ae8d564a{}.cl-ae8498fc{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ae87eb60{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ae87eb61{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ae880208{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880209{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880212{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880213{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88021c{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88021d{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88021e{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88021f{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880220{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880226{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880227{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880230{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae809fea{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}</style><table class='cl-ae8d564a'>
 
-```
+\providecommand{\docline}[3]{\noalign{\global\setlength{\arrayrulewidth}{#1}}\arrayrulecolor[HTML]{#2}\cline{#3}}
 
-<caption>(\#tab:ch-120007-ref-tab)<span class="cl-ae809fea">Contaminación media NOx según tipo de estación</span></caption>
+\setlength{\tabcolsep}{0pt}
 
-```{=html}
+\renewcommand*{\arraystretch}{1.5}
 
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-ae880208"><p class="cl-ae87eb60"><span class="cl-ae8498fc">tipo</span></p></td><td class="cl-ae880209"><p class="cl-ae87eb61"><span class="cl-ae8498fc">Media</span></p></td><td class="cl-ae880212"><p class="cl-ae87eb61"><span class="cl-ae8498fc">n</span></p></td><td class="cl-ae880209"><p class="cl-ae87eb61"><span class="cl-ae8498fc">Desv.Tip</span></p></td><td class="cl-ae880213"><p class="cl-ae87eb61"><span class="cl-ae8498fc">Perdidos</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-ae88021c"><p class="cl-ae87eb60"><span class="cl-ae8498fc">Fondo</span></p></td><td class="cl-ae88021d"><p class="cl-ae87eb61"><span class="cl-ae8498fc">64.11108</span></p></td><td class="cl-ae88021e"><p class="cl-ae87eb61"><span class="cl-ae8498fc">49,656</span></p></td><td class="cl-ae88021d"><p class="cl-ae87eb61"><span class="cl-ae8498fc">61.48603</span></p></td><td class="cl-ae88021f"><p class="cl-ae87eb61"><span class="cl-ae8498fc">70</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88021c"><p class="cl-ae87eb60"><span class="cl-ae8498fc">Suburbanas</span></p></td><td class="cl-ae88021d"><p class="cl-ae87eb61"><span class="cl-ae8498fc">32.87574</span></p></td><td class="cl-ae88021e"><p class="cl-ae87eb61"><span class="cl-ae8498fc">12,414</span></p></td><td class="cl-ae88021d"><p class="cl-ae87eb61"><span class="cl-ae8498fc">32.13426</span></p></td><td class="cl-ae88021f"><p class="cl-ae87eb61"><span class="cl-ae8498fc">39</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae880220"><p class="cl-ae87eb60"><span class="cl-ae8498fc">Tráfico</span></p></td><td class="cl-ae880226"><p class="cl-ae87eb61"><span class="cl-ae8498fc">81.27392</span></p></td><td class="cl-ae880227"><p class="cl-ae87eb61"><span class="cl-ae8498fc">33,104</span></p></td><td class="cl-ae880226"><p class="cl-ae87eb61"><span class="cl-ae8498fc">68.13974</span></p></td><td class="cl-ae880230"><p class="cl-ae87eb61"><span class="cl-ae8498fc">83</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="4f502a85-ef4a-42a9-b158-66439f31d620"></div>
-<script>
-var dest = document.getElementById("4f502a85-ef4a-42a9-b158-66439f31d620");
-var template = document.getElementById("e7cc31a4-19e3-4020-9f83-7b8482d95f16");
-var caption = template.content.querySelector("caption");
-var fantome = dest.attachShadow({mode: 'open'});
-var templateContent = template.content;
-fantome.appendChild(templateContent);
-</script>
+\begin{longtable}[c]{|p{1.11in}|p{0.92in}|p{0.75in}|p{0.92in}|p{0.89in}}
 
-```
+\caption{\textcolor[HTML]{000000}{\fontsize{11}{13}\selectfont{Contaminación\ media\ NOx\ según\ tipo\ de\ estación}}}(\#tab:ch-120007-ref-tab)\\
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 1.11in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{tipo}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.92in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Media}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{n}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.92in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Desv.Tip}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.89in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Perdidos}}} \\
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}\endhead
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 1.11in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Fondo}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.92in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{64.11108}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{49,656}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.92in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{61.48603}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.89in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{70}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 1.11in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Suburbanas}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.92in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{32.87574}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{12,414}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.92in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{32.13426}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.89in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{39}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 1.11in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Tráfico}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.92in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{81.27392}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{33,104}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.92in+0\tabcolsep+0\arrayrulewidth}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{68.13974}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.89in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{83}}} \\
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}
+
+
+
+\end{longtable}
 
 
 ## Otros formatos

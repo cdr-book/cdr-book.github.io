@@ -111,10 +111,14 @@ ggplot() +
   theme (strip.text = element_text(color = "grey50", size = 18))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="212050_cd_elon_musk_files/figure-html/elon-musk-nube-words-1.png" alt="Palabras más frecuentes de Elon Musk en Twitter antes y después de su compra." width="60%" />
-<p class="caption">(\#fig:elon-musk-nube-words)Palabras más frecuentes de Elon Musk en Twitter antes y después de su compra.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{212050_cd_elon_musk_files/figure-latex/elon-musk-nube-words-1} 
+
+}
+
+\caption{Palabras más frecuentes de Elon Musk en Twitter antes y después de su compra.}(\#fig:elon-musk-nube-words)
+\end{figure}
 
 ### ¿Quiénes son los usuarios con los que más conversa? \index{nube de palabras}
 
@@ -162,10 +166,14 @@ ggplot() +
   theme (strip.text = element_text(color = "grey50", size = 18))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="212050_cd_elon_musk_files/figure-html/elon-musk-nube-menciones-1.png" alt="Usuarios con los que dialoga Elon Musk antes y después de la compra de Twitter." width="60%" />
-<p class="caption">(\#fig:elon-musk-nube-menciones)Usuarios con los que dialoga Elon Musk antes y después de la compra de Twitter.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{212050_cd_elon_musk_files/figure-latex/elon-musk-nube-menciones-1} 
+
+}
+
+\caption{Usuarios con los que dialoga Elon Musk antes y después de la compra de Twitter.}(\#fig:elon-musk-nube-menciones)
+\end{figure}
 
 ### ¿Cuál es su rutina de publicación? \index{gráfico de dispersión}
 
@@ -262,10 +270,14 @@ ggplot() +
   )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="212050_cd_elon_musk_files/figure-html/elon-musk-rutina-1.png" alt="Rutina de publicación de Elon Musk (huso horario de Texas)." width="60%" />
-<p class="caption">(\#fig:elon-musk-rutina)Rutina de publicación de Elon Musk (huso horario de Texas).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{212050_cd_elon_musk_files/figure-latex/elon-musk-rutina-1} 
+
+}
+
+\caption{Rutina de publicación de Elon Musk (huso horario de Texas).}(\#fig:elon-musk-rutina)
+\end{figure}
 
 ### ¿Cuál es su *timeline* de publicación? \index{diagrama lineal}
 
@@ -328,10 +340,14 @@ ggplot(data = tweets_user_day) +
   theme(legend.position = "top")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="212050_cd_elon_musk_files/figure-html/elon-musk-line-chart-1.png" alt="Publicación de $tweets$ por día de Elon Musk." width="90%" />
-<p class="caption">(\#fig:elon-musk-line-chart)Publicación de $tweets$ por día de Elon Musk.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{212050_cd_elon_musk_files/figure-latex/elon-musk-line-chart-1} 
+
+}
+
+\caption{Publicación de $tweets$ por día de Elon Musk.}(\#fig:elon-musk-line-chart)
+\end{figure}
 
 ### ¿Cuál es el impacto de sus *tweets*? \index{diagrama de doble escala}
 
@@ -454,9 +470,13 @@ ggplot() +
   )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="212050_cd_elon_musk_files/figure-html/elon-musk-impacto-1.png" alt="$Tweets$ $vs.$ $retweets$ de Elon Musk." width="100%" />
-<p class="caption">(\#fig:elon-musk-impacto)$Tweets$ $vs.$ $retweets$ de Elon Musk.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{212050_cd_elon_musk_files/figure-latex/elon-musk-impacto-1} 
+
+}
+
+\caption{$Tweets$ $vs.$ $retweets$ de Elon Musk.}(\#fig:elon-musk-impacto)
+\end{figure}
 
 

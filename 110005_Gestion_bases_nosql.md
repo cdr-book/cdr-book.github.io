@@ -135,10 +135,14 @@ Como se avanzó en la Sec. \@ref(FundamentosNoSQL), las características de las 
 -   **Escalabilidad**. Al principio, la web se consideró una interfaz más, pero no es solo eso; se ha convertido en un elemento generador y consumidor de datos (fundamentalmente semiestructurados y no estructurados). En el contexto actual, las compañías necesitan mantener una respuesta rápida, aunque se incremente el número de usuarios simultáneos o el volumen de datos manejado. Además, la arquitectura de las bases de datos NoSQL permite: $(i)$ escalar sin disminuir el rendimiento; $(ii)$ añadir nodos sobre la marcha, es decir, sin interrupciones del servicio; $(iii)$ evitar que se generen cuellos de botella. La Fig. \@ref(fig:FigNoSQL1) [adaptada de @LO2017] muestra una representación comparativa de la escalabilidad de las bases de datos NoSQL frente a las relacionales. Como se observa, aunque las bases de datos relacionales tienen un mejor rendimiento para volúmenes de datos reducidos, este se reduce drásticamente para grandes volúmenes. Mientras, el rendimiento de las bases de datos NoSQL tiende a ser constante, por lo que escalan mejor para datos masivos.
 
 
-<div class="figure" style="text-align: center">
-<img src="img/NoSQL1.png" alt="Comparativa de escalabilidad entre bases de datos relacionales y NoSQL. Elaboración propia a partir de Lo (2017)." width="70%" />
-<p class="caption">(\#fig:FigNoSQL1)Comparativa de escalabilidad entre bases de datos relacionales y NoSQL. Elaboración propia a partir de Lo (2017).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/NoSQL1} 
+
+}
+
+\caption{Comparativa de escalabilidad entre bases de datos relacionales y NoSQL. Elaboración propia a partir de Lo (2017).}(\#fig:FigNoSQL1)
+\end{figure}
 
 ::: {.infobox data-latex=""}
 **Nota** 
@@ -159,10 +163,14 @@ Se pueden distinguir al menos cuatro tipos de bases de datos NoSQL [@Hecht2011]:
 
 -   **Almacenamiento documental**. Este tipo de base de datos almacena datos semi-estructurados. Los datos se llaman documentos, y pueden estar formateados en XML (Extensible Markup Language), JSON (JavaScript Object Notation), BSON (Binary JSON) o el que acepte la propia base de datos, pero suele ser un formato de texto. Un ejemplo de cómo se usa es un blog: se almacena el autor, la fecha, el título, el resumen y el contenido del post. Todos los documentos tienen una clave única con la que se puede acceder e identificarlos explícitamente. Estos documentos no son opacos al sistema, por lo que se pueden interpretar y lanzar consultas sobre ellos, véase la Fig. \@ref(fig:FigNoSQL3)  adaptada de [@Sanchez2017]. CouchDB o MongoDB son, quizás, los sistemas de bases de datos más conocidos. Hay que hacer mención especial a MapReduce, una tecnología de Google inicialmente diseñada para su algoritmo `PageRank`, que permite seleccionar un subconjunto de datos, agruparlos o reducirlos y cargarlos en otra colección, y a Hadoop, que es una tecnología de Apache diseñada para almacenar y procesar grandes cantidades de datos. Por ejemplo, MongoDB es una base de datos orientada a documentos. Los documentos se guardan en BSON, que es una forma de representar de forma binaria objetos JSON. De esta forma, con el comando `insert` y pasando un objeto JSON, MongoDB crea automáticamente un documento y lo añade en la base de datos generando un *ObjectId* para el nuevo documento [@Rubenfa2014]. Este objeto está especialmente pensado para garantizar unicidad en entornos distribuidos como MongoDB. El campo está compuesto por 12 bytes. Los cuatro primeros bytes son un *timestamp* con los segundos; los tres siguientes bytes representan el identificador único de la máquina; los dos siguientes el identificador del proceso; y, para finalizar, los últimos tres bytes son un campo incremental. En definitiva, los nueve primeros bytes garantizan un identificador único por segundo, máquina y proceso. Los tres últimos bytes garantizan que cada segundo se pueden insertar 2^24^ = 16.777.216 documentos con un identificador distinto. Esta composición del *ObjectId* proporciona funcionalidades muy útiles. La primera es indicar el orden de creación de los documentos. También sirve para obtener la fecha de creación del documento.
 
-<div class="figure" style="text-align: center">
-<img src="img/NoSQL3.png" alt="Ejemplo representativo de base de datos NoSQL documental. Elaboración propia a partir de Sánchez (2017)." width="70%" />
-<p class="caption">(\#fig:FigNoSQL3)Ejemplo representativo de base de datos NoSQL documental. Elaboración propia a partir de Sánchez (2017).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/NoSQL3} 
+
+}
+
+\caption{Ejemplo representativo de base de datos NoSQL documental. Elaboración propia a partir de Sánchez (2017).}(\#fig:FigNoSQL3)
+\end{figure}
 
 -   **Almacenamiento en grafo**. Este tipo de almacenamiento maneja datos semi-estructurados y está basado en la teoría de grafos (véase Cap. \@ref(grafos)). En las bases de datos NoSQL se establece que la información son los nodos y las relaciones entre la información son las aristas (algo similar al modelo relacional). Su mayor uso se contempla en caso de tener que relacionar grandes cantidades de datos que pueden ser muy variables. Por ejemplo, los nodos pueden contener objetos, variables y atributos diferentes en unos y otros. Las operaciones de consulta con `join` se sustituyen por recorridos a través del grafo, y se guarda una lista de adyacencias entre los nodos. A modo de ejemplo, en Facebook se considera cada usuario como un nodo, que puede tener aristas de amistad con otros usuarios, o aristas de publicación con nodos de contenidos. Soluciones como Neo4J y GraphDB son las más conocidas dentro de las bases de datos orientadas a grafos.
 
@@ -203,10 +211,14 @@ MongoDB trabaja con el concepto de colección y documento. La Tabla \@ref(tab:ta
 
 Asimismo, MongoDB proporciona una función, `MapReduce`, que se puede utilizar para el procesamiento por lotes de datos y operaciones de agregación. El *framework* de agregación permite realizar operaciones similares a las que se obtienen con el comando SQL `GROUP BY`. El *framework* de agregación está construido como un *pipeline* (flujo de trabajo) en el que los datos van pasando a través de diferentes etapas en las cuales estos datos son modificados, agregados, filtrados y formateados hasta obtener el resultado deseado (véase ejemplo esquemático en la Fig. \@ref(fig:FigNoSQL6), adaptada de @Morgan2015). Todo este procesado es capaz de utilizar índices, si existieran, y se produce en memoria.
 
-<div class="figure" style="text-align: center">
-<img src="img/NoSQL6.png" alt="Ejemplo esquemático del $pipeline$ de agregación en MongoDB. Elaboración propia a partir de Morgan (2015)." width="70%" />
-<p class="caption">(\#fig:FigNoSQL6)Ejemplo esquemático del $pipeline$ de agregación en MongoDB. Elaboración propia a partir de Morgan (2015).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/NoSQL6} 
+
+}
+
+\caption{Ejemplo esquemático del $pipeline$ de agregación en MongoDB. Elaboración propia a partir de Morgan (2015).}(\#fig:FigNoSQL6)
+\end{figure}
 
 ### Plataforma tecnológica para el caso práctico {#paquetesCaso}
 
@@ -343,10 +355,14 @@ ggplot(df, aes(x = reorder(`_id`, Count), y = Count)) +
   xlab("Tipo de usuario")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="110005_Gestion_bases_nosql_files/figure-html/usuario-viaje-1.png" alt="Suscripción por tipo de usuario." width="60%" />
-<p class="caption">(\#fig:usuario-viaje)Suscripción por tipo de usuario.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{110005_Gestion_bases_nosql_files/figure-latex/usuario-viaje-1} 
+
+}
+
+\caption{Suscripción por tipo de usuario.}(\#fig:usuario-viaje)
+\end{figure}
 
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}

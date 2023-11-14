@@ -52,10 +52,14 @@ Algunos ejemplos de árboles de decisión son:\index{a@árbol!de decisión}
     suficientemente elevada como para impedir el normal desarrollo del
     partido.
 
-<div class="figure" style="text-align: center">
-<img src="img/dectree_tenis.png" alt="Ejemplo de árbol de decisión." width="60%" />
-<p class="caption">(\#fig:dectree-plot)Ejemplo de árbol de decisión.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/dectree_tenis} 
+
+}
+
+\caption{Ejemplo de árbol de decisión.}(\#fig:dectree-plot)
+\end{figure}
 
 -   **Regresión**:\index{a@árbol!de regresión} siguiendo con el ejemplo
     del partido de tenis, también se puede utilizar un árbol de decisión
@@ -69,10 +73,14 @@ Algunos ejemplos de árboles de decisión son:\index{a@árbol!de decisión}
     1,15 horas si es de 27 km/h.
    
 
-<div class="figure" style="text-align: center">
-<img src="img/tenis-tree-reg.png" alt="Ejemplo de árbol de regresión." width="60%" />
-<p class="caption">(\#fig:regtree-plot)Ejemplo de árbol de regresión.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/tenis-tree-reg} 
+
+}
+
+\caption{Ejemplo de árbol de regresión.}(\#fig:regtree-plot)
+\end{figure}
 
 \index{algoritmo!de árbol} Como se ha comentado anteriormente, CART es un término
 genérico para describir este tipo de algoritmos de árbol y también un
@@ -174,10 +182,14 @@ clase objetivo.
 
 La Fig. \@ref(fig:form-arbol) ilustra la nomenclatura relativa a los elementos del árbol mencionados anteriormente. 
 
-<div class="figure" style="text-align: center">
-<img src="img/formacion-arbol.png" alt="Ejemplo de formación de árbol de decisión." width="90%" />
-<p class="caption">(\#fig:form-arbol)Ejemplo de formación de árbol de decisión.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{img/formacion-arbol} 
+
+}
+
+\caption{Ejemplo de formación de árbol de decisión.}(\#fig:form-arbol)
+\end{figure}
 
 
 ### ¿Cómo se va formando el árbol de clasificación? 
@@ -732,10 +744,14 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
   xlab(NULL) + ylab(NULL)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/notune_rpart_boxplot.png" alt="Resultados del modelo durante la validación cruzada." width="40%" />
-<p class="caption">(\#fig:006-002-001RPARTRESULTS)Resultados del modelo durante la validación cruzada.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.4\linewidth]{img/notune_rpart_boxplot} 
+
+}
+
+\caption{Resultados del modelo durante la validación cruzada.}(\#fig:006-002-001RPARTRESULTS)
+\end{figure}
 
 
 Los resultados de validación cruzada quedan recogidos en los *box plots* de la Fig. \@ref(fig:006-002-001RPARTRESULTS), por lo que se pueden ver los valores entre los que oscilan las principales medidas de bondad de clasificación en los 10 grupos del proceso de validación. Estas
@@ -760,10 +776,14 @@ Se seleccionan las variables que generan las mejores particiones. Aquellas que n
 rpart.plot(model$finalModel)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/notune_rpart_plot.png" alt="Árbol de clasificación sin ajuste automático de hiperparámetros." width="60%" />
-<p class="caption">(\#fig:006-002-001RPARTRESULTS2)Árbol de clasificación sin ajuste automático de hiperparámetros.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/notune_rpart_plot} 
+
+}
+
+\caption{Árbol de clasificación sin ajuste automático de hiperparámetros.}(\#fig:006-002-001RPARTRESULTS2)
+\end{figure}
 
 
 
@@ -870,10 +890,14 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
    ylab(NULL)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/tune_rpart_boxplot.png" alt="Resultados del modelo con ajuste automático durante la validación cruzada." width="40%" />
-<p class="caption">(\#fig:006-002-003RPARTRESULTS1)Resultados del modelo con ajuste automático durante la validación cruzada.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.4\linewidth]{img/tune_rpart_boxplot} 
+
+}
+
+\caption{Resultados del modelo con ajuste automático durante la validación cruzada.}(\#fig:006-002-003RPARTRESULTS1)
+\end{figure}
 
 En la Fig. \@ref(fig:006002003RPARTPLOT2) se muestra el árbol generado.
 La visualización del árbol se obtiene con el siguiente código:
@@ -884,10 +908,14 @@ La visualización del árbol se obtiene con el siguiente código:
 rpart.plot(model$finalModel)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/classbigtree.png" alt="Árbol de clasificación con ajuste automático." width="100%" />
-<p class="caption">(\#fig:006002003RPARTPLOT2)Árbol de clasificación con ajuste automático.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/classbigtree} 
+
+}
+
+\caption{Árbol de clasificación con ajuste automático.}(\#fig:006002003RPARTPLOT2)
+\end{figure}
 
 Con el objetivo de aumentar la generalidad del árbol y facilitar su
 interpretación, se procede a reducir su tamaño podándolo. Para ello se
@@ -903,10 +931,14 @@ prunedtree <- rpart(CLS_PRO_pro13 ~ ., data=dp_entr,
 rpart.plot(prunedtree)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/pruned_class_tree.png" alt="Árbol de clasificación con ajuste automático y podado." width="60%" />
-<p class="caption">(\#fig:PLOTCLASSPRUNEDTREE)Árbol de clasificación con ajuste automático y podado.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/pruned_class_tree} 
+
+}
+
+\caption{Árbol de clasificación con ajuste automático y podado.}(\#fig:PLOTCLASSPRUNEDTREE)
+\end{figure}
 
 
 Como puede observarse, el número de nodos terminales del árbol se ha reducido considerablemente (de 12 a 5). En tres de ellos el árbol predice que un cliente comprará el nuevo producto si:
@@ -1200,10 +1232,14 @@ resultado del modelo se muestra en el árbol de la Fig.
 rpart.plot(model)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/regtree_dhosp.png" alt="Árbol de regresión para predecir el número de días de hospitalización." width="55%" />
-<p class="caption">(\#fig:dhosp-plot)Árbol de regresión para predecir el número de días de hospitalización.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.55\linewidth]{img/regtree_dhosp} 
+
+}
+
+\caption{Árbol de regresión para predecir el número de días de hospitalización.}(\#fig:dhosp-plot)
+\end{figure}
 
 ### Árbol de regresión para la predicción del precio unitario de la vivienda en Madrid
 
@@ -1308,10 +1344,14 @@ modelo se muestra en el árbol de la Fig. \@ref(fig:idealista-treeplot). La inte
 # se pinta el árbol obtenido
 rpart.plot(model)
 ```
-<div class="figure" style="text-align: center">
-<img src="img/regtree_idealista.png" alt="Árbol de regresión para predecir el precio por metro cuadrado de las viviendas en Madrid." width="60%" />
-<p class="caption">(\#fig:idealista-treeplot)Árbol de regresión para predecir el precio por metro cuadrado de las viviendas en Madrid.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/regtree_idealista} 
+
+}
+
+\caption{Árbol de regresión para predecir el precio por metro cuadrado de las viviendas en Madrid.}(\#fig:idealista-treeplot)
+\end{figure}
 
 ::: {.infobox_resume data-latex=""}
 ### Resumen {.unnumbered}

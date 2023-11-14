@@ -343,10 +343,14 @@ lines(density(muestras_boot))
 abline(v = val_crit)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150015img04.png" alt="Distribución empírica de la media remuestreada." width="60%" />
-<p class="caption">(\#fig:150015dist)Distribución empírica de la media remuestreada.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/150015img04} 
+
+}
+
+\caption{Distribución empírica de la media remuestreada.}(\#fig:150015dist)
+\end{figure}
 
 El paquete `boot` de **R** permite también obtener réplicas de un estadístico sobre una muestra. La función básica de este paquete es `boot()`, que permite utilizar distintos métodos de remuestreo. En su estructura más simple, basta con indicar los datos originales, el estadístico que se quiere remuestrear y el número de réplicas.
 

@@ -214,10 +214,14 @@ plot(ca_house, map = "rowprincipal", what = c("all", "none"), xlab = "Perfiles f
 plot(ca_house, map = "colprincipal", what = c("none", "all"), xlab = "Perfiles columna")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150023img01.png" alt="Proyecciones de los perfiles fila." width="90%" />
-<p class="caption">(\#fig:150023proyecciones)Proyecciones de los perfiles fila.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{img/150023img01} 
+
+}
+
+\caption{Proyecciones de los perfiles fila.}(\#fig:150023proyecciones)
+\end{figure}
 
 Respecto a las filas, se aprecian varios grupos: el compuesto por *Breakfast*, *Dinner*, *Main_meal* y *Laundry*; otro por *Shopping*, *Dishes* y *Tidying*; uno tercero por *Insurance* y *Finance*; y el compuesto por *Driving* y *Official*. Los niveles *Holiday* y *Repairs* están alejados del resto.
 
@@ -233,10 +237,14 @@ plot(ca_house,
 )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="150023_correspondencias_files/figure-html/150023simetrica2-1.png" alt="Proyección simétrica de ambos factores." width="80%" height="50%" />
-<p class="caption">(\#fig:150023simetrica2)Proyección simétrica de ambos factores.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth,height=0.5\textheight]{150023_correspondencias_files/figure-latex/150023simetrica2-1} 
+
+}
+
+\caption{Proyección simétrica de ambos factores.}(\#fig:150023simetrica2)
+\end{figure}
 
 <!-- # ```{r 150023sunetrica, echo=FALSE, , fig.width=8, fig.height=20} -->
 <!-- # knitr::include_graphics("img/150023img02.png") -->
@@ -333,10 +341,14 @@ plot(ca_tabla,
 )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="150023_correspondencias_files/figure-html/150023accid2-1.png" alt="Proyección simétrica de ambos factores." width="80%" />
-<p class="caption">(\#fig:150023accid2)Proyección simétrica de ambos factores.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{150023_correspondencias_files/figure-latex/150023accid2-1} 
+
+}
+
+\caption{Proyección simétrica de ambos factores.}(\#fig:150023accid2)
+\end{figure}
 
 <!-- # ```{r 150023accid, echo=FALSE, fig.cap="Proyección simétrica de ambos factores.", out.width="70%"} -->
 <!-- # knitr::include_graphics("img/150023img03.png") -->

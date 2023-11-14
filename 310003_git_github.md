@@ -128,10 +128,14 @@ etiquetados. Para ello, se debe abrir la línea de comandos, Git
 Bash, o la terminal de RStudio (Fig. \@ref(fig:c310003002)) y ejecutar los siguientes comandos:
 \index{Git!configurar}
 
-<div class="figure" style="text-align: center">
-<img src="img/terminal.jpg" alt="Terminal de RStudio. " width="60%" />
-<p class="caption">(\#fig:c310003002)Terminal de RStudio. </p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/terminal} 
+
+}
+
+\caption{Terminal de RStudio. }(\#fig:c310003002)
+\end{figure}
 
 
 ```git
@@ -187,10 +191,14 @@ y agregarla a la cuenta de GitHub siguiendo las instrucciones en la página de c
 
 -   haga clic en "New SSH key" para agregar la clave SSH (Fig. \@ref(fig:c310003008));
 
-<div class="figure" style="text-align: center">
-<img src="img/ssh-add-ssh-key-with-auth.png" alt="Llaves SSH en GitHub." width="60%" />
-<p class="caption">(\#fig:c310003008)Llaves SSH en GitHub.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/ssh-add-ssh-key-with-auth} 
+
+}
+
+\caption{Llaves SSH en GitHub.}(\#fig:c310003008)
+\end{figure}
 
 -   en el campo "Title" (Título), agregue una etiqueta descriptiva para
     la clave nueva. Por ejemplo, si está utilizando un portátil
@@ -211,10 +219,14 @@ y agregarla a la cuenta de GitHub siguiendo las instrucciones en la página de c
 [^git-token]: Para más información sobre el *token* de acceso personal consulte el 
 Cap. 9 de @happygitwithr (https://happygitwithr.com/https-pat.html).
 
-<div class="figure" style="text-align: center">
-<img src="img/ssh-key-paste-with-type.png" alt="Añadir llave SSH en GitHub." width="60%" />
-<p class="caption">(\#fig:c310003009)Añadir llave SSH en GitHub.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/ssh-key-paste-with-type} 
+
+}
+
+\caption{Añadir llave SSH en GitHub.}(\#fig:c310003009)
+\end{figure}
 
 
 ### Autentificación basada en *token* de acceso personal {#token}
@@ -303,10 +315,14 @@ con RStudio:
     "Global Options" y luego seleccionar "Git/SVN" (Fig. \@ref(fig:c310003014)). Desde allí, se debe
     configurar la ubicación del ejecutable de Git en el sistema.
 
-<div class="figure" style="text-align: center">
-<img src="img/tools-general-options.png" alt="Tools de RStudio." width="50%" />
-<p class="caption">(\#fig:c310003014)Tools de RStudio.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/tools-general-options} 
+
+}
+
+\caption{Tools de RStudio.}(\#fig:c310003014)
+\end{figure}
 
 <!-- \text -->
 
@@ -323,10 +339,14 @@ $ git --version
 
 3.  Crear un proyecto nuevo desde "File" -> "New project" (Fig. \@ref(fig:c310003016)).
 
-<div class="figure" style="text-align: center">
-<img src="img/new-project.png" alt="Nuevo proyecto de RStudio." width="50%" />
-<p class="caption">(\#fig:c310003016)Nuevo proyecto de RStudio.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/new-project} 
+
+}
+
+\caption{Nuevo proyecto de RStudio.}(\#fig:c310003016)
+\end{figure}
 
 
 4.  En el cuadro de la Fig. \@ref(fig:c310003016) se procede dando clic en "New directory"
@@ -334,10 +354,14 @@ $ git --version
     proyecto, y se marca la opción "Create a git repository" para crear
     un nuevo proyecto con repositorio de Git (Fig. \@ref(fig:c310003017)).
 
-<div class="figure" style="text-align: center">
-<img src="img/new-project-rstudo.png" alt="Nuevo proyecto en un directorio nuevo." width="50%" />
-<p class="caption">(\#fig:c310003017)Nuevo proyecto en un directorio nuevo.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/new-project-rstudo} 
+
+}
+
+\caption{Nuevo proyecto en un directorio nuevo.}(\#fig:c310003017)
+\end{figure}
 
 
 <!-- \pagebreak -->
@@ -346,10 +370,14 @@ $ git --version
     revisión de cambios, se añaden los ficheros pinchando en los ticks,
     se añade el mensaje de confirmación y se hace clic en "commit" (Fig. \@ref(fig:c310003018)).
 
-<div class="figure" style="text-align: center">
-<img src="img/commit-rstudio.png" alt="Revisión de cambios." width="50%" />
-<p class="caption">(\#fig:c310003018)Revisión de cambios.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/commit-rstudio} 
+
+}
+
+\caption{Revisión de cambios.}(\#fig:c310003018)
+\end{figure}
 
 
 6.  Alternativamente, se puede utilizar la pestaña de Git, marcando los
@@ -357,10 +385,14 @@ $ git --version
     tras el cual se abrirá el cuadro de diálogo anterior (Fig. \@ref(fig:c310003019)).
 
 
-<div class="figure" style="text-align: center">
-<img src="img/git-pestana.png" alt="Revisión de cambios." width="60%" />
-<p class="caption">(\#fig:c310003019)Revisión de cambios.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/git-pestana} 
+
+}
+
+\caption{Revisión de cambios.}(\#fig:c310003019)
+\end{figure}
 
 
 
@@ -406,20 +438,28 @@ configurado previamente:
 
 \pagebreak
 
-<div class="figure" style="text-align: center">
-<img src="img/new-project.png" alt="Nuevo proyecto de RStudio." width="50%" />
-<p class="caption">(\#fig:c310003022)Nuevo proyecto de RStudio.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/new-project} 
+
+}
+
+\caption{Nuevo proyecto de RStudio.}(\#fig:c310003022)
+\end{figure}
 
 
 
 
 2.  En la ventana emergente que aparece, elija "Git" (Fig. \@ref(fig:c310003023)).
 
-<div class="figure" style="text-align: center">
-<img src="img/new-project-git.png" alt="Crear proyecto desde control de versiones." width="50%" />
-<p class="caption">(\#fig:c310003023)Crear proyecto desde control de versiones.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/new-project-git} 
+
+}
+
+\caption{Crear proyecto desde control de versiones.}(\#fig:c310003023)
+\end{figure}
 
 
 3.  En la ventana que se muestra en la Fig. \@ref(fig:c310003024), pegue la URL del repositorio que desee clonar y presione "Create Project". RStudio preguntará en qué
@@ -427,10 +467,14 @@ configurado previamente:
     ubicación, el proyecto se clonará en la computadora.
 
 
-<div class="figure" style="text-align: center">
-<img src="img/new-project-git-repo.png" alt="Nuevo proyecto desde un repositorio de Git." width="50%" />
-<p class="caption">(\#fig:c310003024)Nuevo proyecto desde un repositorio de Git.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/new-project-git-repo} 
+
+}
+
+\caption{Nuevo proyecto desde un repositorio de Git.}(\#fig:c310003024)
+\end{figure}
 
 
 

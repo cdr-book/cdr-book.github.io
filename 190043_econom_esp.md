@@ -26,10 +26,14 @@ Los modelos econométricos espaciales se centran en manejar las situaciones de *
 
 
 
-<div class="figure" style="text-align: center">
-<img src="img/plot-dep-W.png" alt="Patrones de autocorrelación espacial." width="60%" />
-<p class="caption">(\#fig:plot-dep-W)Patrones de autocorrelación espacial.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/plot-dep-W} 
+
+}
+
+\caption{Patrones de autocorrelación espacial.}(\#fig:plot-dep-W)
+\end{figure}
 
 
 ### Modelización de las relaciones espaciales
@@ -39,10 +43,14 @@ El espacio puede jugar un rol importante en la determinación de los procesos a 
 La matriz de vecindad o contigüidad $\mathbf{W}_{n \times n}$ muestra la relación entre las $n$ localidades analizadas, y por tanto,  la interacción existente entre sí. Es una matriz  simétrica y binaria, de forma que  $w_{ij} = 1$ si las localidades $i$ y $j$ son vecinas y cero si no lo son. Por tanto, $w_{ii}=0$ puesto que una localidad no puede ser vecina de sí misma. Existen distintos criterios de definición de vecindad dependiendo del proceso que se desee modelizar y las características de los datos. Si se cuenta con un mapa de polígonos, entonces se puede utilizar alguno de los criterios que se presentan en la Fig. \@ref(fig:plot-criterio-W) para configurar la matriz $\mathbf{W}$.
 
 
-<div class="figure" style="text-align: center">
-<img src="img/plot-criterio-W.png" alt="Criterios de vecindad." width="60%" />
-<p class="caption">(\#fig:plot-criterio-W)Criterios de vecindad.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/plot-criterio-W} 
+
+}
+
+\caption{Criterios de vecindad.}(\#fig:plot-criterio-W)
+\end{figure}
 
 Las matrices $\mathbf{W}$ generadas bajo el **criterio lineal** consideran como vecinas a la localidad $i$ todas aquellas localidades que compartan un borde situadas en la misma dirección cardinal, norte-sur o este-oeste, de esta localidad. El resto de los criterios de contigüidad siguen los movimientos de las piezas del ajedrez para definir la vecindad de la localidad $i$. La construcción de una matriz de vecindad bajo el **criterio de la torre** implica considerar como vecinos de la localidad $i$ aquellas localidades situadas al norte, sur, este u oeste y que compartan un borde con dicha localidad. El **criterio de alfil** considera como vecindad de la localidad $i$ aquellas localidades situadas al noreste, noroeste, sureste o suroeste de la localidad $i$ y que tengan, al menos, un punto en común. El **criterio de la reina** considera como vecindario de la unidad espacial $i$ a las localidades, en cualquier dirección cardinal e intercardinal, que tengan al menos un punto en común con ella [@martori2008incorporacion].
 
@@ -182,10 +190,14 @@ moran.plot(guerry$clergy, w_reina_francia,
 )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/moran-clergy.png" alt="Diagrama de Moran de la variable Clergy." width="60%" />
-<p class="caption">(\#fig:plot-moranplot)Diagrama de Moran de la variable Clergy.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/moran-clergy} 
+
+}
+
+\caption{Diagrama de Moran de la variable Clergy.}(\#fig:plot-moranplot)
+\end{figure}
 
 En la Fig. \@ref(fig:plot-moranplot) se pueden apreciar indicios de la existencia de autocorrelación positiva, es decir, las localidades francesas tienden a estar rodeadas de localidades con una ratio similar de clérigos. El diagrama de Moran es una herramienta gráfica. Para comprobar estadísticamente la existencia de autocorrelación espacial se utiliza el indicador $I$ de Moran.
 
@@ -236,10 +248,14 @@ Los modelos espaciales deben ser identificados antes de proceder a su estimació
 Tradicionalmente, la econometría espacial ha resuelto este problema asumiendo que la especificación de los modelos es algo que se conoce *a priori*, bien a partir de la teoría económica existente o bien aplicando ciertas estrategias consistentes en la comparación de varios modelos competitivos. Dentro de esta última opción, se pueden destacar dos estrategias de modelización ampliamente utilizadas: $(i)$ la que va de lo particular (modelo básico sin efectos de autocorrelación espacial) a lo general (modelo con variables explicativas espacialmente retardadas) y $(ii)$ la que parte de un modelo general para terminar en un modelo de autocorrelación espacial más sencillo. A partir de estos dos enfoques previos es posible plantear la estrategia híbrida de @elhorstAppliedSpatialEconometrics2010.
 
 
-<div class="figure" style="text-align: center">
-<img src="img/Estrategia.png" alt="Estrategia de especificación híbrida Elhorst (2010)." width="90%" />
-<p class="caption">(\#fig:estrat)Estrategia de especificación híbrida Elhorst (2010).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{img/Estrategia} 
+
+}
+
+\caption{Estrategia de especificación híbrida Elhorst (2010).}(\#fig:estrat)
+\end{figure}
 
 
 Como puede verse en la Fig. \@ref(fig:estrat), la estrategia híbrida comienza con la estimación de un **modelo básico sin efectos espaciales**:
@@ -593,20 +609,32 @@ plot(gdp_sdm_impacts, choice = "indirect")
 plot(gdp_sdm_impacts, choice = "total")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/gdp_sdm_imp_dir.png" alt="Impactos directos (SDM)." width="60%" />
-<p class="caption">(\#fig:plot-imp-dir)Impactos directos (SDM).</p>
-</div>
+\begin{figure}
 
-<div class="figure" style="text-align: center">
-<img src="img/gdp_sdm_imp_indir.png" alt="Impactos indirectos (SDM)." width="60%" />
-<p class="caption">(\#fig:plot-imp-indir)Impactos indirectos (SDM).</p>
-</div>
+{\centering \includegraphics[width=0.6\linewidth]{img/gdp_sdm_imp_dir} 
 
-<div class="figure" style="text-align: center">
-<img src="img/gdp_sdm_imp_total.png" alt="Impactos totales (SDM)." width="60%" />
-<p class="caption">(\#fig:plot-imp-total)Impactos totales (SDM).</p>
-</div>
+}
+
+\caption{Impactos directos (SDM).}(\#fig:plot-imp-dir)
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/gdp_sdm_imp_indir} 
+
+}
+
+\caption{Impactos indirectos (SDM).}(\#fig:plot-imp-indir)
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/gdp_sdm_imp_total} 
+
+}
+
+\caption{Impactos totales (SDM).}(\#fig:plot-imp-total)
+\end{figure}
 
 
 Como puede observarse en las Figs. \@ref(fig:plot-imp-dir), \@ref(fig:plot-imp-indir) y  \@ref(fig:plot-imp-total), para cada variable explicativa se estiman tres estimadores, de forma que el efecto total causado por el cambio unitario en el valor de dicha variable sobre el valor de la variable explicada, en una ciudad determinada, es la suma de dos efectos, uno directo, ocasionado por el cambio acaecido en la propia ciudad, y otro indirecto, proveniente del cambio acaecido en el resto de ciudades de España, existiendo tantos efectos como ciudades.

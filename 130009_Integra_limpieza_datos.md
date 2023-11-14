@@ -166,10 +166,14 @@ A partir del resultado de esta integración, se construye la Fig. \@ref(fig:madr
 ```r
 plot(Madrid_Sale_Polygons["preciopm2"])
 ```
-<div class="figure" style="text-align: center">
-<img src="img/madrid33.png" alt="Precio por metro cuadrado de viviendas a la venta en Madrid por distrito." width="60%" />
-<p class="caption">(\#fig:madrid)Precio por metro cuadrado de viviendas a la venta en Madrid por distrito.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/madrid33} 
+
+}
+
+\caption{Precio por metro cuadrado de viviendas a la venta en Madrid por distrito.}(\#fig:madrid)
+\end{figure}
 
 ## Limpieza de datos
 \index{datos!problemas de calidad} \index{datos!limpieza}
@@ -177,10 +181,14 @@ plot(Madrid_Sale_Polygons["preciopm2"])
 Es más habitual de lo deseable que algunas variables presenten problemas en la calidad de sus datos. En el Cap. \@ref(DGDQM), se mencionaban una serie de causas y la posibilidad de realizar el perfilado para tener una medición de la calidad de los datos. Si los datos no tienen el nivel de calidad adecuado, deben realizarse tareas de limpieza para transformarlos en datos consistentes, corrigiendo datos incorrectos, corruptos, con formato incorrecto, duplicados o incompletos. 
 
 En la Fig. \@ref(fig:limpieza) se muestra un proceso general de limpieza de datos. Cada rectángulo azul representa datos en un estado determinado, mientras que cada flecha representa las actividades necesarias para pasar de un estado a otro. En el primer estado están los datos tal y como se recogen (**datos en bruto** o **sin procesar**). Pueden carecer de encabezados, contener tipos de datos incorrectos, etiquetas de categoría incorrectas, codificación de caracteres desconocida o inesperada, etc. Una vez realizadas las correcciones necesarias, los datos pueden considerarse **datos técnicamente correctos**. Es decir, en este estado, los datos se pueden leer en un `data.frame` de **R**, con los nombres, tipos y etiquetas correctos. Sin embargo, esto no significa que los valores estén libres de errores o completos. Los **datos consistentes** son aquellos que están preparados para las fases de modelado. 
-<div class="figure" style="text-align: center">
-<img src="img/limpieza.png" alt="Flujo del proceso de limpieza de datos." width="100%" />
-<p class="caption">(\#fig:limpieza)Flujo del proceso de limpieza de datos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/limpieza} 
+
+}
+
+\caption{Flujo del proceso de limpieza de datos.}(\#fig:limpieza)
+\end{figure}
 
 
 Si bien las técnicas utilizadas para la limpieza de datos pueden variar según el tipo de datos que se esté procesando, en general, se pueden dividir en cinco grupos:
@@ -329,10 +337,14 @@ ggplot(Madrid_Sale_int, aes(x = reorder(LOCATIONNAME, PRICE / CONSTRUCTEDAREA, n
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
   labs(x = "Distrito", y = "Precio metro cuadrado")
 ```
-<div class="figure" style="text-align: center">
-<img src="img/idealistagraf1.png" alt="Precio medio del metro cuadrado por distritos." width="95%" />
-<p class="caption">(\#fig:idealistagraf1)Precio medio del metro cuadrado por distritos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.95\linewidth]{img/idealistagraf1} 
+
+}
+
+\caption{Precio medio del metro cuadrado por distritos.}(\#fig:idealistagraf1)
+\end{figure}
 
 
 Los *box-plots* y gráficos de dispersión de variables, para las categorías dadas de otra, así como las  correlaciones entre dichas variables, también pueden utilizarse para detectar valores atípicos. Por ejemplo, se puede considerar la relación del precio del metro cuadrado de la vivienda con otras variables, como la superficie construida, la distancia al metro y el número de habitaciones. Para ello, primeramente se crea el conjunto de datos `Madrid_Sale_red2` con la variable derivada `price_bin` (de tipo factor), cuyas categorías o clases (o *bins*) son los cuartiles de la variable `PRICE`.
@@ -354,10 +366,14 @@ ggpairs(Madrid_Sale_red2,
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/idealistagraf2.png" alt="Distribuciones y correlaciones cruzadas algunas variables de $Madrid$-$Sale$-$red$." width="95%" />
-<p class="caption">(\#fig:idealistagraf2)Distribuciones y correlaciones cruzadas algunas variables de $Madrid$-$Sale$-$red$.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.95\linewidth]{img/idealistagraf2} 
+
+}
+
+\caption{Distribuciones y correlaciones cruzadas algunas variables de $Madrid$-$Sale$-$red$.}(\#fig:idealistagraf2)
+\end{figure}
 
 
 
@@ -406,10 +422,14 @@ gg_miss_fct(x = `Madrid_Sale_red2`, fct = price_bin)
 <!-- gg_miss_var(Madrid_Sale_red2, show_pct = TRUE, facet = price_bin) -->
 
 En la Fig. \@ref(fig:missing1)  se puede observar claramente que hay datos faltantes en la variable `LOCATIONNAME`, sobre todo en los dos primeros cuartiles (*bins*). Concretamente, hay 42 valores faltantes. No obstante, aunque el degradado del color morado apenas permite apreciarlo, también hay un valor faltantes en  `ROOMNUMBER`.
-<div class="figure" style="text-align: center">
-<img src="img/missing1.png" alt="Visualización de valores faltantes." width="60%" />
-<p class="caption">(\#fig:missing1)Visualización de valores faltantes.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/missing1} 
+
+}
+
+\caption{Visualización de valores faltantes.}(\#fig:missing1)
+\end{figure}
 
 La gestión de los valores faltantes debe hacerse considerando la problemática que se quiera resolver. Una primera opción a considerar sería excluirlos, si bien se estaría eliminando información. Para filtrar los registros faltantes, se podría utilizar la función `is.na()`. En el caso de `ROOMNUMBER`:
 

@@ -79,10 +79,14 @@ ggplot(df_m_plot_melt, aes(Año, value, col = variable)) +
   geom_line(size = 2.5)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="212054_cd_electricidad_files/figure-html/plot-ree1-1.png" alt="Evolución del PIB y el consumo eléctrico en España." width="80%" />
-<p class="caption">(\#fig:plot-ree1)Evolución del PIB y el consumo eléctrico en España.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{212054_cd_electricidad_files/figure-latex/plot-ree1-1} 
+
+}
+
+\caption{Evolución del PIB y el consumo eléctrico en España.}(\#fig:plot-ree1)
+\end{figure}
 
 En la Fig. \@ref(fig:plot-ree1) se observa que hasta 2005  las curvas que representan la evolución temporal de ambas variables están prácticamente superpuestas, pero desde 2006 las líneas se separan. ¿A qué puede deberse? Uno de los principales motivos probablemente sea las medidas de eficiencia energética que se han ido introduciendo en los últimos lustros (iluminación led, electrodomésticos, dispositivos con menor consumo, etc.).
 
@@ -237,10 +241,14 @@ ggplot(df_m_mlp_plot, aes(Año, value, col = variable)) +
   geom_line()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/212054PIBConsumoPrediccion.png" alt="Consumo electrico real y predicho en España: 2018 y 2019." width="100%" />
-<p class="caption">(\#fig:reshape-plot-ree2)Consumo electrico real y predicho en España: 2018 y 2019.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/212054PIBConsumoPrediccion} 
+
+}
+
+\caption{Consumo electrico real y predicho en España: 2018 y 2019.}(\#fig:reshape-plot-ree2)
+\end{figure}
 
 En la Fig. \@ref(fig:reshape-plot-ree2), se puede comprobar que las predicciones (puntos azules) las predicciones son bastante buenas, con unos errores del orden de los que se habían obtenido en el conjunto de test, por lo que parece que no hay sobreentrenamiento\index{sobreentrenamiento}.
 

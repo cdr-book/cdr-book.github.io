@@ -137,10 +137,14 @@ plot(x, y = dens, type = "h", xlab = "x", ylab = "P(x)", main = "Función de cua
 plot(x, pbinom(x, 10, 0.5), ylab = "F(x)", xlab = "x", type = "s", main = "Función de distribución", lwd = 2)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150014img01.png" alt="Función de cuantía y de distribución para una variable B(10;0,5)." width="60%" />
-<p class="caption">(\#fig:150014binomd)Función de cuantía y de distribución para una variable B(10;0,5).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/150014img01} 
+
+}
+
+\caption{Función de cuantía y de distribución para una variable B(10;0,5).}(\#fig:150014binomd)
+\end{figure}
 
 En el **caso particular** de que *n*=1, B(1, *p*), se denomina **distribución de Bernoulli, B(*p*)**.
 
@@ -162,10 +166,14 @@ plot(x, dnbinom(x, 3, 0,35), type = "h", ylab = "P(x)", xlab = "x", main = "Func
 plot(x, pnbinom(x, 3, 0,35), ylab = "F(x)", xlab = "x", type = "s", main = "Función de distribución", lwd = 2)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150014img02.png" alt="Función de cuantía y de distribución para una variable BN(3; 0,35)." width="60%" />
-<p class="caption">(\#fig:150014nbin)Función de cuantía y de distribución para una variable BN(3; 0,35).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/150014img02} 
+
+}
+
+\caption{Función de cuantía y de distribución para una variable BN(3; 0,35).}(\#fig:150014nbin)
+\end{figure}
 
 En el **caso particular** de que $r=1$, BN(1, $p$), se denomina **distribución geométrica, G($p$)**.
 
@@ -187,10 +195,14 @@ plot(x, dpois(x, 3), type = "h", ylab = "P(x)", xlab = "x", main = "Función de 
 plot(x, ppois(x, 3), ylab = "F(x)", xlab = "x", type = "s", main = "Función de distribución", lwd = 2)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150014img03.png" alt="Función de cuantía y de distribución para una variable P(2,5)." width="60%" />
-<p class="caption">(\#fig:150014poisson)Función de cuantía y de distribución para una variable P(2,5).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/150014img03} 
+
+}
+
+\caption{Función de cuantía y de distribución para una variable P(2,5).}(\#fig:150014poisson)
+\end{figure}
 
 ### Modelos continuos
 
@@ -221,10 +233,14 @@ curve(pnorm(x, 0, 1.5), ylab = "P(x)", add = TRUE, type = "l", col = "red")
 curve(pnorm(x, 0, 2), ylab = "P(x)", add = TRUE, type = "l", col = "darkgreen")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150014img04.png" alt="Función de densidad y de distribución de variables normales, con media 0 y desviación típica 1 (azul), 1,5 (rojo) y 2 (verde)." width="60%" />
-<p class="caption">(\#fig:150014norm)Función de densidad y de distribución de variables normales, con media 0 y desviación típica 1 (azul), 1,5 (rojo) y 2 (verde).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/150014img04} 
+
+}
+
+\caption{Función de densidad y de distribución de variables normales, con media 0 y desviación típica 1 (azul), 1,5 (rojo) y 2 (verde).}(\#fig:150014norm)
+\end{figure}
 
 Una característica importante de la distribución normal es que verifica la 
 **propiedad aditiva o reproductiva**, es decir, que las combinaciones lineales de distribuciones normales independientes siguen siendo distribuciones normales. Si se consideran $n$ variables aleatorias independientes con distribuciones $N(\mu_i,\sigma_i)$, cualquier combinación lineal cumple:
@@ -262,10 +278,14 @@ curve(pgamma(x, 10, 2), type = "l", add = TRUE, col = "green", lwd = 2)
 curve(pgamma(x, 1, 2), type = "l", add = TRUE, col = "blue", lwd = 2)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150014img05.png" alt="Función de densidad y de distribución de variables gamma." width="60%" />
-<p class="caption">(\#fig:150014gamma)Función de densidad y de distribución de variables gamma.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/150014img05} 
+
+}
+
+\caption{Función de densidad y de distribución de variables gamma.}(\#fig:150014gamma)
+\end{figure}
 
 El **caso particular** de que $\alpha=1$ se denomina **distribución exponencial** de parámetro $\beta$.
 
@@ -304,10 +324,14 @@ curve(pt(x, df = 10), type = "l", add = TRUE, col = "red", lwd = 2)
 curve(pt(x, df = 3), type = "l", add = TRUE, col = "darkgreen", lwd = 2)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150014img06.png" alt="Función de densidad y de distribución de variables *t*--Student, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad." width="60%" />
-<p class="caption">(\#fig:150014student)Función de densidad y de distribución de variables *t*--Student, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/150014img06} 
+
+}
+
+\caption{Función de densidad y de distribución de variables *t*--Student, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad.}(\#fig:150014student)
+\end{figure}
 
 - **Distribución** ***F*** **de Snedecor**
 
@@ -333,10 +357,14 @@ curve(pf(x, 10, 5), type = "l", add = TRUE, col = "red")
 curve(pf(x, 5, 5), type = "l", add = TRUE, col = "darkgreen")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150014img07.png" alt="Función de densidad y de distribución de variables $F$ de Snedecor, en azul con (5, 10) grados de libertad, en rojo con (10, 5) y en verde con (5, 5)." width="60%" />
-<p class="caption">(\#fig:150014FSnedecor)Función de densidad y de distribución de variables $F$ de Snedecor, en azul con (5, 10) grados de libertad, en rojo con (10, 5) y en verde con (5, 5).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/150014img07} 
+
+}
+
+\caption{Función de densidad y de distribución de variables $F$ de Snedecor, en azul con (5, 10) grados de libertad, en rojo con (10, 5) y en verde con (5, 5).}(\#fig:150014FSnedecor)
+\end{figure}
 
 
 ## Teorema central del límite  {#tcl}
@@ -492,10 +520,14 @@ area_n <- function(media, desv, lb, ub, ...) {
 area_n(media, desv, 0, 10)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150014img08.png" alt="$P(X&gt;0)$ representada como el área bajo la función de densidad de $X$." width="60%" />
-<p class="caption">(\#fig:150014graf)$P(X>0)$ representada como el área bajo la función de densidad de $X$.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/150014img08} 
+
+}
+
+\caption{$P(X>0)$ representada como el área bajo la función de densidad de $X$.}(\#fig:150014graf)
+\end{figure}
 
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}

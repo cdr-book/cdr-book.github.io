@@ -87,10 +87,14 @@ En la Fig. \@ref(fig:raster-crop-mask-plot) se puede ver el resultado de los pri
 plot(anom)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/anom-med.PNG" alt="Distribución espacial de las anomalías en la  temperatura superficial del mar Mediterráneo: 1982-1997." width="100%" />
-<p class="caption">(\#fig:raster-crop-mask-plot)Distribución espacial de las anomalías en la  temperatura superficial del mar Mediterráneo: 1982-1997.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/anom-med} 
+
+}
+
+\caption{Distribución espacial de las anomalías en la  temperatura superficial del mar Mediterráneo: 1982-1997.}(\#fig:raster-crop-mask-plot)
+\end{figure}
 
 
 Un *raster* consiste en latitud, longitud y uno o múltiples valores, también llamados capas (véase Cap. \@ref(datos-espaciales). Para poder visualizarlo en `ggplot2`, es necesario convertirlo en un `data.frame`. En este caso, se obtienen 41 columnas para las anomalías, además de las primeras dos columnas, que corresponden a la longitud y a la latitud. 
@@ -324,10 +328,14 @@ El resultado final, un gráfico de paneles (o facetas), puede verse en la Fig. \
 Los mapas muestran claramente el efecto del calentamiento global, siendo los años 2003 y 2022 los que muestran una mayor anomalía positiva. Destaca el hecho de que desde 1997 en todos los años se ha superado la media anual del período de referencia (1982-2010). 
 
 
-<div class="figure" style="text-align: center">
-<img src="img/sst_anom_med2.png" alt="Distribución espacial de las anomalías estivales de la temperatura de superficie del mar Mediterráneo." width="100%" />
-<p class="caption">(\#fig:sst-anom-med2)Distribución espacial de las anomalías estivales de la temperatura de superficie del mar Mediterráneo.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/sst_anom_med2} 
+
+}
+
+\caption{Distribución espacial de las anomalías estivales de la temperatura de superficie del mar Mediterráneo.}(\#fig:sst-anom-med2)
+\end{figure}
 
 ## Conclusión
 

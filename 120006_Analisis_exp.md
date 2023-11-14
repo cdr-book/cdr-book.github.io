@@ -40,10 +40,14 @@ anscombe |> summarise(across(.fns = sd))
 
 Sin embargo, la Fig. \@ref(fig:ch-120006-anscombeuni) muestra que, a pesar de tener medias y desviaciones típicas prácticamente iguales, los datos son muy diferentes.
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-anscombeuni-1.png" alt="Representación de las variables del cuarteto de Anscombe." width="60%" />
-<p class="caption">(\#fig:ch-120006-anscombeuni)Representación de las variables del cuarteto de Anscombe.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-anscombeuni-1} 
+
+}
+
+\caption{Representación de las variables del cuarteto de Anscombe.}(\#fig:ch-120006-anscombeuni)
+\end{figure}
 
 
 
@@ -59,10 +63,14 @@ de regresión y después interpretarlo, se pueden tomar decisiones
 erróneas. El cuarteto de Anscombe es muy ilustrativo, al igual que  _The Datasaurus Dozen_ [@Matejka2017] en https://www.autodeskresearch.com/publications/samestats.
 
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-anscombelm-1.png" alt="Los cuatro gráficos que constituyen el cuarteto de Anscombe junto con un ajuste lineal." width="60%" />
-<p class="caption">(\#fig:ch-120006-anscombelm)Los cuatro gráficos que constituyen el cuarteto de Anscombe junto con un ajuste lineal.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-anscombelm-1} 
+
+}
+
+\caption{Los cuatro gráficos que constituyen el cuarteto de Anscombe junto con un ajuste lineal.}(\#fig:ch-120006-anscombelm)
+\end{figure}
 
 
 ### Conceptos generales
@@ -81,10 +89,14 @@ La Fig. \@ref(fig:ch-120006-dogma1) representa la esencia de la Estadística y s
 
 [^nota-bib-ed]: Para un análisis extenso de los conceptos aquí expuestos puede consultarse, por ejemplo, @lorenzo2007estadistica. 
 
-<div class="figure" style="text-align: center">
-<img src="img/dogma1.png" alt="La esencia de los métodos estadísticos." width="60%" />
-<p class="caption">(\#fig:ch-120006-dogma1)La esencia de los métodos estadísticos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/dogma1} 
+
+}
+
+\caption{La esencia de los métodos estadísticos.}(\#fig:ch-120006-dogma1)
+\end{figure}
 
 
 Las características a observar en los elementos de una población pueden dar lugar a diferentes tipos de datos o variables. El análisis a realizar dependerá del tipo de variable, que puede ser:
@@ -193,10 +205,14 @@ accidentes2020_data |>
   geom_bar(aes(y=tipo_accidente), fill = "pink")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-geombar-1.png" alt="Gráfico de barras con ggplot2." width="60%" />
-<p class="caption">(\#fig:ch-120006-geombar)Gráfico de barras con ggplot2.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-geombar-1} 
+
+}
+
+\caption{Gráfico de barras con ggplot2.}(\#fig:ch-120006-geombar)
+\end{figure}
 
 \index{gráfico!de barras}
 
@@ -217,10 +233,14 @@ ayuntam |>
   ggpiestats(x = serv)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-ggs-1.png" alt="Gráfico de sectores con tests. Prestación o no de un determinado servicio X en ayuntamientos de distinto signo político." width="60%" />
-<p class="caption">(\#fig:ch-120006-ggs)Gráfico de sectores con tests. Prestación o no de un determinado servicio X en ayuntamientos de distinto signo político.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-ggs-1} 
+
+}
+
+\caption{Gráfico de sectores con tests. Prestación o no de un determinado servicio X en ayuntamientos de distinto signo político.}(\#fig:ch-120006-ggs)
+\end{figure}
 
 
 Una alternativa a los gráficos de sectores son los _waffle charts_ (gráficos de gofre o de tableta de chocolate). La siguiente expresión produce de la Fig. \@ref(fig:ch-120006-gofre) usando el paquete `waffle`. Con el argumento `use_glyph` se pueden incluir iconos en vez de cuadrados.
@@ -235,10 +255,14 @@ m <- setNames(freq$n, freq$serv)
 waffle(m, rows = 4, colors = c("red", "green"))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-gofre-1.png" alt="Gráfico $waffle$. Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político." width="60%" />
-<p class="caption">(\#fig:ch-120006-gofre)Gráfico $waffle$. Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-gofre-1} 
+
+}
+
+\caption{Gráfico $waffle$. Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político.}(\#fig:ch-120006-gofre)
+\end{figure}
 
 
 
@@ -396,10 +420,14 @@ library("patchwork")
 h1 + h2 + h3
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/plot-hist-bins.png" alt="Histogramas de la renta neta per cápita en 2019 con distintos $bins$. Izquierda: $bins$ por defecto (n = 30); Centro: $bins$ con la regla de Strurges; Derecha: $bins$ = 20." width="60%" />
-<p class="caption">(\#fig:ch-120006-plot-hist-bins)Histogramas de la renta neta per cápita en 2019 con distintos $bins$. Izquierda: $bins$ por defecto (n = 30); Centro: $bins$ con la regla de Strurges; Derecha: $bins$ = 20.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/plot-hist-bins} 
+
+}
+
+\caption{Histogramas de la renta neta per cápita en 2019 con distintos $bins$. Izquierda: $bins$ por defecto (n = 30); Centro: $bins$ con la regla de Strurges; Derecha: $bins$ = 20.}(\#fig:ch-120006-plot-hist-bins)
+\end{figure}
 
 \index{gráfico!de densidad}
 
@@ -419,10 +447,14 @@ p + geom_histogram(aes(y = after_stat(density)),
   geom_density(lwd = 1, colour = 4)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-hist-density-1.png" alt="Histograma y línea de densidad de la renta neta per cápita española en 2019." width="60%" />
-<p class="caption">(\#fig:ch-120006-hist-density)Histograma y línea de densidad de la renta neta per cápita española en 2019.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-hist-density-1} 
+
+}
+
+\caption{Histograma y línea de densidad de la renta neta per cápita española en 2019.}(\#fig:ch-120006-hist-density)
+\end{figure}
 
 
 
@@ -442,10 +474,14 @@ violin <- p + geom_violin(aes(), color = "yellow", fill = "pink")
 boxplot + violin
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/boxplot-violin-renta.png" alt="Diagrama de caja y bigotes y diagrama de violín de la renta neta per cápita en 2019." width="60%" />
-<p class="caption">(\#fig:ch-120006-plot-boxplot-violin)Diagrama de caja y bigotes y diagrama de violín de la renta neta per cápita en 2019.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/boxplot-violin-renta} 
+
+}
+
+\caption{Diagrama de caja y bigotes y diagrama de violín de la renta neta per cápita en 2019.}(\#fig:ch-120006-plot-boxplot-violin)
+\end{figure}
 
 
 Otra visualización básica para una variable numérica es la visualización
@@ -495,10 +531,14 @@ proporciones <- p + geom_bar(position = position_fill())
 frecuencias + proporciones
 ```
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-barras-ayunt-1.png" alt="Gráfico de barras de la prestación pública del servicio $X$ por parte de 80 ayuntamientos de distinto signo político. Izquierda: frecuencias absolutas. Derecha: frecuencias relativas." width="80%" />
-<p class="caption">(\#fig:ch-120006-barras-ayunt)Gráfico de barras de la prestación pública del servicio $X$ por parte de 80 ayuntamientos de distinto signo político. Izquierda: frecuencias absolutas. Derecha: frecuencias relativas.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-barras-ayunt-1} 
+
+}
+
+\caption{Gráfico de barras de la prestación pública del servicio $X$ por parte de 80 ayuntamientos de distinto signo político. Izquierda: frecuencias absolutas. Derecha: frecuencias relativas.}(\#fig:ch-120006-barras-ayunt)
+\end{figure}
 
 Una visualización interesante de tablas de doble entrada son los gráficos en los que
 se representan las frecuencias conjuntas por medio de puntos cuya área es proporcional a la frecuencia. La Fig. \@ref(fig:ch-120006-balloonplot-eda-ayunt) muestra gráficamente la tabla de frecuencias conjunta de los atributos `signo_gob` y `serv` del conjunto de datos `ayuntam`. 
@@ -509,10 +549,14 @@ library("gplots")
 balloonplot(table(ayuntam$signo_gob , ayuntam$serv))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-balloonplot-eda-ayunt-1.png" alt="Representación gráfica de tabla de frecuencias." width="60%" />
-<p class="caption">(\#fig:ch-120006-balloonplot-eda-ayunt)Representación gráfica de tabla de frecuencias.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-balloonplot-eda-ayunt-1} 
+
+}
+
+\caption{Representación gráfica de tabla de frecuencias.}(\#fig:ch-120006-balloonplot-eda-ayunt)
+\end{figure}
 
 
 Para representar dos o más factores a la vez en un único gráfico, se dispone de los gráficos de mosaico con la función `mosaicplot()` de **R** base, o bien el paquete
@@ -527,10 +571,14 @@ ggplot() +
                   fill=sexo)) 
 ```
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-mosaico-accidentes-1.png" alt="Gráfico de mosaico para relacionar el tipo de accidente y el sexo en los datos de accidentes." width="60%" />
-<p class="caption">(\#fig:ch-120006-mosaico-accidentes)Gráfico de mosaico para relacionar el tipo de accidente y el sexo en los datos de accidentes.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-mosaico-accidentes-1} 
+
+}
+
+\caption{Gráfico de mosaico para relacionar el tipo de accidente y el sexo en los datos de accidentes.}(\#fig:ch-120006-mosaico-accidentes)
+\end{figure}
 
 \index{facetas (gráficos)}
 
@@ -558,10 +606,14 @@ accidentes2020_data  |>
   theme(axis.text.x  = element_text(angle = 90))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-acc-3vbles-1.png" alt="Representación de tres atributos mediante gráficos de barras conjuntos y facetas." width="100%" />
-<p class="caption">(\#fig:ch-120006-acc-3vbles)Representación de tres atributos mediante gráficos de barras conjuntos y facetas.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-acc-3vbles-1} 
+
+}
+
+\caption{Representación de tres atributos mediante gráficos de barras conjuntos y facetas.}(\#fig:ch-120006-acc-3vbles)
+\end{figure}
 
 
 ### Variables cuantitativas
@@ -599,10 +651,14 @@ mcor_tic <- cor(TIC2021)
 corrplot.mixed(mcor_tic, order = 'AOE')
 ```
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-correlacion-1.png" alt="Representación gráfica de la matriz de correlaciones entre las variables del conjunto de datos TIC2021." width="60%" />
-<p class="caption">(\#fig:ch-120006-correlacion)Representación gráfica de la matriz de correlaciones entre las variables del conjunto de datos TIC2021.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-correlacion-1} 
+
+}
+
+\caption{Representación gráfica de la matriz de correlaciones entre las variables del conjunto de datos TIC2021.}(\#fig:ch-120006-correlacion)
+\end{figure}
 
 
 
@@ -635,10 +691,14 @@ airquality |>
   geom_smooth()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-scatter-ozono-1.png" alt="Gráfico de dispersión del ozono frente a la temperatura." width="60%" />
-<p class="caption">(\#fig:ch-120006-scatter-ozono)Gráfico de dispersión del ozono frente a la temperatura.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-scatter-ozono-1} 
+
+}
+
+\caption{Gráfico de dispersión del ozono frente a la temperatura.}(\#fig:ch-120006-scatter-ozono)
+\end{figure}
 
 \index{serie temporal (gráfico)}
 
@@ -657,10 +717,14 @@ contam_mad |>
   theme(legend.position = "none") 
 ```
 
-<div class="figure" style="text-align: center">
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-nox-time-1.png" alt="Concentración media semanal de NOx en las estaciones de medición de Madrid (enero 2011 - marzo 2022)." width="60%" />
-<p class="caption">(\#fig:ch-120006-nox-time)Concentración media semanal de NOx en las estaciones de medición de Madrid (enero 2011 - marzo 2022).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{120006_Analisis_exp_files/figure-latex/ch-120006-nox-time-1} 
+
+}
+
+\caption{Concentración media semanal de NOx en las estaciones de medición de Madrid (enero 2011 - marzo 2022).}(\#fig:ch-120006-nox-time)
+\end{figure}
 
 
 
@@ -690,10 +754,14 @@ contam_mad |>
   aes(x = zona, y = daily_mean, fill =zona)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/plot-violin-zonas.png" alt="Comparación de los niveles de PM10 en las zonas de la ciudad de Madrid a efectos de calidad del aire durante la calima de marzo de 2022." width="60%" />
-<p class="caption">(\#fig:ch-120006-plot-violin-zonas)Comparación de los niveles de PM10 en las zonas de la ciudad de Madrid a efectos de calidad del aire durante la calima de marzo de 2022.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/plot-violin-zonas} 
+
+}
+
+\caption{Comparación de los niveles de PM10 en las zonas de la ciudad de Madrid a efectos de calidad del aire durante la calima de marzo de 2022.}(\#fig:ch-120006-plot-violin-zonas)
+\end{figure}
 
 
 
@@ -705,10 +773,14 @@ contam_mad |>
   geom_density_ridges() 
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/plot-ridges-tipos.png" alt="Comparación de concentraciones de NOx por tipo de estación de medición." width="60%" />
-<p class="caption">(\#fig:ch-120006-plot-ridges-tipos)Comparación de concentraciones de NOx por tipo de estación de medición.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/plot-ridges-tipos} 
+
+}
+
+\caption{Comparación de concentraciones de NOx por tipo de estación de medición.}(\#fig:ch-120006-plot-ridges-tipos)
+\end{figure}
 
 
 
@@ -741,10 +813,14 @@ geom_point()
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/plot-dispersion-conjunta-alarma.png" alt="Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) durante el estado de alarma en la ciudad de Madrid (todas las estaciones de medición)." width="60%" />
-<p class="caption">(\#fig:plot-dispersion-conjunta-alarma)Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) durante el estado de alarma en la ciudad de Madrid (todas las estaciones de medición).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/plot-dispersion-conjunta-alarma} 
+
+}
+
+\caption{Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) durante el estado de alarma en la ciudad de Madrid (todas las estaciones de medición).}(\#fig:plot-dispersion-conjunta-alarma)
+\end{figure}
 
 
 
@@ -768,10 +844,14 @@ pm10_nox_mad |>
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/plot-dispersion-ms-conjunta-alarma.png" alt="Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) por estación de medición durante el estado de alarma en la ciudad de Madrid." width="80%" />
-<p class="caption">(\#fig:ch-120006-plot-dispersion-ms-conjunta-alarma)Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) por estación de medición durante el estado de alarma en la ciudad de Madrid.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{img/plot-dispersion-ms-conjunta-alarma} 
+
+}
+
+\caption{Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) por estación de medición durante el estado de alarma en la ciudad de Madrid.}(\#fig:ch-120006-plot-dispersion-ms-conjunta-alarma)
+\end{figure}
 
 
 

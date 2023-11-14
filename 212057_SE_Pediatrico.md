@@ -34,10 +34,14 @@ $(iv)$ la **interfaz de entrada/salida** para comunicarse con los usuarios y/o e
 En la Fig.
 \@ref(fig:ComponentesSistemaExperto) se muestra un diagrama con los principales componentes de un SE.
 
-<div class="figure" style="text-align: center">
-<img src="img/ComponentesSistemaExperto.png" alt="Componentes de un sistema experto." width="100%" />
-<p class="caption">(\#fig:ComponentesSistemaExperto)Componentes de un sistema experto.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/ComponentesSistemaExperto} 
+
+}
+
+\caption{Componentes de un sistema experto.}(\#fig:ComponentesSistemaExperto)
+\end{figure}
 
 Las principales limitaciones en la construcción de un SE vienen dadas porque el conocimiento experto humano es experiencia compilada, es heurístico, esto es, basado en experiencia y en reglas prácticas.\index{regla} Además, es incompleto, impreciso e incierto y, a veces, inconsistente y con errores o imprecisiones.
 Es por ello que las limitaciones de todo SE pueden ser que no conoce lo que conoce ni el porqué, carece de imaginación, emociones, inteligencia innata, sentido común, etc. Tiene poco conocimiento de sí mismo, del usuario y del contexto de cada interacción y capacidad de razonamiento limitada por su estrategia de construcción.
@@ -125,10 +129,14 @@ El ciclo de "razonamiento hacia delante" se sintetiza en los siguientes pasos:
 En la Fig.
 \@ref(fig:FiguraRazonamientoHaciaDelante) se muestra el algoritmo correspondiente al ciclo de inferencia hacia adelante.
 
-<div class="figure" style="text-align: center">
-<img src="img/Figura1CicloRazonamientoHaciaDelante.png" alt="Ciclo de razonamiento hacia delante." width="60%" />
-<p class="caption">(\#fig:FiguraRazonamientoHaciaDelante)Ciclo de razonamiento hacia delante.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/Figura1CicloRazonamientoHaciaDelante} 
+
+}
+
+\caption{Ciclo de razonamiento hacia delante.}(\#fig:FiguraRazonamientoHaciaDelante)
+\end{figure}
 
 
 ## Sistema experto para el ámbito pediátrico en atención primaria
@@ -351,7 +359,7 @@ El resultado proporcionado por el algoritmo es un triaje de valor $4$. Es decir,
 
 <!-- Para compilar en HTML -->
 <!-- tabla-html -->
-<img src="img/tabla-58-2-sist-exp.jpg" width="100%" style="display: block; margin: auto;" />
+
 
 
 \begin{table}[ht]

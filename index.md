@@ -1,7 +1,7 @@
 ---
 title: "Fundamentos de ciencia de datos con **R**"
 author: "Gema Fernández-Avilés y José-María Montero"
-date: "2023-11-13"
+date: "2023-11-14"
 output:
   html_document:
     df_print: paged
@@ -85,7 +85,8 @@ Pero si a alguien está destinado especialmente, es a la comunidad hispanohablan
 
 ## El paquete `CDR` {-}
 
-<img src="img/LogoCDR_transparente.png" width="25%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.25\linewidth]{img/LogoCDR_transparente} \end{center}
 
 El paquete `CDR` contiene la mayoría de conjuntos de datos utilizados en este libro que no están disponibles en otros paquetes. Para instalarlo use la función `install_github()` del paquete `remotes`.
 

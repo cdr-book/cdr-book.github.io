@@ -136,17 +136,25 @@ Tiene dos componentes principales:
 
 -   Un **modelo de referencia de procesos (MRP)**, que contiene una descripción de los procesos de gestión del dato, de gestión de calidad del dato y de gobierno del dato. Está alineado con los principales estándares en el área: ISO 8000-61 [@ISO8000-61], e ISO/IEC 38505-2 [@ISO2018], así como con las buenas prácticas de otros modelos como DAMA, DMM o COBIT 2019 (véase Fig. \@ref(fig:mamd-mrp)).
 
-<div class="figure" style="text-align: center">
-<img src="img/fig-1-gobierno.png" alt="Modelo de referencia de procesos de MAMD. DM: gestión del dato; DQM: gestión de calidad del dato; DG: gobierno del dato." width="100%" />
-<p class="caption">(\#fig:mamd-mrp)Modelo de referencia de procesos de MAMD. DM: gestión del dato; DQM: gestión de calidad del dato; DG: gobierno del dato.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/fig-1-gobierno} 
+
+}
+
+\caption{Modelo de referencia de procesos de MAMD. DM: gestión del dato; DQM: gestión de calidad del dato; DG: gobierno del dato.}(\#fig:mamd-mrp)
+\end{figure}
 
 -   El **modelo de evaluación de procesos (MEP)**, que sigue las directrices de evaluación y los niveles de capacidad y madurez descritos por ISO/IEC 33000 y adaptados a la evaluación de procesos de datos conforme al modelo de madurez propuesto en ISO 8000-62 [@ISO8000-62] (véase Fig. \@ref(fig:mamd-modelomadurez)).
 
-<div class="figure" style="text-align: center">
-<img src="img/fig-2-gobierno.png" alt="Modelo de madurez organizacional de MAMD; N: nivel;  DM: gestión del dato; DQM: gestión de calidad del dato; DG: gobierno del dato." width="100%" />
-<p class="caption">(\#fig:mamd-modelomadurez)Modelo de madurez organizacional de MAMD; N: nivel;  DM: gestión del dato; DQM: gestión de calidad del dato; DG: gobierno del dato.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/fig-2-gobierno} 
+
+}
+
+\caption{Modelo de madurez organizacional de MAMD; N: nivel;  DM: gestión del dato; DQM: gestión de calidad del dato; DG: gobierno del dato.}(\#fig:mamd-modelomadurez)
+\end{figure}
 
 
 
@@ -167,7 +175,7 @@ La Tabla \@ref(tab:TablaCaracteristicasISO25012) muestra una descripción de las
 <!-- Para compilar en HTML -->
 <!-- tabla-html -->
 
-<img src="img/tabla-7-1-iso.png" width="100%" style="display: block; margin: auto;" />
+
 
 
 \begin{table}[]
@@ -223,10 +231,14 @@ La evaluación de calidad del dato requiere primero medir la calidad; y para med
 \index{ISO/IEC 25024}En ese sentido, ISO 25024 [@ISO25024] proporciona una serie de propiedades medibles para cada una de las características presentadas en la Tabla \@ref(tab:TablaCaracteristicasISO25012); además, para cada una de estas propiedades medibles, el estándar proporciona un método de medición genérico que permitirá, convenientemente particularizado, medir dichas propiedades y luego agruparlas para determinar el valor de la característica de calidad del dato.
 La Fig. \@ref(fig:propiedadesISO25024) muestra las propiedades medibles para las características de calidad identificadas como inherentes (véase Tabla \@ref(tab:TablaCaracteristicasISO25012)).
 
-<div class="figure" style="text-align: center">
-<img src="img/fig-3-gobierno.png" alt="Algunas propiedades de las características inherentes de calidad del dato." width="100%" />
-<p class="caption">(\#fig:propiedadesISO25024)Algunas propiedades de las características inherentes de calidad del dato.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{img/fig-3-gobierno} 
+
+}
+
+\caption{Algunas propiedades de las características inherentes de calidad del dato.}(\#fig:propiedadesISO25024)
+\end{figure}
 
 
 Una de las ventajas de usar estas propiedades medibles es que, en caso de niveles inadecuados de calidad de datos, es posible identificar mejor qué está causando que esto ocurra y, por tanto, es más fácil actuar directamente sobre dichas causas.

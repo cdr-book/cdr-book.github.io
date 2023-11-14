@@ -73,10 +73,14 @@ Es un modelo de *AD* basado en los supuestos generales expuestos en el epígrafe
   
 Es el caso más simple posible, donde se han de clasificar $N$ individuos en dos grupos (I y II) a partir de la información de una única variable clasificadora, $X$. En este caso, las distribuciones de probabilidad de $X$ en los grupos I y II solo difieren en la media, como se muestra en la Fig. \@ref(fig:150025img01).
 
-<div class="figure" style="text-align: center">
-<img src="img/150025img01.png" alt="LDA: dos grupos y una variable clasificadora." width="50%" />
-<p class="caption">(\#fig:150025img01)LDA: dos grupos y una variable clasificadora.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/150025img01} 
+
+}
+
+\caption{LDA: dos grupos y una variable clasificadora.}(\#fig:150025img01)
+\end{figure}
 
 La **regla discriminante** consistirá en asignar cada individuo al grupo con mayor verosimilitud \@ref(eq:veroclas). Como se aprecia, esta regla divide la recta real en dos partes, a la izquierda y a la derecha de $C$, que es el el valor de la recta correspondiente al corte entre las funciones de densidad de los grupos I y II:
 
@@ -100,10 +104,14 @@ Las probabilidades de los errores que se pueden cometer en la asignación corres
 
 Si, bajo los mismos supuestos, se dispone de dos variables clasificadoras, $X_1$ y $X_2$, se proyectan los elipsoides de ambos grupos sobre las dos variables y se obtiene la Fig. \@ref(fig:150025img02):
 
-<div class="figure" style="text-align: center">
-<img src="img/150025img02.png" alt="LDA: dos grupos y dos variables clasificadoras." width="50%" />
-<p class="caption">(\#fig:150025img02)LDA: dos grupos y dos variables clasificadoras.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/150025img02} 
+
+}
+
+\caption{LDA: dos grupos y dos variables clasificadoras.}(\#fig:150025img02)
+\end{figure}
 
 Se obtienen, sobre cada variable, zonas de error de clasificación amplias (marcadas en amarillo) que conllevarán errores de clasificación grandes. Sin embargo, si se proyectan ambos elipsoides sobre un nuevo *eje*, obtenido como una combinación lineal de ambas variables clasificadoras ($w_1X_1 + w_2X_2 - D = 0$), es posible reducir la zona de error de clasificación y, como consecuencia, la probabilidad de error de clasificación.
 
@@ -288,10 +296,14 @@ p4 <- ggplot(data = entrenamiento_t, aes(x = Petal.Width, fill = Species, colour
 ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2, common.legend = TRUE, legend = "bottom")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150025img04.png" alt="Función de densidad de cada variable clasificadora sobre los grupos." width="90%" />
-<p class="caption">(\#fig:150025pre)Función de densidad de cada variable clasificadora sobre los grupos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{img/150025img04} 
+
+}
+
+\caption{Función de densidad de cada variable clasificadora sobre los grupos.}(\#fig:150025pre)
+\end{figure}
 
 Igualmente, los gráficos bivariantes pueden ayudar a ver si hay "distancias" entre los centroides de los grupos para las variables clasificadoras, como muestra la Fig. \@ref(fig:150025pre3):
 
@@ -300,10 +312,14 @@ Igualmente, los gráficos bivariantes pueden ayudar a ver si hay "distancias" en
 pairs(x = entrenamiento_t[, -5], col = c("firebrick", "green3", "darkblue")[entrenamiento_t$Species], pch = 20)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150025img05.png" alt="Diagramas bivariantes de dispersión de las variables clasificadoras." width="90%" />
-<p class="caption">(\#fig:150025pre3)Diagramas bivariantes de dispersión de las variables clasificadoras.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{img/150025img05} 
+
+}
+
+\caption{Diagramas bivariantes de dispersión de las variables clasificadoras.}(\#fig:150025pre3)
+\end{figure}
 
 Como se observa en dichos gráficos, las variables clasificadoras pueden contribuir a la discriminación entre las tres especies de flores *iris*. 
 
@@ -357,10 +373,14 @@ ggplot(datos_lda, aes(LD1, LD2)) +
   ggtitle("Gráfico LDA")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150025img03.png" alt="Proyección de los individuos (flores) sobre las dos funciones discriminantes." width="80%" />
-<p class="caption">(\#fig:150025graf)Proyección de los individuos (flores) sobre las dos funciones discriminantes.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{img/150025img03} 
+
+}
+
+\caption{Proyección de los individuos (flores) sobre las dos funciones discriminantes.}(\#fig:150025graf)
+\end{figure}
 
 Como se aprecia, la primera función discriminante es la que mayor contribución tiene a la separación entre los grupos, separando muy claramente a la especie *setosa* y, en menor medida, a las especies *virginica* y *versicolor*, grupos entre los que hay un pequeño grado de solapamiento. Por otro lado, la segunda función discriminante, con una proporción de discriminación de 0,0098, apenas contribuye a la separación entre grupos.
 
@@ -371,10 +391,14 @@ Por último, mediante la función `partimat()` del paquete `klaR`, se puede visu
 partimat(Species ~ ., data = entrenamiento_t, method = "lda", image.colors = c("skyblue", "lightgrey", "yellow"), col.mean = "red")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150025img06.png" alt="Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo)." width="90%" />
-<p class="caption">(\#fig:150025partimat)Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{img/150025img06} 
+
+}
+
+\caption{Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo).}(\#fig:150025partimat)
+\end{figure}
 
 Por último, aplicando las funciones discriminantes a los datos reservados para estudiar la capacidad predictiva del modelo, se obtiene la tabla conocida como **matriz de confusión**, donde se compara el grupo real con el pronosticado por el modelo:
 
@@ -463,10 +487,14 @@ La representación gráfica de las áreas por las que se clasifican los individu
 partimat(Species ~ ., data = entrenamiento_t, method = "qda", image.colors = c("skyblue", "lightgrey", "yellow"), col.mean = "red")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150025img07.png" alt="Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo)." width="90%" />
-<p class="caption">(\#fig:150025partimatc)Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{img/150025img07} 
+
+}
+
+\caption{Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo).}(\#fig:150025partimatc)
+\end{figure}
 
 Como se aprecia, ahora los contornos de las áreas no son siempre lineales, sino que incluyen fronteras cuadráticas. Por último, aplicando el discriminante cuadrático a los datos reservados para estudiar la capacidad predictiva del modelo, se obtiene la 
 **matriz de confusión**, donde se observa que no se mejoran los resultados respecto al discriminante lineal.

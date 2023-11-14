@@ -188,10 +188,14 @@ Map$addLegend(list(min = -3, max = 3,
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/interactivo_mapa_geopro.png" alt="Mapa interactivo del mar Mediterráneo (1982)." width="60%" />
-<p class="caption">(\#fig:interactive-map-plot)Mapa interactivo del mar Mediterráneo (1982).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/interactivo_mapa_geopro} 
+
+}
+
+\caption{Mapa interactivo del mar Mediterráneo (1982).}(\#fig:interactive-map-plot)
+\end{figure}
 
 
 

@@ -141,10 +141,14 @@ ggplot(
   geom_line(colour = "blue")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/ipc1.png" alt="Evolución del IPC entre enero de 2002 y marzo de 2022." width="60%" />
-<p class="caption">(\#fig:ipc)Evolución del IPC entre enero de 2002 y marzo de 2022.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/ipc1} 
+
+}
+
+\caption{Evolución del IPC entre enero de 2002 y marzo de 2022.}(\#fig:ipc)
+\end{figure}
 
 
 La descomposición aditiva o multiplicativa en $(i)$ tendencia, $(ii)$ componente estacional, $(iii)$ componente cíclico  y ($iv$) componente irregular de la serie del IPC, así como su representación gráfica, también puede ayudar a determinar si la serie es estacionaria o no. El código para la descomposición aditiva de la serie es el siguiente:
@@ -157,10 +161,14 @@ autoplot(componentes_ts)
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/decompose.png" alt="Descomposición aditiva del IPC." width="60%" />
-<p class="caption">(\#fig:DescomposicionST)Descomposición aditiva del IPC.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/decompose} 
+
+}
+
+\caption{Descomposición aditiva del IPC.}(\#fig:DescomposicionST)
+\end{figure}
 
 
 Tanto en el gráfico de la serie original del IPC (Fig. \@ref(fig:ipc)) como en el de su descomposición en componentes (Fig. \@ref(fig:DescomposicionST)), se aprecia que la serie tiene tendencia y componente estacional (mensual). Por lo tanto, no es estacionaria en media, es decir, la media es distinta para diferentes meses y años; tampoco lo es en varianza, ya que la dispersión respecto de la media cambia a lo largo del tiempo.
@@ -185,10 +193,14 @@ ggplot(
   geom_line(colour = "red")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/ipc3.png" alt="Logaritmo del IPC." width="50%" />
-<p class="caption">(\#fig:lipc)Logaritmo del IPC.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/ipc3} 
+
+}
+
+\caption{Logaritmo del IPC.}(\#fig:lipc)
+\end{figure}
 
 
 Corregido el problema de la no estacionariedad en varianza, en la Fig. \@ref(fig:lipc) se aprecia que sigue sin ser estacionaria, ya que al tener estacionalidad y tendencia creciente no es estacionaria en media. Para conseguir que la serie sea estacionaria es necesario corregir tanto su tendencia como su estacionalidad.
@@ -211,10 +223,14 @@ ggplot(
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/ipc4.png" alt="Diferencia regular del logaritmo del IPC." width="60%" />
-<p class="caption">(\#fig:dlipc)Diferencia regular del logaritmo del IPC.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/ipc4} 
+
+}
+
+\caption{Diferencia regular del logaritmo del IPC.}(\#fig:dlipc)
+\end{figure}
 
 Corregida la tendencia, a continuación se corrige su estacionalidad. Para ello, sobre la diferencia regular del logaritmo del IPC, se calculará una diferencia estacional mensual $(d12dlogipc_{t})= log(ipc_t) - log(ipc_{t-12})$. El código para calcular esta diferencia estacional y su representación gráfica (Fig. \@ref(fig:d12dlipc)) es:
 
@@ -235,10 +251,14 @@ ggplot(
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/ipc5.png" alt="Diferencia estacional de la diferencia regular del logaritmo del IPC." width="60%" />
-<p class="caption">(\#fig:d12dlipc)Diferencia estacional de la diferencia regular del logaritmo del IPC.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/ipc5} 
+
+}
+
+\caption{Diferencia estacional de la diferencia regular del logaritmo del IPC.}(\#fig:d12dlipc)
+\end{figure}
 
 Para contrastar si una serie es estacionaria en media o no, también se puede utilizar un test de raíces unitarias[^ipc-nota1]. A partir de la ecuación inicial de un AR:
 $$ \Delta Y_t=\alpha +(\phi-1)Y_{t-1}+a_t,$$ las hipótesis del contraste son:
@@ -418,10 +438,14 @@ A continuación se muestra el código **R** para ejecutar los comandos que permi
 acf(ts(d12dlogipc, frequency = 1), lag.max = 40, main = "")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/acf1.png" alt="ACF. Función de autocorrelación muestral de *d12dLogIPC*." width="70%" />
-<p class="caption">(\#fig:acfd12dlipc)ACF. Función de autocorrelación muestral de *d12dLogIPC*.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/acf1} 
+
+}
+
+\caption{ACF. Función de autocorrelación muestral de *d12dLogIPC*.}(\#fig:acfd12dlipc)
+\end{figure}
 
 
 
@@ -431,10 +455,14 @@ pacf(ts(d12dlogipc, frequency = 1), lag.max = 40, main = "")
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/pacf1.png" alt="PACF. Función de autocorrelación parcial muestral de *d12dLogIPC*." width="70%" />
-<p class="caption">(\#fig:pacfd12dlipc)PACF. Función de autocorrelación parcial muestral de *d12dLogIPC*.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/pacf1} 
+
+}
+
+\caption{PACF. Función de autocorrelación parcial muestral de *d12dLogIPC*.}(\#fig:pacfd12dlipc)
+\end{figure}
 
 
 Observando el comportamiento de estas funciones, para la parte regular se podría proponer un AR(1) y para la parte estacional un MA(1)12. Por lo tanto, ya que se ha calculado una diferencia regular y otra estacional para convertir a la serie original en estacionaria, el modelo ARIMA para el IPC, en el período muestral analizado, sería un ARIMA(1, 1, 0)(0, 1, 1) o sARIMA(1, 1, 0)(0, 1, 1). Cabe señalar que **R** permite la identificación automática de los órdenes del modelo.
@@ -511,10 +539,14 @@ ggplot(
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/ipc-residuos.png" alt="Gráfico de los residuos." width="50%" />
-<p class="caption">(\#fig:residuos)Gráfico de los residuos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/ipc-residuos} 
+
+}
+
+\caption{Gráfico de los residuos.}(\#fig:residuos)
+\end{figure}
 
 
 
@@ -531,10 +563,14 @@ pacf(ts(residuos, frequency = 1), lag.max = 40)
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/acf-pacf.png" alt="ACF y PACF estimadas de los residuos." width="50%" />
-<p class="caption">(\#fig:acfpacfresiduos)ACF y PACF estimadas de los residuos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/acf-pacf} 
+
+}
+
+\caption{ACF y PACF estimadas de los residuos.}(\#fig:acfpacfresiduos)
+\end{figure}
 
 
 
@@ -565,10 +601,14 @@ lines(ipc_ts - modelo$residuals, col = "red")
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/modelo-ipc.png" alt="Ajuste con el modelo estimado." width="50%" />
-<p class="caption">(\#fig:ajuste)Ajuste con el modelo estimado.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/modelo-ipc} 
+
+}
+
+\caption{Ajuste con el modelo estimado.}(\#fig:ajuste)
+\end{figure}
 
 
 
@@ -616,10 +656,14 @@ autoplot(predicciones)
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="img/ipc-forcast.png" alt="Predicciones con el modelo ARIMA(1, 1, 0)(0, 1, 1) estimado." width="80%" />
-<p class="caption">(\#fig:prediccion)Predicciones con el modelo ARIMA(1, 1, 0)(0, 1, 1) estimado.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{img/ipc-forcast} 
+
+}
+
+\caption{Predicciones con el modelo ARIMA(1, 1, 0)(0, 1, 1) estimado.}(\#fig:prediccion)
+\end{figure}
 
 
 

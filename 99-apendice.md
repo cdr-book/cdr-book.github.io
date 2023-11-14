@@ -25,25 +25,20 @@ sessionInfo()
 #> [1] flextable_0.8.1   fontawesome_0.4.0
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] styler_1.8.1      tidyselect_1.2.0  xfun_0.35         bslib_0.4.2      
-#>  [5] purrr_1.0.1       colorspace_2.0-3  vctrs_0.6.3       generics_0.1.3   
-#>  [9] htmltools_0.5.4   yaml_2.3.5        base64enc_0.1-3   utf8_1.2.2       
-#> [13] rlang_1.1.1       R.oo_1.25.0       pillar_1.9.0      jquerylib_0.1.4  
-#> [17] glue_1.6.2        withr_2.5.0       DBI_1.1.3         R.utils_2.12.2   
-#> [21] gdtools_0.2.4     uuid_1.1-0        R.cache_0.16.0    lifecycle_1.0.3  
-#> [25] stringr_1.4.1     munsell_0.5.0     gtable_0.3.1      ragg_1.2.2       
-#> [29] R.methodsS3_1.8.2 zip_2.2.1         evaluate_0.16     memoise_2.0.1    
-#> [33] knitr_1.39        fastmap_1.1.0     fansi_1.0.3       Rcpp_1.0.9       
-#> [37] scales_1.2.1      cachem_1.0.6      jsonlite_1.8.3    systemfonts_1.0.4
-#> [41] fs_1.5.2          textshaping_0.3.6 ggplot2_3.4.0     digest_0.6.30    
-#> [45] stringi_1.7.8     bookdown_0.28     dplyr_1.0.10      grid_4.2.1       
-#> [49] cli_3.4.1         tools_4.2.1       magrittr_2.0.3    sass_0.4.4       
-#> [53] tibble_3.2.1      pkgconfig_2.0.3   downlit_0.4.2     data.table_1.14.6
-#> [57] xml2_1.3.3        assertthat_0.2.1  rmarkdown_2.14    officer_0.4.4    
-#> [61] rstudioapi_0.14   R6_2.5.1          compiler_4.2.1
+#>  [1] zip_2.2.1         Rcpp_1.0.9        pillar_1.9.0      compiler_4.2.1   
+#>  [5] R.methodsS3_1.8.2 base64enc_0.1-3   R.utils_2.12.2    tools_4.2.1      
+#>  [9] digest_0.6.30     uuid_1.1-0        evaluate_0.16     lifecycle_1.0.3  
+#> [13] tibble_3.2.1      gtable_0.3.1      R.cache_0.16.0    pkgconfig_2.0.3  
+#> [17] rlang_1.1.1       DBI_1.1.3         cli_3.4.1         rstudioapi_0.14  
+#> [21] yaml_2.3.5        xfun_0.35         fastmap_1.1.0     stringr_1.4.1    
+#> [25] dplyr_1.0.10      officer_0.4.4     styler_1.8.1      xml2_1.3.3       
+#> [29] knitr_1.39        generics_0.1.3    gdtools_0.2.4     vctrs_0.6.3      
+#> [33] systemfonts_1.0.4 tidyselect_1.2.0  grid_4.2.1        glue_1.6.2       
+#> [37] data.table_1.14.6 R6_2.5.1          fansi_1.0.3       rmarkdown_2.14   
+#> [41] bookdown_0.28     purrr_1.0.1       ggplot2_3.4.0     magrittr_2.0.3   
+#> [45] scales_1.2.1      htmltools_0.5.4   assertthat_0.2.1  colorspace_2.0-3 
+#> [49] utf8_1.2.2        stringi_1.7.8     munsell_0.5.0     R.oo_1.25.0
 ```
 
 
-
-# Referncias {-}
 

@@ -44,7 +44,7 @@ Las organizaciones usan datos para sus procesos de negocio. La Tabla \@ref(tab:T
 <!-- Para compilar en HTML -->
 <!-- tabla-html -->
 
-<img src="img/tabla-5-1-tipos-datos.png" width="100%" style="display: block; margin: auto;" />
+
 
 \index{base de datos} \index{datos!repositorio}
 

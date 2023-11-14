@@ -369,10 +369,14 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
 
 
 
-<div class="figure" style="text-align: center">
-<img src="img/nb_boxplot.png" alt="Resultados del modelo Naive Bayes obtenidos durante el proceso de validación cruzada." width="55%" />
-<p class="caption">(\#fig:NBRESULTS)Resultados del modelo Naive Bayes obtenidos durante el proceso de validación cruzada.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.55\linewidth]{img/nb_boxplot} 
+
+}
+
+\caption{Resultados del modelo Naive Bayes obtenidos durante el proceso de validación cruzada.}(\#fig:NBRESULTS)
+\end{figure}
 
 En la Fig. \@ref(fig:NBRESULTS) se puede observar que la `accuracy` oscila entre el 75% y el 95% en el proceso de validación cruzada, aunque en uno de los resultados se obtuvo un 96%, que aparece marcado como un *outlier*. La `kappa` de Cohen oscila entre el 63% y el 82%, con un *outlier* en el 82%.
 

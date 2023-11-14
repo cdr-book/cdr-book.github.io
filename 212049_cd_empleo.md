@@ -66,10 +66,14 @@ graf <- ggplot(resumen, aes(anyo, parados)) +
           scientific = FALSE))
 graf
 ```
-<div class="figure" style="text-align: center">
-<img src="img/empleo-total.jpeg" alt="Evolución del paro medio anual en CLM." width="50%" />
-<p class="caption">(\#fig:empleo-total)Evolución del paro medio anual en CLM.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/empleo-total} 
+
+}
+
+\caption{Evolución del paro medio anual en CLM.}(\#fig:empleo-total)
+\end{figure}
 
 
 En la Fig. \@ref(fig:empleo-total) se puede observar el devastador impacto de la crisis de 2008 en la economía castellano-manchega (el paro registrado fue más del triple), mucho mayor que el de la  **COVID-19** que, además, como se  verá posteriormente, se localizó básicamente en el sector servicios. Sin embargo, a partir de 2013 el paro registrado inició una tendencia a la baja muy pronunciada que aún hoy continúa, después de haber repuntado ligeramente por la pandemia. En consonancia con los anteriores comentarios, en lo que sigue se toman como puntos de referencia los años previos a las crisis financiera y de la COVID-19 (2007 y 2019, respectivamente) y el último año, 2022. 
@@ -103,10 +107,14 @@ Si se lanza la función `heatmap_anyos()` para las variables `edad` y `sexo`, to
 ```r
 heatmap_anyos("sexo", "edad")
 ```
-<div class="figure" style="text-align: center">
-<img src="img/empleo-heatmap-edad-sexo.jpeg" alt="Paro medio anual según edad y sexo en 2007, 2019 y 2022." width="60%" />
-<p class="caption">(\#fig:empleo-heatmap-edad-sexo)Paro medio anual según edad y sexo en 2007, 2019 y 2022.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/empleo-heatmap-edad-sexo} 
+
+}
+
+\caption{Paro medio anual según edad y sexo en 2007, 2019 y 2022.}(\#fig:empleo-heatmap-edad-sexo)
+\end{figure}
 En la Fig. \@ref(fig:empleo-heatmap-edad-sexo) se puede apreciar que en los dos procesos críticos se ha producido un **desplazamiento del paro hacia los intervalos de mayor edad**, siendo este cambio más pronunciado en las **mujeres**.  
 El mapa de calor es muy útil para una primera impresión de estos cambios, pero si se desea observar detalladamente cómo ha cambiado la distribución\index{distribución} del paro según el `sexo` y la `edad`, es mejor programar la función `densidad_compara()`, que proporciona un mayor nivel de detalle: produce un cuadro de gráficos que permite comparar la distribución del paro según la edad para cada estrato de la variable elegida (en este caso sexo) para tres años diferentes (2007, 2019 y 2022 por defecto). Los parámetros `alpha` y `size` permiten ajustar tamaño y opacidad de las líneas, respectivamente, mejorando la apariencia general del gráfico.
 
@@ -138,10 +146,14 @@ Ejecutando la función `densidad_compara()` para la variable `sexo` se obtiene l
 ```r
 densidad_compara("sexo")
 ```
-<div class="figure" style="text-align: center">
-<img src="img/empleo-densidad-sexo.jpeg" alt="Distribución del paro medio anual por edad y sexo (2007, 2019 y 2022)." width="60%" />
-<p class="caption">(\#fig:empleo-densidad-sexo)Distribución del paro medio anual por edad y sexo (2007, 2019 y 2022).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/empleo-densidad-sexo} 
+
+}
+
+\caption{Distribución del paro medio anual por edad y sexo (2007, 2019 y 2022).}(\#fig:empleo-densidad-sexo)
+\end{figure}
 En la Fig. \@ref(fig:empleo-densidad-sexo) se observa que en 2007, antes de ambas crisis, la evolución del paro registrado en los varones tiene **dos máximos**, en torno a 25 y 60 años, mientras que el número de mujeres desempleadas tiene una distribución bastante centrada entre 30 y 40 años. En cambio, en 2022 se aprecia el desplazamiento de la distribución de los parados de ambos sexos hacia los estratos de edad **mayores de 50 años**. Este desplazamiento es algo más intenso en las mujeres. Se observa igualmente que, comparando las distribuciones de las mujeres en 2019 y 2022, la crisis de la COVID-19 incrementó entre 5 y 10 años la distribución de la edad de las mujeres paradas. Este desplazamiento es inferior en los hombres, donde supone menos de 5 años.
 
 
@@ -152,10 +164,14 @@ Se define el **tiempo de búsqueda de empleo** como el tiempo transcurrido inint
 ```r
 densidad_compara("t_bus_e_agr")
 ```
-<div class="figure" style="text-align: center">
-<img src="img/empleo-densidad-bus-agr.jpeg" alt="Distribución del paro medio anual por edad y tiempo de búsqueda de empleo." width="60%" />
-<p class="caption">(\#fig:empleo-densidad-bus-agr)Distribución del paro medio anual por edad y tiempo de búsqueda de empleo.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/empleo-densidad-bus-agr} 
+
+}
+
+\caption{Distribución del paro medio anual por edad y tiempo de búsqueda de empleo.}(\#fig:empleo-densidad-bus-agr)
+\end{figure}
 En la Fig. \@ref(fig:empleo-densidad-bus-agr) se pone de manifiesto que el tramo con mayor incremento de número de parados es el correspondiente a más de 24 meses de búsqueda de empleo (**paro de muy larga duración**\index{paro de muy larga duración}), ya que la crisis financiera de 2008 les redujo su probabilidad de encontrar empleo. Se puede afirmar también que los dos períodos de crisis han provocado la creación de un **paro estructural de larga duración**.
 
 Se deja al lector ejecutar la función `heatmap_anyos()` para las variables `sexo` y `t_bus_e`, tomando como años comparativos 2007, 2019 y 2022. Observará en el gráfico resultante que el incremento en el paro de muy larga duración es más intenso en el colectivo de las mujeres. El código a utilizar es:
@@ -170,20 +186,28 @@ La visualización de los cambios producidos en estas variables con un mapa de ca
 ```r
 heatmap_anyos("sexo", "sector")
 ```
-<div class="figure" style="text-align: center">
-<img src="img/empleo-heatmap-sexo-sector.jpeg" alt="Paro medio anual según sexo y sector de procedencia." width="60%" />
-<p class="caption">(\#fig:empleo-heatmap-sexo-sector)Paro medio anual según sexo y sector de procedencia.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/empleo-heatmap-sexo-sector} 
+
+}
+
+\caption{Paro medio anual según sexo y sector de procedencia.}(\#fig:empleo-heatmap-sexo-sector)
+\end{figure}
 En la Fig. \@ref(fig:empleo-heatmap-sexo-sector) se aprecia el incremento del paro registrado en el sector **servicios**, especialmente en el colectivo femenino.  
 Ejecutando la función `densidad_compara()` para la variable `sector` se obtiene la Fig. \@ref(fig:empleo-densidad-sector).
 
 ```r
 densidad_compara("sector")
 ```
-<div class="figure" style="text-align: center">
-<img src="img/empleo-densidad-sector.jpeg" alt="Distribución del paro medio anual por edad y tiempo de búsqueda de empleo." width="60%" />
-<p class="caption">(\#fig:empleo-densidad-sector)Distribución del paro medio anual por edad y tiempo de búsqueda de empleo.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/empleo-densidad-sector} 
+
+}
+
+\caption{Distribución del paro medio anual por edad y tiempo de búsqueda de empleo.}(\#fig:empleo-densidad-sector)
+\end{figure}
 Como se observa en la Fig. \@ref(fig:empleo-densidad-sector), las diferencias a lo largo del tiempo del número de parados por sector de actividad económica revelan algunas particularidades interesantes. **Industria**\index{industria} y **construcción**\index{construcción} se comportan de modo similar: hay un fuerte desplazamiento en edad desde 2007, pero se mantiene el volumen de paro en ambos sectores a lo largo de los 15 años de estudio. El paro en el sector **agropecuario** y en el sector **servicios** también presenta desplazamiento en edad, pero además se ha incrementado notablemente en estos 15 años; ambos efectos son mucho más evidentes en el sector **servicios**. Finalmente, en el colectivo **sin actividad** se aprecian dos características: en primer lugar, los parados menores de 30 años suponen el mayor volumen en este colectivo, como era de esperar, ya que la población joven que accede al mercado laboral por primera vez no cuenta con experiencia previa; en segundo lugar, desde 2007 a 2019, y algo menos desde 2019 a 2022, hay un incremento de volumen de paro en los **mayores de 45 años**\index{mayores de 45 años} que, con toda probabilidad, corresponde a los parados de larga duración de mayor edad.  
 
 En todos los sectores se aprecia el descenso del volumen total de paro registrado desde 2019 a 2022, a pesar de la crisis sanitaria de la COVID-19.  

@@ -64,10 +64,14 @@ plot.ecdf(x3, main = "n=200")
 curve(pnorm, add = TRUE, col = "red")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150015img01.png" alt="Distribución empírica para muestras de diferente tamaño de una distribución normal." width="60%" />
-<p class="caption">(\#fig:150015distrempir)Distribución empírica para muestras de diferente tamaño de una distribución normal.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/150015img01} 
+
+}
+
+\caption{Distribución empírica para muestras de diferente tamaño de una distribución normal.}(\#fig:150015distrempir)
+\end{figure}
 
 Es muy frecuente que, a efectos de inferencia, no se estudie el comportamiento aleatorio de toda la muestra (su distribución conjunta), sino que interese el comportamiento de una función de la muestra que no dependa de ningún valor desconocido, $T(X)=T(X_1,...,X_n)$, llamada genéricamente **estadístico muestral**; dicho comportamiento vendrá determinado por la **distribución en el muestreo** del estadístico $T(X)$. El hecho de utilizar una m.a.s. permite establecer resultados de interés sobre los estadísticos o, en algunos casos, incluso obtener la distribución en el muestreo exacta de los estadísticos más usuales (Sec. \@ref(pobnormales)).
 
@@ -353,10 +357,14 @@ La orden `plot(mle_x)` permite visualizar la congruencia entre la muestra y la d
 plot(mle_x)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150015img02.png" alt="Resultados gráficos de la estimación por máxima verosimilitud." width="60%" />
-<p class="caption">(\#fig:150015mle)Resultados gráficos de la estimación por máxima verosimilitud.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/150015img02} 
+
+}
+
+\caption{Resultados gráficos de la estimación por máxima verosimilitud.}(\#fig:150015mle)
+\end{figure}
 
 b) Construir un intervalo de confianza para la velocidad media del viento hasta el 15 de julio, con un nivel de confianza del 95%.
 
@@ -453,10 +461,14 @@ qqnorm(airquality$Temp, main = "Normal Q-Q Plot for Temp")
 qqnorm(airquality$Wind, main = "Normal Q-Q Plot for Wind")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="img/150015img03.png" alt="Gráficos Q-Q normales para las variables Temp (izq.) y Wind (dcha.)." width="60%" />
-<p class="caption">(\#fig:150015qqplots)Gráficos Q-Q normales para las variables Temp (izq.) y Wind (dcha.).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/150015img03} 
+
+}
+
+\caption{Gráficos Q-Q normales para las variables Temp (izq.) y Wind (dcha.).}(\#fig:150015qqplots)
+\end{figure}
 
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}
