@@ -11,13 +11,13 @@ $^{b}$Universidad Nacional de Educación a Distancia
 
 Los comercios minoristas (*retailers*) se mueven en un entorno
 turbulento y necesitan acercarse a sus clientes para asegurar su
-supervivencia. Su producto, o servicio, es nexo clave el proceso de segmentación.
+supervivencia. Su producto, o servicio, es nexo clave en el proceso de segmentación.
 En este contexto, conocer el **perfil de los
-clientes**\index{perfil de los clientes} permitirá detectar en qué
+clientes**\index{perfil! de los clientes} permitirá detectar en qué
 momento de su ciclo de vida con la empresa se encuentran y desarrollar
 propuestas de valor que convengan en cada momento.
 
-**Segmentar** \index{segmentar}se define como el proceso de dividir a
+**Segmentar** \index{segmentación}se define como el proceso de dividir a
 los clientes, actuales o potenciales, en diferentes grupos o segmentos
 consistentes en individuos con características y niveles similares de
 interés (véase el Cap. \@ref(no-jerarquico) para una explicación detallada de 
@@ -35,7 +35,7 @@ clave para definir la estrategia de marketing relacional de la compañía.
 
 ## El modelo RFM tradicional 
 
-El **modelo RFM** (*recency*, *frequency*, *monetary*) \index{modelo RFM} es una técnica popular que se
+El **modelo RFM** (*recency*, *frequency*, *monetary*) \index{modelo!RFM} es una técnica popular que se
 utiliza para analizar el comportamiento de compra de los clientes: cómo
 compran, su frecuencia de compra y cuánto gastan. Es un método útil para
 enriquecer la segmentación de los clientes en varios grupos que permitan
@@ -82,7 +82,7 @@ para el desarrollo del proyecto.
 Hoy en día, la mayoría de las empresas de *e-commerce* y comercio
 minorista tradicional cuentan con sistemas que permiten registrar los
 datos básicos de cada una de sus ventas (fecha, artículo, cantidad e
-importe), asociados a un código único de cliente. La información
+importe) asociados a un código único de cliente. La información
 contenida en estos datos de compra atesora gran valor, ya que carecen
 del sesgo y subjetividad propios de otras informaciones obtenidas
 mediante encuestas de opinión, estudios de mercado, entrevistas y grupos
@@ -196,14 +196,10 @@ plot_data |>
   theme(strip.text.x = element_blank(), text = element_text(size = 9))
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/Rplot01} 
-
-}
-
-\caption{$Box-plot$ de las variables RFM.}(\#fig:imagen1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/Rplot01.png" alt="$Box$-$plot$ de las variables RFM." width="60%" />
+<p class="caption">(\#fig:imagen1)$Box$-$plot$ de las variables RFM.</p>
+</div>
 
 ### Cálculo del *ranking* de percentiles
 
@@ -256,7 +252,7 @@ Se trata de un proceso subjetivo que depende de los datos, del tipo de
 sentido y utilidad en el negocio. Existen numerosos métodos para
 facilitar la elección del número de clústeres; entre ellos destacan el
 *Elbow method,* el *Average silhouette method* y el *Gap statistic
-method* (véase Cap.\@ref(no-jerarquico)), que  se pueden calcular con la función `fviz_nbclust()` del paquete
+method* (véase Cap. \@ref(no-jerarquico)), que se pueden calcular con la función `fviz_nbclust()` del paquete
 `factoextra` para realizar una buena
 elección.
 
@@ -272,14 +268,10 @@ muestra_clusters <- rfm_rank |>
 fviz_nbclust(x = muestra_clusters, FUNcluster = kmeans, method = "wss", k.max = 10)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/Rplot02} 
-
-}
-
-\caption{Número óptimo de clústeres (método Elbow).}(\#fig:imagen2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/Rplot02.png" alt="Número óptimo de clústeres (método Elbow)." width="60%" />
+<p class="caption">(\#fig:imagen2)Número óptimo de clústeres (método Elbow).</p>
+</div>
 
 En la Fig. \@ref(fig:imagen2) se observa que la varianza total intraclúster apenas mejora a partir
 del cuarto clúster.
@@ -349,9 +341,9 @@ Interpretación de los segmentos:
     actualidad y valor monetario bajo. Se trata de un segmento de
     clientes con escaso interés para la compañía.
 
-[^segmentacion-1]: El término *customer churn* se suele traducir como perdida de
-    clientes o rotación de clientes. Se compone de las palabras inglesas
-    *change* (en castellano cambio) y *turn* (en castellano abandonar).
+[^segmentacion-1]: El término *customer churn* se suele traducir como "pérdida de
+    clientes" o "rotación de clientes". Se compone de las palabras inglesas
+    *change* (en castellano, "cambio") y *turn* (en castellano, "abandonar").
 
 
 ```r
@@ -379,14 +371,10 @@ ggdotchart(table_dot_plot, x = "Variable RFM", y = "Puntuación",
 
 La Fig \@ref(fig:imagen3) muestra cada uno de los segmentos indicados. El *ranking* obtenido ayuda a identificar las diferencias en los tipos de clientes y es útil para decidir a qué segmentos enfocarse y qué estrategias usar para cada uno.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{img/Rplot03} 
-
-}
-
-\caption{$Lollipop$ de variables RFM.}(\#fig:imagen3)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/Rplot03.png" alt="$Lollipop$ de variables RFM." width="90%" />
+<p class="caption">(\#fig:imagen3)$Lollipop$ de variables RFM.</p>
+</div>
 
 ### Puesta en producción
 

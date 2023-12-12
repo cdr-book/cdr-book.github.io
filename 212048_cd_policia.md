@@ -23,7 +23,7 @@ Los datos que se van a analizar se han obtenido de la operación *Oversize* [@be
 En particular, se va a estudiar la red obtenida de las escuchas telefónicas. Los datos hacen referencia a todas las conversaciones telefónicas transcritas por la policía y consideradas relevantes. En esta red, los nodos representan sospechosos (los datos son anónimos y los nombres asignados en la red se han generado de forma aleatoria). Las aristas conectan los sospechosos que han tenido al menos una conversación telefónica relevante al caso durante la investigación.
 
 ## Creación de la red mafiosa
-\index{red mafiosa}
+\index{red!mafiosa}
 
 
 El dataset `Oversize_nodes` contiene el listado de nodos con sus propiedades, en este caso el nombre (ficticio) del sospechoso. `Oversize_edges` contiene las aristas del grafo, representadas como parejas de nodos, a su vez identificados por su ID. A partir de estos datasets la librería `igraph` permite crear un grafo, tal y como se ilustra a continuación. 
@@ -37,9 +37,9 @@ net <- graph_from_data_frame(d=oversize_edges,
                              vertices=oversize_nodes, 
                              directed=F) 
 net
-#> IGRAPH 3edb85e UN-- 182 247 -- 
+#> IGRAPH f7de375 UN-- 182 247 -- 
 #> + attr: name (v/c)
-#> + edges from 3edb85e (vertex names):
+#> + edges from f7de375 (vertex names):
 #>  [1] Casto Ben          --Gustavo Mango          
 #>  [2] Casto Ben          --Metrofane Abbatiello   
 #>  [3] Uranio Natoli      --Fidenziano Marcellino  
@@ -57,7 +57,8 @@ La vista previa del grafo indica lo siguiente:
 
 -   el único atributo es el nombre de los nodos (*attr: name (v/c)*);
 
--   finalmente, se proporciona una previsualización de un subconjunto de aristas, indicando para cada una los dos nodos conectados (ej.: *Casto Ben \--Gustavo Mango*).
+-   finalmente, se proporciona una previsualización de un subconjunto de aristas, indicando para cada una los dos nodos conectados (ej.: *Casto Ben*---*Gustavo Mango*).
+
 
 \index{grafo}
 \index{vertices@vértices}
@@ -65,21 +66,17 @@ La vista previa del grafo indica lo siguiente:
 
 ## Visualización de la red mafiosa
 
-Para hacerse una idea de qué aspecto tiene el grafo, se procede a su visualización, usando el comando `plot()` de **R**.
+Para hacerse una idea de qué aspecto tiene el grafo, se procede a su visualización usando el comando `plot()` de **R**.
 
 
 ```r
 plot(net, asp=0)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{212048_cd_policia_files/figure-latex/vis-red1-1} 
-
-}
-
-\caption{Grafo básico de la red mafiosa.}(\#fig:vis-red1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="212048_cd_policia_files/figure-html/vis-red1-1.png" alt="Grafo básico de la red mafiosa." width="60%" />
+<p class="caption">(\#fig:vis-red1)Grafo básico de la red mafiosa.</p>
+</div>
 
 Tal y como se aprecia en la Fig. \@ref(fig:vis-red1), el resultado no es muy claro. Todos los nodos tienen el mismo tamaño y se solapan entre ellos. Además, se muestran los nombres de todos los actores dentro de la red, lo cual dificulta ulteriormente su interpretación.
 
@@ -94,14 +91,10 @@ Se puede mejorar esta presentación usando unos parámetros de `plot()`  especí
 plot(net, vertex.size=2, vertex.label=c(''),  asp=0)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{212048_cd_policia_files/figure-latex/vis-red2-1} 
-
-}
-
-\caption{Grafo básico de la red mafiosa (mejorado).}(\#fig:vis-red2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="212048_cd_policia_files/figure-html/vis-red2-1.png" alt="Grafo básico de la red mafiosa (mejorado)." width="60%" />
+<p class="caption">(\#fig:vis-red2)Grafo básico de la red mafiosa (mejorado).</p>
+</div>
 
 En la Fig. \@ref(fig:vis-red2) se observa cómo el grafo permite una mejor valoración de la distribución de los actores dentro de la red. Por ejemplo, hay dos grupos pequeños (de cuatro y dos actores) completamente desconectados de la red principal.
 
@@ -156,14 +149,10 @@ plot(net2,
      asp = 0) # visualización subgrafo
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{212048_cd_policia_files/figure-latex/red-centralidad-1} 
-
-}
-
-\caption{Grafo de la red mafiosa (mejorado con medidas de cetralidad).}(\#fig:red-centralidad)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="212048_cd_policia_files/figure-html/red-centralidad-1.png" alt="Grafo de la red mafiosa (mejorado con medidas de centralidad)." width="60%" />
+<p class="caption">(\#fig:red-centralidad)Grafo de la red mafiosa (mejorado con medidas de centralidad).</p>
+</div>
 
 Como se puede apreciar en la Fig. \@ref(fig:red-centralidad), gracias a las medidas de centralidad se consigue tener una mejor idea de cómo se configura la red respecto a sus actores más importantes.
 
@@ -182,6 +171,7 @@ unique(net$community) # Visualización de las comunidades encontradas
 El algoritmo identifica distintas comunidades, cada una con su número asignado.
 
 ## Visualización de comunidades de la mafia
+\index{algoritmo!Fruchterman-Reingold}
 
 Se procede a visualizar las comunidades detectadas en el subgrafo, representando cada una de ellas en un color distinto. Además, para mejorar la calidad de la información representada, se resalta la importancia de cada actor representando los nodos asociados y sus nombres en tamaños proporcionales a su centralidad en toda la red (Fig. \@ref(fig:com-mafia)).
 
@@ -201,14 +191,10 @@ E(net2)$color <- V(net2)$color[edge.start]
 plot(net2, asp=0) # Los resultados puede ser distintos con cada ejecución
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{212048_cd_policia_files/figure-latex/com-mafia-1} 
-
-}
-
-\caption{Visualización de comunidades de la mafia.}(\#fig:com-mafia)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="212048_cd_policia_files/figure-html/com-mafia-1.png" alt="Visualización de comunidades de la mafia." width="75%" />
+<p class="caption">(\#fig:com-mafia)Visualización de comunidades de la mafia.</p>
+</div>
 
 Se puede mejorar aún más el aspecto del grafo. Para ello, se va a experimentar con una disposición diferente de los nodos. En este ejemplo, se usa el algoritmo Fruchterman-Reingold [@fruchterman1991graph]. Además, se aplica un efecto de curvatura a las aristas asignando un valor positivo al parámetro `edge.curved`. El resultado se puede ver en la Fig. \@ref(fig:red-fr).
 
@@ -221,16 +207,12 @@ plot(net2,
      edge.curved=0.5) # Los resultados pueden ser distintos con cada ejecución
 ```
 
-\begin{figure}
+<div class="figure" style="text-align: center">
+<img src="212048_cd_policia_files/figure-html/red-fr-1.png" alt="Visualización de comunidades de la mafia con el algoritmo Fruchterman-Reingold." width="75%" />
+<p class="caption">(\#fig:red-fr)Visualización de comunidades de la mafia con el algoritmo Fruchterman-Reingold.</p>
+</div>
 
-{\centering \includegraphics[width=1\linewidth]{212048_cd_policia_files/figure-latex/red-fr-1} 
 
-}
-
-\caption{Visualización de comunidades de la mafia con el algoritmo Fruchterman-Reingold.}(\#fig:red-fr)
-\end{figure}
-
-\index{algoritmo Fruchterman-Reingold}
 
 Finalmente, se puede exportar el grafo como PDF usando la función `pdf()` de **R**.
 

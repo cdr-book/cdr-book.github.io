@@ -7,7 +7,7 @@
 <title>Capítulo 24 Árboles de clasificación y regresión | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Ramón A. Carrasco\(^{a}\), Itzcóatl Bueno\(^{a,\hspace{0,05cm} b}\) y José-María Montero\(^{c}\) \(^{a}\)Universidad Complutense de Madrid\(^{b}\)Instituto Nacional de...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 24 Árboles de clasificación y regresión | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -198,7 +198,7 @@ Figura 24.2: Ejemplo de árbol de regresión.
 <p> Como se ha comentado anteriormente, CART es un término
 genérico para describir este tipo de algoritmos de árbol y también un
 nombre específico para el algoritmo original de
-<span class="citation">Breiman et al. (<a href="referncias.html#ref-breiman1984classification">1984</a>)</span> de construcción de árboles de clasificación
+<span class="citation">Breiman et al. (<a href="referencias.html#ref-breiman1984classification">1984</a>)</span> de construcción de árboles de clasificación
 y regresión. Sin embargo, existen otros como el ID3 (<em>induction decision
 trees</em>), o el C4.5, que está basado en el ID3. En la Tabla
 <a href="cap-arboles.html#tab:alg-dectree">24.1</a> se muestra una pequeña comparativa de estos tres
@@ -279,7 +279,7 @@ varianza elevada.</li>
 </h2>
 <p>En el paquete <code>rpart</code> de <strong>R</strong> se encuentra la función <code><a href="https://rdrr.io/pkg/rpart/man/rpart.html">rpart()</a></code> que se
 utiliza para entrenar un árbol de decisión:</p>
-<div class="sourceCode" id="cb342"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">rpart</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
@@ -982,37 +982,37 @@ transformar (en su escala original) mediante el algoritmo CART
 implementado en el paquete <code>rpart</code> con árboles de regresión y partición
 recursiva (<em>recursive partitioning and regression trees</em>, RPART), que se
 puede usar tanto para regresión como para clasificación.</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="cap-arboles.html#cb343-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"CDR"</span>)</span>
-<span id="cb343-2"><a href="cap-arboles.html#cb343-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"reshape"</span>)</span>
-<span id="cb343-3"><a href="cap-arboles.html#cb343-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"caret"</span>)</span>
-<span id="cb343-4"><a href="cap-arboles.html#cb343-4" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rpart"</span>)</span>
-<span id="cb343-5"><a href="cap-arboles.html#cb343-5" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rpart.plot"</span>)</span>
-<span id="cb343-6"><a href="cap-arboles.html#cb343-6" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb343-7"><a href="cap-arboles.html#cb343-7" tabindex="-1"></a></span>
-<span id="cb343-8"><a href="cap-arboles.html#cb343-8" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"dp_entr"</span>)</span>
-<span id="cb343-9"><a href="cap-arboles.html#cb343-9" tabindex="-1"></a><span class="fu">head</span>(dp_entr)</span>
-<span id="cb343-10"><a href="cap-arboles.html#cb343-10" tabindex="-1"></a>    ind_pro11 ind_pro12 ind_pro14 ind_pro15 ind_pro16 ind_pro17 importe_pro11</span>
-<span id="cb343-11"><a href="cap-arboles.html#cb343-11" tabindex="-1"></a><span class="dv">1</span>           S         N         S         S         S         N           <span class="dv">157</span></span>
-<span id="cb343-12"><a href="cap-arboles.html#cb343-12" tabindex="-1"></a><span class="dv">497</span>         N         N         S         N         S         N             <span class="dv">0</span></span>
-<span id="cb343-13"><a href="cap-arboles.html#cb343-13" tabindex="-1"></a><span class="dv">265</span>         N         N         S         S         S         S             <span class="dv">0</span></span>
-<span id="cb343-14"><a href="cap-arboles.html#cb343-14" tabindex="-1"></a><span class="dv">534</span>         N         S         S         N         N         N             <span class="dv">0</span></span>
-<span id="cb343-15"><a href="cap-arboles.html#cb343-15" tabindex="-1"></a><span class="dv">415</span>         N         S         S         N         S         N             <span class="dv">0</span></span>
-<span id="cb343-16"><a href="cap-arboles.html#cb343-16" tabindex="-1"></a><span class="dv">298</span>         S         N         S         N         N         N           <span class="dv">115</span></span>
-<span id="cb343-17"><a href="cap-arboles.html#cb343-17" tabindex="-1"></a>    importe_pro12 importe_pro14 importe_pro15 importe_pro16 importe_pro17 edad</span>
-<span id="cb343-18"><a href="cap-arboles.html#cb343-18" tabindex="-1"></a><span class="dv">1</span>               <span class="dv">0</span>            <span class="dv">40</span>           <span class="dv">200</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">49</span></span>
-<span id="cb343-19"><a href="cap-arboles.html#cb343-19" tabindex="-1"></a><span class="dv">497</span>             <span class="dv">0</span>           <span class="dv">240</span>             <span class="dv">0</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">38</span></span>
-<span id="cb343-20"><a href="cap-arboles.html#cb343-20" tabindex="-1"></a><span class="dv">265</span>             <span class="dv">0</span>           <span class="dv">425</span>           <span class="dv">200</span>           <span class="dv">180</span>           <span class="dv">300</span>   <span class="dv">61</span></span>
-<span id="cb343-21"><a href="cap-arboles.html#cb343-21" tabindex="-1"></a><span class="dv">534</span>           <span class="dv">120</span>            <span class="dv">60</span>             <span class="dv">0</span>             <span class="dv">0</span>             <span class="dv">0</span>   <span class="dv">47</span></span>
-<span id="cb343-22"><a href="cap-arboles.html#cb343-22" tabindex="-1"></a><span class="dv">415</span>           <span class="dv">120</span>           <span class="dv">133</span>             <span class="dv">0</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">34</span></span>
-<span id="cb343-23"><a href="cap-arboles.html#cb343-23" tabindex="-1"></a><span class="dv">298</span>             <span class="dv">0</span>           <span class="dv">220</span>             <span class="dv">0</span>             <span class="dv">0</span>             <span class="dv">0</span>   <span class="dv">43</span></span>
-<span id="cb343-24"><a href="cap-arboles.html#cb343-24" tabindex="-1"></a>    tamano_fam anos_exp ingresos_ano des_nivel_edu CLS_PRO_pro13</span>
-<span id="cb343-25"><a href="cap-arboles.html#cb343-25" tabindex="-1"></a><span class="dv">1</span>            <span class="dv">4</span>       <span class="dv">24</span>        <span class="dv">30000</span>         MEDIO             S</span>
-<span id="cb343-26"><a href="cap-arboles.html#cb343-26" tabindex="-1"></a><span class="dv">497</span>          <span class="dv">2</span>       <span class="dv">12</span>        <span class="dv">53000</span>         MEDIO             N</span>
-<span id="cb343-27"><a href="cap-arboles.html#cb343-27" tabindex="-1"></a><span class="dv">265</span>          <span class="dv">4</span>       <span class="dv">37</span>       <span class="dv">172000</span>        BASICO             S</span>
-<span id="cb343-28"><a href="cap-arboles.html#cb343-28" tabindex="-1"></a><span class="dv">534</span>          <span class="dv">3</span>       <span class="dv">21</span>        <span class="dv">38000</span>         MEDIO             N</span>
-<span id="cb343-29"><a href="cap-arboles.html#cb343-29" tabindex="-1"></a><span class="dv">415</span>          <span class="dv">1</span>       <span class="dv">10</span>        <span class="dv">38000</span>        BASICO             N</span>
-<span id="cb343-30"><a href="cap-arboles.html#cb343-30" tabindex="-1"></a><span class="dv">298</span>          <span class="dv">2</span>       <span class="dv">18</span>        <span class="dv">60000</span>          ALTO             N</span></code></pre></div>
-<div class="sourceCode" id="cb344"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="cap-arboles.html#cb344-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"CDR"</span>)</span>
+<span id="cb344-2"><a href="cap-arboles.html#cb344-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"reshape"</span>)</span>
+<span id="cb344-3"><a href="cap-arboles.html#cb344-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"caret"</span>)</span>
+<span id="cb344-4"><a href="cap-arboles.html#cb344-4" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rpart"</span>)</span>
+<span id="cb344-5"><a href="cap-arboles.html#cb344-5" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rpart.plot"</span>)</span>
+<span id="cb344-6"><a href="cap-arboles.html#cb344-6" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb344-7"><a href="cap-arboles.html#cb344-7" tabindex="-1"></a></span>
+<span id="cb344-8"><a href="cap-arboles.html#cb344-8" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"dp_entr"</span>)</span>
+<span id="cb344-9"><a href="cap-arboles.html#cb344-9" tabindex="-1"></a><span class="fu">head</span>(dp_entr)</span>
+<span id="cb344-10"><a href="cap-arboles.html#cb344-10" tabindex="-1"></a>    ind_pro11 ind_pro12 ind_pro14 ind_pro15 ind_pro16 ind_pro17 importe_pro11</span>
+<span id="cb344-11"><a href="cap-arboles.html#cb344-11" tabindex="-1"></a><span class="dv">1</span>           S         N         S         S         S         N           <span class="dv">157</span></span>
+<span id="cb344-12"><a href="cap-arboles.html#cb344-12" tabindex="-1"></a><span class="dv">497</span>         N         N         S         N         S         N             <span class="dv">0</span></span>
+<span id="cb344-13"><a href="cap-arboles.html#cb344-13" tabindex="-1"></a><span class="dv">265</span>         N         N         S         S         S         S             <span class="dv">0</span></span>
+<span id="cb344-14"><a href="cap-arboles.html#cb344-14" tabindex="-1"></a><span class="dv">534</span>         N         S         S         N         N         N             <span class="dv">0</span></span>
+<span id="cb344-15"><a href="cap-arboles.html#cb344-15" tabindex="-1"></a><span class="dv">415</span>         N         S         S         N         S         N             <span class="dv">0</span></span>
+<span id="cb344-16"><a href="cap-arboles.html#cb344-16" tabindex="-1"></a><span class="dv">298</span>         S         N         S         N         N         N           <span class="dv">115</span></span>
+<span id="cb344-17"><a href="cap-arboles.html#cb344-17" tabindex="-1"></a>    importe_pro12 importe_pro14 importe_pro15 importe_pro16 importe_pro17 edad</span>
+<span id="cb344-18"><a href="cap-arboles.html#cb344-18" tabindex="-1"></a><span class="dv">1</span>               <span class="dv">0</span>            <span class="dv">40</span>           <span class="dv">200</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">49</span></span>
+<span id="cb344-19"><a href="cap-arboles.html#cb344-19" tabindex="-1"></a><span class="dv">497</span>             <span class="dv">0</span>           <span class="dv">240</span>             <span class="dv">0</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">38</span></span>
+<span id="cb344-20"><a href="cap-arboles.html#cb344-20" tabindex="-1"></a><span class="dv">265</span>             <span class="dv">0</span>           <span class="dv">425</span>           <span class="dv">200</span>           <span class="dv">180</span>           <span class="dv">300</span>   <span class="dv">61</span></span>
+<span id="cb344-21"><a href="cap-arboles.html#cb344-21" tabindex="-1"></a><span class="dv">534</span>           <span class="dv">120</span>            <span class="dv">60</span>             <span class="dv">0</span>             <span class="dv">0</span>             <span class="dv">0</span>   <span class="dv">47</span></span>
+<span id="cb344-22"><a href="cap-arboles.html#cb344-22" tabindex="-1"></a><span class="dv">415</span>           <span class="dv">120</span>           <span class="dv">133</span>             <span class="dv">0</span>           <span class="dv">180</span>             <span class="dv">0</span>   <span class="dv">34</span></span>
+<span id="cb344-23"><a href="cap-arboles.html#cb344-23" tabindex="-1"></a><span class="dv">298</span>             <span class="dv">0</span>           <span class="dv">220</span>             <span class="dv">0</span>             <span class="dv">0</span>             <span class="dv">0</span>   <span class="dv">43</span></span>
+<span id="cb344-24"><a href="cap-arboles.html#cb344-24" tabindex="-1"></a>    tamano_fam anos_exp ingresos_ano des_nivel_edu CLS_PRO_pro13</span>
+<span id="cb344-25"><a href="cap-arboles.html#cb344-25" tabindex="-1"></a><span class="dv">1</span>            <span class="dv">4</span>       <span class="dv">24</span>        <span class="dv">30000</span>         MEDIO             S</span>
+<span id="cb344-26"><a href="cap-arboles.html#cb344-26" tabindex="-1"></a><span class="dv">497</span>          <span class="dv">2</span>       <span class="dv">12</span>        <span class="dv">53000</span>         MEDIO             N</span>
+<span id="cb344-27"><a href="cap-arboles.html#cb344-27" tabindex="-1"></a><span class="dv">265</span>          <span class="dv">4</span>       <span class="dv">37</span>       <span class="dv">172000</span>        BASICO             S</span>
+<span id="cb344-28"><a href="cap-arboles.html#cb344-28" tabindex="-1"></a><span class="dv">534</span>          <span class="dv">3</span>       <span class="dv">21</span>        <span class="dv">38000</span>         MEDIO             N</span>
+<span id="cb344-29"><a href="cap-arboles.html#cb344-29" tabindex="-1"></a><span class="dv">415</span>          <span class="dv">1</span>       <span class="dv">10</span>        <span class="dv">38000</span>        BASICO             N</span>
+<span id="cb344-30"><a href="cap-arboles.html#cb344-30" tabindex="-1"></a><span class="dv">298</span>          <span class="dv">2</span>       <span class="dv">18</span>        <span class="dv">60000</span>          ALTO             N</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">trControl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/trainControl.html">trainControl</a></span><span class="op">(</span></span>
 <span>  method <span class="op">=</span> <span class="st">"cv"</span>,</span>
 <span>  number <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -1025,7 +1025,7 @@ método de remuestreo de validación cruzada con 10 grupos (10 <em>folds</em>), 
 Cap. <a href="chap-herramientas.html#chap-herramientas">10</a>. A continuación se determina la semilla
 aleatoria, para que los resultados sean replicables, y se entrena el
 modelo.</p>
-<div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb346"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># se fija una semilla aleatoria</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span></span>
@@ -1035,27 +1035,27 @@ modelo.</p>
 <span>             method<span class="op">=</span><span class="st">"rpart"</span>,</span>
 <span>             metric<span class="op">=</span><span class="st">"ROC"</span>,</span>
 <span>             trControl<span class="op">=</span><span class="va">trControl</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="cap-arboles.html#cb346-1" tabindex="-1"></a>model</span>
-<span id="cb346-2"><a href="cap-arboles.html#cb346-2" tabindex="-1"></a></span>
-<span id="cb346-3"><a href="cap-arboles.html#cb346-3" tabindex="-1"></a>CART</span>
-<span id="cb346-4"><a href="cap-arboles.html#cb346-4" tabindex="-1"></a></span>
-<span id="cb346-5"><a href="cap-arboles.html#cb346-5" tabindex="-1"></a><span class="dv">558</span> samples</span>
-<span id="cb346-6"><a href="cap-arboles.html#cb346-6" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
-<span id="cb346-7"><a href="cap-arboles.html#cb346-7" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span></span>
-<span id="cb346-8"><a href="cap-arboles.html#cb346-8" tabindex="-1"></a></span>
-<span id="cb346-9"><a href="cap-arboles.html#cb346-9" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
-<span id="cb346-10"><a href="cap-arboles.html#cb346-10" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold)</span>
-<span id="cb346-11"><a href="cap-arboles.html#cb346-11" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ...</span>
-<span id="cb346-12"><a href="cap-arboles.html#cb346-12" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
-<span id="cb346-13"><a href="cap-arboles.html#cb346-13" tabindex="-1"></a></span>
-<span id="cb346-14"><a href="cap-arboles.html#cb346-14" tabindex="-1"></a>  cp          ROC        Sens       Spec</span>
-<span id="cb346-15"><a href="cap-arboles.html#cb346-15" tabindex="-1"></a>  <span class="fl">0.05017921</span>  <span class="fl">0.8172123</span>  <span class="fl">0.9214286</span>  <span class="fl">0.7026455</span></span>
-<span id="cb346-16"><a href="cap-arboles.html#cb346-16" tabindex="-1"></a>  <span class="fl">0.10394265</span>  <span class="fl">0.7559406</span>  <span class="fl">0.8386243</span>  <span class="fl">0.6914021</span></span>
-<span id="cb346-17"><a href="cap-arboles.html#cb346-17" tabindex="-1"></a>  <span class="fl">0.51971326</span>  <span class="fl">0.6347222</span>  <span class="fl">0.8564815</span>  <span class="fl">0.4129630</span></span>
-<span id="cb346-18"><a href="cap-arboles.html#cb346-18" tabindex="-1"></a></span>
-<span id="cb346-19"><a href="cap-arboles.html#cb346-19" tabindex="-1"></a>ROC was used to select the optimal model using the largest value.</span>
-<span id="cb346-20"><a href="cap-arboles.html#cb346-20" tabindex="-1"></a>The final value used <span class="cf">for</span> the model was cp <span class="ot">=</span> <span class="fl">0.05017921</span>, where cp is the complexity paramenter.</span></code></pre></div>
-<div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="cap-arboles.html#cb347-1" tabindex="-1"></a>model</span>
+<span id="cb347-2"><a href="cap-arboles.html#cb347-2" tabindex="-1"></a></span>
+<span id="cb347-3"><a href="cap-arboles.html#cb347-3" tabindex="-1"></a>CART</span>
+<span id="cb347-4"><a href="cap-arboles.html#cb347-4" tabindex="-1"></a></span>
+<span id="cb347-5"><a href="cap-arboles.html#cb347-5" tabindex="-1"></a><span class="dv">558</span> samples</span>
+<span id="cb347-6"><a href="cap-arboles.html#cb347-6" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
+<span id="cb347-7"><a href="cap-arboles.html#cb347-7" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span></span>
+<span id="cb347-8"><a href="cap-arboles.html#cb347-8" tabindex="-1"></a></span>
+<span id="cb347-9"><a href="cap-arboles.html#cb347-9" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
+<span id="cb347-10"><a href="cap-arboles.html#cb347-10" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold)</span>
+<span id="cb347-11"><a href="cap-arboles.html#cb347-11" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ...</span>
+<span id="cb347-12"><a href="cap-arboles.html#cb347-12" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
+<span id="cb347-13"><a href="cap-arboles.html#cb347-13" tabindex="-1"></a></span>
+<span id="cb347-14"><a href="cap-arboles.html#cb347-14" tabindex="-1"></a>  cp          ROC        Sens       Spec</span>
+<span id="cb347-15"><a href="cap-arboles.html#cb347-15" tabindex="-1"></a>  <span class="fl">0.05017921</span>  <span class="fl">0.8172123</span>  <span class="fl">0.9214286</span>  <span class="fl">0.7026455</span></span>
+<span id="cb347-16"><a href="cap-arboles.html#cb347-16" tabindex="-1"></a>  <span class="fl">0.10394265</span>  <span class="fl">0.7559406</span>  <span class="fl">0.8386243</span>  <span class="fl">0.6914021</span></span>
+<span id="cb347-17"><a href="cap-arboles.html#cb347-17" tabindex="-1"></a>  <span class="fl">0.51971326</span>  <span class="fl">0.6347222</span>  <span class="fl">0.8564815</span>  <span class="fl">0.4129630</span></span>
+<span id="cb347-18"><a href="cap-arboles.html#cb347-18" tabindex="-1"></a></span>
+<span id="cb347-19"><a href="cap-arboles.html#cb347-19" tabindex="-1"></a>ROC was used to select the optimal model using the largest value.</span>
+<span id="cb347-20"><a href="cap-arboles.html#cb347-20" tabindex="-1"></a>The final value used <span class="cf">for</span> the model was cp <span class="ot">=</span> <span class="fl">0.05017921</span>, where cp is the complexity paramenter.</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu">melt</span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">resample</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>show.legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
@@ -1076,7 +1076,7 @@ producto. En caso de no comprar el <em>smartchwatch fitness</em> (No a
 <code>ind_pro12S=1</code>), comprará el <em>tensiómetro digital</em>. Si no compra ninguno
 de esos dos productos no comprará el nuevo producto.</p>
 <p>Se seleccionan las variables que generan las mejores particiones. Aquellas que no aparecen no generan particiones interesantes a nivel predictivo. Esto también se entiende con la importancia de variables explicada más abajo.</p>
-<div class="sourceCode" id="cb348"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb349"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Gráfico del árbol obtenido</span></span>
 <span><span class="fu">rpart.plot</span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">finalModel</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -1091,20 +1091,20 @@ incluido en <code>rpart</code> para el entrenamiento de árboles de decisión. P
 es necesario conocer el hiperparámetro a optimizar en el algoritmo
 implementado en <strong>R</strong> que se esté utilizando. Esto se consigue mediante la
 siguiente instrucción, incluida en el paquete <code>caret</code>:</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="cap-arboles.html#cb349-1" tabindex="-1"></a><span class="fu">modelLookup</span>(<span class="st">"rpart"</span>)</span>
-<span id="cb349-2"><a href="cap-arboles.html#cb349-2" tabindex="-1"></a></span>
-<span id="cb349-3"><a href="cap-arboles.html#cb349-3" tabindex="-1"></a>  model parameter                label forReg forClass probModel</span>
-<span id="cb349-4"><a href="cap-arboles.html#cb349-4" tabindex="-1"></a><span class="dv">1</span> rpart        cp Complexity Parameter   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="cap-arboles.html#cb350-1" tabindex="-1"></a><span class="fu">modelLookup</span>(<span class="st">"rpart"</span>)</span>
+<span id="cb350-2"><a href="cap-arboles.html#cb350-2" tabindex="-1"></a></span>
+<span id="cb350-3"><a href="cap-arboles.html#cb350-3" tabindex="-1"></a>  model parameter                label forReg forClass probModel</span>
+<span id="cb350-4"><a href="cap-arboles.html#cb350-4" tabindex="-1"></a><span class="dv">1</span> rpart        cp Complexity Parameter   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span></code></pre></div>
 <p>El hiperparámetro a optimizar es la complejidad
 del árbol, <span class="math inline">\(\zeta\)</span> (o <code>cp</code>), y se aplica en la fase de
 parada durante la construcción del árbol. Como se avanzó anteriormente, esta
 fase tiene como función principal evitar divisiones que no
 valgan la pena. El hiperparámetro de complejidad <span class="math inline">\(\zeta\)</span> (o <code>cp</code> en los resultados) puede entenderse como un umbral que permite divisiones (<em>splits</em>) en cada nodo del modelo siempre y cuando haya una mejora mínima en las métricas. Es necesario definir los valores de dicho hiperparámetro que se
 quieren evaluar con el objetivo de obtener su valor óptimo.</p>
-<div class="sourceCode" id="cb350"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb351"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se especifica un rango de valores típicos para el hiperparámetro</span></span>
 <span><span class="va">tuneGrid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>cp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.01</span>,<span class="fl">0.05</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb351"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># se entrena el modelo</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span></span>
@@ -1114,29 +1114,29 @@ quieren evaluar con el objetivo de obtener su valor óptimo.</p>
 <span>             metric<span class="op">=</span><span class="st">"ROC"</span>,</span>
 <span>             trControl<span class="op">=</span><span class="va">trControl</span>,</span>
 <span>             tuneGrid<span class="op">=</span><span class="va">tuneGrid</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="cap-arboles.html#cb352-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
-<span id="cb352-2"><a href="cap-arboles.html#cb352-2" tabindex="-1"></a>model</span>
-<span id="cb352-3"><a href="cap-arboles.html#cb352-3" tabindex="-1"></a></span>
-<span id="cb352-4"><a href="cap-arboles.html#cb352-4" tabindex="-1"></a>CART</span>
-<span id="cb352-5"><a href="cap-arboles.html#cb352-5" tabindex="-1"></a></span>
-<span id="cb352-6"><a href="cap-arboles.html#cb352-6" tabindex="-1"></a><span class="dv">558</span> samples</span>
-<span id="cb352-7"><a href="cap-arboles.html#cb352-7" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
-<span id="cb352-8"><a href="cap-arboles.html#cb352-8" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span></span>
-<span id="cb352-9"><a href="cap-arboles.html#cb352-9" tabindex="-1"></a></span>
-<span id="cb352-10"><a href="cap-arboles.html#cb352-10" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
-<span id="cb352-11"><a href="cap-arboles.html#cb352-11" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold)</span>
-<span id="cb352-12"><a href="cap-arboles.html#cb352-12" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ...</span>
-<span id="cb352-13"><a href="cap-arboles.html#cb352-13" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
-<span id="cb352-14"><a href="cap-arboles.html#cb352-14" tabindex="-1"></a></span>
-<span id="cb352-15"><a href="cap-arboles.html#cb352-15" tabindex="-1"></a>  cp    ROC        Sens       Spec</span>
-<span id="cb352-16"><a href="cap-arboles.html#cb352-16" tabindex="-1"></a>  <span class="fl">0.01</span>  <span class="fl">0.8962254</span>  <span class="fl">0.8678571</span>  <span class="fl">0.8167989</span></span>
-<span id="cb352-17"><a href="cap-arboles.html#cb352-17" tabindex="-1"></a>  <span class="fl">0.02</span>  <span class="fl">0.8663454</span>  <span class="fl">0.9000000</span>  <span class="fl">0.7667989</span></span>
-<span id="cb352-18"><a href="cap-arboles.html#cb352-18" tabindex="-1"></a>  <span class="fl">0.03</span>  <span class="fl">0.8458097</span>  <span class="fl">0.9392857</span>  <span class="fl">0.7310847</span></span>
-<span id="cb352-19"><a href="cap-arboles.html#cb352-19" tabindex="-1"></a>  <span class="fl">0.04</span>  <span class="fl">0.8449381</span>  <span class="fl">0.9214286</span>  <span class="fl">0.7383598</span></span>
-<span id="cb352-20"><a href="cap-arboles.html#cb352-20" tabindex="-1"></a>  <span class="fl">0.05</span>  <span class="fl">0.8172123</span>  <span class="fl">0.9214286</span>  <span class="fl">0.7026455</span></span>
-<span id="cb352-21"><a href="cap-arboles.html#cb352-21" tabindex="-1"></a></span>
-<span id="cb352-22"><a href="cap-arboles.html#cb352-22" tabindex="-1"></a>ROC was used to select the optimal model using the largest value.</span>
-<span id="cb352-23"><a href="cap-arboles.html#cb352-23" tabindex="-1"></a>The final value used <span class="cf">for</span> the model was cp <span class="ot">=</span> <span class="dv">0</span>.<span class="fl">01.</span></span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="cap-arboles.html#cb353-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
+<span id="cb353-2"><a href="cap-arboles.html#cb353-2" tabindex="-1"></a>model</span>
+<span id="cb353-3"><a href="cap-arboles.html#cb353-3" tabindex="-1"></a></span>
+<span id="cb353-4"><a href="cap-arboles.html#cb353-4" tabindex="-1"></a>CART</span>
+<span id="cb353-5"><a href="cap-arboles.html#cb353-5" tabindex="-1"></a></span>
+<span id="cb353-6"><a href="cap-arboles.html#cb353-6" tabindex="-1"></a><span class="dv">558</span> samples</span>
+<span id="cb353-7"><a href="cap-arboles.html#cb353-7" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
+<span id="cb353-8"><a href="cap-arboles.html#cb353-8" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span></span>
+<span id="cb353-9"><a href="cap-arboles.html#cb353-9" tabindex="-1"></a></span>
+<span id="cb353-10"><a href="cap-arboles.html#cb353-10" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
+<span id="cb353-11"><a href="cap-arboles.html#cb353-11" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold)</span>
+<span id="cb353-12"><a href="cap-arboles.html#cb353-12" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ...</span>
+<span id="cb353-13"><a href="cap-arboles.html#cb353-13" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
+<span id="cb353-14"><a href="cap-arboles.html#cb353-14" tabindex="-1"></a></span>
+<span id="cb353-15"><a href="cap-arboles.html#cb353-15" tabindex="-1"></a>  cp    ROC        Sens       Spec</span>
+<span id="cb353-16"><a href="cap-arboles.html#cb353-16" tabindex="-1"></a>  <span class="fl">0.01</span>  <span class="fl">0.8962254</span>  <span class="fl">0.8678571</span>  <span class="fl">0.8167989</span></span>
+<span id="cb353-17"><a href="cap-arboles.html#cb353-17" tabindex="-1"></a>  <span class="fl">0.02</span>  <span class="fl">0.8663454</span>  <span class="fl">0.9000000</span>  <span class="fl">0.7667989</span></span>
+<span id="cb353-18"><a href="cap-arboles.html#cb353-18" tabindex="-1"></a>  <span class="fl">0.03</span>  <span class="fl">0.8458097</span>  <span class="fl">0.9392857</span>  <span class="fl">0.7310847</span></span>
+<span id="cb353-19"><a href="cap-arboles.html#cb353-19" tabindex="-1"></a>  <span class="fl">0.04</span>  <span class="fl">0.8449381</span>  <span class="fl">0.9214286</span>  <span class="fl">0.7383598</span></span>
+<span id="cb353-20"><a href="cap-arboles.html#cb353-20" tabindex="-1"></a>  <span class="fl">0.05</span>  <span class="fl">0.8172123</span>  <span class="fl">0.9214286</span>  <span class="fl">0.7026455</span></span>
+<span id="cb353-21"><a href="cap-arboles.html#cb353-21" tabindex="-1"></a></span>
+<span id="cb353-22"><a href="cap-arboles.html#cb353-22" tabindex="-1"></a>ROC was used to select the optimal model using the largest value.</span>
+<span id="cb353-23"><a href="cap-arboles.html#cb353-23" tabindex="-1"></a>The final value used <span class="cf">for</span> the model was cp <span class="ot">=</span> <span class="dv">0</span>.<span class="fl">01.</span></span></code></pre></div>
 <p>De forma automática se construyen diversos árboles para cada uno de los
 valores explicitados del parámetro de complejdad, <span class="math inline">\(\zeta\)</span> (denominado <code>cp</code>en los resultados). Para cada uno de esos árboles se obtienen las siguientes correspondientes métricas: el área bajo la
 curva ROC (denotada así por las siglas en inglés de <em>receiver operating
@@ -1149,7 +1149,7 @@ sin ajuste automático de <code>cp</code>.</p>
 <p>En la Fig. <a href="cap-arboles.html#fig:006-002-003RPARTRESULTS1">24.6</a> se puede ver el
 rendimiento de cada una de las métricas del árbol entrenado utilizando
 validación cruzada. Dicha figura se obtiene con la siguiente instrucción:</p>
-<div class="sourceCode" id="cb353"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu">melt</span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">resample</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span>show.legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1162,7 +1162,7 @@ Figura 24.6: Resultados del modelo con ajuste automático durante la validación
 </div>
 <p>En la Fig. <a href="cap-arboles.html#fig:006002003RPARTPLOT2">24.7</a> se muestra el árbol generado.
 La visualización del árbol se obtiene con el siguiente código:</p>
-<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb355"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Gráfico del árbol obtenido</span></span>
 <span><span class="fu">rpart.plot</span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">finalModel</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -1174,7 +1174,7 @@ Figura 24.7: Árbol de clasificación con ajuste automático.
 <p>Con el objetivo de aumentar la generalidad del árbol y facilitar su
 interpretación, se procede a reducir su tamaño podándolo. Para ello se
 establece el criterio de que un nodo terminal tiene que tener, como mínimo, 50 observaciones. El árbol resultante se muestra en la Fig. <a href="cap-arboles.html#fig:PLOTCLASSPRUNEDTREE">24.8</a>.</p>
-<div class="sourceCode" id="cb355"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span><span class="va">prunedtree</span> <span class="op">&lt;-</span> <span class="fu">rpart</span><span class="op">(</span><span class="va">CLS_PRO_pro13</span> <span class="op">~</span> <span class="va">.</span>, data<span class="op">=</span><span class="va">dp_entr</span>,</span>
 <span>                    cp<span class="op">=</span> <span class="fl">0.01</span>, control <span class="op">=</span> <span class="fu">rpart.control</span><span class="op">(</span>minbucket <span class="op">=</span> <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span>
@@ -1628,7 +1628,7 @@ al resto de características observadas: si
 el paciente está diagnosticado de accidente coronario o no, su edad, su sexo,
 el tipo de dolor que padece y la depresión en el segmento ST inducida
 por ejercicio en relación con el reposo.</p>
-<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb357"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># se cargan los datos</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"cleveland"</span><span class="op">)</span></span>
 <span></span>
@@ -1636,14 +1636,14 @@ por ejercicio en relación con el reposo.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">rpart</span><span class="op">(</span><span class="va">dhosp</span> <span class="op">~</span> <span class="va">diag</span> <span class="op">+</span> <span class="va">edad</span> <span class="op">+</span> <span class="va">sexo</span> <span class="op">+</span> <span class="va">tdolor</span> <span class="op">+</span> <span class="va">dep</span>,</span>
 <span>               data<span class="op">=</span><span class="va">cleveland</span>, method<span class="op">=</span><span class="st">"anova"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="cap-arboles.html#cb357-1" tabindex="-1"></a>model<span class="sc">$</span>cptable</span>
-<span id="cb357-2"><a href="cap-arboles.html#cb357-2" tabindex="-1"></a></span>
-<span id="cb357-3"><a href="cap-arboles.html#cb357-3" tabindex="-1"></a>          CP nsplit rel error    xerror       xstd</span>
-<span id="cb357-4"><a href="cap-arboles.html#cb357-4" tabindex="-1"></a><span class="dv">1</span> <span class="fl">0.37275022</span>      <span class="dv">0</span> <span class="fl">1.0000000</span> <span class="fl">1.0128283</span> <span class="fl">0.09213359</span></span>
-<span id="cb357-5"><a href="cap-arboles.html#cb357-5" tabindex="-1"></a><span class="dv">2</span> <span class="fl">0.01674747</span>      <span class="dv">1</span> <span class="fl">0.6272498</span> <span class="fl">0.6427926</span> <span class="fl">0.06048143</span></span>
-<span id="cb357-6"><a href="cap-arboles.html#cb357-6" tabindex="-1"></a><span class="dv">3</span> <span class="fl">0.01132433</span>      <span class="dv">4</span> <span class="fl">0.5770074</span> <span class="fl">0.6788431</span> <span class="fl">0.06681871</span></span>
-<span id="cb357-7"><a href="cap-arboles.html#cb357-7" tabindex="-1"></a><span class="dv">4</span> <span class="fl">0.01007684</span>      <span class="dv">6</span> <span class="fl">0.5543587</span> <span class="fl">0.6825792</span> <span class="fl">0.06505426</span></span>
-<span id="cb357-8"><a href="cap-arboles.html#cb357-8" tabindex="-1"></a><span class="dv">5</span> <span class="fl">0.01000000</span>      <span class="dv">7</span> <span class="fl">0.5442819</span> <span class="fl">0.6843192</span> <span class="fl">0.06514439</span></span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="cap-arboles.html#cb358-1" tabindex="-1"></a>model<span class="sc">$</span>cptable</span>
+<span id="cb358-2"><a href="cap-arboles.html#cb358-2" tabindex="-1"></a></span>
+<span id="cb358-3"><a href="cap-arboles.html#cb358-3" tabindex="-1"></a>          CP nsplit rel error    xerror       xstd</span>
+<span id="cb358-4"><a href="cap-arboles.html#cb358-4" tabindex="-1"></a><span class="dv">1</span> <span class="fl">0.37275022</span>      <span class="dv">0</span> <span class="fl">1.0000000</span> <span class="fl">1.0128283</span> <span class="fl">0.09213359</span></span>
+<span id="cb358-5"><a href="cap-arboles.html#cb358-5" tabindex="-1"></a><span class="dv">2</span> <span class="fl">0.01674747</span>      <span class="dv">1</span> <span class="fl">0.6272498</span> <span class="fl">0.6427926</span> <span class="fl">0.06048143</span></span>
+<span id="cb358-6"><a href="cap-arboles.html#cb358-6" tabindex="-1"></a><span class="dv">3</span> <span class="fl">0.01132433</span>      <span class="dv">4</span> <span class="fl">0.5770074</span> <span class="fl">0.6788431</span> <span class="fl">0.06681871</span></span>
+<span id="cb358-7"><a href="cap-arboles.html#cb358-7" tabindex="-1"></a><span class="dv">4</span> <span class="fl">0.01007684</span>      <span class="dv">6</span> <span class="fl">0.5543587</span> <span class="fl">0.6825792</span> <span class="fl">0.06505426</span></span>
+<span id="cb358-8"><a href="cap-arboles.html#cb358-8" tabindex="-1"></a><span class="dv">5</span> <span class="fl">0.01000000</span>      <span class="dv">7</span> <span class="fl">0.5442819</span> <span class="fl">0.6843192</span> <span class="fl">0.06514439</span></span></code></pre></div>
 <p>En la salida anterior <code>xerror</code> es el error de validación cruzada, <code>rel error</code> es el <code>xerror</code> reescalado para que el valor máximo sea 1 y <code>xstd</code> es la desviación típica del error de la validación cruzada.</p>
 <p>Se observa que para valores muy altos del hiperparámetro de complejidad (<code>cp</code>en los resultados),
 SSE es muy elevado. Esto es, produce modelos muy sencillos pero con
@@ -1666,7 +1666,7 @@ relación con el reposo es menor a 0,35, el número de días de
 hospitalización depende del sexo del paciente: los hombres
 necesitarán 3,2 días y las mujeres tan solo 1,9 días.</p></li>
 </ol>
-<div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb359"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># se pinta el árbol obtenido</span></span>
 <span><span class="fu">rpart.plot</span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -1689,55 +1689,55 @@ a utilizar 8 de las variables incluidas en el conjunto de datos:
 superficie construida, número de dormitorios, número de baños, si tiene
 terraza, si tiene ascensor, si el precio incluye el parking, distancia
 al centro de Madrid y distancia a una parada de metro.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="cap-arboles.html#cb359-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"idealista18"</span>)</span>
-<span id="cb359-2"><a href="cap-arboles.html#cb359-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"Madrid_Sale"</span>)</span>
-<span id="cb359-3"><a href="cap-arboles.html#cb359-3" tabindex="-1"></a></span>
-<span id="cb359-4"><a href="cap-arboles.html#cb359-4" tabindex="-1"></a>Madrid_Sale <span class="ot">&lt;-</span> Madrid_Sale <span class="sc">|&gt;</span></span>
-<span id="cb359-5"><a href="cap-arboles.html#cb359-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(UNITPRICE, CONSTRUCTEDAREA, ROOMNUMBER, BATHNUMBER,</span>
-<span id="cb359-6"><a href="cap-arboles.html#cb359-6" tabindex="-1"></a>         HASTERRACE,HASLIFT, ISPARKINGSPACEINCLUDEDINPRICE,</span>
-<span id="cb359-7"><a href="cap-arboles.html#cb359-7" tabindex="-1"></a>         DISTANCE_TO_CITY_CENTER, DISTANCE_TO_METRO)</span>
-<span id="cb359-8"><a href="cap-arboles.html#cb359-8" tabindex="-1"></a></span>
-<span id="cb359-9"><a href="cap-arboles.html#cb359-9" tabindex="-1"></a><span class="fu">head</span>(Madrid_Sale)</span>
-<span id="cb359-10"><a href="cap-arboles.html#cb359-10" tabindex="-1"></a></span>
-<span id="cb359-11"><a href="cap-arboles.html#cb359-11" tabindex="-1"></a>  UNITPRICE CONSTRUCTEDAREA ROOMNUMBER BATHNUMBER HASTERRACE HASLIFT</span>
-<span id="cb359-12"><a href="cap-arboles.html#cb359-12" tabindex="-1"></a><span class="dv">1</span>  <span class="fl">2680.851</span>              <span class="dv">47</span>          <span class="dv">1</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">1</span></span>
-<span id="cb359-13"><a href="cap-arboles.html#cb359-13" tabindex="-1"></a><span class="dv">2</span>  <span class="fl">4351.852</span>              <span class="dv">54</span>          <span class="dv">1</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">0</span></span>
-<span id="cb359-14"><a href="cap-arboles.html#cb359-14" tabindex="-1"></a><span class="dv">3</span>  <span class="fl">4973.333</span>              <span class="dv">75</span>          <span class="dv">2</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">0</span></span>
-<span id="cb359-15"><a href="cap-arboles.html#cb359-15" tabindex="-1"></a><span class="dv">4</span>  <span class="fl">5916.667</span>              <span class="dv">48</span>          <span class="dv">1</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">1</span></span>
-<span id="cb359-16"><a href="cap-arboles.html#cb359-16" tabindex="-1"></a><span class="dv">5</span>  <span class="fl">4560.000</span>              <span class="dv">50</span>          <span class="dv">0</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">0</span></span>
-<span id="cb359-17"><a href="cap-arboles.html#cb359-17" tabindex="-1"></a><span class="dv">6</span>  <span class="fl">3921.260</span>             <span class="dv">127</span>          <span class="dv">3</span>          <span class="dv">2</span>          <span class="dv">0</span>       <span class="dv">1</span></span>
-<span id="cb359-18"><a href="cap-arboles.html#cb359-18" tabindex="-1"></a>  ISPARKINGSPACEINCLUDEDINPRICE <span class="fu">DISTANCE_TO_CITY_CENTER</span> (km) <span class="fu">DISTANCE_TO_METRO</span> (Km)</span>
-<span id="cb359-19"><a href="cap-arboles.html#cb359-19" tabindex="-1"></a><span class="dv">1</span>                             <span class="dv">0</span>               <span class="fl">8.0584293</span>         <span class="fl">0.8720746</span></span>
-<span id="cb359-20"><a href="cap-arboles.html#cb359-20" tabindex="-1"></a><span class="dv">2</span>                             <span class="dv">0</span>               <span class="fl">0.8763693</span>         <span class="fl">0.1163821</span></span>
-<span id="cb359-21"><a href="cap-arboles.html#cb359-21" tabindex="-1"></a><span class="dv">3</span>                             <span class="dv">0</span>               <span class="fl">0.9074793</span>         <span class="fl">0.1391088</span></span>
-<span id="cb359-22"><a href="cap-arboles.html#cb359-22" tabindex="-1"></a><span class="dv">4</span>                             <span class="dv">0</span>               <span class="fl">0.8454622</span>         <span class="fl">0.1442990</span></span>
-<span id="cb359-23"><a href="cap-arboles.html#cb359-23" tabindex="-1"></a><span class="dv">5</span>                             <span class="dv">0</span>               <span class="fl">1.2502313</span>         <span class="fl">0.3370982</span></span>
-<span id="cb359-24"><a href="cap-arboles.html#cb359-24" tabindex="-1"></a><span class="dv">6</span>                             <span class="dv">0</span>               <span class="fl">0.5417727</span>         <span class="fl">0.1614363</span></span></code></pre></div>
-<div class="sourceCode" id="cb360"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="cap-arboles.html#cb360-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"idealista18"</span>)</span>
+<span id="cb360-2"><a href="cap-arboles.html#cb360-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"Madrid_Sale"</span>)</span>
+<span id="cb360-3"><a href="cap-arboles.html#cb360-3" tabindex="-1"></a></span>
+<span id="cb360-4"><a href="cap-arboles.html#cb360-4" tabindex="-1"></a>Madrid_Sale <span class="ot">&lt;-</span> Madrid_Sale <span class="sc">|&gt;</span></span>
+<span id="cb360-5"><a href="cap-arboles.html#cb360-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(UNITPRICE, CONSTRUCTEDAREA, ROOMNUMBER, BATHNUMBER,</span>
+<span id="cb360-6"><a href="cap-arboles.html#cb360-6" tabindex="-1"></a>         HASTERRACE,HASLIFT, ISPARKINGSPACEINCLUDEDINPRICE,</span>
+<span id="cb360-7"><a href="cap-arboles.html#cb360-7" tabindex="-1"></a>         DISTANCE_TO_CITY_CENTER, DISTANCE_TO_METRO)</span>
+<span id="cb360-8"><a href="cap-arboles.html#cb360-8" tabindex="-1"></a></span>
+<span id="cb360-9"><a href="cap-arboles.html#cb360-9" tabindex="-1"></a><span class="fu">head</span>(Madrid_Sale)</span>
+<span id="cb360-10"><a href="cap-arboles.html#cb360-10" tabindex="-1"></a></span>
+<span id="cb360-11"><a href="cap-arboles.html#cb360-11" tabindex="-1"></a>  UNITPRICE CONSTRUCTEDAREA ROOMNUMBER BATHNUMBER HASTERRACE HASLIFT</span>
+<span id="cb360-12"><a href="cap-arboles.html#cb360-12" tabindex="-1"></a><span class="dv">1</span>  <span class="fl">2680.851</span>              <span class="dv">47</span>          <span class="dv">1</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">1</span></span>
+<span id="cb360-13"><a href="cap-arboles.html#cb360-13" tabindex="-1"></a><span class="dv">2</span>  <span class="fl">4351.852</span>              <span class="dv">54</span>          <span class="dv">1</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">0</span></span>
+<span id="cb360-14"><a href="cap-arboles.html#cb360-14" tabindex="-1"></a><span class="dv">3</span>  <span class="fl">4973.333</span>              <span class="dv">75</span>          <span class="dv">2</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">0</span></span>
+<span id="cb360-15"><a href="cap-arboles.html#cb360-15" tabindex="-1"></a><span class="dv">4</span>  <span class="fl">5916.667</span>              <span class="dv">48</span>          <span class="dv">1</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">1</span></span>
+<span id="cb360-16"><a href="cap-arboles.html#cb360-16" tabindex="-1"></a><span class="dv">5</span>  <span class="fl">4560.000</span>              <span class="dv">50</span>          <span class="dv">0</span>          <span class="dv">1</span>          <span class="dv">0</span>       <span class="dv">0</span></span>
+<span id="cb360-17"><a href="cap-arboles.html#cb360-17" tabindex="-1"></a><span class="dv">6</span>  <span class="fl">3921.260</span>             <span class="dv">127</span>          <span class="dv">3</span>          <span class="dv">2</span>          <span class="dv">0</span>       <span class="dv">1</span></span>
+<span id="cb360-18"><a href="cap-arboles.html#cb360-18" tabindex="-1"></a>  ISPARKINGSPACEINCLUDEDINPRICE <span class="fu">DISTANCE_TO_CITY_CENTER</span> (km) <span class="fu">DISTANCE_TO_METRO</span> (Km)</span>
+<span id="cb360-19"><a href="cap-arboles.html#cb360-19" tabindex="-1"></a><span class="dv">1</span>                             <span class="dv">0</span>               <span class="fl">8.0584293</span>         <span class="fl">0.8720746</span></span>
+<span id="cb360-20"><a href="cap-arboles.html#cb360-20" tabindex="-1"></a><span class="dv">2</span>                             <span class="dv">0</span>               <span class="fl">0.8763693</span>         <span class="fl">0.1163821</span></span>
+<span id="cb360-21"><a href="cap-arboles.html#cb360-21" tabindex="-1"></a><span class="dv">3</span>                             <span class="dv">0</span>               <span class="fl">0.9074793</span>         <span class="fl">0.1391088</span></span>
+<span id="cb360-22"><a href="cap-arboles.html#cb360-22" tabindex="-1"></a><span class="dv">4</span>                             <span class="dv">0</span>               <span class="fl">0.8454622</span>         <span class="fl">0.1442990</span></span>
+<span id="cb360-23"><a href="cap-arboles.html#cb360-23" tabindex="-1"></a><span class="dv">5</span>                             <span class="dv">0</span>               <span class="fl">1.2502313</span>         <span class="fl">0.3370982</span></span>
+<span id="cb360-24"><a href="cap-arboles.html#cb360-24" tabindex="-1"></a><span class="dv">6</span>                             <span class="dv">0</span>               <span class="fl">0.5417727</span>         <span class="fl">0.1614363</span></span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se entrena el modelo</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/bethatkinson/rpart">"rpart"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rpart/man/rpart.html">rpart</a></span><span class="op">(</span><span class="va">UNITPRICE</span> <span class="op">~</span> <span class="va">.</span>, <span class="va">Madrid_Sale</span>, method <span class="op">=</span> <span class="st">"anova"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="cap-arboles.html#cb361-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
-<span id="cb361-2"><a href="cap-arboles.html#cb361-2" tabindex="-1"></a>model</span>
-<span id="cb361-3"><a href="cap-arboles.html#cb361-3" tabindex="-1"></a></span>
-<span id="cb361-4"><a href="cap-arboles.html#cb361-4" tabindex="-1"></a>n<span class="ot">=</span> <span class="dv">94815</span> </span>
-<span id="cb361-5"><a href="cap-arboles.html#cb361-5" tabindex="-1"></a>node, split, n, deviance, yval</span>
-<span id="cb361-6"><a href="cap-arboles.html#cb361-6" tabindex="-1"></a>      <span class="sc">*</span> denotes terminal node</span>
-<span id="cb361-7"><a href="cap-arboles.html#cb361-7" tabindex="-1"></a></span>
-<span id="cb361-8"><a href="cap-arboles.html#cb361-8" tabindex="-1"></a> <span class="dv">1</span><span class="er">)</span> root <span class="dv">94815</span> <span class="dv">274173500000</span> <span class="fl">3661.052</span>  </span>
-<span id="cb361-9"><a href="cap-arboles.html#cb361-9" tabindex="-1"></a>   <span class="dv">2</span><span class="er">)</span> DISTANCE_TO_CITY_CENTER<span class="sc">&gt;=</span><span class="fl">3.201972</span> <span class="dv">59706</span> <span class="dv">102376700000</span> <span class="fl">2932.605</span>  </span>
-<span id="cb361-10"><a href="cap-arboles.html#cb361-10" tabindex="-1"></a>     <span class="dv">4</span><span class="er">)</span> HASLIFT<span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="dv">20515</span>  <span class="dv">16728050000</span> <span class="fl">2160.029</span> <span class="sc">*</span></span>
-<span id="cb361-11"><a href="cap-arboles.html#cb361-11" tabindex="-1"></a>     <span class="dv">5</span><span class="er">)</span> HASLIFT<span class="sc">&gt;=</span><span class="fl">0.5</span> <span class="dv">39191</span>  <span class="dv">66994050000</span> <span class="fl">3337.019</span>  </span>
-<span id="cb361-12"><a href="cap-arboles.html#cb361-12" tabindex="-1"></a>      <span class="dv">10</span><span class="er">)</span> BATHNUMBER<span class="sc">&lt;</span> <span class="fl">2.5</span> <span class="dv">34662</span>  <span class="dv">55189210000</span> <span class="fl">3212.614</span>  </span>
-<span id="cb361-13"><a href="cap-arboles.html#cb361-13" tabindex="-1"></a>        <span class="dv">20</span><span class="er">)</span> ROOMNUMBER<span class="sc">&gt;=</span><span class="fl">1.5</span> <span class="dv">29068</span>  <span class="dv">40422630000</span> <span class="fl">3080.170</span> <span class="sc">*</span></span>
-<span id="cb361-14"><a href="cap-arboles.html#cb361-14" tabindex="-1"></a>        <span class="dv">21</span><span class="er">)</span> ROOMNUMBER<span class="sc">&lt;</span> <span class="fl">1.5</span> <span class="dv">5594</span>  <span class="dv">11607120000</span> <span class="fl">3900.833</span> <span class="sc">*</span></span>
-<span id="cb361-15"><a href="cap-arboles.html#cb361-15" tabindex="-1"></a>      <span class="dv">11</span><span class="er">)</span> BATHNUMBER<span class="sc">&gt;=</span><span class="fl">2.5</span> <span class="dv">4529</span>   <span class="dv">7162750000</span> <span class="fl">4289.133</span> <span class="sc">*</span></span>
-<span id="cb361-16"><a href="cap-arboles.html#cb361-16" tabindex="-1"></a>   <span class="dv">3</span><span class="er">)</span> DISTANCE_TO_CITY_CENTER<span class="sc">&lt;</span> <span class="fl">3.201972</span> <span class="dv">35109</span>  <span class="dv">86236590000</span> <span class="fl">4899.840</span>  </span>
-<span id="cb361-17"><a href="cap-arboles.html#cb361-17" tabindex="-1"></a>     <span class="dv">6</span><span class="er">)</span> DISTANCE_TO_METRO<span class="sc">&gt;=</span><span class="fl">0.4584401</span> <span class="dv">4749</span>   <span class="dv">9978473000</span> <span class="fl">3873.427</span> <span class="sc">*</span></span>
-<span id="cb361-18"><a href="cap-arboles.html#cb361-18" tabindex="-1"></a>     <span class="dv">7</span><span class="er">)</span> DISTANCE_TO_METRO<span class="sc">&lt;</span> <span class="fl">0.4584401</span> <span class="dv">30360</span>  <span class="dv">70472330000</span> <span class="fl">5060.394</span>  </span>
-<span id="cb361-19"><a href="cap-arboles.html#cb361-19" tabindex="-1"></a>      <span class="dv">14</span><span class="er">)</span> HASLIFT<span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="dv">7293</span>  <span class="dv">12520500000</span> <span class="fl">4465.560</span> <span class="sc">*</span></span>
-<span id="cb361-20"><a href="cap-arboles.html#cb361-20" tabindex="-1"></a>      <span class="dv">15</span><span class="er">)</span> HASLIFT<span class="sc">&gt;=</span><span class="fl">0.5</span> <span class="dv">23067</span>  <span class="dv">54555510000</span> <span class="fl">5248.461</span> <span class="sc">*</span></span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="cap-arboles.html#cb362-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
+<span id="cb362-2"><a href="cap-arboles.html#cb362-2" tabindex="-1"></a>model</span>
+<span id="cb362-3"><a href="cap-arboles.html#cb362-3" tabindex="-1"></a></span>
+<span id="cb362-4"><a href="cap-arboles.html#cb362-4" tabindex="-1"></a>n<span class="ot">=</span> <span class="dv">94815</span> </span>
+<span id="cb362-5"><a href="cap-arboles.html#cb362-5" tabindex="-1"></a>node, split, n, deviance, yval</span>
+<span id="cb362-6"><a href="cap-arboles.html#cb362-6" tabindex="-1"></a>      <span class="sc">*</span> denotes terminal node</span>
+<span id="cb362-7"><a href="cap-arboles.html#cb362-7" tabindex="-1"></a></span>
+<span id="cb362-8"><a href="cap-arboles.html#cb362-8" tabindex="-1"></a> <span class="dv">1</span><span class="er">)</span> root <span class="dv">94815</span> <span class="dv">274173500000</span> <span class="fl">3661.052</span>  </span>
+<span id="cb362-9"><a href="cap-arboles.html#cb362-9" tabindex="-1"></a>   <span class="dv">2</span><span class="er">)</span> DISTANCE_TO_CITY_CENTER<span class="sc">&gt;=</span><span class="fl">3.201972</span> <span class="dv">59706</span> <span class="dv">102376700000</span> <span class="fl">2932.605</span>  </span>
+<span id="cb362-10"><a href="cap-arboles.html#cb362-10" tabindex="-1"></a>     <span class="dv">4</span><span class="er">)</span> HASLIFT<span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="dv">20515</span>  <span class="dv">16728050000</span> <span class="fl">2160.029</span> <span class="sc">*</span></span>
+<span id="cb362-11"><a href="cap-arboles.html#cb362-11" tabindex="-1"></a>     <span class="dv">5</span><span class="er">)</span> HASLIFT<span class="sc">&gt;=</span><span class="fl">0.5</span> <span class="dv">39191</span>  <span class="dv">66994050000</span> <span class="fl">3337.019</span>  </span>
+<span id="cb362-12"><a href="cap-arboles.html#cb362-12" tabindex="-1"></a>      <span class="dv">10</span><span class="er">)</span> BATHNUMBER<span class="sc">&lt;</span> <span class="fl">2.5</span> <span class="dv">34662</span>  <span class="dv">55189210000</span> <span class="fl">3212.614</span>  </span>
+<span id="cb362-13"><a href="cap-arboles.html#cb362-13" tabindex="-1"></a>        <span class="dv">20</span><span class="er">)</span> ROOMNUMBER<span class="sc">&gt;=</span><span class="fl">1.5</span> <span class="dv">29068</span>  <span class="dv">40422630000</span> <span class="fl">3080.170</span> <span class="sc">*</span></span>
+<span id="cb362-14"><a href="cap-arboles.html#cb362-14" tabindex="-1"></a>        <span class="dv">21</span><span class="er">)</span> ROOMNUMBER<span class="sc">&lt;</span> <span class="fl">1.5</span> <span class="dv">5594</span>  <span class="dv">11607120000</span> <span class="fl">3900.833</span> <span class="sc">*</span></span>
+<span id="cb362-15"><a href="cap-arboles.html#cb362-15" tabindex="-1"></a>      <span class="dv">11</span><span class="er">)</span> BATHNUMBER<span class="sc">&gt;=</span><span class="fl">2.5</span> <span class="dv">4529</span>   <span class="dv">7162750000</span> <span class="fl">4289.133</span> <span class="sc">*</span></span>
+<span id="cb362-16"><a href="cap-arboles.html#cb362-16" tabindex="-1"></a>   <span class="dv">3</span><span class="er">)</span> DISTANCE_TO_CITY_CENTER<span class="sc">&lt;</span> <span class="fl">3.201972</span> <span class="dv">35109</span>  <span class="dv">86236590000</span> <span class="fl">4899.840</span>  </span>
+<span id="cb362-17"><a href="cap-arboles.html#cb362-17" tabindex="-1"></a>     <span class="dv">6</span><span class="er">)</span> DISTANCE_TO_METRO<span class="sc">&gt;=</span><span class="fl">0.4584401</span> <span class="dv">4749</span>   <span class="dv">9978473000</span> <span class="fl">3873.427</span> <span class="sc">*</span></span>
+<span id="cb362-18"><a href="cap-arboles.html#cb362-18" tabindex="-1"></a>     <span class="dv">7</span><span class="er">)</span> DISTANCE_TO_METRO<span class="sc">&lt;</span> <span class="fl">0.4584401</span> <span class="dv">30360</span>  <span class="dv">70472330000</span> <span class="fl">5060.394</span>  </span>
+<span id="cb362-19"><a href="cap-arboles.html#cb362-19" tabindex="-1"></a>      <span class="dv">14</span><span class="er">)</span> HASLIFT<span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="dv">7293</span>  <span class="dv">12520500000</span> <span class="fl">4465.560</span> <span class="sc">*</span></span>
+<span id="cb362-20"><a href="cap-arboles.html#cb362-20" tabindex="-1"></a>      <span class="dv">15</span><span class="er">)</span> HASLIFT<span class="sc">&gt;=</span><span class="fl">0.5</span> <span class="dv">23067</span>  <span class="dv">54555510000</span> <span class="fl">5248.461</span> <span class="sc">*</span></span></code></pre></div>
 <p>Como en el ejemplo anterior, para <span class="math inline">\(\zeta=\text {0,01}\)</span> SSE se reduce hasta SSE <span class="math inline">\(=\text {0,56}\)</span>, por lo que el árbol se poda de acuerdo a la
 ecuación <a href="cap-arboles.html#eq:regpoda">(24.8)</a> con dicho valor de <span class="math inline">\(\zeta\)</span>. El resultado del
 modelo se muestra en el árbol de la Fig. <a href="cap-arboles.html#fig:idealista-treeplot">24.10</a>. La interpretación de este árbol sería:</p>
@@ -1753,7 +1753,7 @@ a más de 0,46 km de una estación de metro, el precio unitario
 predicho para esa vivienda será de 3.873 €/<span class="math inline">\(\text {m}^{2}\)</span>.</p></li>
 <li><p>Se deja al lector la interpretación de los casos donde, además, se tiene en cuenta el número de baños y de habitaciones.</p></li>
 </ol>
-<div class="sourceCode" id="cb362"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb363"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># se pinta el árbol obtenido</span></span>
 <span><span class="fu">rpart.plot</span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -1826,7 +1826,7 @@ aplicados.</p></li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

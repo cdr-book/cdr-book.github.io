@@ -2,15 +2,15 @@
 
 # Implementación de un sistema experto en el ámbito pediátrico {#cap-sist-exp}
 
-*Arturo Peralta*$^{a,b,c}$, *José Ángel Olivas*$^{a}$ y *Eusebio Angulo*$^{a}$
+*Arturo Peralta*$^{a,b,c}$, *José Ángel Olivas*$^{c}$ y *Eusebio Angulo*$^{c}$
 
-$^{a}$Universidad de Castilla-La Mancha  
-$^{b}$Universidad Internacional de Valencia  
-$^{c}$Universidad Internacional de la Rioja
+$^{a}$Universidad Internacional de Valencia  
+$^{b}$Universidad Internacional de la Rioja  
+$^{c}$Universidad de Castilla-La Mancha  
 
 ## Introducción
 
-\index{sistema experto}
+\index{sistema!experto}
 
 
 
@@ -23,8 +23,8 @@ Finalmente, se incluye una sencilla implementación en **R** de un SE enfocado a
 
 Un SE es un programa de ordenador que trata de emular el comportamiento de una persona experta en un dominio de conocimiento específico ante un problema que se plantee en dicho dominio y cómo llega a su solución. La ingeniería del conocimiento se ocupa, entre otras cosas, del proceso de especificación, análisis y desarrollo de un sistema experto [@MaMoCa2005].
 
-\index{base de hechos}
-\index{base de conocimientos}
+\index{base!de hechos}
+\index{base!de conocimientos}
 \index{motor de inferencia}
 
 Los principales componentes de un SE son: 
@@ -34,14 +34,10 @@ $(iv)$ la **interfaz de entrada/salida** para comunicarse con los usuarios y/o e
 En la Fig.
 \@ref(fig:ComponentesSistemaExperto) se muestra un diagrama con los principales componentes de un SE.
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/ComponentesSistemaExperto} 
-
-}
-
-\caption{Componentes de un sistema experto.}(\#fig:ComponentesSistemaExperto)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/ComponentesSistemaExperto.png" alt="Componentes de un sistema experto." width="100%" />
+<p class="caption">(\#fig:ComponentesSistemaExperto)Componentes de un sistema experto.</p>
+</div>
 
 Las principales limitaciones en la construcción de un SE vienen dadas porque el conocimiento experto humano es experiencia compilada, es heurístico, esto es, basado en experiencia y en reglas prácticas.\index{regla} Además, es incompleto, impreciso e incierto y, a veces, inconsistente y con errores o imprecisiones.
 Es por ello que las limitaciones de todo SE pueden ser que no conoce lo que conoce ni el porqué, carece de imaginación, emociones, inteligencia innata, sentido común, etc. Tiene poco conocimiento de sí mismo, del usuario y del contexto de cada interacción y capacidad de razonamiento limitada por su estrategia de construcción.
@@ -122,21 +118,17 @@ El ciclo de "razonamiento hacia delante" se sintetiza en los siguientes pasos:
 
 4.    del total de reglas que forman el conjunto conflicto se selecciona una sola y se activa (se "dispara"). La selección de una regla del conjunto conflicto se denomina **resolución del conflicto**;
 
-5.    la activación de la regla provoca la **aparición de otros hechos** que se añaden a los observados y se **actualiza** la base de hechos.
+5.    la activación de la regla provoca la **aparición de otros hechos** que se añaden a los observados y se **actualiza** la base de hechos;
 
 6.    vuelta al **paso 2** hasta analizar todos los hechos observados y deducidos.
 
 En la Fig.
-\@ref(fig:FiguraRazonamientoHaciaDelante) se muestra el algoritmo correspondiente al ciclo de inferencia hacia adelante.
+\@ref(fig:FiguraRazonamientoHaciaDelante) se muestra el algoritmo correspondiente al ciclo de inferencia hacia delante.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/Figura1CicloRazonamientoHaciaDelante} 
-
-}
-
-\caption{Ciclo de razonamiento hacia delante.}(\#fig:FiguraRazonamientoHaciaDelante)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/Figura1CicloRazonamientoHaciaDelante.png" alt="Ciclo de razonamiento hacia delante." width="60%" />
+<p class="caption">(\#fig:FiguraRazonamientoHaciaDelante)Ciclo de razonamiento hacia delante.</p>
+</div>
 
 
 ## Sistema experto para el ámbito pediátrico en atención primaria
@@ -168,11 +160,12 @@ Table: (\#tab:TablaConsultaTriaje) Ejemplo de datos de motivos de consulta y tri
 | Hombre | 4-6 años | 2-6 horas | Ocular | 4 (60 minutos) | 
 | Mujer | 4-6 años | 13-24 horas | Fiebre | 5 (120 minutos) |
 
+
 A partir del procesamiento de un total de 400 visitas médicas mediante el algoritmo de extracción de reglas de asociación "Magnum Opus", basado en la definición original de @Webb2011 y con el conocimiento experto proporcionado por un panel de pediatras, se extrajo un conjunto de reglas con suficiente calidad. A continuación se muestran, a modo de ejemplo, $10$ de ellas:
 
--   R1: Si Causa Ginecóloga o Edad mayor de 12 años $\rightarrow$ Tiempo de Evolución mayor de 73 h.
+-   R1: Si Causa Ginecológica o Edad mayor de 12 años $\rightarrow$ Tiempo de Evolución mayor de 73 h.
 
--   R2: Si Causa Ginecóloga $\rightarrow$ Sexo Mujer.
+-   R2: Si Causa Ginecológica $\rightarrow$ Sexo Mujer.
 
 -   R3: Si Edad menor de 7 días o Causa Fiebre $\rightarrow$ Tiempo de evolución de 1 h.
 
@@ -359,18 +352,18 @@ El resultado proporcionado por el algoritmo es un triaje de valor $4$. Es decir,
 
 <!-- Para compilar en HTML -->
 <!-- tabla-html -->
-
+<img src="img/tabla-58-2-sist-exp.jpg" width="100%" style="display: block; margin: auto;" />
 
 
 \begin{table}[ht]
-\caption{\label{tab:TablaIteracionesAlgoritmo}Proceso de ejecución del Sistema Experto.}
+\caption{\label{tab:TablaIteracionesAlgoritmo}Proceso de ejecución del Sistema Experto}
 \centering
 \begin{tabular}
 { | c | c | c | c | c | }
 \hline 
 \textbf{It} & \textbf{Base hechos} & \parbox{5em}{\centering \textbf{Conjunto} \\ \textbf{conflicto}}  & \parbox{5em}{\centering \textbf{Regla} \\ \textbf{disparada}}  & \textbf{Conclusión} \\ 
 \hline
-0 & \parbox{10em}{Causa ginecológica \\ Edad < 12 a \\ Tiempo evoluc. > 73 h} & \parbox{5em}{\centering R1, R2, \\ R4, R10}  & R1 & \parbox{10em}{Tiempo Evoluc > 73 h} \\ 
+0 & \parbox{10em}{Causa ginecológica \\ Edad < 12 a \\ Tiempo evoluc. > 73 h} & \parbox{5em}{\centering R1, R2, \\ R4, R10}  & R1 & \parbox{10em}{Tiempo evoluc.> 73 h} \\ 
 \hline
 1 & \parbox{10em}{Causa ginecológica \\ Edad < 12 a \\ Tiempo evoluc. > 73 h \\ Sexo  mujer} & \parbox{5em}{\centering R2, R4 \\ R10} & R2 & \parbox{10em}{Sexo mujer} \\ 
 \hline

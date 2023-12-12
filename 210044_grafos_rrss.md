@@ -12,14 +12,10 @@ Universidad Complutense de Madrid
 
 El origen de la teoría de grafos se debe al problema de los siete puentes de Königsberg, planteado en @Euler1736, que es considerado el primer artículo sobre teoría de grafos. El problema se centra en la ciudad Königsberg (antigua Prusia), ahora Kaliningrado (Rusia), donde existen varios puentes y el problema consiste en trazar una ruta que cruce todos los puentes una única vez (véase Fig. \@ref(fig:puentes)). Euler, mediante el uso de grafos, demostró que no era posible.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/puentes_new} 
-
-}
-
-\caption{Los siete puentes de Königsberg, Euler (1736).}(\#fig:puentes)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/puentes_new.png" alt="Los siete puentes de Königsberg, Euler (1736)." width="60%" />
+<p class="caption">(\#fig:puentes)Los siete puentes de Königsberg, Euler (1736).</p>
+</div>
 
 Pero ¿qué relación tiene un concepto creado en 1736, el de grafo, con algo tan reciente como las redes sociales? Sin ser extremadamente rigurosos, se puede hablar de las redes sociales (RR. SS.) como  las relaciones existentes entre personas, es decir, un hilo invisible que une a las personas que tienen algo en común. En algunos casos es muy evidente porque se crean grupos específicos de personas que comparten una afición y, en otros, es menos evidente porque, por ejemplo, pueden compartir un amigo en común sin saberlo. Estos hilos "invisibles" se unen y forman una red que se puede representar como un grafo, el mismo concepto de grafo que describió Euler y que permite establecer diferentes caminos para unir a las personas que forman la red.
 
@@ -27,7 +23,7 @@ Pero ¿qué relación tiene un concepto creado en 1736, el de grafo, con algo ta
 \index{nodo}
 \index{arista}
 \index{Facebook}
-\index{red social}
+\index{red!social}
 \index{grafo}
 
 ## Teoría de grafos
@@ -48,14 +44,10 @@ grafo_facebook <- graph.data.frame(datos_facebook, directed = F)
 plot(grafo_facebook, vertex.label = NA, vertex.size = 8)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{210044_grafos_rrss_files/figure-latex/grafo-1} 
-
-}
-
-\caption{Estructura de una red social representada como grafo.}(\#fig:grafo)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210044_grafos_rrss_files/figure-html/grafo-1.png" alt="Estructura de una red social representada como grafo." width="60%" />
+<p class="caption">(\#fig:grafo)Estructura de una red social representada como grafo.</p>
+</div>
 
 Formalmente, una red social puede modelizarse con una estructura de red invisible (relación familiar, amistad, trabajo...) que une a distintos actores con intereses o valores comunes, estableciendo una relación personal entre los individuos o grupos de individuos conectados. Existen distintos tipos de grafos dependiendo de las características de la red social representada. Algunos ejemplos son:
 
@@ -87,14 +79,10 @@ plot(grafo_amistades, vertex.label = V(grafo_amistades)$name, main = "Grafo amis
 plot(grafo_comunidades, vertex.label = V(grafo_comunidades)$name, main = "Grafo comunidades")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{210044_grafos_rrss_files/figure-latex/grafo-comunidades2-1} 
-
-}
-
-\caption{Grafo de amistades y comunidades.}(\#fig:grafo-comunidades2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210044_grafos_rrss_files/figure-html/grafo-comunidades2-1.png" alt="Grafo de amistades y comunidades." width="60%" />
+<p class="caption">(\#fig:grafo-comunidades2)Grafo de amistades y comunidades.</p>
+</div>
 
 
 ## Elementos de un grafo
@@ -139,16 +127,12 @@ plot(grafo_nodirigido, vertex.label = V(grafo_nodirigido)$name, main = " ")
 plot(grafo, main = " ")
 ```
 
-\begin{figure}
+<div class="figure" style="text-align: center">
+<img src="210044_grafos_rrss_files/figure-html/grafo-dirigido-nodirigido-sencillo-1.png" alt="De izquierda a derecha: grafo dirigido, grafo no dirigido y grafo sencillo." width="60%" />
+<p class="caption">(\#fig:grafo-dirigido-nodirigido-sencillo)De izquierda a derecha: grafo dirigido, grafo no dirigido y grafo sencillo.</p>
+</div>
 
-{\centering \includegraphics[width=0.6\linewidth]{210044_grafos_rrss_files/figure-latex/grafo-dirigido-nodirigido-sencillo-1} 
-
-}
-
-\caption{De izquierda a derecha: grafo dirigido, grafo no dirigido y grafo sencillo.}(\#fig:grafo-dirigido-nodirigido-sencillo)
-\end{figure}
-
-\index{matriz!de adyacencia}
+\index{matriz! de adyacencia}
 
 -	La información recogida en un grafo también se puede expresar mediante números, organizados en una matriz denominada **matriz de adyacencia**, ${\bf A}_{n\times n}$ (donde $n$ es el número de nodos), lo que facilita los cálculos computacionales en grandes redes. Cada entrada de la matriz, $a_{ij}$, indica el número de aristas que salen del $i$-ésimo vértice y llegan al $j$-ésimo; cada fila de la matriz indica el número de aristas que salen del vértice $i$-ésimo con destino a cada uno de los otros  vértices. En los grafos no dirigidos ${\bf A}_{n \times n}$ es simétrica, ya que si el vértice o nodo $1$ conecta con el $2$, entonces el $2$ también conecta con el $1$. En los grafos dirigidos, donde cada arista tiene una orientación, esto no tiene por qué ocurrir: el vértice o nodo $1$ puede conectar con el $2$, pero no al revés. En este tipo de grafos la matriz de adyacencia no es simétrica. A continuación se obtiene la matriz de adyacencia del objeto `grafo`:
 
@@ -194,7 +178,7 @@ min(grado_nodos)
 # Camino más corto entre el nodo 2 y el 5
 caminos <- get.shortest.paths(grafo, from = "2", to = "5")
 V(grafo)[caminos$vpath[[1]]]
-#> + 3/5 vertices, from 3075d20:
+#> + 3/5 vertices, from e269f5c:
 #> [1] 2 4 5
 ```
 
@@ -220,14 +204,10 @@ red <- graph_from_data_frame(edges, directed = TRUE, vertices = nodes)
 plot(red, vertex.size = 50)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{210044_grafos_rrss_files/figure-latex/grafobasico-1} 
-
-}
-
-\caption{Ejemplo de grafo con $igraph$.}(\#fig:grafobasico)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210044_grafos_rrss_files/figure-html/grafobasico-1.png" alt="Ejemplo de grafo con $igraph$." width="60%" />
+<p class="caption">(\#fig:grafobasico)Ejemplo de grafo con $igraph$.</p>
+</div>
 
 
 A continuación se muestra otro ejemplo con las relaciones entre los actores de dos películas.
@@ -250,14 +230,10 @@ red <- graph_from_data_frame(edges, directed = F, vertices = nodes)
 plot(red, vertex.size = 50)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{210044_grafos_rrss_files/figure-latex/grafoactores-1} 
-
-}
-
-\caption{Grafo representativo de la relación de actores respecto a películas.}(\#fig:grafoactores)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210044_grafos_rrss_files/figure-html/grafoactores-1.png" alt="Grafo representativo de la relación de actores respecto a películas." width="60%" />
+<p class="caption">(\#fig:grafoactores)Grafo representativo de la relación de actores respecto a películas.</p>
+</div>
 
 En la Fig. \@ref(fig:grafoactores) se puede observar que el actor Jim Carrey tuvo relación con todos los actores de la red propuesta, mientras que la actriz Cameron Díaz solo participó con uno de ellos (el propio Jim Carrey).
 
@@ -285,14 +261,10 @@ plot.igraph(grafo_facebook,
 )
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{210044_grafos_rrss_files/figure-latex/grafofacebook1-1} 
-
-}
-
-\caption{Representación de un grafo con RR. SS.}(\#fig:grafofacebook1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210044_grafos_rrss_files/figure-html/grafofacebook1-1.png" alt="Representación de un grafo con RR. SS." width="60%" />
+<p class="caption">(\#fig:grafofacebook1)Representación de un grafo con RR. SS.</p>
+</div>
 
 ::: {.infobox data-latex=""}
 **Nota**
@@ -325,14 +297,10 @@ V(grafo_facebook)$name <- c(
 plot(grafo_facebook, vertex.size = 20)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{210044_grafos_rrss_files/figure-latex/grafofacebook3-1} 
-
-}
-
-\caption{Subgrafo en RR. SS.}(\#fig:grafofacebook3)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210044_grafos_rrss_files/figure-html/grafofacebook3-1.png" alt="Subgrafo en RR. SS." width="60%" />
+<p class="caption">(\#fig:grafofacebook3)Subgrafo en RR. SS.</p>
+</div>
 
 En la Fig. \@ref(fig:grafofacebook3) se pueden ver las relaciones entre las personas incluidas en el grafo (a quién siguen y por quiénes son seguidas). Por ejemplo, a Gema no la sigue nadie. Leonor, otro caso extremo igual que Gema, es seguida por Aurora, Ángeles y Gabriel, pero ella no sigue a nadie.
 
@@ -514,21 +482,17 @@ plot(Walktrap_grafo, grafo_facebook, edge.arrow.size = 0.25, vertex.label = (gra
 )
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{210044_grafos_rrss_files/figure-latex/grafo-Betweenness-Walktrap-1} 
-
-}
-
-\caption{De izquierda a derecha: grafo $eigencentrality$, grafo $betweenness$ y grafo $Walktrap$.}(\#fig:grafo-Betweenness-Walktrap)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210044_grafos_rrss_files/figure-html/grafo-Betweenness-Walktrap-1.png" alt="De izquierda a derecha: grafo $eigencentrality$, grafo $betweenness$ y grafo $Walktrap$." width="60%" />
+<p class="caption">(\#fig:grafo-Betweenness-Walktrap)De izquierda a derecha: grafo $eigencentrality$, grafo $betweenness$ y grafo $Walktrap$.</p>
+</div>
 
 
-## Entorno social en el universo cinematográfico Marvel
+## Entorno social en el universo cinematográfico de Marvel
 
 \index{Marvel}
 
-En esta sección se analiza el Universo Cinematográfico de Marvel[^Note-grafos-2] como una RR. SS. donde cada héroe tiene un grado de relación con otro. Para ello, se utiliza el conjunto de datos `marvel_edges` del paquete `CDR`, que contiene dos columnas formateadas para representar la RR. SS. de Marvel, donde la primera columna es el nombre de un personaje del universo cinematográfico Marvel y la segunda, el nombre de otro personaje con el que coincide en alguna película (la relación viene representada por una arista que une los dos nodos). Con estos datos se genera el grafo correspondiente a la RR. SS. de Marvel, en la cual cada héroe es un nodo y las relaciones son las coincidencias de dichos héroes en la misma película. Con el código que se expone a continuación se carga el fichero y se crea el `grafo_marvel`.
+En esta sección se analiza el Universo Cinematográfico de Marvel[^Note-grafos-2] como una RR. SS. donde cada héroe tiene un grado de relación con otro. Para ello, se utiliza el conjunto de datos `marvel_edges` del paquete `CDR`, que contiene dos columnas formateadas para representar la RR. SS. de Marvel, donde la primera columna es el nombre de un personaje del universo cinematográfico de Marvel y la segunda, el nombre de otro personaje con el que coincide en alguna película (la relación viene representada por una arista que une los dos nodos). Con estos datos se genera el grafo correspondiente a la RR. SS. de Marvel, en la cual cada héroe es un nodo y las relaciones son las coincidencias de dichos héroes en la misma película. Con el código que se expone a continuación se carga el fichero y se crea el `grafo_marvel`.
 
 [^Note-grafos-2]: El Universo Cinematográfico de Marvel comprende todas las series, películas, cortometrajes y demás productos audiovisuales creados por Marvel Studios y basados en los personajes y aventuras de los cómics de Marvel.
 
@@ -539,14 +503,10 @@ grafo_marvel <- graph.data.frame(marvel_edges, directed = F)
 plot(grafo_marvel)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{210044_grafos_rrss_files/figure-latex/marvel1-1} 
-
-}
-
-\caption{Grafo original sobre el Universo Cinematográfico Marvel.}(\#fig:marvel1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210044_grafos_rrss_files/figure-html/marvel1-1.png" alt="Grafo original sobre el Universo Cinematográfico de Marvel." width="60%" />
+<p class="caption">(\#fig:marvel1)Grafo original sobre el Universo Cinematográfico de Marvel.</p>
+</div>
 
 Como puede apreciarse en la Fig. \@ref(fig:marvel1), son muchos los héroes y muchas las relaciones entre ellos, por lo que, a continuación, se seleccionan solo aquellos héroes que tienen dos o más relaciones. De esta forma se obtiene un grafo más agradable a la vista y más interpretable (véase panel izquierdo de la Fig. \@ref(fig:grafo-relaciones-comunidades), que se acompaña de un gráfico de comunidades en el panel derecho).
 
@@ -577,25 +537,17 @@ plot(grafo, vertex.label = V(grafo)$name, main = "Relaciones de héroes")
 plot(grafo, vertex.color = comunidades$membership, vertex.label = V(grafo)$name, main = "Comunidades de héroes")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{210044_grafos_rrss_files/figure-latex/grafo-relaciones-comunidades-1} 
-
-}
-
-\caption{Grafo de relaciones y comunidades de héroes.}(\#fig:grafo-relaciones-comunidades)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210044_grafos_rrss_files/figure-html/grafo-relaciones-comunidades-1.png" alt="Grafo de relaciones y comunidades de héroes." width="60%" />
+<p class="caption">(\#fig:grafo-relaciones-comunidades)Grafo de relaciones y comunidades de héroes.</p>
+</div>
 
 
 En la Fig. \@ref(fig:marvel5) se puede apreciar que la comunidad 3 es la que tiene más miembros y, por lo tanto, la más popular y la que más personas incluye con intereses comunes.
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/Comunidades_marvel} 
-
-}
-
-\caption{Comunidades.}(\#fig:marvel5)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/Comunidades_marvel.png" alt="Comunidades." width="100%" />
+<p class="caption">(\#fig:marvel5)Comunidades.</p>
+</div>
 
 
 ```r
@@ -639,14 +591,10 @@ colores <- sample(colors(), vcount(subgrafo), replace = TRUE)
 plot(subgrafo, vertex.label.cex= 1.7)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{210044_grafos_rrss_files/figure-latex/grafo-relaciones-1} 
-
-}
-
-\caption{Grafo estándar con más relaciones.}(\#fig:grafo-relaciones)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210044_grafos_rrss_files/figure-html/grafo-relaciones-1.png" alt="Grafo estándar con más relaciones." width="60%" />
+<p class="caption">(\#fig:grafo-relaciones)Grafo estándar con más relaciones.</p>
+</div>
 
 
 ```r
@@ -654,14 +602,10 @@ set.seed(2)
 plot(subgrafo, vertex.color = colores, vertex.size = tamaños, vertex.label.cex= 1.7)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{210044_grafos_rrss_files/figure-latex/grafo-color-1} 
-
-}
-
-\caption{Grafo adaptado con color y tamaño.}(\#fig:grafo-color)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210044_grafos_rrss_files/figure-html/grafo-color-1.png" alt="Grafo adaptado con color y tamaño." width="60%" />
+<p class="caption">(\#fig:grafo-color)Grafo adaptado con color y tamaño.</p>
+</div>
 
 Las comunidades pueden ser representadas por otros algoritmos. A continuación, se representan las formadas con los algoritmos ya comentados: `Betweenness`, de utilidad cuando los nodos que conectan distintas comunidades son los más importantes y se quiere asegurar que se incorporen en una comunidad y el `Walktrap`, que detecta eficazmente comunidades de tamaños similares (Fig. \@ref(fig:marvel11)).
 
@@ -673,14 +617,10 @@ comunidades <- cluster_edge_betweenness(grafo)
 comunidades <- cluster_walktrap(grafo)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{img/Comunidades_algoritmos_marvel} 
-
-}
-
-\caption{Grafo de comunidades: algoritmos $betweeness$ y Walktrap.}(\#fig:marvel11)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/Comunidades_algoritmos_marvel.png" alt="Grafo de comunidades: algoritmos $betweeness$ y $Walktrap$." width="80%" />
+<p class="caption">(\#fig:marvel11)Grafo de comunidades: algoritmos $betweeness$ y $Walktrap$.</p>
+</div>
 
 
 
@@ -696,5 +636,5 @@ Este capítulo ha introducido la teoría de grafos y su relación con las RR. SS
 
 - El análisis de influencia en un grafo aplicado a RR. SS., introduciendo los conceptos de centralidad y comunidad.
 
-- El análisis del entorno social de los personajes del Universo Cinematográfico Marvel, aplicando los conocimientos teóricos presentados a lo largo del capítulo.
+- El análisis del entorno social de los personajes del Universo Cinematográfico de Marvel, aplicando los conocimientos teóricos presentados a lo largo del capítulo.
 :::

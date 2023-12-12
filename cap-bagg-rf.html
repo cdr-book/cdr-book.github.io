@@ -7,7 +7,7 @@
 <title>Capítulo 28 Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\) | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Ramón A. Carrasco\(^{a}\), Itzcóatl Bueno\(^{a,\hspace{0,05cm}b}\) y José-María Montero\(^{c}\) \(^{a}\)Universidad Complutense de Madrid\(^{b}\)Instituto Nacional de...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 28 Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\) | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="active" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -138,7 +138,7 @@
 <h2>
 <span class="header-section-number">28.1</span> Introducción a los métodos ensamblados<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-a-los-m%C3%A9todos-ensamblados"><i class="fas fa-link"></i></a>
 </h2>
-<p>Puede ocurrir que ninguno de los algoritmos hasta ahora presentados (Caps. <a href="cap-arboles.html#cap-arboles">24</a>, <a href="cap-svm.html#cap-svm">25</a>, <a href="cap-knn.html#cap-knn">26</a> y <a href="cap-naive-bayes.html#cap-naive-bayes">27</a>) proporcionen resultados convincentes para el problema que se quiere modelar. El <strong>aprendizaje ensamblado</strong> <span class="citation">(<a href="referncias.html#ref-zhou2012ensemble">Zhou 2012</a>)</span> es un paradigma que, como muestra la Fig. <a href="cap-bagg-rf.html#fig:metamodel">28.1</a>, en lugar de entrenar un modelo que proporcione resultados muy precisos, entrena un gran número de modelos no tan precisos y después combina sus predicciones para obtener un metamodelo con una precisión superior.</p>
+<p>Puede ocurrir que ninguno de los algoritmos hasta ahora presentados (Caps. <a href="cap-arboles.html#cap-arboles">24</a>, <a href="cap-svm.html#cap-svm">25</a>, <a href="cap-knn.html#cap-knn">26</a> y <a href="cap-naive-bayes.html#cap-naive-bayes">27</a>) proporcionen resultados convincentes para el problema que se quiere modelar. El <strong>aprendizaje ensamblado</strong> <span class="citation">(<a href="referencias.html#ref-zhou2012ensemble">Zhou 2012</a>)</span> es un paradigma que, como muestra la Fig. <a href="cap-bagg-rf.html#fig:metamodel">28.1</a>, en lugar de entrenar un modelo que proporcione resultados muy precisos, entrena un gran número de modelos no tan precisos y después combina sus predicciones para obtener un metamodelo con una precisión superior.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:metamodel"></span>
 <img src="img/metamodelo.png" alt="Esquema de un metamodelo." width="100%"><p class="caption">
@@ -153,14 +153,14 @@ Figura 28.1: Esquema de un metamodelo.
 </h2>
 <p><em>Bagging</em> es una técnica para reducir la varianza dentro de un conjunto de datos con “ruido”. En <em>bagging</em>, se construyen múltiples árboles de decisión en cada uno de los cuales se utiliza una muestra aleatoria aleatoria con remplazamiento de los datos del conjunto de entrenamiento. Dichos modelos (débiles) se entrenan por separado y finalmente se combinan las predicciones de cada uno de ellos, calculando la media de dichas predicciones (en el caso de regresión) o mediante un sistema de votación (en el caso de un problema de clasificación)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La filosofía detrás del &lt;em&gt;bagging&lt;/em&gt; y otras técnicas similares es el aprendizaje por conjuntos, que se basa en la idea de que la “sabiduría de las masas” es mejor que la de una persona experta. Es decir, que una decisión tomada por un grupo grande de gente suele ser mejor que la de una persona experta.&lt;/p&gt;"><sup>198</sup></a>. El resultado de esta combinación de modelos débiles es una ganancia en la precisión o el sesgo de las predicciones.</p>
 <p>Nótese que el algoritmo de un árbol de decisión no podado puede ser propenso a sobreajustarse (alta varianza y bajo sesgo) y que si es muy pequeño es propenso al subajuste (varianza pequeña y sesgo elevado). La combinación de árboles de decisión evita estas situaciones y busca el equilibrio varianza-sesgo, que permitirá mejores generalizaciones a nuevos conjuntos de datos.</p>
-<p>La principal característica del <em>bagging</em> es el <strong>muestreo</strong> <strong><em>bootstrap</em></strong> (véanse Caps. <a href="chap-herramientas.html#chap-herramientas">10</a> y <a href="muestreo.html#muestreo">14</a>). Una muestra <em>bootstrap</em> es una muestra aleatoria de los datos tomados con reemplazamiento <span class="citation">(<a href="referncias.html#ref-efron1986bootstrap">Efron and Tibshirani 1986</a>)</span>. Esto significa que, después de seleccionar una observación (una instancia) del conjunto de datos de entrenamiento para incluirla en la muestra, aún queda disponible para una selección posterior. Una muestra <em>bootstrap</em> tiene el mismo tamaño que el conjunto de datos original a partir del cual se construyó.</p>
+<p>La principal característica del <em>bagging</em> es el <strong>muestreo</strong> <strong><em>bootstrap</em></strong> (véanse Caps. <a href="chap-herramientas.html#chap-herramientas">10</a> y <a href="muestreo.html#muestreo">14</a>). Una muestra <em>bootstrap</em> es una muestra aleatoria de los datos tomados con reemplazamiento <span class="citation">(<a href="referencias.html#ref-efron1986bootstrap">Efron and Tibshirani 1986</a>)</span>. Esto significa que, después de seleccionar una observación (una instancia) del conjunto de datos de entrenamiento para incluirla en la muestra, aún queda disponible para una selección posterior. Una muestra <em>bootstrap</em> tiene el mismo tamaño que el conjunto de datos original a partir del cual se construyó.</p>
 <p>En el <em>bagging</em>, el objetivo de este remuestreo es que cada árbol esté entrenado con una muestra específica para él, y por tanto, los distintos árboles generen respuestas únicas, esto es, modelos débiles distintos. Aunque esta manera de proceder no elimina la problemática del sobreajuste, los patrones presentes en el conjunto de datos aparecerán en la mayoría de los árboles entrenados y, por tanto, en la predicción final. Es por ello que el <em>bagging</em> es una técnica de gran eficacia para el tratamiento de los valores atípicos y para la reducción de la varianza, que generalmente afecta a un modelo compuesto por un único árbol de decisión.</p>
 <div id="rbagging" class="section level3" number="28.2.1">
 <h3>
 <span class="header-section-number">28.2.1</span> Procedimiento con <strong>R</strong>: la función <code>bagging()</code><a class="anchor" aria-label="anchor" href="#rbagging"><i class="fas fa-link"></i></a>
 </h3>
 <p>Para entrenar un modelo <em>bagging</em> se utiliza la función <code><a href="https://rdrr.io/pkg/ipred/man/bagging.html">bagging()</a></code> del paquete <code>ipred</code> de <strong>R</strong>.</p>
-<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">bagging</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
@@ -179,7 +179,7 @@ Figura 28.1: Esquema de un metamodelo.
 <span class="header-section-number">28.2.2</span> Implementando <em>bagging</em> en <strong>R</strong><a class="anchor" aria-label="anchor" href="#implementando-bagging-en-r"><i class="fas fa-link"></i></a>
 </h3>
 <p>Igual que en los capítulos anteriores, para ilustrar el algoritmo <em>bagging</em> se retoma el ejemplo de la compra de un tensiómetro digital por parte de los clientes de una empresa. Los datos sobre compras de clientes y el importe gastado en dichas compras se encuentran en el conjunto de datos <code>dp_entr</code> del paquete <code>CDR</code>. El objetivo es clasificar a los clientes de la empresa en dos grupos: los que comprarían el tensiómetro digital y los que no. Aunque se utiliza la función <code><a href="https://rdrr.io/pkg/ipred/man/bagging.html">bagging()</a></code>, ya mencionada en la Sec. <a href="cap-bagg-rf.html#rbagging">28.2.1</a>, se pueden utilizar otras muchas funciones.</p>
-<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"ipred"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/topepo/caret/">"caret"</a></span><span class="op">)</span></span>
@@ -187,7 +187,7 @@ Figura 28.1: Esquema de un metamodelo.
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"dp_entr"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># se fija la semilla aleatoria</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span></span>
@@ -199,18 +199,18 @@ Figura 28.1: Esquema de un metamodelo.
 <span>  coob <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/rpart/man/rpart.control.html">rpart.control</a></span><span class="op">(</span>minsplit <span class="op">=</span> <span class="fl">2</span>, cp <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="cap-bagg-rf.html#cb396-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
-<span id="cb396-2"><a href="cap-bagg-rf.html#cb396-2" tabindex="-1"></a>bag_model</span>
-<span id="cb396-3"><a href="cap-bagg-rf.html#cb396-3" tabindex="-1"></a></span>
-<span id="cb396-4"><a href="cap-bagg-rf.html#cb396-4" tabindex="-1"></a>Bagging classification trees with <span class="dv">100</span> bootstrap replications </span>
-<span id="cb396-5"><a href="cap-bagg-rf.html#cb396-5" tabindex="-1"></a></span>
-<span id="cb396-6"><a href="cap-bagg-rf.html#cb396-6" tabindex="-1"></a>Call<span class="sc">:</span> <span class="fu">bagging.data.frame</span>(<span class="at">formula =</span> CLS_PRO_pro13 <span class="sc">~</span> ., <span class="at">data =</span> dp_entr, </span>
-<span id="cb396-7"><a href="cap-bagg-rf.html#cb396-7" tabindex="-1"></a>    <span class="at">nbagg =</span> <span class="dv">100</span>, <span class="at">coob =</span> <span class="cn">TRUE</span>, <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">minsplit =</span> <span class="dv">2</span>, </span>
-<span id="cb396-8"><a href="cap-bagg-rf.html#cb396-8" tabindex="-1"></a>        <span class="at">cp =</span> <span class="dv">0</span>))</span>
-<span id="cb396-9"><a href="cap-bagg-rf.html#cb396-9" tabindex="-1"></a></span>
-<span id="cb396-10"><a href="cap-bagg-rf.html#cb396-10" tabindex="-1"></a>Out<span class="sc">-</span>of<span class="sc">-</span>bag estimate of misclassification error<span class="sc">:</span>  <span class="fl">0.1416</span> </span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="cap-bagg-rf.html#cb397-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
+<span id="cb397-2"><a href="cap-bagg-rf.html#cb397-2" tabindex="-1"></a>bag_model</span>
+<span id="cb397-3"><a href="cap-bagg-rf.html#cb397-3" tabindex="-1"></a></span>
+<span id="cb397-4"><a href="cap-bagg-rf.html#cb397-4" tabindex="-1"></a>Bagging classification trees with <span class="dv">100</span> bootstrap replications </span>
+<span id="cb397-5"><a href="cap-bagg-rf.html#cb397-5" tabindex="-1"></a></span>
+<span id="cb397-6"><a href="cap-bagg-rf.html#cb397-6" tabindex="-1"></a>Call<span class="sc">:</span> <span class="fu">bagging.data.frame</span>(<span class="at">formula =</span> CLS_PRO_pro13 <span class="sc">~</span> ., <span class="at">data =</span> dp_entr, </span>
+<span id="cb397-7"><a href="cap-bagg-rf.html#cb397-7" tabindex="-1"></a>    <span class="at">nbagg =</span> <span class="dv">100</span>, <span class="at">coob =</span> <span class="cn">TRUE</span>, <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">minsplit =</span> <span class="dv">2</span>, </span>
+<span id="cb397-8"><a href="cap-bagg-rf.html#cb397-8" tabindex="-1"></a>        <span class="at">cp =</span> <span class="dv">0</span>))</span>
+<span id="cb397-9"><a href="cap-bagg-rf.html#cb397-9" tabindex="-1"></a></span>
+<span id="cb397-10"><a href="cap-bagg-rf.html#cb397-10" tabindex="-1"></a>Out<span class="sc">-</span>of<span class="sc">-</span>bag estimate of misclassification error<span class="sc">:</span>  <span class="fl">0.1416</span> </span></code></pre></div>
 <p>Como puede observarse en los resultados anteriores, el número de muestras <em>bootstrap</em> es de 100; en otros términos, se entrenan, independientemente, 100 modelos débiles. El metamodelo, o modelo fuerte, generado mediante la combinación de los 100 modelos débiles proporciona un porcentaje de clasificación errónea del 14,16%. Desafortunadamente, la función <code><a href="https://rdrr.io/pkg/ipred/man/bagging.html">bagging()</a></code> no selecciona el número óptimo de replicaciones para hacer mínimo el porcentaje de clasificación errónea. Para seleccionar el número de replicaciones que minimice dicho porcentaje, se puede graficar la curva de porcentaje de clasificación errónea <em>vs.</em> el número de replicaciones (<code>nbagg</code>), como en la Fig. <a href="cap-bagg-rf.html#fig:bagg-plot">28.2</a>. Si se itera el modelo variando los valores del hiperparámetro <code>nbagg</code> (en este ejemplo entre 10 y 150, incrementándose de cinco en cinco), se observa que el mínimo porcentaje de clasificación errónea (13,79%) se obtiene con 60 replicaciones.</p>
-<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">missclass</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># vector vacío para recopilar el error en cada iteración</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">n</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">150</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># valores a probar para nbagg</span></span>
 <span>  <span class="co"># se establece la semilla aleatoria</span></span>
@@ -226,7 +226,7 @@ Figura 28.1: Esquema de un metamodelo.
 <span>  <span class="co"># se agrega el error de esta iteración</span></span>
 <span>  <span class="va">missclass</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">missclass</span>, <span class="va">bag_model</span><span class="op">$</span><span class="va">err</span><span class="op">)</span> <span class="co"># se agrega el error de esta iteración</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">150</span>,<span class="fl">5</span><span class="op">)</span>,<span class="va">missclass</span>,type <span class="op">=</span> <span class="st">"l"</span>,xlab <span class="op">=</span> <span class="st">"Número de árboles"</span>, ylab<span class="op">=</span><span class="st">"Missclassification error"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:bagg-plot"></span>
@@ -235,7 +235,7 @@ Figura 28.2: Porcentaje de clasificación errónea <span class="math inline">\(v
 </p>
 </div>
 <p>La función <code><a href="https://rdrr.io/pkg/caret/man/train.html">train()</a></code> del paquete <code>caret</code> es otra alternativa para entrenar un algoritmo de <em>bagging</em> en <strong>R</strong>. Para ello, el argumento <code>method</code> debe tomar el valor <code>"treebag"</code>. Este algoritmo no incluye hiperparámetros a optimizar. Dado que se ha obtenido recursivamente el número óptimo de replicaciones, se puede entrenar el modelo con el valor obtenido y comprobar que el porcentaje de clasificación errónea es el mismo. Se observa que si se entrena un modelo <em>bagging</em> con 60 replicaciones, la <code>accuracy</code> del modelo (el porcentaje de observaciones clasificadas correctamente) es del 86,93%; es decir, el porcentaje de clasificación errónea es del 13,07%, similar al obtenido anteriormente con la función <code>bagging</code> (13,79%).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La kappa de Cohen es una medida que compara la concordancia entre la realidad y la predicción con la que se daría entre ellas por mero azar.&lt;/p&gt;"><sup>199</sup></a></p>
-<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span><span class="va">model_bag</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/train.html">train</a></span><span class="op">(</span></span>
 <span>  <span class="va">CLS_PRO_pro13</span> <span class="op">~</span> <span class="va">.</span>,</span>
@@ -245,31 +245,31 @@ Figura 28.2: Porcentaje de clasificación errónea <span class="math inline">\(v
 <span>  nbagg <span class="op">=</span> <span class="fl">60</span>, </span>
 <span>  control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/rpart/man/rpart.control.html">rpart.control</a></span><span class="op">(</span>minsplit <span class="op">=</span> <span class="fl">2</span>, cp <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="cap-bagg-rf.html#cb400-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
-<span id="cb400-2"><a href="cap-bagg-rf.html#cb400-2" tabindex="-1"></a>model_bag</span>
-<span id="cb400-3"><a href="cap-bagg-rf.html#cb400-3" tabindex="-1"></a></span>
-<span id="cb400-4"><a href="cap-bagg-rf.html#cb400-4" tabindex="-1"></a>Bagged CART </span>
-<span id="cb400-5"><a href="cap-bagg-rf.html#cb400-5" tabindex="-1"></a></span>
-<span id="cb400-6"><a href="cap-bagg-rf.html#cb400-6" tabindex="-1"></a><span class="dv">558</span> samples</span>
-<span id="cb400-7"><a href="cap-bagg-rf.html#cb400-7" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
-<span id="cb400-8"><a href="cap-bagg-rf.html#cb400-8" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span> </span>
-<span id="cb400-9"><a href="cap-bagg-rf.html#cb400-9" tabindex="-1"></a></span>
-<span id="cb400-10"><a href="cap-bagg-rf.html#cb400-10" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
-<span id="cb400-11"><a href="cap-bagg-rf.html#cb400-11" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold) </span>
-<span id="cb400-12"><a href="cap-bagg-rf.html#cb400-12" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ... </span>
-<span id="cb400-13"><a href="cap-bagg-rf.html#cb400-13" tabindex="-1"></a>Resampling results<span class="sc">:</span></span>
-<span id="cb400-14"><a href="cap-bagg-rf.html#cb400-14" tabindex="-1"></a></span>
-<span id="cb400-15"><a href="cap-bagg-rf.html#cb400-15" tabindex="-1"></a>  Accuracy   Kappa    </span>
-<span id="cb400-16"><a href="cap-bagg-rf.html#cb400-16" tabindex="-1"></a>  <span class="fl">0.8692532</span>  <span class="fl">0.7385449</span></span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="cap-bagg-rf.html#cb401-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
+<span id="cb401-2"><a href="cap-bagg-rf.html#cb401-2" tabindex="-1"></a>model_bag</span>
+<span id="cb401-3"><a href="cap-bagg-rf.html#cb401-3" tabindex="-1"></a></span>
+<span id="cb401-4"><a href="cap-bagg-rf.html#cb401-4" tabindex="-1"></a>Bagged CART </span>
+<span id="cb401-5"><a href="cap-bagg-rf.html#cb401-5" tabindex="-1"></a></span>
+<span id="cb401-6"><a href="cap-bagg-rf.html#cb401-6" tabindex="-1"></a><span class="dv">558</span> samples</span>
+<span id="cb401-7"><a href="cap-bagg-rf.html#cb401-7" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
+<span id="cb401-8"><a href="cap-bagg-rf.html#cb401-8" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span> </span>
+<span id="cb401-9"><a href="cap-bagg-rf.html#cb401-9" tabindex="-1"></a></span>
+<span id="cb401-10"><a href="cap-bagg-rf.html#cb401-10" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
+<span id="cb401-11"><a href="cap-bagg-rf.html#cb401-11" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold) </span>
+<span id="cb401-12"><a href="cap-bagg-rf.html#cb401-12" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ... </span>
+<span id="cb401-13"><a href="cap-bagg-rf.html#cb401-13" tabindex="-1"></a>Resampling results<span class="sc">:</span></span>
+<span id="cb401-14"><a href="cap-bagg-rf.html#cb401-14" tabindex="-1"></a></span>
+<span id="cb401-15"><a href="cap-bagg-rf.html#cb401-15" tabindex="-1"></a>  Accuracy   Kappa    </span>
+<span id="cb401-16"><a href="cap-bagg-rf.html#cb401-16" tabindex="-1"></a>  <span class="fl">0.8692532</span>  <span class="fl">0.7385449</span></span></code></pre></div>
 </div>
 <div id="interpretación-de-variables-en-el-bagging" class="section level3" number="28.2.3">
 <h3>
 <span class="header-section-number">28.2.3</span> Interpretación de variables en el <em>bagging</em><a class="anchor" aria-label="anchor" href="#interpretaci%C3%B3n-de-variables-en-el-bagging"><i class="fas fa-link"></i></a>
 </h3>
-<p>Una de las principales desventajas de los algoritmos ensamblados (incluido el <em>bagging</em>) es que, mientras que los modelos débiles son interpretables, el metamodelo resultante no lo es. Pese a esto, aún es posible hacer inferencias sobre la influencia (importancia) de cada una de las variables predictoras en el modelo entrenado. La manera de medir la importancia de las variables incluidas en un árbol es medir, para cada una de ellas, la reducción de la función de pérdida que se le atribuye en cada partición. Dado que una variable puede utilizarse varias veces para dividir el árbol, la importancia total de esa variable será la suma de la reducción de la función de pérdida que se le atribuya por todas las particiones en las que intervenga. En el caso particular del <em>bagging</em> el proceso es similar: para cada árbol, se calcula la reducción de la función de pérdida en todas las divisiones y se obtiene la reducción total sumando las reducciones calculadas en cada uno de los árboles que forman el metamodelo. El paquete <code>ipred</code>, en el que se encuentra la función <code><a href="https://rdrr.io/pkg/ipred/man/bagging.html">bagging()</a></code>, no captura la información requerida para calcular la importancia de las variables. Sin embargo, el paquete <code>caret</code> sí lo hace. La función <code><a href="https://rdrr.io/pkg/vip/man/vip.html">vip()</a></code> del paquete <code>vip</code> permite construir un gráfico de importancia (véase Fig. <a href="cap-bagg-rf.html#fig:BAGGINGVIP">28.3</a>).</p>
-<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
+<p>Una de las principales desventajas de los algoritmos ensamblados (incluido el <em>bagging</em>) es que, mientras que los modelos débiles son interpretables, el metamodelo resultante no lo es. Pese a esto, aún es posible hacer inferencias sobre la influencia (importancia) de cada una de las variables predictoras en el modelo entrenado. La manera de medir la importancia de las variables incluidas en un árbol es medir, para cada una de ellas, la reducción de la función de pérdida que se le atribuye en cada partición. Dado que una variable puede utilizarse varias veces para dividir el árbol, la importancia total de esa variable será la suma de la reducción de la función de pérdida que se le atribuya por todas las particiones en las que intervenga. En el caso particular del <em>bagging</em> el proceso es similar: para cada árbol, se calcula la reducción de la función de pérdida en todas las divisiones y se obtiene la reducción total sumando las reducciones calculadas en cada uno de los árboles que forman el metamodelo. El paquete <code>ipred</code>, en el que se encuentra la función <code><a href="https://rdrr.io/pkg/ipred/man/bagging.html">bagging()</a></code>, no captura la información requerida para calcular la importancia de las variables. Sin embargo, el paquete <code>caret</code> sí lo hace. La función <code>vip()</code> del paquete <code>vip</code> permite construir un gráfico de importancia (véase Fig. <a href="cap-bagg-rf.html#fig:BAGGINGVIP">28.3</a>).</p>
+<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/koalaverse/vip/">"vip"</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/vip/man/vip.html">vip</a></span><span class="op">(</span><span class="va">model_bag</span>, num_features <span class="op">=</span> <span class="fl">15</span>,</span>
+<span><span class="fu">vip</span><span class="op">(</span><span class="va">model_bag</span>, num_features <span class="op">=</span> <span class="fl">15</span>,</span>
 <span>    aesthetics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"skyblue"</span>, fill <span class="op">=</span> <span class="st">"skyblue"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:BAGGINGVIP"></span>
@@ -284,7 +284,7 @@ Figura 28.3: Importancia de las variables incluidas en el modelo <span class="ma
 <h2>
 <span class="header-section-number">28.3</span> <span class="math inline">\(\textit{Random}\)</span> <span class="math inline">\(\textit{forest}\)</span><a class="anchor" aria-label="anchor" href="#textitrandom-textitforest"><i class="fas fa-link"></i></a>
 </h2>
-<p><strong><em>Random forest</em></strong> (bosque aleatorio) es un algoritmo básico en el marco del paradigma <em>bagging</em>. Fue desarrollado por primera vez por <span class="citation">T. K. Ho (<a href="referncias.html#ref-ho1995random">1995</a>)</span>. Sin embargo, fueron <span class="citation">Cutler and Zhao (<a href="referncias.html#ref-cutler1999fast">1999</a>)</span> y <span class="citation">Breiman (<a href="referncias.html#ref-breiman2001random">2001</a>)</span> quienes formularon una versión extendida del modelo y registraron <em>Random forest</em> como marca comercial. Funciona igual que el <em>bagging</em>, con la salvedad de que el <em>random forest</em> establece una limitación artificial a la selección de variables al no considerar todas en cada árbol. El <em>bagging</em> considera las mismas variables para construir cada árbol con el objetivo de minimizar su entropía, y, por tanto, todos los árboles suelen tener un aspecto similar. Esto lleva a que las predicciones dadas por los árboles estén altamente correlacionadas. El modelo <em>random forest</em> evita este problema mediante la agregación de una fuente de variabilidad aleatoria adicional, provocando así una mayor diversidad entre los árboles del bosque. En concreto, se obliga a cada árbol a usar solo un subconjunto de los predictores a la hora de dividirse en la fase de crecimiento. Esta forma de proceder proporciona a algunas variables mayor probabilidad de ser seleccionadas y, al generar árboles únicos y no correlacionados, proporciona una estructura de decisión final más fiable. En la Fig. <a href="cap-bagg-rf.html#fig:ejemplo-rf">28.4</a> puede verse un ejemplo de <em>random forest</em>.</p>
+<p><strong><em>Random forest</em></strong> (bosque aleatorio) es un algoritmo básico en el marco del paradigma <em>bagging</em>. Fue desarrollado por primera vez por <span class="citation">T. K. Ho (<a href="referencias.html#ref-ho1995random">1995</a>)</span>. Sin embargo, fueron <span class="citation">Cutler and Zhao (<a href="referencias.html#ref-cutler1999fast">1999</a>)</span> y <span class="citation">Breiman (<a href="referencias.html#ref-breiman2001random">2001</a>)</span> quienes formularon una versión extendida del modelo y registraron <em>Random forest</em> como marca comercial. Funciona igual que el <em>bagging</em>, con la salvedad de que el <em>random forest</em> establece una limitación artificial a la selección de variables al no considerar todas en cada árbol. El <em>bagging</em> considera las mismas variables para construir cada árbol con el objetivo de minimizar su entropía, y, por tanto, todos los árboles suelen tener un aspecto similar. Esto lleva a que las predicciones dadas por los árboles estén altamente correlacionadas. El modelo <em>random forest</em> evita este problema mediante la agregación de una fuente de variabilidad aleatoria adicional, provocando así una mayor diversidad entre los árboles del bosque. En concreto, se obliga a cada árbol a usar solo un subconjunto de los predictores a la hora de dividirse en la fase de crecimiento. Esta forma de proceder proporciona a algunas variables mayor probabilidad de ser seleccionadas y, al generar árboles únicos y no correlacionados, proporciona una estructura de decisión final más fiable. En la Fig. <a href="cap-bagg-rf.html#fig:ejemplo-rf">28.4</a> puede verse un ejemplo de <em>random forest</em>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ejemplo-rf"></span>
 <img src="img/randomforest.png" alt="Ejemplo de $random$ $forest$." width="60%"><p class="caption">
@@ -331,10 +331,10 @@ El primer hiperparámetro a ajustar es el número de árboles que componen el bo
 <h3>
 <span class="header-section-number">28.3.6</span> Procedimiento con <strong>R</strong>: la función <code>randomForest()</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-la-funci%C3%B3n-randomforest"><i class="fas fa-link"></i></a>
 </h3>
-<p>Para entrenar un modelo <em>random forest</em> se utiliza la función <code><a href="https://rdrr.io/pkg/randomForest/man/randomForest.html">randomForest()</a></code> del paquete <code>randomForest</code> de <strong>R</strong>:</p>
-<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/randomForest/man/randomForest.html">randomForest</a></span><span class="op">(</span><span class="va">formula</span>, data<span class="op">=</span><span class="va">...</span>, <span class="va">...</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/randomForest/man/randomForest.html">randomForest</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">xtest</span>, <span class="va">ytest</span>, ntree<span class="op">=</span><span class="fl">500</span>, <span class="va">mtry</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<p>Para entrenar un modelo <em>random forest</em> se utiliza la función <code>randomForest()</code> del paquete <code>randomForest</code> de <strong>R</strong>:</p>
+<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">randomForest</span><span class="op">(</span><span class="va">formula</span>, data<span class="op">=</span><span class="va">...</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">randomForest</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">xtest</span>, <span class="va">ytest</span>, ntree<span class="op">=</span><span class="fl">500</span>, <span class="va">mtry</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
 <code>formula</code>: indica cuál es la variable respuesta y cuáles son las variables predictoras, <span class="math inline">\(Y \sim X_1 + ... + X_p\)</span>.</li>
@@ -359,7 +359,7 @@ El primer hiperparámetro a ajustar es el número de árboles que componen el bo
 <span class="header-section-number">28.3.7</span> Aplicación del modelo <em>random forest</em> en <strong>R</strong><a class="anchor" aria-label="anchor" href="#aplicaci%C3%B3n-del-modelo-random-forest-en-r"><i class="fas fa-link"></i></a>
 </h3>
 <p>En esta sección se aplica el modelo <em>random forest</em> al mismo ejemplo que en el caso del <em>bagging</em>. El conjunto de datos es <code>dp_entr</code>y se encuentra en el paquete <code>CDR</code>. Se quiere predecir si un cliente va a comprar o no el nuevo producto (un tensiómetro digital) en función de los productos que ha comprado previamente, el importe que gasta en ellos y otras características como, por ejemplo, su nivel educativo.</p>
-<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://www.stat.berkeley.edu/~breiman/RandomForests/">"randomForest"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/topepo/caret/">"caret"</a></span><span class="op">)</span></span>
@@ -367,7 +367,7 @@ El primer hiperparámetro a ajustar es el número de árboles que componen el bo
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">dp_entr</span><span class="op">)</span></span></code></pre></div>
 <p>Este algoritmo, al estar basado en árboles de clasificación, tiene los mismos requisitos para el entrenamiento que tenían dichos árboles. En el resultado obtenido, se puede ver que el hiperparámetro <code>mtry</code> se ha fijado en 10 variables, pues proporciona el mejor porcentaje de clasificaciopnes correctas (<code>accuracy</code>).</p>
-<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># se fija la semilla aleatoria</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span></span>
@@ -377,27 +377,27 @@ El primer hiperparámetro a ajustar es el número de árboles que componen el bo
 <span>             trControl<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/caret/man/trainControl.html">trainControl</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"cv"</span>, </span>
 <span>                                    number<span class="op">=</span><span class="fl">10</span>, </span>
 <span>                                    classProbs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="cap-bagg-rf.html#cb405-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
-<span id="cb405-2"><a href="cap-bagg-rf.html#cb405-2" tabindex="-1"></a>model</span>
-<span id="cb405-3"><a href="cap-bagg-rf.html#cb405-3" tabindex="-1"></a></span>
-<span id="cb405-4"><a href="cap-bagg-rf.html#cb405-4" tabindex="-1"></a>Random Forest </span>
-<span id="cb405-5"><a href="cap-bagg-rf.html#cb405-5" tabindex="-1"></a></span>
-<span id="cb405-6"><a href="cap-bagg-rf.html#cb405-6" tabindex="-1"></a><span class="dv">558</span> samples</span>
-<span id="cb405-7"><a href="cap-bagg-rf.html#cb405-7" tabindex="-1"></a> <span class="dv">19</span> predictor</span>
-<span id="cb405-8"><a href="cap-bagg-rf.html#cb405-8" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span> </span>
-<span id="cb405-9"><a href="cap-bagg-rf.html#cb405-9" tabindex="-1"></a></span>
-<span id="cb405-10"><a href="cap-bagg-rf.html#cb405-10" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
-<span id="cb405-11"><a href="cap-bagg-rf.html#cb405-11" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold) </span>
-<span id="cb405-12"><a href="cap-bagg-rf.html#cb405-12" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ... </span>
-<span id="cb405-13"><a href="cap-bagg-rf.html#cb405-13" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
-<span id="cb405-14"><a href="cap-bagg-rf.html#cb405-14" tabindex="-1"></a></span>
-<span id="cb405-15"><a href="cap-bagg-rf.html#cb405-15" tabindex="-1"></a>  mtry  Accuracy   Kappa    </span>
-<span id="cb405-16"><a href="cap-bagg-rf.html#cb405-16" tabindex="-1"></a>   <span class="dv">2</span>    <span class="fl">0.8602922</span>  <span class="fl">0.7206238</span></span>
-<span id="cb405-17"><a href="cap-bagg-rf.html#cb405-17" tabindex="-1"></a>  <span class="dv">10</span>    <span class="fl">0.8620455</span>  <span class="fl">0.7241029</span></span>
-<span id="cb405-18"><a href="cap-bagg-rf.html#cb405-18" tabindex="-1"></a>  <span class="dv">19</span>    <span class="fl">0.8620130</span>  <span class="fl">0.7240248</span></span>
-<span id="cb405-19"><a href="cap-bagg-rf.html#cb405-19" tabindex="-1"></a></span>
-<span id="cb405-20"><a href="cap-bagg-rf.html#cb405-20" tabindex="-1"></a>Accuracy was used to select the optimal model using the largest value.</span>
-<span id="cb405-21"><a href="cap-bagg-rf.html#cb405-21" tabindex="-1"></a>The final value used <span class="cf">for</span> the model was mtry <span class="ot">=</span> <span class="fl">10.</span></span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="cap-bagg-rf.html#cb406-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
+<span id="cb406-2"><a href="cap-bagg-rf.html#cb406-2" tabindex="-1"></a>model</span>
+<span id="cb406-3"><a href="cap-bagg-rf.html#cb406-3" tabindex="-1"></a></span>
+<span id="cb406-4"><a href="cap-bagg-rf.html#cb406-4" tabindex="-1"></a>Random Forest </span>
+<span id="cb406-5"><a href="cap-bagg-rf.html#cb406-5" tabindex="-1"></a></span>
+<span id="cb406-6"><a href="cap-bagg-rf.html#cb406-6" tabindex="-1"></a><span class="dv">558</span> samples</span>
+<span id="cb406-7"><a href="cap-bagg-rf.html#cb406-7" tabindex="-1"></a> <span class="dv">19</span> predictor</span>
+<span id="cb406-8"><a href="cap-bagg-rf.html#cb406-8" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span> </span>
+<span id="cb406-9"><a href="cap-bagg-rf.html#cb406-9" tabindex="-1"></a></span>
+<span id="cb406-10"><a href="cap-bagg-rf.html#cb406-10" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
+<span id="cb406-11"><a href="cap-bagg-rf.html#cb406-11" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold) </span>
+<span id="cb406-12"><a href="cap-bagg-rf.html#cb406-12" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ... </span>
+<span id="cb406-13"><a href="cap-bagg-rf.html#cb406-13" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
+<span id="cb406-14"><a href="cap-bagg-rf.html#cb406-14" tabindex="-1"></a></span>
+<span id="cb406-15"><a href="cap-bagg-rf.html#cb406-15" tabindex="-1"></a>  mtry  Accuracy   Kappa    </span>
+<span id="cb406-16"><a href="cap-bagg-rf.html#cb406-16" tabindex="-1"></a>   <span class="dv">2</span>    <span class="fl">0.8602922</span>  <span class="fl">0.7206238</span></span>
+<span id="cb406-17"><a href="cap-bagg-rf.html#cb406-17" tabindex="-1"></a>  <span class="dv">10</span>    <span class="fl">0.8620455</span>  <span class="fl">0.7241029</span></span>
+<span id="cb406-18"><a href="cap-bagg-rf.html#cb406-18" tabindex="-1"></a>  <span class="dv">19</span>    <span class="fl">0.8620130</span>  <span class="fl">0.7240248</span></span>
+<span id="cb406-19"><a href="cap-bagg-rf.html#cb406-19" tabindex="-1"></a></span>
+<span id="cb406-20"><a href="cap-bagg-rf.html#cb406-20" tabindex="-1"></a>Accuracy was used to select the optimal model using the largest value.</span>
+<span id="cb406-21"><a href="cap-bagg-rf.html#cb406-21" tabindex="-1"></a>The final value used <span class="cf">for</span> the model was mtry <span class="ot">=</span> <span class="fl">10.</span></span></code></pre></div>
 <p>Los resultados de la validación cruzada se pueden ver en la Fig. <a href="cap-bagg-rf.html#fig:RFRESULTS">28.5</a>. Se observa como la el porcentaje de clasificaciones correctas oscila entre el 80 % y el 95 %.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:RFRESULTS"></span>
@@ -406,37 +406,37 @@ Figura 28.5: Resultados del modelo <span class="math inline">\(random\)</span> <
 </p>
 </div>
 <p>Finalmente, aunque el <em>random forest</em> generado está compuesto por 500 árboles, se puede acceder a cualquiera de ellos para estudiarlo en profundidad. Para ello, es necesario instalar el paquete <code>reprtree</code> desde el repositorio <a href="https://github.com/araastat/reprtree" class="uri">https://github.com/araastat/reprtree</a>.</p>
-<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">'araastat/reprtree'</span><span class="op">)</span></span></code></pre></div>
 <p>En el siguiente resultado se pueden observar las decisiones que se toman en el árbol de forma tabulada: qué variable se utiliza para la partición, cuál es el valor que decide la división, si se trata de un nodo terminal (<code>-1</code>) o no (<code>1</code>) y la predicción del nodo, que es <code>NA</code> si no es un nodo terminal.</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="cap-bagg-rf.html#cb407-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
-<span id="cb407-2"><a href="cap-bagg-rf.html#cb407-2" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(CLS_PRO_pro13<span class="sc">~</span>., <span class="at">data =</span> dp_entr_NUM, <span class="at">ntree=</span><span class="dv">500</span>,</span>
-<span id="cb407-3"><a href="cap-bagg-rf.html#cb407-3" tabindex="-1"></a>                   <span class="at">mtry=</span><span class="fu">unlist</span>(model<span class="sc">$</span>bestTune))</span>
-<span id="cb407-4"><a href="cap-bagg-rf.html#cb407-4" tabindex="-1"></a></span>
-<span id="cb407-5"><a href="cap-bagg-rf.html#cb407-5" tabindex="-1"></a><span class="co"># se observa el árbol número 205</span></span>
-<span id="cb407-6"><a href="cap-bagg-rf.html#cb407-6" tabindex="-1"></a>tree205 <span class="ot">&lt;-</span> <span class="fu">getTree</span>(rf, <span class="dv">205</span>, <span class="at">labelVar=</span><span class="cn">TRUE</span>)</span>
-<span id="cb407-7"><a href="cap-bagg-rf.html#cb407-7" tabindex="-1"></a></span>
-<span id="cb407-8"><a href="cap-bagg-rf.html#cb407-8" tabindex="-1"></a><span class="fu">head</span>(tree205[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])</span>
-<span id="cb407-9"><a href="cap-bagg-rf.html#cb407-9" tabindex="-1"></a>      split var split point status prediction</span>
-<span id="cb407-10"><a href="cap-bagg-rf.html#cb407-10" tabindex="-1"></a><span class="dv">1</span> importe_pro15         <span class="dv">100</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
-<span id="cb407-11"><a href="cap-bagg-rf.html#cb407-11" tabindex="-1"></a><span class="dv">2</span> importe_pro12          <span class="dv">60</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
-<span id="cb407-12"><a href="cap-bagg-rf.html#cb407-12" tabindex="-1"></a><span class="dv">3</span> importe_pro16          <span class="dv">90</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
-<span id="cb407-13"><a href="cap-bagg-rf.html#cb407-13" tabindex="-1"></a><span class="dv">4</span>  ingresos_ano      <span class="dv">156500</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
-<span id="cb407-14"><a href="cap-bagg-rf.html#cb407-14" tabindex="-1"></a><span class="dv">5</span> importe_pro17         <span class="dv">150</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
-<span id="cb407-15"><a href="cap-bagg-rf.html#cb407-15" tabindex="-1"></a><span class="dv">6</span>      anos_exp          <span class="dv">33</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
-<span id="cb407-16"><a href="cap-bagg-rf.html#cb407-16" tabindex="-1"></a>  </span>
-<span id="cb407-17"><a href="cap-bagg-rf.html#cb407-17" tabindex="-1"></a><span class="fu">tail</span>(tree205[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])</span>
-<span id="cb407-18"><a href="cap-bagg-rf.html#cb407-18" tabindex="-1"></a>               split var split point status prediction</span>
-<span id="cb407-19"><a href="cap-bagg-rf.html#cb407-19" tabindex="-1"></a><span class="dv">120</span>                 <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>         <span class="fl">0.0</span>     <span class="sc">-</span><span class="dv">1</span>          N</span>
-<span id="cb407-20"><a href="cap-bagg-rf.html#cb407-20" tabindex="-1"></a><span class="dv">121</span>                 <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>         <span class="fl">0.0</span>     <span class="sc">-</span><span class="dv">1</span>          S</span>
-<span id="cb407-21"><a href="cap-bagg-rf.html#cb407-21" tabindex="-1"></a><span class="dv">122</span> des_nivel_edu.BASICO         <span class="fl">0.5</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
-<span id="cb407-22"><a href="cap-bagg-rf.html#cb407-22" tabindex="-1"></a><span class="dv">123</span>                 <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>         <span class="fl">0.0</span>     <span class="sc">-</span><span class="dv">1</span>          S</span>
-<span id="cb407-23"><a href="cap-bagg-rf.html#cb407-23" tabindex="-1"></a><span class="dv">124</span>                 <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>         <span class="fl">0.0</span>     <span class="sc">-</span><span class="dv">1</span>          S</span>
-<span id="cb407-24"><a href="cap-bagg-rf.html#cb407-24" tabindex="-1"></a><span class="dv">125</span>                 <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>         <span class="fl">0.0</span>     <span class="sc">-</span><span class="dv">1</span>          N</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="cap-bagg-rf.html#cb408-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
+<span id="cb408-2"><a href="cap-bagg-rf.html#cb408-2" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(CLS_PRO_pro13<span class="sc">~</span>., <span class="at">data =</span> dp_entr_NUM, <span class="at">ntree=</span><span class="dv">500</span>,</span>
+<span id="cb408-3"><a href="cap-bagg-rf.html#cb408-3" tabindex="-1"></a>                   <span class="at">mtry=</span><span class="fu">unlist</span>(model<span class="sc">$</span>bestTune))</span>
+<span id="cb408-4"><a href="cap-bagg-rf.html#cb408-4" tabindex="-1"></a></span>
+<span id="cb408-5"><a href="cap-bagg-rf.html#cb408-5" tabindex="-1"></a><span class="co"># se observa el árbol número 205</span></span>
+<span id="cb408-6"><a href="cap-bagg-rf.html#cb408-6" tabindex="-1"></a>tree205 <span class="ot">&lt;-</span> <span class="fu">getTree</span>(rf, <span class="dv">205</span>, <span class="at">labelVar=</span><span class="cn">TRUE</span>)</span>
+<span id="cb408-7"><a href="cap-bagg-rf.html#cb408-7" tabindex="-1"></a></span>
+<span id="cb408-8"><a href="cap-bagg-rf.html#cb408-8" tabindex="-1"></a><span class="fu">head</span>(tree205[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])</span>
+<span id="cb408-9"><a href="cap-bagg-rf.html#cb408-9" tabindex="-1"></a>      split var split point status prediction</span>
+<span id="cb408-10"><a href="cap-bagg-rf.html#cb408-10" tabindex="-1"></a><span class="dv">1</span> importe_pro15         <span class="dv">100</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
+<span id="cb408-11"><a href="cap-bagg-rf.html#cb408-11" tabindex="-1"></a><span class="dv">2</span> importe_pro12          <span class="dv">60</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
+<span id="cb408-12"><a href="cap-bagg-rf.html#cb408-12" tabindex="-1"></a><span class="dv">3</span> importe_pro16          <span class="dv">90</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
+<span id="cb408-13"><a href="cap-bagg-rf.html#cb408-13" tabindex="-1"></a><span class="dv">4</span>  ingresos_ano      <span class="dv">156500</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
+<span id="cb408-14"><a href="cap-bagg-rf.html#cb408-14" tabindex="-1"></a><span class="dv">5</span> importe_pro17         <span class="dv">150</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
+<span id="cb408-15"><a href="cap-bagg-rf.html#cb408-15" tabindex="-1"></a><span class="dv">6</span>      anos_exp          <span class="dv">33</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
+<span id="cb408-16"><a href="cap-bagg-rf.html#cb408-16" tabindex="-1"></a>  </span>
+<span id="cb408-17"><a href="cap-bagg-rf.html#cb408-17" tabindex="-1"></a><span class="fu">tail</span>(tree205[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)])</span>
+<span id="cb408-18"><a href="cap-bagg-rf.html#cb408-18" tabindex="-1"></a>               split var split point status prediction</span>
+<span id="cb408-19"><a href="cap-bagg-rf.html#cb408-19" tabindex="-1"></a><span class="dv">120</span>                 <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>         <span class="fl">0.0</span>     <span class="sc">-</span><span class="dv">1</span>          N</span>
+<span id="cb408-20"><a href="cap-bagg-rf.html#cb408-20" tabindex="-1"></a><span class="dv">121</span>                 <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>         <span class="fl">0.0</span>     <span class="sc">-</span><span class="dv">1</span>          S</span>
+<span id="cb408-21"><a href="cap-bagg-rf.html#cb408-21" tabindex="-1"></a><span class="dv">122</span> des_nivel_edu.BASICO         <span class="fl">0.5</span>      <span class="dv">1</span>       <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
+<span id="cb408-22"><a href="cap-bagg-rf.html#cb408-22" tabindex="-1"></a><span class="dv">123</span>                 <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>         <span class="fl">0.0</span>     <span class="sc">-</span><span class="dv">1</span>          S</span>
+<span id="cb408-23"><a href="cap-bagg-rf.html#cb408-23" tabindex="-1"></a><span class="dv">124</span>                 <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>         <span class="fl">0.0</span>     <span class="sc">-</span><span class="dv">1</span>          S</span>
+<span id="cb408-24"><a href="cap-bagg-rf.html#cb408-24" tabindex="-1"></a><span class="dv">125</span>                 <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>         <span class="fl">0.0</span>     <span class="sc">-</span><span class="dv">1</span>          N</span></code></pre></div>
 <p>Este árbol se muestra en la Fig. <a href="cap-bagg-rf.html#fig:rf-tree205">28.6</a>.</p>
-<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"reprtree"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/reprtree/man/plot.getTree.html">plot.getTree</a></span><span class="op">(</span><span class="va">rf</span>, k<span class="op">=</span><span class="fl">205</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">plot.getTree</span><span class="op">(</span><span class="va">rf</span>, k<span class="op">=</span><span class="fl">205</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:rf-tree205"></span>
 <img src="img/rf-tree205.png" alt="Árbol número 205 del $random$ $forest$ entrenado." width="60%"><p class="caption">
@@ -444,8 +444,8 @@ Figura 28.6: Árbol número 205 del <span class="math inline">\(random\)</span> 
 </p>
 </div>
 <p>Sin embargo, el método por el que se representa gráficamente no es muy claro y puede llevar a confusión o dificultar la interpretación del árbol. Si se desea estudiar el árbol, hasta un cierto nivel, se puede incluir el argumento <code>depth</code>. El árbol, ahora con una profundidad de 5 ramas, puede verse en la Fig. <a href="cap-bagg-rf.html#fig:tree-plot2">28.7</a>.</p>
-<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/reprtree/man/plot.getTree.html">plot.getTree</a></span><span class="op">(</span><span class="va">rf</span>, k<span class="op">=</span><span class="fl">205</span>, depth <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot.getTree</span><span class="op">(</span><span class="va">rf</span>, k<span class="op">=</span><span class="fl">205</span>, depth <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:tree-plot2"></span>
 <img src="img/rf_tree205_depth5.png" alt="Árbol número 205 del $random$ $forest$ entrenado hasta la capa 5." width="80%"><p class="caption">
@@ -457,15 +457,15 @@ Figura 28.7: Árbol número 205 del <span class="math inline">\(random\)</span> 
 <span class="header-section-number">28.3.7.1</span> Aplicación del modelo <em>random forest</em> con ajuste automático<a class="anchor" aria-label="anchor" href="#aplicaci%C3%B3n-del-modelo-random-forest-con-ajuste-autom%C3%A1tico"><i class="fas fa-link"></i></a>
 </h4>
 <p>En este segundo ejemplo se pretende mejorar la precisión del modelo anterior. Para ello, se procede al ajuste automático de los hiperparámetros de dicho algoritmo. De los mencionados anteriormente, solo se va a ajustar automáticamente <code>mtry</code>, que es el único incluido el método <code>rf</code>.</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="cap-bagg-rf.html#cb410-1" tabindex="-1"></a><span class="fu">modelLookup</span>(<span class="st">"rf"</span>)</span>
-<span id="cb410-2"><a href="cap-bagg-rf.html#cb410-2" tabindex="-1"></a>  model parameter                         label forReg forClass probModel</span>
-<span id="cb410-3"><a href="cap-bagg-rf.html#cb410-3" tabindex="-1"></a><span class="dv">1</span>    rf      mtry <span class="co">#Randomly Selected Predictors   TRUE     TRUE      TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="cap-bagg-rf.html#cb411-1" tabindex="-1"></a><span class="fu">modelLookup</span>(<span class="st">"rf"</span>)</span>
+<span id="cb411-2"><a href="cap-bagg-rf.html#cb411-2" tabindex="-1"></a>  model parameter                         label forReg forClass probModel</span>
+<span id="cb411-3"><a href="cap-bagg-rf.html#cb411-3" tabindex="-1"></a><span class="dv">1</span>    rf      mtry <span class="co">#Randomly Selected Predictors   TRUE     TRUE      TRUE</span></span></code></pre></div>
 <p>Para ajustar el número de árboles y el resto de hiperparámetros, se puede iterar el modelo y probar distintos valores. En una red de opciones se incluyen los valores a probar para el hiperparámetro <code>mtry</code>.</p>
-<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se especifica un rango de valores posibles de mtry</span></span>
 <span><span class="va">tuneGrid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>mtry <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">18</span><span class="op">)</span></span></code></pre></div>
 <p>A continuación, se entrena el modelo para que se ajuste al valor de <code>mtry</code> que maximice el rendimiento predictivo del modelo.</p>
-<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># se fija la semilla aleatoria</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span><span class="co"># se entrena el modelo</span></span>
@@ -473,43 +473,43 @@ Figura 28.7: Árbol número 205 del <span class="math inline">\(random\)</span> 
 <span>               method <span class="op">=</span> <span class="st">"rf"</span>, metric <span class="op">=</span> <span class="st">"Accuracy"</span>,</span>
 <span>               tuneGrid <span class="op">=</span> <span class="va">tuneGrid</span>,</span>
 <span>               trControl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/trainControl.html">trainControl</a></span><span class="op">(</span>classProbs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="cap-bagg-rf.html#cb413-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
-<span id="cb413-2"><a href="cap-bagg-rf.html#cb413-2" tabindex="-1"></a>model</span>
-<span id="cb413-3"><a href="cap-bagg-rf.html#cb413-3" tabindex="-1"></a></span>
-<span id="cb413-4"><a href="cap-bagg-rf.html#cb413-4" tabindex="-1"></a>Random Forest </span>
-<span id="cb413-5"><a href="cap-bagg-rf.html#cb413-5" tabindex="-1"></a><span class="dv">558</span> samples</span>
-<span id="cb413-6"><a href="cap-bagg-rf.html#cb413-6" tabindex="-1"></a> <span class="dv">19</span> predictor</span>
-<span id="cb413-7"><a href="cap-bagg-rf.html#cb413-7" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span> </span>
-<span id="cb413-8"><a href="cap-bagg-rf.html#cb413-8" tabindex="-1"></a></span>
-<span id="cb413-9"><a href="cap-bagg-rf.html#cb413-9" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
-<span id="cb413-10"><a href="cap-bagg-rf.html#cb413-10" tabindex="-1"></a>Resampling<span class="sc">:</span> <span class="fu">Bootstrapped</span> (<span class="dv">25</span> reps) </span>
-<span id="cb413-11"><a href="cap-bagg-rf.html#cb413-11" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">558</span>, <span class="dv">558</span>, <span class="dv">558</span>, <span class="dv">558</span>, <span class="dv">558</span>, <span class="dv">558</span>, ... </span>
-<span id="cb413-12"><a href="cap-bagg-rf.html#cb413-12" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
-<span id="cb413-13"><a href="cap-bagg-rf.html#cb413-13" tabindex="-1"></a></span>
-<span id="cb413-14"><a href="cap-bagg-rf.html#cb413-14" tabindex="-1"></a>  mtry  Accuracy   Kappa    </span>
-<span id="cb413-15"><a href="cap-bagg-rf.html#cb413-15" tabindex="-1"></a>   <span class="dv">1</span>    <span class="fl">0.8641354</span>  <span class="fl">0.7283098</span></span>
-<span id="cb413-16"><a href="cap-bagg-rf.html#cb413-16" tabindex="-1"></a>   <span class="dv">2</span>    <span class="fl">0.8650087</span>  <span class="fl">0.7298376</span></span>
-<span id="cb413-17"><a href="cap-bagg-rf.html#cb413-17" tabindex="-1"></a>   <span class="dv">3</span>    <span class="fl">0.8629614</span>  <span class="fl">0.7256812</span></span>
-<span id="cb413-18"><a href="cap-bagg-rf.html#cb413-18" tabindex="-1"></a>   <span class="dv">4</span>    <span class="fl">0.8635609</span>  <span class="fl">0.7268514</span></span>
-<span id="cb413-19"><a href="cap-bagg-rf.html#cb413-19" tabindex="-1"></a>   <span class="dv">5</span>    <span class="fl">0.8639559</span>  <span class="fl">0.7276250</span></span>
-<span id="cb413-20"><a href="cap-bagg-rf.html#cb413-20" tabindex="-1"></a>   <span class="dv">6</span>    <span class="fl">0.8612659</span>  <span class="fl">0.7222420</span></span>
-<span id="cb413-21"><a href="cap-bagg-rf.html#cb413-21" tabindex="-1"></a>   <span class="dv">7</span>    <span class="fl">0.8604934</span>  <span class="fl">0.7206476</span></span>
-<span id="cb413-22"><a href="cap-bagg-rf.html#cb413-22" tabindex="-1"></a>   <span class="dv">8</span>    <span class="fl">0.8610116</span>  <span class="fl">0.7216937</span></span>
-<span id="cb413-23"><a href="cap-bagg-rf.html#cb413-23" tabindex="-1"></a>   <span class="dv">9</span>    <span class="fl">0.8590645</span>  <span class="fl">0.7177882</span></span>
-<span id="cb413-24"><a href="cap-bagg-rf.html#cb413-24" tabindex="-1"></a>  <span class="dv">10</span>    <span class="fl">0.8589073</span>  <span class="fl">0.7174718</span></span>
-<span id="cb413-25"><a href="cap-bagg-rf.html#cb413-25" tabindex="-1"></a>  <span class="dv">11</span>    <span class="fl">0.8607248</span>  <span class="fl">0.7211179</span></span>
-<span id="cb413-26"><a href="cap-bagg-rf.html#cb413-26" tabindex="-1"></a>  <span class="dv">12</span>    <span class="fl">0.8583609</span>  <span class="fl">0.7163903</span></span>
-<span id="cb413-27"><a href="cap-bagg-rf.html#cb413-27" tabindex="-1"></a>  <span class="dv">13</span>    <span class="fl">0.8587296</span>  <span class="fl">0.7170933</span></span>
-<span id="cb413-28"><a href="cap-bagg-rf.html#cb413-28" tabindex="-1"></a>  <span class="dv">14</span>    <span class="fl">0.8587384</span>  <span class="fl">0.7171642</span></span>
-<span id="cb413-29"><a href="cap-bagg-rf.html#cb413-29" tabindex="-1"></a>  <span class="dv">15</span>    <span class="fl">0.8583195</span>  <span class="fl">0.7163106</span></span>
-<span id="cb413-30"><a href="cap-bagg-rf.html#cb413-30" tabindex="-1"></a>  <span class="dv">16</span>    <span class="fl">0.8585407</span>  <span class="fl">0.7167355</span></span>
-<span id="cb413-31"><a href="cap-bagg-rf.html#cb413-31" tabindex="-1"></a>  <span class="dv">17</span>    <span class="fl">0.8573597</span>  <span class="fl">0.7144030</span></span>
-<span id="cb413-32"><a href="cap-bagg-rf.html#cb413-32" tabindex="-1"></a>  <span class="dv">18</span>    <span class="fl">0.8581404</span>  <span class="fl">0.7159558</span></span>
-<span id="cb413-33"><a href="cap-bagg-rf.html#cb413-33" tabindex="-1"></a></span>
-<span id="cb413-34"><a href="cap-bagg-rf.html#cb413-34" tabindex="-1"></a>Accuracy was used to select the optimal model using the largest value.</span>
-<span id="cb413-35"><a href="cap-bagg-rf.html#cb413-35" tabindex="-1"></a>The final value used <span class="cf">for</span> the model was mtry <span class="ot">=</span> <span class="fl">2.</span></span></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="cap-bagg-rf.html#cb414-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
+<span id="cb414-2"><a href="cap-bagg-rf.html#cb414-2" tabindex="-1"></a>model</span>
+<span id="cb414-3"><a href="cap-bagg-rf.html#cb414-3" tabindex="-1"></a></span>
+<span id="cb414-4"><a href="cap-bagg-rf.html#cb414-4" tabindex="-1"></a>Random Forest </span>
+<span id="cb414-5"><a href="cap-bagg-rf.html#cb414-5" tabindex="-1"></a><span class="dv">558</span> samples</span>
+<span id="cb414-6"><a href="cap-bagg-rf.html#cb414-6" tabindex="-1"></a> <span class="dv">19</span> predictor</span>
+<span id="cb414-7"><a href="cap-bagg-rf.html#cb414-7" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span> </span>
+<span id="cb414-8"><a href="cap-bagg-rf.html#cb414-8" tabindex="-1"></a></span>
+<span id="cb414-9"><a href="cap-bagg-rf.html#cb414-9" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
+<span id="cb414-10"><a href="cap-bagg-rf.html#cb414-10" tabindex="-1"></a>Resampling<span class="sc">:</span> <span class="fu">Bootstrapped</span> (<span class="dv">25</span> reps) </span>
+<span id="cb414-11"><a href="cap-bagg-rf.html#cb414-11" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">558</span>, <span class="dv">558</span>, <span class="dv">558</span>, <span class="dv">558</span>, <span class="dv">558</span>, <span class="dv">558</span>, ... </span>
+<span id="cb414-12"><a href="cap-bagg-rf.html#cb414-12" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
+<span id="cb414-13"><a href="cap-bagg-rf.html#cb414-13" tabindex="-1"></a></span>
+<span id="cb414-14"><a href="cap-bagg-rf.html#cb414-14" tabindex="-1"></a>  mtry  Accuracy   Kappa    </span>
+<span id="cb414-15"><a href="cap-bagg-rf.html#cb414-15" tabindex="-1"></a>   <span class="dv">1</span>    <span class="fl">0.8641354</span>  <span class="fl">0.7283098</span></span>
+<span id="cb414-16"><a href="cap-bagg-rf.html#cb414-16" tabindex="-1"></a>   <span class="dv">2</span>    <span class="fl">0.8650087</span>  <span class="fl">0.7298376</span></span>
+<span id="cb414-17"><a href="cap-bagg-rf.html#cb414-17" tabindex="-1"></a>   <span class="dv">3</span>    <span class="fl">0.8629614</span>  <span class="fl">0.7256812</span></span>
+<span id="cb414-18"><a href="cap-bagg-rf.html#cb414-18" tabindex="-1"></a>   <span class="dv">4</span>    <span class="fl">0.8635609</span>  <span class="fl">0.7268514</span></span>
+<span id="cb414-19"><a href="cap-bagg-rf.html#cb414-19" tabindex="-1"></a>   <span class="dv">5</span>    <span class="fl">0.8639559</span>  <span class="fl">0.7276250</span></span>
+<span id="cb414-20"><a href="cap-bagg-rf.html#cb414-20" tabindex="-1"></a>   <span class="dv">6</span>    <span class="fl">0.8612659</span>  <span class="fl">0.7222420</span></span>
+<span id="cb414-21"><a href="cap-bagg-rf.html#cb414-21" tabindex="-1"></a>   <span class="dv">7</span>    <span class="fl">0.8604934</span>  <span class="fl">0.7206476</span></span>
+<span id="cb414-22"><a href="cap-bagg-rf.html#cb414-22" tabindex="-1"></a>   <span class="dv">8</span>    <span class="fl">0.8610116</span>  <span class="fl">0.7216937</span></span>
+<span id="cb414-23"><a href="cap-bagg-rf.html#cb414-23" tabindex="-1"></a>   <span class="dv">9</span>    <span class="fl">0.8590645</span>  <span class="fl">0.7177882</span></span>
+<span id="cb414-24"><a href="cap-bagg-rf.html#cb414-24" tabindex="-1"></a>  <span class="dv">10</span>    <span class="fl">0.8589073</span>  <span class="fl">0.7174718</span></span>
+<span id="cb414-25"><a href="cap-bagg-rf.html#cb414-25" tabindex="-1"></a>  <span class="dv">11</span>    <span class="fl">0.8607248</span>  <span class="fl">0.7211179</span></span>
+<span id="cb414-26"><a href="cap-bagg-rf.html#cb414-26" tabindex="-1"></a>  <span class="dv">12</span>    <span class="fl">0.8583609</span>  <span class="fl">0.7163903</span></span>
+<span id="cb414-27"><a href="cap-bagg-rf.html#cb414-27" tabindex="-1"></a>  <span class="dv">13</span>    <span class="fl">0.8587296</span>  <span class="fl">0.7170933</span></span>
+<span id="cb414-28"><a href="cap-bagg-rf.html#cb414-28" tabindex="-1"></a>  <span class="dv">14</span>    <span class="fl">0.8587384</span>  <span class="fl">0.7171642</span></span>
+<span id="cb414-29"><a href="cap-bagg-rf.html#cb414-29" tabindex="-1"></a>  <span class="dv">15</span>    <span class="fl">0.8583195</span>  <span class="fl">0.7163106</span></span>
+<span id="cb414-30"><a href="cap-bagg-rf.html#cb414-30" tabindex="-1"></a>  <span class="dv">16</span>    <span class="fl">0.8585407</span>  <span class="fl">0.7167355</span></span>
+<span id="cb414-31"><a href="cap-bagg-rf.html#cb414-31" tabindex="-1"></a>  <span class="dv">17</span>    <span class="fl">0.8573597</span>  <span class="fl">0.7144030</span></span>
+<span id="cb414-32"><a href="cap-bagg-rf.html#cb414-32" tabindex="-1"></a>  <span class="dv">18</span>    <span class="fl">0.8581404</span>  <span class="fl">0.7159558</span></span>
+<span id="cb414-33"><a href="cap-bagg-rf.html#cb414-33" tabindex="-1"></a></span>
+<span id="cb414-34"><a href="cap-bagg-rf.html#cb414-34" tabindex="-1"></a>Accuracy was used to select the optimal model using the largest value.</span>
+<span id="cb414-35"><a href="cap-bagg-rf.html#cb414-35" tabindex="-1"></a>The final value used <span class="cf">for</span> the model was mtry <span class="ot">=</span> <span class="fl">2.</span></span></code></pre></div>
 <p>Mientras que en el ejemplo anterior el algoritmo solo probó tres valores de <code>mtry</code>, esta vez se realiza una prueba exhaustiva de valores. En el primer ejemplo, el valor del hiperparámetro era <code>mtry=10</code>, pero ahora se ha reajustado a <code>mtry=2</code>. Esto es equivalente a decir que seleccionar tan solo 2 variables en cada partición proporciona mejores resultados que seleccionar 10, como en el ejemplo anterior. Finalmente, en la Fig. <a href="cap-bagg-rf.html#fig:rfresults2">28.8</a> se pueden observar los resultados obtenidos durante el proceso de validación cruzada. Se observa cómo no solo el porcentaje de clasificaciones correctas es mayor que en el ejemplo anterior, sino que además los resultados tienen menos dispersión.</p>
-<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">resample</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>show.legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
@@ -580,7 +580,7 @@ Figura 28.8: Resultados obtenidos por el random forest con ajuste automático du
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

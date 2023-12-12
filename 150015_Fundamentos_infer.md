@@ -11,7 +11,7 @@ Cuando se estudian fenómenos mediante variables aleatorias, el objetivo estadí
 
 La inferencia estadística proporciona las herramientas y técnicas que permiten, a partir de la información muestral, extrapolar resultados a la distribución poblacional con márgenes de error conocidos. Un primer objetivo (más detallado en el Cap. \@ref(muestreo)) es analizar qué condiciones debe cumplir la muestra para que su información sea válida y extrapolable a toda la población (es la conocida como **teoría de muestreo**). Un segundo objetivo es establecer los mecanismos que permitan dicha extrapolación manteniendo controlados los errores de muestreo.
 
-Es habitual que se conozca (o se asuma) que la distribución poblacional $F(x)$ pertenezca a alguna familia paramétrica, es decir, que se asuma su forma funcional pero que dependa de algunos parámetros (lo más frecuente es que se asuma la normalidad, pero podría ser cualquiera de los modelos paramétricos existentes). Se habla entonces de **inferencia paramétrica**, ya que se usa la información muestral para determinar los "mejores" valores (bajo algún criterio) de los parámetros que rigen la distribución poblacional, existiendo tres planteamientos básicos: estimación puntual\index{estimación!puntual} (Sec. \@ref(estimpuntual)), por intervalo\index{intervalos de confianza} (Sec. \@ref(estimintervalos)) y contraste de hipótesis\index{contraste de hipótesis} (Sec. \@ref(contrhip)).
+Es habitual que se conozca (o se asuma) que la distribución poblacional $F(x)$ pertenezca a alguna familia paramétrica, es decir, que se asuma su forma funcional pero que dependa de algunos parámetros (lo más frecuente es que se asuma la normalidad, pero podría ser cualquiera de los modelos paramétricos existentes). Se habla entonces de **inferencia paramétrica**, ya que se usa la información muestral para determinar los "mejores" valores (bajo algún criterio) de los parámetros que rigen la distribución poblacional, existiendo tres planteamientos básicos: estimación puntual\index{estimación!puntual} (Sec. \@ref(estimpuntual)), por intervalo\index{intervalos de confianza} (Sec. \@ref(estimintervalos)) y contraste de hipótesis\index{contraste!de hipótesis} (Sec. \@ref(contrhip)).
 \index{estimación!por intervalos}
 
 También hay situaciones en las que la forma funcional de la distribución poblacional es desconocida, o se duda de que la familia paramétrica considerada sea adecuada. En estos casos, bajo el nombre genérico de **inferencia no paramétrica**, se plantean contrastes que buscan determinar cuándo es posible asumir un modelo concreto de distribución, entre los que destacan, por su frecuente uso, los contrastes de normalidad (Sec. \@ref(contrnormalidad)). Otra alternativa que permite aproximar características poblacionales sin asumir ninguna distribución poblacional concreta es el **remuestreo**, fundamentalmente el denominado *bootstrap* (se aborda en el Cap. \@ref(muestreo)).
@@ -20,7 +20,7 @@ También hay situaciones en las que la forma funcional de la distribución pobla
 
 Al estudiar una variable poblacional, $X$, de la que se desconoce su distribución, llamada **distribución poblacional, $F(x)$**, se utiliza la información suministrada por una **muestra** obtenida por algún método de muestreo probabilístico que garantice que sea representativa de la variable poblacional. 
 
-En la mayoría de los casos y técnicas estadísticas se asume que la muestra está obtenida mediante el método básico de muestreo, conocido como **muestreo aleatorio simple**, consistente en seleccionar totalmente al azar y con reemplazo a los individuos de la muestra, por lo que todos tienen la misma probabilidad de formar parte de ella. De esta forma, dada una distribución poblacional $F(x)$, una muestra aleatoria simple (m.a.s.)\index{muestra aleatoria simple} es una realización de un conjunto de $n$ variables aleatorias independientes e idénticamente distribuidas $X=(X_1,...,X_n)$, denominadas **variables muestrales** y cuya **distribución conjunta** es de la forma:
+En la mayoría de los casos y técnicas estadísticas se asume que la muestra está obtenida mediante el método básico de muestreo, conocido como **muestreo aleatorio simple**, consistente en seleccionar totalmente al azar y con reemplazo a los individuos de la muestra, por lo que todos tienen la misma probabilidad de formar parte de ella. De esta forma, dada una distribución poblacional $F(x)$, una muestra aleatoria simple (m.a.s.)\index{muestra!aleatoria simple} es una realización de un conjunto de $n$ variables aleatorias independientes e idénticamente distribuidas $X=(X_1,...,X_n)$, denominadas **variables muestrales** y cuya **distribución conjunta** es de la forma:
 
 \begin{equation}
 F(X_1,...,X_n)=F_{X_1}(x_1)...F_{X_n}(x_n)=F(x_1)...F(x_n).
@@ -64,14 +64,10 @@ plot.ecdf(x3, main = "n=200")
 curve(pnorm, add = TRUE, col = "red")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/150015img01} 
-
-}
-
-\caption{Distribución empírica para muestras de diferente tamaño de una distribución normal.}(\#fig:150015distrempir)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150015img01.png" alt="Distribución empírica para muestras de diferente tamaño de una distribución normal." width="60%" />
+<p class="caption">(\#fig:150015distrempir)Distribución empírica para muestras de diferente tamaño de una distribución normal.</p>
+</div>
 
 Es muy frecuente que, a efectos de inferencia, no se estudie el comportamiento aleatorio de toda la muestra (su distribución conjunta), sino que interese el comportamiento de una función de la muestra que no dependa de ningún valor desconocido, $T(X)=T(X_1,...,X_n)$, llamada genéricamente **estadístico muestral**; dicho comportamiento vendrá determinado por la **distribución en el muestreo** del estadístico $T(X)$. El hecho de utilizar una m.a.s. permite establecer resultados de interés sobre los estadísticos o, en algunos casos, incluso obtener la distribución en el muestreo exacta de los estadísticos más usuales (Sec. \@ref(pobnormales)).
 
@@ -198,7 +194,7 @@ En **R**, el paquete `Rlab` permite obtener los valores críticos de las distrib
 
 
 ## Contrastes de hipótesis {#contrhip}
-\index{contraste de hipótesis}
+\index{contraste!de hipótesis}
 Hay situaciones donde no interesa tanto estimar el valor de un parámetro, sino decidir si la información muestral es congruente con algún valor concreto del parámetro. En estos casos, se puede establecer como **hipótesis** que el parámetro toma un valor concreto y **contrastar** si es verosímil haber obtenido el resultado muestral dado. Este planteamiento se conoce como **contrastes de significación**.
 
 Así, se establece una hipótesis, históricamente conocida como **hipótesis nula**, que determina un valor del parámetro:
@@ -207,9 +203,11 @@ Así, se establece una hipótesis, históricamente conocida como **hipótesis nu
 H_0 \equiv \theta = \theta_0.
 \end{equation}
 
-Suponiendo cierta la hipótesis nula, la distribución muestral del estimador permite obtener la probabilidad de observar un valor del estimador más "distante" del valor del parámetro fijado en la hipótesis nula que el obtenido en la muestra, probabilidad conocida como **$p-$valor**:\index{p-valor@\textit{p}-valor} si es muy pequeño, es muy poco probable que se observe el valor obtenido en la muestra cuando la hipótesis es cierta, por lo que la evidencia empírica no es congruente con ella; si no es pequeño, dicho valor es probable que se observe (bajo la hipótesis nula), por lo que no habría evidencia empírica "en contra" de ella.
+Suponiendo cierta la hipótesis nula, la distribución muestral del estimador permite obtener la probabilidad de observar un valor del estimador más "distante" del valor del parámetro fijado en la hipótesis nula que el obtenido en la muestra, probabilidad conocida como **$\bf{\textit{p}}-$valor**: si es muy pequeño, es muy poco probable que se observe el valor obtenido en la muestra cuando la hipótesis es cierta, por lo que la evidencia empírica no es congruente con ella; si no es pequeño, dicho valor es probable que se observe (bajo la hipótesis nula), por lo que no habría evidencia empírica "en contra" de ella.
 
-Se habla de **$p-$valor bilateral** o "a dos colas" cuando la distancia se considera tanto por la derecha como por la izquierda de la distribución del estimador bajo la hipótesis nula. En caso de que se considere solo por la izquierda o por la derecha, se habla de **$p-$valor unilateral** (a la izquierda o a la derecha, respectivamente) o "a una cola". La comparación (distancia) entre el valor del parámetro establecido en la hipótesis nula y el del estimador de dicho parámetro puede llevarse a cabo por diferencia (tal es el caso del contraste de medias) o por cociente (caso de los contrastes de varianzas).
+\index{p@\textit{p}-valor}
+
+Se habla de **$\bf{\textit{p}}-$valor bilateral** o "a dos colas" cuando la distancia se considera tanto por la derecha como por la izquierda de la distribución del estimador bajo la hipótesis nula. En caso de que se considere solo por la izquierda o por la derecha, se habla de **$\bf{\textit{p}}-$valor unilateral** (a la izquierda o a la derecha, respectivamente) o "a una cola". La comparación (distancia) entre el valor del parámetro establecido en la hipótesis nula y el del estimador de dicho parámetro puede llevarse a cabo por diferencia (tal es el caso del contraste de medias) o por cociente (caso de los contrastes de varianzas).
 
 Habitualmente, se considera que un $p-$valor por debajo de 0,05 ya indica que la evidencia empírica no permite asumir como cierta la hipótesis nula, expresándose como que el valor del parámetro es "significativamente distinto (menor o mayor)" que $\theta_0$. También es posible interpretar el $p-$valor como "la probabilidad máxima de cometer el error de rechazar la hipótesis nula cuando es cierta", abreviado como "tamaño del error si se rechaza la hipótesis nula".
 
@@ -357,14 +355,10 @@ La orden `plot(mle_x)` permite visualizar la congruencia entre la muestra y la d
 plot(mle_x)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/150015img02} 
-
-}
-
-\caption{Resultados gráficos de la estimación por máxima verosimilitud.}(\#fig:150015mle)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150015img02.png" alt="Resultados gráficos de la estimación por máxima verosimilitud." width="60%" />
+<p class="caption">(\#fig:150015mle)Resultados gráficos de la estimación por máxima verosimilitud.</p>
+</div>
 
 b) Construir un intervalo de confianza para la velocidad media del viento hasta el 15 de julio, con un nivel de confianza del 95%.
 
@@ -461,14 +455,10 @@ qqnorm(airquality$Temp, main = "Normal Q-Q Plot for Temp")
 qqnorm(airquality$Wind, main = "Normal Q-Q Plot for Wind")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/150015img03} 
-
-}
-
-\caption{Gráficos Q-Q normales para las variables Temp (izq.) y Wind (dcha.).}(\#fig:150015qqplots)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150015img03.png" alt="Gráficos Q-Q normales para las variables Temp (izq.) y Wind (dcha.)." width="60%" />
+<p class="caption">(\#fig:150015qqplots)Gráficos Q-Q normales para las variables Temp (izq.) y Wind (dcha.).</p>
+</div>
 
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}

@@ -1,13 +1,13 @@
 
 # Gobierno, gestión y calidad del dato {#DGDQM}
 
-*Ismael Caballero*$^{a}$, *Ricardo Pérez del Castillo*$^{a}$, y *Fernando Gualo*$^{a,b}$
+*Ismael Caballero*$^{a}$, *Ricardo Pérez del Castillo*$^{a}$ y *Fernando Gualo*$^{a,b}$
 
 $^{a}$Universidad de Castilla-La Mancha  
 $^{b}$DQTeam SL 
 
 ## Introducción
-\index{gobierno del dato} \index{gestión de calidad del dato} \index{gestión del dato}
+\index{gobierno del dato} \index{gestión!de calidad del dato} \index{gestión!del dato}
 
 Los datos se han convertido en un elemento vital para el desarrollo económico de las organizaciones, ya que permiten una mayor eficiencia en el uso de los recursos y un aumento de su productividad.
 Tanto es así, que la Unión Europea establece, a través de la [Estrategia Europea de Datos](https://ec.europa.eu/info/strategy/priorities-2019-2024/europe-fit-digital-age/european-data-strategy_es),[^DG1] que en 2030 se establecerá un Espacio Único Europeo de Datos para fomentar un ecosistema con nuevos productos y servicios basados en los datos.
@@ -28,7 +28,7 @@ Por tanto, puede decirse que el **gobierno del dato** marca la dirección de có
 ## Concepto de gobierno del dato
 
 El gobierno de los datos se ha convertido en un habilitador de la economía de los datos [@Engels2019; @Weber2009], así como también en un pilar básico para la mejora de la transparencia y eficiencia de las administraciones públicas [@OECD2019; @Osimo2020; @OsorioSanabria2020]. Aunque existen algunas aproximaciones académicas y profesionales al gobierno del dato, no hay una definición consensuada de este concepto que permita aunar las distintas visiones. No obstante, la definición más aceptada de gobierno del dato es la propuesta por DAMA en DMBoK2 [@DAMA2017]: "colección de prácticas y procesos que ayudan a asegurar la gestión formal de los activos de datos dentro de una organización mediante el ejercicio de autoridad, control y toma de decisiones compartidas, planificadas, monitorizadas y forzadas".
-Teniendo en cuenta los matices que introduce, es también interesante la lectura de la propuesta por @soares2015chief, que define **gobierno del dato** como "la formulación de políticas para optimizar, conseguir los niveles adecuados de seguridad y protección, y potenciar los datos como activos organizacionales mediante la alineación de los objetivos de diferentes funciones organizacionales; por su naturaleza, el gobierno del dato requiere cooperación interdepartamental para entregar oportuna y fielmente datos con el máximo valor para la toma de decisiones en la organización".
+Teniendo en cuenta los matices que introduce, es también interesante la lectura de la propuesta por @soares2015chief, que define **gobierno del dato** como la formulación de políticas para optimizar, conseguir los niveles adecuados de seguridad y protección, y potenciar los datos como activos organizacionales mediante la alineación de los objetivos de diferentes funciones organizacionales; por su naturaleza, el gobierno del dato requiere cooperación interdepartamental para entregar oportuna y fielmente datos con el máximo valor para la toma de decisiones en la organización.
 
 De alguna manera, se podría entender que gobernar los datos implica **el diseño, implementación y mantenimiento de un sistema de gobierno del dato**. El gobierno del dato tiene tres características destacables [@Caballeroetal2022]:
 
@@ -55,11 +55,11 @@ Así, por ejemplo, una organización que considere realizar un alineamiento estr
 
 ### Componentes de un sistema de gobierno del dato {#artefactosDG}
 
-\index{sistema de gobierno del dato}
+\index{sistema!de gobierno del dato}
 Para poder obtener los beneficios descritos anteriormente, las organizaciones deben implantar los mecanismos de gobierno del dato propuestos en la Estrategia Europea de Datos, particularizándolos a su realidad y en función de su madurez.
 Estos mecanismos implican el desarrollo de un **sistema de gobierno del dato**, que involucra la creación o mantenimiento de forma interrelacionada y sujeto a las restricciones correspondientes de una serie de componentes.
 Dependiendo de si se tiene un gobierno técnico o un gobierno para el valor, la creación y uso de los distintos tipos de componentes será más o menos intensiva.
-Estos componentes son los siguientes[@Caballeroetal2022]:
+Estos componentes son los siguientes [@Caballeroetal2022]:
 
 1.  **Procesos de gestión del dato, gestión de calidad del dato y gobierno del dato**, que se refieren al diseño y posterior particularización e implantación de las buenas prácticas relacionadas con las tareas típicas de los datos a nivel de las correspondientes disciplinas. Es posible obtener descripciones genéricas de estos procesos en diferentes modelos de referencia de procesos, tales como **Data Maturity Model (DMM)**[@mecca_data_2014], **The Data Management Capability Assessment Model (DCAM)**[@Council2020] o el **Modelo Alarcos de Madurez de Datos (MAMD)**[@MAMD2023].
 
@@ -136,25 +136,18 @@ Tiene dos componentes principales:
 
 -   Un **modelo de referencia de procesos (MRP)**, que contiene una descripción de los procesos de gestión del dato, de gestión de calidad del dato y de gobierno del dato. Está alineado con los principales estándares en el área: ISO 8000-61 [@ISO8000-61], e ISO/IEC 38505-2 [@ISO2018], así como con las buenas prácticas de otros modelos como DAMA, DMM o COBIT 2019 (véase Fig. \@ref(fig:mamd-mrp)).
 
-\begin{figure}
+<div class="figure" style="text-align: center">
+<img src="img/fig-1-gobierno.png" alt="Modelo de referencia de procesos de MAMD. DM: gestión del dato; DQM: gestión de calidad del dato; DG: gobierno del dato." width="100%" />
+<p class="caption">(\#fig:mamd-mrp)Modelo de referencia de procesos de MAMD. DM: gestión del dato; DQM: gestión de calidad del dato; DG: gobierno del dato.</p>
+</div>
 
-{\centering \includegraphics[width=1\linewidth]{img/fig-1-gobierno} 
 
-}
-
-\caption{Modelo de referencia de procesos de MAMD. DM: gestión del dato; DQM: gestión de calidad del dato; DG: gobierno del dato.}(\#fig:mamd-mrp)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/fig-2-gobierno.png" alt="Modelo de madurez organizacional de MAMD; N: nivel;  DM: gestión del dato; DQM: gestión de calidad del dato; DG: gobierno del dato." width="100%" />
+<p class="caption">(\#fig:mamd-modelomadurez)Modelo de madurez organizacional de MAMD; N: nivel;  DM: gestión del dato; DQM: gestión de calidad del dato; DG: gobierno del dato.</p>
+</div>
 
 -   El **modelo de evaluación de procesos (MEP)**, que sigue las directrices de evaluación y los niveles de capacidad y madurez descritos por ISO/IEC 33000 y adaptados a la evaluación de procesos de datos conforme al modelo de madurez propuesto en ISO 8000-62 [@ISO8000-62] (véase Fig. \@ref(fig:mamd-modelomadurez)).
-
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/fig-2-gobierno} 
-
-}
-
-\caption{Modelo de madurez organizacional de MAMD; N: nivel;  DM: gestión del dato; DQM: gestión de calidad del dato; DG: gobierno del dato.}(\#fig:mamd-modelomadurez)
-\end{figure}
 
 
 
@@ -163,19 +156,20 @@ Tiene dos componentes principales:
 
 Los datos con niveles inadecuados de calidad acaban teniendo un impacto negativo para las organizaciones, bien en términos económicos, bien en términos de reputación [@redman2016getting]. Por eso es importante que las organizaciones cuiden del nivel de calidad de sus datos y se aseguren de que dicho nivel permanece dentro de los permitidos para que la ejecución de los procesos de negocio se haga dentro del margen de riesgo de la organización.
 
-\index{característica de calidad del dato} \index{dimensión de calidad del dato}
+\index{características! de calidad del dato} \index{dimensión de calidad del dato}
 
 Se dice que un conjunto de datos tiene calidad cuando sirve para el propósito para el que fue recogido (*fitness for use*) [@Strongetal1997]. Para determinar si un conjunto de datos tiene calidad suficiente para dicho propósito es preciso identificar y seleccionar un conjunto de criterios --llamados en la literatura **dimensiones** [@Wang1998] o **características de calidad del dato** [@ISO25012]-- que permitan determinar si dicho conjunto cumple los requisitos de calidad que exige el usuario de tales datos.
-\index{modelo de calidad del dato}
+\index{modelo!de calidad del dato}
 Al conjunto de dimensiones o características de calidad del dato seleccionadas se le denomina **modelo de calidad del dato**.
 \index{ISO/IEC 25012} 
-La Tabla \@ref(tab:TablaCaracteristicasISO25012) muestra una descripción de las características de calidad del dato incluidas en el estándar ISO/IEC 25012.
+La Tabla \@ref(tab:TablaCaracteristicasISO25012)[^dgtabla] muestra una descripción de las características de calidad del dato incluidas en el estándar ISO/IEC 25012.
 
+[^dgtabla]: DS: dependiente del sistema.
 
 <!-- Para compilar en HTML -->
 <!-- tabla-html -->
 
-
+<img src="img/tabla-7-1-iso.png" width="100%" style="display: block; margin: auto;" />
 
 
 \begin{table}[]
@@ -184,7 +178,7 @@ La Tabla \@ref(tab:TablaCaracteristicasISO25012) muestra una descripción de las
 \begin{small}
 \begin{tabular}{p{3cm}p{8cm}cp{1cm}cp{4cm}}
 \hline
-Característica & Definición & Inherente & Dependiente del sistema \\
+Característica & Definición & Inherente & DS \\
 \hline
 Exactitud     & Grado en que los datos representan correctamente el valor de un atributo de una entidad del mundo real & $\checkmark$ & \\
 Completitud   & Grado en el que existen suficientes valores para todos los atributos necesarios para una aplicación que involucre una representación de una entidad del mundo real & $\checkmark$  & \\
@@ -195,7 +189,7 @@ Accesibilidad & Grado en que los datos pueden ser accedidos por cualquier usuari
 Cumplimiento  & Grado en el que los datos están construidos conforme estándares, convenciones o regulaciones & $\checkmark$ & $\checkmark$ \\
 Confidencialidad & Grado en el que los datos tienen atributos específicos que solo pueden ser accedidos por   usuarios autorizados & $\checkmark$   & $\checkmark$ \\
 Eficiencia    & Grado en el que los datos tienen atributos que pueden ser accedidos y procesados dentro de los niveles de rendimiento esperados     & $\checkmark$ & $\checkmark$ \\
-Precisión     & Grado en el que los datos son precisos. & $\checkmark$ & $\checkmark$ \\
+Precisión     & Grado en el que los datos son precisos & $\checkmark$ & $\checkmark$ \\
 Trazabilidad  & Grado en el que los datos tienen atributos que proveen información detallada sobre los cambios realizados en los datos & $\checkmark$ & $\checkmark$ \\
 Comprensibilidad & Grado en el que los datos se expresan de manera que los usuarios puedan leerlos e interpretarlos correctamente & $\checkmark$ & $\checkmark$ \\
 Disponibilidad & Grado en el que los datos están disponibles para que los usuarios y/o aplicaciones autorizadas puedan acceder a ellos & & $\checkmark$ \\
@@ -224,21 +218,17 @@ Aunque para dar soporte a este proceso se han propuesto numerosas metodologías 
 
 Para paliar estos problemas, se han desarrollado estándares que recogen los conocimientos y principios básicos comunes para medir y evaluar la calidad de los datos.
 Ejemplos de estos estándares pueden ser la mencionada ISO/IEC 25012 [@ISO25012] y la ISO 8000-8 [@ISO8000-8], que recogen características de calidad; la ISO/IEC 25024 [@ISO25024], que recoge aspectos específicos de cómo llevar a cabo las mediciones de las características; o la ISO/IEC 25040 [@ISO25040], que proporciona una metodología de evaluación de calidad del software que puede ser adaptada a la evaluación rigurosa y sistemática de la calidad de los datos.
-\index{medición de calidad del dato} \index{evaluación de calidad del dato}
+\index{medición de calidad del dato} \index{evaluación!de calidad del dato}
 En este punto es necesario introducir la principal diferencia entre **medir** y **evaluar** la calidad: medir consiste en determinar la cantidad de calidad del dato que tiene un conjunto de datos; evaluar implica determinar si, de acuerdo al nivel de riesgo que asume la organización, la cantidad de calidad del dato medida es suficiente y adecuada para usar los datos en el contexto de uso establecido para esos datos.
 La evaluación de calidad del dato requiere primero medir la calidad; y para medir la calidad, primero deben definirse procedimientos de medición.
 
 \index{ISO/IEC 25024}En ese sentido, ISO 25024 [@ISO25024] proporciona una serie de propiedades medibles para cada una de las características presentadas en la Tabla \@ref(tab:TablaCaracteristicasISO25012); además, para cada una de estas propiedades medibles, el estándar proporciona un método de medición genérico que permitirá, convenientemente particularizado, medir dichas propiedades y luego agruparlas para determinar el valor de la característica de calidad del dato.
 La Fig. \@ref(fig:propiedadesISO25024) muestra las propiedades medibles para las características de calidad identificadas como inherentes (véase Tabla \@ref(tab:TablaCaracteristicasISO25012)).
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/fig-3-gobierno} 
-
-}
-
-\caption{Algunas propiedades de las características inherentes de calidad del dato.}(\#fig:propiedadesISO25024)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/fig-3-gobierno.png" alt="Algunas propiedades de las características inherentes de calidad del dato." width="100%" />
+<p class="caption">(\#fig:propiedadesISO25024)Algunas propiedades de las características inherentes de calidad del dato.</p>
+</div>
 
 
 Una de las ventajas de usar estas propiedades medibles es que, en caso de niveles inadecuados de calidad de datos, es posible identificar mejor qué está causando que esto ocurra y, por tanto, es más fácil actuar directamente sobre dichas causas.
@@ -246,13 +236,13 @@ Una de las ventajas de usar estas propiedades medibles es que, en caso de nivele
 A modo de ejemplo, supóngase que se quiere medir el grado de **exactitud** de un conjunto de datos. Para ello se considera necesario medir las propiedades **exactitud sintáctica**, **exactitud semántica** y **rango de exactitud**. Con lo resultados de la medición habrá que hacer algún tipo de agrupación que tenga en cuenta la importancia o peso relativo de cada una de estas propiedades a la hora de evaluar la **exactitud**. Supóngase que una organización determina que la mejor forma de hacerlo es mediante una media aritmética ponderada de los resultados de la medición de las tres propiedades medibles. En base a su nivel de riesgo para un determinado proceso de negocio, supóngase que la organización considera que, para una determinada aplicación, puede asignar, para la media aritmética ponderada, los siguientes pesos: 0,4; 0,4 y 0,2 para la exactitud semántica, para la exactitud sintáctica y para el rango de exactitud respectivamente.
 
 A la hora de medir las propiedades medibles correspondientes a las características de calidad del dato, es interesante tener en cuenta que la ISO/IEC 25024 proporciona procedimientos de medición cuya implementación depende fuertemente de la naturaleza de la propiedad y del objeto cuya calidad quiere medirse. La medición de algunas de estas propiedades implica contar el porcentaje de registros que violan las reglas de negocio que regulan la adecuación al uso de los datos en un contexto determinado [@loshin2002rule]. Sin embargo, a la hora de la medición, uno de los ejercicios más difíciles es recolectar y validar las reglas de negocio específicas que rigen la validez de los datos [@Caballeroetal2022br4dq].
-Para el ejemplo propuesto, imagínese que si se pretende medir el nivel de exactitud sintáctica del dato recogido en el atributo `DNI` se pudiera usar la siguiente regla de negocio "*el DNI tiene que seguir la especificación para DNI, o para el NIE, correspondiente con la expresión regular* `(d{8})([A-Z])`". Habría que comprobar bien manualmente, bien mediante algún tipo de script, cuántos registros verifican la anterior regla de negocio para el atributo `DNI`. 
+Para el ejemplo propuesto, imagínese que si se pretende medir el nivel de exactitud sintáctica del dato recogido en el atributo `DNI` se pudiera usar la siguiente regla de negocio "el DNI tiene que seguir la especificación para DNI, o para el NIE, correspondiente con la expresión regular `(d{8})([A-Z])`". Habría que comprobar bien manualmente, bien mediante algún tipo de script, cuántos registros verifican la anterior regla de negocio para el atributo `DNI`. 
 
 Supóngase que, para el ejemplo, y tras haber realizado todas las mediciones de las propiedades y haberlas agrupado realizando la media aritmética ponderada, se obtiene una exactitud de 70.
 
 Una vez realizada la medición, el siguiente paso es la evaluación propiamente dicha. La evaluación consiste en comparar el resultado obtenido (70 en el ejemplo) con el umbral mínimo de aceptación, que depende del nivel de riesgo que decida asumir la organización al utilizar estos datos [@redman2016getting]. Si, por ejemplo, dicho umbral se hubiese establecido en 75 para el uso concreto que se le va a dar a estos datos, se concluiría que no deberían ser utilizados. Esto no significa que los datos no puedan usarse en otro contexto en el que, por ejemplo, el valor umbral se estableciese en 65.
 
-como se verá posteriormente en el Cap. \@ref(130009), en algunos contextos de uso  antes de usar los datos se realiza un proceso de preparación de los mismos que tiene como objetivo determinar y adecuar los niveles de calidad al uso que se pretende dar mediante un proceso de evaluación y mejora que se centra en la **limpieza de los datos**. Normalmente, en este proceso suele recurrirse a métodos estadísticos, frente a la aproximación basada en la medición de las características de calidad del dato presentada anteriormente. 
+Como se verá posteriormente en el Cap. \@ref(130009), en algunos contextos de uso  antes de usar los datos se realiza un proceso de preparación de los mismos que tiene como objetivo determinar y adecuar los niveles de calidad al uso que se pretende dar mediante un proceso de evaluación y mejora que se centra en la **limpieza de los datos**. Normalmente, en este proceso suele recurrirse a métodos estadísticos, frente a la aproximación basada en la medición de las características de calidad del dato presentada anteriormente. 
 Se pierde entonces, de alguna manera, la capacidad de establecer una dirección más efectiva y, sobre todo, alineada a las necesidades reales de la organización, de las operaciones de evaluación y limpieza del dato. \index{limpieza del dato}
 
 Finalmente, es interesante mencionar que, basándose en los estándares ISO/IEC 25012 [@ISO25012] e ISO/IEC 25024 [@ISO25024], es posible certificar el nivel de calidad del dato de un repositorio de datos.
@@ -263,11 +253,15 @@ En @Gualoetal2021 se recogen experiencias de medición, evaluación y certificac
 ### Medición de calidad de datos *vs.* perfilado del dato
 
 \index{perfilado del dato}
-En esta subsección se plantea el **perfilado del dato** como una técnica base para realizar la medición de las propiedades medibles de las características de calidad del dato o para descubrir nuevas reglas de negocio. El perfilado de datos es el conjunto de actividades y procesos que sirve para obtener algunos metadatos (incluyendo reglas de negocio) de un conjunto de datos.  Estos metadatos pueden usarse como base para realizar la medición de las propiedades medibles de las características de calidad del dato. @abedjan2015profiling clasifican los tipos de **perfilado del dato** en las siguientes categorías:
+En esta subsección se plantea el **perfilado del dato** como una técnica base para realizar la medición de las propiedades medibles de las características de calidad del dato o para descubrir nuevas reglas de negocio. 
+
+El perfilado de datos es el conjunto de actividades y procesos que sirve para obtener algunos metadatos (incluyendo reglas de negocio) de un conjunto de datos.  Estos metadatos pueden usarse como base para realizar la medición de las propiedades medibles de las características de calidad del dato. 
+
+@abedjan2015profiling clasifican los tipos de **perfilado del dato** en las siguientes categorías:
 
 -   **Perfilado de columna simple**, que implicaría tareas de identificación de cardinalidades, identificación de patrones y tipos de datos, distribución de valores de datos, clasificación de dominios.
 
--   **Perfilado de columnas múltiples**, que implicaría tareas de correlación y reglas de asociación, identificación de clusters y *outliers*, elaboración de resúmenes de datos y bocetos.
+-   **Perfilado de columnas múltiples**, que implicaría tareas de correlación y reglas de asociación, identificación de clústeres y *outliers*, elaboración de resúmenes de datos y bocetos.
 
 -   **Perfilado de dependencias**, que a su vez implica:
 
@@ -291,7 +285,10 @@ Si estas funciones de perfilado proporcionan información suficiente y adecuada,
 Por ejemplo, se puede utilizar el resultado de la columna `missing count` para calcular el grado de completitud de las variables `longitud`  y `latitud`, que se pueden establecer en 100% al ser `missing count = 0` para las dos variables.
 Incluso se pueden utilizar funciones como `plot_na_pareto()` para visualizar un gráfico de Pareto que muestre las variables que no tienen valores nulos.
 \index{dlookr}
-Finalmente, es interesante mencionar que el paquete `dlookr` incluye funciones como `diagnose_paged_report()`, que permiten elaborar informes que contienen información sobre las estructuras de datos del conjunto de datos, avisos, descripción de las variables, valores perdidos, valores únicos de las variables categóricas y numéricas, distribuciones de valores nulos y negativos, posibles valores atípicos (*outliers*), etc. El siguiente fragmento de código explica cómo crear un informe de 15 páginas en formato PDF con toda esa información sobre la variable `idealista18::Madrid_POIS$Metro` :
+
+Finalmente, es interesante mencionar que el paquete `dlookr` incluye funciones como `diagnose_paged_report()`, que permiten elaborar informes que contienen información sobre las estructuras de datos del conjunto de datos, avisos, descripción de las variables, valores perdidos, valores únicos de las variables categóricas y numéricas, distribuciones de valores nulos y negativos, posibles valores atípicos (*outliers*), etc. 
+
+El siguiente fragmento de código muestra cómo crear un informe de 15 páginas en formato PDF con toda esa información sobre la variable `idealista18::Madrid_POIS$Metro` :
 
 
 ```r
@@ -307,7 +304,9 @@ En el Cap. \@ref(130009) se profundizará en el proceso de estudio de dos caract
 ### Mejora del dato
 
 Si los datos no tienen el nivel de calidad necesario, es preciso mejorar su calidad para que no arruinen los procesos de negocio.
+
 Para ello, a partir de los resultados de las mediciones, los analistas de calidad del dato deben determinar las causas raíz de esos niveles inadecuados de calidad del dato.
+
 @Strongetal1997_Potholes identifican diez posibles obstáculos que pueden hacer que los datos no tengan esos niveles adecuados de calidad:
 
 1.  Múltiples fuentes de datos producen diferentes valores para el mismo atributo de la misma entidad.
@@ -321,16 +320,14 @@ Para ello, a partir de los resultados de las mediciones, los analistas de calida
 9.  Un acceso fácil a la información puede entrar en conflicto con los requisitos de seguridad, confidencialidad y privacidad.
 10.  La falta de recursos de computación limita el acceso a los datos en circunstancias favorables.
 
-En función de la naturaleza del problema detectado, las acciones correctivas pueden ser de distinta naturaleza:
+Lógicamente, la naturaleza del problema detectado determina las acciones correctivas que de deben llevar a cabo. En todo caso, dichas acciones se pueden encuadrar en uno de los dos siguientes tipos:
 
 -   **Corrección de causas sistemáticas**.
-    Si se observa que los problemas se suceden de forma sistemática y repetida, entonces las acciones de mejora del dato deben estar orientadas a eliminar esas causas sistemáticas (véase [@Strongetal1997_Potholes]).
-    Por ejemplo: si los errores de calidad del dato se deben a que un proceso de negocio está mal diseñado, entonces hay que rediseñarlo; si las causas se deben a que hay personas desempeñando ciertos roles para los que no tienen los conocimientos o habilidades adecuadas, entonces hay que darles la formación adecuada; o si se deben a que hay software (por ejemplo, procesos ETL) que falla, entonces hay que realizar el mantenimiento correctivo correspondiente.
+    Si se observa que los problemas se suceden de forma sistemática y repetida, entonces las acciones de mejora del dato deben estar orientadas a eliminar esas causas sistemáticas [véase @Strongetal1997_Potholes]. Por ejemplo: si los errores de calidad del dato se deben a que un proceso de negocio está mal diseñado, entonces hay que rediseñarlo; si las causas se deben a que hay personas desempeñando ciertos roles para los que no tienen los conocimientos o habilidades adecuadas, entonces hay que darles la formación adecuada; o si se deben a que hay software (por ejemplo, procesos ETL) que falla, entonces hay que realizar el mantenimiento correctivo correspondiente en dicho software.
 
 -   **Corrección de errores debidos a causas aleatorias**.
     Si no es posible identificar cuáles son las causas raíz, porque son completamente desconocidas o aleatorias, no queda más remedio que actuar sobre los valores de los datos, cambiándolos para asegurar que cumplen las reglas de negocio establecidas.
-    A este proceso se le suele llamar **depuración o limpieza de datos (_data cleansing_)**.
-    @ilyas2019data identifican diversas técnicas de limpieza de datos (que pueden incluir operaciones de \index{imputación del dato} **imputación de datos** como las incluidas en la Sec. \@ref(imputacion) del Cap. \@ref(130009): limpieza basada en reglas de negocio, de duplicación de datos, transformación de datos, o guiada por *machine learning* (véanse Caps. \@ref(130009) y \@ref(chap-feature)). En este caso, sería posible utilizar algunas funciones del paquete `dlookr` relacionadas con la transformación de los datos,  como `imputate_na()` o `imputate_outlier()`, que generan valores para los datos faltantes o valores que garantizan niveles adecuados de exactitud o de consistencia.
+    A este proceso se le suele llamar **depuración o limpieza de datos (_data cleansing_)**. @ilyas2019data identifican diversas técnicas de limpieza de datos (que pueden incluir operaciones de \index{imputación del dato} **imputación de datos** como las incluidas en la Sec. \@ref(imputacion) del Cap. \@ref(130009): limpieza basada en reglas de negocio, de duplicación de datos, transformación de datos, o guiada por *machine learning* (véanse Caps. \@ref(130009) y \@ref(chap-feature)). En este caso, sería posible utilizar algunas funciones del paquete `dlookr` relacionadas con la transformación de los datos,  como `imputate_na()` o `imputate_outlier()`, que generan valores para los datos faltantes o valores que garantizan niveles adecuados de exactitud o de consistencia.
 
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}

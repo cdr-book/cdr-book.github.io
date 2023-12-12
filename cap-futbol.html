@@ -7,7 +7,7 @@
 <title>Capítulo 55 Messi y Ronaldo: dos ídolos desde la perspectiva de los datos | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Borja Andrino Turón El País  55.1 Motivación El uso de estadísticas avanzadas en los deportes, especialmente en el fútbol, ha despegado en los últimos años. Una buena señal de su irrupción es la...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 55 Messi y Ronaldo: dos ídolos desde la perspectiva de los datos | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -146,15 +146,15 @@
 <h2>
 <span class="header-section-number">55.2</span> Las estadísticas y el fútbol<a class="anchor" aria-label="anchor" href="#las-estad%C3%ADsticas-y-el-f%C3%BAtbol"><i class="fas fa-link"></i></a>
 </h2>
-<p>En este capítulo se usan estadísticas de la web especializada <a href="Fbref.com">Fbref.com</a> para visualizar el dominio de Cristiano Ronaldo y Lionel Messi durante más de 15 años. Para utilizar estas estadísticas existen dos alternativas: <span class="math inline">\((i)\)</span> recurrir a técnicas de <em>web scraping</em> y <span class="math inline">\((ii)\)</span> la librería <code>worldfootballR</code> <span class="citation">(<a href="referncias.html#ref-worldfootballR">Zivkovic 2023</a>)</span>, desarrollada por Jason Zivkovic, que permite obtener datos de diferentes plataformas.</p>
+<p>En este capítulo se usan estadísticas de la web especializada <a href="Fbref.com">Fbref.com</a> para visualizar el dominio de Cristiano Ronaldo y Lionel Messi durante más de 15 años. Para utilizar estas estadísticas existen dos alternativas: <span class="math inline">\((i)\)</span> recurrir a técnicas de <em>web scraping</em> y <span class="math inline">\((ii)\)</span> la librería <code>worldfootballR</code> <span class="citation">(<a href="referencias.html#ref-worldfootballR">Zivkovic 2023</a>)</span>, desarrollada por Jason Zivkovic, que permite obtener datos de diferentes plataformas.</p>
 <p>La publicación y explotación de estadísticas avanzadas es reciente, de las últimas seis temporadas, con lo que para analizar las carreras completas de estos dos jugadores solo se dispone, de momento, de métricas tradicionales.</p>
 <p>La Fig. <a href="cap-futbol.html#fig:pplot-goals1">55.1</a> muestra la evolución de las principales cifras que definen a un atacante: los goles y las asistencias. Esta estandarización permite comparar a ambos jugadores independientemente del número de minutos, aunque se ha añadido un filtro de “al menos 1.000 minutos jugados en la temporada” para evitar ruido.
 </p>
 <p>Para crear el gráfico, se toman los datos originales y se filtran para que solo aparezcan los jugadores seleccionados en las temporadas con muestra suficiente. A continuación, se seleccionan las columnas que se usan en el gráfico y se giran las dos métricas para poderlas añadir en un único <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>.</p>
-<div class="sourceCode" id="cb810"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">CDR</span>, <span class="va">tidyverse</span>, <span class="va">janitor</span>, <span class="va">ggbeeswarm</span>, <span class="va">here</span>, </span>
-<span>               <span class="va">patchwork</span>, <span class="va">ggtext</span>, <span class="va">ggrepel</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb811"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load</span><span class="op">(</span><span class="va">CDR</span>, <span class="va">tidyverse</span>, <span class="va">janitor</span>, <span class="va">ggbeeswarm</span>, <span class="va">here</span>, </span>
+<span>               <span class="va">patchwork</span>, <span class="va">ggtext</span>, <span class="va">ggrepel</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb812"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">datos_players</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">player</span> <span class="op"><a href="https://rdrr.io/pkg/terra/man/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Cristiano Ronaldo"</span>, <span class="st">"Lionel Messi"</span><span class="op">)</span>,</span>
 <span>         <span class="va">min_playing</span> <span class="op">&gt;</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -183,7 +183,7 @@ Figura 55.1: Evolución de goles y asistencias por 90 minutos de Cristiano y Mes
 </div>
 <p>La Fig. <a href="cap-futbol.html#fig:pplot-goals1">55.1</a> arroja un dato increíble: durante 10 años, tener a Messi o Cristiano en el campo significaba contar en ese partido con un gol y casi media asistencia.</p>
 <p>Pero la visualización solo nos habla de estos dos futbolistas. Para compararlos con otros jugadores se puede calcular el percentil de goles y asistencias por 90 minutos, temporada a temporada, de los jugadores que hayan jugado más de 1.000 minutos (véase Fig. <a href="cap-futbol.html#fig:pplot-goals2">55.2</a>). El resultado de nuevo es impactante: durante 13 temporadas Messi y Cristiano han estado entre el 1% de jugadores con más goles. Además, el argentino ha terminado la temporada entre el 1% con más asistencias en 9 ocasiones.</p>
-<div class="sourceCode" id="cb812"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb813"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">percentiles_to_plot</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">datos_players</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">clean_names</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -226,7 +226,7 @@ Figura 55.2: Percentil de goles y asistencias por 90 minutos cada temporada desd
 </div>
 <p>En esta web se publican estadísticas avanzadas de jugadores por partido y temporada desde la temporada 2017/18. En la Fig. <a href="cap-futbol.html#fig:pplot-goals3">55.3</a> se representan los goles esperados (miden cómo de probable es el gol dado un disparo) y las asistencias esperadas (suma de los goles esperados que suman los pases que desembocan en un tiro) por 90 minutos de los jugadores con más de 1.000 minutos. De nuevo el gráfico destaca a los dos protagonistas, que se sitúan en el arco más alejado del origen de coordenadas, donde se juntan los jugadores con mejores números de asistencias y goles esperados.
 </p>
-<div class="sourceCode" id="cb813"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb814"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">expected_data</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">datos_players</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">clean_names</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -267,7 +267,7 @@ Figura 55.3: Goles y asistencias por jugador y temporada.
 </p>
 </div>
 <p>La métrica de goles esperados permite también hablar de efectividad. Cuando un jugador suma más goles con sus disparos de lo que era esperable su efectividad es alta; cuando, por el contrario, el jugador termina anotando menos goles de los que se preveían por sus disparos su efectividad es baja. En la Fig. <a href="cap-futbol.html#fig:plot-goals-assists-4">55.4</a> se muestra para cada jugador y temporada esta relación. Se vuelve a observar cómo Cristiano y Messi destacan en la generación de goles esperados, aunque hay una ligera diferencia: entre 2018 y 2021 la efectividad del argentino fue mayor que la del portugués. Los puntos de Cristiano se sitúan sobre la línea que representa lo esperado: mismo número de goles que probabilidad de que los disparos acaben en gol. Los de Messi se sitúan por encima: ha anotado más goles que los que sus disparos hacían prever.</p>
-<div class="sourceCode" id="cb814"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb815"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">expected_data</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">season_end_year</span>, <span class="va">player</span>, <span class="va">highlighted_player</span>, <span class="va">label</span>,</span>
 <span>         Goles <span class="op">=</span> <span class="va">gls_per</span>, `Goles esperados` <span class="op">=</span> <span class="va">x_g_per</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -330,7 +330,7 @@ Figura 55.4: Goles esperados y anotados por jugador y temporada.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

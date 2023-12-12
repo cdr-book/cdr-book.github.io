@@ -13,13 +13,13 @@ $^{a}$Universidad de Castilla-La Mancha
 El término **geoestadística** apareció por primera vez en @Matheron1962, y en él "geo" enfatiza la referencia a las Ciencias de la Tierra,
 extendiendo el ámbito de la estadística tradicional, cuyo objetivo es el uso de métodos probabilísticos-inferenciales,[^Nota-geo-0] con la incorporación del componente geográfico. \index{geoestadística} 
 
-[^Nota-geo-0]: Véanse Caps. \@ref(Funda-probab) y \@ref(Funda-probab).
+[^Nota-geo-0]: Véanse Caps. \@ref(Funda-probab) y \@ref(Fundainfer).
 
 La geoestadística estudia los fenómenos regionalizados, que son aquellos que: \index{fenómeno regionalizado}
 
-- Se extienden en el espacio, siendo el dominio espacial, $D$, continuo (se puede observar en cualquiera de sus puntos) y fijo (las ubicaciones observadas, ${\bf s}_i, \hspace{0,1cm} i=1,2,..., n$, no son estocásticas; se seleccionan, por el procedimiento que sea, a juicio del investigador)[^Nota-geo-1]. 
+- Se extienden en el espacio, siendo el dominio espacial, $D$, continuo (se puede observar en cualquiera de sus puntos) y fijo (las ubicaciones observadas, ${\bf s}_i, \hspace{0,1cm} i=1,2,..., n$, no son estocásticas; se seleccionan, por el procedimiento que sea, a juicio del investigador).[^Nota-geo-1]
 
-[^Nota-geo-1]: Los datos geoestadísticos son tan solo una parte de los datos espaciales: otra parte de ellos son los datos *laticce*, poligonales o regionales, donde $D$ es discreto (códigos postales, provincias, regiones, países...) y las ubicaciones observadas no son estocásticas. De su estudio se suele encargar la econometría espacial (véase Cap. \@ref(cap-econom-esp)). También hay otro tipo de datos espaciales que surgen en dominios que pueden ser continuos o discretos, pero donde la selección de las ubicaciones observadas no depende del investigador (en este sentido $D$ es aleatorio). Se trata de los denominados procesos de puntos (véase Cap. \@ref(cap-pp)).
+[^Nota-geo-1]: Los datos geoestadísticos son tan solo una parte de los datos espaciales: otra parte de ellos son los datos *latice*, poligonales o regionales, donde $D$ es discreto (códigos postales, provincias, regiones, países...) y las ubicaciones observadas no son estocásticas. De su estudio se suele encargar la econometría espacial (véase Cap. \@ref(cap-econom-esp)). También hay otro tipo de datos espaciales que surgen en dominios que pueden ser continuos o discretos, pero donde la selección de las ubicaciones observadas no depende del investigador (en este sentido $D$ es aleatorio). Se trata de los denominados procesos de puntos (véase Cap. \@ref(cap-pp)).
 
 - Presentan una organización o estructura debida a la dependencia espacial existente. \index{dependencia espacial}
  
@@ -31,23 +31,23 @@ El ámbito de aplicación de la geoestadística es enorme: minería, industria p
 
 En conclusión, las dos partes del análisis geoestadístico son: el **análisis estructural de la dependencia espacial** y la **predicción** (que se suele acompañar del calificativo "**krigeada**"). Pero antes de estudiarlas, detengámonos en algunos preliminares.
 
-\index{análisis estructural}
-\index{predicción krigeada}
+\index{análisis!estructural}
+\index{predicción! krigeada}
 
 
 ## Preliminares {#preliminares-geo}
 
 Dado que los procedimientos geoestadísticos no pueden ser aplicados directamente sobre los fenómenos regionalizados como tales, porque son realidades físicas, se necesita una descripción matemática de los mismos a la que puedan ser aplicados: la **variable regionalizada** (*v.r.*) o **regionalización**, definida en un espacio geográfico, y que se supone que mide y representa correctamente dicho fenómeno.
 
-\index{variable regionalizada}
+\index{variable!regionalizada}
 \index{regionalización}
 
-Formalmente, cuando $\mathbf{s}$ recorre $D$, el conjunto $z(\mathbf{s}), \mathbf{s}\in D,$ se denomina *v.r.*, siendo $z(\mathbf{s_i}), i=1,2,3,...$ una colección de valores regionalizados. \index{valores regionalizados}
+Formalmente, cuando $\mathbf{s}$ recorre $D$, el conjunto $z(\mathbf{s}), \mathbf{s}\in D,$ se denomina *v.r.*, siendo $z(\mathbf{s_i}), i=1,2,3,...$ una colección de valores regionalizados. \index{valores!regionalizados}
 
 Desde la perspectiva probabilística, cada uno de los valores que toma *v.r.* puede interpretarse como el resultado de un mecanismo aleatorio, la variable aleatoria, *v.a.* (véase Sec. \@ref(prob-va)). Si se tomasen valores regionalizados en todos los puntos del dominio, $D$, es decir, si se considerase *v.r.*, esta podría ser vista como un conjunto infinitamente grande de *v.a.*, una en cada punto de $D$, que se conoce como **función aleatoria** (*f.a.*), **proceso estocástico** o **campo aleatorio** espacial, $Z(\mathbf{s}), \mathbf{s}\in D$, donde $Z$ representa el fenómeno de interés. Pues bien, *v.r.* se interpreta como una realización de una *f.a.* espacial, y esta es una decisión metodológica clave en geoestadística.
 
-\index{función aleatoria!espacial}
-\index{proceso estocástico! espacial}
+\index{función!aleatoria!espacial}
+\index{proceso estocástico!espacial}
 \index{campo aleatorio espacial}
 
 Es importante tener en cuenta que *v.r.* $(i)$ es, a menudo, muy irregular a escala local, lo que impide su representación mediante una función determinista; y $(ii)$ muestra cierta organización o estructura espacial. La interpretación de *v.r.* como una realización de una *f.a.* espacial permite considerar estos dos aspectos:
@@ -63,15 +63,15 @@ Una *f.a.* espacial es **estrictamente estacionaria** si las familias de *v.a.* 
 Es decir, la distribución de probabilidad conjunta de $Z(\mathbf{s}_1+\mathbf{h}),Z(\mathbf{s}_2+\mathbf{h}),...,Z(\mathbf{s}_k+\mathbf{h})$ no se ve afectada por una traslación $\mathbf{h}$, y por tanto, ni ella ni las funciones de densidad de dimensión inferior a $k$ dependen de las localizaciones consideradas.
 
 La estacionariedad estricta es una condición muy restrictiva. Por ello, en la práctica lo que se suele asumir es la **estacionariedad de segundo orden**, que limita la estacionariedad a los dos primeros momentos de la *f.a.*[^Note3]
-\index{función aleatoria!estacionaria en sentido estricto}
+\index{función!aleatoria!estacionaria en sentido estricto}
 
 [^Note3]: En **geoestadística lineal** el interés se centra en los dos primeros momentos de la *f.a.*, por lo cual tan solo es necesaria la estacionariedad de segundo orden. Es decir, la esperanza y la varianza existen, son constantes y no dependen de la localización $\mathbf{s}$. La covarianza existe para cada par de *v.a.*  $Z(\mathbf{s})$ y $Z(\mathbf{s}+\mathbf{h})$ y solo depende de $\mathbf{h}$.
 
 Si una *f.a.* es estrictamente estacionaria, también es estacionaria de segundo orden. Sin embargo, la relación inversa no tiene por qué ser cierta.
 
-La estacionariedad de segundo orden\index{función aleatoria!estacionaria de segundo orden} implica la existencia de la varianza de la *f.a.* y, por tanto, deja fuera los fenómenos con infinita capacidad de variación. En este caso, si las diferencias $Z(\mathbf{s}+\mathbf{h})-Z(\mathbf{s})$ son estacionarias de segundo orden, se dice que la *f.a.*  es **intrínsecamente estacionaria**.\index{función aleatoria!intrínsecamente estacionaria}
+La estacionariedad de segundo orden\index{función!aleatoria!estacionaria de segundo orden} implica la existencia de la varianza de la *f.a.* y, por tanto, deja fuera los fenómenos con infinita capacidad de variación. En este caso, si las diferencias $Z(\mathbf{s}+\mathbf{h})-Z(\mathbf{s})$ son estacionarias de segundo orden, se dice que la *f.a.*  es **intrínsecamente estacionaria**.\index{función!aleatoria!intrínsecamente estacionaria}
 
-Aquellas *f.a.* cuya esperanza y/o varianza dependan de la localización (no son invariantes a las traslaciones) se denominan **no estacionarias**.\index{función aleatoria!no estacionaria}
+Aquellas *f.a.* cuya esperanza y/o varianza dependan de la localización (no son invariantes a las traslaciones) se denominan **no estacionarias**.\index{función!aleatoria!no estacionaria}
 
 Salvo indicación de lo contrario, se asumirá la estacionariedad de segundo orden.
 
@@ -113,14 +113,10 @@ points.geodata(sim_indep,
 )
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/dep-aleatoriedad} 
-
-}
-
-\caption{Dependencia espacial frente a aleatoriedad.}(\#fig:plot-dep-iid-ch41)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/dep-aleatoriedad.png" alt="Dependencia espacial frente a aleatoriedad." width="60%" />
+<p class="caption">(\#fig:plot-dep-iid-ch41)Dependencia espacial frente a aleatoriedad.</p>
+</div>
 
 Pasando del terreno de las simulaciones a la realidad, la Fig. \@ref(fig:plot-temp-max-ch41) muestra la temperatura máxima en España el 6 de agosto de 2022,[^Note-data] en plena ola de calor (este es el ejemplo real que se utilizará a lo largo del capítulo). En ella puede observarse claramente una estructura de dependencia espacial, con máximas cercanas a 40 grados en la meseta central y Extremadura, de 30 grados o menos en la cordillera Cantábrica y las costas atlántica, cantábrica y andaluza, y entre 30 y 35 grados en el resto del país (básicamente Murcia, Comunidad Valenciana y Cataluña). 
 
@@ -148,14 +144,10 @@ ggplot(ESP_utm) +
   scale_color_gradientn(colours = pal_paper)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/tem-max-spain} 
-
-}
-
-\caption{Temperatura máxima en España peninsular, 6 de agosto de 2022.}(\#fig:plot-temp-max-ch41)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/tem-max-spain.png" alt="Temperatura máxima en España peninsular, 6 de agosto de 2022." width="60%" />
+<p class="caption">(\#fig:plot-temp-max-ch41)Temperatura máxima en España peninsular, 6 de agosto de 2022.</p>
+</div>
 
 
 
@@ -180,7 +172,7 @@ Nótese que:
 - Si la distancia aumenta lo suficiente como para que ya no haya dependencia espacial, las diferencias entre los valores de la *f.a.* separados por tal distancia alcanzarán la variabilidad de la *f.a* en estudio, y si esta es estacionaria de segundo orden, el semivariograma se estabilizará en torno a ella. 
 
 En el caso estacionario, las **funciones de covarianza**, $C(\bf h)$, también pueden ser utilizadas para representar la estructura de la dependencia espacial, si bien se prefiere el semivariograma porque no requiere el conocimiento de la media de la *f.a.* en estudio. Además, el semivariograma cubre un espectro más amplio de fenómenos regionalizados \index{regionalización} que la función de covarianza, ya que esta no puede definirse en el caso de estacionariedad intrínseca. Los detalles pueden verse en  @montero2015spatial y @montero_larraz2008.
-\index{semivariograma} \index{dependencia espacial} \index{función de covarianza}
+\index{semivariograma} \index{dependencia espacial} \index{función!de covarianza}
 
 Cuando el semivariograma depende tanto de la dirección como de la longitud del vector $\mathbf{h}$ que une las localizaciones $\mathbf{s}$ y $\mathbf{s}+ \mathbf{h}$, se denomina **anisotrópico**. Cuando solo depende de la distancia ($\lvert \mathbf{h} \rvert=|| \mathbf{h} ||$, porque en el espacio euclídeo el módulo y la norma coinciden) se denomina **isotrópico**. 
 \index{semivariograma!isotrópico}  \index{semivariograma!anisotrópico}
@@ -192,7 +184,7 @@ El análisis del comportamiento de un semivariograma a pequeñas, medias y grand
 En general, a  distancias medias y grandes, los semivariogramas asociados a *f.a.* estacionarias de segundo orden crecen, monótonamente, desde el origen con la distancia hasta alcanzar un valor límite, la **varianza** ***a priori*** de la *f.a.* (o covarianza para $\mathbf {h}=0$, $C(\mathbf{0})$), bien de forma exacta o asintóticamente. Dicho valor límite se denomina **meseta**, $m$, y la distancia a la cual se alcanza se conoce como **alcance** o **rango**, $a$. Por tanto, el rango es la distancia a partir de la cual ya no hay  dependencia espacial. Cuando $m$ se alcanza asintóticamente, el alcance no queda perfectamente definido y se toma como alcance la distancia a la cual el semivariograma toma el valor $0,95 m$, denominada **alcance efectivo** a efectos prácticos.
 
 
-\index{varianza a priori@varianza \textit{a priori}} 
+\index{varianza! a priori@\textit{a priori}} 
 \index{meseta} \index{rango}  \index{alcance}
 
 En el caso no estacionario (por ejemplo, si hay deriva) o intrínsecamente estacionario el semivariograma no tiene meseta.
@@ -213,14 +205,10 @@ fa_sph <- grf(1225, grid = "reg", cov.pars = c(1, .25), cov.model = "spherical")
 image(fa_sph, col = tim.colors())
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/gauss-sph} 
-
-}
-
-\caption{Representacion bidimensional de dos $f.a.$: con semivariograma parabólico en el origen (izquierda); con semivariograma lineal en el origen (derecha).}(\#fig:gauss-sph-plot)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/gauss-sph.png" alt="Representacion bidimensional de dos $f.a.$: con semivariograma parabólico en el origen (izquierda); con semivariograma lineal en el origen (derecha)." width="60%" />
+<p class="caption">(\#fig:gauss-sph-plot)Representacion bidimensional de dos $f.a.$: con semivariograma parabólico en el origen (izquierda); con semivariograma lineal en el origen (derecha).</p>
+</div>
 Las *v.r.* regulares (aquellas cuya gráfica tridimensional no tiene picos) se identifican con un **comportamiento semivariográfico parabólico en el origen**. Si dicho comportamiento persiste a largas distancias, puede que exista una fuerte deriva.
 
 Las discontinuidades en el origen (que teóricamente no pueden darse) son frecuentes en la práctica. Su amplitud se denomina **efecto pepita**
@@ -250,14 +238,10 @@ legend(0.25, 0.5, "Alcance")
 legend(0.5, 0.75, "Ausencia de dependencia")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/semivar-parts} 
-
-}
-
-\caption{Elementos del semivariograma (meseta unitaria).}(\#fig:plot-partes-sem)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/semivar-parts.png" alt="Elementos del semivariograma (meseta unitaria)." width="60%" />
+<p class="caption">(\#fig:plot-partes-sem)Elementos del semivariograma (meseta unitaria).</p>
+</div>
 
 \index{semivariograma}  \index{dependencia espacial}
 
@@ -332,7 +316,7 @@ donde  $K_\alpha$ es la función de segunda especie de orden $\alpha$. Este mode
 J_\alpha \left(\frac{|\mathbf{h}|}{a} \right) \right),
 \end{equation} 
 
-donde $\alpha$ es un parámetro de forma, $a$ es un parámetro de escala,  \index{parámetro!de escala} $\Gamma$ es la función de Euler que interpola el factorial y $J_{\alpha}$ es la función J-Bessel de primera especie de orden $\alpha$. 
+donde $\alpha$ es un parámetro de forma, $a$ es un parámetro de escala,  \index{parametro@parámetro!de escala} $\Gamma$ es la función de Euler que interpola el factorial y $J_{\alpha}$ es la función J-Bessel de primera especie de orden $\alpha$. 
 
 <!-- El semivariogrmama J-Bessel is the particularization of the J-Bessel -->
 <!-- model for $\alpha =1/2$ and is one of the few hole-effect models valid -->
@@ -346,14 +330,10 @@ library("gstat")
 show.vgms(models = c("Sph", "Exp", "Gau", "Nug", "Bes", "Wav"))
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{190041_geoestadistica_files/figure-latex/semivar-teo-sill-ch41-1} 
-
-}
-
-\caption{Representación de semivariogramas con meseta válidos  (meseta y alcance efectivo unitarios; a excepción del efecto pepita puro).}(\#fig:semivar-teo-sill-ch41)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="190041_geoestadistica_files/figure-html/semivar-teo-sill-ch41-1.png" alt="Representación de semivariogramas con meseta válidos  (meseta y alcance efectivo unitarios; a excepción del efecto pepita puro)." width="60%" />
+<p class="caption">(\#fig:semivar-teo-sill-ch41)Representación de semivariogramas con meseta válidos  (meseta y alcance efectivo unitarios; a excepción del efecto pepita puro).</p>
+</div>
 
 #### Semivariogramas sin meseta \index{semivariograma!sin meseta}
 
@@ -382,21 +362,17 @@ Una representación gráfica de ambos semivariogramas puede verse en la Fig. \@r
 show.vgms(models = c("Pow", "Log"), sill = 1, range = c(2, 1), nugget = 0)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{190041_geoestadistica_files/figure-latex/semivar-teo-no-sill-ch41-1} 
-
-}
-
-\caption{Representación de semivariogramas sin meseta válidos.}(\#fig:semivar-teo-no-sill-ch41)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="190041_geoestadistica_files/figure-html/semivar-teo-no-sill-ch41-1.png" alt="Representación de semivariogramas sin meseta válidos." width="60%" />
+<p class="caption">(\#fig:semivar-teo-no-sill-ch41)Representación de semivariogramas sin meseta válidos.</p>
+</div>
 
 
 ### Semivariograma empírico
 
 Dado que la única información de la que se dispone es una realización observada de la *f.a* objeto de estudio, en la práctica la estructura de la dependencia espacial se estima mediante el semivariograma empírico. 
 
-En el marco de la estacionariedad intrínseca (que incluye la estacionariedead estricta y de segundo orden) y en $\mathbb{R}^d, d\geq1$, se estiman (insesgadamente) los valores semivariográficos para un número determinado de distancias, por el método de los momentos: \index{valores semivariográficos}
+En el marco de la estacionariedad intrínseca (que incluye la estacionariedead estricta y de segundo orden) y en $\mathbb{R}^d, d\geq1$, se estiman (insesgadamente) los valores semivariográficos para un número determinado de distancias, por el método de los momentos: \index{valores!semivariográficos}
 \begin{equation} 
 \hat{\gamma} (\mathbf{h}) = \frac{1}{2\#N(\mathbf{h})}\sum\limits_{N(\mathbf{h})} {\left( {Z(\mathbf{s}_i + \mathbf{h}) - Z({\mathbf{s}}_i )} \right)^2},
 \end{equation}
@@ -407,7 +383,7 @@ La función que mejor ajusta las estimaciones de los valores semivariográficos 
 \index{semivariograma!empírico}
 Los valores semivariográficos se suelen computar para distancias inferiores a la mitad del diámetro de *D*, porque para distancias superiores el número de parejas de localizaciones suele ser pequeño para proporcionar estimaciones fiables. En la práctica, como en muchas de las direcciones no hay un número de parejas suficiente para calcular el semivariograma con cierta fiabilidad, lo habitual es construir un **semivariograma empírico omnidireccional**, es decir, que depende solo de la distancia (longitud del vector **h**) y no de la dirección. Para ello se crean **regiones de tolerancia**, que no se solapen, basadas en intervalos de distancia (normalmente de la misma longitud) y un **ángulo de tolerancia**.\index{angulo@ángulo de tolerancia} En concreto, la tolerancia se especifica en el módulo de $\mathbf h$ ($\pm\Delta |\mathbf h|$) y en su dirección ($\pm\Delta\theta$). Para más detalles y ejemplos, véase @montero2015spatial.   
 
-\index{semivariograma!empírico!direccional} \index{semivariograma!empírico!omnidireccional} \index{región de tolerancia} 
+\index{semivariograma!empírico!direccional} \index{semivariograma!empírico!omnidireccional} \index{region@región!de tolerancia} 
 
 La Fig. \@ref(fig:plot-semivar-emp) muestra la ubicación de los puntos semivariográficos, indicando el número de parejas a cada distancia, en el caso de las temperaturas máximas en España (06/08/2022).
 
@@ -419,29 +395,32 @@ vgm_tmax <- variogram(tmax ~ 1, temp_max_utm_sf,
 plot(vgm_tmax, plot.numbers = TRUE, pch = "+", lwd = 2, cex = 2)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/emp-semivar} 
-
-}
-
-\caption{Valores semivariográficos. Temperaturas máximas (06/08/2022).}(\#fig:plot-semivar-emp)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/emp-semivar.png" alt="Valores semivariográficos. Temperaturas máximas (06/08/2022)." width="60%" />
+<p class="caption">(\#fig:plot-semivar-emp)Valores semivariográficos. Temperaturas máximas (06/08/2022).</p>
+</div>
 
 
-En el ejemplo ilustrado, la distancia mínima entre dos estaciones meteorológicas es 1.125 m y la máxima 1.027.597 m. Sin embargo, dada la geometría del mapa de España (aunque de Huelva a Gerona hay 987 km en línea recta, más de dos terceras partes de las ciudades españolas no están separadas más de 500 km), se consideró 250.000 m (1/4 de la distancia máxima) como distancia máxima a la hora de calcular los valores semivariográficos, ya que a partir de dicha distancia el número de parejas no es lo suficientemente grande como para obtener resultados fiables. Por convenio, `gstat` divide la distancia en 15 intervalos (`geoR` la divide en 13 porque los autores lo hicieron un viernes 13).  \index{valores semivariográficos}
+En el ejemplo ilustrado, la distancia mínima entre dos estaciones meteorológicas es 1.125 m y la máxima 1.027.597 m. Sin embargo, dada la geometría del mapa de España (aunque de Huelva a Gerona hay 987 km en línea recta, más de dos terceras partes de las ciudades españolas no están separadas más de 500 km), se consideró 250.000 m (1/4 de la distancia máxima) como distancia máxima a la hora de calcular los valores semivariográficos, ya que a partir de dicha distancia el número de parejas no es lo suficientemente grande como para obtener resultados fiables. Por convenio, `gstat` divide la distancia en 15 intervalos (`geoR` la divide en 13 porque los autores lo hicieron un viernes 13).  \index{valores!semivariográficos}
 
 ### Ajuste semivariográfico  
 
-\index{ajuste semivariográfico}  \index{valores semivariográficos} \index{semivariograma!válido}
+\index{ajuste!semivariográfico}  \index{valores!semivariográficos} \index{semivariograma!válido}
 
 Cualquier función que dependa de una distancia y una dirección no es necesariamente un semivariograma, pues para ello tienen que cumplir los requisitos especificados en la Sec. \@ref(semivariograma). Esta es la razón por la que el semivariograma empírico no puede utilizarse directamente para realizar predicciones geoestadísticas. Por ello, a los valores semivariográficos estimados se les ajusta una función que represente un semivariograma válido. Sin embargo, esta tarea, clave para el éxito del posterior proceso predictivo, no es sencilla ni existe consenso en torno a ella. 
-El ajuste puede ser **manual**, utilizando métodos visuales y gráficos,  o **automático**, que usa procedimientos estadísticos. Una combinación de ambos es muy recomendable. \index{ajuste semivariográfico! manual} \index{ajuste semivariográfico! automático}
+El ajuste puede ser **manual**, utilizando métodos visuales y gráficos,  o **automático**, que usa procedimientos estadísticos. Una combinación de ambos es muy recomendable. \index{ajuste!semivariográfico!manual} \index{ajuste!semivariográfico!automático}
 
 El ajuste manual pudiera parecer "no muy científico" pero, dado que lo más importante a la hora del ajuste no es tanto la bondad del ajuste para todos los puntos semivariográficos sino lo bien que un semivariograma válido representa las principales características del fenómeno, especialmente el tipo de estacionariedad (comportamiento a largas distancias)  y, sobre todo, el tipo de continuidad (comportamiento cerca del origen), resulta ser un procedimiento muy práctico si se guía por las anteriores consideraciones. En este sentido, cualquier conocimiento sobre el fenómeno en estudio es bienvenido.
 
 
-El ajuste automatizado mediante procedimientos estadísticos incluye los **métodos de mínimos cuadrados** \index{mínimos cuadrados!ordinarios} (tanto ordinarios como generalizados y ponderados\index{mínimos cuadrados!generalizados} \index{mínimos cuadrados!ponderados}), que son los más populares en la práctica, y los **métodos basados en máxima verosimilitud**, \index{máxima verosimilitud} que incluyen, entre otros, el tradicional método máximo verosímil, la máxima verosimilitud restringida \index{máxima verosimilitud!restringida} y el método de la verosimilitud compuesta. \index{máxima verosimilitud!compuesta}
+El ajuste automatizado mediante procedimientos estadísticos incluye los **métodos de mínimos cuadrados** (tanto ordinarios como generalizados y ponderados), que son los más populares en la práctica, y los **métodos basados en máxima verosimilitud**, que incluyen, entre otros, el tradicional método máximo verosímil, la máxima verosimilitud restringida y el método de la verosimilitud compuesta. 
+
+\index{metodo@método! de mínimos cuadrados!ordinarios}
+\index{metodo@método! de mínimos cuadrados!generalizados}
+\index{metodo@método! de mínimos cuadrados!ponderados}
+\index{metodo@método! de máxima verosimilitud}
+\index{metodo@método! de máxima verosimilitud!restringida}
+\index{metodo@método! de máxima verosimilitud!compuesta}
 
 La Fig. \@ref(fig:plot-fit-semivar) muestra el semivariograma empírico correspondiente a los puntos semivariográficos de la Fig. \@ref(fig:plot-semivar-emp). De todos los modelos con meseta, el semivariograma ajustado ha sido un exponencial con alcance 76.404,64 metros y meseta 13,74.
 
@@ -458,14 +437,10 @@ plot(vgm_tmax, fit_vgm_tmax, lwd = 2, col = "2", pch = "*", cex = 3)
 ```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/emp-teo-semivar} 
-
-}
-
-\caption{Semivariograma empírico. Temperaturas máximas (06/08/2022).}(\#fig:plot-fit-semivar)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/emp-teo-semivar.png" alt="Semivariograma empírico. Temperaturas máximas (06/08/2022)." width="60%" />
+<p class="caption">(\#fig:plot-fit-semivar)Semivariograma empírico. Temperaturas máximas (06/08/2022).</p>
+</div>
 
 
 El método de ajuste ha sido el que figura por defecto en la función `vgm`: mínimos cuadrados ponderados con ponderaciones $\frac {N_{\bf |h|}} {|\bf h|^2}$, que funciona bien en la práctica y selecciona el semivariograma que mejor ajusta cuando el número de parejas es elevado y la distancia pequeña, que es la parte del semivariograma que hay que ajustar bien porque a pequeñas distancias es cuando más dependencia espacial hay. Respecto a los parámetros iniciales, aunque el investigador puede especificar los que considere convenientes, se recomienda utilizar los que tiene la función por defecto: $(i)$ alcance igual a 1/3 de la distancia máxima en la muestra; $(ii)$ como efecto pepita se toma la media de los tres primeros valores semivariográficos; y $(iii)$ como meseta parcial (meseta menos efecto pepita), la media de los cinco últimos valores semivariográficos.
@@ -485,7 +460,7 @@ obedece a que, bajo estacionariedad de segundo orden, solo se requiere el conoci
 
 [^Nota-geo-6]: En lo que sigue, la exposición se centrará en la predicción puntual a partir de datos puntuales (es decir, en el soporte puntual). La generalización a bloques puede verse en @montero2015spatial.
 
-Las principales ventajas del *kriging* sobre los métodos de interpolación espacial deterministas \index{interpolación} (método de la distancia inversa, *splines*, regresión polinomial, etc.)\index{splines@\textit{splines}}, es que ($i$) considera la estructura de la dependencia espacial (dando lugar a mejores predicciones),  ($ii$) proporciona, junto con la predicción, la varianza del error de predicción y ($iii$) es un interpolador exacto.
+Las principales ventajas del *kriging* sobre los métodos de interpolación espacial deterministas \index{interpolación} (método de la distancia inversa, *splines*, regresión polinomial, etc.)\index{spline@\textit{spline}}, es que ($i$) considera la estructura de la dependencia espacial (dando lugar a mejores predicciones),  ($ii$) proporciona, junto con la predicción, la varianza del error de predicción y ($iii$) es un interpolador exacto.
 
 Dependiendo del tipo de estacionariedad que se considere en la *f.a.* el *kriging* puede ser universal (no estacionariedad en media) u ordinario (estacionariedad de segundo orden o intrínseca). Este manual se centra en el **_kriging_ ordinario** (KO). La generalización al caso universal (hay deriva: la media depende de las localizaciones en vez de ser constante) puede verse en @montero2015spatial.
 
@@ -542,16 +517,12 @@ ggplot() +
   )
 ```
 
-\begin{figure}
+<div class="figure" style="text-align: center">
+<img src="img/tmax-kriged.png" alt="$Mapping$ de temperaturas máximas (06/08/2022)." width="85%" />
+<p class="caption">(\#fig:plot-kriging-pred)$Mapping$ de temperaturas máximas (06/08/2022).</p>
+</div>
 
-{\centering \includegraphics[width=0.85\linewidth]{img/tmax-kriged} 
-
-}
-
-\caption{$Mapping$ de temperaturas máximas (06/08/2022).}(\#fig:plot-kriging-pred)
-\end{figure}
-
-El *mapping* de la Fig. \@ref(fig:plot-kriging-pred) tiene poco valor si no se acompaña de otro que muestre la desviación típica de los errores de predicción. \index{error de predicción}  \index{mapping@\textit{mapping}}
+El *mapping* de la Fig. \@ref(fig:plot-kriging-pred) tiene poco valor si no se acompaña de otro que muestre la desviación típica de los errores de predicción. \index{error!de predicción}  \index{mapping@\textit{mapping}}
 
 
 ```r
@@ -572,19 +543,15 @@ ggplot(kriged_df) +
   )
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{img/tmax-sd-error} 
-
-}
-
-\caption{Desviaciones típicas del error de predicción.}(\#fig:plot-sd-error)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/tmax-sd-error.png" alt="Desviaciones típicas del error de predicción." width="85%" />
+<p class="caption">(\#fig:plot-sd-error)Desviaciones típicas del error de predicción.</p>
+</div>
 
 
 
 Como se aprecia en la Fig. \@ref(fig:plot-sd-error), cuanto mayor es el número de localizaciones observadas alrededor del punto de predicción, menor es la desviación típica del error de predicción.
-\index{error de predicción!desviación típica}
+\index{error!de predicción!desviación típica}
 
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}

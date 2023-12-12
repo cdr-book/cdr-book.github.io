@@ -25,12 +25,12 @@ Una vez capturados estos datos, pueden ser usados en los procesos de negocio par
 
 ## Concepto de base de datos
 
-\index{base de datos}
+\index{base!de datos}
 Para poder habilitar el procesamiento o los  análisis de forma automática mediante las potentes técnicas tratadas en el resto de capítulos de este manual, es necesario almacenar previamente los datos en algún lugar como `repositorios` o `bases de datos`, donde los datos se puedan añadir, borrar, recuperar o modificar fácilmente. 
 
 De acuerdo con @Piattinietal2006, una **base de datos (BD)** es una colección o depósito de datos integrados, almacenados en soporte secundario (no volátil) y con redundancia controlada. En una base de datos, los valores correspondientes a los atributos que han de ser compartidos por diferentes usuarios y aplicaciones deben mantenerse independientes de ellos, y su definición (estructura de la base de datos), única y almacenada junto con los datos, se ha de apoyar en un modelo de datos. Este modelo debe captar las interrelaciones y restricciones existentes en las entidades y hechos del mundo real al que representan. Existen diferentes tipos de modelos que permiten estructurar y representar la semántica de los datos, como, por ejemplo, el modelo relacional [@codd1970relational], que es el fundamento de las bases de datos relacionales en las que se centra este capítulo.
 
-\index{sistema gestor de bases de datos} \index{sistema gestor de bases de datos!relacionales} \index{sistema gestor de bases de datos!NoSQL}
+\index{sistema!gestor de bases de datos} \index{sistema!gestor de bases de datos!relacionales} \index{sistema!gestor de bases de datos!NoSQL}
 En el ámbito de los Sistemas de Información, se han desarrollado programas que dan soporte a todo el proceso de creación y explotación de las bases de datos. A estos programas se los conoce como **Sistemas Gestores de Bases de Datos (SGBD)**. Como ejemplos de estos SGBD se pueden citar Microsoft Access, Microsoft SQL Server, Oracle Server, MySQL, MariaDB, Informix, MongoDB... En cualquier caso, como se verá más adelante en este capítulo, los SGBD más utilizados son los conocidos como **relacionales (SGBDR)**, aunque, con el auge del *Big Data* y del *Machine Learning*, esta tendencia está cambiando y empiezan a desplegarse cada vez más SGBD conocidos como  _not only structured query language_, **NoSQL** (no solo lenguaje estructurado de consulta) (véase Cap. \@ref(cap-nosql)). Para evitar confusiones, es importante diferenciar entre la base de datos propiamente dicha (como una colección de datos almacenada en un fichero de datos) y el software SGBD específico, ya sea relacional o NoSQL: una misma base de datos, con las correspondientes adaptaciones, puede ser gestionada usando diferentes tipos de SGBD. Habitualmente, los tipos de SGBDR más usados son los que tienen capacidades multiproceso/multiusuario, ya que permiten acceder a datos compartidos mediante el uso de interfaces de datos para ejecutar diferentes tipos de análisis, empleando lenguajes de programación más potentes --o versátiles--, como **R** software o Python, que los lenguajes típicos de programación.
 
 
@@ -44,9 +44,9 @@ Las organizaciones usan datos para sus procesos de negocio. La Tabla \@ref(tab:T
 <!-- Para compilar en HTML -->
 <!-- tabla-html -->
 
+<img src="img/tabla-5-1-tipos-datos.png" width="100%" style="display: block; margin: auto;" />
 
-
-\index{base de datos} \index{datos!repositorio}
+\index{base!de datos} \index{datos!repositorio}
 
 \begin{sidewaystable}[]
 \caption{\label{tab:TablaTiposDatos}Tipos de datos}
@@ -73,7 +73,7 @@ En cualquier caso, estos procedimientos de inserción, actualización, recuperac
 \index{SQL}
 La forma de implementar estas operaciones depende fuertemente del formato (modelo lógico) en el que estén almacenados los datos. Aunque existen diferentes modelos (estructurados, semiestructurados, no estructurados), en este capítulo el énfasis se pone en el modelo relacional [@codd1970relational], ya que es el más ampliamente usado en el ámbito organizacional y el que implementan los SGBDR. Para poder dar soporte a las operaciones CRUD anteriormente citadas en bases de datos relacionales, se desarrolló un lenguaje llamado "lenguaje estructurado de consulta" (_structured query language_, **SQL**), que se aborda en la siguiente sección.
 
-\index{base de datos!relacionales}
+\index{base!de datos!relacionales}
 
 ## SQL: el lenguaje estructurado de consulta 
 
@@ -96,7 +96,7 @@ Los principios de SQL están establecidos en el estándar internacional [ISO/IEC
 [^SQL10]: <https://www.mysql.com/products/>
 
 
-\index{base de datos!SQL}
+\index{base!de datos!SQL}
 
 SQL tiene diferentes tipos de sentencias o instrucciones que dan soporte a los diferentes aspectos de las interacciones con la base de datos. Cualquier manual de SQL permite tratar en profundidad todos los elementos sintácticos del lenguaje, pero es importante señalar que los detalles específicos de la sintaxis específica dependerán fuertemente del SGBDR empleado. Para los ejemplos propuestos en este libro, puede consultarse el [manual de referencia de SQL de MySQL v8.0](https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html).[^SQL11] Las siguientes secciones proporcionan una visión global de dichos grupos de sentencias.
 

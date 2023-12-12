@@ -7,7 +7,7 @@
 <title>Capítulo 56 Una nota sobre el cambio climático | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Dominic Royé Fundación de la Investigación del Clima  56.1 Introducción La temperatura media global en la superficie terrestre ha aumentado en 1,1 ºC desde la era preindustrial (1880-1900). A...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 56 Una nota sobre el cambio climático | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -140,8 +140,8 @@
 <span class="header-section-number">56.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-27"><i class="fas fa-link"></i></a>
 </h2>
 <p>La temperatura media global en la superficie terrestre ha aumentado en 1,1 ºC desde la era preindustrial (1880-1900). A pesar de parecer un leve incremento en la temperatura, implica un aumento significativo en el calor acumulado del sistema Tierra. Cuando se combina el aumento de la temperatura en la superficie terrestre y en la superficie oceánica, la tasa de incremento promedio es de 0,08 ºC por década desde 1880. Sin embargo, la tasa promedio de aumento desde 1981 ha sido más del doble: 0,18 ºC por año. Los océanos se caracterizan por una menor tasa de calentamiento debido a su capacidad calorífica. No obstante, son los océanos los que absorben la mayoría del calor adicional del planeta debido al cambio climático.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.ncei.noaa.gov/news/global-climate-202112" class="uri"&gt;https://www.ncei.noaa.gov/news/global-climate-202112&lt;/a&gt;.&lt;/p&gt;'><sup>306</sup></a></p>
-<p>Entre todas las regiones, la región mediterránea se está calentando un 20 % más rápido que el promedio mundial. Este lugar representa actualmente el punto crítico más importante del cambio climático, donde se percibe un significativo aumento de las vulnerabilidades. La temperatura de las aguas superficiales en el Mediterráneo ha estado subiendo 0,34 ºC cada década desde principios de los 80 <span class="citation">(<a href="referncias.html#ref-cramer2020climate">Cramer et al. 2020</a>)</span>.</p>
-<p>En este caso práctico con datos sobre el cambio climático se tratan las anomalías de la temperatura superficial del mar Mediterráneo en los meses estivales desde 1982 a 2022.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Se entiende por anomalía la diferencia entre el promedio de la temperatura estival un determinado año y el promedio estival en el período 1982-2010 (período de referencia para las anomalías). Véase Cap. &lt;a href="geoproces.html#geoproces"&gt;47&lt;/a&gt;.&lt;/p&gt;'><sup>307</sup></a> Igual que en el Cap. <a href="geoproces.html#geoproces">47</a> se utiliza el conjunto de datos “NOAA CDR OISST v02r01”, una interpolación óptima de la temperatura diaria de la superficie del mar (OISST, por sus siglas en inglés) con una resolución de 1/4 grados (27 km). Los datos los proporciona la National Oceanic and Atmospheric Administration (NOAA), son campos completos de temperatura oceánica construidos mediante la combinación de observaciones ajustadas por sesgo de diferentes plataformas (satélites, barcos, boyas) en una cuadrícula global regular, con lagunas estimadas por interpolación. Los datos satelitales del radiómetro avanzado de muy alta resolución (AVHRR, por sus siglas en inglés) proporcionan la entrada principal que permite la alta cobertura espaciotemporal desde finales de 1981 hasta el presente<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://developers.google.com/earth-engine/datasets/catalog/NOAA_CDR_OISST_V2_1" class="uri"&gt;https://developers.google.com/earth-engine/datasets/catalog/NOAA_CDR_OISST_V2_1&lt;/a&gt;&lt;/p&gt;'><sup>308</sup></a> <span class="citation">(<a href="referncias.html#ref-reynolds2008">R. W. Reynolds, Banzon, and Program 2008</a>)</span>.</p>
+<p>Entre todas las regiones, la región mediterránea se está calentando un 20 % más rápido que el promedio mundial. Este lugar representa actualmente el punto crítico más importante del cambio climático, donde se percibe un significativo aumento de las vulnerabilidades. La temperatura de las aguas superficiales en el Mediterráneo ha estado subiendo 0,34 ºC cada década desde principios de los 80 <span class="citation">(<a href="referencias.html#ref-cramer2020climate">Cramer et al. 2020</a>)</span>.</p>
+<p>En este caso práctico con datos sobre el cambio climático se tratan las anomalías de la temperatura superficial del mar Mediterráneo en los meses estivales desde 1982 a 2022.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Se entiende por anomalía la diferencia entre el promedio de la temperatura estival un determinado año y el promedio estival en el período 1982-2010 (período de referencia para las anomalías). Véase Cap. &lt;a href="geoproces.html#geoproces"&gt;47&lt;/a&gt;.&lt;/p&gt;'><sup>307</sup></a> Igual que en el Cap. <a href="geoproces.html#geoproces">47</a> se utiliza el conjunto de datos “NOAA CDR OISST v02r01”, una interpolación óptima de la temperatura diaria de la superficie del mar (OISST, por sus siglas en inglés) con una resolución de 1/4 grados (27 km). Los datos los proporciona la National Oceanic and Atmospheric Administration (NOAA), son campos completos de temperatura oceánica construidos mediante la combinación de observaciones ajustadas por sesgo de diferentes plataformas (satélites, barcos, boyas) en una cuadrícula global regular, con lagunas estimadas por interpolación. Los datos satelitales del radiómetro avanzado de muy alta resolución (AVHRR, por sus siglas en inglés) proporcionan la entrada principal que permite la alta cobertura espaciotemporal desde finales de 1981 hasta el presente<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://developers.google.com/earth-engine/datasets/catalog/NOAA_CDR_OISST_V2_1" class="uri"&gt;https://developers.google.com/earth-engine/datasets/catalog/NOAA_CDR_OISST_V2_1&lt;/a&gt;&lt;/p&gt;'><sup>308</sup></a> <span class="citation">(<a href="referencias.html#ref-reynolds2008">R. W. Reynolds, Banzon, and Program 2008</a>)</span>.</p>
 </div>
 <div id="consideraciones-iniciales" class="section level2" number="56.2">
 <h2>
@@ -154,11 +154,11 @@
 <span class="header-section-number">56.3</span> Paquetes<a class="anchor" aria-label="anchor" href="#paquetes"><i class="fas fa-link"></i></a>
 </h2>
 <p>El manejo de datos en formato netCDF o múltiples archivos <em>raster</em> es posible a través de varios paquetes de forma directa o indirecta. Destaca el paquete <code>ncdf4</code>, específicamente diseñado para esto, del que hacen uso también otros paquetes de forma oculta. El manejo con <code>ncdf4</code> es algo complejo, particularmente por la necesidad de gestionar la memoria RAM cuando se trata con grandes conjuntos de datos o también por la forma de manejar la clase <em>array</em>. Otro paquete muy potente es <code>terra</code>, clave en el trabajo con datos <em>raster</em> y que permite usar sus funciones también para el manejo del formato netCDF.</p>
-<div class="sourceCode" id="cb815"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb816"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># paquetes</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/">"sf"</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rspatial.org/terra/">"terra"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rspatial.org/">"terra"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://lubridate.tidyverse.org">"lubridate"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://fs.r-lib.org">"fs"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://patchwork.data-imaginist.com">"patchwork"</a></span><span class="op">)</span></span>
@@ -172,17 +172,17 @@
 <h2>
 <span class="header-section-number">56.4</span> Visualización de mapas de facetas<a class="anchor" aria-label="anchor" href="#visualizaci%C3%B3n-de-mapas-de-facetas"><i class="fas fa-link"></i></a>
 </h2>
-<p></p>
+<p> </p>
 <p>Una forma muy efectiva para mostrar cambios espaciotemporales son los mapas de facetas o paneles, en los que se representa, en una rejilla para cada año, la distribución espacial de las anomalías observadas, lo que permite una comparación temporal sencilla.</p>
 <div id="importación-de-datos" class="section level3" number="56.4.1">
 <h3>
 <span class="header-section-number">56.4.1</span> Importación de datos<a class="anchor" aria-label="anchor" href="#importaci%C3%B3n-de-datos"><i class="fas fa-link"></i></a>
 </h3>
 <p>Se importa el polígono del mar Mediterráneo para limitar los datos al área de interés.</p>
-<div class="sourceCode" id="cb816"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb817"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"med_limit"</span><span class="op">)</span> </span></code></pre></div>
 <p>A continuación, se importan todos los años empleando la función <code><a href="https://fs.r-lib.org/reference/dir_ls.html">dir_ls()</a></code> del paquete <code>fs</code> y la función <code><a href="https://rdrr.io/pkg/terra/man/rast.html">rast()</a></code> de <code>terra</code>. La primera función crea un vector de todos los archivos ubicados en la carpeta “data”. Finalmente se renombran todas las capas con los correspondientes años. Es importante que se garantice el correcto orden de los archivos. Siempre que se haya realizado el geoprocesamiento en nube de las anomalías (Cap. <a href="geoproces.html#geoproces">47</a>) se puede usar la alternativa: <code>anom &lt;- dir_ls("data-cc", regexp = "tif") |&gt; rast()</code>).</p>
-<div class="sourceCode" id="cb817"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb818"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># importar</span></span>
 <span><span class="va">anom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://fs.r-lib.org/reference/dir_ls.html">dir_ls</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"external/data-cc/"</span>, package <span class="op">=</span> <span class="st">"CDR"</span><span class="op">)</span>, regexp <span class="op">=</span> <span class="st">"tif"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/terra/man/rast.html">rast</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -195,28 +195,28 @@
 <span class="header-section-number">56.4.2</span> Preparación de los datos<a class="anchor" aria-label="anchor" href="#preparaci%C3%B3n-de-los-datos"><i class="fas fa-link"></i></a>
 </h3>
 <p>Después de importar el polígono del mar Mediterráneo, es necesario recortar y enmascarar el área de interés. Para ello se usa primero la función <code><a href="https://rdrr.io/pkg/terra/man/crop.html">crop()</a></code> con los límites del mar Mediterráneo y se pasa el resultado a la función <code><a href="https://rdrr.io/pkg/terra/man/mask.html">mask()</a></code>. El paquete <code>terra</code> necesita los datos vectoriales en su propia clase <code>SpatVector</code>; por eso se pasa con la función <code><a href="https://rdrr.io/pkg/terra/man/vect.html">vect()</a></code>, que lo convierte de la clase <em>sf</em> a <em>SpatVector</em>. Finalmente, se reproyectan los <em>rasters</em> a <em>ETRS89-extended / LAEA Europe</em> con el código EPSG:3035.</p>
-<div class="sourceCode" id="cb818"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb819"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">anom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/crop.html">crop</a></span><span class="op">(</span><span class="va">anom</span>, <span class="va">med_limit</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/mask.html">mask</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/vect.html">vect</a></span><span class="op">(</span><span class="va">med_limit</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">anom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/project.html">project</a></span><span class="op">(</span><span class="va">anom</span>, <span class="st">"EPSG:3035"</span><span class="op">)</span></span></code></pre></div>
 <p>En la Fig. <a href="cambioclimatico.html#fig:raster-crop-mask-plot">56.1</a> se puede ver el resultado de los primeros años.</p>
-<div class="sourceCode" id="cb819"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb820"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html">plot</a></span><span class="op">(</span><span class="va">anom</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:raster-crop-mask-plot"></span>
-<img src="img/anom-med.png" alt="Distribución espacial de las anomalías en la  temperatura superficial del mar Mediterráneo: 1982-1997." width="100%"><p class="caption">
+<img src="img/anom-med.PNG" alt="Distribución espacial de las anomalías en la  temperatura superficial del mar Mediterráneo: 1982-1997." width="100%"><p class="caption">
 Figura 56.1: Distribución espacial de las anomalías en la temperatura superficial del mar Mediterráneo: 1982-1997.
 </p>
 </div>
-<p>Un <em>raster</em> consiste en latitud, longitud y uno o múltiples valores, también llamados capas (véase Cap. <a href="datos-espaciales.html#datos-espaciales">40</a>. Para poder visualizarlo en <code>ggplot2</code>, es necesario convertirlo en un <code>data.frame</code>. En este caso, se obtienen 41 columnas para las anomalías, además de las primeras dos columnas, que corresponden a la longitud y a la latitud.</p>
+<p>Un <em>raster</em> consiste en latitud, longitud y uno o múltiples valores, también llamados capas (véase Cap. <a href="datos-espaciales.html#datos-espaciales">40</a>). Para poder visualizarlo en <code>ggplot2</code>, es necesario convertirlo en un <code>data.frame</code>. En este caso, se obtienen 41 columnas para las anomalías, además de las primeras dos columnas, que corresponden a la longitud y a la latitud.</p>
 <p>No obstante, es necesario realizar cambios en la distribución de las variables. Ahora se tiene la misma variable, la anomalía, distribuida en muchas columnas, pero la estructura adecuada debe ser un conjunto total de dos columnas: una con las anomalías y otra con los años. Para conseguirlo se hace uso de <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>, indicando el total de columnas que deben ser fusionadas y los nombres de las dos columnas resultantes.</p>
-<div class="sourceCode" id="cb820"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb821"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">anom</span>, xy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">df</span>, <span class="fl">3</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>, </span>
 <span>                   names_to <span class="op">=</span> <span class="st">"yr"</span>,</span>
 <span>                   values_to <span class="op">=</span> <span class="st">"anom"</span><span class="op">)</span></span></code></pre></div>
-<p>Se añaden los años de la década de los 80 que faltan (1980, 1981) y se limitan las anomalías a un rango entre $-$2 ºC y $+$2 ºC.</p>
-<div class="sourceCode" id="cb821"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">yr</span> <span class="op">==</span> <span class="st">"1982"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<p>Se añaden los años de la década de los 80 que faltan (1980, 1981) y se limitan las anomalías a un rango entre <span class="math inline">\(-2\)</span> ºC y <span class="math inline">\(+2\)</span> ºC.</p>
+<div class="sourceCode" id="cb822"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">yr</span> <span class="op">==</span> <span class="st">"1982"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>                    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="st">"1981"</span>, anom <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>,</span>
 <span>                   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">yr</span> <span class="op">==</span> <span class="st">"1982"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>                    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="st">"1980"</span>, anom <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
@@ -225,7 +225,7 @@ Figura 56.1: Distribución espacial de las anomalías en la temperatura superfic
 <span>                               <span class="va">anom</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">2</span> <span class="op">~</span> <span class="op">-</span><span class="fl">2</span>,</span>
 <span>                               <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">anom</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Previo a la construcción del gráfico, se estima, para cada año, la media de las anomalías en toda la cuenca mediterránea. Estos datos se añaden como texto a cada mapa. Con el objetivo de obtener las coordenadas de la posición en la proyección EPSG:3035, se fija un punto vectorial que se reproyecta.</p>
-<div class="sourceCode" id="cb822"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb823"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># media global</span></span>
 <span><span class="va">med_anom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/global.html">global</a></span><span class="op">(</span><span class="va">anom</span>, fun <span class="op">=</span> <span class="st">"mean"</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">med_anom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span><span class="va">med_anom</span>, <span class="st">"yr"</span><span class="op">)</span></span>
@@ -241,7 +241,7 @@ Figura 56.1: Distribución espacial de las anomalías en la temperatura superfic
 <span class="header-section-number">56.4.3</span> Construcción del gráfico de facetas<a class="anchor" aria-label="anchor" href="#construcci%C3%B3n-del-gr%C3%A1fico-de-facetas"><i class="fas fa-link"></i></a>
 </h3>
 <p>En el primer paso se definen los estilos partiendo de <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void()</a></code>, configurando los títulos, la leyenda y el color de fondo en <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>.</p>
-<div class="sourceCode" id="cb823"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb824"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">theme_SST_facet</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">base_family</span> <span class="op">=</span> <span class="st">"Bahnschrift"</span>,</span>
 <span>                            <span class="va">base_size</span> <span class="op">=</span> <span class="fl">11</span>, </span>
 <span>                            <span class="va">base_line_size</span> <span class="op">=</span> <span class="va">base_size</span><span class="op">/</span><span class="fl">22</span>, </span>
@@ -266,7 +266,7 @@ Figura 56.1: Distribución espacial de las anomalías en la temperatura superfic
 <span>        panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"grey10"</span>, colour <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Para representar datos <em>raster</em> en forma de <code>xyz</code> se utiliza <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile()</a></code> o <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_raster()</a></code> en <code>ggplot2</code>. La última geometría requiere una rejilla regular. Para este primer ensayo se filtra solo el año 2003 y, además, se añade, con <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code>, el límite del mar Mediterráneo. La función <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf()</a></code> permite fijar una proyección para objetos <code>sf</code> y, por último, se cambia el estilo definido anteriormente.</p>
-<div class="sourceCode" id="cb824"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb825"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">yr</span> <span class="op">==</span> <span class="st">"2003"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, fill <span class="op">=</span> <span class="va">anom2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -274,10 +274,10 @@ Figura 56.1: Distribución espacial de las anomalías en la temperatura superfic
 <span>          fill <span class="op">=</span> <span class="cn">NA</span>, colour <span class="op">=</span> <span class="st">"white"</span>, size <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="fl">3035</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">theme_SST_facet</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Siguiendo el ejemplo, se modifica la gama de colores con <code><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradientn()</a></code>, en la que se pasa la paleta de colores, los valores mínimo y máximo tras el re-escalamiento (en este caso, $-$2 y 2), se reajustan los valores a una escala divergente y se definen las etiquetas y sus posiciones. Dentro de la función <code><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides()</a></code>, se cambia el ancho y la altura de la barra colores empleando la función <code><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">guide_colorbar()</a></code>.</p>
+<p>Siguiendo el ejemplo, se modifica la gama de colores con <code><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradientn()</a></code>, en la que se pasa la paleta de colores, los valores mínimo y máximo tras el re-escalamiento (en este caso, <span class="math inline">\(-2\)</span> y <span class="math inline">\(+2\)</span>), se reajustan los valores a una escala divergente y se definen las etiquetas y sus posiciones. Dentro de la función <code><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides()</a></code>, se cambia el ancho y la altura de la barra colores empleando la función <code><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">guide_colorbar()</a></code>.</p>
 <p>Las geometrías <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> y <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text()</a></code> añaden la información de la anomalía global. La posición se pasa de forma directa en <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>; además, se definen el color y el tamaño de texto. El objetivo es situar el texto a la derecha del punto. Por esa razón, es necesario un ajuste en longitud indicando un valor correspondiente en el argumento <code>nudge_x</code> en la unidad del sistema de coordenadas (SC). Recuérdese que el SC está en metros.</p>
 <p>La función <code><a href="https://scales.r-lib.org/reference/number.html">number()</a></code> del paquete <code>scales</code> facilita formatear las cifras con un decimal y los símbolos negativo y positivo.</p>
-<div class="sourceCode" id="cb825"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb826"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># gama de colores</span></span>
 <span><span class="va">rdbu_pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/flip.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">11</span>, <span class="st">"RdBu"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -308,12 +308,12 @@ Figura 56.1: Distribución espacial de las anomalías en la temperatura superfic
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="fl">3035</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_SST_facet</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>En la base de datos se han añadido dos años con valores perdidos (1980 y 1981) con el objetivo de que en cada fila del mapa de facetas (paneles o pequeños gráficos) haya 10 facetas (una para cada año de la década correspondiente, aunque las facetas de 1980 y 1981 aparezcan vacías). Para que no aparezcan las facetas de 1980 y 1981, es decir, para que los límites de la cuenca mediterránea no aparezcan en las facetas de los años 1980/81, se debe repetir la geometría para todos los años (excepto para 1980 y 1981, lógicamente).</p>
-<div class="sourceCode" id="cb826"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb827"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">med</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">med_limit</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">41</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>             <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">geometry</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>             <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">1982</span><span class="op">:</span><span class="fl">2022</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>A continuación, se construye todo el gráfico con todas las facetas de mapas. Lo único nuevo es la función <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code>, en la que se indica la variable por la que se crean las facetas. A diferencia de <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code>, esta variable permite fijar el número de filas y/o columnas. Además, se pasa una función menor<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Una función incluida en otra función.&lt;/p&gt;"><sup>309</sup></a> en la función <code><a href="https://ggplot2.tidyverse.org/reference/labeller.html">labeller()</a></code> en el mismo argumento. Esta función permite modificar las etiquetas de las facetas (aquí únicamente el texto de los años 1980/81).</p>
-<div class="sourceCode" id="cb827"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb828"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># paso 1</span></span>
 <span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">+</span></span>
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, fill <span class="op">=</span> <span class="va">anom2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -339,7 +339,7 @@ Figura 56.1: Distribución espacial de las anomalías en la temperatura superfic
 <span>             labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html">labeller</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">lab</span><span class="op">)</span><span class="op">{</span> </span>
 <span>               <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">lab</span> <span class="op"><a href="https://rdrr.io/pkg/terra/man/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1980"</span>, <span class="st">"1981"</span><span class="op">)</span>, <span class="st">""</span>, <span class="va">lab</span><span class="op">)</span><span class="op">}</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
 <p>Finalmente, se combina el objeto con definiciones finales, como los títulos, el sistema de coordenadas y el estilo. Es importante indicar <code>clip = off</code>, dado que en caso contrario se cortan visualmente los valores de las anomalías globales al encontrarse fuera de los límites de cada mapa.</p>
-<div class="sourceCode" id="cb828"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb829"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># paso 2</span></span>
 <span><span class="va">g</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"ANOMALÍA ESTIVAL DE LA TEMPERATURA DE SUPERFICIE DEL\nMar Mediterráneo"</span>, </span>
@@ -352,8 +352,8 @@ Figura 56.1: Distribución espacial de las anomalías en la temperatura superfic
 <h3>
 <span class="header-section-number">56.4.4</span> Mapa de orientación<a class="anchor" aria-label="anchor" href="#mapa-de-orientaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
-<p>Los límites administrativos se obtienen (seleccionan) con el paquete <code>giscoR</code>. También se limita la extensión a aproximadamente la de la cuenca mediterránea. La función <code><a href="https://rdrr.io/pkg/rmapshaper/man/ms_innerlines.html">ms_innerlines()</a></code> del paquete <code>rmapshaper</code> facilita la obtención de los límites compartidos o interiores de los países seleccionados. Los nombres de los países, en forma de código ISO-3, se incluyen con ayuda de <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf_text()</a></code>.</p>
-<div class="sourceCode" id="cb829"><pre class="downlit sourceCode r">
+<p>Los límites administrativos se obtienen (seleccionan) con el paquete <code>giscoR</code>. También se limita la extensión a aproximadamente la de la cuenca mediterránea. La función <code>ms_innerlines()</code> del paquete <code>rmapshaper</code> facilita la obtención de los límites compartidos o interiores de los países seleccionados. Los nombres de los países, en forma de código ISO-3, se incluyen con ayuda de <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf_text()</a></code>.</p>
+<div class="sourceCode" id="cb830"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># límites de países</span></span>
 <span><span class="va">countries_med</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>                    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ISO3_CODE</span> <span class="op"><a href="https://rdrr.io/pkg/terra/man/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ESP"</span>, <span class="st">"MAR"</span>, <span class="st">"FRA"</span>, <span class="st">"ITA"</span>,</span>
@@ -362,7 +362,7 @@ Figura 56.1: Distribución espacial de las anomalías en la temperatura superfic
 <span>                     <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crop.html">st_crop</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="op">-</span><span class="fl">6</span>, xmax <span class="op">=</span> <span class="fl">36</span>, ymin <span class="op">=</span> <span class="fl">28</span>, ymax <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># límites inernos</span></span>
-<span><span class="va">innerlimit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rmapshaper/man/ms_innerlines.html">ms_innerlines</a></span><span class="op">(</span><span class="va">countries_med</span><span class="op">)</span></span>
+<span><span class="va">innerlimit</span> <span class="op">&lt;-</span> <span class="fu">ms_innerlines</span><span class="op">(</span><span class="va">countries_med</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># mapa </span></span>
 <span><span class="va">insetp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -381,7 +381,7 @@ Figura 56.1: Distribución espacial de las anomalías en la temperatura superfic
 <span class="header-section-number">56.4.5</span> Exportación del mapa final<a class="anchor" aria-label="anchor" href="#exportaci%C3%B3n-del-mapa-final"><i class="fas fa-link"></i></a>
 </h3>
 <p>El mapa de orientación se inserta en el gráfico, como elemento adicional, en la esquina superior derecha. El paquete <code>patchwork</code> ayuda a crear composiciones de distinos gráficos. La función empleada, <code><a href="https://patchwork.data-imaginist.com/reference/inset_element.html">inset_element()</a></code>, indica la posición relativa en <em>xmin</em>, <em>ymin</em>, <em>xmax</em> e <em>ymax</em>. Es importante recordar que cualquier modificación del tamaño de impresión (veáse <em>height</em> y <em>width</em> en <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code>) puede llevar a ajustes en la posición. El argumento <code>align_to = "full"</code> permite posicionar sobre todo el lienzo.</p>
-<div class="sourceCode" id="cb830"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb831"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># paso 3</span></span>
 <span><span class="va">p_final</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/inset_element.html">inset_element</a></span><span class="op">(</span><span class="va">insetp</span>, <span class="fl">0</span>, <span class="fl">.75</span>, <span class="fl">.25</span>, <span class="fl">.95</span>, align_to <span class="op">=</span> <span class="st">"full"</span><span class="op">)</span></span>
 <span></span>
@@ -407,7 +407,7 @@ Figura 56.2: Distribución espacial de las anomalías estivales de la temperatur
 <h2>
 <span class="header-section-number">56.5</span> Conclusión<a class="anchor" aria-label="anchor" href="#conclusi%C3%B3n-1"><i class="fas fa-link"></i></a>
 </h2>
-<p>Una forma muy efectiva para mostrar cambios espaciotemporales son los mapas de pequeños múltiples, donde se representan los datos para cada unidad temporal, lo que permite una comparación sencilla. En este caso práctico con datos sobre el cambio climatcio se han tratado las anomalías de la temperatura superficial del mar Mediterráneo en los meses estivales desde 1982 a 2022. El gráfico final muestra claramente el efecto del calentamiento global, siendo los años 2003 y 2022 los de mayor anomalía positiva. Destaca el hecho de que no ha habido un año con temperaturas más bajas de lo normal desde el año 1997.</p>
+<p>Una forma muy efectiva para mostrar cambios espaciotemporales son los mapas de pequeños múltiples, donde se representan los datos para cada unidad temporal, lo que permite una comparación sencilla. En este caso práctico con datos sobre el cambio climático se han tratado las anomalías de la temperatura superficial del mar Mediterráneo en los meses estivales desde 1982 a 2022. El gráfico final muestra claramente el efecto del calentamiento global, siendo los años 2003 y 2022 los de mayor anomalía positiva. Destaca el hecho de que no ha habido un año con temperaturas más bajas de lo normal desde el año 1997.</p>
 
 </div>
 </div>
@@ -448,7 +448,7 @@ Figura 56.2: Distribución espacial de las anomalías estivales de la temperatur
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

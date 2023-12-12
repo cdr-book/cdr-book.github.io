@@ -47,8 +47,8 @@ Por ejemplo, si para determinar si es mejor cirugía o tratamiento médico se ap
 
 La aleatorización, al asegurar que las características basales conocidas y las desconocidas son similares en los pacientes a los que se les aplica cirugía y en aquellos a los que se le aplica tratamiento médico, elimina, en principio, el sesgo de selección, y permite afirmar que si hay diferencias en la evolución de los pacientes con cirugía y con tratamiento médico, dichas diferencias se deben precisamente a la forma de tratar a esos pacientes.
 
-\index{sesgo de selección}
-\index{indice de popensión@índice de propensión}
+\index{sesgo!de selección}
+\index{indice@índice!de propensión}
 
 ### Índice de propensión
 
@@ -75,17 +75,17 @@ El dataset sintético `datos_observacional` contenido en la librería `CDR` del 
 library("CDR")
 library("kableExtra")
 library("dplyr")
-datos_observacional <- datos_observacional |> 
-  mutate(comorbilidades = recode(comorbilidades, 
+datos_observacional <- datos_observacional |>
+  mutate(comorbilidades = recode(comorbilidades,
                                  `1 o más comorbilidades` = "1 o más", No = "No"))
 head(datos_observacional, 3)
-#> # A tibble: 3 x 8
+#> # A tibble: 3 × 8
 #>      ID fecha_hospitalizacion sexo    edad comorbilidades fecha_alta exitus
 #>   <dbl> <dttm>                <chr>  <dbl> <chr>          <chr>       <dbl>
 #> 1     1 2015-04-17 00:00:00   Mujer     76 1 o más        17/04/2020      1
 #> 2     2 2015-03-21 00:00:00   Mujer     64 1 o más        31/03/2020      0
 #> 3     3 2015-04-09 00:00:00   Hombre    65 1 o más        16/04/2020      0
-#> # i 1 more variable: fecha_exitus <dttm>
+#> # ℹ 1 more variable: fecha_exitus <dttm>
 ```
 
 
@@ -117,6 +117,7 @@ tab1 <- print(tab1,
 
 Para presentar la tabla de resultados formateada basta con usar la función `kable()`:
 
+
 ```r
 add_footnote(knitr::kable(tab1[,-5], booktabs=TRUE,
                           caption = "Características basales de la población",
@@ -124,34 +125,77 @@ add_footnote(knitr::kable(tab1[,-5], booktabs=TRUE,
              c("Median = Mediana","IQR = Rango intercuartílico"), notation = "number")
 ```
 
-\begin{table}
+<table>
+<caption>(\#tab:tabla1)Características basales de la población</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:left;"> Nivel </th>
+   <th style="text-align:left;"> Vivo </th>
+   <th style="text-align:left;"> Exitus </th>
+   <th style="text-align:left;"> p-valor </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> n </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> 79 </td>
+   <td style="text-align:left;"> 21 </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sexo (%) </td>
+   <td style="text-align:left;"> Hombre </td>
+   <td style="text-align:left;"> 28 (35.4) </td>
+   <td style="text-align:left;"> 2 ( 9.5) </td>
+   <td style="text-align:left;"> 0.042 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> Mujer </td>
+   <td style="text-align:left;"> 51 (64.6) </td>
+   <td style="text-align:left;"> 19 (90.5) </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> edad (median [IQR]) </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> 64.00 [53.00, 73.00] </td>
+   <td style="text-align:left;"> 82.00 [72.00, 85.00] </td>
+   <td style="text-align:left;"> &lt;0.001 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> comorbilidades (%) </td>
+   <td style="text-align:left;"> 1 o más </td>
+   <td style="text-align:left;"> 43 (54.4) </td>
+   <td style="text-align:left;"> 18 (85.7) </td>
+   <td style="text-align:left;"> 0.018 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> No </td>
+   <td style="text-align:left;"> 36 (45.6) </td>
+   <td style="text-align:left;"> 3 (14.3) </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr>
+<td style = 'padding: 0; border:0;' colspan='100%'><sup>1</sup> Median = Mediana</td>
+</tr>
+<tr>
+<td style = 'padding: 0; border:0;' colspan='100%'><sup>2</sup> IQR = Rango intercuartílico</td>
+</tr>
+</tfoot>
+</table>
 
-\caption{(\#tab:tabla1)Características basales de la población}
-\centering
-\begin{tabular}[t]{lllll}
-\toprule
-  & Nivel & Vivo & Exitus & p-valor\\
-\midrule
-n &  & 79 & 21 & \\
-sexo (\%) & Hombre & 28 (35.4) & 2 ( 9.5) & 0.042\\
- & Mujer & 51 (64.6) & 19 (90.5) & \\
-edad (median [IQR]) &  & 64.00 [53.00, 73.00] & 82.00 [72.00, 85.00] & <0.001\\
-comorbilidades (\%) & 1 o más & 43 (54.4) & 18 (85.7) & 0.018\\
-\addlinespace
- & No & 36 (45.6) & 3 (14.3) & \\
-\bottomrule
-\multicolumn{5}{l}{\textsuperscript{1} Median = Mediana}\\
-\multicolumn{5}{l}{\textsuperscript{2} IQR = Rango intercuartílico}\\
-\end{tabular}
-\end{table}
+
 
 
 La Tabla \@ref(tab:tabla1) confirma los resultados anteriormente publicados en la literatura: el sesgo de selección que provoca el desequilibrio en los totales marginales de los dos niveles la variable principal (`exitus`) en las variables `sexo`, `edad` y `comorbilidades` se evidencia a través de la significación de estas.[^Note-medicina-significacion] Por consiguiente, para llevar a cabo cualquier análisis estadístico de los datos, por ejemplo, para estimar un modelo predictivo, se hace absolutamente necesaria la aplicación del índice de propensión; en otro caso, los resultados no serán fiables. 
 
-[^Note-medicina-significacion]: Esto ocurre porque el *p*-valor combina la magnitud de la relación observada entre una variable explicativa y la variable respuesta con la cantidad de información disponible. Por eso, una relación puede ser no significativa porque realmente la relación sea inexistente o bien porque se posee poca información (muestra insuficiente) para considerar una determinada relación como significativa. Y al contrario, cuando existe mucha información, aunque la relación no exista y salir significativa debido a la enorme información existente.
-
-
-<!-- La recogida de datos para llevar a cabo un estudio observacional, como el de este ejemplo, normalmente viene dada por la disponibilidad de la población: sujetos ingresados en el Hospital por la enfermedad (en nuestro caso, coronavirus). Por tanto, esta muestra seleccionada recogerá pacientes con pronóstico más grave que la población general (mujer de mayor edad con una o más comorbilidades).  -->
+[^Note-medicina-significacion]: Esto ocurre porque el *p*-valor combina la magnitud de la relación observada entre una variable explicativa y la variable respuesta con la cantidad de información disponible. Por eso, una relación puede ser no significativa porque realmente la relación sea inexistente o bien porque se posee poca información (muestra insuficiente) para considerar una determinada relación como significativa. Y al contrario, cuando existe mucha información, aunque la relación no exista, puede salir significativa debido a la gran cantidad de información disponible.
 
 
 El paquete `MatchIt` integra las funciones principales para la aplicación del índice de propensión. Concretamente, la función `matchit()` integra la teoría de @ho2007matching para el emparejamiento óptimo de los grupos estudiados. Los argumentos más importantes de esta función son:
@@ -207,26 +251,72 @@ add_footnote(knitr::kable(tab1_corregida[,-5], booktabs=TRUE,
              c("Median = Mediana","IQR = Rango intercuartílico"), notation = "number")
 ```
 
-\begin{table}
+<table>
+<caption>(\#tab:tab1-corregida)Características basales de la población tras la aplicación del índice de propensión</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:left;"> Nivel </th>
+   <th style="text-align:left;"> Vivo </th>
+   <th style="text-align:left;"> Exitus </th>
+   <th style="text-align:left;"> p-valor </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> n </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> 21 </td>
+   <td style="text-align:left;"> 21 </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sexo (%) </td>
+   <td style="text-align:left;"> Hombre </td>
+   <td style="text-align:left;"> 2 ( 9.5) </td>
+   <td style="text-align:left;"> 2 ( 9.5) </td>
+   <td style="text-align:left;"> 1.000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> Mujer </td>
+   <td style="text-align:left;"> 19 (90.5) </td>
+   <td style="text-align:left;"> 19 (90.5) </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> edad (median [IQR]) </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> 72.00 [69.00, 84.00] </td>
+   <td style="text-align:left;"> 82.00 [72.00, 85.00] </td>
+   <td style="text-align:left;"> 0.182 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> comorbilidades (%) </td>
+   <td style="text-align:left;"> 1 o más </td>
+   <td style="text-align:left;"> 18 (85.7) </td>
+   <td style="text-align:left;"> 18 (85.7) </td>
+   <td style="text-align:left;"> 1.000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> No </td>
+   <td style="text-align:left;"> 3 (14.3) </td>
+   <td style="text-align:left;"> 3 (14.3) </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr>
+<td style = 'padding: 0; border:0;' colspan='100%'><sup>1</sup> Median = Mediana</td>
+</tr>
+<tr>
+<td style = 'padding: 0; border:0;' colspan='100%'><sup>2</sup> IQR = Rango intercuartílico</td>
+</tr>
+</tfoot>
+</table>
 
-\caption{(\#tab:tab1-corregida)Características basales de la población tras la aplicación del índice de propensión}
-\centering
-\begin{tabular}[t]{lllll}
-\toprule
-  & Nivel & Vivo & Exitus & p-valor\\
-\midrule
-n &  & 21 & 21 & \\
-sexo (\%) & Hombre & 2 ( 9.5) & 2 ( 9.5) & 1.000\\
- & Mujer & 19 (90.5) & 19 (90.5) & \\
-edad (median [IQR]) &  & 72.00 [69.00, 84.00] & 82.00 [72.00, 85.00] & 0.182\\
-comorbilidades (\%) & 1 o más & 18 (85.7) & 18 (85.7) & 1.000\\
-\addlinespace
- & No & 3 (14.3) & 3 (14.3) & \\
-\bottomrule
-\multicolumn{5}{l}{\textsuperscript{1} Median = Mediana}\\
-\multicolumn{5}{l}{\textsuperscript{2} IQR = Rango intercuartílico}\\
-\end{tabular}
-\end{table}
+
 
 
 ## Análisis de supervivencia
@@ -241,7 +331,7 @@ El dataset utilizado, `datos_supervivencia`, está incluido en el paquete `CDR` 
 
 ```r
 head(datos_supervivencia, 3)
-#> # A tibble: 3 x 7
+#> # A tibble: 3 × 7
 #>      id EXITUS_TIME DIAG_COVID EXITUS N_COMORBIDITIES SEX     EDAD
 #>   <dbl>       <dbl>      <dbl>  <dbl>           <dbl> <chr>  <dbl>
 #> 1   262           0          1      1               5 Hombre    83
@@ -298,14 +388,10 @@ ggsurvplot(fit,
 )
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{212051_cd_medicina_files/figure-latex/survplot-1} 
-
-}
-
-\caption{Probabilidades de supervivencia de pacientes con COVID-19.}(\#fig:survplot)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="212051_cd_medicina_files/figure-html/survplot-1.png" alt="Probabilidades de supervivencia de pacientes con COVID-19." width="70%" />
+<p class="caption">(\#fig:survplot)Probabilidades de supervivencia de pacientes con COVID-19.</p>
+</div>
 
 En la Fig. \@ref(fig:survplot), donde el eje X corresponde al tiempo en días y el eje Y a la probabilidad de supervivencia, se observa que la probabilidad de supervivencia de las personas expuestas a COVID-19 es significativamente menor ($p$-valor < 0,001) que la de las personas sanas. La mediana de supervivencia (línea trazada desde el 0,5 del eje Y, correspondiente al 50% de la probabilidad de supervivencia) corresponde a los 120 días, es decir, el 50% de los sujetos diagnosticados por COVID-19 y objeto de estudio sobrevivieron, al menos, 120 días. Por tanto, se puede concluir que se ha encontrado evidencia sobre el aumento de mortalidad asociada a la enfermedad COVID-19.
 
@@ -385,12 +471,6 @@ Por tanto, de este modelo se deduce que: un paciente diagnosticado de COVID-19 t
 ##  Conclusión
 
 Ha sido necesaria una pandemia mundial para que la sociedad empiece a dar visibilidad y reconocimiento no solo a la bioestadística, sino a la investigación clínica y a la necesidad de gestionar el uso masivo de datos en el ámbito de la salud. A pesar de los múltiples estudios y experiencias pasadas que llamaban a la prudencia y a la acción concreta si se daba una situación similar, el mundo ha sido incapaz de actuar convenientemente. Esto último se ve reflejado en el mínimo aumento de inversión, reconocimiento y notoriedad no solo en investigación o desarrollo, sino también en el apoyo a la ciencia. Es, quizá, la paradoja más extraña pero que representa el dicho popular: "la sociedad no avanzará si la ciencia no lo hace primero".
-
-
-<!-- ```{r img-paq-cdr, echo=FALSE, out.width='15%',} -->
-<!-- knitr::include_graphics("img/LogoCDR_transparente.png") -->
-<!-- ``` -->
-
 
 
 

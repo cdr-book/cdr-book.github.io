@@ -7,7 +7,7 @@
 <title>Capítulo 16 Modelos lineales generalizados | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Víctor Casero-Alonso\(^{a}\) y María Durbán\(^{b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Carlos III de Madrid  16.1 Introducción Como se ha mencionado en el Cap. 15 de...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 16 Modelos lineales generalizados | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="active" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -139,7 +139,7 @@
 <h2>
 <span class="header-section-number">16.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-7"><i class="fas fa-link"></i></a>
 </h2>
-<p>Como se ha mencionado en el Cap. <a href="cap-lm.html#cap-lm">15</a> de modelización lineal, el objetivo detrás del uso de modelos es el de intentar explicar el comportamiento de una variable en función del comportamiento de otras que se cree que influyen en él. Por ejemplo, podría interesar <strong>predecir</strong>:</p>
+<p>Como se ha mencionado en el Cap. <a href="cap-lm.html#cap-lm">15</a> de modelización lineal, el objetivo detrás del uso de modelos es el de intentar explicar el comportamiento de una variable en función del comportamiento de otras que se cree que influyen en ella. Por ejemplo, podría interesar <strong>predecir</strong>:</p>
 <ul>
 <li><p>si un empleado abandonará la empresa, o no, en función de sus años de experiencia, su formación, etc.;
 o si un paciente sufrirá, o no, una enfermedad en función de su edad, sexo, nivel de colesterol, etc.,</p></li>
@@ -151,7 +151,7 @@ o el número de días que un paciente puede estar hospitalizado en función de l
 <li><p>abandonar, o no, la empresa o sufrir, o no, una enfermedad se puede modelizar mediante una variable <strong>dicotómica/binaria</strong> asignando los valores 0 y 1 a las dos posibles respuestas, lo que encaja perfectamente con una distribución de probabilidad de Bernoulli (muy distinta de la normal, ya que es discreta, aunque podría parecerse; véase Cap. <a href="Funda-probab.html#Funda-probab">12</a>,</p></li>
 <li><p>el número de días de baja (en empleados), de hospitalización (en pacientes)… son variables de tipo <strong>recuento</strong> (solo cero o valores positivos) modelizables mediante una variable discreta que podría seguir una distribución de Poisson (que es también distinta a la normal, por ser discreta, aunque también podría parecerse).</p></li>
 </ul>
-<p>En este capítulo se aborda el <strong>modelo lineal generalizado</strong> (GLM), que generaliza el caso en que la variable respuesta sea normal a cualquier tipo de distribución de probabilidad perteneciente a la familia exponencial y que permite varianzas no constantes en los errores. En concreto, se centra en la regresión logística y la regresión de Poisson, casos particulares de este modelo, que permiten modelizar correctamente los dos casos planteados anteriormente. Un buen libro de referencia para este capítulo es <span class="citation">G. James et al. (<a href="referncias.html#ref-james2013introduction">2013</a>)</span>.</p>
+<p>En este capítulo se aborda el <strong>modelo lineal generalizado</strong> (GLM), que generaliza el caso en que la variable respuesta sea normal a cualquier tipo de distribución de probabilidad perteneciente a la familia exponencial y que permite varianzas no constantes en los errores. En concreto, se centra en la regresión logística y la regresión de Poisson, casos particulares de este modelo, que permiten modelizar correctamente los dos casos planteados anteriormente. Un buen libro de referencia para este capítulo es <span class="citation">G. James et al. (<a href="referencias.html#ref-james2013introduction">2013</a>)</span>.</p>
 </div>
 <div id="el-modelo-y-sus-componentes" class="section level2" number="16.2">
 <h2>
@@ -194,7 +194,7 @@ También una misma variable podría considerarse y utilizarse como variable de d
 <span class="header-section-number">16.3</span> Procedimiento con <strong>R</strong>: la función <code>glm()</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-la-funci%C3%B3n-glm"><i class="fas fa-link"></i></a>
 </h2>
 <p>En el paquete <code>stats</code> (de la distribución <em>base</em> de <strong>R</strong>) se encuentra la función <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> que se utiliza para llevar a cabo el ajuste de un GLM:</p>
-<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">formula</span>, family <span class="op">=</span> <span class="va">...</span>, data <span class="op">=</span> <span class="va">...</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
@@ -204,9 +204,9 @@ También una misma variable podría considerarse y utilizarse como variable de d
 </ul>
 <p>Las “herramientas” utilizadas para <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> también se pueden usar para <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> (aunque algunas interpretaciones varían). Así, se puede usar <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> para detectar los predictores importantes, <code><a href="https://rdrr.io/r/stats/fitted.values.html">fitted()</a></code> para obtener los valores ajustados, etc.</p>
 </div>
-<div id="regresión-logística" class="section level2" number="16.4">
+<div id="reg-logistica" class="section level2" number="16.4">
 <h2>
-<span class="header-section-number">16.4</span> Regresión logística<a class="anchor" aria-label="anchor" href="#regresi%C3%B3n-log%C3%ADstica"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.4</span> Regresión logística<a class="anchor" aria-label="anchor" href="#reg-logistica"><i class="fas fa-link"></i></a>
 </h2>
 <p>La <strong>regresión logística</strong> es el caso más “famoso” de GLM, de gran relevancia en distintos contextos: Medicina, Economía, etc.
 Se utiliza cuando la <strong>variable respuesta</strong> es <strong>dicotómica</strong>, del tipo pertenencia, o no, a un determinado grupo (fumadores, enfermos, morosos, …).
@@ -246,7 +246,7 @@ siempre un valor válido para una probabilidad. Como contrapartida, a medida que
 </h3>
 <p>A partir de los datos disponibles de las variables <em>predictoras</em> y <em>respuesta</em>:</p>
 <ol style="list-style-type: decimal">
-<li>Se estiman los coeficientes <span class="math inline">\(\beta_i\)</span> del modelo, para especificar la relación entre las variables, contrastando si tales estimaciones, <span class="math inline">\(\hat\beta_i\)</span>, son o no significativas.</li>
+<li>Se estiman los coeficientes <span class="math inline">\(\beta_j\)</span> del modelo, para especificar la relación entre las variables, contrastando si tales estimaciones, <span class="math inline">\(\hat\beta_j\)</span>, son o no significativas.</li>
 <li>Se valora la eliminación de variables no significativas, atendiendo a la significación global del modelo, al modelo teórico subyacente, etc.</li>
 <li>Se comprueba la adecuación del modelo final obtenido.</li>
 <li>En caso afirmativo, se interpretan los coeficientes y el modelo queda listo para hacer <strong>predicciones</strong> de probabilidades o para <strong>clasificar</strong> individuos/elementos.</li>
@@ -267,7 +267,7 @@ En el modelo de regresión logística, la <em>deviance</em> de un modelo es meno
 La diferencia entre la <em>deviance</em> de un modelo más elaborado y el simple se distribuye como una <span class="math inline">\(\chi^2\)</span> con tantos grados de libertad como restricciones impuestas a los parámetros, lo que permite contrastar cuál de los dos modelos ajusta mejor los datos.
 <em>P</em>–valores bajos indican que el modelo ajustado es inadecuado, debiendo investigarse otras posibles variables predictoras, si se incumple la hipótesis de linealidad o existe sobredispersión (por ejemplo, por exceso de ceros).</p>
 <p>Adicionalmente, se puede aplicar el contraste de la <strong>razón de verosimilitudes</strong>. Este test contrasta la significación de cada cada variable predictora, basándose en la <em>deviance</em> que se genera al añadir cada variable secuencialmente al modelo que contiene las anteriores, lo que ayuda a decidir si mantenerla o eliminarla del modelo.</p>
-<p>Para contrastar la bondad de ajuste del modelo, el contraste más popular en la literatura es el de Hosmer-Lemeshow, aplicable a modelos con al menos una variable cuantitativa.<em>P</em>–valores bajos indican falta de ajuste.</p>
+<p>Para contrastar la bondad de ajuste del modelo, el contraste más popular en la literatura es el de Hosmer-Lemeshow, aplicable a modelos con al menos una variable cuantitativa. <em>P</em>–valores bajos indican falta de ajuste.</p>
 <p>Continuando con las medidas de bondad de ajuste, en el modelo de regresión logística no tiene sentido calcular el coeficiente de determinación lineal, <span class="math inline">\(R^2\)</span>, pero existen varias alternativas equivalentes para hacerse una idea de la variabilidad de la respuesta explicada por el modelo.
 Las tres más populares son el pseudo <span class="math inline">\(R^2\)</span> de McFadden, el <span class="math inline">\(R^2\)</span> de Cox y Snell (que por construcción no puede alcanzar el 1)
 y el <span class="math inline">\(R^2\)</span> de Nagelkerke (una corrección del de Cox y Snell).</p>
@@ -279,19 +279,19 @@ y el <span class="math inline">\(R^2\)</span> de Nagelkerke (una corrección del
 <p>La interpretación de los coeficientes no es tan directa y sencilla como en el modelo lineal.
 A partir de las estimaciones del predictor lineal <span class="math inline">\(\hat{\eta}\)</span>, modelo <a href="cap-glm.html#eq:eta">(16.1)</a>, se puede estimar la probabilidad de que un individuo pertenezca al grupo de interés utilizando la expresión <a href="cap-glm.html#eq:logit">(16.2)</a>. Alternativamente se puede estimar el <em>odds</em>, con la siguiente expresión, que se deduce de <a href="cap-glm.html#eq:eta">(16.1)</a>:
 <span class="math display" id="eq:odds">\[\begin{equation}
-\mathit{odds} = \frac{\hat{p}}{1-\hat{p}} =  e^{\hat{\eta}} = e^{\hat{\beta}_0 + \hat{\beta}_1 X_1 + \ldots + \hat{\beta}_k X_k}.
+\mathit{odds} = \frac{\hat{p}}{1-\hat{p}} =  e^{\hat{\eta}} = e^{\hat{\beta}_0 + \hat{\beta}_1 X_1 + \ldots + \hat{\beta}_p X_p}.
 \tag{16.3}
 \end{equation}\]</span>
 El <em>odds</em> se puede explicar como cuántas veces es más probable pertenecer al grupo de interés (<span class="math inline">\(Y=1\)</span>) que al otro grupo (<span class="math inline">\(Y=0\)</span>).
 Por ejemplo, si <span class="math inline">\(\hat{p} = 0.75\)</span> el <em>odds</em> es <span class="math inline">\(0.75/0.25=3\)</span>, entonces es tres veces más probable pertenecer al grupo de interés que no pertenecer.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Por esto se traduce &lt;em&gt;odds&lt;/em&gt; como &lt;em&gt;ventaja&lt;/em&gt;. Pero cuidado con su uso: si &lt;span class="math inline"&gt;\(Y=1\)&lt;/span&gt; es tener un accidente, no parece muy adecuado hablar de ventaja. Por esto mismo, a &lt;span class="math inline"&gt;\(p\)&lt;/span&gt; tampoco se le denomina aquí probabilidad de éxito.&lt;/p&gt;'><sup>133</sup></a></p>
 <p>La ecuación <a href="cap-glm.html#eq:odds">(16.3)</a> se puede expresar, equivalentemente, como:
 <span class="math display" id="eq:modds1">\[\begin{equation}
-\mathit{odds}=e^{\hat{\beta}_0} \cdot e^{\hat{\beta}_1 X_1} \cdot \ldots \cdot e^{\hat{\beta}_k X_k}.  
+\mathit{odds}=e^{\hat{\beta}_0} \cdot e^{\hat{\beta}_1 X_1} \cdot \ldots \cdot e^{\hat{\beta}_p X_p}.  
 \tag{16.4}
 \end{equation}\]</span>
-La interpretación de los <span class="math inline">\(\hat{\beta}_i\)</span> carece de sentido. Lo interpretable son los <span class="math inline">\(e^{\hat\beta_i}\)</span>, denominados <strong><em>odds ratios</em></strong> (OR).
-Como el modelo <a href="cap-glm.html#eq:modds1">(16.4)</a> es multiplicativo (sus términos aparecen multiplicando, no sumando), por lo que valores de <span class="math inline">\(e^{\hat{\beta}_i}\)</span> inferiores a 1 implican disminución en el valor del <em>odds</em> –se reduce la probabilidad de pertenecer al grupo de interés respecto a la de no pertenecer– y valores por encima de 1 implican incremento del valor del <em>odds</em>, <em>ceteris paribus</em>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Manteniendo constante el valor de las demás variables.&lt;/p&gt;"><sup>134</sup></a> En concreto, <span class="math inline">\(100(e^{\hat{\beta}_i}-1)\)</span> indica la variación porcentual en el <span class="math inline">\(odds\)</span> ante un incremento unitario en la variable explicativa <span class="math inline">\(X_i\)</span>, mientras que <span class="math inline">\(100(e^{-\hat{\beta}_i}-1)\)</span> indica el cambio porcentual que se opera en el <span class="math inline">\(odds\)</span> debido a un decremento unitario de dicha variable explicativa, <span class="math inline">\(ceteris \hspace{0,1cm} paribus\)</span>.</p>
-<p>El modelo de regresión logística se acompañar del denominado <strong>riesgo relativo</strong> (RR, <em>relative risk</em>). Es una razón de
+La interpretación de los <span class="math inline">\(\hat{\beta}_j\)</span> carece de sentido. Lo interpretable son los <span class="math inline">\(e^{\hat\beta_j}\)</span>, denominados <strong><em>odds ratios</em></strong> (OR).
+Como el modelo <a href="cap-glm.html#eq:modds1">(16.4)</a> es multiplicativo (sus términos aparecen multiplicando, no sumando), por lo que valores de <span class="math inline">\(e^{\hat{\beta}_j}\)</span> inferiores a 1 implican disminución en el valor del <em>odds</em> –se reduce la probabilidad de pertenecer al grupo de interés respecto a la de no pertenecer– y valores por encima de 1 implican incremento del valor del <em>odds</em>, <em>ceteris paribus</em>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Manteniendo constante el valor de las demás variables.&lt;/p&gt;"><sup>134</sup></a> En concreto, <span class="math inline">\(100(e^{\hat{\beta}_j}-1)\)</span> indica la variación porcentual en el <span class="math inline">\(odds\)</span> ante un incremento unitario en la variable explicativa <span class="math inline">\(X_i\)</span>, mientras que <span class="math inline">\(100(e^{-\hat{\beta}_j}-1)\)</span> indica el cambio porcentual que se opera en el <span class="math inline">\(odds\)</span> debido a un decremento unitario de dicha variable explicativa, <span class="math inline">\(ceteris \hspace{0,1cm} paribus\)</span>.</p>
+<p>El modelo de regresión logística se puede acompañar del denominado <strong>riesgo relativo</strong> (RR, <em>relative risk</em>). Es una razón de
 probabilidades como el <em>odds</em>, pero en vez de comparar la probabilidad de pertenecer a un grupo
 o a otro de la variable respuesta, compara las probabilidades de pertenecer al grupo de referencia (<span class="math inline">\(Y=1\)</span>) según los valores del predictor categórico <span class="math inline">\(X_i\)</span>.
 El riesgo relativo es similar al OR de la variable <span class="math inline">\(X_i\)</span> solo cuando la probabilidad de <span class="math inline">\(Y=1\)</span> es pequeña; se suele dar como referencia que sea inferior al 10%. Por lo tanto, OR y RR no coinciden siempre.</p>
@@ -309,7 +309,7 @@ La <strong>especificidad</strong>, o tasa de verdaderos negativos, es el cocient
 La Fig. <a href="cap-glm.html#fig:glm-roc">16.2</a> (izquierda) muestra este gráfico para uno de los casos prácticos.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La interpretación del gráfico se hace en la sección donde aparece la figura.&lt;/p&gt;"><sup>135</sup></a>
 Pero la forma más popular de analizar la sensibilidad y la especificidad es
 mediante la curva ROC, que representa, para los distintos puntos de corte considerados, la <strong>sensibilidad</strong> frente a la tasa de falsos positivos, esto es la <strong>1-especificidad</strong> (Fig. <a href="cap-glm.html#fig:glm-roc">16.2</a> [derecha]).
-Su AUC sirve para comparar distintos modelos de regresión logística (u otros modelos con el mismo fin.)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Véase el Cap. &lt;a href="chap-feature.html#chap-feature"&gt;9&lt;/a&gt;.&lt;/p&gt;'><sup>136</sup></a>
+Su AUC sirve para comparar distintos modelos de regresión logística (u otros modelos con el mismo fin).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Véase el Cap. &lt;a href="chap-feature.html#chap-feature"&gt;9&lt;/a&gt;.&lt;/p&gt;'><sup>136</sup></a>
 Cuanto mayor poder discriminante tenga el modelo, más próxima a la unidad estará la AUC.
 Un clasificador aleatorio presentaría la curva ROC coincidente con la diagonal, con una AUC de 0,5.</p>
 </div>
@@ -318,6 +318,7 @@ Un clasificador aleatorio presentaría la curva ROC coincidente con la diagonal,
 <h2>
 <span class="header-section-number">16.5</span> Regresión de Poisson<a class="anchor" aria-label="anchor" href="#regresi%C3%B3n-de-poisson"><i class="fas fa-link"></i></a>
 </h2>
+<p></p>
 <p>Se utiliza cuando la <strong>variable respuesta</strong> es <strong>discreta</strong>, solo toma valores no negativos y su distribución de probabilidad es modelizable mediante la <strong>distribución de Poisson</strong>. Por ejemplo, las variables de tipo “número de”, como la del ejemplo del principio: número de días de hospitalización.
 El parámetro que caracteriza la distribución de Poisson es <span class="math inline">\(\lambda\)</span>, que representa tanto la media como la varianza de la variable aleatoria (a nivel teórico).</p>
 <p>Dados los anteriores condicionantes, en esta tesitura tampoco tiene cabida el modelo de regresión lineal, principalmente porque las estimaciones <span class="math inline">\(\hat{Y}\)</span> podrían arrojar valores negativos.</p>
@@ -335,7 +336,7 @@ Previo a la predicción, se estima el modelo, a partir de los datos disponibles,
 <p>Para llevar a cabo estos ejemplos, se utiliza el conjunto de datos <code>cleveland</code> incluido en el paquete <code>CDR</code> que acompaña este libro. Se quiere explicar la variable <code>diag</code> (diagnóstico; dicotómica: 1, ha sufrido una enfermedad coronaria; 0, no la ha sufrido) a partir de otras variables. La variable respuesta <code>diag</code> ya aparece como factor en la base de datos.</p>
 <p><strong>Estimación</strong><br>
 Primeramente, se considera un primer modelo con dos variables explicativas continuas <code>edad</code> y <code>dep</code> (depresión en el segmento ST):</p>
-<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="va">reg_log</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">diag</span> <span class="op">~</span> <span class="va">edad</span> <span class="op">+</span> <span class="va">dep</span>, </span>
 <span>               family <span class="op">=</span> <span class="st">"binomial"</span>, data <span class="op">=</span> <span class="va">cleveland</span><span class="op">)</span></span>
@@ -343,10 +344,6 @@ Primeramente, se considera un primer modelo con dos variables explicativas conti
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Call:</span></span>
 <span><span class="co">#&gt; glm(formula = diag ~ edad + dep, family = "binomial", data = cleveland)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Deviance Residuals: </span></span>
-<span><span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span></span>
-<span><span class="co">#&gt; -2.3804  -0.8905  -0.6210   1.0021   1.9644  </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
 <span><span class="co">#&gt;             Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
@@ -367,11 +364,11 @@ Primeramente, se considera un primer modelo con dos variables explicativas conti
 <p>Puede observarse que dicha salida también incluye la <em>null deviance</em> y la <em>residual deviance</em>. La primera indica lo “bien” que predice el modelo sin variables explicativas (tan solo con el término independiente o intercepto); la segunda indica lo “bien” que predice el modelo con variables explicativas. Como se avanzó anteriormente, un contraste Chi-cuadrado permitirá dilucidar si el modelo con variables explicativas predice significativamente mejor que el que solo tiene un término independiente y su predicción, sea cual sea el valor de las variables explicativas, es siempre la media de los valores de la variable respuesta.</p>
 <p>Se completa el modelo anterior añadiendo variables categóricas –concretamente, <code>tdolor</code> (politómica, tipo de dolor) y <code>sexo</code> (dicotómica)– para poder incluir más adelante la interpretación de los coeficientes asociados a este tipo de variables.
 Para su correcta interpretación, se deben introducir en el predictor como variables de tipo <code>factor</code>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt; En este caso ya están definidas como &lt;code&gt;factor&lt;/code&gt; en el &lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;"><sup>137</sup></a> De lo contrario, el procedimiento las considera numéricas, obteniéndose una salida que llevaría a una interpretación errónea.</p>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reg_log2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">reg_log</span>, <span class="op">~</span> <span class="va">.</span> <span class="op">+</span> <span class="va">sexo</span> <span class="op">+</span> <span class="va">tdolor</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Adecuación del modelo</strong><br>
 Para evaluar la bondad de ajuste de los modelos se lleva a cabo el contraste de Hosmer-Lemeshow:</p>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/psolymos/ResourceSelection">"ResourceSelection"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ResourceSelection/man/hoslem.test.html">hoslem.test</a></span><span class="op">(</span><span class="va">reg_log</span><span class="op">$</span><span class="va">y</span>, <span class="va">reg_log</span><span class="op">$</span><span class="va">fitted.values</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -387,7 +384,7 @@ Para evaluar la bondad de ajuste de los modelos se lleva a cabo el contraste de 
 <span><span class="co">#&gt; X-squared = 4.8171, df = 8, p-value = 0.7769</span></span></code></pre></div>
 <p>En ambos casos, los <em>p</em>–valores son “altos”, indicando un ajuste suficiente.</p>
 <p>Para realizar el test de la razón de verosimilitudes con <strong>R</strong> se acude a la función <code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code>:</p>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">reg_log2</span>, test <span class="op">=</span> <span class="st">"Chisq"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Analysis of Deviance Table</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -408,7 +405,7 @@ Para evaluar la bondad de ajuste de los modelos se lleva a cabo el contraste de 
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
 <p>Las <em>deviances</em> correspondientes a añadir secuencialmente cada variable o factor al modelo que contiene los anteriores permite concluir que dicha inclusión secuencial de tales variables predictoras es significativa respecto a los modelos que no las incluyen.</p>
 <p>Para completar, se podría contrastar también el efecto de una variable sobre la respuesta comparando la <em>deviance</em> del modelo con dicha variable y sin ella:</p>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## se elimina edad del segundo modelo</span></span>
 <span><span class="va">reg_log3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">reg_log2</span>, <span class="op">~</span> <span class="va">.</span> <span class="op">-</span> <span class="va">edad</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">reg_log3</span>, <span class="va">reg_log2</span>, test <span class="op">=</span> <span class="st">"Chisq"</span><span class="op">)</span></span>
@@ -423,26 +420,22 @@ Para evaluar la bondad de ajuste de los modelos se lleva a cabo el contraste de 
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
 <p>El resultado indica que la variable <code>edad</code> se considera un predictor significativo en el modelo.
 Se deja al lector realizar este ejercicio con las restantes variables, que le llevarán a concluir que todas son predictores significativos.</p>
-<p>El valor del Pseudo <span class="math inline">\(R^2\)</span> de McFadden se obtiene como sigue:</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<p>El valor del pseudo <span class="math inline">\(R^2\)</span> de McFadden se obtiene como sigue:</p>
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">null</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">diag</span> <span class="op">~</span> <span class="fl">1</span>, family <span class="op">=</span> <span class="st">"binomial"</span>, data <span class="op">=</span> <span class="va">cleveland</span><span class="op">)</span></span>
 <span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">reg_log</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">null</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'log Lik.' 0.1611088 (df=3)</span></span>
 <span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">reg_log2</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">null</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'log Lik.' 0.3671819 (df=7)</span></span></code></pre></div>
-<p>Para el primer modelo el Pseudo <span class="math inline">\(R^2\)</span> de McFadden es 0,16, mientras que para el segundo es 0,37.</p>
+<p>Para el primer modelo el pseudo <span class="math inline">\(R^2\)</span> de McFadden es 0,16, mientras que para el segundo es 0,37.</p>
 <p><strong>Interpretación de los coeficientes</strong><br>
 A continuación se muestran los coeficientes estimados del segundo modelo y sus correspondientes OR (sus exponenciales) que son los interpretables:</p>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">reg_log2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Call:</span></span>
 <span><span class="co">#&gt; glm(formula = diag ~ edad + dep + sexo + tdolor, family = "binomial", </span></span>
 <span><span class="co">#&gt;     data = cleveland)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Deviance Residuals: </span></span>
-<span><span class="co">#&gt;     Min       1Q   Median       3Q      Max  </span></span>
-<span><span class="co">#&gt; -2.5346  -0.6604  -0.2436   0.6568   2.3975  </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
 <span><span class="co">#&gt;             Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
@@ -487,25 +480,25 @@ Indican que, <em>ceteris paribus</em>,</p>
 <p><strong>Predicciones</strong><br>
 Una vez estimado el modelo y comprobada su bondad, se puede usar para obtener predicciones.
 Para ello, se deben asignar valores a las variables explicativas: <code>edad</code>, <code>dep</code>, <code>sexo</code> y <code>tdolor</code> (se han escogido arbitrariamente).</p>
-<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">individuo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>edad <span class="op">=</span> <span class="fl">50</span>, dep <span class="op">=</span> <span class="fl">3</span>, </span>
 <span>                        sexo <span class="op">=</span> <span class="st">"1"</span>, tdolor <span class="op">=</span> <span class="st">"4"</span> <span class="co">#entre comillas por ser factores</span></span>
 <span>                        <span class="op">)</span> </span></code></pre></div>
 <p>Con la función <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> se puede obtener tanto el valor predicho para el predictor lineal (valor no interpretable), <span class="math inline">\(\eta\)</span>, como directamente la probabilidad de que dicho individuo sufra la enfermedad coronaria, <span class="math inline">\(p\)</span>:</p>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#(eta &lt;- predict(reg_log2, individuo))</span></span>
 <span><span class="op">(</span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">reg_log2</span>, <span class="va">individuo</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;         1 </span></span>
 <span><span class="co">#&gt; 0.9446843</span></span></code></pre></div>
 <p>A partir del valor de <span class="math inline">\(p\)</span> (o de <span class="math inline">\(\eta\)</span>) se puede obtener el <em>odds</em> correspondiente:</p>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p</span><span class="op">)</span> <span class="co"># exp(eta)</span></span>
 <span><span class="co">#&gt;        1 </span></span>
 <span><span class="co">#&gt; 17.07805</span></span></code></pre></div>
 <p>Es decir, un individuo con 50 años, <code>dep=3</code>, <code>sexo=1</code> (hombre) y <code>tdolor=4</code> (asintomático) tiene una probabilidad de padecer la enfermedad en cuestión 17 veces mayor que de no padecerla.</p>
 <p><strong>Riesgo relativo</strong><br>
 Se ha visto que el OR para la categoría hombre en el segundo modelo es 5,45. El riesgo relativo de sufrir la enfermedad, en el caso de los varones, para un paciente de 50 años, valor <code>dep=3</code> y <code>tdolor=4</code> (asintomático) es:</p>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>edad <span class="op">=</span> <span class="fl">50</span>, dep <span class="op">=</span> <span class="fl">3</span>, sexo <span class="op">=</span> <span class="st">"1"</span>, tdolor <span class="op">=</span> <span class="st">"4"</span><span class="op">)</span></span>
 <span><span class="va">muj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>edad <span class="op">=</span> <span class="fl">50</span>, dep <span class="op">=</span> <span class="fl">3</span>, sexo <span class="op">=</span> <span class="st">"0"</span>, tdolor <span class="op">=</span> <span class="st">"4"</span><span class="op">)</span></span>
 <span><span class="op">(</span><span class="va">ph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">reg_log2</span>, <span class="va">hom</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span><span class="op">)</span></span>
@@ -521,7 +514,7 @@ Se ha visto que el OR para la categoría hombre en el segundo modelo es 5,45. El
 decir, un varón tiene un 24,6% más de posibilidades de tener la enfermedad que una mujer con sus mismos valores o categorías en las variables que se usan como predictores. En este caso, el OR y el RR no son valores cercanos; ello es debido a que el diagnóstico 1 es frecuente (concretamente lo presentan el 45,9% de los pacientes de la base de datos).</p>
 <p><strong>Curva ROC</strong><br>
 El análisis de sensibilidad y especificidad del modelo, así como la curva ROC y su AUC, para este ejemplo, se pueden obtener con el siguiente código:</p>
-<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://bendixcarstensen.com/Epi/">"Epi"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/Epi/man/ROC.html">ROC</a></span><span class="op">(</span></span>
@@ -551,7 +544,7 @@ Además, el gráfico también indica el valor del <strong>punto de corte óptimo
 <p>A partir del mismo conjunto de datos, <code>cleveland</code>, ahora se considera como variable a explicar, variable respuesta, <code>dhosp</code>, el número de días de hospitalización de un paciente.
 Como variables explicativas se seleccionan las siguientes: <code>diag</code>, <code>edad</code>, <code>sexo</code> y <code>tdolor</code>, que son de distinto tipo, lo que permitirá ilustrar sus distintas interpretaciones.</p>
 <p><strong>Visualización ilustrativa</strong></p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">cleveland</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dhosp</span>, fill <span class="op">=</span> <span class="va">diag</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span></span>
 <span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">cleveland</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dhosp</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">edad</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -566,11 +559,11 @@ Figura 16.3: Gráfico de barras de <span class="math inline">\(dhosp\)</span> se
 </div>
 <p>A la vista de los gráficos de la Fig. <a href="cap-glm.html#fig:glm-grafpois">16.3</a>, generados con las sentencias anteriores, <code>diag</code> parece ser una buena variable predictora del número de días de hospitalización, mientras que <code>edad</code> no tiene una influencia tan clara.</p>
 <p><strong>Ajuste e interpretación</strong></p>
-<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reg_pois</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">dhosp</span> <span class="op">~</span> <span class="va">diag</span> <span class="op">+</span> <span class="va">edad</span> <span class="op">+</span> <span class="va">sexo</span> <span class="op">+</span> <span class="va">tdolor</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">cleveland</span>, family <span class="op">=</span> <span class="st">"poisson"</span><span class="op">)</span></span></code></pre></div>
 <p>Al especificar <code>family = "poisson"</code>, la función <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> selecciona automáticamente la función de enlace apropiada: el logaritmo (efectos multiplicativos).</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">reg_pois</span><span class="op">)</span><span class="op">$</span><span class="va">coef</span></span>
 <span><span class="co">#&gt;                  Estimate  Std. Error     z value     Pr(&gt;|z|)</span></span>
 <span><span class="co">#&gt; (Intercept) -0.2230728726 0.332125111 -0.67165314 5.018045e-01</span></span>
@@ -593,12 +586,12 @@ Así, el número medio de días de estancia en el hospital es 2,98 veces mayor c
 por cada año que aumenta la <code>edad</code>, el número medio de días en el hospital se ve multiplicado por 1,0001 (ínfimo).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Si el incremento fuese de 20 años (como en el ejemplo de regresión logística), el incremento en los días de hospitalización seguiría siendo despreciable: 0,0021 días.&lt;/p&gt;"><sup>141</sup></a></p></li>
 </ul>
 <p>Para posteriores comparaciones, se considera otro modelo en el que se elimina <code>tdolor</code> (por no ser significativa):</p>
-<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reg_pois2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">dhosp</span> <span class="op">~</span> <span class="va">diag</span> <span class="op">+</span> <span class="va">sexo</span> <span class="op">+</span> <span class="va">edad</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">cleveland</span>,   family <span class="op">=</span> <span class="st">"poisson"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Adecuación</strong><br>
 En los ajustes <code>reg_pois</code> y <code>reg_pois2</code> hay información sobre la <em>null</em> y la <em>residual deviance</em>, con las que se puede realizar el contraste de comparación de modelos (el simple frente al elaborado) mencionado en la Sec. <a href="cap-glm.html#secADECUACION">16.4.2</a>.</p>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">pchisq</a></span><span class="op">(</span><span class="va">reg_pois</span><span class="op">$</span><span class="va">deviance</span>, <span class="va">reg_pois</span><span class="op">$</span><span class="va">df.residual</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.1325654</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">pchisq</a></span><span class="op">(</span><span class="va">reg_pois2</span><span class="op">$</span><span class="va">deviance</span>, <span class="va">reg_pois2</span><span class="op">$</span><span class="va">df.residual</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
@@ -606,7 +599,7 @@ En los ajustes <code>reg_pois</code> y <code>reg_pois2</code> hay información s
 <p>Al ser los <em>p</em>–valores superiores a 0,05, se puede considerar que ambos modelos explican “mejor” que el modelo nulo, el que únicamente contiene la constante y el término aleatorio.</p>
 <p><strong>Predicción</strong><br>
 Con los modelos ajustados, y comprobada su adecuación, se puede predecir valores, que en este caso son el número medio de días de hospitalización.</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pacientes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  diag <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"1"</span>, <span class="st">"0"</span>, <span class="st">"0"</span><span class="op">)</span>,</span>
 <span>  edad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">50</span>, <span class="fl">50</span>, <span class="fl">50</span><span class="op">)</span>,</span>
@@ -618,7 +611,7 @@ Con los modelos ajustados, y comprobada su adecuación, se puede predecir valore
 <p>Se han escogido, arbitrariamente, valores de las variables explicativas para 4 <code>pacientes</code>: los pacientes 1 y 2 presentan la enfermedad coronaria (<code>diag=1</code>) mientras que los pacientes 3 y 4 no; los pacientes 1 y 3 son hombres (<code>sexo=1</code>), mientras que el 2 y el 4 son mujeres; los cuatro tienen 50 años y son asintomáticos (<code>tdolor=4</code>).
 Las predicciones obtenidas indican que el paciente 1 (hombre con enfermedad coronaria) estará hospitalizado más días, de media, que el resto, aunque le sigue de cerca la paciente 2 (mujer con enfermedad coronaria).</p>
 <p>También se pueden dibujar las predicciones modelo <code>reg_pois</code> de todo el conjunto de datos, que <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> ha guardado como <code>fitted.values</code>.</p>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cleveland</span><span class="op">$</span><span class="va">hat</span> <span class="op">&lt;-</span> <span class="va">reg_pois</span><span class="op">$</span><span class="va">fitted.values</span></span>
 <span><span class="va">g1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">cleveland</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">edad</span>, y <span class="op">=</span> <span class="va">hat</span>, colour <span class="op">=</span> <span class="va">diag</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -634,8 +627,7 @@ Las predicciones obtenidas indican que el paciente 1 (hombre con enfermedad coro
 Figura 16.4: Predicciones de todo el conjunto de datos del modelo <span class="math inline">\(regpois\)</span> (izquierda) y <span class="math inline">\(regpois2\)</span> (derecha).
 </p>
 </div>
-<p>La Fig. <a href="cap-glm.html#fig:glm-predictPois">16.4</a> muestra las predicciones del número de días (promedio) de hospitalización para los 303 individuos considerados en el conjunto de datos y para cada uno de los dos modelos de regresión de Poisson considerados.</p>
-<p>Cabe recordar que en el primer modelo se consideran las variables <code>diag</code>, <code>edad</code>, <code>sexo</code> y <code>tdolor</code>, mientras que en el segundo se ha eliminado la variable <code>tdolor</code>. Lo primero que hay que destacar es que los puntos se “ordenan” en forma de líneas de puntos horizontales dispuestas verticalmente. Ello se debe a que (<em>i</em>) en el eje de abscisas figura la variable <code>Edad</code>, que no influye significativamente en los días de hospitalización (líneas horizontales); y (<em>ii</em>) las demás variables son categóricas, por lo que desplazan las líneas verticalmente, sin modificar su pendiente. El desplazamiento vertical diferenciado por colores, mediante la variable <code>diag</code>, es claro: la predicción del número de días (promedio) de hospitalización para personas con <code>diag=1</code> es un valor en torno a 3, mientras que para aquellos con <code>diag=0</code> es un valor en torno a 1.
+<p>La Fig. <a href="cap-glm.html#fig:glm-predictPois">16.4</a> muestra las predicciones del número de días (promedio) de hospitalización para los 303 individuos considerados en el conjunto de datos y para cada uno de los dos modelos de regresión de Poisson considerados. Cabe recordar que en el primer modelo se consideran las variables <code>diag</code>, <code>edad</code>, <code>sexo</code> y <code>tdolor</code>, mientras que en el segundo se ha eliminado la variable <code>tdolor</code>. Lo primero que hay que destacar es que los puntos se “ordenan” en forma de líneas de puntos horizontales dispuestas verticalmente. Ello se debe a que (<em>i</em>) en el eje de abscisas figura la variable <code>Edad</code>, que no influye significativamente en los días de hospitalización (líneas horizontales); y (<em>ii</em>) las demás variables son categóricas, por lo que desplazan las líneas verticalmente, sin modificar su pendiente. El desplazamiento vertical diferenciado por colores, mediante la variable <code>diag</code>, es claro: la predicción del número de días (promedio) de hospitalización para personas con <code>diag=1</code> es un valor en torno a 3, mientras que para aquellos con <code>diag=0</code> es un valor en torno a 1.
 En ambos gráficos no se ha incluido identificación para la variable sexo, podría hacerse añadiendo apropiadamente <code>facet_wrap(vars(sexo))</code>, lo que permitiría ver que es el sexo el que genera las diferencias verticales (significativas, porque la variable <code>sexo</code> es significativa) de las dos líneas horizontales tanto en torno a <code>hosp=3</code> como a <code>hosp=1</code> (apreciables claramente en el gráfico de la derecha).
 Por último, como la diferencia entre el gráfico de la izquierda y el de la derecha es la inclusión o no de <code>tdolor</code>, queda claro que es dicha variable la que genera las distintas líneas horizontales de puntos (gráfico de la izquierda) con poca variabilidad vertical (por no ser significativa).</p>
 </div>
@@ -668,7 +660,7 @@ Por último, como la diferencia entre el gráfico de la izquierda y el de la der
 </li>
 <li><a class="nav-link" href="#procedimiento-con-r-la-funci%C3%B3n-glm"><span class="header-section-number">16.3</span> Procedimiento con R: la función glm()</a></li>
 <li>
-<a class="nav-link" href="#regresi%C3%B3n-log%C3%ADstica"><span class="header-section-number">16.4</span> Regresión logística</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#reg-logistica"><span class="header-section-number">16.4</span> Regresión logística</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#procedimiento-de-ajuste"><span class="header-section-number">16.4.1</span> Procedimiento de ajuste</a></li>
 <li><a class="nav-link" href="#secADECUACION"><span class="header-section-number">16.4.2</span> Adecuación del modelo</a></li>
 <li><a class="nav-link" href="#SECCinterp"><span class="header-section-number">16.4.3</span> Interpretación de resultados</a></li>
@@ -699,7 +691,7 @@ Por último, como la diferencia entre el gráfico de la izquierda y el de la der
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

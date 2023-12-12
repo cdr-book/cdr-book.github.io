@@ -7,7 +7,7 @@
 <title>Capítulo 11 Análisis exploratorio de datos | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Emilio L. Cano Universidad Rey Juan Carlos  11.1 Introducción  El análisis exploratorio de datos (AED), y en particular su visualización, es el primer análisis que se debe hacer sobre cualquier...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 11 Análisis exploratorio de datos | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -153,9 +153,9 @@ una decisión sobre el problema en estudio.</p>
 <span class="header-section-number">11.1.1</span> El cuarteto de Anscombe<a class="anchor" aria-label="anchor" href="#el-cuarteto-de-anscombe"><i class="fas fa-link"></i></a>
 </h3>
 <p></p>
-<p>Un ejemplo clásico de la importancia del <strong>AED</strong> y, concretamente, de las representaciones gráficas es el “cuarteto de Anscombe” <span class="citation">(<a href="referncias.html#ref-Anscombe1973">Anscombe 1973</a>)</span>,
+<p>Un ejemplo clásico de la importancia del <strong>AED</strong> y, concretamente, de las representaciones gráficas es el “cuarteto de Anscombe” <span class="citation">(<a href="referencias.html#ref-Anscombe1973">Anscombe 1973</a>)</span>,
 el cual está compuesto por 11 filas de 8 variables numéricas que conforman 4 conjuntos de datos (disponibles en el objeto <code>anscombe</code>), con los mismos resúmenes estadísticos pero con propiedades muy distintas, lo que se ve fácilmente cuando se representan en forma gráfica. Si se calculan, por ejemplo, la media y la desviación típica de cada variable, se observa que son prácticamente iguales. Incluso los coeficientes de correlación de cada <span class="math inline">\(X\)</span> con su <span class="math inline">\(Y\)</span> son también prácticamente idénticos.</p>
-<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span></span>
 <span><span class="va">anscombe</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.fns <span class="op">=</span> <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  x1 x2 x3 x4       y1     y2     y3     y4</span></span>
@@ -179,7 +179,7 @@ es prácticamente la misma, y los coeficientes de correlación entre las variabl
 Es evidente que la relación entre las variables es muy distinta en cada uno
 de los casos, y si no se visualizan los datos para elegir el mejor modelo
 de regresión y después interpretarlo, se pueden tomar decisiones
-erróneas. El cuarteto de Anscombe es muy ilustrativo, al igual que <em>The Datasaurus Dozen</em> <span class="citation">(<a href="referncias.html#ref-Matejka2017">Matejka and Fitzmaurice 2017</a>)</span> en <a href="https://www.autodeskresearch.com/publications/samestats" class="uri">https://www.autodeskresearch.com/publications/samestats</a>.</p>
+erróneas. El cuarteto de Anscombe es muy ilustrativo, al igual que <em>The Datasaurus Dozen</em> <span class="citation">(<a href="referencias.html#ref-Matejka2017">Matejka and Fitzmaurice 2017</a>)</span> en <a href="https://www.autodeskresearch.com/publications/samestats" class="uri">https://www.autodeskresearch.com/publications/samestats</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ch-120006-anscombelm"></span>
 <img src="120006_Analisis_exp_files/figure-html/ch-120006-anscombelm-1.png" alt="Los cuatro gráficos que constituyen el cuarteto de Anscombe junto con un ajuste lineal." width="60%"><p class="caption">
@@ -194,7 +194,7 @@ Figura 11.2: Los cuatro gráficos que constituyen el cuarteto de Anscombe junto 
 <p>
 </p>
 <p>Muy brevemente, se presenta una serie de conceptos esenciales para la mejor
-comprensión de este manual.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Para un análisis extenso de los conceptos aquí expuestos puede consultarse, por ejemplo, &lt;span class="citation"&gt;José María Montero (&lt;a href="referncias.html#ref-lorenzo2007estadistica"&gt;2007&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>90</sup></a> Los datos que se analizan
+comprensión de este manual.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Para un análisis extenso de los conceptos aquí expuestos puede consultarse, por ejemplo, &lt;span class="citation"&gt;José María Montero (&lt;a href="referencias.html#ref-lorenzo2007estadistica"&gt;2007&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>90</sup></a> Los datos que se analizan
 provienen de una determinada <strong>población</strong>, y no son más que
 una <strong>muestra</strong>, es decir, un subconjunto de toda la población.
 La <strong>Estadística Descriptiva</strong> se ocupa del AED en sentido amplio, que se aplica
@@ -219,8 +219,8 @@ Figura 11.3: La esencia de los métodos estadísticos.
 <span class="header-section-number">11.1.3</span> Componentes de un gráfico y su representación en <strong>R</strong><a class="anchor" aria-label="anchor" href="#componentes-de-un-gr%C3%A1fico-y-su-representaci%C3%B3n-en-r"><i class="fas fa-link"></i></a>
 </h3>
 <p></p>
-<p>De los diferentes sistemas que tiene <strong>R</strong> para representar gráficos <span class="citation">(los “base,” paquete <code>graphics</code>, y los “grid,” paquete <code>lattice</code> <a href="referncias.html#ref-lattice">Sarkar 2008</a>)</span>,
-este capítulo se centra en el paquete <code>ggplot2</code> <span class="citation">(<a href="referncias.html#ref-Wickham2016">Hadley Wickham 2016a</a>)</span>, que forma parte del <em>tidyverse</em>, por su amplio uso y popularidad.</p>
+<p>De los diferentes sistemas que tiene <strong>R</strong> para representar gráficos <span class="citation">(los “base,” paquete <code>graphics</code>, y los “grid,” paquete <code>lattice</code> <a href="referencias.html#ref-lattice">Sarkar 2008</a>)</span>,
+este capítulo se centra en el paquete <code>ggplot2</code> <span class="citation">(<a href="referencias.html#ref-Wickham2016">Hadley Wickham 2016a</a>)</span>, que forma parte del <em>tidyverse</em>, por su amplio uso y popularidad.</p>
 <p>El flujo de trabajo con <code>ggplot2</code> se puede resumir en los siguientes pasos:</p>
 <ol style="list-style-type: decimal">
 <li><p>Proporcionar una <strong>tabla de datos</strong> a la función <code>ggplot</code>. Es el primer argumento (<code>data</code>) y
@@ -247,7 +247,7 @@ concretas, como el posicionamiento de la leyenda.</p></li>
 basándose en los valores de una o más variables discretas (normalmente categóricas).</p></li>
 </ol>
 <p>En las secciones que siguen se verán ejemplos de todo el proceso. El siguiente es un ejemplo de una expresión que contiene los elementos anteriores. Se anima al lector a que los identifique con dicha lista:</p>
-<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Título"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">factor</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -271,7 +271,7 @@ con víctimas y/o daños al patrimonio en la ciudad de Madrid registrados por la
 como con el paquete <code>dplyr</code>, como se vio en la Sec. <a href="#110003-tidyverse"><strong>??</strong></a>.
 En variables cualitativas, la categoría más frecuente se denomina <strong>moda</strong> de la variable.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Nótese que el orden por defecto que utiliza &lt;strong&gt;R&lt;/strong&gt; es el alfabético. Se puede cambiar este comportamiento reordenando los niveles del factor; por ejemplo, para poner “Otro” en la última posición.&lt;/p&gt;"><sup>92</sup></a></p>
 <p></p>
-<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span></span>
 <span><span class="va">accidentes2020_data</span> <span class="op">|&gt;</span></span>
@@ -292,7 +292,7 @@ En variables cualitativas, la categoría más frecuente se denomina <strong>moda
 <span><span class="co">#&gt; 12:        Solo salida de la vía  151  0.4656613</span></span>
 <span><span class="co">#&gt; 13:                       Vuelco  145  0.4471582</span></span></code></pre></div>
 <p>Para representar el gráfico de barras con la función <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>, se añade la capa de geometría con la función <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> (véase Fig. <a href="id_120006-aed.html#fig:ch-120006-geombar">11.4</a>).</p>
-<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="va">accidentes2020_data</span> <span class="op">|&gt;</span></span>
@@ -308,10 +308,10 @@ Figura 11.4: Gráfico de barras con ggplot2.
 <div class="infobox">
 <p><strong>Nota</strong></p>
 <p>El código anterior es la forma más básica de hacer un gráfico con <code>ggplot2</code>.
-Opciones más avanzadas pueden encontrarse en <span class="citation">H. Wickham and Grolemund (<a href="referncias.html#ref-wickham2016r">2016</a>)</span>.</p>
+Opciones más avanzadas pueden encontrarse en <span class="citation">H. Wickham and Grolemund (<a href="referencias.html#ref-wickham2016r">2016</a>)</span>.</p>
 </div>
 <p>Ya se ha comentado que los gráficos de sectores no se recomiendan a menos que se incluya en ellos información numérica. El paquete <code>ggstatsplot</code> realiza gráficos que incluyen análisis estadísticos. Por ejemplo, la función <code><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.html">ggpiestats()</a></code> proporciona un gráfico de sectores con algunos tests estadísticos (véase la ayuda de la función) y podría utilizarse para determinar en qué medida un conjunto de 80 ayuntamientos de distinto signo político presta o no un determinado servicio <code>serv</code> (véase el conjunto de datos en el paquete del libro <code><a href="https://rdrr.io/pkg/CDR/man/ayuntam.html">?CDR::ayuntam</a></code>). El siguiente código produce el gráfico de la Fig. <a href="id_120006-aed.html#fig:ch-120006-ggs">11.5</a>.</p>
-<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://indrajeetpatil.github.io/ggstatsplot/">"ggstatsplot"</a></span><span class="op">)</span></span>
 <span><span class="va">ayuntam</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">serv</span><span class="op">)</span></span></code></pre></div>
@@ -322,8 +322,8 @@ Figura 11.5: Gráfico de sectores con tests. Prestación o no de un determinado 
 </p>
 </div>
 <p>Una alternativa a los gráficos de sectores son los <em>waffle charts</em> (gráficos de gofre o de tableta de chocolate). La siguiente expresión produce de la Fig. <a href="id_120006-aed.html#fig:ch-120006-gofre">11.6</a> usando el paquete <code>waffle</code>. Con el argumento <code>use_glyph</code> se pueden incluir iconos en vez de cuadrados.</p>
-<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/hrbrmstr/waffle/tree/cran">"waffle"</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"waffle"</span><span class="op">)</span></span>
 <span><span class="va">freq</span> <span class="op">&lt;-</span> <span class="va">ayuntam</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">serv</span><span class="op">)</span></span>
 <span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="va">freq</span><span class="op">$</span><span class="va">n</span>, <span class="va">freq</span><span class="op">$</span><span class="va">serv</span><span class="op">)</span></span>
@@ -331,8 +331,8 @@ Figura 11.5: Gráfico de sectores con tests. Prestación o no de un determinado 
 <span><span class="fu"><a href="https://rdrr.io/pkg/waffle/man/waffle.html">waffle</a></span><span class="op">(</span><span class="va">m</span>, rows <span class="op">=</span> <span class="fl">4</span>, colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ch-120006-gofre"></span>
-<img src="120006_Analisis_exp_files/figure-html/ch-120006-gofre-1.png" alt="Gráfico $waffle$. Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político." width="60%"><p class="caption">
-Figura 11.6: Gráfico <span class="math inline">\(waffle\)</span>. Prestación o no de un determinado servicio X en 80 ayuntamientos de distinto signo político.
+<img src="120006_Analisis_exp_files/figure-html/ch-120006-gofre-1.png" alt="Gráfico waffle. Prestación o no de un determinado servicio $X$ en 80 ayuntamientos de distinto signo político." width="60%"><p class="caption">
+Figura 11.6: Gráfico waffle. Prestación o no de un determinado servicio <span class="math inline">\(X\)</span> en 80 ayuntamientos de distinto signo político.
 </p>
 </div>
 </div>
@@ -353,12 +353,12 @@ se dividen en tres grandes grupos:</p>
 </ul>
 <p>La función <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> de <strong>R</strong> base es una función de las llamadas “genéricas”
 y solo aborda las medidas de posición.</p>
-<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">renta_municipio_data</span><span class="op">$</span><span class="va">`2019`</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's </span></span>
 <span><span class="co">#&gt;    4053    9914   11595   12247   13690   32183    5697</span></span></code></pre></div>
 <p>Sin embargo, los estadísticos descriptivos suelen presentarse juntos “describiendo” el conjunto de datos. Existen distintos paquetes, como <code>summarytools</code>, que proporcionan un resumen completo de un vector numérico con la función <code><a href="https://rdrr.io/pkg/summarytools/man/descr.html">descr()</a></code>, así como de un conjunto de datos completo (ver opciones del paquete).</p>
-<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/dcomtois/summarytools">"summarytools"</a></span><span class="op">)</span></span>
 <span><span class="va">renta_municipio_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">`2019`</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -396,7 +396,7 @@ y solo aborda las medidas de posición.</p>
 <ul>
 <li><p>El mínimo (<em>Min</em>) y el máximo (<em>Max</em>) son los extremos de los datos.</p></li>
 <li><p>La mediana (<em>Median</em>) es el segundo cuartil <span class="math inline">\(Q_2\)</span>. Es el punto central de los datos, dejando la mitad de las observaciones por abajo y la otra mitad por arriba. Los cuartiles <span class="math inline">\(Q_1\)</span> y <span class="math inline">\(Q_3\)</span> dividen los datos dejando por debajo de su valor el 25% y el 75%, respectivamente.</p></li>
-<li><p>La desviación absoluta mediana (<em>MAD</em>, por sus siglas en inglés) es la mediana de las desviaciones a la mediana.</p></li>
+<li><p>La desviación absoluta mediana (MAD, por sus siglas en inglés) es la mediana de las desviaciones a la mediana.</p></li>
 <li><p>El rango intercuartílico es la diferencia entre el tercer y el primer cuartil. Es decir, el rango del 50% de las observaciones centrales:</p></li>
 </ul>
 <p><span class="math display">\[IQR = Q_3-Q_1.\]</span></p>
@@ -425,7 +425,7 @@ en torno a la raíz cuadrada del número total de datos.&lt;/p&gt;"><sup>94</sup
 <p></p>
 <p>Para obtener la tabla de frecuencias de la renta neta per cápita en 2019
 usando el número de intervalos con la regla de Sturges se procede como sigue:</p>
-<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">renta_municipio_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>clases_sturges_renta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">`2019`</span>,</span>
 <span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/nclass.html">nclass.Sturges</a></span><span class="op">(</span><span class="va">`2019`</span><span class="op">)</span></span>
@@ -434,13 +434,13 @@ usando el número de intervalos con la regla de Sturges se procede como sigue:</
 <p>Sin embargo, esta regla no siempre es la más apropiada,
 como se verá en la Sec. <a href="datos-espaciales.html#no-mentir">40.4</a>,
 pues debe estudiarse bien la naturaleza de la variable a analizar.</p>
-<p>El histograma proporciona mucha información sobre la variable: (<span class="math inline">\(i\)</span>) si es aproximadamente simétrica, (<span class="math inline">\(ii\)</span>) si tiene forma de campana (se parece a la distribución Normal), (<span class="math inline">\(iii\)</span>) si hay valores extremos y cómo son de frecuentes,
+<p>El histograma proporciona mucha información sobre la variable: (<span class="math inline">\(i\)</span>) si es aproximadamente simétrica, (<span class="math inline">\(ii\)</span>) si tiene forma de campana (se parece a la distribución normal), (<span class="math inline">\(iii\)</span>) si hay valores extremos y cómo son de frecuentes,
 y (<span class="math inline">\(iv\)</span>) si puede haber mezcla de poblaciones (más de una moda).</p>
 <p>La función <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> del paquete <code>ggplot2</code> añade una capa con un
 histograma al gráfico. El color de las barras se controla con el <em>aesthetics</em> <code>fill</code> y la altura puede representar las frecuencias absolutas (recuentos) o
 relativas (proporciones). El número de intervalos se indica con el argumento
 <code>bins</code>, o alternativamente, la anchura de intervalo con <code>bin_width</code>, véase la Fig. <a href="id_120006-aed.html#fig:ch-120006-plot-hist-bins">11.7</a>.</p>
-<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">renta_municipio_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">`2019`</span><span class="op">)</span><span class="op">)</span></span>
@@ -465,7 +465,7 @@ Figura 11.7: Histogramas de la renta neta per cápita en 2019 con distintos <spa
 las barras por una línea continua, generalmente suavizada. A continuación, se añade
 la línea de densidad a uno de los histogramas de la Fig. <a href="id_120006-aed.html#fig:ch-120006-plot-hist-bins">11.7</a> y el
 resultado se puede ver en la Fig. <a href="id_120006-aed.html#fig:ch-120006-hist-density">11.8</a>.</p>
-<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">renta_municipio_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">`2019`</span><span class="op">)</span><span class="op">)</span></span>
@@ -479,10 +479,10 @@ resultado se puede ver en la Fig. <a href="id_120006-aed.html#fig:ch-120006-hist
 Figura 11.8: Histograma y línea de densidad de la renta neta per cápita española en 2019.
 </p>
 </div>
-<p></p>
+<p> </p>
 <p>Otras representaciones gráficas muy útiles de las variables continuas son el
 gráfico de <strong>caja y bigotes</strong> y el <strong>diagrama de violín</strong>, que se obtienen fácilmente combinando en <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> las capas <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code> y <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin()</a></code>, respectivamente (véase Fig. <a href="id_120006-aed.html#fig:ch-120006-plot-boxplot-violin">11.9</a>).</p>
-<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">renta_municipio_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">0</span>, y<span class="op">=</span> <span class="va">`2019`</span><span class="op">)</span><span class="op">)</span> </span>
@@ -519,14 +519,14 @@ de frecuencias, en este caso conjuntas para las distintas combinaciones de los n
 de las variables. Este tipo de tablas se denomina <strong>tablas de contingencia</strong> (véase Cap. <a href="tablas-contingencia.html#tablas-contingencia">23</a>). Para dos atributos, se puede representar en
 forma de tabla de doble entrada.</p>
 <p>El resultado de la función <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> se puede utilizar dentro de las funciones <code><a href="https://rdrr.io/r/base/proportions.html">prop.table()</a></code> y <code><a href="https://rdrr.io/r/stats/addmargins.html">addmargins()</a></code> para obtener las frecuencias relativas, añadir los totales marginales, o ambas cosas. Para el ejemplo de la prestación de un servicio <em>X</em> o no por parte de 80 ayuntamientos, <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> podría utilizarse para dar respuesta a la siguiente pregunta: ¿La prestación pública del servicio <em>X</em> es independiente del signo político del ayuntamiento o depende de dicho signo?</p>
-<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">ayuntam</span><span class="op">$</span><span class="va">signo_gob</span> , <span class="va">ayuntam</span><span class="op">$</span><span class="va">serv</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             </span></span>
 <span><span class="co">#&gt;              No Sí</span></span>
 <span><span class="co">#&gt;   Avanzados  14 28</span></span>
 <span><span class="co">#&gt;   Ilustrados  6 32</span></span></code></pre></div>
 <p>No obstante, la representación gráfica más habitual sigue siendo los gráficos de barras, como se muestra en la Fig. <a href="id_120006-aed.html#fig:ch-120006-barras-ayunt">11.10</a> producida con el siguiente código:</p>
-<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">ayuntam</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">signo_gob</span>, fill <span class="op">=</span> <span class="va">serv</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -542,7 +542,7 @@ Figura 11.10: Gráfico de barras de la prestación pública del servicio <span c
 </div>
 <p>Una visualización interesante de tablas de doble entrada son los gráficos en los que
 se representan las frecuencias conjuntas por medio de puntos cuya área es proporcional a la frecuencia. La Fig. <a href="id_120006-aed.html#fig:ch-120006-balloonplot-eda-ayunt">11.11</a> muestra gráficamente la tabla de frecuencias conjunta de los atributos <code>signo_gob</code> y <code>serv</code> del conjunto de datos <code>ayuntam</code>.</p>
-<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/talgalili/gplots">"gplots"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/gplots/man/balloonplot.html">balloonplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">ayuntam</span><span class="op">$</span><span class="va">signo_gob</span> , <span class="va">ayuntam</span><span class="op">$</span><span class="va">serv</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -553,7 +553,7 @@ Figura 11.11: Representación gráfica de tabla de frecuencias.
 </div>
 <p>Para representar dos o más factores a la vez en un único gráfico, se dispone de los gráficos de mosaico con la función <code><a href="https://rdrr.io/r/graphics/mosaicplot.html">mosaicplot()</a></code> de <strong>R</strong> base, o bien el paquete
 <code>ggmosaic</code>, que incluye una función <code><a href="https://rdrr.io/pkg/ggmosaic/man/geom_mosaic.html">geom_mosaic()</a></code> para usar en gráficos <code>ggplot2</code>. El siguiente ejemplo produce el gráfico de la Fig. <a href="id_120006-aed.html#fig:ch-120006-mosaico-accidentes">11.12</a>:</p>
-<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/haleyjeppson/ggmosaic">"ggmosaic"</a></span><span class="op">)</span></span>
 <span><span class="va">accidentes2020_data</span> <span class="op">|&gt;</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -573,7 +573,7 @@ con la función <code><a href="https://ggplot2.tidyverse.org/reference/facet_wra
 distinto. Con el siguiente código<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Una sintaxis alternativa para especificar las facetas en la función &lt;code&gt;facet_wrap()&lt;/code&gt; sería la siguiente: &lt;code&gt;facet_wrap(~tipo_accidente)&lt;/code&gt;.&lt;/p&gt;"><sup>95</sup></a> se construye un gráfico para cada nivel del factor
 <code>tipo_accidente</code>. Cada uno de estos gráficos es una “faceta” del gráfico, que se
 muestra en la Fig. <a href="id_120006-aed.html#fig:ch-120006-acc-3vbles">11.13</a>.</p>
-<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">niveles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">accidentes2020_data</span><span class="op">$</span><span class="va">tipo_accidente</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">etiquetas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_wrap.html">str_wrap</a></span><span class="op">(</span><span class="va">niveles</span>, width <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>, </span>
 <span>                       <span class="va">niveles</span><span class="op">)</span></span>
@@ -610,11 +610,11 @@ las siguientes:</p>
 <p><span class="math display">\[s_{xy} = \frac{1}{n-1} \sum\limits_{i=1}^n(x_i-\bar x)(y_i-\bar y),\]</span></p>
 <p><span class="math display">\[r_{xy}=\frac{s_{xy}}{s_x \cdot s_y}.\]</span></p>
 <p>Además, la matriz de correlación suele ser un punto de partida
-en las técnicas de reducción de la dimensionalidad (Véanse los Cap. <a href="acp.html#acp">32</a>, <a href="#af"><strong>??</strong></a> y <a href="#mds"><strong>??</strong></a>). Si, por ejemplo, se desea
+en las técnicas de reducción de la dimensionalidad (véanse los Cap. <a href="acp.html#acp">32</a>, <a href="af.html#af">33</a> y <a href="mds.html#mds">34</a>). Si, por ejemplo, se desea
 calcular la matriz de correlaciones del conjunto de datos <code>TIC2021</code>,
 que presenta las estadísticas de uso de las TIC en la Unión Europea en 2021,
 se puede utilizar el paquete <code>corrplot</code>, que proporciona una forma elegante y versátil de representarla (véase la Fig. <a href="id_120006-aed.html#fig:ch-120006-correlacion">11.14</a>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Una gran cantidad de ejemplos puede verse ejecutando &lt;code&gt;example(corrplot)&lt;/code&gt;.&lt;/p&gt;"><sup>96</sup></a></p>
-<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/taiyun/corrplot">"corrplot"</a></span><span class="op">)</span></span>
 <span><span class="va">mcor_tic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">TIC2021</span><span class="op">)</span>  </span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.mixed.html">corrplot.mixed</a></span><span class="op">(</span><span class="va">mcor_tic</span>, order <span class="op">=</span> <span class="st">'AOE'</span><span class="op">)</span></span></code></pre></div>
@@ -635,7 +635,7 @@ conjuntamente con el coeficiente de correlación. Se puede añadir una línea de
 Alternativamente a los puntos como objeto geométrico, se pueden representar líneas (<code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>).</p>
 <p>Por ejemplo, antes de llevar a cabo un ajuste lineal, o de otro tipo, con los datos <code>airquality</code>, tal y como se hará en los Cap. <a href="cap-lm.html#cap-lm">15</a> a <a href="cap-sparse.html#cap-sparse">19</a>, se podría hacer un AED
 previo entre las variables <code>Ozone</code> y <code>Temp</code> con el gráfico de la Fig. <a href="id_120006-aed.html#fig:ch-120006-scatter-ozono">11.15</a>.</p>
-<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">airquality</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co">#select(Ozone,Temp) |&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span> x<span class="op">=</span> <span class="va">Temp</span>, y<span class="op">=</span><span class="va">Ozone</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -649,7 +649,7 @@ Figura 11.15: Gráfico de dispersión del ozono frente a la temperatura.
 </div>
 <p></p>
 <p>Un caso particular es cuando la variable explicativa es el tiempo. En este caso, se tiene una serie temporal, y la representación con líneas es más adecuada (véase la Fig. <a href="id_120006-aed.html#fig:ch-120006-nox-time">11.16</a>).</p>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span></span>
 <span><span class="va">contam_mad</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nom_abv</span> <span class="op">==</span> <span class="st">"NOx"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -679,7 +679,7 @@ de gráfico adecuado:</p>
 <li>Una variable numérica y una variable categórica: gráficos de cajas o de violín
 para cada nivel de la categórica (Fig. <a href="id_120006-aed.html#fig:ch-120006-plot-violin-zonas">11.17</a>), o bien gráficos de densidad para cada categoría (Fig. <a href="id_120006-aed.html#fig:ch-120006-plot-ridges-tipos">11.18</a>).</li>
 </ul>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">contam_mad</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nom_abv</span> <span class="op">==</span> <span class="st">"PM10"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -694,12 +694,12 @@ para cada nivel de la categórica (Fig. <a href="id_120006-aed.html#fig:ch-12000
 Figura 11.17: Comparación de los niveles de PM10 en las zonas de la ciudad de Madrid a efectos de calidad del aire durante la calima de marzo de 2022.
 </p>
 </div>
-<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://wilkelab.org/ggridges/">"ggridges"</a></span><span class="op">)</span></span>
 <span><span class="va">contam_mad</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nom_abv</span> <span class="op">==</span> <span class="st">"NOx"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">daily_mean</span>, y <span class="op">=</span> <span class="va">tipo</span>, fill <span class="op">=</span> <span class="va">tipo</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://wilkelab.org/ggridges/reference/geom_density_ridges.html">geom_density_ridges</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div>
+<span>  <span class="fu">geom_density_ridges</span><span class="op">(</span><span class="op">)</span> </span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ch-120006-plot-ridges-tipos"></span>
 <img src="img/plot-ridges-tipos.png" alt="Comparación de concentraciones de NOx por tipo de estación de medición." width="60%"><p class="caption">
@@ -711,23 +711,23 @@ Figura 11.18: Comparación de concentraciones de NOx por tipo de estación de me
 para las numéricas y mapeado del color, tamaño y símbolo por cada nivel de las categóricas,
 como en la Fig. <a href="id_120006-aed.html#fig:plot-dispersion-conjunta-alarma">11.19</a>.</li>
 </ul>
-<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pm10_nox_mad</span> <span class="op">&lt;-</span> <span class="va">contam_mad</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nom_abv</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PM10"</span>, <span class="st">"NOx"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># periodo del estado de alarma</span></span>
+<span>  <span class="co"># período del estado de alarma</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html">between</a></span><span class="op">(</span><span class="va">fecha</span>,left<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2020-03-14"</span><span class="op">)</span>, right<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2020-06-30"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">estaciones</span>, <span class="va">zona</span>, <span class="va">tipo</span>, <span class="va">nom_abv</span>, <span class="va">daily_mean</span>, <span class="va">fecha</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"nom_abv"</span>, values_from <span class="op">=</span> <span class="st">"daily_mean"</span>, values_fn <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pm10_nox_mad</span> <span class="op">|&gt;</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">PM10</span>, y <span class="op">=</span> <span class="va">NOx</span>, colour <span class="op">=</span> <span class="va">tipo</span>, size <span class="op">=</span> <span class="va">zona</span> <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-dispersion-conjunta-alarma"></span>
-<img src="img/plot-dispersion-conjunta-alarma.png" alt="Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) durante el estado de alarma en la ciudad de Madrid (todas las estaciones de medición)." width="60%"><p class="caption">
-Figura 11.19: Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) durante el estado de alarma en la ciudad de Madrid (todas las estaciones de medición).
+<img src="img/plot-dispersion-conjunta-alarma.png" alt="Gráfico de dipersión de las variables 'NOx', 'PM10', 'zona' y 'tipo' (de emplazamiento) durante el estado de alarma en la ciudad de Madrid (todas las estaciones de medición)." width="60%"><p class="caption">
+Figura 11.19: Gráfico de dipersión de las variables ‘NOx’, ‘PM10’, ‘zona’ y ‘tipo’ (de emplazamiento) durante el estado de alarma en la ciudad de Madrid (todas las estaciones de medición).
 </p>
 </div>
 <ul>
@@ -738,7 +738,7 @@ y <em>aesthetics</em>. Por ejemplo, añadir puntos con efecto <em>jitter</em> a 
 <p>En todos los casos anteriores se pueden crear “facetas” para hacer un gráfico
 por cada combinación de variables categóricas, de forma que se tenga un buen número de
 variables representadas en un mismo “lienzo”, como en la Fig. <a href="id_120006-aed.html#fig:ch-120006-plot-dispersion-ms-conjunta-alarma">11.20</a>.</p>
-<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pm10_nox_mad</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">NOx</span>, x<span class="op">=</span> <span class="va">PM10</span>, colour <span class="op">=</span> <span class="va">tipo</span>, shape <span class="op">=</span> <span class="va">zona</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -747,8 +747,8 @@ variables representadas en un mismo “lienzo”, como en la Fig. <a href="id_12
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">estaciones</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ch-120006-plot-dispersion-ms-conjunta-alarma"></span>
-<img src="img/plot-dispersion-ms-conjunta-alarma.png" alt="Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) por estación de medición durante el estado de alarma en la ciudad de Madrid." width="80%"><p class="caption">
-Figura 11.20: Gráfico de dipersión de las variables NOx, PM10, zona y tipo (de emplazamiento) por estación de medición durante el estado de alarma en la ciudad de Madrid.
+<img src="img/plot-dispersion-ms-conjunta-alarma.png" alt="Gráfico de dipersión de las variables 'NOx', 'PM10', 'zona' y 'tipo' (de emplazamiento) por estación de medición durante el estado de alarma en la ciudad de Madrid." width="80%"><p class="caption">
+Figura 11.20: Gráfico de dipersión de las variables ‘NOx’, ‘PM10’, ‘zona’ y ‘tipo’ (de emplazamiento) por estación de medición durante el estado de alarma en la ciudad de Madrid.
 </p>
 </div>
 </div>
@@ -823,7 +823,7 @@ representación gráfica y con combinaciones de gráficos de barras.</p></li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

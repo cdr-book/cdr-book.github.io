@@ -8,7 +8,7 @@ Diverger
 
 
 ## Introducción
-\index{procesamiento del lenguaje natural, NLP}
+\index{procesamiento del lenguaje natural}
 \index{modelado de temas}
 \index{análisis!de tendencias}
 
@@ -48,7 +48,7 @@ El conjunto de datos consta de 23.486 entradas que incluyen información acerca 
 
 
 \index{bigrama}
-\index{análisis!de texto}
+\index{análisis!de textos}
 \index{latent Dirichlet allocation@\textit{latent Dirichlet allocation}, LDA}
 
 El objetivo de este capítulo es explorar la aplicación de técnicas de análisis de texto en un conjunto de datos de opiniones, reseñas y calificaciones sobre ropa de comercio electrónico para mujeres. En primer lugar, se realiza el análisis del porcentaje de reseñas y calificaciones por departamento, destacándose aquellos con mayor y menor porcentaje. Posteriormente, se lleva a cabo un **análisis de bigramas** para identificar las frases asociadas con diferentes calificaciones. Finalmente, se utiliza el modelado de temas con el algoritmo **_latent Dirichlet allocation_** (LDA) para explorar las características clave de las opiniones correspondientes al departamento de "Tendencias". Los resultados del análisis proporcionan información muy valiosa para las empresas sobre el grupo demográfico objetivo, las preferencias de los clientes y las características clave de las prendas.
@@ -66,14 +66,10 @@ clothes |>
   geom_text(aes(label = round(prop * 100, 2)), vjust = -0.25) 
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{212058_cd_nlp_textil_files/figure-latex/rev-departamento-1} 
-
-}
-
-\caption{Porcentaje de revisiones por departamento.}(\#fig:rev-departamento)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="212058_cd_nlp_textil_files/figure-html/rev-departamento-1.png" alt="Porcentaje de revisiones por departamento." width="60%" />
+<p class="caption">(\#fig:rev-departamento)Porcentaje de revisiones por departamento.</p>
+</div>
 
 La Fig. \@ref(fig:rev-departamento) muestra que un gran porcentaje de las opiniones y calificaciones corresponden a los departamentos o secciones de tops (44,57%) y vestidos (*dresses*) (26,91%). Por el contrario, el departamento de chaquetas (*jackets*) y la sección de tendencias (*trend*) apenas si reciben, entre ambos, el 5% de dichas opiniones y calificaciones. Dado que la sección de tendencias presenta una mezcla de ropa que puede pertenecer a varias secciones y únicamente representa el 0,51% del conjunto de datos (opiniones y calificaciones), por simplicidad, se ha decidido excluirla del análisis. 
 
@@ -95,14 +91,10 @@ clothes |>
   scale_y_continuous(limits = c(0, 65))
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{212058_cd_nlp_textil_files/figure-latex/rating-departamento-1} 
-
-}
-
-\caption{Distribución porcentual de las calificaciones por departamento.}(\#fig:rating-departamento)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="212058_cd_nlp_textil_files/figure-html/rating-departamento-1.png" alt="Distribución porcentual de las calificaciones por departamento." width="60%" />
+<p class="caption">(\#fig:rating-departamento)Distribución porcentual de las calificaciones por departamento.</p>
+</div>
 
 En la Fig. \@ref(fig:rating-departamento) se observa que en todos los departamentos la calificación de 5 estrellas es, de largo, la más común. Aunque las chaquetas solo tienen un 4,39 % de reseñas (Fig. \@ref(fig:rev-departamento)), este departamento es el que tiene la mayor proporción de calificaciones de 5 estrellas. Una posible razón de esto es que las chaquetas suelen ser más fáciles de ajustar a diferentes formas corporales en comparación con vestidos y blusas, que pueden ser más difíciles de adaptarse correctamente, especialmente cuando se compran online.
 
@@ -137,14 +129,10 @@ ages |>
   coord_flip()
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{212058_cd_nlp_textil_files/figure-latex/coment-edad-dto-1} 
-
-}
-
-\caption{Número de opiniones en cada departamento, por grupo de edad.}(\#fig:coment-edad-dto)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="212058_cd_nlp_textil_files/figure-html/coment-edad-dto-1.png" alt="Número de opiniones en cada departamento, por grupo de edad." width="60%" />
+<p class="caption">(\#fig:coment-edad-dto)Número de opiniones en cada departamento, por grupo de edad.</p>
+</div>
 
 
 
@@ -209,14 +197,10 @@ top_bigrams |> ggplot(aes(bigram, n, fill = Rating)) +
   coord_flip()
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{212058_cd_nlp_textil_files/figure-latex/bigramas-1} 
-
-}
-
-\caption{Bigramas más frecuentes (por nivel de calificación).}(\#fig:bigramas)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="212058_cd_nlp_textil_files/figure-html/bigramas-1.png" alt="Bigramas más frecuentes (por nivel de calificación)." width="60%" />
+<p class="caption">(\#fig:bigramas)Bigramas más frecuentes (por nivel de calificación).</p>
+</div>
 No hace falta decir que los bigramas tienen un tono positivo en las calificaciones más altas y negativo en las más bajas.
 
 
@@ -242,14 +226,10 @@ wordcloud2(one |>
   filter(n > 5) |>
   mutate(n = sqrt(n)), size = .4 )
 ```
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{img/nube1} 
-
-}
-
-\caption{Nube de palabaras para la peor calificaión (1 estrella).}(\#fig:nube1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/nube1.png" alt="Nube de palabras para la peor calificación (1 estrella)." width="80%" />
+<p class="caption">(\#fig:nube1)Nube de palabras para la peor calificación (1 estrella).</p>
+</div>
 
 
 
@@ -260,14 +240,10 @@ wordcloud2(five |>
              filter(n > 10) |>
              mutate(n = sqrt(n)), size = .4)
 ```
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/nube5} 
-
-}
-
-\caption{Nube de palabaras para la mejor calificaión (5 estrellas).}(\#fig:nube5)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/nube5.png" alt="Nube de palabras para la mejor calificación (5 estrellas)." width="60%" />
+<p class="caption">(\#fig:nube5)Nube de palabras para la mejor calificación (5 estrellas).</p>
+</div>
 
 
 
@@ -312,14 +288,10 @@ top_trendy |>
   coord_flip()
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{212058_cd_nlp_textil_files/figure-latex/lda-1} 
-
-}
-
-\caption{Modelo LDA ($k=5$).}(\#fig:lda)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="212058_cd_nlp_textil_files/figure-html/lda-1.png" alt="Modelo LDA ($k=5$)." width="60%" />
+<p class="caption">(\#fig:lda)Modelo LDA ($k=5$).</p>
+</div>
 
 En el modelo LDA (Fig. \@ref(fig:lda)) cada tema se representa por un conjunto de palabras que aparecen juntas con mayor frecuencia en las opiniones de los clientes. Por ejemplo, el tema 3 se caracteriza por palabras como *colors* (colores), *wear* (vestir), *bit* (un poco), *jacket* (chaqueta) y *price* (precio), lo que sugiere que los clientes pueden estar comentando sobre la variedad de colores disponibles, la durabilidad de la prenda y su precio. Por otro lado, el tema 1 se caracteriza por palabras como *love* (adorar), *fit* (ajuste), *fabric* (tejido), *wear* (vestir) y *length* (largo), lo que sugiere que los clientes pueden estar hablando sobre su experiencia con la prenda en términos de comodidad, ajuste y calidad de la tela. Al identificar estos temas, se pueden obtener ideas valiosas sobre las opiniones y preferencias de los clientes que ayuden a mejorar la calidad de la ropa y satisfacer sus necesidades y deseos. Esto permite a las empresas tomar decisiones informadas para satisfacer las necesidades de sus clientes y mejorar la experiencia del usuario en el ámbito del comercio electrónico de ropa.
 

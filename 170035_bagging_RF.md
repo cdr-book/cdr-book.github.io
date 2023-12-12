@@ -8,18 +8,14 @@ $^{c}$Universidad de Castilla-La Mancha
 
 ## Introducción a los métodos ensamblados
 
-Puede ocurrir que ninguno de los algoritmos hasta ahora presentados (Caps. \@ref(cap-arboles), \@ref(cap-svm), \@ref(cap-knn) y \@ref(cap-naive-bayes)) proporcionen resultados convincentes para el problema que se quiere modelar. El **aprendizaje ensamblado**\index{aprendizaje ensamblado} [@zhou2012ensemble] es un paradigma que, como muestra la Fig. \@ref(fig:metamodel), en lugar de entrenar un modelo que proporcione resultados muy precisos, entrena un gran número de modelos no tan precisos y después combina sus predicciones para obtener un metamodelo con una precisión superior.
+Puede ocurrir que ninguno de los algoritmos hasta ahora presentados (Caps. \@ref(cap-arboles), \@ref(cap-svm), \@ref(cap-knn) y \@ref(cap-naive-bayes)) proporcionen resultados convincentes para el problema que se quiere modelar. El **aprendizaje ensamblado**\index{aprendizaje!ensamblado} [@zhou2012ensemble] es un paradigma que, como muestra la Fig. \@ref(fig:metamodel), en lugar de entrenar un modelo que proporcione resultados muy precisos, entrena un gran número de modelos no tan precisos y después combina sus predicciones para obtener un metamodelo con una precisión superior.
 
-\begin{figure}
+<div class="figure" style="text-align: center">
+<img src="img/metamodelo.png" alt="Esquema de un metamodelo." width="100%" />
+<p class="caption">(\#fig:metamodel)Esquema de un metamodelo.</p>
+</div>
 
-{\centering \includegraphics[width=1\linewidth]{img/metamodelo} 
-
-}
-
-\caption{Esquema de un metamodelo.}(\#fig:metamodel)
-\end{figure}
-
-A los modelos que se combinan se les suele denominar algoritmos "débiles" (con menor capacidad de aprender patrones complejos en los datos) y, generalmente, son rápidos tanto en tiempo de entrenamiento como de procesamiento. Existen dos paradigmas de aprendizaje ensamblado\index{aprendizaje ensamblado}: *bagging*\index{bagging@\textit{bagging}} y *boosting*\index{boosting@\textit{boosting}} (Cap. \@ref(cap-boosting-xgboost)).
+A los modelos que se combinan se les suele denominar algoritmos "débiles" (con menor capacidad de aprender patrones complejos en los datos) y, generalmente, son rápidos tanto en tiempo de entrenamiento como de procesamiento. Existen dos paradigmas de aprendizaje ensamblado\index{aprendizaje!ensamblado}: *bagging*\index{bagging@\textit{bagging}} y *boosting*\index{boosting@\textit{boosting}} (Cap. \@ref(cap-boosting-xgboost)).
 
 ## $\bf \textit{Bagging}$
 
@@ -124,14 +120,10 @@ for (n in seq(10,150,5)) { # valores a probar para nbagg
 plot(seq(10,150,5),missclass,type = "l",xlab = "Número de árboles", ylab="Missclassification error")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/bagging_missclass} 
-
-}
-
-\caption{Porcentaje de clasificación errónea $vs.$ número de replicaciones.}(\#fig:bagg-plot)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/bagging_missclass.png" alt="Porcentaje de clasificación errónea $vs.$ número de replicaciones." width="60%" />
+<p class="caption">(\#fig:bagg-plot)Porcentaje de clasificación errónea $vs.$ número de replicaciones.</p>
+</div>
 
 La función `train()` del paquete `caret` es otra alternativa para entrenar un algoritmo de *bagging* en **R**. Para ello, el argumento `method` debe tomar el valor `"treebag"`. Este algoritmo no incluye hiperparámetros a optimizar. Dado que se ha obtenido recursivamente el número óptimo de replicaciones, se puede entrenar el modelo con el valor obtenido y comprobar que el porcentaje de clasificación errónea es el mismo. Se observa que si se entrena un modelo *bagging* con 60 replicaciones, la `accuracy` del modelo (el porcentaje de observaciones clasificadas correctamente) es del 86,93%; es decir, el porcentaje de clasificación errónea es del 13,07%, similar al obtenido anteriormente con la función `bagging` (13,79%).[^Note-1-bagging]
 
@@ -183,14 +175,10 @@ vip(model_bag, num_features = 15,
     aesthetics = list(color = "skyblue", fill = "skyblue"))
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/model_bag_imp} 
-
-}
-
-\caption{Importancia de las variables incluidas en el modelo $bagging$.}(\#fig:BAGGINGVIP)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/model_bag_imp.png" alt="Importancia de las variables incluidas en el modelo $bagging$." width="60%" />
+<p class="caption">(\#fig:BAGGINGVIP)Importancia de las variables incluidas en el modelo $bagging$.</p>
+</div>
 
 La Fig. \@ref(fig:BAGGINGVIP) muestra que las variables más importantes en el modelo *bagging* entrenado para predecir si un cliente comprará o no el *tensiómetro digital* son: si ha comprado la *depiladora eléctrica*, cuánto importe ha gastado en ese producto, si ha comprado el *estimulador muscular* y si ha comprado el *smartchwatch fitness*.
 
@@ -199,14 +187,10 @@ La Fig. \@ref(fig:BAGGINGVIP) muestra que las variables más importantes en el m
 ***Random forest*** (bosque aleatorio)\index{random forest@\textit{random forest}} es un algoritmo básico en el marco del paradigma *bagging*\index{bagging@\textit{bagging}}. Fue desarrollado por primera vez por @ho1995random. Sin embargo, fueron @cutler1999fast y @breiman2001random quienes formularon una versión extendida del modelo y registraron *Random forest* como marca comercial. Funciona igual que el *bagging*, con la salvedad de que el *random forest* establece una limitación artificial a la selección de variables al no considerar todas en cada árbol. El *bagging*\index{bagging@\textit{bagging}} considera las mismas variables para construir cada árbol\index{a@árbol!de decisión} con el objetivo de minimizar su entropía\index{entropía}, y, por tanto, todos los árboles suelen tener un aspecto similar. Esto lleva a que las predicciones dadas por los árboles estén altamente correlacionadas. El modelo *random forest*\index{random forest@\textit{random forest}} evita este problema mediante la agregación de una fuente de variabilidad aleatoria adicional, provocando así una mayor diversidad entre los árboles del bosque. En concreto, se obliga a cada árbol a usar solo un subconjunto de los predictores a la hora de dividirse en la fase de crecimiento. Esta forma de proceder proporciona a algunas variables mayor probabilidad de ser seleccionadas y, al generar árboles únicos y no correlacionados, proporciona una estructura de decisión final más fiable. En la Fig. \@ref(fig:ejemplo-rf) puede verse un ejemplo de *random forest*.
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/randomforest} 
-
-}
-
-\caption{Ejemplo de $random$ $forest$.}(\#fig:ejemplo-rf)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/randomforest.png" alt="Ejemplo de $random$ $forest$." width="60%" />
+<p class="caption">(\#fig:ejemplo-rf)Ejemplo de $random$ $forest$.</p>
+</div>
 
 En general, es mejor que el *random forest* esté formado por una gran cantidad de árboles (por lo menos 100) para suavizar el impacto de valores atípicos. Sin embargo, la tasa de efectividad disminuye a medida que se incorporan más árboles. Llegado a cierto punto, los nuevos árboles no aportan una mejora significativa al modelo, pero sí incrementan los tiempos de procesamiento. 
 
@@ -215,7 +199,7 @@ El modelo *random forest* es rápido de entrenar y es una buena técnica para ob
 Los *random forest* se han vuelto populares porque suelen proporcionar un muy buen rendimiento con los valores predeterminados de los hiperparámetros  en las distintas implementaciones. En efecto, a pesar de tener muchos hiperparámetros\index{hiperparámetro}, los valores por defecto de dichos hiperparámetros tienden a proporcionar buenos resultados en la predicción. Los hiperparámetros más importantes que hay que ajustar al entrenar un modelo *random forest* son: el número de árboles ($K$), el número de variables incluidas en el subconjunto aleatorio en cada división (`mtry`), la complejidad\index{complejidad} de cada árbol, el esquema de muestreo y la regla de división a utilizar durante la construcción del árbol.
 
 ### Número de árboles ($K$)
-\index{número!de árboles}
+\index{numero@número!de árboles}
 
 \index{random forest@\textit{random forest}}
 El primer hiperparámetro a ajustar es el número de árboles que componen el bosque aleatorio. Su valor debe ser lo suficientemente grande como para que la tasa de error se estabilice. La regla general es que el valor mínimo de árboles sea 10 veces el número de variables incluidas en el modelo. Sin embargo, cuando se tienen en cuenta otros hiperparámetros, es posible que el número de árboles se vea afectado. El tiempo de procesamiento aumenta linealmente con la cantidad de árboles incluidos, pero cuantos más se incluyan, más estables serán las estimaciones del error de clasificación o predicción.
@@ -320,14 +304,10 @@ Los resultados de la validación cruzada se pueden ver en la Fig. \@ref(fig:RFRE
 
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.45\linewidth]{img/rfboxplot} 
-
-}
-
-\caption{Resultados del modelo $random$ $forest$ durante el proceso de validación cruzada.}(\#fig:RFRESULTS)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/rfboxplot.png" alt="Resultados del modelo $random$ $forest$ durante el proceso de validación cruzada." width="45%" />
+<p class="caption">(\#fig:RFRESULTS)Resultados del modelo $random$ $forest$ durante el proceso de validación cruzada.</p>
+</div>
 
 Finalmente, aunque el *random forest* generado está compuesto por 500 árboles, se puede acceder a cualquiera de ellos para estudiarlo en profundidad. Para ello, es necesario instalar el paquete `reprtree` desde el repositorio <https://github.com/araastat/reprtree>.
 
@@ -373,14 +353,10 @@ library("reprtree")
 plot.getTree(rf, k=205)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/rf-tree205} 
-
-}
-
-\caption{Árbol número 205 del $random$ $forest$ entrenado.}(\#fig:rf-tree205)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/rf-tree205.png" alt="Árbol número 205 del $random$ $forest$ entrenado." width="60%" />
+<p class="caption">(\#fig:rf-tree205)Árbol número 205 del $random$ $forest$ entrenado.</p>
+</div>
 
 Sin embargo, el método por el que se representa gráficamente no es muy claro y puede llevar a confusión o dificultar la interpretación del árbol. Si se desea estudiar el árbol, hasta un cierto nivel, se puede incluir el argumento `depth`. El árbol, ahora con una profundidad de 5 ramas, puede verse en la Fig. \@ref(fig:tree-plot2).
 
@@ -389,18 +365,14 @@ Sin embargo, el método por el que se representa gráficamente no es muy claro y
 plot.getTree(rf, k=205, depth = 5)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{img/rf_tree205_depth5} 
-
-}
-
-\caption{Árbol número 205 del $random$ $forest$ entrenado hasta la capa 5.}(\#fig:tree-plot2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/rf_tree205_depth5.png" alt="Árbol número 205 del $random$ $forest$ entrenado hasta la capa 5." width="80%" />
+<p class="caption">(\#fig:tree-plot2)Árbol número 205 del $random$ $forest$ entrenado hasta la capa 5.</p>
+</div>
 
 #### Aplicación del modelo *random forest* con ajuste automático
 
-En este segundo ejemplo se pretende mejorar la precisión del modelo anterior. Para ello, se procede al ajuste automático de \index{ajuste automático} los hiperparámetros de dicho algoritmo. De los mencionados anteriormente, solo se va a ajustar automáticamente `mtry`, que es el único incluido el método `rf`.
+En este segundo ejemplo se pretende mejorar la precisión del modelo anterior. Para ello, se procede al ajuste automático de \index{ajuste!automático} los hiperparámetros de dicho algoritmo. De los mencionados anteriormente, solo se va a ajustar automáticamente `mtry`, que es el único incluido el método `rf`.
 
 
 ```r
@@ -480,14 +452,10 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
   xlab(NULL) + ylab(NULL)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.45\linewidth]{img/rftunedboxplot} 
-
-}
-
-\caption{Resultados obtenidos por el random forest con ajuste automático durante el proceso de validación cruzada.}(\#fig:rfresults2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/rftunedboxplot.png" alt="Resultados obtenidos por el random forest con ajuste automático durante el proceso de validación cruzada." width="45%" />
+<p class="caption">(\#fig:rfresults2)Resultados obtenidos por el random forest con ajuste automático durante el proceso de validación cruzada.</p>
+</div>
 
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}

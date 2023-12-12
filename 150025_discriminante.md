@@ -29,39 +29,39 @@ Aunque existen varios enfoques diferentes, en este capítulo se adoptará el enf
 El número de variables discriminantes debe ser inferior en más de dos al número de individuos ($p<N-2$) para poder identificar los parámetros de las funciones discriminantes. Además, en la práctica, es útil disponer de algún criterio o método que permita seleccionar qué variables se considerarán clasificadoras. Una alternativa pueden ser los métodos de jerarquización de variables desarrollados en análisis de regresión o la selección de variables (*feature selection*,  véase Cap. \@ref(chap-feature)). Como punto inicial, es frecuente que se considere que una variable puede ser clasificadora si presenta diferencias en su distribución entre los grupos, utilizando para ello un *ANOVA*.
 
 
-Así, el AD busca determinar un criterio o *regla discriminante* que clasifique a cada individuo, $j, \hspace{0,2cm}j=1,..., N$, en uno de los $k$ grupos conociendo las observaciones de cada una de las $p$ variables $X_i$, es decir, el vector ${\bf{x}}_j=(x_{1j},x_{2,j}, ... , x_{pj})'$. Estas reglas discriminantes están basadas en la información muestral y en los supuestos que sobre esta se hacen; en el planteamiento clásico de Fisher, al asumir la normalidad de las variables, se basan en el comportamiento, en los $k$ grupos, de los vectores de medias y de las matrices de varianzas-covarianzas (véase Sec. \@ref(120006-aedmulti)). Por ello, se suelen distinguir varios casos que conducen a distintos métodos de obtención de reglas discriminantes, por lo que reciben nombres diferentes:
+Así, el AD busca determinar un criterio o *regla discriminante* que clasifique a cada individuo, $i, \hspace{0,2cm}i=1,..., N$, en uno de los $k$ grupos conociendo las observaciones de cada una de las $p$ variables $X_j$, es decir, el vector ${\bf{x}}_i=(x_{1i},x_{2i}, ... , x_{pi})'$. Estas reglas discriminantes están basadas en la información muestral y en los supuestos que sobre esta se hacen; en el planteamiento clásico de Fisher, al asumir la normalidad de las variables, se basan en el comportamiento, en los $k$ grupos, de los vectores de medias y de las matrices de varianzas-covarianzas (véase Sec. \@ref(120006-aedmulti)). Por ello, se suelen distinguir varios casos que conducen a distintos métodos de obtención de reglas discriminantes, por lo que reciben nombres diferentes:
 
-- El caso más sencillo (e históricamente el más antiguo), además de la normalidad, supone que las matrices de varianzas-covarianzas son iguales en todos los grupos (supuesto de **homocedasticidad**). El método se conoce como **análisis discriminante lineal** (*linear discriminant analysis* o LDA). En este caso, detallado en la Sec. \@ref(150025lda), la diferencia en la distribución de las variables entre los grupos se produce en los vectores de medias, y la función discriminante obtenida es una combinación lineal de las variables clasificadores que minimiza los errores de clasificación. \index{análisis!discriminante lineal}
+- El caso más sencillo (e históricamente el más antiguo), además de la normalidad, supone que las matrices de varianzas-covarianzas son iguales en todos los grupos (supuesto de **homocedasticidad**). El método se conoce como **análisis discriminante lineal** (*linear discriminant analysis* o LDA). En este caso, detallado en la Sec. \@ref(150025lda), la diferencia en la distribución de las variables entre los grupos se produce en los vectores de medias, y la función discriminante obtenida es una combinación lineal de las variables clasificadores que minimiza los errores de clasificación. \index{análisis!discriminante!lineal}
 
-- Otra posibilidad es que se asuma la normalidad pero no que todos los grupos tengan la misma matriz de varianzas-covarianzas. En este caso, la función discriminante es una función cuadrática, por lo que el método se conoce como **análisis discriminante cuadrático** (*quadatric discriminant analysis* o QDA), detallado en la Sec. \@ref(150025qda). \index{análisis!discriminante cuadrático}
-
-
-Sea cual sea el método elegido, las *reglas discriminantes* que se obtengan para clasificar a un individuo en uno de los grupos deben determinarse minimizando los errores de clasificación, que pueden ser evaluados probabilísticamente al disponer de la distribución de probabilidad de las variables en cada grupo. Así, para cada individuo $j$ y sus valores de las variables clasificadoras ${\bf{x}}_j=(x_{1j},x_{2,j}, ... , x_{pj})'$,  se dispone de las verosimilitudes para cada uno de los $k$ grupos, $L_i\left( {\bf{x}}_j;{\bf{\theta}}_i \right )\ ,1\leq i \leq k$, donde en el vector ${\bf{\theta}}_i$ se recogen los parámetros de la distribución probabilísitica de las variables (en el caso de normalidad, dichos parámetros son la media y la desviación típica).
+- Otra posibilidad es que se asuma la normalidad pero no que todos los grupos tengan la misma matriz de varianzas-covarianzas. En este caso, la función discriminante es una función cuadrática, por lo que el método se conoce como **análisis discriminante cuadrático** (*quadatric discriminant analysis* o QDA), detallado en la Sec. \@ref(150025qda). \index{análisis!discriminante!cuadrático}
 
 
-Conociendo la probabilidad *a priori* de pertenencia de un individuo a cada grupo,[^discri3] $\pi_i \, \ 1 \leq i \leq k$, se puede aplicar el teorema de Bayes (véase \@ref(eq:bayes)) y calcular la probabilidad de que el individuo pertenezca a cada uno de los  grupos $G_i,\hspace{0,2cm} i=1,...,k$. Por ejemplo, para el *m*-ésimo grupo:
+Sea cual sea el método elegido, las *reglas discriminantes* que se obtengan para clasificar a un individuo en uno de los grupos deben determinarse minimizando los errores de clasificación, que pueden ser evaluados probabilísticamente al disponer de la distribución de probabilidad de las variables en cada grupo. Así, para cada individuo $i$ y sus valores de las variables clasificadoras ${\bf{x}}_i=(x_{1i},x_{2,i}, ... , x_{pi})'$,  se dispone de las verosimilitudes para cada uno de los $k$ grupos, $L_m\left( {\bf{x}}_i;{\bf{\theta}}_m \right )\ ,1\leq m \leq k$, donde en el vector ${\bf{\theta}}_m$ se recogen los parámetros de la distribución probabilísitica de las variables (en el caso de normalidad, dichos parámetros son la media y la desviación típica).
+
+
+Conociendo la probabilidad *a priori* de pertenencia de un individuo a cada grupo,[^discri3] $\pi_m \, \ 1 \leq m \leq k$, se puede aplicar el teorema de Bayes (véase \@ref(eq:bayes)) y calcular la probabilidad de que el individuo pertenezca a cada uno de los  grupos $G_m,\hspace{0,2cm} m=1,...,k$. Por ejemplo, para el *m*-ésimo grupo:
 
 [^discri3]: Lo habitual es que la probabilidad *a priori* de pertenencia de un individuo a un grupo
-sea $\pi _i = {{1}\over{k}},\hspace{0,2cm} i=1,...,k$, cualquiera que sea el grupo,  o bien proporcional al tamaño del grupo.
+sea $\pi _m = {{1}\over{k}},\hspace{0,2cm} m=1,...,k$, cualquiera que sea el grupo, o bien proporcional al tamaño del grupo.
 
 \begin{equation}
 (\#eq:probclas)
-P(G_m/ {\bf{x}}_j) = \frac {L_m({\bf{x}}_j;{\bf{\theta}} _m) \pi _m} {\sum_{i=1}^{k} L_i ({\bf{x}}_j;{\bf{\theta}} _i) \pi _i}, \hspace{0,5cm} m \in [1,...,k].
+P(G_m/ {\bf{x}}_i) = \frac {L_m({\bf{x}}_i;{\bf{\theta}} _m) \pi _m} {\sum_{m=1}^{k} L_i ({\bf{x}}_i;{\bf{\theta}} _m) \pi _m}, \hspace{0,5cm} m \in [1,...,k].
 \end{equation}
 
 
-A partir de esta ecuación, la *regla discriminante* consiste en asignar el individuo al grupo más probable. Dado que el denominador de \@ref(eq:probclas) es constante para todos los grupos, la regla equivale a asignar el individuo al grupo donde sea *ponderadamente* más verosímil. Es decir, el *j*-ésimo individuo se clasifica en el *m*-ésimo grupo si:
+A partir de esta ecuación, la *regla discriminante* consiste en asignar el individuo al grupo más probable. Dado que el denominador de \@ref(eq:probclas) es constante para todos los grupos, la regla equivale a asignar el individuo al grupo donde sea *ponderadamente* más verosímil. Es decir, el *i*-ésimo individuo se clasifica en el *m*-ésimo grupo si:
 
 \begin{equation}
 (\#eq:veroclas)
- L_m({\bold {x}}_j;{\bold{\theta}}_m) \pi_m = \underset {i=1,...,k}{\max} L_i({\bf{x}}_j;{\bold {\theta}}_i) \pi_i,
+ L_m({\bold {x}}_i;{\bold{\theta}}_m) \pi_m = \underset {m=1,...,k}{\max} L_m({\bf{x}}_i;{\bold {\theta}}_m) \pi_m,
 \end{equation}
 
 ecuación que se simplifica en el caso de igual probabilidad *a priori*, resultando la *regla discriminante* en asignar a cada individuo al grupo más verosímil.
 
 
 
-En general, se pueden cometer dos tipos de error: no clasificar al individuo en un grupo cuando realmente pertenece a él o clasificarlo en un grupo al que realmente no pertenece. Si no se conocen los costes de cometer dichos errores (o son iguales), no afectan a la **regla discriminante**; sin embargo, si son conocidos y han de ser tenidos en cuenta, la regla se modificaría, ponderando cada verosimilitud $L_i({\bf{x}}_j;{\bf{\theta}}_i) ,\hspace{0,2cm} i=1,...,k,$ por el coste de clasificar erróneamente un individuo perteneciente al *i*-ésimo grupo.
+En general, se pueden cometer dos tipos de error: no clasificar al individuo en un grupo cuando realmente pertenece a él o clasificarlo en un grupo al que realmente no pertenece. Si no se conocen los costes de cometer dichos errores (o son iguales), no afectan a la **regla discriminante**; sin embargo, si son conocidos y han de ser tenidos en cuenta, la regla se modificaría, ponderando cada verosimilitud $L_m({\bf{x}}_i;{\bf{\theta}}_m) ,\hspace{0,2cm} m=1,...,k,$ por el coste de clasificar erróneamente un individuo perteneciente al *m*-ésimo grupo.
 
 En las secciones siguientes se abordarán ambos modelos de AD que, aunque no son los únicos, sí representan la gran mayoría de las aplicaciones prácticas.
 
@@ -73,14 +73,10 @@ Es un modelo de *AD* basado en los supuestos generales expuestos en el epígrafe
   
 Es el caso más simple posible, donde se han de clasificar $N$ individuos en dos grupos (I y II) a partir de la información de una única variable clasificadora, $X$. En este caso, las distribuciones de probabilidad de $X$ en los grupos I y II solo difieren en la media, como se muestra en la Fig. \@ref(fig:150025img01).
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{img/150025img01} 
-
-}
-
-\caption{LDA: dos grupos y una variable clasificadora.}(\#fig:150025img01)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150025img01.png" alt="LDA: dos grupos y una variable clasificadora." width="50%" />
+<p class="caption">(\#fig:150025img01)LDA: dos grupos y una variable clasificadora.</p>
+</div>
 
 La **regla discriminante** consistirá en asignar cada individuo al grupo con mayor verosimilitud \@ref(eq:veroclas). Como se aprecia, esta regla divide la recta real en dos partes, a la izquierda y a la derecha de $C$, que es el el valor de la recta correspondiente al corte entre las funciones de densidad de los grupos I y II:
 
@@ -91,7 +87,7 @@ C=\frac{\overline{x}_I+\overline{x}_{II}}{2},
 quedando la asignación de cada individuo como sigue:[^discri4]
 
 \begin{equation}
-\text{si } x_j<C \in \text{ Grupo I y si } x_j>C \in \text{ Grupo II}.
+\text{si } x_i<C \in \text{ Grupo I y si } x_i>C \in \text{ Grupo II}.
 \end{equation}  
 
 [^discri4]: De forma intuitiva, se asigna cada individuo al grupo cuya media está más cercana al valor de la variable. Esta interpretación se generaliza a más variables clasificadoras, asignando cada individuo al grupo cuyo centroide esté más cercano a él. Si la probabilidad *a priori* fuese proporcional al tamaño de los grupos, el punto de corte se calcularía como $C=\frac{n_I\bar{x}_I+n_{II}\bar{x}_{II}}{N}$.
@@ -104,14 +100,10 @@ Las probabilidades de los errores que se pueden cometer en la asignación corres
 
 Si, bajo los mismos supuestos, se dispone de dos variables clasificadoras, $X_1$ y $X_2$, se proyectan los elipsoides de ambos grupos sobre las dos variables y se obtiene la Fig. \@ref(fig:150025img02):
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{img/150025img02} 
-
-}
-
-\caption{LDA: dos grupos y dos variables clasificadoras.}(\#fig:150025img02)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150025img02.png" alt="LDA: dos grupos y dos variables clasificadoras." width="50%" />
+<p class="caption">(\#fig:150025img02)LDA: dos grupos y dos variables clasificadoras.</p>
+</div>
 
 Se obtienen, sobre cada variable, zonas de error de clasificación amplias (marcadas en amarillo) que conllevarán errores de clasificación grandes. Sin embargo, si se proyectan ambos elipsoides sobre un nuevo *eje*, obtenido como una combinación lineal de ambas variables clasificadoras ($w_1X_1 + w_2X_2 - D = 0$), es posible reducir la zona de error de clasificación y, como consecuencia, la probabilidad de error de clasificación.
 
@@ -126,7 +118,7 @@ El objetivo es encontrar una **regla discriminante** que permita **separar** amb
 D=w_1X_1+w_2X_2+...+w_pX_p,
 \end{equation}
 
-que asigna al individuo *j*-ésimo una **puntuación discriminante** $D_j=w_1X_{1j}+w_2X_{2j}+...+w_pX_{pj}$; expresando matricialmente estas puntuaciones en diferencias respecto a las medias, se tiene que:
+que asigna al individuo *i*-ésimo una **puntuación discriminante** $D_i=w_1X_{1i}+w_2X_{2i}+...+w_pX_{pi}$; expresando matricialmente estas puntuaciones en diferencias respecto a las medias, se tiene que:
 
 \begin{equation}
 (\#eq:discr)
@@ -182,10 +174,10 @@ El **punto de corte (C)** se obtiene evaluando la función discriminante en la m
 C= \frac{n_I \bar{D}_I + n_{II} \bar{D}_{II}}{N}, 
 \end{equation}
 
-y el **criterio de asignación para el $j$-ésimo individuo**, es:
+y el **criterio de asignación para el $i$-ésimo individuo**, es:
 
 \begin{equation}
-\text{si } \ D_j<C \in \text{ Grupo I   y   si } D_j>C \in \text{ Grupo II}.
+\text{si } \ D_i<C \in \text{ Grupo I   y   si } D_i>C \in \text{ Grupo II}.
 \end{equation}
 
 
@@ -233,7 +225,7 @@ Por tanto, el autovector asociado al mayor autovalor de la matriz $\textbf{U}^{-
 Para obtener el resto de funciones discriminantes, basta con ir eligiendo los siguientes autovectores asociados a los autovalores, ordenados decrecientemente. Como los autovectores son linealmente independientes, las funciones de discriminación están incorrelacionadas.[^discri6]
 
 
-[^discri6]: Como la capacidad discriminante de la funciones va decreciendo, puede haber casos donde no se consideren relevantes todas, sino las $h$ primeras. En ese caso, la variabilidad explicada por una de estas $h$ funciones discriminantes, por ejemplo a la $r$-ésima,  sería $\sum _{t=1} ^{h} \lambda_t$, por lo que la proporción de variabilidad atribuible a dicha función sería $D_r$ sería $\frac {\lambda_r}{\sum _{i=1} ^{h} \lambda_i}, \hspace{0,2cm} t=1,...h$.
+[^discri6]: Como la capacidad discriminante de la funciones va decreciendo, puede haber casos donde no se consideren relevantes todas, sino las $h$ primeras. En ese caso, la variabilidad explicada por una de estas $h$ funciones discriminantes, por ejemplo la $r$-ésima,  sería $\lambda_r$, por lo que la proporción de variabilidad atribuible a dicha función sería $D_r=\frac {\lambda_r}{\sum _{t=1} ^{h} \lambda_t}, \hspace{0,2cm} t=1,...h$.
 
 De esta forma, la primera función discriminante, $D_1$, es la que proporciona mayor discriminación entre los centroides de los grupos; $D_2$, incorrelacionada con  $D_1$, es la que proporciona mayor discriminación, después de $D_1$; y así sucesivamente: $D_t$ es la que produce mayor discriminación entre los centroides de los grupos, después de las $t-1$ anteriores, y está incorrelacionada con todas las anteriores. 
 
@@ -255,7 +247,7 @@ Para evaluar la capacidad predictiva del análisis discriminante, se divide el c
 
 [^discri7]: Esta estrategia es muy común en modelos predictivos, y tiene como objetivo evitar el **sobreajuste** de los datos muestrales; así, los datos del conjunto de test son realmente "nuevos" para el modelo porque no han sido utilizados en la estimación.
 
-Las distribuciones univariadas deben ser normales; si no fuera así, se podrían transformar utilizando las transformaciones logarítimicas y de raíces cuadradas (distribuciones exponenciales) y Box-Cox (distribuciones sesgadas), como se muestra en la Sec. \@ref(31). Igualmente, es conveniente estandarizar las variables para evitar que la diferencia de escalas influya en la importancia relativa de cada variable clasificadora en las funciones discriminantes.
+Las distribuciones univariadas deben ser normales; si no fuera así, se podrían transformar utilizando las transformaciones logarítimicas y de raíces cuadradas (distribuciones exponenciales) y Box-Cox (distribuciones sesgadas). Igualmente, es conveniente estandarizar las variables para evitar que la diferencia de escalas influya en la importancia relativa de cada variable clasificadora en las funciones discriminantes.
 
 
 ```r
@@ -296,14 +288,10 @@ p4 <- ggplot(data = entrenamiento_t, aes(x = Petal.Width, fill = Species, colour
 ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2, common.legend = TRUE, legend = "bottom")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{img/150025img04} 
-
-}
-
-\caption{Función de densidad de cada variable clasificadora sobre los grupos.}(\#fig:150025pre)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150025img04.png" alt="Función de densidad de cada variable clasificadora sobre los grupos." width="90%" />
+<p class="caption">(\#fig:150025pre)Función de densidad de cada variable clasificadora sobre los grupos.</p>
+</div>
 
 Igualmente, los gráficos bivariantes pueden ayudar a ver si hay "distancias" entre los centroides de los grupos para las variables clasificadoras, como muestra la Fig. \@ref(fig:150025pre3):
 
@@ -312,14 +300,10 @@ Igualmente, los gráficos bivariantes pueden ayudar a ver si hay "distancias" en
 pairs(x = entrenamiento_t[, -5], col = c("firebrick", "green3", "darkblue")[entrenamiento_t$Species], pch = 20)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{img/150025img05} 
-
-}
-
-\caption{Diagramas bivariantes de dispersión de las variables clasificadoras.}(\#fig:150025pre3)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150025img05.png" alt="Diagramas bivariantes de dispersión de las variables clasificadoras." width="90%" />
+<p class="caption">(\#fig:150025pre3)Diagramas bivariantes de dispersión de las variables clasificadoras.</p>
+</div>
 
 Como se observa en dichos gráficos, las variables clasificadoras pueden contribuir a la discriminación entre las tres especies de flores *iris*. 
 
@@ -355,7 +339,7 @@ modelo_lda
 #> 0.9902 0.0098
 ```
 
-La salida muestra las **probabilidades previas** (*Prior probabilities of groups*) y los **centroides de cada grupo** (*Group means*). A continuación muestra las **funciones discriminantes de Fisher** mediante los respectivos coeficientes $w_{it}$. En este caso, las dos funciones discriminantes son:
+La salida muestra las **probabilidades previas** (*Prior probabilities of groups*) y los **centroides de cada grupo** (*Group means*). A continuación muestra las **funciones discriminantes de Fisher** mediante los respectivos coeficientes $w_{jt}$. En este caso, las dos funciones discriminantes son:  
 
 $D_1=0.6795 \cdot SL+0.6565 \cdot SW-3,8365 \cdot PL-2,2722 \cdot PW$
 
@@ -373,14 +357,10 @@ ggplot(datos_lda, aes(LD1, LD2)) +
   ggtitle("Gráfico LDA")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{img/150025img03} 
-
-}
-
-\caption{Proyección de los individuos (flores) sobre las dos funciones discriminantes.}(\#fig:150025graf)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150025img03.png" alt="Proyección de los individuos (flores) sobre las dos funciones discriminantes." width="80%" />
+<p class="caption">(\#fig:150025graf)Proyección de los individuos (flores) sobre las dos funciones discriminantes.</p>
+</div>
 
 Como se aprecia, la primera función discriminante es la que mayor contribución tiene a la separación entre los grupos, separando muy claramente a la especie *setosa* y, en menor medida, a las especies *virginica* y *versicolor*, grupos entre los que hay un pequeño grado de solapamiento. Por otro lado, la segunda función discriminante, con una proporción de discriminación de 0,0098, apenas contribuye a la separación entre grupos.
 
@@ -391,14 +371,10 @@ Por último, mediante la función `partimat()` del paquete `klaR`, se puede visu
 partimat(Species ~ ., data = entrenamiento_t, method = "lda", image.colors = c("skyblue", "lightgrey", "yellow"), col.mean = "red")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{img/150025img06} 
-
-}
-
-\caption{Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo).}(\#fig:150025partimat)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150025img06.png" alt="Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo)." width="90%" />
+<p class="caption">(\#fig:150025partimat)Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo).</p>
+</div>
 
 Por último, aplicando las funciones discriminantes a los datos reservados para estudiar la capacidad predictiva del modelo, se obtiene la tabla conocida como **matriz de confusión**, donde se compara el grupo real con el pronosticado por el modelo:
 
@@ -426,7 +402,7 @@ En el discriminante lineal visto anteriormente, se asume que las variables clasi
 
 Es posible eliminar esta restricción, permitiendo que las matrices de varianzas-covarianzas sean diferentes en los grupos, lo que introduce términos cuadráticos en las funciones discriminantes que conducen límites de decisión curvilíneos, por lo que el análisis discriminante cuadrático (QDA) puede aplicarse a situaciones en las que la separación entre grupos no es lineal.
 
-Denominando $\pi_i$ a la probabilidad *a priori* de pertenecer al grupo $G_i$ y ${\bf{\mu}}_i$ y ${\bf{\Sigma}}_t$ al vector de medias y matriz de varianzas-covarianzas, respectivamente, en dicho grupo, a partir del vector de observaciones $\bf x$, se puede obtener el **discriminante cuadrático** como:[^discri9]
+Denominando $\pi_m$ a la probabilidad *a priori* de pertenecer al grupo $G_m$ y ${\bf{\mu}}_m$ y ${\bf{\Sigma}}_m$ al vector de medias y matriz de varianzas-covarianzas, respectivamente, en dicho grupo, a partir del vector de observaciones $\bf x$, se puede obtener el **discriminante cuadrático** como:[^discri9]
 
 [^discri9]: Al existir $k$ grupos, hay $k(k-1)/2$ comparaciones entre grupos diferentes, que han de ser consideradas en conjunto.
 
@@ -434,19 +410,19 @@ Denominando $\pi_i$ a la probabilidad *a priori* de pertenecer al grupo $G_i$ y 
 \begin{equation}
 (\#eq:qda)
 \begin{array}{crl}
-Q_{ij}\left({\bf{x}}\right)=\frac{1}{2}{\bf{x}}^{\prime}\left({\bf{\Sigma}}_i^{-1}-{\bf{\Sigma}}_j^{-1}\right){\bf{x}}+{\bf{x}}^{\prime} \left({\bf{\Sigma}}_i^{-1}{\bf{\mu}}_i-{\bf{\Sigma}}_j^{-1}{\bf{\mu}}_j\right){\bf{x}}+ \\
-+ \frac{1}{2}{\bf{\mu}}_j^{\prime}{\bf{\Sigma}}_j^{-1}{\bf{\mu}}_j-\frac{1}{2}{\bf{\mu}}_i^{\prime}{\bf{\Sigma}}_i^{-1}{\bf{\mu}}_i+\frac{1}{2}\log \left(\left|{\bf{\Sigma}}_j \right|\right)-\frac{1}{2}\log \left(\left|{\bf{\Sigma}}_i\right|\right) \\
-\ \forall i\neq j \, \ i,j=1,2,...,k. \\
+Q_{uv}\left({\bf{x}}\right)=\frac{1}{2}{\bf{x}}^{\prime}\left({\bf{\Sigma}}_u^{-1}-{\bf{\Sigma}}_v^{-1}\right){\bf{x}}+{\bf{x}}^{\prime} \left({\bf{\Sigma}}_u^{-1}{\bf{\mu}}_u-{\bf{\Sigma}}_v^{-1}{\bf{\mu}}_v\right){\bf{x}}+ \\
++ \frac{1}{2}{\bf{\mu}}_v^{\prime}{\bf{\Sigma}}_v^{-1}{\bf{\mu}}_v-\frac{1}{2}{\bf{\mu}}_u^{\prime}{\bf{\Sigma}}_u^{-1}{\bf{\mu}}_u+\frac{1}{2}\log \left(\left|{\bf{\Sigma}}_v\right|\right)-\frac{1}{2}\log \left(\left|{\bf{\Sigma}}_u\right|\right) \\
+\ \forall u\neq b \, \ i,j=1,2,...,k. \\
 \end{array}
 \end{equation}
 
 A partir de aquí, la **regla de clasificación** para un individuo consiste en evaluar el discriminante cuadrático \@ref(eq:qda) para los diferentes grupos y, tras simplificaciones algebraicas, asignarlo al grupo $G_h$ que verifique:[^discri_7bis]
 
-[^discri_7bis]: De la comparación dos a dos a partir de $Q_{ij}\left({\bf{x}}\right)$ se obtiene una matriz de comparaciones, que es la que hay que evaluar; pero es más cómodo evaluar cada grupo individualmente y utilizar \@ref(eq:simplificacion).
+[^discri_7bis]: De la comparación dos a dos a partir de $Q_{uv}\left({\bf{x}}\right)$ se obtiene una matriz de comparaciones, que es la que hay que evaluar; pero es más cómodo evaluar cada grupo individualmente y utilizar \@ref(eq:simplificacion).
 
 \begin{equation}
 (\#eq:simplificacion)
-G_h=\underset{i}{\operatorname{argmax}} \log\pi_i+\frac{1}{2} \log \left |{\bf{\Sigma}}_i\right|-\frac{1}{2}\left({\bf{x}}-{\bf{\mu}}_{i}\right)^{\prime} {\bf{\Sigma}}_i^{-1}\left({\bf{x}}-{\bf{\mu}}_i\right).
+G_h=\underset{m}{\operatorname{argmax}} \log\pi_m+\frac{1}{2} \log \left |{\bf{\Sigma}}_m\right|-\frac{1}{2}\left({\bf{x}}-{\bf{\mu}}_{m}\right)^{\prime} {\bf{\Sigma}}_m^{-1}\left({\bf{x}}-{\bf{\mu}}_m\right).
 \end{equation}
 
 
@@ -487,14 +463,10 @@ La representación gráfica de las áreas por las que se clasifican los individu
 partimat(Species ~ ., data = entrenamiento_t, method = "qda", image.colors = c("skyblue", "lightgrey", "yellow"), col.mean = "red")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{img/150025img07} 
-
-}
-
-\caption{Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo).}(\#fig:150025partimatc)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150025img07.png" alt="Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo)." width="90%" />
+<p class="caption">(\#fig:150025partimatc)Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo).</p>
+</div>
 
 Como se aprecia, ahora los contornos de las áreas no son siempre lineales, sino que incluyen fronteras cuadráticas. Por último, aplicando el discriminante cuadrático a los datos reservados para estudiar la capacidad predictiva del modelo, se obtiene la 
 **matriz de confusión**, donde se observa que no se mejoran los resultados respecto al discriminante lineal.

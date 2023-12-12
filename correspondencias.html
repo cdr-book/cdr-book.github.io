@@ -7,7 +7,7 @@
 <title>Capítulo 35 Análisis de correspondencias | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Román Mínguez Salido\(^{a}\) y Manuel Vargas Vargas\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  35.1 Introducción El análisis de correspondencias es un método gráfico descriptivo de...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 35 Análisis de correspondencias | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="active" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -197,7 +197,7 @@
 </table></div>
 <p>Cada fila representa el <strong>perfil condicional</strong> del nivel <span class="math inline">\(A_i\)</span>, siendo la última el <strong>perfil marginal</strong> del factor <span class="math inline">\(A\)</span>. Igualmente, cada columna representa el <strong>perfil condicional</strong> del nivel <span class="math inline">\(B_j\)</span>, siendo la última el <strong>perfil marginal</strong> del factor <span class="math inline">\(B\)</span>.</p>
 <p>Como se vio en el Cap. <a href="tablas-contingencia.html#tablas-contingencia">23</a>, si los factores son independientes, el <strong>valor esperado</strong> en cada casilla sería <span class="math inline">\(E_{ij}=\frac{n_{i.}n_{.j}}{N}\)</span>, por lo que la diferencia tipificada, <span class="math inline">\(r_{ij}=\frac{n_{ij}- E_{ij}}{\sqrt{E_{ij}}}\)</span> es una medida de asociación entre las modalidades <span class="math inline">\(A_i\)</span> y <span class="math inline">\(B_j\)</span>. La matriz formada por estos “residuos estandarizados” (véase Sec. <a href="tablas-contingencia.html#medidas-rxc">23.5</a>), <span class="math inline">\({\bf R}_{est}=\lbrace r_{ij} \rbrace\)</span>, que resume la asociación entre los atributos, es el objetivo básico del análisis de correspondencias; básicamente, se realiza una proyección de las filas y columnas de la tabla de frecuencias relativas (proyecciones también denominadas transformadas de las frecuencias relativas) para obtener las coordenadas en ejes cuantitativos, coordenadas representables en la forma habitual como diagramas de puntos.</p>
-<p>Para un estudio en profundidad de esta técnica pueden consultarse, entre otros, <span class="citation">Greenacre (<a href="referncias.html#ref-Greenacre2008">2008</a>)</span> (en español) o <span class="citation">Beh and Lombardo (<a href="referncias.html#ref-BehLombardo2014">2014</a>)</span>. En el resto del capítulo se hará una breve exposición de la metodología y se ejemplificará con el análisis de dos tablas de contingencia.</p>
+<p>Para un estudio en profundidad de esta técnica pueden consultarse, entre otros, <span class="citation">Greenacre (<a href="referencias.html#ref-Greenacre2008">2008</a>)</span> (en español) o <span class="citation">Beh and Lombardo (<a href="referencias.html#ref-BehLombardo2014">2014</a>)</span>. En el resto del capítulo se hará una breve exposición de la metodología y se ejemplificará con el análisis de dos tablas de contingencia.</p>
 </div>
 <div id="metodología-del-análisis-de-correspondencias" class="section level2" number="35.2">
 <h2>
@@ -224,11 +224,11 @@
 <p>siendo <span class="math inline">\(\textbf{a}_i\)</span> las coordenadas del nivel fila <span class="math inline">\(A_i\)</span> y <span class="math inline">\(\textbf{b}_j\)</span> las del nivel columna <span class="math inline">\(B_j\)</span> en el plano, de forma que “reproduzcan” las distancias entre perfiles fila y columna y los residuos estandarizados (asociaciones):</p>
 <p><span class="math display">\[\begin{equation}
 \begin{array}{crl}
-{d(\textbf{a}_i , \textbf{a}_{i'})= \sqrt {(a_{i1}-a_{i'1})^2+(a_{i2}-a_{i'2})^2} \approx d_{ii'}}, \\ {d(\textbf{b}_j , \textbf{b}_{j'})= \sqrt {(b_{j1}-b_{j'1})^2+(b_{j2}-b_{j'2})^2} \approx d_{jj'}}, \\ {\bf a}_{i}^{\prime}  \textbf{b}_j \approx r_{ij} \end{array}.
+{d(\textbf{a}_i , \textbf{a}_{i'})= \sqrt {(a_{i1}-a_{i'1})^2+(a_{i2}-a_{i'2})^2} \approx d_{ii'}}, \\ {d(\textbf{b}_j , \textbf{b}_{j'})= \sqrt {(b_{j1}-b_{j'1})^2+(b_{j2}-b_{j'2})^2} \approx d_{jj'}}, \\ {\bf a}_{i}^{\prime}  \textbf{b}_j \approx r_{ij}. \end{array}
 \end{equation}\]</span></p>
 <p>Una vez en disposición de las coordenadas contenidas en las matrices <span class="math inline">\(\bf A\)</span> y <span class="math inline">\(\bf B\)</span> es posible “visualizar” la posición relativa de cada factor en las nuevas dimensiones. Esta estructura permite ver tanto las “distancias” que hay entre los niveles de cada factor (mediante la distancia de representación en el plano) como las “asociaciones” entre niveles de ambos factores (ya que mientras más asociación haya, más cerca se representarán en el plano).</p>
 <p>Para resolver el problema de la estimación de las matrices <span class="math inline">\(\bf A\)</span> y <span class="math inline">\(\bf B\)</span> se lleva a cabo una descomposición de la matriz de <span class="math inline">\(\textbf{R}= \lbrace r_{ij} \rbrace\)</span> en valores singulares.</p>
-<p>Según la importancia que se dé al ajuste de uno de los perfiles o a la matriz de residuos, se tienen diferentes métodos de selección, llamados <strong>normalizaciones</strong>, que pueden consultarse en <span class="citation">Greenacre (<a href="referncias.html#ref-Greenacre2008">2008</a>)</span>. </p>
+<p>Según la importancia que se dé al ajuste de uno de los perfiles o a la matriz de residuos, se tienen diferentes métodos de selección, llamados <strong>normalizaciones</strong>, que pueden consultarse en <span class="citation">Greenacre (<a href="referencias.html#ref-Greenacre2008">2008</a>)</span>. </p>
 <div id="proyecciones-fila-columna-y-simétrica" class="section level3" number="35.2.1">
 <h3>
 <span class="header-section-number">35.2.1</span> Proyecciones fila, columna y simétrica<a class="anchor" aria-label="anchor" href="#proyecciones-fila-columna-y-sim%C3%A9trica"><i class="fas fa-link"></i></a>
@@ -269,12 +269,12 @@
 <span class="header-section-number">35.3.1</span> Caso práctico 1: tareas del hogar<a class="anchor" aria-label="anchor" href="#caso-pr%C3%A1ctico-1-tareas-del-hogar"><i class="fas fa-link"></i></a>
 </h3>
 <p>Como primer ejemplo se utilizan los datos <code>housetasks</code>, contenidos en el paquete <code>factoextra</code>, que están en forma de tabla de contingencia que contiene la frecuencia de ejecución de 13 tareas del hogar por los miembros de la pareja.</p>
-<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.carme-n.org/">"ca"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.sthda.com/english/rpkgs/factoextra">"factoextra"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"housetasks"</span><span class="op">)</span></span></code></pre></div>
 <p>En primer lugar, la aplicación del test <span class="math inline">\(\chi^2\)</span> de independencia (véase Cap. <a href="tablas-contingencia.html#tablas-contingencia">23</a>) permite contrastar si los factores son independientes o, por el contrario, están asociados:</p>
-<div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="va">housetasks</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Pearson's Chi-squared test</span></span>
@@ -291,7 +291,7 @@
 </li>
 </ul>
 <p>Dichos resultados pueden verse en la salida siguiente:</p>
-<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">ca_house</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ca/man/ca.html">ca</a></span><span class="op">(</span><span class="va">housetasks</span>, nd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">ca_house</span></span>
@@ -331,26 +331,26 @@
 <!-- `map="rowprincipal"`,  `what=c("all","none")` o de las columnas -->
 (<code>map="colprincipal"</code>, <code>what=c("none","all")</code>),
 tal como se muestra en la Fig. <a href="correspondencias.html#fig:150023proyecciones">35.1</a>:</p>
-<div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ca_house</span>, map <span class="op">=</span> <span class="st">"rowprincipal"</span>, what <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"none"</span><span class="op">)</span>, xlab <span class="op">=</span> <span class="st">"Perfiles fila"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ca_house</span>, map <span class="op">=</span> <span class="st">"colprincipal"</span>, what <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"all"</span><span class="op">)</span>, xlab <span class="op">=</span> <span class="st">"Perfiles columna"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:150023proyecciones"></span>
-<img src="img/150023img01.png" alt="Proyecciones de los perfiles fila." width="90%"><p class="caption">
+<img src="img/150023img01.png" alt="Proyecciones de los perfiles fila." width="60%"><p class="caption">
 Figura 35.1: Proyecciones de los perfiles fila.
 </p>
 </div>
 <p>Respecto a las filas, se aprecian varios grupos: el compuesto por <em>Breakfast</em>, <em>Dinner</em>, <em>Main_meal</em> y <em>Laundry</em>; otro por <em>Shopping</em>, <em>Dishes</em> y <em>Tidying</em>; uno tercero por <em>Insurance</em> y <em>Finance</em>; y el compuesto por <em>Driving</em> y <em>Official</em>. Los niveles <em>Holiday</em> y <em>Repairs</em> están alejados del resto.</p>
 <p>Las coordenadas simétricas permiten la representación de ambos factores a la vez (<code>map= "symmetric"</code>, <code>what=c("all","all")</code>), como se muestra en la Fig. <a href="correspondencias.html#fig:150023simetrica2">35.2</a>.</p>
-<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ca_house</span>,</span>
 <span>  map <span class="op">=</span> <span class="st">"symmetric"</span>, what <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"all"</span><span class="op">)</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"Proyección común de ambos factores."</span>, cex <span class="op">=</span> <span class="fl">4.5</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:150023simetrica2"></span>
-<img src="150023_correspondencias_files/figure-html/150023simetrica2-1.png" alt="Proyección simétrica de ambos factores." width="80%" height="50%"><p class="caption">
+<img src="150023_correspondencias_files/figure-html/150023simetrica2-1.png" alt="Proyección simétrica de ambos factores." width="60%" height="50%"><p class="caption">
 Figura 35.2: Proyección simétrica de ambos factores.
 </p>
 </div>
@@ -364,7 +364,7 @@ Figura 35.2: Proyección simétrica de ambos factores.
 <span class="header-section-number">35.3.2</span> Caso práctico 2: accidentes de tráfico en Madrid (2020)<a class="anchor" aria-label="anchor" href="#caso-pr%C3%A1ctico-2-accidentes-de-tr%C3%A1fico-en-madrid-2020"><i class="fas fa-link"></i></a>
 </h3>
 <p>Como segundo ejemplo, se utilizan los datos <code>accidentes2020_data</code>, contenidos en el paquete <code>CDR</code>; en concreto, la información sobre <em>Tipo_accidente</em> y <em>Estado_meteorológico</em>. Para evitar pares de niveles con frecuencia nula, se eliminan los niveles <em>Atropello a animal</em>, <em>Despeñamiento</em> y <em>Otro</em> del factor <em>Tipo_accidente</em> y los niveles <em>Granizando</em>, <em>Nevando</em>, <em>NULL</em> y <em>Se desconoce</em> del factor <em>Estado_meteorológico</em>.</p>
-<div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"accidentes2020_data"</span><span class="op">)</span></span>
@@ -375,7 +375,7 @@ Figura 35.2: Proyección simétrica de ambos factores.
 <span><span class="va">levelsV1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Alcance"</span>, <span class="st">"Choque contra obstáculo fijo"</span>, <span class="st">"Colisión frontal"</span>, <span class="st">"Colisión fronto-lateral"</span>, <span class="st">"Colisión lateral"</span>, <span class="st">"Colisión múltiple"</span><span class="op">)</span></span>
 <span><span class="va">levelsV2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Despejado"</span>, <span class="st">"Lluvia débil"</span>, <span class="st">"LLuvia intensa"</span>, <span class="st">"Nublado"</span><span class="op">)</span></span>
 <span><span class="va">datos_depu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html">droplevels</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">datos</span>, <span class="op">(</span><span class="va">V1</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">levelsV1</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">V2</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">levelsV2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb486"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">datos_depu</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                               V2</span></span>
 <span><span class="co">#&gt; V1                             Despejado Lluvia débil LLuvia intensa Nublado</span></span>
@@ -386,7 +386,7 @@ Figura 35.2: Proyección simétrica de ambos factores.
 <span><span class="co">#&gt;   Colisión lateral                  3241          169             30     277</span></span>
 <span><span class="co">#&gt;   Colisión múltiple                 1619          173             29     111</span></span></code></pre></div>
 <p>Se comprueba que existe asociación entre los factores en estudio y se obtienen los resultados del análisis de correspondencias:</p>
-<div class="sourceCode" id="cb486"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tabla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">datos_depu</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="va">tabla</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -427,14 +427,14 @@ Figura 35.2: Proyección simétrica de ambos factores.
 <span><span class="co">#&gt; Dim. 2   -0.19007      -0.8381        8.05783 2.02007</span></span></code></pre></div>
 <p>Las dos primeras dimensiones explican el 87,97 % y 11,4 % respectivamente, por lo que la representación en un plano engloba al 99,37 % de la inercia.</p>
 <p>La representación gráfica de la proyección simétrica se muestra en la Fig. <a href="correspondencias.html#fig:150023accid2">35.3</a>:</p>
-<div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb488"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ca_tabla</span>,</span>
 <span>  map <span class="op">=</span> <span class="st">"symmetric"</span>, what <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"all"</span><span class="op">)</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"Proyección común de ambos factores."</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:150023accid2"></span>
-<img src="150023_correspondencias_files/figure-html/150023accid2-1.png" alt="Proyección simétrica de ambos factores." width="80%"><p class="caption">
+<img src="150023_correspondencias_files/figure-html/150023accid2-1.png" alt="Proyección simétrica de ambos factores." width="70%"><p class="caption">
 Figura 35.3: Proyección simétrica de ambos factores.
 </p>
 </div>
@@ -461,7 +461,7 @@ Figura 35.3: Proyección simétrica de ambos factores.
 
 
   <div class="chapter-nav">
-<div class="prev"><a href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></div>
+<div class="prev"><a href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></div>
 <div class="next"><a href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
@@ -494,7 +494,7 @@ Figura 35.3: Proyección simétrica de ambos factores.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

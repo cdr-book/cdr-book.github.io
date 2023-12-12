@@ -26,13 +26,13 @@ sometido a prueba y, llegado el caso, ser superado [@Montero_1997].
 
 [^bilal]: Quisiera agradecer a Bilal Laouah y a José-María Montero los comentarios realizados durante el desarrollo de este capítulo.
 
-\index{ciencia} \index{saber} \index{método} \index{método!científico}
+\index{ciencia} \index{saber} \index{metodo@método} \index{metodo@método! cientifico@científico}
 
 Una definición generalmente aceptada de ciencia es la propuesta por
 @Blaug_1980: "ciencia es el cuerpo de proposiciones sintéticas acerca
 del mundo real que es susceptible, al menos en principio, de falsaciones
 por medio de la observación empírica, ya que excluye la posibilidad de
-que ciertos acontecimientos se produzcan. Así pues, la ciencia se
+que ciertos acontecimientos se produzcan". Es decir, según el autor "la ciencia se
 caracteriza por su método de formulación de proposiciones contrastables,
 y no por su contenido, ni por su pretensión de certeza en el
 conocimiento; si alguna certeza proporciona la ciencia, esta será más
@@ -59,11 +59,10 @@ que solo una se mantenga.
 
 Por tanto, aunque no hay acuerdo a la hora de dar una definición exacta
 de ciencia, sí lo hay a la hora de aceptar el método
-científico como el elemento que define la ciencia: "el método científico y
-la finalidad a la cual se aplica (el conocimiento objetivo del mundo)
+científico como el elemento que define la ciencia.  @Bunge_2004 manifiesta que 
+"el método científico y la finalidad a la cual se aplica (el conocimiento objetivo del mundo)
 constituyen la entera diferencia que existe entre la ciencia y la
-no-ciencia [...]. El método científico es un rasgo característico de la
-ciencia, tanto de la pura como de la aplicada: donde no hay método
+no-ciencia [...]". Por tanto,  según el autor "el método científico es un rasgo característico de la ciencia, tanto de la pura como de la aplicada: donde no hay método
 científico no hay ciencia", [@Bunge_2004]. "Una ciencia es una disciplina
 que utiliza el método científico con la finalidad de hallar estructuras
 generales (leyes)." [@Montero_1997].
@@ -74,7 +73,7 @@ Dado que la utilización del método científico es la piedra angular alrededor 
 
 ## ¿Qué es la ciencia de datos?
 
-\index{Tukey} \index{ciencia de datos} \index{análisis!de datos}
+\index{Tukey} \index{ciencia!de datos} \index{análisis!de datos}
 
 La ciencia de datos es una disciplina emergente donde, a diferencia de
 otros saberes como, por ejemplo, las ciencias matemáticas, el corpus o
@@ -95,14 +94,10 @@ acontecimientos fueron consolidando el término **ciencia de datos**
 como una nueva disciplina. Una breve descripción de los acontecimientos
 se muestran en la Fig. \@ref(fig:time-line-ds).
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/time-line-ds6} 
-
-}
-
-\caption{Línea del tiempo de la ciencia de datos. Elaboración propia.}(\#fig:time-line-ds)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/time-line-ds6.png" alt="Línea del tiempo de la ciencia de datos. Elaboración propia." width="100%" />
+<p class="caption">(\#fig:time-line-ds)Línea del tiempo de la ciencia de datos. Elaboración propia.</p>
+</div>
 
 La ciencia de datos implica la limpieza, la agregación y la manipulación
 de datos recabados de la web, de teléfonos inteligentes, de clientes,
@@ -119,7 +114,7 @@ masivos de datos que se acumulaban en ese momento, trabajo que fue
 calificado como el "trabajo más sexy del siglo XXI" por 
 @hbr_2012.
 
-\index{estadística} \index{matemáticas} \index{informática}
+\index{estadística} \index{matemáticas} \index{informatica\@{informática}}
 \index{programación} 
 
 La ciencia de datos es, por tanto, una disciplina

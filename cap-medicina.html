@@ -7,7 +7,7 @@
 <title>Capítulo 54 Análisis de datos en medicina | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Alberto M. Borobia\(^{a}\) y María Jiménez-González\(^{a}\) \(^{a}\)Hospital Universitario La Paz - IdiPAZ  54.1 Justificación La aplicación de la estadística en la investigación clínica ha sido...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 54 Análisis de datos en medicina | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="active" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -154,8 +154,8 @@ Durante el año 2020, más de 13 millones de casos diagnosticados en España arr
 </h3>
 <p>
 </p>
-<p>En la investigación clínica existen dos tipos de estudios: <strong>ensayos clínicos</strong> y <strong>estudios observacionales</strong>. Los ensayos clínicos aleatorios son el diseño experimental óptimo para proporcionar evidencia, eficacia y seguridad de una intervención <span class="citation">(<a href="referncias.html#ref-Lium3164">X. Liu et al. 2020</a>)</span>. En este tipo de diseño, los tratamientos estudiados o investigados son asignados aleatoriamente a distintos grupos, lo que permitirá afirmar que las diferencias en los resultados después del tratamiento, si es que las hay, reflejen los efectos de dichos tratamientos y no de otras características de los individuos participantes en el ensayo <span class="citation">(<a href="referncias.html#ref-rosenbaum2005observational">Rosenbaum 2005</a>)</span>. Cuando estas condiciones ideales no son posibles (falta de recursos, financiación, tiempo, etc.), ya no se habla de ensayos clínicos aleatorizados, sino de estudios observacionales.</p>
-<p>Previo a la puesta en marcha de un ensayo clínico, es imprescindible la redacción de un <strong>protocolo</strong> y un <strong>plan de análisis estadístico (PAE)</strong>. El protocolo, elaborado por los investigadores del estudio, precisa y justifica los métodos y planes del proceso que se llevará a cabo en el ensayo clínico <span class="citation">(<a href="referncias.html#ref-rivera2020guidelines">Rivera et al. 2020</a>)</span>; el PAE detalla las características principales del análisis estadístico de los datos, que deben describirse en la sección estadística del protocolo <span class="citation">(<a href="referncias.html#ref-lewis1999statistical">Lewis 1999</a>)</span>.</p>
+<p>En la investigación clínica existen dos tipos de estudios: <strong>ensayos clínicos</strong> y <strong>estudios observacionales</strong>. Los ensayos clínicos aleatorios son el diseño experimental óptimo para proporcionar evidencia, eficacia y seguridad de una intervención <span class="citation">(<a href="referencias.html#ref-Lium3164">X. Liu et al. 2020</a>)</span>. En este tipo de diseño, los tratamientos estudiados o investigados son asignados aleatoriamente a distintos grupos, lo que permitirá afirmar que las diferencias en los resultados después del tratamiento, si es que las hay, reflejen los efectos de dichos tratamientos y no de otras características de los individuos participantes en el ensayo <span class="citation">(<a href="referencias.html#ref-rosenbaum2005observational">Rosenbaum 2005</a>)</span>. Cuando estas condiciones ideales no son posibles (falta de recursos, financiación, tiempo, etc.), ya no se habla de ensayos clínicos aleatorizados, sino de estudios observacionales.</p>
+<p>Previo a la puesta en marcha de un ensayo clínico, es imprescindible la redacción de un <strong>protocolo</strong> y un <strong>plan de análisis estadístico (PAE)</strong>. El protocolo, elaborado por los investigadores del estudio, precisa y justifica los métodos y planes del proceso que se llevará a cabo en el ensayo clínico <span class="citation">(<a href="referencias.html#ref-rivera2020guidelines">Rivera et al. 2020</a>)</span>; el PAE detalla las características principales del análisis estadístico de los datos, que deben describirse en la sección estadística del protocolo <span class="citation">(<a href="referencias.html#ref-lewis1999statistical">Lewis 1999</a>)</span>.</p>
 <p>Los trabajos anteriormente mencionados, y el resto de directrices necesarias para un ensayo clínico, están regulados por la <em>Conferencia Internacional sobre Armonización de Requisitos Técnicos para el Registro de Productos Farmacéuticos para Uso Humano</em> (ICH, por sus siglas en inglés).</p>
 </div>
 <div id="limitaciones-de-los-estudios-observacionales" class="section level3" number="54.2.2">
@@ -163,7 +163,7 @@ Durante el año 2020, más de 13 millones de casos diagnosticados en España arr
 <span class="header-section-number">54.2.2</span> Limitaciones de los estudios observacionales<a class="anchor" aria-label="anchor" href="#limitaciones-de-los-estudios-observacionales"><i class="fas fa-link"></i></a>
 </h3>
 <p>En la sección anterior se puso de manifiesto la importancia de los ensayos clínicos aleatorizados. Sin embargo, la posible falta de recursos, financiación, tiempo o materiales dificultan la puesta en marcha y realización de los mismos. En consecuencia, la puesta en práctica de la investigación puede no ser la ideal. Los estudios observacionales, sin embargo, son una herramienta elemental en circunstancias no tan óptimas, ya que permiten analizar e investigar (contra viento y marea).</p>
-<p>La limitación principal de los estudios observacionales es que introducen sesgos en el análisis. Los ensayos clínicos tienen como principal objetivo eliminar el <strong>sesgo de selección</strong>: cuando los sujetos no son asignados aleatoriamente, los resultados diferentes con distintos tratamientos pueden reflejar diferencias en las características del pacientes en lugar del efecto de los tratamientos <span class="citation">(<a href="referncias.html#ref-rosenbaum2005observational">Rosenbaum 2005</a>)</span>.</p>
+<p>La limitación principal de los estudios observacionales es que introducen sesgos en el análisis. Los ensayos clínicos tienen como principal objetivo eliminar el <strong>sesgo de selección</strong>: cuando los sujetos no son asignados aleatoriamente, los resultados diferentes con distintos tratamientos pueden reflejar diferencias en las características del pacientes en lugar del efecto de los tratamientos <span class="citation">(<a href="referencias.html#ref-rosenbaum2005observational">Rosenbaum 2005</a>)</span>.</p>
 <p>Abundando en la cuestión, a la hora de valorar el efecto de un tratamiento determinado en la evolución de los pacientes, el diseño ideal es el del estudio aleatorizado. Si la decisión sobre quién recibirá o no el tratamiento no es aleatoria, las conclusiones que se obtengan del análisis no serán fiables porque pueden estar influidas por otros factores vinculados con la evolución del paciente (variables confusoras) que, en realidad, son los verdaderos responsables de dicha evolución y no el tratamiento.</p>
 <p>Por ejemplo, si para determinar si es mejor cirugía o tratamiento médico se aplica cirugía a los pacientes más jóvenes y con menos comorbilidades y tratamiento médico a los más enfermos, no se podrá concluir posteriormente que la mejor evolución de los pacientes corresponde a la cirugía, porque dicha mejor evolución podría deberse a las diferencias en el patrón de covariables.</p>
 <p>La aleatorización, al asegurar que las características basales conocidas y las desconocidas son similares en los pacientes a los que se les aplica cirugía y en aquellos a los que se le aplica tratamiento médico, elimina, en principio, el sesgo de selección, y permite afirmar que si hay diferencias en la evolución de los pacientes con cirugía y con tratamiento médico, dichas diferencias se deben precisamente a la forma de tratar a esos pacientes.</p>
@@ -185,12 +185,12 @@ P(Ser sometido a cirugía). Si ambas probabilidades son iguales, entonces los va
 <span class="header-section-number">54.2.4</span> Ejemplo práctico en <strong>R</strong> de un estudio observacional<a class="anchor" aria-label="anchor" href="#ejemplo-pr%C3%A1ctico-en-r-de-un-estudio-observacional"><i class="fas fa-link"></i></a>
 </h3>
 <p>El dataset sintético <code>datos_observacional</code> contenido en la librería <code>CDR</code> del libro contiene los datos de un hipotético estudio observacional sobre coronavirus a partir de personas hospitalizadas por dicha enfermedad. El objetivo del estudio es analizar los factores de riesgo asociados a la mortalidad causada por dicha enfermedad.</p>
-<div class="sourceCode" id="cb798"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb799"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://haozhu233.github.io/kableExtra/">"kableExtra"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span></span>
-<span><span class="va">datos_observacional</span> <span class="op">&lt;-</span> <span class="va">datos_observacional</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>comorbilidades <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">comorbilidades</span>, </span>
+<span><span class="va">datos_observacional</span> <span class="op">&lt;-</span> <span class="va">datos_observacional</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>comorbilidades <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">comorbilidades</span>,</span>
 <span>                                 `1 o más comorbilidades` <span class="op">=</span> <span class="st">"1 o más"</span>, No <span class="op">=</span> <span class="st">"No"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html">head</a></span><span class="op">(</span><span class="va">datos_observacional</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 8</span></span>
@@ -204,7 +204,7 @@ P(Ser sometido a cirugía). Si ambas probabilidades son iguales, entonces los va
 los resultados en un <em>paper</em> o en un informe estadístico, independientemente de la revista o PAE,
 comienza en el mismo punto: una tabla resumen de las características basales de la población
 objeto de estudio. El paquete <code>tableone</code> (sencillo juego de palabras) integra funciones específicas para la creación de dichas tablas. La función principal de este paquete es <code><a href="https://rdrr.io/pkg/tableone/man/CreateTableOne.html">CreateTableOne()</a></code>.</p>
-<div class="sourceCode" id="cb799"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb800"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/kaz-yos/tableone">"tableone"</a></span><span class="op">)</span></span>
 <span><span class="va">my_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sexo"</span>, <span class="st">"edad"</span>, <span class="st">"comorbilidades"</span><span class="op">)</span></span>
 <span><span class="va">nonnormal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"edad"</span><span class="op">)</span></span>
@@ -217,12 +217,12 @@ objeto de estudio. El paquete <code>tableone</code> (sencillo juego de palabras)
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># imprime la tabla</span></span>
-<span><span class="va">tab1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html">print</a></span><span class="op">(</span><span class="va">tab1</span>,</span>
+<span><span class="va">tab1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">tab1</span>,</span>
 <span>  showAllLevels <span class="op">=</span> <span class="cn">TRUE</span>, formatOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span>,</span>
 <span>  exact <span class="op">=</span> <span class="st">"stage"</span>, nonnormal <span class="op">=</span> <span class="va">nonnormal</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Para presentar la tabla de resultados formateada basta con usar la función <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code>:</p>
-<div class="sourceCode" id="cb800"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb801"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_footnote.html">add_footnote</a></span><span class="op">(</span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tab1</span><span class="op">[</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span>, booktabs<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                          caption <span class="op">=</span> <span class="st">"Características basales de la población"</span>,</span>
 <span>                          col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Nivel"</span>,<span class="st">"Vivo"</span>, <span class="st">"Exitus"</span>,<span class="st">"p-valor"</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -357,9 +357,8 @@ No
 </tr>
 </tfoot>
 </table></div>
-<p>La Tabla <a href="cap-medicina.html#tab:tabla1">54.1</a> confirma los resultados anteriormente publicados en la literatura: el sesgo de selección que provoca el desequilibrio en los totales marginales de los dos niveles la variable principal (<code>exitus</code>) en las variables <code>sexo</code>, <code>edad</code> y <code>comorbilidades</code> se evidencia a través de la significación de estas.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Esto ocurre porque el &lt;em&gt;p&lt;/em&gt;-valor combina la magnitud de la relación observada entre una variable explicativa y la variable respuesta con la cantidad de información disponible. Por eso, una relación puede ser no significativa porque realmente la relación sea inexistente o bien porque se posee poca información (muestra insuficiente) para considerar una determinada relación como significativa. Y al contrario, cuando existe mucha información, aunque la relación no exista y salir significativa debido a la enorme información existente.&lt;/p&gt;"><sup>304</sup></a> Por consiguiente, para llevar a cabo cualquier análisis estadístico de los datos, por ejemplo, para estimar un modelo predictivo, se hace absolutamente necesaria la aplicación del índice de propensión; en otro caso, los resultados no serán fiables.</p>
-<!-- La recogida de datos para llevar a cabo un estudio observacional, como el de este ejemplo, normalmente viene dada por la disponibilidad de la población: sujetos ingresados en el Hospital por la enfermedad (en nuestro caso, coronavirus). Por tanto, esta muestra seleccionada recogerá pacientes con pronóstico más grave que la población general (mujer de mayor edad con una o más comorbilidades).  -->
-<p>El paquete <code>MatchIt</code> integra las funciones principales para la aplicación del índice de propensión. Concretamente, la función <code><a href="https://kosukeimai.github.io/MatchIt/reference/matchit.html">matchit()</a></code> integra la teoría de <span class="citation">D. E. Ho et al. (<a href="referncias.html#ref-ho2007matching">2007</a>)</span> para el emparejamiento óptimo de los grupos estudiados. Los argumentos más importantes de esta función son:</p>
+<p>La Tabla <a href="cap-medicina.html#tab:tabla1">54.1</a> confirma los resultados anteriormente publicados en la literatura: el sesgo de selección que provoca el desequilibrio en los totales marginales de los dos niveles la variable principal (<code>exitus</code>) en las variables <code>sexo</code>, <code>edad</code> y <code>comorbilidades</code> se evidencia a través de la significación de estas.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Esto ocurre porque el &lt;em&gt;p&lt;/em&gt;-valor combina la magnitud de la relación observada entre una variable explicativa y la variable respuesta con la cantidad de información disponible. Por eso, una relación puede ser no significativa porque realmente la relación sea inexistente o bien porque se posee poca información (muestra insuficiente) para considerar una determinada relación como significativa. Y al contrario, cuando existe mucha información, aunque la relación no exista, puede salir significativa debido a la gran cantidad de información disponible.&lt;/p&gt;"><sup>304</sup></a> Por consiguiente, para llevar a cabo cualquier análisis estadístico de los datos, por ejemplo, para estimar un modelo predictivo, se hace absolutamente necesaria la aplicación del índice de propensión; en otro caso, los resultados no serán fiables.</p>
+<p>El paquete <code>MatchIt</code> integra las funciones principales para la aplicación del índice de propensión. Concretamente, la función <code><a href="https://kosukeimai.github.io/MatchIt/reference/matchit.html">matchit()</a></code> integra la teoría de <span class="citation">D. E. Ho et al. (<a href="referencias.html#ref-ho2007matching">2007</a>)</span> para el emparejamiento óptimo de los grupos estudiados. Los argumentos más importantes de esta función son:</p>
 <ul>
 <li><p><code>formula</code>: modelo de regresión que estudia la relación entre la variable dependiente (<em>exitus</em>) con las variables sesgadas (sexo, edad y comorbilidades).</p></li>
 <li><p><code>method</code>: especifica el método de emparejamiento (<em>matching</em>).</p></li>
@@ -370,7 +369,7 @@ No
 <p><strong>Nota</strong></p>
 <p>Es imprescindible que los casos del dataset estén completos.</p>
 </div>
-<div class="sourceCode" id="cb801"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb802"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://kosukeimai.github.io/MatchIt/">"MatchIt"</a></span><span class="op">)</span></span>
 <span><span class="va">match</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://kosukeimai.github.io/MatchIt/reference/matchit.html">matchit</a></span><span class="op">(</span><span class="va">exitus</span> <span class="op">~</span> <span class="va">edad</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/is.bool.html">as.factor</a></span><span class="op">(</span><span class="va">sexo</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/is.bool.html">as.factor</a></span><span class="op">(</span><span class="va">comorbilidades</span><span class="op">)</span>,</span>
 <span>  method <span class="op">=</span> <span class="st">"nearest"</span>, distance <span class="op">=</span> <span class="st">"mahalanobis"</span>,</span>
@@ -378,19 +377,19 @@ No
 <span><span class="op">)</span></span>
 <span><span class="va">datos_observacional_match</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://kosukeimai.github.io/MatchIt/reference/match.data.html">get_matches</a></span><span class="op">(</span><span class="va">match</span>, <span class="va">datos_observacional</span><span class="op">)</span></span></code></pre></div>
 <p>Para comprobar que el sesgo de selección ha desaparecido, se reproduce la Tabla <a href="cap-medicina.html#tab:tabla1">54.1</a>.</p>
-<div class="sourceCode" id="cb802"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb803"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tab1_corregida</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tableone/man/CreateTableOne.html">CreateTableOne</a></span><span class="op">(</span></span>
 <span>  vars <span class="op">=</span> <span class="va">my_vars</span>, factorVars <span class="op">=</span> <span class="va">factor_vars</span>,</span>
 <span>  strata <span class="op">=</span> <span class="st">"exitus"</span>, data <span class="op">=</span> <span class="va">datos_observacional_match</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># se imprime en el objeto tab1_corregida</span></span>
-<span><span class="va">tab1_corregida</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/print.html">print</a></span><span class="op">(</span><span class="va">tab1_corregida</span>,</span>
+<span><span class="va">tab1_corregida</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">tab1_corregida</span>,</span>
 <span>  showAllLevels <span class="op">=</span> <span class="cn">TRUE</span>, formatOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span>,</span>
 <span>  exact <span class="op">=</span> <span class="st">"stage"</span>, nonnormal <span class="op">=</span> <span class="va">nonnormal</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Se formatea la salida de la tabla con el siguiente código. En la Tabla <a href="cap-medicina.html#tab:tab1-corregida">54.2</a> se observa que el sesgo de selección existente en la muestra se ha resuelto equilibrando las variables (aunque reduciendo la muestra). Tras este paso previo, podría realizarse un análisis estándar de esta muestra intentando aproximarse lo máximo posible a un estudio aleatorizado.</p>
-<div class="sourceCode" id="cb803"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb804"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_footnote.html">add_footnote</a></span><span class="op">(</span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tab1_corregida</span><span class="op">[</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span>, booktabs<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                          caption <span class="op">=</span> <span class="st">"Características basales de la población tras la aplicación del índice de propensión"</span>,                           col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Nivel"</span>,<span class="st">"Vivo"</span>, <span class="st">"Exitus"</span>,<span class="st">"p-valor"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>             <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Median = Mediana"</span>,<span class="st">"IQR = Rango intercuartílico"</span><span class="op">)</span>, notation <span class="op">=</span> <span class="st">"number"</span><span class="op">)</span></span></code></pre></div>
@@ -533,7 +532,7 @@ No
 <p>Durante la pandemia ocasionada por el SARS-CoV-2, la pregunta principal de los investigadores clínicos se centró en un mismo objetivo: los factores de riesgo asociados a la mortalidad causada por COVID-19. El análisis de supervivencia ha permitido a los investigadores detectar las causas que hay detrás de una mayor probabilidad de fallecer. El análisis de supervivencia permite estudiar los factores de riesgo asociados a la mortalidad. La ventaja principal de este análisis frente a un análisis estándar (como puede ser una regresión logística) es la integración en la variable respuesta del evento y del tiempo hasta el evento, que tiene como consecuencia la interpretación de los resultados en términos de riesgo y no de probabilidad.
 </p>
 <p>El dataset utilizado, <code>datos_supervivencia</code>, está incluido en el paquete <code>CDR</code> y está formado por 301 pacientes, 101 diagnosticados con infección por SARS-CoV-2 y 100 <em>exitus</em>.</p>
-<div class="sourceCode" id="cb804"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb805"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html">head</a></span><span class="op">(</span><span class="va">datos_supervivencia</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 7</span></span>
 <span><span class="co">#&gt;      id EXITUS_TIME DIAG_COVID EXITUS N_COMORBIDITIES SEX     EDAD</span></span>
@@ -553,14 +552,14 @@ No
 <li><p>la función <code><a href="https://rdrr.io/pkg/survminer/man/ggsurvplot.html">ggsurvplot()</a></code> genera el gráfico de la curva de supervivencia (basada en la librería <code>ggplot2</code>). El argumento principal de la función es la función de supervivencia estimada, <code><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit()</a></code>. Los argumentos más importantes (y recomendables) a la hora de graficar la función de supervivencia son: <code>pval</code>, que muestra el <span class="math inline">\(p\)</span>-valor correspondiente al test <em>log-rank</em>; <code>conf.int</code> que muestra los intervalos de confianza de la(s) curva(s) de supervivencia y <code>risk.table</code>, que añade el número de sujetos (absoluto o relativo) en riesgo en cada momento del período objeto de estudio.</p></li>
 </ul>
 <p>Se cargan los paquetes:</p>
-<div class="sourceCode" id="cb805"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb806"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/therneau/survival">"survival"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rpkgs.datanovia.com/survminer/index.html">"survminer"</a></span><span class="op">)</span></span></code></pre></div>
 <p>Se ajusta el modelo y, posteriormente, se representa:</p>
-<div class="sourceCode" id="cb806"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb807"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">EXITUS_TIME</span>, <span class="va">EXITUS</span><span class="op">)</span> <span class="op">~</span> <span class="va">DIAG_COVID</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">datos_supervivencia</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb807"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb808"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggsurvplot.html">ggsurvplot</a></span><span class="op">(</span><span class="va">fit</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">datos_supervivencia</span>,</span>
 <span>  pval <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -577,7 +576,7 @@ No
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:survplot"></span>
-<img src="212051_cd_medicina_files/figure-html/survplot-1.png" alt="Probabilidades de supervivencia de pacientes con COVID-19." width="90%"><p class="caption">
+<img src="212051_cd_medicina_files/figure-html/survplot-1.png" alt="Probabilidades de supervivencia de pacientes con COVID-19." width="70%"><p class="caption">
 Figura 54.1: Probabilidades de supervivencia de pacientes con COVID-19.
 </p>
 </div>
@@ -593,7 +592,7 @@ Figura 54.1: Probabilidades de supervivencia de pacientes con COVID-19.
 y más concretamente:
 <span class="math display">\[h(t, x_1, x_2,..., x_ p)=h_0(t)+e^{[g(x_1,x_2,...,x_p)]},\]</span> donde <span class="math inline">\(g\)</span>, normalmente, indica una combinación lineal de las covariables o variables explicativas. Es, por tanto, una técnica semiparamétrica.</p>
 <p>La función principal para el ajuste de un modelo de regresión de Cox es <code><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph()</a></code>. Esta función, al igual que la función <code><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit()</a></code>, está formada por un objeto <code>Surv</code> y las covariables del modelo.</p>
-<div class="sourceCode" id="cb808"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb809"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_cox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">EXITUS_TIME</span>, <span class="va">EXITUS</span><span class="op">)</span> <span class="op">~</span> <span class="va">DIAG_COVID</span> <span class="op">+</span> <span class="va">EDAD</span> <span class="op">+</span> <span class="va">SEX</span> <span class="op">+</span> <span class="va">N_COMORBIDITIES</span>,</span>
 <span>                 data <span class="op">=</span> <span class="va">datos_supervivencia</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -609,7 +608,7 @@ son las <strong>razones de riesgos</strong> o <strong><em>hazard ratios</em></st
 <li><p>Los HR localizados entre 0 y 1 se interpretan como una reducción del riesgo del <span class="math inline">\((1-HR)\times 100 \%\)</span>. Es decir, HR = 0,8 indica a una disminución del riesgo del 20%.</p></li>
 </ul>
 </div>
-<div class="sourceCode" id="cb809"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb810"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_cox</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Call:</span></span>
 <span><span class="co">#&gt; coxph(formula = Surv(EXITUS_TIME, EXITUS) ~ DIAG_COVID + EDAD + </span></span>
@@ -644,9 +643,6 @@ son las <strong>razones de riesgos</strong> o <strong><em>hazard ratios</em></st
 <span class="header-section-number">54.5</span> Conclusión<a class="anchor" aria-label="anchor" href="#conclusi%C3%B3n"><i class="fas fa-link"></i></a>
 </h2>
 <p>Ha sido necesaria una pandemia mundial para que la sociedad empiece a dar visibilidad y reconocimiento no solo a la bioestadística, sino a la investigación clínica y a la necesidad de gestionar el uso masivo de datos en el ámbito de la salud. A pesar de los múltiples estudios y experiencias pasadas que llamaban a la prudencia y a la acción concreta si se daba una situación similar, el mundo ha sido incapaz de actuar convenientemente. Esto último se ve reflejado en el mínimo aumento de inversión, reconocimiento y notoriedad no solo en investigación o desarrollo, sino también en el apoyo a la ciencia. Es, quizá, la paradoja más extraña pero que representa el dicho popular: “la sociedad no avanzará si la ciencia no lo hace primero”.</p>
-<!-- ```{r img-paq-cdr, echo=FALSE, out.width='15%',} -->
-<!-- knitr::include_graphics("img/LogoCDR_transparente.png") -->
-<!-- ``` -->
 
 </div>
 </div>
@@ -688,7 +684,7 @@ son las <strong>razones de riesgos</strong> o <strong><em>hazard ratios</em></st
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

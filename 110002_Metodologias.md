@@ -12,8 +12,7 @@ $^{b}$Universidad Complutense de Madrid
 
 En el Cap. \@ref(ciencia-datos) se puso de manifiesto que el método científico es el elemento
 que define la ciencia.  @Bunge_2018, al hablar del método científico, lo define como: "un procedimiento para
-tratar un conjunto de problemas. Cada clase de problemas requiere un conjunto de métodos o
-técnicas especiales. Los problemas del conocimiento, a diferencia de los del lenguaje o los de
+tratar un conjunto de problemas [...]. Los problemas del conocimiento, a diferencia de los del lenguaje o los de
 la acción, requieren la invención o la aplicación de procedimientos especiales adecuados para
 los varios estadios del tratamiento de los problemas...". De acuerdo con su concepción del
 **método**, @Bunge_2018 destaca ocho operaciones en la aplicación de este:
@@ -97,7 +96,7 @@ por el Instituto SAS en 2012. Se define como el proceso de selección, exploraci
 bases de datos para descubrir patrones de negocio desconocidos. \index{metodología!SEMMA}
 
 (iii) **CRISP-DM**, acrónimo en inglés de *Cross Industry Standard Process for Data Mining*, planteada
-inicialmente en 1996, publicada formalmente en @chapman_2000 y mantenida durante varios años por
+inicialmente en 1996, publicada formalmente en @chapman2000crisp y mantenida durante varios años por
 la compañía SPSS, posteriormente adquirida por IBM, que se ha encargado de mantenerla y
 refinarla hasta la actualidad. Esta metodología define una secuencia flexible de
 seis fases que permiten la construcción e implementación de un modelo de minería de datos para
@@ -114,14 +113,10 @@ La metodología CRISP-DM consta de seis etapas, que no han variado desde su publ
 [(CRISP-DM, 2021)](https://www.ibm.com/docs/es/spss-modeler/saas?topic=dm-crisp-help-overview).
 De manera esquemática, dichas etapas son:
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/crisp-dm2} 
-
-}
-
-\caption{Etapas de la metodología CRISP-DM.}(\#fig:crisp-dm)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/crisp-dm2.png" alt="Etapas de la metodología CRISP-DM." width="60%" />
+<p class="caption">(\#fig:crisp-dm)Etapas de la metodología CRISP-DM.</p>
+</div>
 
 1.  **Entendimiento del negocio**. Fundamental para el éxito del mismo.
     Consta de cuatro fases:
@@ -196,7 +191,7 @@ negocio especificadas en la primera fase. Hay que hacer hincapié en este aspect
 suele confundir en la práctica esta fase de evaluación con la subfase de la anterior etapa
 de validación del modelo. Ahora la evaluación se lleva a cabo desde el punto de vista del negocio.
 Así, por ejemplo, cabe plantearse si con el modelo elegido se pueden alcanzar las metas de
-negocio especificadas y medidas con los correspondientes KPIs. Tras esta evaluación de los
+negocio especificadas y medidas con los correspondientes KPI. Tras esta evaluación de los
 resultados del modelo se abre un proceso de revisión que permitirá valorar si 
 cumple las expectativas o se tiene que volver a etapas anteriores.
 

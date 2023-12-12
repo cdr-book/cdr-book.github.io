@@ -20,9 +20,9 @@ Para ilustrar el manejo de las herramientas anteriormente mencionadas, se utiliz
 
 \index{remuestreo}
 \index{hiperparámetro}
-\index{evaluación de modelos}
+\index{evaluación!de modelos}
 
-## Partición del conjunto de datos \index{partición del conjunto de datos}
+## Partición del conjunto de datos \index{partición! del conjunto de datos}
 
 El objetivo principal del proceso de ciencia de datos es encontrar el modelo o algoritmo que mejor resuelva la pregunta de investigación o, lo que es lo mismo, que proporcione mejores resultados. Por ejemplo, en el caso de los modelos de predicción (y en general de aquellos en los que el aprendizaje es supervisado), muy populares en la ciencia de datos, hay que encontrar el que prediga con mayor exactitud los valores futuros de la variable objetivo a partir de los predictores seleccionados en el conjunto de datos disponible. En otras palabras, un algoritmo que no solo ajuste bien los datos pasados sino, lo que es más importante, que proporcione predicciones (futuras) acertadas (y precisas). Para ello, inicialmente, se dividen los datos en dos subconjuntos:
 
@@ -49,7 +49,7 @@ En cuanto a la segunda decisión, la respuesta es: mediante métodos de muestreo
 ### Muestreo aleatorio simple \index{muestreo!aleatorio simple}
 La forma más sencilla de asignar los datos a los  subconjuntos de entrenamiento y prueba es tomar una **muestra aleatoria simple** (m.a.s.) (véase Sec. \@ref(mas)) del conjunto de casos u observaciones del tamaño deseado, y asignarlos al subconjunto de entrenamiento, asignándose los restantes al conjunto de test.  
 
-\index{muestra aleatoria simple}
+\index{muestra!aleatoria simple}
 
 Un problema que puede surgir con las m.a.s. es que, cuando el conjunto de datos es pequeño y los valores de uno (o más) de los predictores están muy desequilibrados (por ejemplo, el predictor es binario y el 95% de sus valores pertenecen a una clase o categoría y el 5% restante a la otra), hay una probabilidad nada desdeñable de que en alguno de los dos subconjuntos (sobre todo en el de test) dicho predictor no esté representado. Si esta circunstancia ocurriese en el conjunto de entrenamiento, algunos algoritmos darían error al aplicarlos al conjunto de test (donde habría datos de un predictor más). Si, por el contrario, ocurriese en el conjunto de test, los problemas surgirían por haber un predictor menos que en el conjunto de entrenamiento. Los problemas se agravarían si la desproporción anterior tuviese lugar en la variable objetivo.
 
@@ -114,10 +114,10 @@ A menudo, los datos utilizados en determinadas áreas tienen menos del 1% de eve
 \index{undersampling@\textit{undersampling}}
 \index{upsampling@\textit{upsampling}}
 \index{oversampling@\textit{oversampling}}
-\index{datos! sintéticos}
+\index{datos!sintéticos}
 
 - ***Downsampling***:[^Note-jorge_3-2_bis] equilibra el conjunto de datos reduciendo el tamaño de las clases abundantes para que coincida con el de la clase menos prevalente. Este método es de utilidad cuando el tamaño del conjunto de datos es suficientemente grande para ser aplicado. 
-- ***Upsampling[^Note-jorge_3-2_tris]***:[^Note-jorge_3-2_bis] equilibra el conjunto de datos aumentando el tamaño de las clases más raras. En lugar de deshacerse de datos de las clases abundantes, se generan nuevos datos para las clases raras mediante repetición o *bootstrapping*. Este procedimiento es de utilidad cuando no hay suficientes datos en la clase (o clases) rara. 
+- ***Upsampling***:[^Note-jorge_3-2_tris] equilibra el conjunto de datos aumentando el tamaño de las clases más raras. En lugar de deshacerse de datos de las clases abundantes, se generan nuevos datos para las clases raras mediante repetición o *bootstrapping*. Este procedimiento es de utilidad cuando no hay suficientes datos en la clase (o clases) rara. 
 -	**Creación de datos sintéticos**: esta técnica consiste en equilibrar el conjunto de entrenamiento generando nuevos registros sintéticos, esto es, inventados, de la clase minoritaria. Existen diversos algoritmos que realizan esta tarea, siendo uno de los más conocidos la técnica de SMOTE (*Synthetic Minority Oversampling Technique*) [@chawla2002smote].
 -	**Otras técnicas**: como que el algoritmo implemente mecanismos para dar mayor peso a los casos de la clase minoritaria, etc.
 
@@ -180,9 +180,9 @@ En resumen, con el enfoque de validación, para dar por válido un modelo, se pr
 
 La limitación del enfoque de validación con un solo subconjunto de reserva (de validación) es que dicha validación puede ser muy variable y poco confiable, a menos que se esté trabajando con conjuntos de datos muy grandes [@molinaro2005prediction]. Y aquí es donde entran en juego los procedimientos de validación que utilizan remuestreo. El procedimiento de validación con remuestreo más utilizado es la **validación cruzada (VC)** *k*-grupos (*k-fold cross validation*). También es muy popular el que utiliza remustreo por *bootstrapping*, que se abordará tras la VC de *k*-grupos.\index{validación!cruzada}
 
-\index{validación!cruzada con repetición}
-\index{validación!cruzada k-grupos@cruzada \textit{k}-grupos}
-\index{bootstrapping@\textit{bootstrapping}}
+\index{validación!cruzada!con repetición}
+\index{validación!cruzada!k-grupos@\textit{k}-grupos}
+\index{bootstrapping @\textit{bootstrapping}}
 
 Para llevar a cabo una VC *k*-grupos, se divide aleatoriamente el subconjunto de datos de entrenamiento en $k$ grupos (*folds*) de aproximadamente el mismo tamaño. El modelo se ajusta en los $k-1$ primeros grupos y el último se usa como conjunto de validación, para "validar" la bondad del modelo. A continuación, se separa el penúltimo grupo y se ajusta el modelo con los restantes, usándose el penúltimo grupo como subconjunto de validación para validar la bondad del modelo. Después se separa el antepenúltimo grupo, y así sucesivamente, hasta separar el primero. Como resultado, se obtienen $k$ conjuntos de errores, cuyo promedio (véase Sec. \@ref(evaluation)) podría servir como estimación de la exactitud y precisión (o error[^Note_jorge_3-4]) esperada en un conjunto de datos nuevo.
 
@@ -191,29 +191,21 @@ Para llevar a cabo una VC *k*-grupos, se divide aleatoriamente el subconjunto de
 
 El procedimiento descrito puede repetirse varias veces (VC con repetición), mediante nuevas particiones aleatorias del conjunto de entrenamiento y procediendo igual que en la iteración anterior.   
 
-En la práctica, normalmente se usa $k=5$ o $k=10$ (las Fig. \@ref(fig:kfold1) y \@ref(fig:kfold2) ilustran el caso de VC 5-grupos). No existe una regla formal en cuanto al tamaño de $k$, pero a medida que $k$ aumenta, la diferencia entre el rendimiento estimado y el real, así como entre la precisión estimada y la real que se obtendrá en el conjunto de test, disminuirá. En el lado negativo de la balanza, un $k$ demasiado grande puede aumentar notablemente la carga computacional y, además, no generar mejoras significativas. A este respecto, en @molinaro2005prediction se concluye que VC con $k=10$ funciona de manera similar a VC con $k=n$, la VC más extrema, también conocida como VC "dejando uno fuera" (*leave one out cross validation*, LOOCV).
+En la práctica, normalmente se usa $k=5$ o $k=10$ (las Fig. \@ref(fig:kfold1) y \@ref(fig:kfold2) ilustran el caso de VC 5-grupos). No existe una regla formal en cuanto al tamaño de $k$, pero a medida que $k$ aumenta, la diferencia entre el rendimiento estimado y el real, así como entre la precisión estimada y la real que se obtendrá en el conjunto de test disminuirá. En el lado negativo de la balanza, un valor de $k$ demasiado grande puede aumentar notablemente la carga computacional y, además, no generar mejoras significativas. A este respecto, en @molinaro2005prediction se concluye que VC con $k=10$ funciona de manera similar a VC con $k=n$, la VC más extrema, también conocida como VC "dejando uno fuera" (*leave one out cross validation*, LOOCV).
 
-\index{validación!dejando uno fuera}
+\index{validación!cruzada!dejando uno fuera}
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/kfold1} 
-
-}
-
-\caption{VC 5-grupos (i).}(\#fig:kfold1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/kfold1.png" alt="VC 5-grupos (i)." width="70%" />
+<p class="caption">(\#fig:kfold1)VC 5-grupos (i).</p>
+</div>
 
 Y si la exactitud de las predicciones en el subconjunto de entrenamiento propiamente dicho y en el de validación es similar (y aceptable para la exigencia que se requiere):
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/kfold2} 
-
-}
-
-\caption{VC 5-grupos (ii).}(\#fig:kfold2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/kfold2.png" alt="VC 5-grupos (ii)." width="70%" />
+<p class="caption">(\#fig:kfold2)VC 5-grupos (ii).</p>
+</div>
 
 
 
@@ -261,18 +253,14 @@ control <- trainControl(method = "repeatedcv", number = 10, repeats = 3)
   
 *Bootstrapping*  \index{bootstrapping @\textit{bootstrapping}} es un procedimiento de muestreo aleatorio con reemplazamiento [@efron1986bootstrap]. Esto significa que, después de seleccionar un dato para incluirlo en el subconjunto que sea, sigue disponible para una selección posterior. Una muestra *bootstrap* tiene el mismo tamaño que el conjunto de datos original a partir del cual se obtiene. Las observaciones originales seleccionadas (una o varias veces) en la muestra conforman el subconjunto de de entrenamiento, mientras que aquellas que no aparecen en ella (se las denomina *out-of-bag*) conforman el subconjunto de test.
 
-\index{muestra bootstrap @ {muestra \textit{boostrap}}}
+\index{muestra!bootstrap@\textit{boostrap}}
 
 La Fig. \@ref(fig:bootstrap) (adaptada de @boehmke2019hands), muestra un esquema de muestreo *bootstrap*, donde cada muestra contiene 12 observaciones, al igual que en el conjunto de datos original. Como puede observarse, el muestreo *bootstrap* lleva aproximadamente a la misma distribución de valores (representados por colores) que el conjunto de datos original.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/bootstrap} 
-
-}
-
-\caption{Remuestreo $bootstrap$. Elaboración propia a partir de  Boehmke and Greenwell (2019).}(\#fig:bootstrap)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/bootstrap.png" alt="Remuestreo $bootstrap$. Elaboración propia a partir de  Boehmke and Greenwell (2019)." width="70%" />
+<p class="caption">(\#fig:bootstrap)Remuestreo $bootstrap$. Elaboración propia a partir de  Boehmke and Greenwell (2019).</p>
+</div>
 
 El hecho de que *bootstrapping* replique el conjunto de observaciones implica,  como se dijo anteriormente, que la variablidad del error es menor que en VC *k*-grupos. Sin embargo, dicha replicación puede aumentar el sesgo de la estimación de dicho error. Esto puede ser un problema con conjuntos de datos muy pequeños, pero no para la mayoría de los conjuntos de datos, que suelen ser de tamaño medio o grande (por ejemplo, $n \geq 1000$). 
 
@@ -293,7 +281,7 @@ En el entorno predictivo, el objetivo es que el error de predicción, en términ
 \index{trade off @\textit{trade off} sesgo-varianza}
 \index{ECM}
 \index{sesgo}
-\index{varianza de predicción}
+\index{varianza! de predicción}
 
 - Uno debido a la diferencia entre el valor correcto de la variable objetivo o respuesta  y el que se espera que proporcione el modelo. Dicha diferencia se denomina sesgo (en ingés, *bias*), y aparece elevado al cuadrado en dicha descomposición.
 - Otro debido a que, dado un conjunto de valores de las variables predictoras, la respuesta del modelo no es siempre la misma. Esta variabilidad aparece en la descomposición en forma de varianza, y por ello se denomina varianza del error de predicción o, simplemente, varianza de predicción.
@@ -327,14 +315,10 @@ Lógicamente, el modelo predictivo o clasificador deseado es el que tenga el men
 
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/tradeoff} 
-
-}
-
-\caption{$Trade$ $off$ entre sesgo y varianza.}(\#fig:tradeoff)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/tradeoff.png" alt="Trade off entre sesgo y varianza." width="60%" />
+<p class="caption">(\#fig:tradeoff)Trade off entre sesgo y varianza.</p>
+</div>
   
 
 
@@ -362,7 +346,7 @@ A la luz de la definición de hiperparámetro, lo natural sería que el científ
 
 - Optimización secuencial basada en modelos: son una formalización de la optimización bayesiana. 
 
-A modo de ejemplo, los dos hiperparámetros que más influencia tienen en un modelo de *random forest* (véase Cap. \@ref(ap-bagg-rf)) son `mtry` (número de variables muestreadas aleatoriamente como candidatas en cada *split*) y `ntree` (número de
+A modo de ejemplo, los dos hiperparámetros que más influencia tienen en un modelo de *random forest* (véase Cap. \@ref(cap-bagg-rf)) son `mtry` (número de variables muestreadas aleatoriamente como candidatas en cada *split*) y `ntree` (número de
 árboles). Pues bien, a continuación, como viene siendo habitual, se utiliza el conjunto de datos `Madrid_Sale_num_sample_bin` para buscar el valor óptimo  de `mtry` mediante la técnica de búsqueda en cuadrícula; se usa la métrica `Accuracy` (exactitud), que hace referencia a la proporción de predicciones correctas, véase Sec. \@ref(evaluation).
 
 
@@ -427,11 +411,11 @@ En el entorno de regresión,  es prácticamente imposible predecir valores exact
 
 - **Raíz cuadrada del error cuadrático medio (RECM)**: "deshace", no en un sentido matemático, sino aproximadamente, la elevación al cuadrado de los errores en el ECM y, por consiguiente, viene dada en las mismas unidades que la salida del modelo, lo que la hace más interpretable. Su expresión es: $RECM=+\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2}$. 
 
-- **Coeficiente de determinación ($\bf R^2$)**: se define como $R^2=1-\frac{\sum_{i=1}^{n}(y_j-\hat y_j)^2}{\sum_{i=1}^{n}(y_j-\bar y)^2}$ [véanse detalles adicionales en el Cap. 5 de @lorenzo2007estadistica] y su campo de variación es [$-\infty$, 1]. En la práctica totalidad de las situaciones reales toma valores entre 0 y 1, puesto que solo toma valores negativos cuando el modelo entrenado sea muy deficiente y prediga peor que cuando se establece como predicción la media de las salidas observadas, sean cuales sean los valores de los predictores. Obviando estas situaciones, y aquellas en las que la varianza de la variable de salida no se pueda descomponer en varianza debida al modelo y varianza debida al error (por ejemplo, en el caso de una regresión potencial),[^Note_Jorge_3-9] $R^2$ se puede interpretar como la reducción proporcional en el ECM que tiene lugar al predecir las salidas del modelo mediante los predictores (cualquiera que sea la función que los ligue con la salida) en vez de mediante la media de la variable *output* (que es la predicción óptima en ausencia de predictores). Mide, por tanto, lo bueno que es disponer de predictores para predecir los valores de la variable *output* o de salida; o, en otros términos, el porcentaje de varianza de la variable salida que explican los predictores a través del modelo que liga a ambos. Cuanto más cercano esté a la unidad, mejor es el modelo a efectos predictivos. 
+- **Coeficiente de determinación ($\bf R^2$)**: se define como $R^2=1-\frac{\sum_{i=1}^{n}(y_i-\hat y_i)^2}{\sum_{i=1}^{n}(y_i-\bar y)^2}$ [véanse detalles adicionales en el Cap. 5 de @lorenzo2007estadistica] y su campo de variación es [$-\infty$, 1]. En la práctica totalidad de las situaciones reales toma valores entre 0 y 1, puesto que solo toma valores negativos cuando el modelo entrenado sea muy deficiente y prediga peor que cuando se establece como predicción la media de las salidas observadas, sean cuales sean los valores de los predictores. Obviando estas situaciones, y aquellas en las que la varianza de la variable de salida no se pueda descomponer en varianza debida al modelo y varianza debida al error (por ejemplo, en el caso de una regresión potencial),[^Note_Jorge_3-9] $R^2$ se puede interpretar como la reducción proporcional en el ECM que tiene lugar al predecir las salidas del modelo mediante los predictores (cualquiera que sea la función que los ligue con la salida) en vez de mediante la media de la variable *output* (que es la predicción óptima en ausencia de predictores). Mide, por tanto, lo bueno que es disponer de predictores para predecir los valores de la variable *output* o de salida; o, en otros términos, el porcentaje de varianza de la variable salida que explican los predictores a través del modelo que liga a ambos. Cuanto más cercano esté a la unidad, mejor es el modelo a efectos predictivos. 
 
 [^Note_Jorge_3-9]: En estos casos es mejor utilizar otra métrica, como el ECM.
 
-- **Coeficiente de determinación ajustado ($\bf R_{ajd}^2)$**: una limitación importante del $R^2$ es que su valor puede aumentarse artificialmente mediante la inclusión de más y más variables predictoras, pues la inclusión de las mismas o mantiene o mejora dicha métrica. Esta circunstancia puede dar lugar a confusión, pues el hecho de que un modelo utilice más variables predictoras que otro, no quiere decir que sea mejor. El $R_{ajd}^2$ corrige dicha circunstancia penalizando la complejidad del modelo, entendiéndose que un modelo es más complejo que otro si utiliza un mayor número de variables predictoras que ese otro. Su expresión viene dada por $R_{ajd}^2=1-\left(\frac{n-1}{n-p-1}\right)\left(1-R^2\right)$, y su valor nunca supera el del $R^2$. 
+- **Coeficiente de determinación ajustado ($\bf R_{ajd}^2)$**: una limitación importante del $R^2$ es que su valor puede aumentarse artificialmente mediante la inclusión de más y más variables predictoras, pues la inclusión de las mismas o mantiene o mejora dicha métrica. Esta circunstancia puede dar lugar a confusión, pues el hecho de que un modelo utilice más variables predictoras que otro no quiere decir que sea mejor. El $R_{ajd}^2$ corrige dicha circunstancia penalizando la complejidad del modelo, entendiéndose que un modelo es más complejo que otro si utiliza un mayor número de variables predictoras que ese otro. Su expresión viene dada por $R_{ajd}^2=1-\left(\frac{n-1}{n-p-1}\right)\left(1-R^2\right)$, y su valor nunca supera el del $R^2$. 
 
 - ***Deviance***: es una métrica relacionada con la estimación de modelos (especialmente modelos lineales generalizados) por el método de la máxima verosimilitud. Compara, por cociente, la verosimilitud del modelo estimado con la del modelo saturado (aquel que tiene tantos parámetros como observaciones[^Note_Jorge_3-8] y que, por tanto, tiene la máxima verosimilitud alcanzable). Mide el grado en el que un modelo explica la variabilidad en un conjunto de datos cuando se utiliza la estimación de máxima verosimilitud. En términos de log-verosimilitud ($l$) se define como  $D=2(l_{Modelo \hspace{0,1cm} saturado}-l_{Modelo \hspace{0,1cm} propuesto})$, y, lógicamente, cuanto menor es la *deviance*, mejor es el modelo.
 
@@ -440,8 +424,8 @@ En el entorno de regresión,  es prácticamente imposible predecir valores exact
 - **Raíz del error logarítmico cuadrático medio (RELCM)**: similar a RMSE, pero tomando logaritmos en los valores reales y predichos. De especial interés cuando lo que importa es la magnitud relativa (porcentual) de los errores. No se puede utilizar cuando la variable objetivo toma valores negativos. Para salvar la problemática de que la variable objetivo tome el valor cero, generalmente se agrega una constante a los valores reales y predichos de la variable salida antes de aplicar la operación logarítmica. Dependiendo del problema, se puede elegir otro tipo de constante. Su expresión viene dada por: $RMSLE=\sqrt{\frac{1}{n}(log(y_i+1)-log(\hat{y}_i+1))^2)}$.
 
 \index{coeficiente!de determinación}
-\index{coeficiente!de determinación ajustado}
-\index{deviance @\textit{deviance}}
+\index{coeficiente!de determinación!ajustado}
+\index{deviance@\textit{deviance}}
 \index{RELCM}
 
 En este manual se usan estas medidas en repetidas ocasiones. Por ejemplo, en el Cap. \@ref(cap-sparse) se ajusta la regresión *ridge* en el subconjunto de entrenamiento y se evalúa su ECM en el subconjunto de test.
@@ -456,19 +440,15 @@ mean((ridge_pred - y.test)^2)
 
 En el entorno clasificatorio, las salidas del modelo pueden ser de clase (tal es el caso de los algoritmos de máquinas de vectores soporte y *k*-vecinos más cercanos, por ejemplo) o de probabilidad (caso de la regresión logística, los bosques aleatorios, el AdaBoost...). Dado que pasar de salidas probabilísticas a salidas de clase consiste únicamente en fijar umbrales de probabilidad, y que algunos algoritmos ya proporcionan el paso de salidas de clase a salidas probabilísticas, en lo que sigue no se hará distinción entre ellas. 
 
-En dicho entorno clasificatorio, es muy frecuente el uso de la **matriz de confusión**, \index{matriz de confusión} que compara las clases (niveles  categóricos) reales con las predichas en el subconjunto de test (cuyos resultados se conocen). La Fig. \@ref(fig:iris-mat-con) muestra un ejemplo de clasificación multiclase (en concreto, 3 clases) basado en el famoso conjunto de datos  "Flor iris" de Fisher, que considera tres especies (*Iris setosa*, *Iris virginica* e *Iris versicolor*). La predicción de la clase a la que pertenece una flor se hace en función del largo y el ancho del sépalo y del pétalo.
+En dicho entorno clasificatorio, es muy frecuente el uso de la **matriz de confusión**, \index{matriz! de confusión} que compara las clases (niveles  categóricos) reales con las predichas en el subconjunto de test (cuyos resultados se conocen). La Fig. \@ref(fig:iris-mat-con) muestra un ejemplo de clasificación multiclase (en concreto, 3 clases) basado en el famoso conjunto de datos  "Flor iris" de Fisher, que considera tres especies (*Iris setosa*, *Iris virginica* e *Iris versicolor*). La predicción de la clase a la que pertenece una flor se hace en función del largo y el ancho del sépalo y del pétalo.
 
 En la diagonal ascendente figura el número de flores, de cada color, cuya clase ha sido correctamente predicha. Los elementos fuera de dicha diagonal indican las flores, de cada clase, que el clasificador utilizado ha clasificado erróneamente. Como puede apreciarse, 47 de las 50 flores iris que se consideran fueron bien clasificadas. Sin embargo, dicho clasificador clasificó una flor versicolor como virgínica, y dos virgínicas como versicolores.
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/iris_mat_confusion} 
-
-}
-
-\caption{Matriz de confusión con tres clases.}(\#fig:iris-mat-con)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/iris_mat_confusion.png" alt="Matriz de confusión con tres clases." width="60%" />
+<p class="caption">(\#fig:iris-mat-con)Matriz de confusión con tres clases.</p>
+</div>
 
 
 Aunque el concepto de matriz de confusión es muy sencillo, la terminología que lo rodea no lo es tanto; incluso podría decirse que es confusa. La predicción proporcionada por el modelo puede ser (véase Fig. \@ref(fig:matrizconfusion2)):
@@ -478,21 +458,17 @@ Aunque el concepto de matriz de confusión es muy sencillo, la terminología que
 -	Un falso positivo (FP): predicción de verdadero y falso en la realidad.
 -	Un falso negativo (FN): predicción de falso y verdadero en la realidad.
 
-\index{verdadero positivo}
-\index{verdadero negativo}
-\index{falso positivo}
+\index{verdadero!positivo}
+\index{verdadero!negativo}
+\index{falso!positivo}
 
 
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/Mat_Confusion} 
-
-}
-
-\caption{Terminología de una matriz de confusión.}(\#fig:matrizconfusion2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/Mat_Confusion.png" alt="Terminología de una matriz de confusión." width="70%" />
+<p class="caption">(\#fig:matrizconfusion2)Terminología de una matriz de confusión.</p>
+</div>
 
 
 Como se avanzó anteriormente, esta terminología es confusa y, por ello, se ilustra a continuación con un ejemplo. Supóngase que se está interesado en conocer si un determinado tratamiento médico tiene efectos positivos sobre una enfermedad. Echando mano de la teoría de la contrastación de hipótesis (véase Sec. \@ref(contrhip)), supóngase que se toma como hipótesis nula ($H_0$): SÍ y como hipótesis alternativa ($H_1$): NO. Pues bien:
@@ -502,7 +478,7 @@ Como se avanzó anteriormente, esta terminología es confusa y, por ello, se ilu
 -  Si la hipótesis nula es falsa, es decir, si el tratamiento no tiene un efecto positivo sobre la enfermedad, y el modelo rechaza la hipótesis nula, entonces se tiene un VN.
 -  Si la hipótesis nula es falsa y el modelo concluye que no se rechaza la hipótesis nula de que el tratamiento cura la enfermedad, entonces se tiene un FP.
 - Si es cierto que el tratamiento tiene un efecto positivo en la enfermedad y el modelo rechaza la hipótesis nula, se tiene un FN.
-\index{falso negativo}
+\index{falso!negativo}
 
 Las siguientes medidas se pueden calcular a partir de una matriz de confusión (es decir, a partir del número de VP, VN, FP y FN) para un clasificador binario:
 
@@ -525,14 +501,10 @@ Las siguientes medidas se pueden calcular a partir de una matriz de confusión (
 - **Área bajo la curva de características operativas del receptor (área bajo la curva ROC)**.  Al graficar la sensibilidad (tasa de verdaderos positivos) frente a la tasa de falsos positivos (también denominada 1-especificidad), se obtiene la curva ROC. La diagonal ascendente representa la aleatoriedad. Cuanto más grande sea el área bajo la curva ROC, mejor será la precisión obtenida. \index{area bajo la curva ROC@área bajo la curva ROC} Es una medida recomendable en el caso de clases desequilibradas. Un ejemplo de área bajo la curva ROC puede verse en el Cap. \@ref(cap-glm), y se reproduce en la parte derecha de la Fig. \@ref(fig:roc3bis).
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/roc3bis} 
-
-}
-
-\caption{Ejemplo de curva ROC a partir de la estimación de un modelo lineal generalizado (parte derecha).}(\#fig:roc3bis)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/roc3bis.png" alt="Ejemplo de curva ROC a partir de la estimación de un modelo lineal generalizado (parte derecha)." width="70%" />
+<p class="caption">(\#fig:roc3bis)Ejemplo de curva ROC a partir de la estimación de un modelo lineal generalizado (parte derecha).</p>
+</div>
 
 
 - **Índice de Gini**. Bien conocido en la literatura estadística sobre concentración, se trata de un indicador útil en el caso de clases desequilibradas. Su campo de variación es [0, 1], donde 0 representa la igualdad perfecta y 1 la concentración en una única clase. Puede calcularse a partir del área bajo la curva ROC de la siguiente manera: $IG=2\hspace{0,1cm} \acute{A}rea\hspace{0,1cm} bajo \hspace{0,1cm} la\hspace{0,1cm}curva\hspace{0,1cm} ROC-1$. En caso de IG = 0, el área bajo la curva ROC es 1/2 y la curva ROC coincide con la diagonal ascendente. En caso de IG = 1, el área bajo la curva ROC será 0 y dicha curva vale 0 para todos los valores del eje de abscisas, excepto para el último, para el cual vale 1. En caso de que las observaciones no se vayan acumulando de una en una para la configuración de la curva bajo ROC, o para el cálculo directo del índice de Gini, es mejor utilizar una versión del mismo denominada "índice E" [IE, véase Cap. 3 de @lorenzo2007estadistica], pues el índice de Gini tan solo proporcionará una aproximación de la concentración existente; buena aproximación, pero aproximación.

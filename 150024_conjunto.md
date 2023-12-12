@@ -8,7 +8,7 @@ Universidad de Castilla-La Mancha
 
 ## Introducción y conceptos clave
 
-El **análisis conjunto**\index{análisis conjunto} (o *conjoint analysis*) estudia situaciones de elección múltiple. Funciona dividiendo un producto o servicio en sus componentes (atributos y niveles) y analizando las utilidades parciales de cada uno; después se realizan diferentes combinaciones de estos para identificar las preferencias del consumidor. Permite conocer las preferencias del público ante el lanzamiento de nuevos productos o servicios, para adaptarlos a ellas y maximizar el éxito. Evalúa la sensibilidad al precio u otras características del producto y predice su comportamiento en el mercado. Mediante este análisis se puede establecer qué atributo y qué categoría (nivel) son los más valorados y cuantificarlos de forma relativa.
+El **análisis conjunto**\index{análisis!conjunto} (o *conjoint analysis*) estudia situaciones de elección múltiple. Funciona dividiendo un producto o servicio en sus componentes (atributos y niveles) y analizando las utilidades parciales de cada uno; después se realizan diferentes combinaciones de estos para identificar las preferencias del consumidor. Permite conocer las preferencias del público ante el lanzamiento de nuevos productos o servicios, para adaptarlos a ellas y maximizar el éxito. Evalúa la sensibilidad al precio u otras características del producto y predice su comportamiento en el mercado. Mediante este análisis se puede establecer qué atributo y qué categoría (nivel) son los más valorados y cuantificarlos de forma relativa.
 
   Los principales elementos de un análisis conjunto son:
 
@@ -29,14 +29,10 @@ El **análisis conjunto**\index{análisis conjunto} (o *conjoint analysis*) estu
 
 Por ejemplo, los resultados pueden indicar que el horario más demandado es el de 09:00 a 23:00 durante 7 días a la semana (Fig. \@ref(fig:150024-gim)).
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/150024-gim} 
-
-}
-
-\caption{Elección de gimnasio. Atributos: horario, clases programadas, limpieza y precio.}(\#fig:150024-gim)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150024-gim.jpg" alt="Elección de gimnasio. Atributos: horario, clases programadas, limpieza y precio." width="100%" />
+<p class="caption">(\#fig:150024-gim)Elección de gimnasio. Atributos: horario, clases programadas, limpieza y precio.</p>
+</div>
 
 ## Tipos de análisis conjunto
 
@@ -79,14 +75,10 @@ Para la aplicación correcta de un análisis conjunto es conveniente seguir una 
   
 **Forma de presentación**. Dependerá de la metodología elegida. La Fig. \@ref(fig:150024-pres) muestra algunos ejemplos. 
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/150024-pres} 
-
-}
-
-\caption{Formas de presentación.}(\#fig:150024-pres)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150024-pres.jpg" alt="Formas de presentación." width="100%" />
+<p class="caption">(\#fig:150024-pres)Formas de presentación.</p>
+</div>
 
 - CVA: *matriz de comparaciones o trade-off*, en la que el entrevistado valora la combinación de atributos y niveles (solo es válida para dos atributos). *Perfiles completos para ordenar*, donde se elaboran perfiles de cada producto o servicio utilizando solo un nivel de cada atributo y el encuestado los valora (ordena) según sus preferencias. *Perfil determinado para valorar*, combinación que el encuestado valora según sus preferencias.
 
@@ -158,7 +150,7 @@ Por último, una vez estimadas las utilidades, la *utilidad total* de un perfil 
 
 donde: $\widehat{U}_i$ es la utilidad total del perfil $i$; $\widehat{U}_{jk}$ es la utilidad parcial asociada con el nivel $k$ del atributo $j$; y $\beta_0$ es la constante de regresión.
 
-[^nota3_conjoint]: Si se desea obtener la utilidad total del perfil $i$ para un individuo concreto, $z$, bastaría con utilizar la \@ref(eq:utilperfil) para los valores concretos de $\beta_{0z}$ y $U_{ij,z}$.
+[^nota3_conjoint]: Si se desea obtener la utilidad total del perfil $i$ para un individuo concreto, $z$, bastaría con utilizar la \@ref(eq:utilperfil) para los valores concretos de $\beta_{0z}$ y $U_{ij z}$.
 
 En los casos de las metodologías ACA y CBC, la estimación de las utilidades parciales es más compleja, debiendo recurrir a modelos de regresión no lineal. Sin embargo, su interpretación es la misma que en el caso de la metodología CVA.
 

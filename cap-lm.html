@@ -7,7 +7,7 @@
 <title>Capítulo 15 Modelización lineal | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Víctor Casero-Alonso\(^{a}\) y María Durbán\(^{b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Carlos III de Madrid  15.1 Modelización Se acude a los modelos de regresión para...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 15 Modelización lineal | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -165,7 +165,7 @@ Pero dichas variables pueden ser de distinto tipo. Si la variable respuesta es c
 Si se recogen datos de pesos y alturas de un conjunto de personas se puede ajustar el modelo y obtener una explicación <em>suficiente</em>, aunque parcial, del peso de una persona a partir de su altura.
 Es claro que la inclusión de otras variables en el modelo puede ayudar a <em>explicar</em> mejor la variable respuesta. Se llega así al denominado <strong>modelo de regresión lineal múltiple</strong> que se puede expresar matemáticamente como:
 <span class="math display" id="eq:lm">\[\begin{equation}
-Y_j = \beta_0 + \beta_1 X_{1j} + \ldots + \beta_p X_{pj} + \epsilon_j, \quad \epsilon_j \sim N(0, \sigma^2), \hspace{0,2cm} j=1,\ldots,N.
+Y_i = \beta_0 + \beta_1 X_{1i} + \ldots + \beta_p X_{pi} + \epsilon_i, \quad \epsilon_i \sim N(0, \sigma^2), \hspace{0,2cm} i=1,\ldots,N.
 \tag{15.1}
 \end{equation}\]</span>
 donde:</p>
@@ -173,15 +173,15 @@ donde:</p>
 <li>
 <span class="math inline">\(\beta_0\)</span> es el <strong>término independiente</strong> o <strong>constante</strong> del modelo,</li>
 <li>
-<span class="math inline">\(\beta_1, \ldots, \beta_p\)</span> son los <strong>coeficientes de regresión</strong> o <strong>parámetros</strong> del modelo, que se estimarán a partir de los datos observados <span class="math inline">\((x_{1j}, \ldots, x_{p_j},y_j)\)</span> y reflejan la magnitud del efecto <em>lineal</em> (constante) sobre la variable explicada <em>Y</em> de incrementos unitarios en las variables explicativas <span class="math inline">\(X_i\)</span>.</li>
-<li>y <span class="math inline">\(\epsilon_j\)</span> es el <strong>término de error</strong> del modelo, la parte de <em>Y</em> que no es capaz de explicar la parte determinista del mismo (<span class="math inline">\(\beta_0 + \beta_1 X_{1j} + \ldots + \beta_p X_{pj}\)</span>), que se supone sigue una distribución de probabilidad normal, con media 0 y varianza constante <span class="math inline">\(\sigma^2\)</span>;</li>
+<span class="math inline">\(\beta_1, \ldots, \beta_p\)</span> son los <strong>coeficientes de regresión</strong> o <strong>parámetros</strong> del modelo, que se estimarán a partir de los datos observados <span class="math inline">\((x_{1i}, \ldots, x_{pi},y_i)\)</span> y reflejan la magnitud del efecto <em>lineal</em> (constante) sobre la variable explicada <em>Y</em> de incrementos unitarios en las variables explicativas <span class="math inline">\(X_j\)</span>.</li>
+<li>y <span class="math inline">\(\epsilon_i\)</span> es el <strong>término de error</strong> del modelo, la parte de <em>Y</em> que no es capaz de explicar la parte determinista del mismo (<span class="math inline">\(\beta_0 + \beta_1 X_{1i} + \ldots + \beta_p X_{pi}\)</span>), que se supone sigue una distribución de probabilidad normal, con media 0 y varianza constante <span class="math inline">\(\sigma^2\)</span>;</li>
 <li>además, se asume que las <strong>observaciones</strong> son <strong>independientes</strong>.</li>
 </ul>
 <p>Siguiendo con el ejemplo del peso, añadir alguna variable genética, el sexo u otras, ayudará a mejorar la “bondad” del modelo lineal.
 Otro ejemplo consiste en pretender explicar el salario en un determinado sector económico en función de los años de experiencia, la formación, la situación familiar, el sexo, etc., de los trabajadores.
 Nótese que entre las variables explicativas sí puede haber variables de distinto tipo: continuas, categóricas, etc.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Conviene mencionar la estrecha relación entre regresión lineal múltiple y &lt;strong&gt;ANOVA con varios factores&lt;/strong&gt; (véase la Sec. &lt;a href="cap-lm.html#anova"&gt;15.4.6.1&lt;/a&gt;).&lt;/p&gt;'><sup>115</sup></a>
 Ahora bien, la interpretación de los coeficientes dependerá del tipo de variable al que van asociados, como se verá en los casos prácticos (Sec. <a href="cap-lm.html#Casos">15.4</a>).</p>
-<p>Un par de referencias para ampliar conocimientos sobre este tema utilizando <strong>R</strong> son <span class="citation">Faraway (<a href="referncias.html#ref-faraway2002practical">2002</a>)</span> y <span class="citation">G. James et al. (<a href="referncias.html#ref-james2013introduction">2013</a>)</span>.</p>
+<p>Un par de referencias para ampliar conocimientos sobre este tema utilizando <strong>R</strong> son <span class="citation">Faraway (<a href="referencias.html#ref-faraway2002practical">2002</a>)</span> y <span class="citation">G. James et al. (<a href="referencias.html#ref-james2013introduction">2013</a>)</span>.</p>
 </div>
 <div id="procedimiento-de-modelización" class="section level2" number="15.2">
 <h2>
@@ -200,7 +200,7 @@ En la práctica, el coeficiente estimado es <em>significativo</em> si su <em>p</
 Pero dicho valor es arbitrario y podrían considerarse otros valores de referencia. Por ejemplo, en las salidas de <strong>R</strong> aparecen otros tres niveles de referencia: 0,1, 0,01 y 0,001. En general, cuanto menor sea el <em>p</em>–valor más confianza se tendrá en las conclusiones.</p>
 </div>
 <p>Como se avanzó anteriormente, si algún coeficiente no es significativo, procede eliminar del modelo la variable explicativa asociada.
-En tal caso, se vuelven a estimar los coeficientes de las variables que se mantienen hasta llegar a un modelo con todos los coeficientes significativos, iterando las veces necesarias.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;El proceso debe basarse en la relación entre las variables predefinidas de antemano (por ejemplo, en la formulación teórica del modelo). Por ello, a pesar de la no significatividad estadística de algún coeficiente, en ocasiones, la variable asociada se mantiene en el modelo.&lt;/p&gt;"><sup>117</sup></a> Para facilitar esta labor, se han desarrollado métodos automáticos de selección de variables, basados en la comparación de la varianza residual (haciendo uso del test <span class="math inline">\(F\)</span>), mediante el estadístico AIC (criterio de información de Akaike), etc.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Consúltese el Cap. 10 de &lt;span class="citation"&gt;Faraway (&lt;a href="referncias.html#ref-faraway2002practical"&gt;2002&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>118</sup></a>
+En tal caso, se vuelven a estimar los coeficientes de las variables que se mantienen hasta llegar a un modelo con todos los coeficientes significativos, iterando las veces necesarias.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;El proceso debe basarse en la relación entre las variables predefinidas de antemano (por ejemplo, en la formulación teórica del modelo). Por ello, a pesar de la no significatividad estadística de algún coeficiente, en ocasiones, la variable asociada se mantiene en el modelo.&lt;/p&gt;"><sup>117</sup></a> Para facilitar esta labor, se han desarrollado métodos automáticos de selección de variables, basados en la comparación de la varianza residual (haciendo uso del test <span class="math inline">\(F\)</span>), mediante el estadístico AIC (criterio de información de Akaike), etc.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Consúltese el Cap. 10 de &lt;span class="citation"&gt;Faraway (&lt;a href="referencias.html#ref-faraway2002practical"&gt;2002&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>118</sup></a>
 Junto con los contrastes, se pueden aportar los intervalos de confianza de los coeficientes, que, si son significativos, no contendrán el valor 0.</p>
 <p>A la par del contraste de significación de cada coeficiente, se obtiene el <strong>contraste de significación global del modelo</strong>.
 La hipótesis nula es que todos los coeficientes <span class="math inline">\(\beta_1, \ldots, \beta_p\)</span> son 0. Dicho de otro modo, que el conocimiento de las variables <span class="math inline">\(X_1, \ldots, X_p\)</span> no aporta información alguna para explicar los valores de <span class="math inline">\(Y\)</span>.</p>
@@ -214,7 +214,7 @@ Cuanto mejor ajuste el modelo los datos observados, más próximo a 1 será el v
 <span class="header-section-number">15.2.2</span> Validación del modelo<a class="anchor" aria-label="anchor" href="#sec-valida-lm"><i class="fas fa-link"></i></a>
 </h3>
 <p>Aunque el modelo sea significativo se debe <strong>validar</strong>, es decir, se deben someter a contraste los supuestos estadísticos que subyacen al modelo. Para ello se utilizan los <strong>residuos</strong> del modelo, la parte de <em>Y</em> que no explica la regresión estimada o, en otros términos, la diferencia entre los valores observados y los estimados. Matemáticamente,
-<span class="math display">\[e_j = y_j - \hat{y}_j = y_j - (\hat{\beta}_0 +\hat{\beta}_1 x_{1j} + \ldots + \hat{\beta}_p x_{pj}), \hspace{0,2cm} j = 1, \ldots, N.\]</span></p>
+<span class="math display">\[e_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 +\hat{\beta}_1 x_{1i} + \ldots + \hat{\beta}_p x_{pi}), \hspace{0,2cm} i = 1, \ldots, N.\]</span></p>
 <p>Los supuestos a contrastar son:</p>
 <ul>
 <li>Los residuos han de tener <strong>varianza constante</strong> (por definición tienen <strong>media cero</strong>).</li>
@@ -229,14 +229,14 @@ Cuanto mejor ajuste el modelo los datos observados, más próximo a 1 será el v
 <span class="header-section-number">15.2.3</span> Interpretación de los coeficientes<a class="anchor" aria-label="anchor" href="#Sec:interp"><i class="fas fa-link"></i></a>
 </h3>
 <p>Una vez validado el modelo, se procede a la interpretación de los coeficientes significativos.
-Teniendo en cuenta la expresión del modelo de regresión lineal múltiple <a href="cap-lm.html#eq:lm">(15.1)</a>, la regla general de interpretación de cada uno de los coeficientes de regresión estimado <span class="math inline">\(\hat{\beta}_i\)</span> es simple y directa: el cambio/impacto <em>medio</em> en el valor de la variable respuesta <span class="math inline">\(Y\)</span> ante un cambio unitario de una variable explicativa cuantitativa o ante un cambio de categoría (desde la que se toma como referencia) si la variable es categórica. Y ello <em>ceteris paribus</em>, esto es, manteniendo constante el valor de las demás variables explicativas.</p>
+Teniendo en cuenta la expresión del modelo de regresión lineal múltiple (Eq. <a href="cap-lm.html#eq:lm">(15.1)</a>), la regla general de interpretación de cada uno de los coeficientes de regresión estimado <span class="math inline">\(\hat{\beta}_j\)</span> es simple y directa: el cambio/impacto <em>medio</em> en el valor de la variable respuesta <span class="math inline">\(Y\)</span> ante un cambio unitario de una variable explicativa cuantitativa o ante un cambio de categoría (desde la que se toma como referencia) si la variable es categórica. Y ello <em>ceteris paribus</em>, esto es, manteniendo constante el valor de las demás variables explicativas.</p>
 <p>Habrá que tener en cuenta la magnitud de cada variable porque la influencia real en la respuesta podría ser de poca magnitud (quizá por las unidades o escala utilizada), pero estadísticamente significativa.</p>
 </div>
 <div id="predicción" class="section level3" number="15.2.4">
 <h3>
 <span class="header-section-number">15.2.4</span> Predicción<a class="anchor" aria-label="anchor" href="#predicci%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
-<p>La utilidad del modelo estimado (especificado) queda plasmada en su utilización para <strong>predecir</strong> nuevos valores, <span class="math inline">\(\hat{y_j}\)</span>, a partir del conocimiento/asignación de nuevos valores de las variables explicativas, <span class="math inline">\(\{x_{1j}, \ldots, x_{pj}\}\)</span>. No obstante, dichas predicciones son valores <em>esperados</em> (<em>medios</em>), pudiéndose construir sus correspondientes intervalos de confianza.</p>
+<p>La utilidad del modelo estimado (especificado) queda plasmada en su utilización para <strong>predecir</strong> nuevos valores, <span class="math inline">\(\hat{y_i}\)</span>, a partir del conocimiento/asignación de nuevos valores de las variables explicativas, <span class="math inline">\(\{x_{1i}, \ldots, x_{pi}\}\)</span>. No obstante, dichas predicciones son valores <em>esperados</em> (<em>medios</em>), pudiéndose construir sus correspondientes intervalos de confianza.</p>
 </div>
 </div>
 <div id="procedimiento-con-r-la-función-lm" class="section level2" number="15.3">
@@ -244,7 +244,7 @@ Teniendo en cuenta la expresión del modelo de regresión lineal múltiple <a hr
 <span class="header-section-number">15.3</span> Procedimiento con <strong>R</strong>: la función <code>lm()</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-la-funci%C3%B3n-lm"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>R</strong> tiene implementada la función <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> para ajustar/estimar modelos de regresión lineal múltiple:</p>
-<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">formula</span>, data <span class="op">=</span> <span class="va">...</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <p>El argumento mínimo necesario es <code>formula</code>, donde se predeterminará la relación entre las variables respuesta y explicativas de una forma bastante intuitiva:</p>
 <ul>
@@ -258,7 +258,7 @@ Teniendo en cuenta la expresión del modelo de regresión lineal múltiple <a hr
 </ul>
 <p>En el segundo argumento, <code>data</code>, se indica el conjunto de datos donde se encuentran las variables de trabajo. No es necesario especificarlo si están en el <code>Environment</code>.</p>
 <p>Hay que hacer notar que <strong>R</strong> considera, por defecto, las variables explicativas como cuantitativas. Si se tienen variables categóricas codificadas con números hay que indicarle que las trate como categóricas, usando la función <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Si no está ya definida como &lt;code&gt;factor()&lt;/code&gt; en el conjunto de datos.&lt;/p&gt;"><sup>119</sup></a> De no hacerlo, la función las consideraría numéricas, con el consecuente error de interpretación de los coeficientes asociados.</p>
-<p>A partir de los datos disponibles de <span class="math inline">\(Y, X1, ..., Xp\)</span>, la función <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> estima los coeficientes <span class="math inline">\(\hat{\beta}_i\)</span> asociados a cada variable <span class="math inline">\(X_i\)</span>, mediante el <strong>método de mínimos cuadrados</strong>, y calcula sus errores estándar, con los que obtiene sus estadísticos de contraste (de la <span class="math inline">\(t-\)</span>Student)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Con los errores estándar también se pueden obtener los intervalos de confianza de los coeficientes.&lt;/p&gt;"><sup>120</sup></a> y su significación. En el objeto <code>lm</code> que se genera también se almacenan los valores ajustados, residuos, etc., que se pueden mostrar a través de funciones genéricas disponibles en <strong>R</strong>. Algunas de ellas son:</p>
+<p>A partir de los datos disponibles de <span class="math inline">\(Y, X_1, ..., X_p\)</span>, la función <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> estima los coeficientes <span class="math inline">\(\hat{\beta}_j\)</span> asociados a cada variable <span class="math inline">\(X_i\)</span>, mediante el <strong>método de mínimos cuadrados</strong>, y calcula sus errores estándar, con los que obtiene sus estadísticos de contraste (de la <span class="math inline">\(t-\)</span>Student)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Con los errores estándar también se pueden obtener los intervalos de confianza de los coeficientes.&lt;/p&gt;"><sup>120</sup></a> y su significación. En el objeto <code>lm</code> que se genera también se almacenan los valores ajustados, residuos, etc., que se pueden mostrar a través de funciones genéricas disponibles en <strong>R</strong>. Algunas de ellas son:</p>
 <ul>
 <li>
 <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>: muestra un breve resumen.</li>
@@ -304,7 +304,7 @@ La Fig. <a href="cap-lm.html#fig:lm-airQlmsimples">15.1</a> representa 3 regresi
 Cada gráfico muestra un <strong>diagrama de dispersión</strong> de solo dos variables, la explicativa en el eje <span class="math inline">\(X\)</span> y la respuesta en el eje <span class="math inline">\(Y\)</span>, obteniéndose la comúnmente denominada <strong>nube de puntos</strong>.
 En tales diagramas se puede ver si entre las variables hay relación lineal, o no, y en caso de que la haya, si es positiva/directa (a mayores valores de <span class="math inline">\(X\)</span>, mayores valores de <span class="math inline">\(Y\)</span>) o negativa/inversa.
 En cada gráfico se ha añadido la correspondiente recta de regresión lineal (con su correspondiente intervalo de confianza), que podría no ser la más apropiada, como parece que ocurre en las regresiones de <code>Ozone</code> sobre <code>Wind</code> y sobre <code>Temp</code>. En ambos casos, la relación parece más bien no lineal, aunque una recta podría ser suficiente (en función del interés del estudio) para explicar relativamente bien el comportamiento del nivel de concentración de ozono. El código para el obtener el primer gráfico es:</p>
-<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">airquality</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Solar.R</span>, <span class="va">Ozone</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -318,7 +318,7 @@ En cada gráfico se ha añadido la correspondiente recta de regresión lineal (c
 <p>Se comienza ajustando el siguiente modelo lineal múltiple:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Más adelante se introducirá una variable categórica para enriquecer el análisis.&lt;/p&gt;"><sup>122</sup></a>
 <span class="math display">\[Ozone = \beta_0 + \beta_1 Solar.R + \beta_2 Wind + \beta_3 Temp  + \epsilon\]</span></p>
 <p>La definición en <strong>R</strong> del modelo se puede ver como primer argumento de la función <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>. El objeto que genera la función <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> se guarda bajo el nombre de <code>airq_lm</code> y, a continuación, se muestra su resumen con <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>:</p>
-<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">airq_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Ozone</span> <span class="op">~</span> <span class="va">Solar.R</span> <span class="op">+</span> <span class="va">Wind</span> <span class="op">+</span> <span class="va">Temp</span>, data <span class="op">=</span> <span class="va">airquality</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">airq_lm</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -355,7 +355,7 @@ Según la leyenda <code>Signif. codes</code>, a mayor número de asteriscos, may
 </h3>
 <p>Lo anterior carece de <strong>validez</strong> si no se satisfacen las hipótesis del modelo mencionadas en la Sec. <a href="cap-lm.html#sec-valida-lm">15.2.2</a>, principalmente las relativas a varianza constante (homocedasticidad) y normalidad. Para ello se realiza un análisis de residuos. La función <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot()</a></code> del paquete <code>ggfortify</code> proporciona los gráficos que se muestran en la Fig. <a href="cap-lm.html#fig:lm-residuosOzone">15.2</a>.</p>
 <p></p>
-<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/sinhrks/ggfortify">"ggfortify"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">airq_lm</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -367,8 +367,9 @@ Figura 15.2: Gráficos de residuos.
 </div>
 <p>Por un lado, el gráfico de residuos frente a valores ajustados (<em>fitted</em>) muestra cierta heterocedasticidad (varianza cambiante con el valor en el eje X) y no linealidad (ya apreciable de forma individual en la Fig. <a href="cap-lm.html#fig:lm-airQlmsimples">15.1</a>).
 Por su parte, el gráfico normal Q-Q, que enfrenta los residuos estandarizados con los cuantiles de la distribución normal, indica que los residuos presentan desviaciones de la normalidad en ambas colas.</p>
-<p>Para completar el análisis gráfico se puede acudir a contrastes de hipótesis vistos en la Sec. <a href="Fundainfer.html#contrhip">13.5</a>. El más habitual para contrastar normalidad es el de <strong>Shapiro-Wilk</strong>, que se implementa en <strong>R</strong> con la función <code><a href="https://rdrr.io/r/stats/shapiro.test.html">shapiro.test()</a></code>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Se pueden encontrar otros contrastes de normalidad en el paquete &lt;code&gt;nortest&lt;/code&gt;.&lt;/p&gt;"><sup>123</sup></a> Para contrastar la homocedasticidad se puede utilizar alguno de los tres tests implementados para tal fin en el paquete <code>lmtest()</code>: el de Breusch-Pagan <code>bptest()</code>, el de Goldfeld-Quandt <code>gqtest()</code> o el de Harrison-McCabe <code>hmctest</code>.</p>
-<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<p>Para completar el análisis gráfico se puede acudir a contrastes de hipótesis vistos en la Sec. <a href="Fundainfer.html#contrhip">13.5</a>. El más habitual para contrastar normalidad es el de <strong>Shapiro-Wilk</strong>, que se implementa en <strong>R</strong> con la función <code><a href="https://rdrr.io/r/stats/shapiro.test.html">shapiro.test()</a></code>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Se pueden encontrar otros contrastes de normalidad en el paquete &lt;code&gt;nortest&lt;/code&gt;.&lt;/p&gt;"><sup>123</sup></a> Para contrastar la homocedasticidad se puede utilizar alguno de los tres tests implementados para tal fin en el paquete <code>lmtest()</code>: el de Breusch-Pagan <code>bptest()</code>, el de Goldfeld-Quandt <code>gqtest()</code> o el de Harrison-McCabe <code>hmctest</code>.
+</p>
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/shapiro.test.html">shapiro.test</a></span><span class="op">(</span><span class="va">airq_lm</span><span class="op">$</span><span class="va">residuals</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Shapiro-Wilk normality test</span></span>
@@ -387,11 +388,11 @@ Por su parte, el gráfico normal Q-Q, que enfrenta los residuos estandarizados c
 Figura 15.3: Histogramas de las variables <span class="math inline">\(Ozone\)</span> y <span class="math inline">\(log(Ozone)\)</span>.
 </p>
 </div>
-<p>El contraste de homocedasticidad lleva a no rechazar tal supuesto (<em>p</em>-valor &gt; 0,05), pero el contraste de Shapiro-Wilk confirma la falta de normalidad (<em>p</em>–$valor &lt; 0,05).
+<p>El contraste de homocedasticidad lleva a no rechazar tal supuesto (<em>p</em>-valor &gt; 0,05), pero el contraste de Shapiro-Wilk confirma la falta de normalidad (<em>p</em>–valor &lt; 0,05).
 A este respecto, en la Fig. <a href="cap-lm.html#fig:lm-histogramas">15.3</a> se muestra el histograma de la variable <code>Ozone</code>, apreciándose que los datos recogidos presentan asimetría incompatible con la normalidad, asumida por defecto para la variable respuesta.
 Una posible solución sería el uso de una transformación logarítmica, que produce cierta simetría en la distribución de la variable, acercándola, por tanto, a la normalidad.</p>
 <p>Para el análisis de colinealidad se pueden representar gráficos 2 a 2 de las variables explicativas, para comprobar si están o no correlacionadas (Fig. <a href="cap-lm.html#fig:lm-airQpairs">15.4</a>).</p>
-<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggobi.github.io/ggally/">"GGally"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -400,10 +401,10 @@ Una posible solución sería el uso de una transformación logarítmica, que pro
 Figura 15.4: Gráfico de dispersión por pares de las variables explicativas.
 </p>
 </div>
-<p>Pero este es un análisis parcial, puesto que una de las variables explicativas podría venir explicada por el resto o varias de ellas. Por si este fuera el caso, conviene calcular también los <strong>factores de inflación de la varianza</strong> (VIF), que indican el incremento de la varianza estimada del coeficiente de regresión de una determinada variable explicativa como consecuencia de la colinealidad con las demás <span class="citation">(para más detalle, véase el Cap. 3 de <a href="referncias.html#ref-james2013introduction">G. James et al. 2013</a>)</span>.</p>
-<p>El mínimo valor de VIF es 1, no existiendo límite superior. Una regla general para interpretar los VIF es la siguiente: si el VIF de una variable explicativa <span class="math inline">\(Xi\)</span> es 1, no hay correlación entre ella y cualquier otra variable explicativa del modelo. Si está entre 1 y 5, la correlación es moderada y no provoca graves problemas. Si es mayor que 5, la correlación es fuerte y, probablemente, las estimaciones de los coeficientes y los <em>p</em>–valores resultantes de la estimación del modelo no sean confiables.</p>
+<p>Pero este es un análisis parcial, puesto que una de las variables explicativas podría venir explicada por el resto o varias de ellas. Por si este fuera el caso, conviene calcular también los <strong>factores de inflación de la varianza</strong> (VIF), que indican el incremento de la varianza estimada del coeficiente de regresión de una determinada variable explicativa como consecuencia de la colinealidad con las demás <span class="citation">(para más detalle, véase el Cap. 3 de <a href="referencias.html#ref-james2013introduction">G. James et al. 2013</a>)</span>.</p>
+<p>El mínimo valor de VIF es 1, no existiendo límite superior. Una regla general para interpretar los VIF es la siguiente: si el VIF de una variable explicativa <span class="math inline">\(X_j\)</span> es 1, no hay correlación entre ella y cualquier otra variable explicativa del modelo. Si está entre 1 y 5, la correlación es moderada y no provoca graves problemas. Si es mayor que 5, la correlación es fuerte y, probablemente, las estimaciones de los coeficientes y los <em>p</em>–valores resultantes de la estimación del modelo no sean confiables.</p>
 <p>Los VIF se pueden obtener mediante la función <code>vif()</code> del paquete <code>car</code>:</p>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/vif.html">vif</a></span><span class="op">(</span><span class="va">airq_lm</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  Solar.R     Wind     Temp </span></span>
 <span><span class="co">#&gt; 1.095253 1.329070 1.431367</span></span></code></pre></div>
@@ -429,7 +430,7 @@ Figura 15.4: Gráfico de dispersión por pares de las variables explicativas.
 <p>Aunque el modelo estimado no es adecuado, por la falta de normalidad, linealidad, etc., detectadas, a continuación se ilustra cómo obtener predicciones con la función <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>.
 Para ello, se asignan los valores de interés a las variables explicativas del modelo, con formato <code>data.frame</code>, obteniéndose predicciones del valor medio de la variable respuesta, junto con sus intervalos de confianza o predicción, según se proporcione al argumento <code>interval</code> los valores <code>confidence</code> o <code>prediction</code>, respectivamente.
 En el siguiente ejemplo se obtienen predicciones de niveles de concentración de ozono para un par de casos elegidos arbitrariamente (el primero corresponde a <code>Solar.R</code>=50, <code>Wind</code>=5 y <code>Temp</code>=62):</p>
-<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nueva_meteo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  Solar.R <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">300</span><span class="op">)</span>,</span>
 <span>  Wind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">17</span><span class="op">)</span>,</span>
@@ -453,7 +454,7 @@ Sin embargo, los intervalos de confianza son distintos. Con <code>confidence</co
 <p>Ante los problemas de falta de normalidad de la variable <code>Ozone</code>, se ajusta un nuevo modelo con la variable <span class="math inline">\(\log(Ozone)\)</span> como respuesta (véase Sec. <a href="chap-feature.html#trans-vble-obj">9.3.1</a>).
 Se aprovecha para introducir una variable <em>dicotómica</em> para explicar su interpretación.
 Se define <code>Temp_f</code> dicotomizando <code>Temp</code> (tomando solo dos valores): 1, si la temperatura está por encima de su mediana; y 0, si está por debajo.</p>
-<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mediana</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span><span class="op">)</span></span>
 <span><span class="va">Temp_f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span> <span class="op">&gt;</span> <span class="va">mediana</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">lairq_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Ozone</span><span class="op">)</span> <span class="op">~</span> <span class="va">Wind</span> <span class="op">+</span> <span class="va">Solar.R</span> <span class="op">+</span> <span class="va">Temp_f</span>, data <span class="op">=</span> <span class="va">airquality</span><span class="op">)</span></span>
@@ -516,7 +517,7 @@ El <strong>ANOVA</strong> es un caso particular de regresión lineal en los par�
 </h2>
 <p>En capítulos posteriores se abordarán modelizaciones más complejas, como, por ejemplo, los modelos lineales generalizados, GLM (Cap. <a href="cap-glm.html#cap-glm">16</a>), los modelos aditivos generalizados, GAM (Cap. <a href="cap-gam.html#cap-gam">17</a>) y los modelos mixtos (Cap. <a href="cap-mxm.html#cap-mxm">18</a>). También se verán modelos <em>sparse</em> y métodos penalizados de regresión (Cap. <a href="cap-sparse.html#cap-sparse">19</a>), como la regresión <em>ridge</em>, que permite manejar los problemas que genera la presencia de multicolinealidad.</p>
 <p>Queda fuera de este capítulo la “consideración” de variables de confusión. Ejemplos típicos de tal tipo de variables son la edad y el sexo. De ser incluidas en el modelo, la magnitud e interpretación de las estimaciones de los coeficientes, las predicciones, etc., pueden ser erróneas, pues el efecto de las variables de confusión puede mezclarse con el de otras variables explicativas incluidas en el modelo (por ejemplo, la influencia de la edad/sexo en enfermedades). Si se incluyen, se podrá obtener el efecto de cualquier variable <span class="math inline">\(X_i\)</span> en la respuesta <em>Y</em>, <em>ceteris paribus</em>, es decir, independientemente de los valores y/o categorías de las variables de confusión (edad, sexo, etc.).</p>
-<p>También podrían haberse considerado interacciones entre variables, que se suelen interpretar como sinergias o antagonismos. Pero dada la limitación de espacio y el carácter introductorio de este capítulo no se ha considerado oportuno, pues, además, la interpretación de dichas interacciones suele ser compleja. En el Cap. 3 de <span class="citation">G. James et al. (<a href="referncias.html#ref-james2013introduction">2013</a>)</span> puede encontrarse un ejemplo.</p>
+<p>También podrían haberse considerado interacciones entre variables, que se suelen interpretar como sinergias o antagonismos. Pero dada la limitación de espacio y el carácter introductorio de este capítulo no se ha considerado oportuno, pues, además, la interpretación de dichas interacciones suele ser compleja. En el Cap. 3 de <span class="citation">G. James et al. (<a href="referencias.html#ref-james2013introduction">2013</a>)</span> puede encontrarse un ejemplo.</p>
 <div id="resumen-14" class="section level3 unnumbered infobox_resume">
 <h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-14"><i class="fas fa-link"></i></a>
 </h3>
@@ -578,7 +579,7 @@ El <strong>ANOVA</strong> es un caso particular de regresión lineal en los par�
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

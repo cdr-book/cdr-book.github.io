@@ -18,7 +18,7 @@ Siempre ha estado ahí, pero en la actualidad la disponibilidad de datos, la can
 
 El tratamiento de datos y su análisis requiere el uso de
 software avanzado. Aunque algunas tareas como, por ejemplo, mecanizar y almacenar datos, se pueden realizar
-eficazmente con programas de hoja de cálculo \index{hoja de cálculo}
+eficazmente con programas de hoja de cálculo \index{hoja!de cálculo}
 como Excel, se debería
 utilizar software especializado para el análisis de datos. Existen distintos 
 paquetes estadísticos comerciales, como SPSS, Statgraphics, Stata, SAS, JMP o Minitab. En los últimos 
@@ -49,7 +49,7 @@ Uno de los aspectos más espectaculares de **R** es la cantidad de **paquetes**
 disponibles. Un paquete (_package_) de **R** es un componente con funcionalidad adicional que se puede
 instalar en el sistema para ser utilizado por **R**. En el momento de 
 compilar este libro, el número de paquetes disponibles en el repositorio oficial 
-es de 20051.  
+es de 20191.  
 
 
 Una vez conocido el mundo de **R**, se plantea la siguiente pregunta: ¿y por qué
@@ -158,24 +158,24 @@ y depende del proyecto particular. Las siguientes carpetas pueden ser
 útiles en un amplio abanico de proyectos, y 
 las tres primeras se pueden usar prácticamente en cualquier proyecto:
 
-- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-816289cbefb2f9f4bc7e08a916884bf2.pdf){height=1em width=1em} `data`: en esta carpeta se tienen los archivos de
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"/></svg>`{=html} `data`: en esta carpeta se tienen los archivos de
 datos, tanto aquellos orígenes de datos que se quieran importar como los
 que se puedan guardar desde un script.
-- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-816289cbefb2f9f4bc7e08a916884bf2.pdf){height=1em width=1em} `R`: para los scripts. Es posible que solamente haya un script
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"/></svg>`{=html} `R`: para los scripts. Es posible que solamente haya un script
 en nuestro proyecto, pero si hubiera más se pueden guardar en esta carpeta.
-- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-816289cbefb2f9f4bc7e08a916884bf2.pdf){height=1em width=1em} `inform`: aquí se pueden guardar los archivos Quarto o R Markdown
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"/></svg>`{=html} `inform`: aquí se pueden guardar los archivos Quarto o R Markdown
 que se utilicen para generar informes o presentaciones.
-- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-816289cbefb2f9f4bc7e08a916884bf2.pdf){height=1em width=1em} `img`: si en nuestro proyecto se utilizan imágenes
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"/></svg>`{=html} `img`: si en nuestro proyecto se utilizan imágenes
 de cualquier tipo, es una buena idea tenerlas en una carpeta aparte.
-- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-816289cbefb2f9f4bc7e08a916884bf2.pdf){height=1em width=1em} `test`: si se quieren separar los scripts que se utilicen para 
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"/></svg>`{=html} `test`: si se quieren separar los scripts que se utilicen para 
 pruebas y no se quieren mezclar con los "buenos" en la carpeta `R`.
-- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-841ecb1734e7cbe7af1b18addbe114b1.pdf){height=1em width=1em} `aux`, `tmp`, `util`, `notas`, `doc`, ...: 
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H192c20.1 0 39.1 9.5 51.2 25.6l19.2 25.6c6 8.1 15.5 12.8 25.6 12.8H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"/></svg>`{=html} `aux`, `tmp`, `util`, `notas`, `doc`, ...: 
 este tipo de carpetas vienen bien cuando
 hay información que está relacionada o es útil para un proyecto, pero el archivo no es 
 del proyecto de análisis de datos en sí. Por ejemplo, unas especificaciones de
 un producto o servicio, un artículo científico, fotografías de una fábrica, 
 comunicaciones con clientes, etc.
-- ![](110003_R_ciencia_datos_files/figure-latex/fa-icon-841ecb1734e7cbe7af1b18addbe114b1.pdf){height=1em width=1em} `ejercicios`, `practicas`, ...: si nuestro proyecto
+- `<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H192c20.1 0 39.1 9.5 51.2 25.6l19.2 25.6c6 8.1 15.5 12.8 25.6 12.8H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"/></svg>`{=html} `ejercicios`, `practicas`, ...: si nuestro proyecto
 forma parte de una asignatura, curso o similar.
 
 
@@ -463,14 +463,10 @@ El flujo de trabajo propuesto por el _tidyverse_ se describe en el libro
 *R for Data Science* [@wickham2016r] y se sintetiza en la Fig. \@ref(fig:ch-110003-flujods).
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{img/data-science} 
-
-}
-
-\caption{Flujo de trabajo en ciencia de datos propuesto por el $tidyverse$. Fuente: Wickham and Grolemund (2016).}(\#fig:ch-110003-flujods)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/data-science.png" alt="Flujo de trabajo en ciencia de datos propuesto por el $tidyverse$. Fuente: Wickham and Grolemund (2016)." width="80%" />
+<p class="caption">(\#fig:ch-110003-flujods)Flujo de trabajo en ciencia de datos propuesto por el $tidyverse$. Fuente: Wickham and Grolemund (2016).</p>
+</div>
 
 
 Además del mencionado libro, la web del _tidyverse_ (http://tidyverse.org) contiene
@@ -829,7 +825,7 @@ El paquete `tidyr` también contiene funciones para reorganizar las columnas
 de la tabla uniendo columnas con la función `unite()`, o separando una columna
 en dos o más con la función `separate()` (véanse los detalles en la ayuda de las funciones).
 
-\index{missing}@\textit{missing}\index{valores perdidos}
+\index{missing@\textit{missing}} \index{valores!perdidos}
 Para terminar este apartado de reorganización de datos, se da una
 primera aproximación al tratamiento de valores perdidos, que se abordará en el 
 Cap. \@ref(130009). En **R**, un valor

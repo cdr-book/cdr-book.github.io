@@ -22,7 +22,7 @@ Dicho lo anterior, el objetivo de este capítulo es mostrar el potencial del uso
 
 ## Sintaxis de Google Earth Engine
 
-Con ayuda de GEE se preprocesan los datos de tal manera que el resultado son las anomalías estivales en forma de *raster* para cada año entre 1981 y 2022. El primer paso consiste en crear el usuario en [earthengine.google.com](earthengine.google.com). Además, es necesario instalar CLI de gcloud (https://cloud.google.com/sdk/docs/install?hl=es-419). 
+Con ayuda de GEE se preprocesan los datos de tal manera que el resultado son las anomalías estivales en forma de *raster* para cada año entre 1981 y 2022. El primer paso consiste en crear el usuario en [earthengine.google.com](earthengine.google.com). Además, es necesario instalar CLI de Gcloud (https://cloud.google.com/sdk/docs/install?hl=es-419). 
 
 No obstante, antes se deben conocer algunos conceptos fundamentales sobre la sintaxis en GEE. En general, el lenguaje nativo es Javascript, que se caracteriza por una gramática en la que se combinan funciones y variables usando el punto, que se sustituye por el "$" en **R**. Todas las funciones de GEE en **R** empiezan por el prefijo ee_* (`ee_print()`, `ee_image_to_drive()`). Los términos más relevantes son los siguientes:
 
@@ -36,7 +36,7 @@ Se puede obtener más información en https://r-spatial.github.io/rgee/reference
 
 ## Primeros pasos
 
-Después de darse de alta en GEE y haber instalado CLI gcloud en el sistema operativo, se crea un entorno virtual de Python con todas las dependencias de GEE usando la función `ee_install()`.
+Después de darse de alta en GEE y haber instalado CLI Gcloud en el sistema operativo, se crea un entorno virtual de Python con todas las dependencias de GEE usando la función `ee_install()`.
 
 
 ```r
@@ -188,14 +188,10 @@ Map$addLegend(list(min = -3, max = 3,
 ```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/interactivo_mapa_geopro} 
-
-}
-
-\caption{Mapa interactivo del mar Mediterráneo (1982).}(\#fig:interactive-map-plot)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/interactivo_mapa_geopro.png" alt="Mapa interactivo del mar Mediterráneo (1982)." width="60%" />
+<p class="caption">(\#fig:interactive-map-plot)Mapa interactivo del mar Mediterráneo (1982).</p>
+</div>
 
 
 

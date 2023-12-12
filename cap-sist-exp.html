@@ -6,22 +6,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 57 Implementación de un sistema experto en el ámbito pediátrico | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
-<meta name="description" content="Arturo Peralta\(^{a,b,c}\), José Ángel Olivas\(^{a}\) y Eusebio Angulo\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Internacional de Valencia\(^{c}\)Universidad...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="description" content="Arturo Peralta\(^{a,b,c}\), José Ángel Olivas\(^{c}\) y Eusebio Angulo\(^{c}\) \(^{a}\)Universidad Internacional de Valencia\(^{b}\)Universidad Internacional de la Rioja\(^{c}\)Universidad de...">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 57 Implementación de un sistema experto en el ámbito pediátrico | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
-<meta property="og:description" content="Arturo Peralta\(^{a,b,c}\), José Ángel Olivas\(^{a}\) y Eusebio Angulo\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Internacional de Valencia\(^{c}\)Universidad...">
+<meta property="og:description" content="Arturo Peralta\(^{a,b,c}\), José Ángel Olivas\(^{c}\) y Eusebio Angulo\(^{c}\) \(^{a}\)Universidad Internacional de Valencia\(^{b}\)Universidad Internacional de la Rioja\(^{c}\)Universidad de...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 57 Implementación de un sistema experto en el ámbito pediátrico | Fundamentos de ciencia de datos con R">
-<meta name="twitter:description" content="Arturo Peralta\(^{a,b,c}\), José Ángel Olivas\(^{a}\) y Eusebio Angulo\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Internacional de Valencia\(^{c}\)Universidad...">
+<meta name="twitter:description" content="Arturo Peralta\(^{a,b,c}\), José Ángel Olivas\(^{c}\) y Eusebio Angulo\(^{c}\) \(^{a}\)Universidad Internacional de Valencia\(^{b}\)Universidad Internacional de la Rioja\(^{c}\)Universidad de...">
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -132,8 +132,8 @@
 <h1>
 <span class="header-section-number">Capítulo 57</span> Implementación de un sistema experto en el ámbito pediátrico<a class="anchor" aria-label="anchor" href="#cap-sist-exp"><i class="fas fa-link"></i></a>
 </h1>
-<p><em>Arturo Peralta</em><span class="math inline">\(^{a,b,c}\)</span>, <em>José Ángel Olivas</em><span class="math inline">\(^{a}\)</span> y <em>Eusebio Angulo</em><span class="math inline">\(^{a}\)</span></p>
-<p><span class="math inline">\(^{a}\)</span>Universidad de Castilla-La Mancha<br><span class="math inline">\(^{b}\)</span>Universidad Internacional de Valencia<br><span class="math inline">\(^{c}\)</span>Universidad Internacional de la Rioja</p>
+<p><em>Arturo Peralta</em><span class="math inline">\(^{a,b,c}\)</span>, <em>José Ángel Olivas</em><span class="math inline">\(^{c}\)</span> y <em>Eusebio Angulo</em><span class="math inline">\(^{c}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad Internacional de Valencia<br><span class="math inline">\(^{b}\)</span>Universidad Internacional de la Rioja<br><span class="math inline">\(^{c}\)</span>Universidad de Castilla-La Mancha</p>
 <div id="introducción-28" class="section level2" number="57.1">
 <h2>
 <span class="header-section-number">57.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-28"><i class="fas fa-link"></i></a>
@@ -147,7 +147,7 @@ Finalmente, se incluye una sencilla implementación en <strong>R</strong> de un 
 <h2>
 <span class="header-section-number">57.2</span> Marco teórico<a class="anchor" aria-label="anchor" href="#marco-te%C3%B3rico"><i class="fas fa-link"></i></a>
 </h2>
-<p>Un SE es un programa de ordenador que trata de emular el comportamiento de una persona experta en un dominio de conocimiento específico ante un problema que se plantee en dicho dominio y cómo llega a su solución. La ingeniería del conocimiento se ocupa, entre otras cosas, del proceso de especificación, análisis y desarrollo de un sistema experto <span class="citation">(<a href="referncias.html#ref-MaMoCa2005">Martínez, Molina, and Caro 2005</a>)</span>.</p>
+<p>Un SE es un programa de ordenador que trata de emular el comportamiento de una persona experta en un dominio de conocimiento específico ante un problema que se plantee en dicho dominio y cómo llega a su solución. La ingeniería del conocimiento se ocupa, entre otras cosas, del proceso de especificación, análisis y desarrollo de un sistema experto <span class="citation">(<a href="referencias.html#ref-MaMoCa2005">Martínez, Molina, and Caro 2005</a>)</span>.</p>
 <p>
 </p>
 <p>Los principales componentes de un SE son:
@@ -167,24 +167,24 @@ Es por ello que las limitaciones de todo SE pueden ser que no conoce lo que cono
 <ol style="list-style-type: decimal">
 <li>Las <strong>reglas de producción</strong>, que son la forma más extendida de representar el conocimiento, constan de condiciones (hipótesis) y acciones (conclusiones) y tienen la forma:</li>
 </ol>
-<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="cap-sist-exp.html#cb831-1" tabindex="-1"></a>    <span class="fu">Si</span> (If)</span>
-<span id="cb831-2"><a href="cap-sist-exp.html#cb831-2" tabindex="-1"></a>      Condición <span class="dv">1</span> </span>
-<span id="cb831-3"><a href="cap-sist-exp.html#cb831-3" tabindex="-1"></a>      y Condición <span class="dv">2</span> </span>
-<span id="cb831-4"><a href="cap-sist-exp.html#cb831-4" tabindex="-1"></a>      ... </span>
-<span id="cb831-5"><a href="cap-sist-exp.html#cb831-5" tabindex="-1"></a>      y Condición n</span>
-<span id="cb831-6"><a href="cap-sist-exp.html#cb831-6" tabindex="-1"></a>    <span class="fu">Entonces</span> (Then)</span>
-<span id="cb831-7"><a href="cap-sist-exp.html#cb831-7" tabindex="-1"></a>      Conclusión <span class="dv">1</span></span>
-<span id="cb831-8"><a href="cap-sist-exp.html#cb831-8" tabindex="-1"></a>      Conclusión <span class="dv">2</span></span>
-<span id="cb831-9"><a href="cap-sist-exp.html#cb831-9" tabindex="-1"></a>      ...</span>
-<span id="cb831-10"><a href="cap-sist-exp.html#cb831-10" tabindex="-1"></a>      y Conclusión m</span></code></pre></div>
+<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="cap-sist-exp.html#cb832-1" tabindex="-1"></a>    <span class="fu">Si</span> (If)</span>
+<span id="cb832-2"><a href="cap-sist-exp.html#cb832-2" tabindex="-1"></a>      Condición <span class="dv">1</span> </span>
+<span id="cb832-3"><a href="cap-sist-exp.html#cb832-3" tabindex="-1"></a>      y Condición <span class="dv">2</span> </span>
+<span id="cb832-4"><a href="cap-sist-exp.html#cb832-4" tabindex="-1"></a>      ... </span>
+<span id="cb832-5"><a href="cap-sist-exp.html#cb832-5" tabindex="-1"></a>      y Condición n</span>
+<span id="cb832-6"><a href="cap-sist-exp.html#cb832-6" tabindex="-1"></a>    <span class="fu">Entonces</span> (Then)</span>
+<span id="cb832-7"><a href="cap-sist-exp.html#cb832-7" tabindex="-1"></a>      Conclusión <span class="dv">1</span></span>
+<span id="cb832-8"><a href="cap-sist-exp.html#cb832-8" tabindex="-1"></a>      Conclusión <span class="dv">2</span></span>
+<span id="cb832-9"><a href="cap-sist-exp.html#cb832-9" tabindex="-1"></a>      ...</span>
+<span id="cb832-10"><a href="cap-sist-exp.html#cb832-10" tabindex="-1"></a>      y Conclusión m</span></code></pre></div>
 <p>Por ejemplo:</p>
-<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="cap-sist-exp.html#cb832-1" tabindex="-1"></a>    Si </span>
-<span id="cb832-2"><a href="cap-sist-exp.html#cb832-2" tabindex="-1"></a>      ha fallado la bombilla </span>
-<span id="cb832-3"><a href="cap-sist-exp.html#cb832-3" tabindex="-1"></a>      y hay una de repuesto </span>
-<span id="cb832-4"><a href="cap-sist-exp.html#cb832-4" tabindex="-1"></a>      y está útil</span>
-<span id="cb832-5"><a href="cap-sist-exp.html#cb832-5" tabindex="-1"></a>    Entonces</span>
-<span id="cb832-6"><a href="cap-sist-exp.html#cb832-6" tabindex="-1"></a>      cambiar la bombilla por la de repuesto</span>
-<span id="cb832-7"><a href="cap-sist-exp.html#cb832-7" tabindex="-1"></a>      y seguir trabajando</span></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="cap-sist-exp.html#cb833-1" tabindex="-1"></a>    Si </span>
+<span id="cb833-2"><a href="cap-sist-exp.html#cb833-2" tabindex="-1"></a>      ha fallado la bombilla </span>
+<span id="cb833-3"><a href="cap-sist-exp.html#cb833-3" tabindex="-1"></a>      y hay una de repuesto </span>
+<span id="cb833-4"><a href="cap-sist-exp.html#cb833-4" tabindex="-1"></a>      y está útil</span>
+<span id="cb833-5"><a href="cap-sist-exp.html#cb833-5" tabindex="-1"></a>    Entonces</span>
+<span id="cb833-6"><a href="cap-sist-exp.html#cb833-6" tabindex="-1"></a>      cambiar la bombilla por la de repuesto</span>
+<span id="cb833-7"><a href="cap-sist-exp.html#cb833-7" tabindex="-1"></a>      y seguir trabajando</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><p>La <strong>memoria de trabajo</strong>, que contiene una descripción del estado actual del mundo o entorno de la aplicación en cada paso del proceso de razonamiento.
 Esta descripción es un modelo que sirve para asociar los antecedentes de las reglas con las observaciones del mundo, con el objetivo de seleccionar o producir las acciones apropiadas. En el momento en que se cumplen todas las condiciones de una regla se produce el “disparo” de la misma, ejecutándose la acción. Esta operación altera el contenido de la memoria de trabajo.</p></li>
@@ -198,8 +198,8 @@ Esta descripción es un modelo que sirve para asociar los antecedentes de las re
 <p>
 </p>
 <p>El <strong>razonamiento</strong> se define como el proceso de obtención de inferencias o conclusiones a partir de unos hechos u observaciones reales o asumidos y de un conocimiento previo.
-La <strong>inferencia</strong> es el proceso por el que, a partir de unos hechos conocidos, se obtienen conclusiones acerca de otros desconocidos <span class="citation">(<a href="referncias.html#ref-Fleitas2017">Fleitas 2017</a>; <a href="referncias.html#ref-amparo2004ingenieria">Amparo and Guijarro 2004</a>)</span>. La realización de este tipo de procesamiento es llevada a cabo por el denominado <strong>motor de inferencia</strong>.</p>
-<p>El <strong>razonamiento automático</strong> ya se utilizaba en los años 50 en los juegos. En 1963 se presentó el sistema <em>General Problem Solver</em>, capaz de hacer inferencias lógicas <span class="citation">(<a href="referncias.html#ref-newell1974simulacion">Newell, Simon, and Seoane 1974</a>)</span>. En un SE se distinguen dos tipos de razonamiento automático:</p>
+La <strong>inferencia</strong> es el proceso por el que, a partir de unos hechos conocidos, se obtienen conclusiones acerca de otros desconocidos <span class="citation">(<a href="referencias.html#ref-Fleitas2017">Fleitas 2017</a>; <a href="referencias.html#ref-amparo2004ingenieria">Amparo and Guijarro 2004</a>)</span>. La realización de este tipo de procesamiento es llevada a cabo por el denominado <strong>motor de inferencia</strong>.</p>
+<p>El <strong>razonamiento automático</strong> ya se utilizaba en los años 50 en los juegos. En 1963 se presentó el sistema <em>General Problem Solver</em>, capaz de hacer inferencias lógicas <span class="citation">(<a href="referencias.html#ref-newell1974simulacion">Newell, Simon, and Seoane 1974</a>)</span>. En un SE se distinguen dos tipos de razonamiento automático:</p>
 <ul>
 <li><p><strong><em>Forward chaining</em></strong> (encadenamiento hacia delante, deductivo, progresivo, dirigido por datos o hechos): <code>síntomas $\rightarrow$ causas</code>. Se parte de sentencias (reglas de inferencia) de la BC para producir conclusiones o afirmaciones. Se denomina también procedimiento <em>data driven</em>.</p></li>
 <li><p><strong><em>Backward chaining</em></strong> (encadenamiento hacia atrás, inductivo, regresivo, dirigido por metas u objetivos): <code>síntomas $\leftarrow$ causas</code>. Se parte de una hipótesis a contrastar proporcionando reglas en la BC de forma retroactiva para analizar las asertivas que soportan dicha hipótesis.</p></li>
@@ -217,11 +217,11 @@ La <strong>inferencia</strong> es el proceso por el que, a partir de unos hechos
 <li><p>a partir de los hechos observados, se <strong>seleccionan las reglas</strong> cuyas condiciones están relacionadas con estos;</p></li>
 <li><p>las reglas seleccionadas son examinadas para ver si cumplen todas sus condiciones. Aquellas que las verifican constituyen el <strong>conjunto conflicto</strong>;</p></li>
 <li><p>del total de reglas que forman el conjunto conflicto se selecciona una sola y se activa (se “dispara”). La selección de una regla del conjunto conflicto se denomina <strong>resolución del conflicto</strong>;</p></li>
-<li><p>la activación de la regla provoca la <strong>aparición de otros hechos</strong> que se añaden a los observados y se <strong>actualiza</strong> la base de hechos.</p></li>
+<li><p>la activación de la regla provoca la <strong>aparición de otros hechos</strong> que se añaden a los observados y se <strong>actualiza</strong> la base de hechos;</p></li>
 <li><p>vuelta al <strong>paso 2</strong> hasta analizar todos los hechos observados y deducidos.</p></li>
 </ol>
 <p>En la Fig.
-<a href="cap-sist-exp.html#fig:FiguraRazonamientoHaciaDelante">57.2</a> se muestra el algoritmo correspondiente al ciclo de inferencia hacia adelante.</p>
+<a href="cap-sist-exp.html#fig:FiguraRazonamientoHaciaDelante">57.2</a> se muestra el algoritmo correspondiente al ciclo de inferencia hacia delante.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:FiguraRazonamientoHaciaDelante"></span>
 <img src="img/Figura1CicloRazonamientoHaciaDelante.png" alt="Ciclo de razonamiento hacia delante." width="60%"><p class="caption">
@@ -241,7 +241,7 @@ Figura 57.2: Ciclo de razonamiento hacia delante.
 <span class="header-section-number">57.3.1</span> El caso de uso<a class="anchor" aria-label="anchor" href="#el-caso-de-uso"><i class="fas fa-link"></i></a>
 </h3>
 <p>En la actualidad, uno de los principales problemas al que se enfrentan los profesionales de la sanidad en el ámbito pediátrico de atención primaria en España es la falta del tiempo suficiente para realizar una evaluación clínica del estado del paciente. La necesidad de un mayor número de médicos especialistas y la aparición de picos de demanda motivados por fenómenos como el COVID-19, o de modo estacional por otras enfermedades recurrentes, favorecen esta situación.</p>
-<p>Ante esta problemática, los centros de salud tratan de optimizar sus recursos mediante diferentes vías, poniendo especial interés en realizar procesos de triaje que les permitan priorizar la atención a los pacientes según su nivel de urgencia. Para ello, en España se utilizan escalas como el <em>Manchester Triage System</em> (MTS), el Sistema Español de Triaje (SET) y el <em>Canadian Pediatric Triage and Acuity Scale</em> (CPTAS) <span class="citation">(<a href="referncias.html#ref-Soler2010">Soler et al. 2010</a>)</span> para establecer el tiempo que un paciente puede esperar para recibir atención médica en base a sus síntomas y evolución.</p>
+<p>Ante esta problemática, los centros de salud tratan de optimizar sus recursos mediante diferentes vías, poniendo especial interés en realizar procesos de triaje que les permitan priorizar la atención a los pacientes según su nivel de urgencia. Para ello, en España se utilizan escalas como el <em>Manchester Triage System</em> (MTS), el Sistema Español de Triaje (SET) y el <em>Canadian Pediatric Triage and Acuity Scale</em> (CPTAS) <span class="citation">(<a href="referencias.html#ref-Soler2010">Soler et al. 2010</a>)</span> para establecer el tiempo que un paciente puede esperar para recibir atención médica en base a sus síntomas y evolución.</p>
 <p>Sin embargo, realizar un correcto proceso de triaje, además de requerir de un gran conocimiento experto, hace necesario un tiempo para una evaluación clínica que a veces resulta difícil dedicar. En este contexto, se plantea el desarrollo de un SE capaz de ayudar en el proceso de evaluación médica, con el objetivo de facilitar el proceso de triaje.</p>
 </div>
 <div id="la-implementación-del-sistema-experto" class="section level3" number="57.3.2">
@@ -298,10 +298,10 @@ Figura 57.2: Ciclo de razonamiento hacia delante.
 </tr>
 </tbody>
 </table></div>
-<p>A partir del procesamiento de un total de 400 visitas médicas mediante el algoritmo de extracción de reglas de asociación “Magnum Opus”, basado en la definición original de <span class="citation">Webb (<a href="referncias.html#ref-Webb2011">2011</a>)</span> y con el conocimiento experto proporcionado por un panel de pediatras, se extrajo un conjunto de reglas con suficiente calidad. A continuación se muestran, a modo de ejemplo, <span class="math inline">\(10\)</span> de ellas:</p>
+<p>A partir del procesamiento de un total de 400 visitas médicas mediante el algoritmo de extracción de reglas de asociación “Magnum Opus”, basado en la definición original de <span class="citation">Webb (<a href="referencias.html#ref-Webb2011">2011</a>)</span> y con el conocimiento experto proporcionado por un panel de pediatras, se extrajo un conjunto de reglas con suficiente calidad. A continuación se muestran, a modo de ejemplo, <span class="math inline">\(10\)</span> de ellas:</p>
 <ul>
-<li><p>R1: Si Causa Ginecóloga o Edad mayor de 12 años <span class="math inline">\(\rightarrow\)</span> Tiempo de Evolución mayor de 73 h.</p></li>
-<li><p>R2: Si Causa Ginecóloga <span class="math inline">\(\rightarrow\)</span> Sexo Mujer.</p></li>
+<li><p>R1: Si Causa Ginecológica o Edad mayor de 12 años <span class="math inline">\(\rightarrow\)</span> Tiempo de Evolución mayor de 73 h.</p></li>
+<li><p>R2: Si Causa Ginecológica <span class="math inline">\(\rightarrow\)</span> Sexo Mujer.</p></li>
 <li><p>R3: Si Edad menor de 7 días o Causa Fiebre <span class="math inline">\(\rightarrow\)</span> Tiempo de evolución de 1 h.</p></li>
 <li><p>R4: Si Edad mayor de 12 años y Tiempo de Evolución mayor de 73 h <span class="math inline">\(\rightarrow\)</span> Causa Respiratoria.</p></li>
 <li><p>R5: Si Tiempo Evolución mayor de 73 h y Causa Ocular <span class="math inline">\(\rightarrow\)</span> Triaje 1.</p></li>
@@ -319,7 +319,7 @@ Figura 57.2: Ciclo de razonamiento hacia delante.
 <li><p>Cada regla se modela como una lista de antecedentes y un consecuente.</p></li>
 <li><p>La relación entre los consecuentes se modela con el atributo “operador” del siguiente modo: <code>1 = Y lógico, 0 = O lógico, -1 = no hay operaciones</code>.</p></li>
 </ol>
-<div class="sourceCode" id="cb833"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb834"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">r1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>  antecedentes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Causa_Ginecologica"</span>, <span class="st">"Edad_&gt;12a"</span><span class="op">)</span>,</span>
 <span>  consecuente <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"TiempoEvolucion_&gt;73h"</span><span class="op">)</span>, operador <span class="op">=</span> <span class="fl">0</span></span>
@@ -366,14 +366,14 @@ Figura 57.2: Ciclo de razonamiento hacia delante.
 <span><span class="co"># r1[[1]] [1] primero de los antecedentes</span></span>
 <span><span class="co"># r1[2] lista consecuentes</span></span>
 <span><span class="co"># r1[[2]] [1] primero de los consecuentes</span></span></code></pre></div>
-<div class="sourceCode" id="cb834"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb835"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">b_hechos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Causa_Ginecologica"</span>, <span class="st">"Edad_&gt;12a"</span>, <span class="st">"TiempoEvolucion_&gt;73h"</span><span class="op">)</span></span></code></pre></div>
 <p>Se inicializa la BC con el conjunto de reglas y la BH con la circunstancia a evaluar:</p>
-<div class="sourceCode" id="cb835"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb836"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se añaden todas las reglas a la Base de Conocimiento</span></span>
 <span><span class="va">b_conocimiento</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">r1</span>, <span class="va">r2</span>, <span class="va">r3</span>, <span class="va">r4</span>, <span class="va">r5</span>, <span class="va">r6</span>, <span class="va">r7</span>, <span class="va">r8</span>, <span class="va">r9</span>, <span class="va">r10</span><span class="op">)</span></span></code></pre></div>
 <p>Se define una función para comprobar la existencia de un número en una lista. Esta función será usada por el motor del SE:</p>
-<div class="sourceCode" id="cb836"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb837"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Función para comprobar si una lista contiene un número</span></span>
 <span><span class="va">contiene</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">numero</span>, <span class="va">lista</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">existe</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span></span>
@@ -385,7 +385,7 @@ Figura 57.2: Ciclo de razonamiento hacia delante.
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">existe</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Se implementa el motor del SE: el algoritmo ejecuta un bucle en el que, en cada iteración, evalúa las reglas disponibles contenidas en la BC. Considerando los ítems de la BH, si una regla puede ser “disparada” se añade al conjunto conflicto. La regla “disparada” en una iteración será la primera disponible en el conjunto conflicto. Este se inicializa en cada iteración. El consecuente de la regla “disparada” se añade a la BH. Cada regla solo puede “dispararse” una vez, por lo que se actualiza una lista de reglas “disparadas”. El algoritmo finaliza cuando el conjunto conflicto queda vacío, al haber sido “disparadas” todas las reglas o no existir más candidatas a ser “disparadas”.</p>
-<div class="sourceCode" id="cb837"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb838"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Motor del Sistema Experto</span></span>
 <span><span class="va">AlgoritmoSE</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">b_hechos</span>, <span class="va">b_conocimiento</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">c_conflicto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -441,11 +441,11 @@ Figura 57.2: Ciclo de razonamiento hacia delante.
 <span class="header-section-number">57.3.3</span> Puesta en marcha del sistema experto<a class="anchor" aria-label="anchor" href="#puesta-en-marcha-del-sistema-experto"><i class="fas fa-link"></i></a>
 </h3>
 <p>Ahora considérese, por ejemplo, una posible paciente con más de 12 años de edad, que acude a consulta por causa ginecológica con un tiempo de evolución de los síntomas mayor de 73 h. ¿Qué triaje le corresponde? Para responder esta pregunta, se inicializa la BH con la situación propuesta <code>(Causa_Ginecologica, Edad_&gt;12a y TiempoEvolucion_&gt;73h)</code>:</p>
-<div class="sourceCode" id="cb838"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb839"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se inicializa la base de hechos con la situación propuesta (paciente de más de 12 años que acude por causa ginecológica con tiempo de evolución mayor de 73h)</span></span>
 <span><span class="va">b_hechos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Causa_Ginecologica"</span>, <span class="st">"Edad_&gt;12a"</span>, <span class="st">"TiempoEvolucion_&gt;73h"</span><span class="op">)</span></span></code></pre></div>
 <p>y se ejecuta el motor del SE:</p>
-<div class="sourceCode" id="cb839"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb840"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se lanza la ejecución del motor del Sistema Experto</span></span>
 <span><span class="fu">AlgoritmoSE</span><span class="op">(</span><span class="va">b_hechos</span>, <span class="va">b_conocimiento</span><span class="op">)</span></span></code></pre></div>
 <p>El resultado proporcionado por el algoritmo es un triaje de valor <span class="math inline">\(4\)</span>. Es decir, el tiempo de espera máximo para recibir atención médica debería ser inferior a <span class="math inline">\(60\)</span> minutos. La Tabla <a href="#tab:TablaIteracionesAlgoritmo"><strong>??</strong></a> muestra el proceso realizado por el algoritmo en cada iteración.</p>
@@ -503,7 +503,7 @@ Figura 57.2: Ciclo de razonamiento hacia delante.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

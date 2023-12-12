@@ -1,4 +1,4 @@
-# Análisis electoral: de RStudio a su periódico {#cap-periodismo}
+# Análisis electoral: de RStudio a su periódico favorito {#cap-periodismo}
 
 *Borja Andrino Turón*
 
@@ -9,7 +9,7 @@ El País
 
 ## Motivación
 
-El uso de **R** en el entorno profesional ha llegado también a los periódicos. Cada vez es más habitual encontrar en los medios analistas de datos que lo utilizan en su día a día. En El País, muchos de los contenidos que se publican en la Unidad de Datos surgen de un *notebook* de RStudio. A continuación se muestra un análisis sobre las últimas elecciones andaluzas bajo el título *De RStudio a su periódico favorito*.
+El uso de **R** en el entorno profesional ha llegado también a los periódicos. Cada vez es más habitual encontrar en los medios analistas de datos que lo utilizan en su día a día. En *El País*, muchos de los contenidos que se publican en la Unidad de Datos surgen de un *notebook* de RStudio. A continuación se muestra un análisis sobre las últimas elecciones andaluzas bajo el título *De RStudio a su periódico favorito*.
 
 ## Obtención de los datos
 
@@ -141,14 +141,10 @@ datos_bloques |>
 
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth]{img/plot-voto-andalucia} 
-
-}
-
-\caption{Evolución del voto en Andalucía.}(\#fig:plot-voto-and)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/plot-voto-andalucia.png" alt="Evolución del voto en Andalucía." width="75%" />
+<p class="caption">(\#fig:plot-voto-and)Evolución del voto en Andalucía.</p>
+</div>
 
 
 Replicar la Fig. \@ref(fig:plot-voto-and) para cada provincia no es complicado. Únicamente hay que descartar los datos de toda Andalucía y usar la función `facet_wrap()`, que genera el mismo gráfico con el mismo estilo para cada provincia. 
@@ -172,14 +168,10 @@ datos_bloques |>
         plot.title = element_markdown(margin=margin(0,0,10,0)))
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth]{img/voto-andalucia-pro} 
-
-}
-
-\caption{Evolución del voto provincial en Andalucía.}(\#fig:plot-voto-pro)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/voto-andalucia-pro.png" alt="Evolución del voto provincial en Andalucía." width="75%" />
+<p class="caption">(\#fig:plot-voto-pro)Evolución del voto provincial en Andalucía.</p>
+</div>
 
 
 La Fig. \@ref(fig:plot-voto-pro) cuenta una historia complementaria (más detallada) a la relatada por la Fig. \@ref(fig:plot-voto-and). El giro no se ha producido igual en toda Andalucía, no es igual el de Almería que el de Sevilla. Para intentar buscar nuevas diferencias territoriales se explorarán los mapas de ganadores a nivel municipal. Se procede de igual manera que con los datos de provincias, salvo que en este caso se agrega a partir de la columna `codigo_mun`. Para calcular el ganador se agrupa por esta columna y se usa la función `slice_max()`, que tomará para cada municipio la fila del partido con el mayor número de votos. 
@@ -233,14 +225,10 @@ map_munis |>
 
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/voto-andalucia-muni} 
-
-}
-
-\caption{Evolución del voto municipal en Andalucía (2015-2018-2022).}(\#fig:plot-voto-andalucia-muni)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/voto-andalucia-muni.png" alt="Evolución del voto municipal en Andalucía (2015-2018-2022)." width="70%" />
+<p class="caption">(\#fig:plot-voto-andalucia-muni)Evolución del voto municipal en Andalucía (2015-2018-2022).</p>
+</div>
 
 
 En los mapas de la Fig. \@ref(fig:plot-voto-andalucia-muni) se encuentran nuevas historias. En 2015 la derecha era fuerte en la costa de Almería y Málaga. Su presencia creció en 2018, aunque la izquierda seguía ganando el interior de la comunidad. En 2018 el dominio del bloque de derechas se extendió por casi todo el territorio, en especial en las zonas donde ya era fuerte en 2015.

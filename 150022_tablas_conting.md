@@ -12,7 +12,7 @@ Universidad de Castilla-La Mancha
 
 ## Introducción {#motiv}
 
-\index{tabla de contingencia}
+\index{tabla!de contingencia}
 
 Las **tablas de contingencia** analizan la relación existente entre
 variables categóricas, o susceptibles de categorizar, con un número de
@@ -54,7 +54,7 @@ estadística que describe, conjuntamente, estos *N* elementos (en otros
 términos, que muestra las frecuencias conjuntas de los niveles de ambos
 factores) se denomina **tabla de contingencia** (Tabla
 \@ref(tab:tabla-contingencia)).\
-\index{tabla de contingencia}
+\index{tabla!de contingencia}
 
 |            |              |              |   Factor B   |       |              |           |
 |-----------|-----------|:---------:|:---------:|-----------|:---------:|:---------:|
@@ -138,11 +138,11 @@ tablas de contingencia:
 
 -   Y así sucesivamente.
 
-\index{tablas!de contingencia 2 x 2} \index{tablas!de contingencia R x C}
-\index{tablas!de contingencia multidimensionales}
+\index{tabla!de contingencia!$2\times2$} 
+\index{tabla!de contingencia!R $\times$ C}
+\index{tabla!de contingencia!multidimensional}
 
-Dentro de las tablas $R\times C$ se distinguen las tablas $2\times 2$ de
-las demás, por su especial interés en la realidad y por criterios
+Dentro de las tablas $R\times C$ se distinguen las tablas $2\times 2$ de las demás, por su especial interés en la realidad y por criterios
 pedagógicos, al ser las más sencillas.
 
 ### Diseños experimentales o procedimientos de muestreo que dan lugar a una tabla de contingencia {#prodecim}
@@ -256,7 +256,7 @@ marginales variables
 ## Contraste de independencia en tablas $2 \times 2$
 
 \index{contraste de independencia}
-\index{contraste de independencia!en tablas 2 x 2}
+\index{contraste de independencia!en tablas $2\times 2$}
 
 Como se avanzó en la Sec. \@ref(motiv), la primera pregunta a la que
 debe dar respuesta el análisis de tablas de contingencia es si los
@@ -267,9 +267,9 @@ inicialmente el caso de las tablas $2\times 2$. Dicho contraste se lleva
 a cabo de tres formas: ($i$) exacta, ($ii$) aproximada, y ($iii$)
 aproximada con corrección de continuidad.
 
-\index{contraste de independencia!en tablas 2 x 2!contraste exacto}
-\index{contraste de independencia!en tablas 2 x 2!contraste aproximado}
-\index{contraste de independencia!en tablas 2 x 2!contraste aproximado con corrección de continuidad}
+\index{contraste de independencia!en tablas $2\times 2$!contraste exacto}
+\index{contraste de independencia!en tablas $2\times 2$!contraste aproximado}
+\index{contraste de independencia!en tablas $2\times 2$!contraste aproximado con corrección de continuidad}
 
 ### Planteamiento general del contraste exacto de independencia {#plantgen}
 
@@ -328,12 +328,12 @@ cuando el diseño de muestreo es de tipo 2 o tipo 3.
 
 ### Contraste de independencia: diseño tipo 1
 
-\index{contraste de independencia!en tablas 2 x 2!totales marginales de ambos factores fijos}
+\index{contraste de independencia!en tablas $2\times 2$!totales marginales de ambos factores fijos}
 
 #### Contraste exacto (test exacto de Fisher)
 
-\index{contraste de independencia!en tablas 2 x 2!contraste exacto}
-\index{contraste de independencia!en tablas 2 x 2!test exacto de Fisher}
+\index{contraste de independencia!en tablas $2\times 2$!contraste exacto}
+\index{contraste de independencia!en tablas $2\times 2$!test exacto de Fisher}
 
 Considérese el ejemplo del diseño tipo 1 expuesto en la Sec.
 \@ref(prodecim).[^150022_tablas_conting-6] Supóngase que el resultado
@@ -395,7 +395,7 @@ ${D}_{11}=N_{11}-{E}_{11}\geq n_{11}-\frac {n_{1.} n_{\cdot1}}{n}$.
     mismo y las tablas seleccionadas serían, en el primer caso, todas
     menos la $T_7$, y en el segundo, $T_0$ y $T_1$.
 
-\index{frecuencia!esperada}
+\index{frecuencia esperada}
 
 En el ejemplo que se considera, las ${D}_{11}$ son las siguientes (en
 negrita las de la tabla observada y aquellas otras que se alejan tanto o
@@ -442,7 +442,7 @@ entre el tipo de judía y si es o no atacada por la larva de gorgojo.
 
 El código **R** necesario para tomar llevar a cabo el test exacto de
 Fisher anterior es:
-\index{contraste de independencia!en tablas 2 x 2!test exacto de Fisher}
+\index{contraste de independencia!en tablas $2\times 2$!test exacto de Fisher}
 
 
 ```r
@@ -491,7 +491,7 @@ $2 \times 2$, se cuantificará su intensidad.
 
 #### Contraste aproximado
 
-\index{contraste de independencia!en tablas 2 x 2!contraste aproximado}
+\index{contraste de independencia!en tablas $2\times 2$!contraste aproximado}
 
 En este caso (tipo 1), bajo $H_0$: independencia, la frecuencia conjunta
 de una celda, $N_{ij}$, cualquiera que sea, se distribuye según una ley
@@ -506,8 +506,8 @@ Y si ninguna $\hat{E}_{ij}=\frac{n_{ij}} {n_{i.}n_{\cdot j}}$ es
 inferior a 5, la probabilidad anterior puede aproximarse (teorema
 central del límite) por:
 
-\index{estadístico Chi-cuadrado}
-\index{estadístico Chi-cuadrado!ajustado}
+\index{estadístico!Chi-cuadrado}
+\index{estadístico!Chi-cuadrado!ajustado}
 
 $$P\left(\chi^2_1 \geq {\frac{\left( n_{11}-\frac{n_{1.} n_{\cdot1}}
 {n}\right)^2} {\frac{n_{1.}n_{\cdot1}n_{2.} n_{\cdot2}}{n^2 (n-1)}}}\right)=P\left( \chi^2_1 \geq {\frac{ (n-1)(n_{11}n_{22}-n_{21}n_{12}
@@ -551,11 +551,11 @@ frecuencias esperadas menores que 5.
 
 #### Contraste aproximado con corrección de continuidad
 
-\index{contraste de independencia!en tablas 2 x 2!contraste aproximado con corrección de continuidad}
+\index{contraste de independencia!en tablas $2\times 2$!contraste aproximado con corrección de continuidad}
 
 \index{corrección de continuidad!de Yates} \index{error!de continuidad}
-\index{estadístico Chi-cuadrado!corregido de continuidad de Yates}
-\index{estadístico Chi-cuadrado!ajustado!corregido de continuidad de Yates}
+\index{estadístico!Chi-cuadrado!corregido de continuidad de Yates}
+\index{estadístico!Chi-cuadrado!ajustado!corregido de continuidad de Yates}
 
 Como se vio en la subsección anterior, al aproximar la probabilidad de
 obtención de tablas tanto o más alejadas de $H_0$ que la observada (que
@@ -607,11 +607,11 @@ Otras correcciones pueden verse en @Ruiz_Maya_et_al1995 y @Montero2002.
 
 ### Contraste de independencia: diseños tipo 2 y tipo 3 {#dise}
 
-\index{contraste de independencia!en tablas 2 x 2!totales marginales de un factor fijos}
+\index{contraste de independencia!en tablas $2\times 2$!totales marginales de un factor fijos}
 
-\index{contraste de independencia!en tablas 2 x 2!contraste exacto}
-\index{contraste de independencia!en tablas 2 x 2!contraste aproximado}
-\index{contraste de independencia!en tablas 2 x 2!contraste aproximado con corrección de continuidad}
+\index{contraste de independencia!en tablas $2\times 2$!contraste exacto}
+\index{contraste de independencia!en tablas $2\times 2$!contraste aproximado}
+\index{contraste de independencia!en tablas $2\times 2$!contraste aproximado con corrección de continuidad}
 
 En el caso tipo 2, para la realización del test exacto, las tablas que
 se alejan tanto o más que la observada de la hipótesis de independencia
@@ -622,7 +622,7 @@ probabilidad de ocurrencia de una tabla de contingencia viene dada por:
 
 ```{=tex}
 \begin{equation}
-P\left({N_{11}}={n_{11}} ;{N_{12}}={n_{12}};{N_{21}}={n_{21}};{N_{22}}={n_{22}} |N=n\right) 
+P\left({N_{11}}={n_{11}} ;{N_{12}}={n_{12}};{N_{21}}={n_{21}};{N_{22}}={n_{22}} |N=n\right)
 = \\
 \binom{n_{1.}}{N_{11}} \binom {n_{2.}}{N_{21}}
  \left( \frac{N_{\cdot1}}{n} \right)^{N_{\cdot1}} \left( \frac {N_{\cdot2}}{n}\right)^{N_{\cdot2}}.
@@ -637,7 +637,7 @@ común de los tamaños muestrales fijados.
 
 En el caso tipo 3, las tablas que se alejan tanto o más que la observada
 de la hipótesis de independencia son las que verifican la condición
-expuesta en el tipo 2 (y tipo 1), siendo su probabilidad de ocurrencia: \index{contraste de independencia!en tablas 2 x 2!total muestral fijo}
+expuesta en el tipo 2 (y tipo 1), siendo su probabilidad de ocurrencia: \index{contraste de independencia!en tablas $2\times 2$!total muestral fijo}
 
 ```{=tex}
 \begin{equation}
@@ -669,11 +669,11 @@ imprescindible la realización del test.
 El código **R** para llevar a cabo estos dos contrastes aproximados
 puede verse en la Sec. \@ref(contaprox).
 
-\index{contraste de independencia!en tablas 2 x 2!contraste de razón de verosimilitudes}
+\index{contraste de independencia!en tablas $2\times 2$!contraste de razón de verosimilitudes}
 
 ## Contraste de independencia en tablas $R \times C$ {#contrasteRC}
 
-\index{contraste de independencia!en tablas R x C}
+\index{contraste de independencia!en tablas R $ \times $ C}
 
 El análisis de tablas $R\times C$ puede considerarse, en principio, una
 generalización del caso de tablas $2\times 2$. Ahora bien, en el caso
@@ -722,8 +722,8 @@ asociados, serán grandes y atribuibles a la asociación existente entre
 sus niveles. Pearson propuso el siguiente estadístico de contraste:
 $$\chi^2 =\sum_{i=1}^{R} \sum_{j=1}^{C}\frac {\left(N_{ij}-{E}_{ij}\right)^2} {{E}_{ij}},$$
 
-\index{estadístico Chi-cuadrado}
-\index{contraste de independencia!en tablas R x C!contraste aproximado}
+\index{estadístico!Chi-cuadrado}
+\index{contraste de independencia!en tablas R $ \times $ C!contraste aproximado}
 \index{contraste de independencia!contraste Chi-cuadrado}
 
 que, si no se incumple el requisito expuesto en las primeras lineas de
@@ -747,10 +747,10 @@ cosas bien diferentes. Una diferencia de 5 no es nada si $\hat{E}_{ij}=$
 1.000; pero es muchísimo si $\hat{E}_{ij}=2$. Por eso la diferencia
 (cuadrática) se pone en relación con la frecuencia esperada.
 
-\index{frecuencia!esperada}
+\index{frecuencia esperada}
 
 ```{=html}
-<!-- -   
+<!-- -
 ¿¿LO METO AQUÍ O EN MEDIDAS DE ASOCIACIÓN??
 El estadístico Chi-cuadrado tiene un límite superior fijo: $N(K-1)$, donde $N$ es el tamaño de la muestra y $K$ es el número más pequeño de filas o columnas. **Por eso no se puede utilizar como medida de asociación. ¿Un valor Chi-cuadrado de 35 es grande o pequeño, es decir, indica mucha o poca asociación? Pues depende; hay que compararlo con su valor máximo.**  -->
 ```
@@ -777,7 +777,7 @@ se distribuye como una $\chi_{(R-1)(C-1)}^2$. Ambos estadísticos de
 contraste, $\chi^2$ y $G$, son asintóticamente equivalentes.
 
 \index{contraste de independencia!contraste razón de verosimilitudes}
-\index{estadístico G@\textit{G}}
+\index{estadístico!G @\textit{G}}
 
 A modo de ejemplo, se quiere contrastar si en la Comunidad de Madrid la
 opinión sobre la presidente Dña. Isabel Díaz Ayuso depende de la zona
@@ -828,7 +828,7 @@ utilizados en la práctica (1%, 2,5%, 5%, 10%).
 
 ### Contraste aproximado con corrección de continuidad
 
-\index{contraste de independencia!en tablas R x C!contraste aproximado con corrección de continuidad}
+\index{contraste de independencia!en tablas R $ \times $ C!contraste aproximado con corrección de continuidad}
 
 Afortunadamente, en la mayoría de las ocasiones el tamaño muestral es
 grande y los totales marginales no están muy desequilibrados, con lo que
@@ -842,7 +842,7 @@ convencional sobre tablas de contingencia.
 
 ## Medidas de asociación en tablas $2 \times 2$ {#medidas}
 
-\index{medidas de asociación!en tablas 2 x 2}
+\index{medidas de asociación!en tablas $2\times 2$}
 \index{fuentes de asociación}
 
 Si no se rechaza la hipótesis de independencia, el análisis de la tabla
@@ -850,7 +850,7 @@ se puede dar por finalizado. En caso contrario, el nuevo objetivo es
 determinar la dirección de la asociación detectada (o las fuentes de
 asociación en el caso $R\times C$) y su intensidad, y para ello se
 utilizan las denominadas medidas de asociación. Igual que en el
-contraste de independencia, se distinguirán los casos $2\times 2$ y
+contraste de independencia, se distinguirán los casos $2 \times 2$ y
 $R\times C$, en esta ocasión no tanto por motivos pedagógicos sino
 porque las situaciones son bien diferentes.
 
@@ -881,7 +881,7 @@ factor. La asociación perfecta puede ser estricta o implícita de tipo
 
 ### La *Q* de Yule
 
-\index{medidas de asociación!en tablas 2 x 2!Q@\textit{Q} de Yule}
+\index{medidas de asociación!en tablas $2\times 2$!Q@\textit{Q} de Yule}
 
 En caso de independencia, las frecuencias observadas coinciden con las
 esperadas. A medida que las primeras se separan de las segundas, se
@@ -953,8 +953,8 @@ una fuerte asociación negativa.
 
 #### Cuadrado medio de la contingencia de Pearson {#cmc}
 
-\index{medidas de asociación!en tablas 2 x 2!cuadrado medio de la contingencia}
-\index{medidas de asociación!en tablas R x C!coeficiente de contingencia}
+\index{medidas de asociación!en tablas $2\times 2$!cuadrado medio de la contingencia}
+\index{medidas de asociación!en tablas R $ \times $ C!coeficiente de contingencia}
 
 La primera medida de asociación que suele venirnos a todos a la cabeza
 es el propio estadístico de contraste $\chi^2$. Sin embargo, no puede
@@ -983,7 +983,7 @@ factores. Por tanto, la asociación que mide es "lineal" (de ahí que su
 valor suela ser más bajo que el de ${Q}$). Su raíz cuadrada es conocida
 como la *V* de Cramer. En el ejemplo utilizado se tiene que:
 
-\index{medidas de asociación!en tablas 2 x 2!V@\textit{V} de Cramer}
+\index{medidas de asociación!en tablas $2\times 2$!V@\textit{V} de Cramer}
 
 
 ```r
@@ -995,8 +995,8 @@ como la *V* de Cramer. En el ejemplo utilizado se tiene que:
 
 [^150022_tablas_conting-13]: Para no confundirlo con el riesgo relativo.
 
-\index{medidas de asociación!en tablas 2 x 2!odds ratio@\textit{odds} ratio}
-\index{medidas de asociación!en tablas 2 x 2!riesgo relativo}
+\index{medidas de asociación!en tablas $2\times 2$!odds@\textit{odds} ratio}
+\index{medidas de asociación!en tablas $2\times 2$!riesgo relativo}
 
 Se define como $\alpha=\frac {P_{11}/P_{12}} {P_{21}/P_{22}}$, donde
 $P_{ij}$ es la probabilidad de que un elemento de la tabla pertenezca al
@@ -1050,13 +1050,13 @@ confianza del 95%:
 ```r
 library("epiR")
 epi.2by2(tabla_jud, method = "cohort.count")$massoc.summary[2, ]
-#>          var       est      lower     upper
-#> 2 Odds ratio 0.0952381 0.01021365 0.8880565
+#>              var       est      lower     upper
+#> 2 Inc odds ratio 0.0952381 0.01021365 0.8880565
 ```
 
 ## Medidas de asociación en tablas $R$ $\times$ $C$ {#medidas-rxc}
 
-\index{medidas de asociación!en tablas R x C}
+\index{medidas de asociación!en tablas R $ \times $ C}
 
 En caso de rechazo de la hipótesis de independencia en una tabla
 $R\times C$, se concluye que al menos un nivel de uno de los factores
@@ -1071,7 +1071,7 @@ los residuos estandarizados ajustados.
 
 ### Medidas derivadas del estadístico Chi-cuadrado
 
-\index{medidas de asociación!en tablas R x C!derivadas del estadístico Chi-cuadrado}
+\index{medidas de asociación!en tablas R $ \times $ C!derivadas del estadístico Chi-cuadrado}
 
 Como se avanzó en la Sec. \@ref(cmc), el estadístico $\chi^2$ no puede
 utilizarse como medida de asociación porque su valor máximo, $n(k-1)$,
@@ -1088,10 +1088,10 @@ $$V=\sqrt\frac{\chi^2}{kn},$$ con $k=min\left(R-1; C-1\right)$. Su campo
 de variación es $[0,1]$ y alcanza su máximo en caso de asociación
 perfecta. En tablas cuadradas $V=T$.
 
-\index{medidas de asociación!en tablas R x C!cuadrado medio de la contingencia}
-\index{medidas de asociación!en tablas R x C!coeficiente de contingencia}
-\index{medidas de asociación!en tablas R x C!T@\textit{T} de Tschuprow}
-\index{medidas de asociación!en tablas R x C!V@\textit{V} de Cramer}
+\index{medidas de asociación!en tablas R $ \times $ C!cuadrado medio de la contingencia}
+\index{medidas de asociación!en tablas R $ \times $ C!coeficiente de contingencia}
+\index{medidas de asociación!en tablas R $ \times $ C!T@\textit{T} de Tschuprow}
+\index{medidas de asociación!en tablas R $ \times $ C!V@\textit{V} de Cramer}
 
 En el ejemplo utilizado en la Sec. \@ref(contaprox):
 
@@ -1110,8 +1110,8 @@ es mala (alrededor del 4%) o muy mala (apenas el 1%).
 
 ### Medidas basadas en la reducción proporcional del error: $\lambda$ de Goodman y Kruskal
 
-\index{medidas de asociación!en tablas R x C!basadas en la reducción proporcional del error}
-\index{medidas de asociación!en tablas R x C!lambda de Goodman y Kruskal}
+\index{medidas de asociación!en tablas R $ \times $ C!basadas en la reducción proporcional del error}
+\index{medidas de asociación!en tablas R $ \times $ C!lambda de Goodman y Kruskal}
 
 Al contrario que las medidas basadas en el estadístico Chi-cuadrado,
 exigen determinar cuál es el factor explicativo y cuál el factor a

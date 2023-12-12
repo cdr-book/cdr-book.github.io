@@ -7,7 +7,7 @@
 <title>Capítulo 45 Creación de aplicaciones web interactivas con Shiny | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Aurora González Vidal Universidad de Murcia  45.1 Introducción  Shiny es un paquete de R que permite crear aplicaciones web interactivas que cuentan con todos los elementos de R. Shiny se ha...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 45 Creación de aplicaciones web interactivas con Shiny | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -139,14 +139,14 @@
 <span class="header-section-number">45.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-23"><i class="fas fa-link"></i></a>
 </h2>
 <p>
-<code>Shiny</code> es un paquete de <strong>R</strong> que permite crear aplicaciones web interactivas que cuentan con todos los elementos de <strong>R</strong>. <code>Shiny</code> se ha convertido en un referente ya que, para aquellos que tienen conocimiento de <strong>R</strong>, es muy sencillo crear una aplicación en cuestión de horas <span class="citation">(<a href="referncias.html#ref-chang2017shiny">Chang et al. 2017</a>)</span>. Para crear una aplicación mínima no se necesitan conocimientos de HTML (<em>HyperText Markup Language</em>), CSS (<em>Cascading Style Sheets</em>) o <em>JavaScript</em> y sus dependencias. Además, no es necesario pensar en elementos técnicos para hacerla accesible en la web como, por ejemplo, el puerto, ya que <code>Shiny</code> se encarga de esos detalles si no se cambian las opciones por defecto. Esas son algunas de las razones principales por las cuales <code>Shiny</code> se ha vuelto tan popular a lo largo de los años, ya que se pueden crear pruebas de concepto de un producto, mostrar algoritmos o presentar resultados de investigación con claridad a través de interfaces de usuario accesibles, reproducibles y amigables <span class="citation">(<a href="referncias.html#ref-fay2021engineering">Fay et al. 2021</a>)</span>.</p>
+<code>Shiny</code> es un paquete de <strong>R</strong> que permite crear aplicaciones web interactivas que cuentan con todos los elementos de <strong>R</strong>. <code>Shiny</code> se ha convertido en un referente ya que, para aquellos que tienen conocimiento de <strong>R</strong>, es muy sencillo crear una aplicación en cuestión de horas <span class="citation">(<a href="referencias.html#ref-chang2017shiny">Chang et al. 2017</a>)</span>. Para crear una aplicación mínima no se necesitan conocimientos de HTML (<em>HyperText Markup Language</em>), CSS (<em>Cascading Style Sheets</em>) o <em>JavaScript</em> y sus dependencias. Además, no es necesario pensar en elementos técnicos para hacerla accesible en la web como, por ejemplo, el puerto, ya que <code>Shiny</code> se encarga de esos detalles si no se cambian las opciones por defecto. Esas son algunas de las razones principales por las cuales <code>Shiny</code> se ha vuelto tan popular a lo largo de los años, ya que se pueden crear pruebas de concepto de un producto, mostrar algoritmos o presentar resultados de investigación con claridad a través de interfaces de usuario accesibles, reproducibles y amigables <span class="citation">(<a href="referencias.html#ref-fay2021engineering">Fay et al. 2021</a>)</span>.</p>
 <p>El primer paso para usar <code>Shiny</code> es instalar el paquete que está disponible en CRAN:</p>
-<div class="sourceCode" id="cb678"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb679"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"shiny"</span><span class="op">)</span></span></code></pre></div>
 <p>Para asegurarse de que la versión instalada es igual o superior a la 1.5.0. hay que usar <code>packageVersion("shiny")</code>.
 A continuación, se puede cargar el paquete y ver algunos ejemplos que se incluyen directamente en el mismo utilizando distintas opciones para el argumento <code>example</code>.</p>
-<div class="sourceCode" id="cb679"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://shiny.rstudio.com/">"shiny"</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb680"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://shiny.posit.co/">"shiny"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runExample.html">runExample</a></span><span class="op">(</span>example <span class="op">=</span> <span class="st">"01_hello"</span><span class="op">)</span></span>
 <span><span class="co"># otras: 02_text, 03_reactivity, 04_mpg, 05_sliders, 06_tabsets, 07_widgets, 08_html, 09_upload, 10_download,  11_timer.</span></span></code></pre></div>
 </div>
@@ -165,7 +165,7 @@ Una aplicación <code>Shiny</code> es un directorio que contiene estos scripts y
 <ul>
 <li><code>ui.R</code></li>
 </ul>
-<div class="sourceCode" id="cb680"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb681"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyUI.html">shinyUI</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html">titlePanel</a></span><span class="op">(</span><span class="st">"TITULO"</span><span class="op">)</span>, <span class="co"># panel de encabezado TÍTULO</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarPanel</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># panel lateral</span></span>
@@ -174,12 +174,12 @@ Una aplicación <code>Shiny</code> es un directorio que contiene estos scripts y
 <ul>
 <li><code>server.R</code></li>
 </ul>
-<div class="sourceCode" id="cb681"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb682"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyServer.html">shinyServer</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span>
 <span>            <span class="op">)</span></span></code></pre></div>
 <p>La aplicación se puede lanzar de dos maneras diferentes. La primera es mediante el comando <code><a href="https://rdrr.io/pkg/shiny/man/runApp.html">runApp()</a></code>, que tiene como argumento la ruta del directorio que almacena los ficheros que componen la aplicación.</p>
-<div class="sourceCode" id="cb682"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://shiny.rstudio.com/">"shiny"</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb683"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://shiny.posit.co/">"shiny"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runApp.html">runApp</a></span><span class="op">(</span><span class="st">"ruta al directorio"</span><span class="op">)</span></span></code></pre></div>
 <p>La segunda es lanzar la aplicación directamente desde RStudio mediante el botón <code>RunApp</code> que aparece en cualquiera de los dos scripts <code>ui.R</code> o <code>server.R</code> reemplazando, al <code>Run</code> habitual.</p>
 <p>En este capítulo, además de ver los distintos componentes de <code>Shiny</code>, se construye una aplicación para la visualización de algunos gráficos presentados en el Cap. <a href="paro-clm.html#paro-clm">52</a>. Los datos relacionados se encuentran en el paquete <code>CDR</code> del libro.</p>
@@ -206,7 +206,7 @@ Una aplicación <code>Shiny</code> es un directorio que contiene estos scripts y
 y <code><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarLayout()</a></code>, que es un punto de partida útil para la mayoría de las aplicaciones. Este, a su vez, tiene 2 argumentos más: <code><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarPanel()</a></code>, que es una barra lateral para las entradas y <code><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">mainPanel()</a></code>,
 una gran área principal para la salida.
 Un ejemplo sencillo de un diseño de página fluido se muestra en el siguiente código, que tiene como resultado la Fig. <a href="shiny.html#fig:izda">45.1</a>.</p>
-<div class="sourceCode" id="cb683"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyUI.html">shinyUI</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/headerPanel.html">headerPanel</a></span><span class="op">(</span><span class="st">"Evolución del paro"</span><span class="op">)</span>, <span class="co"># panel de encabezado</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarLayout</a></span><span class="op">(</span></span>
@@ -234,7 +234,7 @@ Figura 45.1: Mi primer Shiny: evolución del paro regisrado en Castilla-La Manch
 </p>
 </div>
 <p>La barra lateral puede posicionarse a la izquierda (por defecto) o a la derecha del área principal. Por ejemplo, para posicionar la barra lateral a la derecha se debe utilizar <code>position = 'right'</code>, como se aprecia en la Fig. <a href="shiny.html#fig:dcha">45.2</a>, donde el resto de argumentos son los mismos que para generar la Fig. <a href="shiny.html#fig:izda">45.1</a>.</p>
-<div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb685"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyUI.html">shinyUI</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/headerPanel.html">headerPanel</a></span><span class="op">(</span><span class="st">"Evolución del paro"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarLayout</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"right"</span>, <span class="va">...</span><span class="op">)</span></span>
@@ -252,7 +252,7 @@ Figura 45.2: Aplicación Shiny con sidebarPanel a la derecha: evolución del par
 <span class="header-section-number">45.3.2</span> Segmentación de diseños: <code>tabsetPanel()</code> y <code>navlistPanel()</code><a class="anchor" aria-label="anchor" href="#segmentaci%C3%B3n-de-dise%C3%B1os-tabsetpanel-y-navlistpanel"><i class="fas fa-link"></i></a>
 </h3>
 <p>Para subdividir el panel principal en varias secciones discretas, es decir, para crear pestañas, se puede usar <code><a href="https://rdrr.io/pkg/shiny/man/tabsetPanel.html">tabsetPanel()</a></code> y <code><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html">tabPanel()</a></code> como sigue:</p>
-<div class="sourceCode" id="cb685"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">mainPanel</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabsetPanel.html">tabsetPanel</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html">tabPanel</a></span><span class="op">(</span></span>
@@ -281,7 +281,7 @@ Figura 45.3: Aplicación Shiny con varias pestañas: evolución del paro regisra
 </div>
 <p>En el ejemplo de la Fig. <a href="shiny.html#fig:sh-ventanas">45.3</a> se aprecia que hay 3 pestañas. Se muestra la tercera, que es la evolución del paro registrado en Castilla-La Mancha (España) por tiempo de búsqueda de empleo. Obsérvese que no es una gráfica reactiva, sino estática.</p>
 <p><code><a href="https://rdrr.io/pkg/shiny/man/navlistPanel.html">navlistPanel()</a></code> es una alternativa a <code><a href="https://rdrr.io/pkg/shiny/man/tabsetPanel.html">tabsetPanel()</a></code> cuando existan muchas separaciones. Un <code>navlist</code> presenta los distintos componentes como una lista de la barra lateral en lugar de utilizar pestañas y no se hace en el <code><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">mainPanel()</a></code>.</p>
-<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb687"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html">titlePanel</a></span><span class="op">(</span><span class="st">"Application Title"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/navlistPanel.html">navlistPanel</a></span><span class="op">(</span></span>
@@ -304,7 +304,7 @@ Figura 45.3: Aplicación Shiny con varias pestañas: evolución del paro regisra
 <span class="header-section-number">45.4.1</span> Control deslizante<a class="anchor" aria-label="anchor" href="#control-deslizante"><i class="fas fa-link"></i></a>
 </h3>
 <p>Un control deslizante permite que el usuario seleccione entre un intervalo de valores moviendo un control de posición por una pista. En <code>Shiny</code> se crea con la función <code><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput()</a></code>, que tiene, entre otros, los siguientes argumentos:</p>
-<div class="sourceCode" id="cb687"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb688"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span><span class="va">inputId</span>, <span class="va">label</span>, <span class="va">min</span>, <span class="va">max</span>, <span class="va">value</span>, step <span class="op">=</span> <span class="cn">NULL</span>, animate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li><p><code>inputId</code>: la entrada que se utiliza para acceder al valor,</p></li>
@@ -317,7 +317,7 @@ Figura 45.3: Aplicación Shiny con varias pestañas: evolución del paro regisra
 </ul>
 <p>Sus características incluyen (i) la posibilidad de introducir un único valor y rangos, (ii) formatos personalizados (por ejemplo, para entradas relativas al dinero) y (iii) pueden ser animados y recorrer los valores de forma automática (argumento <code>animate</code>).</p>
 <p>Algunos ejemplos se muestran en el siguiente código:</p>
-<div class="sourceCode" id="cb688"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb689"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span><span class="st">"enteros"</span>, <span class="st">"Enteros:"</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1000</span>, value <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span><span class="st">"decimales"</span>, <span class="st">"Decimales:"</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1</span>, value <span class="op">=</span> <span class="fl">0.5</span>, step <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span><span class="st">"rango"</span>, <span class="st">"Rango:"</span>, min <span class="op">=</span> <span class="fl">1</span>, max <span class="op">=</span> <span class="fl">1000</span>, value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">500</span><span class="op">)</span><span class="op">)</span></span>
@@ -328,7 +328,7 @@ Figura 45.3: Aplicación Shiny con varias pestañas: evolución del paro regisra
 <span class="header-section-number">45.4.2</span> Botón circular<a class="anchor" aria-label="anchor" href="#bot%C3%B3n-circular"><i class="fas fa-link"></i></a>
 </h3>
 <p>Un botón circular es un tipo de selector que proporciona una lista de opciones entre las cuales solo se puede seleccionar una. En <code>Shiny</code> se crean con la función <code><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html">radioButtons()</a></code>, que tiene, entre otros, los argumentos autoexplicativos que se muestran en el siguente <em>chunk</em>:</p>
-<div class="sourceCode" id="cb689"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb690"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html">radioButtons</a></span><span class="op">(</span><span class="va">inputId</span>, <span class="va">label</span>, <span class="va">choices</span>, selected <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
 <p>Un ejemplo donde la variable <code>sexo</code> se elige por defecto se puede ver en el primer trozo de código (<em>chunk</em>) de la subsección <a href="shiny.html#dispag">45.3.1</a>: <code><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarLayout()</a></code>.</p>
 </div>
@@ -337,9 +337,9 @@ Figura 45.3: Aplicación Shiny con varias pestañas: evolución del paro regisra
 <span class="header-section-number">45.4.3</span> Selección múltiple<a class="anchor" aria-label="anchor" href="#selecci%C3%B3n-m%C3%BAltiple"><i class="fas fa-link"></i></a>
 </h3>
 <p>Un cuadro de selección múltiple es un tipo de selector que proporciona una lista de opciones entre las cuales se pueden seleccionar varias. En <code>Shiny</code> se crean con la función <code><a href="https://rdrr.io/pkg/shiny/man/selectInput.html">selectInput()</a></code>, que tiene, entre otros, los siguientes argumentos autoexplicativos:</p>
-<div class="sourceCode" id="cb690"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html">selectInput</a></span><span class="op">(</span><span class="va">inputId</span>, <span class="va">label</span>, <span class="va">choices</span>, multiple <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb691"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html">selectInput</a></span><span class="op">(</span><span class="va">inputId</span>, <span class="va">label</span>, <span class="va">choices</span>, multiple <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb692"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html">selectInput</a></span><span class="op">(</span><span class="st">"año"</span>, <span class="st">"Año:"</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>    <span class="st">"año1"</span> <span class="op">=</span> <span class="st">"2007"</span>,</span>
@@ -355,9 +355,9 @@ Figura 45.3: Aplicación Shiny con varias pestañas: evolución del paro regisra
 <span class="header-section-number">45.4.4</span> Entrada de grupo<a class="anchor" aria-label="anchor" href="#entrada-de-grupo"><i class="fas fa-link"></i></a>
 </h3>
 <p>Este componente, muy similar al anterior, crea un grupo de casillas que se pueden utilizar para alternar varias opciones de forma independiente.</p>
-<div class="sourceCode" id="cb692"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html">checkboxGroupInput</a></span><span class="op">(</span><span class="va">inputId</span>, <span class="va">label</span>, <span class="va">choices</span>, multiple <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb693"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html">checkboxGroupInput</a></span><span class="op">(</span><span class="va">inputId</span>, <span class="va">label</span>, <span class="va">choices</span>, multiple <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb694"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html">checkboxGroupInput</a></span><span class="op">(</span></span>
 <span>  <span class="st">"variable"</span>, <span class="st">"Variables to show:"</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
@@ -373,7 +373,7 @@ Figura 45.3: Aplicación Shiny con varias pestañas: evolución del paro regisra
 <span class="header-section-number">45.4.5</span> Entrada numérica<a class="anchor" aria-label="anchor" href="#entrada-num%C3%A9rica"><i class="fas fa-link"></i></a>
 </h3>
 <p>Crea un control de entrada de valores numéricos.</p>
-<div class="sourceCode" id="cb694"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb695"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html">numericInput</a></span><span class="op">(</span><span class="st">"obs"</span>, <span class="st">"Numero de observaciones:"</span>, <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="entrada-de-texto" class="section level3" number="45.4.6">
@@ -381,7 +381,7 @@ Figura 45.3: Aplicación Shiny con varias pestañas: evolución del paro regisra
 <span class="header-section-number">45.4.6</span> Entrada de texto<a class="anchor" aria-label="anchor" href="#entrada-de-texto"><i class="fas fa-link"></i></a>
 </h3>
 <p>Crea un texto de ayuda que se pueda agregar a un formulario de entrada para proporcionar una explicación o contexto adicional.</p>
-<div class="sourceCode" id="cb695"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb696"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/helpText.html">helpText</a></span><span class="op">(</span><span class="st">"aclaraciones"</span><span class="op">)</span></span></code></pre></div>
 <p>Otras opciones de entrada que se invita a analizar al lector están relacionadas con las fechas: <code><a href="https://rdrr.io/pkg/shiny/man/dateInput.html">dateInput()</a></code>, <code><a href="https://rdrr.io/pkg/shiny/man/dateRangeInput.html">dateRangeInput()</a></code> y con una área de texto: <code><a href="https://rdrr.io/pkg/shiny/man/textAreaInput.html">textAreaInput()</a></code>. Un ejemplo de lo expuesto anteriormente puede verse en la Fig <a href="shiny.html#fig:sh-intro-datos">45.4</a>.</p>
 <div class="figure" style="text-align: center">
@@ -396,7 +396,7 @@ Figura 45.4: Distintos elementos para la introducción de datos.
 <span class="header-section-number">45.4.7</span> Lectura de ficheros de datos<a class="anchor" aria-label="anchor" href="#lectura-de-ficheros-de-datos"><i class="fas fa-link"></i></a>
 </h3>
 <p>Es posible introducir información a través de la lectura de ficheros de datos con la función <code><a href="https://rdrr.io/pkg/shiny/man/fileInput.html">fileInput()</a></code>. Se pueden combinar valores por defecto de esta función con algunos de los elementos anteriores para definir las características del dataset (separador, decimal, cabecera). En el siguiente ejemplo se utiliza la función <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> y se da a elegir si tiene cabecera o no con el <code><a href="https://rdrr.io/pkg/shiny/man/checkboxInput.html">checkboxInput()</a></code>, así como el tipo de decimal con el <code>radioButtons</code>. Otra particularidad del ejemplo es que se asume que los datos están separados por punto y coma, tal y como se aprecia en el argumento <code>sep</code> del <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code>.</p>
-<div class="sourceCode" id="cb696"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb697"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyUI.html">shinyUI</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/headerPanel.html">headerPanel</a></span><span class="op">(</span><span class="st">"Lectura de datos"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarPanel</a></span><span class="op">(</span></span>
@@ -502,7 +502,7 @@ Esto se hace proporcionando el código <strong>R</strong> que construye el objet
 <li>
 <strong>Gráficos</strong>: para generar la aplicación de la Fig. <a href="shiny.html#fig:sh-ventanas">45.3</a> se utiliza <code><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot()</a></code> en el <code>server.R</code> como sigue:</li>
 </ul>
-<div class="sourceCode" id="cb697"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb698"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"source.R"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyServer.html">shinyServer</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">output</span><span class="op">$</span><span class="va">gra1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
@@ -514,7 +514,7 @@ Esto se hace proporcionando el código <strong>R</strong> que construye el objet
 <li>
 <strong>Tablas</strong>: para mostrar la tabla de la Fig. <a href="shiny.html#fig:shiny-lee">45.5</a> se utiliza <code><a href="https://rdrr.io/pkg/shiny/man/renderTable.html">renderTable()</a></code> en el <code>server</code> y <code><a href="https://rdrr.io/pkg/shiny/man/renderTable.html">tableOutput()</a></code> en el <code>ui</code>.</li>
 </ul>
-<div class="sourceCode" id="cb698"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb699"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyServer.html">shinyServer</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">output</span><span class="op">$</span><span class="va">contents</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderTable.html">renderTable</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="va">inFile</span> <span class="op">&lt;-</span> <span class="va">input</span><span class="op">$</span><span class="va">file1</span></span>
@@ -530,10 +530,10 @@ Esto se hace proporcionando el código <strong>R</strong> que construye el objet
 <span class="header-section-number">45.6</span> Reactividad<a class="anchor" aria-label="anchor" href="#reactividad"><i class="fas fa-link"></i></a>
 </h2>
 <p>La programación reactiva es un paradigma de programación que se encarga de los flujos de datos y la propagación de los cambios. Esto significa que cuando un flujo de datos es emitido por un componente, el cambio se propagará a otros componentes.</p>
-<p>El modelo de reactividad que utiliza <code>Shiny</code> es el siguiente: hay una fuente reactiva, un conductor reactivo y un punto final de la reactividad <span class="citation">(<a href="referncias.html#ref-wickham2021mastering">Hadley Wickham 2021</a>)</span>.
+<p>El modelo de reactividad que utiliza <code>Shiny</code> es el siguiente: hay una fuente reactiva, un conductor reactivo y un punto final de la reactividad <span class="citation">(<a href="referencias.html#ref-wickham2021mastering">Hadley Wickham 2021</a>)</span>.
 La fuente reactiva suele ser lo que el usuario introduce y el punto de parada, lo que se muestra por pantalla. A lo que el usuario introduce se accede con el objeto <code>input</code> y a lo que se muestra por pantalla, con el objeto <code>output</code>.
 Un ejemplo que ya se ha usado es el siguiente:</p>
-<div class="sourceCode" id="cb699"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb700"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">output</span><span class="op">$</span><span class="va">gra1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>  <span class="fu">graf_evol</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">vble</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
@@ -545,7 +545,7 @@ Un ejemplo que ya se ha usado es el siguiente:</p>
 <p>También es posible crear componentes reactivos que conecten los <em>inputs</em> y los <em>outputs</em>. En el siguiente ejemplo se ha creado un objeto reactivo <code>datos</code> que genera datos que siguen una distribución que el usuario selecciona a través del radioButton <code>dist</code> y cuya muestra tiene tantos elementos como el usuario haya especificado en el numericInput <code>obs</code>.</p>
 <p><code>Shiny</code>, además, permite controlar la reactividad a través de los actionButtons. Se pueden modificar las entradas sin obtener una respuesta hasta que se apriete dicho botón.</p>
 <p>Se ha creado un panel nuevo dentro del <code>mainPanel</code> que contiene, además del <code>plot</code> previo, un <code>actionButton</code> con la etiqueta <code>Presiona</code> (véase Fig. <a href="shiny.html#fig:sh-react">45.6</a>)</p>
-<div class="sourceCode" id="cb700"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb701"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyUI.html">shinyUI</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/headerPanel.html">headerPanel</a></span><span class="op">(</span><span class="st">"Controlar reactividad"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarPanel</a></span><span class="op">(</span></span>
@@ -568,7 +568,7 @@ Un ejemplo que ya se ha usado es el siguiente:</p>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>A continuación, se hace referencia a ese botón para cada una de las expresiones reactivas que se aislarán con la función <code><a href="https://rdrr.io/pkg/shiny/man/isolate.html">isolate()</a></code>:</p>
-<div class="sourceCode" id="cb701"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb702"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyServer.html">shinyServer</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">datos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html">reactive</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">botonReac</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
@@ -622,12 +622,12 @@ Figura 45.6: Control de la reactividad en un histograma.
 <li><p>La última versión del paquete <code>rsconnect</code>.</p></li>
 </ul>
 <p>En la web <a href="shinyapps.io">shinyapps.io</a>, en el apartado “Dashboard”, se realiza el registro. Shinyapps.io genera de forma automática un <em>token</em> que el paquete <code>rsconnect</code> utiliza para acceder a la cuenta.</p>
-<div class="sourceCode" id="cb702"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">rsconnect</span><span class="fu">::</span><span class="fu">setAccountInfo</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"&lt;ACCOUNT&gt;"</span>, token <span class="op">=</span> <span class="st">"&lt;TOKEN&gt;"</span>, secret <span class="op">=</span> <span class="st">"&lt;SECRET&gt;"</span><span class="op">)</span></span></code></pre></div>
-<p>Para desplegar la aplicación se utiliza <code>deployApp()</code> como sigue:</p>
 <div class="sourceCode" id="cb703"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">rsconnect</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rsconnect/man/setAccountInfo.html">setAccountInfo</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"&lt;ACCOUNT&gt;"</span>, token <span class="op">=</span> <span class="st">"&lt;TOKEN&gt;"</span>, secret <span class="op">=</span> <span class="st">"&lt;SECRET&gt;"</span><span class="op">)</span></span></code></pre></div>
+<p>Para desplegar la aplicación se utiliza <code><a href="https://rdrr.io/pkg/rsconnect/man/deployApp.html">deployApp()</a></code> como sigue:</p>
+<div class="sourceCode" id="cb704"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/rsconnect">rsconnect</a></span><span class="op">)</span></span>
-<span><span class="fu">deployApp</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/rsconnect/man/deployApp.html">deployApp</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Existen opciones gratuitas que carecen de ciertas ventajas, como la posibilidad de restringir el acceso a la aplicación Shiny, es decir, la aplicación no será privada con el plan gratuito, aunque sí existen las opciones de autentificación con otros planes. Para más información sobre este método, consúltese la página <a href="https://shiny.rstudio.com/articles/shinyapps.html">https://shiny.rstudio.com/articles/shinyapps.html</a>.</p>
 <ul>
 <li>Shiny Server</li>
@@ -655,7 +655,7 @@ Con RStudio Connect se puede programar la ejecución de informes y políticas de
 <h2>
 <span class="header-section-number">45.8</span> Extensiones de <code>Shiny</code><a class="anchor" aria-label="anchor" href="#extensiones-de-shiny"><i class="fas fa-link"></i></a>
 </h2>
-<p><code>Shiny</code> es una herramienta totalmente expansible. Lo que se ha mostrado en este capítulo hasta ahora es un aperitivo en relación a todas las posibilidades que existen en el mundo de <code>Shiny</code>. Hay repositorios que recopilan información sobre paquetes que proveen de mejoras a las aplicaciones <code>Shiny</code> en su estilo y funcionalidad <span class="citation">(<a href="referncias.html#ref-awesome">Xiao 2018</a>; <a href="referncias.html#ref-awesome2">Gilmore et al. 2017</a>)</span>. En esta sección se mencionan algunos de ellos pero, sobre todo, se recomienda al lector visitar dichos repositorios para una mayor profundidad en este tema.</p>
+<p><code>Shiny</code> es una herramienta totalmente expansible. Lo que se ha mostrado en este capítulo hasta ahora es un aperitivo en relación a todas las posibilidades que existen en el mundo de <code>Shiny</code>. Hay repositorios que recopilan información sobre paquetes que proveen de mejoras a las aplicaciones <code>Shiny</code> en su estilo y funcionalidad <span class="citation">(<a href="referencias.html#ref-awesome">Xiao 2018</a>; <a href="referencias.html#ref-awesome2">Gilmore et al. 2017</a>)</span>. En esta sección se mencionan algunos de ellos pero, sobre todo, se recomienda al lector visitar dichos repositorios para una mayor profundidad en este tema.</p>
 <div id="temas-de-estilo" class="section level3" number="45.8.1">
 <h3>
 <span class="header-section-number">45.8.1</span> Temas de estilo<a class="anchor" aria-label="anchor" href="#temas-de-estilo"><i class="fas fa-link"></i></a>
@@ -754,7 +754,7 @@ Con RStudio Connect se puede programar la ejecución de informes y políticas de
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -4,21 +4,20 @@
 
 *Pedro Albarracín García*
 
-FDS, a DXC Technology Company
-
+DXC Technology
 
 ## Introducción
 
-En un informe publicado en diciembre de 2021 por Nilson Report^[https://nilsonreport.com/newsletters/1209/],
-se informó de que los emisores de tarjetas de crédito, comerciantes y
+En un informe publicado en diciembre de 2021 por Nilson Report,^[https://nilsonreport.com/newsletters/1209/]
+se anunció que los emisores de tarjetas de crédito, comerciantes y
 consumidores sufrieron un total de 28.580 millones de dólares de
 pérdidas por fraude en 2020, es decir, 6,8 centavos por cada 100 dólares
-en volumen de compras. Sólo el fraude representa el 35,83% del
+en volumen de compras. Solo el fraude representa el 35,83% del
 total mundial.
 
 \index{fraude}
 
-En Europa la situación no es más alentadora. Según un informe del [Banco Central Europeo publicado en 2020]^[https://www.ecb.europa.eu/pub/cardfraud/html/ecb.cardfraudreport202008~521edb602b.en.html#toc2],
+En Europa la situación no es más alentadora. Según un informe del Banco Central Europeo publicado en 2020,^[https://www.ecb.europa.eu/pub/cardfraud/html/ecb.cardfraudreport202008~521edb602b.en.html#toc2]
 el valor total de las transacciones con tarjeta en la zona SEPA
 ascendió a 4,84 billones de euros en 2018, de los cuales 1.800
 millones correspondieron a operaciones fraudulentas.
@@ -237,14 +236,10 @@ ggplot(data = undersampled_combined, aes(fill = Class))+
         panel.background = element_blank())
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{212060_cd_finanzas_files/figure-latex/muestras-1} 
-
-}
-
-\caption{Número de casos de cada clase después de submuestreo}(\#fig:muestras)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="212060_cd_finanzas_files/figure-html/muestras-1.png" alt="Número de casos de cada clase después de submuestreo." width="60%" />
+<p class="caption">(\#fig:muestras)Número de casos de cada clase después de submuestreo.</p>
+</div>
 
 
 ### Modelo de clasificación mediante regresión lógística
@@ -256,7 +251,7 @@ de los datos equilibrados \index{datos!equilibrados} obtenidos anteriormente. Po
 observaciones, un 50% de las cuales son transacciones identificadas como
 fraude.
 
-Lo primero que hay que hacer es realizar un par de pequeños cambios en el dataset; concretamente, $(i)$ eliminar las variables `Time` y `Amount`, ya que no son relevantes en el modelo, y $(ii)$ cambiar por 0 y 1 las etiquetas `Legitima`
+Lo primero que hay que hacer es realizar un par de pequeños cambios en el dataset; concretamente: $(i)$ eliminar las variables `Time` y `Amount`, ya que no son relevantes en el modelo, y $(ii)$ cambiar por 0 y 1 las etiquetas `Legitima`
 y `Fraude`, respectivamente.
 
 
@@ -267,7 +262,7 @@ undersampled_combined$Class <- ifelse(undersampled_combined$Class == "Fraude",1,
 
 Lo siguiente será dividir el conjunto de datos en los subconjuntos de
 entrenamiento y test, para lo cual se aplica la función `split()` con
-un `SplitRatio` de  0,80, es decir, un 80 % de los datos irán de forma
+un `SplitRatio` de  0,80, es decir, un 80% de los datos irá de forma
 aleatoria al subconjunto de entrenamiento (788 observaciones) y
 el 20% restante (196 observaciones) al subconjunto de test.
 
@@ -281,14 +276,13 @@ training = subset(undersampled_combined, split == TRUE)
 test = subset(undersampled_combined, split == FALSE)
 ```
 
-Una vez en disposición de los subconjuntos de entrenamiento y test , el siguiente paso es
-entrenar el modelo de regresión logística que clasificará las
+Una vez en disposición de los subconjuntos de entrenamiento y test, el siguiente paso es entrenar el modelo de regresión logística que clasificará las
 transacciones en legítimas o fraudulentas. Para ello se utiliza el
 algoritmo GLM, creando un clasificador, que se identificará como
 `undersampledModel`, al que se le pasarán los parámetros siguientes:
 
 • `formula`: con este parámetro se indica la variable dependiente
-seguida del simbolo \~ y un punto (con el punto se hace referencia al
+seguida del símbolo \~ y un punto (con el punto se hace referencia al
 resto de variables del conjunto de datos: `V1`...`V28`).
 
 • `data`: el dataset con los datos de entrenamiento.
@@ -301,7 +295,7 @@ indica que será de tipo `binomial`.
 undersampledModel = glm(Class ~ ., data = training, family = binomial())
 ```
 
-Para ver los resultados del modelo, ejecutar:
+Para ver los resultados del modelo, se ejecutará:
 
 
 ```r
@@ -310,49 +304,45 @@ summary(undersampledModel)
 #> Call:
 #> glm(formula = Class ~ ., family = binomial(), data = training)
 #> 
-#> Deviance Residuals: 
-#>     Min       1Q   Median       3Q      Max  
-#> -3.0418  -0.2195   0.0000   0.0000   2.6263  
-#> 
 #> Coefficients:
-#>              Estimate Std. Error z value Pr(>|z|)   
-#> (Intercept)   0.42138    1.67197   0.252  0.80102   
-#> V1          -11.08270    4.53476  -2.444  0.01453 * 
-#> V2           10.85873    4.52034   2.402  0.01630 * 
-#> V3          -26.63948   10.60046  -2.513  0.01197 * 
-#> V4           17.55631    6.53476   2.687  0.00722 **
-#> V5          -18.37266    7.34914  -2.500  0.01242 * 
-#> V6           -6.72701    2.57424  -2.613  0.00897 **
-#> V7          -34.99952   13.95611  -2.508  0.01215 * 
-#> V8            6.56765    2.96925   2.212  0.02697 * 
-#> V9          -17.84623    7.00830  -2.546  0.01088 * 
-#> V10         -41.98875   16.28756  -2.578  0.00994 **
-#> V11          29.74690   11.51140   2.584  0.00976 **
-#> V12         -52.88448   20.58977  -2.568  0.01021 * 
-#> V13           0.07827    0.29243   0.268  0.78897   
-#> V14         -55.81155   21.40983  -2.607  0.00914 **
-#> V15          -1.05978    0.46915  -2.259  0.02389 * 
-#> V16         -49.29923   19.29202  -2.555  0.01061 * 
-#> V17         -89.66480   35.03552  -2.559  0.01049 * 
-#> V18         -33.12546   13.06527  -2.535  0.01123 * 
-#> V19          10.97061    4.31778   2.541  0.01106 * 
-#> V20           5.95733    2.44543   2.436  0.01485 * 
-#> V21           7.37912    2.96762   2.487  0.01290 * 
-#> V22           0.60049    0.37563   1.599  0.10990   
-#> V23          -1.19887    0.37200  -3.223  0.00127 **
-#> V24          -0.85895    0.58721  -1.463  0.14353   
-#> V25           2.28043    0.99498   2.292  0.02191 * 
-#> V26           0.80471    0.55522   1.449  0.14724   
-#> V27          10.71404    3.75654   2.852  0.00434 **
-#> V28           7.59056    3.09734   2.451  0.01426 * 
+#>              Estimate Std. Error z value Pr(>|z|)    
+#> (Intercept)    2.5009     1.7509   1.428 0.153183    
+#> V1           -17.9509     4.9954  -3.594 0.000326 ***
+#> V2            17.5583     4.9540   3.544 0.000394 ***
+#> V3           -43.3067    11.7479  -3.686 0.000228 ***
+#> V4            27.9272     7.2714   3.841 0.000123 ***
+#> V5           -29.4626     8.0343  -3.667 0.000245 ***
+#> V6           -10.1965     2.7901  -3.654 0.000258 ***
+#> V7           -56.5920    15.4443  -3.664 0.000248 ***
+#> V8            11.1555     3.2997   3.381 0.000723 ***
+#> V9           -28.9426     7.7225  -3.748 0.000178 ***
+#> V10          -68.2216    18.1381  -3.761 0.000169 ***
+#> V11           48.0556    12.8217   3.748 0.000178 ***
+#> V12          -85.8596    22.9005  -3.749 0.000177 ***
+#> V13            0.3407     0.2936   1.160 0.245887    
+#> V14          -89.9649    23.8261  -3.776 0.000159 ***
+#> V15           -1.1620     0.4824  -2.409 0.016008 *  
+#> V16          -79.8930    21.4102  -3.732 0.000190 ***
+#> V17         -145.4601    38.9605  -3.734 0.000189 ***
+#> V18          -54.4924    14.5879  -3.735 0.000187 ***
+#> V19           18.0532     4.8254   3.741 0.000183 ***
+#> V20            8.8181     2.6847   3.285 0.001022 ** 
+#> V21           11.8179     3.1719   3.726 0.000195 ***
+#> V22            1.2859     0.4156   3.094 0.001977 ** 
+#> V23           -1.6211     0.3723  -4.354 1.34e-05 ***
+#> V24           -0.6138     0.5190  -1.183 0.236943    
+#> V25            3.2724     1.1378   2.876 0.004027 ** 
+#> V26            0.7369     0.5534   1.332 0.182950    
+#> V27           16.3942     4.2152   3.889 0.000101 ***
+#> V28           14.4211     3.7671   3.828 0.000129 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> 
 #> (Dispersion parameter for binomial family taken to be 1)
 #> 
 #>     Null deviance: 1092.40  on 787  degrees of freedom
-#> Residual deviance:  184.68  on 759  degrees of freedom
-#> AIC: 242.68
+#> Residual deviance:  186.13  on 759  degrees of freedom
+#> AIC: 244.13
 #> 
 #> Number of Fisher Scoring iterations: 19
 ```
@@ -363,7 +353,7 @@ Los parámetros son simples: el primero es el modelo o clasificador que
 se va a utilizar y que será `undersampledModel`; a continuación el tipo
 de dato que devolverá, en este caso `response`: las probabilidades de fraude listadas en un único
 vector que estará disponible a partir de la variable `fraud_prob`;
-y, por último, el parámetro `newdata`, que hace referencia al *dataset* en
+y, por último, el parámetro `newdata`, que hace referencia al dataset en
 el que se descarta la última columna por ser la que representa la
 variable dependiente.
 
@@ -372,8 +362,8 @@ variable dependiente.
 fraud_prob = predict(undersampledModel, type = "response", 
                      newdata = test[,-29])
 head(fraud_prob)
-#>         1962         4339         4454         5278         6109         6554 
-#> 0.1628818133 0.0000737981 0.0103952513 0.0121744611 1.0000000000 0.0391877590
+#>          646         1923         2963         4025         5332         6109 
+#> 4.544401e-04 1.247090e-13 3.944901e-02 2.558175e-02 4.559502e-04 1.000000e+00
 ```
 
 La visualización del vector con las predicciones puede parecer algo
@@ -407,7 +397,7 @@ confusionMatrix = table(test[, 29], y_pred)
 confusionMatrix
 #>    y_pred
 #>      0  1
-#>   0 94  4
+#>   0 95  3
 #>   1  8 90
 ```
 

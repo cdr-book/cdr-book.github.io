@@ -3,7 +3,7 @@
 ---
 
 
-# Modelos *sparse* y métodos penalizados de regresión  {#cap-sparse}
+# Modelos $\textit{sparse}$ y métodos penalizados de regresión  {#cap-sparse}
 
 *María Durbán*
 
@@ -19,11 +19,11 @@ En este capítulo enseña cómo se puede hacer el modelo aún más interpretable
 - **Precisión de la predicción:** en particular, cuando el número de variables es mayor que el número de observaciones: $p>n$ (algo que ocurre con mucha frecuencia hoy en día). En este caso no se pueden utilizar mínimos cuadrados ya que la matriz de diseño no es de rango completo y, por lo tanto, no se puede encontrar una solución única al problema de minimización. Por ello, se necesita reducir el número de variables, que además, evitará que se sobreajusten los datos. 
 - **Interpretabilidad del modelo:** al eliminar las variables irrelevantes (es decir, haciendo cero los correspondientes coeficientes) se obtendrá un modelo más fácil de interpretar. 
 
-En base a lo anterior, a continuación se presentan varios métodos para llevar a cabo de forma automática la reducción de variables en el modelo, actividad también denominada **selección de variables**\index{selección de variables}. Tales métodos son:
+En base a lo anterior, a continuación se presentan varios métodos para llevar a cabo de forma automática la reducción de variables en el modelo, actividad también denominada **selección de variables**\index{selección!de variables}. Tales métodos son:
 
 - **Selección del mejor subconjunto:** su objetivo es identificar el subconjunto de $k<p$ predictores que contenga solo los que mejor expliquen el comportamiento de la variable respuesta.
 - ***Shrinkage:***\index{shrinkage@\textit{shrinkage}} en este caso no se quieren seleccionar variables explícitamente, sino que se añade una penalización que penaliza el número de coeficientes o su tamaño.
-- **Reducción de la dimensión:** el objetivo es proyectar los $p$-predictores en un subespacio de dimensión más pequeña (mediante el uso de combinaciones lineales de las variables predictoras, las cuales se usarán como "nuevos" predictores). Dichas combinaciones lineales se llaman **componentes principales**\index{componentes principales} y a su análisis se dedica el Cap. \@ref(acp).
+- **Reducción de la dimensión:** el objetivo es proyectar los $p$ predictores en un subespacio de dimensión más pequeña (mediante el uso de combinaciones lineales de las variables predictoras, las cuales se usarán como "nuevos" predictores). Dichas combinaciones lineales se llaman **componentes principales**\index{componentes principales} y a su análisis se dedica el Cap. \@ref(acp).
 
 En este capítulo se ven los dos primeros métodos. Para el tercero, se remite al lector al Cap. \@ref(acp).
 
@@ -91,14 +91,10 @@ En el ejemplo, el $R^2$ ajustado mayor corresponde al modelo con 11 variables.
 
 Los resultados también se se pueden mostrar y dibujar simultáneamente; por ejemplo, los valores de RSS y $R^2$ ajustado de todos los modelos se muestran en la Fig. \@ref(fig:chunk7). 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/chunk7-1} 
-
-}
-
-\caption{Valores de $R^2$ y $R^2$ ajustados correspondientes a modelos con distinto número de variables.}(\#fig:chunk7)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="150020_sparse_prm_files/figure-html/chunk7-1.png" alt="Valores de $R^2$ y $R^2$ ajustados correspondientes a modelos con distinto número de variables." width="60%" />
+<p class="caption">(\#fig:chunk7)Valores de $R^2$ y $R^2$ ajustados correspondientes a modelos con distinto número de variables.</p>
+</div>
 
 
 Otra manera de visualizar los resultados es:
@@ -108,14 +104,10 @@ Otra manera de visualizar los resultados es:
 plot(regfit_full, scale = "adjr2")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/chunk10-1} 
-
-}
-
-\caption{Variables seleccionadas en cada uno de los modelos y su correspondiente valor de $R^2$ ajustado.}(\#fig:chunk10)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="150020_sparse_prm_files/figure-html/chunk10-1.png" alt="Variables seleccionadas en cada uno de los modelos y su correspondiente valor de $R^2$ ajustado." width="60%" />
+<p class="caption">(\#fig:chunk10)Variables seleccionadas en cada uno de los modelos y su correspondiente valor de $R^2$ ajustado.</p>
+</div>
 
 La primera fila tiene un cuadrado negro en cada una de las variables explicativas del modelo con mayor $R^2$ ajustado (en este caso, sería similar para los otros criterios).
 
@@ -135,7 +127,7 @@ coef(regfit_full, 11)
 Cuando el número de variables predictoras, $p$, es grande, el método anterior es computacionalmente muy costoso ya que el número de posibles combinaciones de variables crece de una manera alarmante. En general, la función `regsubset()` puede lidiar con hasta 30-40 variables predictoras. Además, otro problema es el sobreajuste. Si se tienen 40 variables, se estarían ajustando millones de modelos, y puede que el modelo elegido funcione muy bien en los datos utilizados para su construcción, pero no tan bien en un nuevo conjunto de datos. Una alternativa es el método ***stepwise***.
 La idea detrás de este método es similar a la anterior, pero se busca el mejor modelo entre un conjunto mucho más pequeño de modelos.
 
-Hay dos posibilidades de hacer *stepwise*: ***forward***\index{selección de variables!forward stepwise@\textit{forward stepwise}} y ***backward***\index{selección de variables!backward stepwise@\textit{backward stepwise}}. Ambas son bastante parecidas; la principal diferencia es el modelo del que se parte: del modelo sin ninguna variable predictora (*forward*) o del modelo con todas ellas (*backward*).
+Hay dos posibilidades de hacer *stepwise*: ***forward***\index{selección!de variables!forward stepwise@\textit{forward stepwise}} y ***backward***\index{selección!de variables!backward stepwise@\textit{backward stepwise}}. Ambas son bastante parecidas; la principal diferencia es el modelo del que se parte: del modelo sin ninguna variable predictora (*forward*) o del modelo con todas ellas (*backward*).
 
 #### *Forward stepwise*
 
@@ -273,12 +265,12 @@ val_errors
 ```
 
 
-## Métodos *shrinkage*
+## Métodos $\textit{shrinkage}$
 
 Los métodos anteriores se basan en el ajuste de modelos mediante mínimos cuadrados ordinarios. Los métodos ***shrinkage***\index{shrinkage@\textit{shrinkage}}, sin embargo, se basan en una modificación del procedimiento de mínimos cuadrados ordinarios que consiste en añadir una penalización que *encoge* los coeficientes del modelo (normalmente hacia $0$). Una de las ventajas de este tipo de métodos es que reduce la varianza de los coeficientes estimados.
 
 Recuérdese que en el ajuste por mínimos cuadrados las estimaciones de $\beta_0, \beta_1, \ldots , \beta_p$ son los valores que minimizan:
-$$RSS=\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ij}\right )^2.$$
+$$RSS=\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ji}\right )^2.$$
 
 
 
@@ -287,7 +279,7 @@ $$RSS=\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ij}\right )^2.$$
 
 La **regresión** ***ridge***^[La traducción en español sería "regresión contraída" o "regresión anómala".] añade un término de penalización controlado por un parámetro (que habrá que elegir) que penalizará la magnitud de los coeficientes. Cuanto más grande es el coeficiente mayor es la penalización. En consecuencia, en la regresión *ridge* la expresión que se minimiza para obtener las estimaciones de los parámetros del modelo es:
 \begin{equation}
-\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ij}\right )^2+\lambda \sum_{j=1}^p \beta_j^2=RSS+\lambda \sum_{j=1}^p \beta_j^2.
+\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ji}\right )^2+\lambda \sum_{j=1}^p \beta_j^2=RSS+\lambda \sum_{j=1}^p \beta_j^2.
 (\#eq:sparse1)
 \end{equation}
 En realidad, lo que se está haciendo es hacer pagar al modelo un precio (en términos de ajuste) por el hecho de que los coeficientes no sean cero, y el precio será tanto mayor cuanto más grande sea la magnitud del coeficiente. A esta penalización se le llama **penalización** ***shrinkage***\index{penalización shrinkage@penalización \textit{shrinkage}} porque "anima" a los coeficientes a que se *contraigan* hacia $0$ (así es como este método favorece la simplicidad de los modelos). La magnitud de dicha contracción está gobernada por lambda, el parámetro de afinado o regulación (también conocido en la jerga como "de tuneado"). Si $\lambda=0$, se está en el caso de mínimos cuadrados ordinarios, y cuanto mayor sea $\lambda$, mayor será el precio a pagar para que esos coeficientes sean distintos de $0$. Si $\lambda$ es extremadamente grande, los coeficientes estarán muy próximos a $0$, para que  el segundo término sea pequeño (recuérdese que se minimiza RSS más la penalización). Aunque valores más grandes de los coeficientes proporcionasen un mejor ajuste (y por lo tanto un menor RSS), el término de penalización aumentaría y no se alcanzaría el mínimo. Así pues, $\lambda$ gobierna el equilibrio entre un buen ajuste del modelo y el tamaño de los coeficientes (y, por ende, el número de coeficientes distintos de cero).
@@ -299,7 +291,7 @@ La elección del valor de $\lambda$ es un punto crucial de este tipo de regresi�
 Un punto importante en regresión *ridge* es si las variables predictoras están escaladas o no. 
 
 El método de mínimos cuadrados ordinarios es *invariante a la escala* (*scale-invariant*), es decir, que si se multiplica una variable predictora $X_j$ por una constante $c$, el coeficiente estimado se multiplicada por $1/c$, pero $X_j\hat \beta_j$ no cambia. Sin embargo, en el caso de la regresión *ridge* los coeficientes estimados pueden cambiar sustancialmente ante un cambio de escala (es decir, si se multiplica una variable predictora por una constante), ya que todos los coeficientes forman parte del término de penalización. Por lo tanto, antes de utilizar la regresión *ridge* (o cualquier método de regularización) es importante **estandarizar las variables predictoras**\index{estandarización}, dividiendo cada variable por su desviación estándar, de forma que todas tengan desviación estándar igual a $1$: 
-$$\tilde x_{ij}= \frac{x_{ij}}{\sqrt{\frac{1}{N}\sum_{i=1}^N (x_{ij}-\overline{x}_{ij})^2}}.$$
+$$\tilde x_{ji}= \frac{x_{ji}}{\sqrt{\frac{1}{N}\sum_{j=1}^N (x_{ji}-\overline{x}_{j})^2}}.$$
 Con esto se consigue que los coeficientes estén en "igualdad de condiciones".
 
 En muchas ocasiones la regresión *ridge* da lugar a un menor MSE que el obtenido con mínimos cuadrados ordinarios. Sin embargo, por muy grande que sea $\lambda$ los coeficientes no serán $0$, sino que estarán próximos a cero, por lo que **este método no es realmente un método de selección de variables**. 
@@ -309,7 +301,7 @@ Sin embargo, la regresión *ridge* puede ser muy útil cuando hay variables pred
 #### Procedimiento con R: la función glmnet()
 
 Para llevar a cabo la regresión *ridge* (y para otros métodos de regresión *shrinkage*) se usa el paquete `glmnet`.
-La función principal en este paquete se llama también `glmnet()`. Esta función tiene una sintaxis un poco diferente a las funciones usuales para el ajuste de distintos modelos en **R**. Es necesario pasarle la matriz $\boldsymbol X$ de variables predictoras (sin la columna correspondiente a la ordenada en el origen) y el vector $\boldsymbol y$  con la variable respuesta. Para ilustrar su uso se utilizan los datos anteriores sobre béisbol. 
+La función principal en este paquete se llama también `glmnet()`. Esta función tiene una sintaxis un poco diferente a las funciones usuales para el ajuste de distintos modelos en **R**. Es necesario pasarle la matriz $\bf X$ de variables predictoras (sin la columna correspondiente a la ordenada en el origen) y el vector $\bf y$  con la variable respuesta. Para ilustrar su uso se utilizan los datos anteriores sobre béisbol. 
 
 
 ```r
@@ -358,14 +350,10 @@ La Fig. \@ref(fig:chunk292) muestra el efecto de $\lambda$ en los coeficientes d
 plot(ridge_mod, xvar = "lambda", label = TRUE)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/chunk292-1} 
-
-}
-
-\caption{Coeficientes estimados para distintos valores del parámetro de penalización (en la escala logarítmica).}(\#fig:chunk292)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="150020_sparse_prm_files/figure-html/chunk292-1.png" alt="Coeficientes estimados para distintos valores del parámetro de penalización (en la escala logarítmica)." width="60%" />
+<p class="caption">(\#fig:chunk292)Coeficientes estimados para distintos valores del parámetro de penalización (en la escala logarítmica).</p>
+</div>
 
 El lado izquierdo de la Fig. \@ref(fig:chunk292) corresponde a valores de $\lambda$ muy pequeños, y por lo tanto no existen restricciones sobre los coeficientes. Conforme aumenta el valor de $\lambda$ los coeficientes se aproximan rápidamente a cero. Pero no todos se aproximan a cero de la misma manera: hay un conjunto de variables cuyo coeficiente es prácticamente cero para cualquier valor de $\lambda$, mientras que para un valor de $log(\lambda)=3$ parece que hay solo $4$ coeficientes distintos de $0$.
 
@@ -430,7 +418,7 @@ Hasta ahora se ha elegido el valor $\lambda=4$ de forma arbitraria. En la siguie
 En la subsección anterior se ha visto que el valor de $\lambda$ tiene un gran impacto en los resultados obtenidos cuando se utiliza un modelo con penalización. 
 
 Una buena manera de elegir $\lambda$ es usar validación cruzada (*cross-validation*). Por ejemplo, se puede usar validación cruzada con 10 grupos (*k-fold cross-validation*):
-\index{k-fold cross-validation@\textit{k-fold cross-validation}}  \index{validación cruzada k@\textit{k}-grupos}
+\index{k-fold cross-validation@\textit{k-fold cross-validation}}  \index{validación!cruzada!k-grupos@\textit{k}-grupos}
 
 - Se dividen los datos en $k$ grupos, se ajusta el modelo *ridge* a $k-1$ de esos grupos (para una rejilla de valores de $\lambda$) y se calcula el error de predicción para el otro grupo. 
 - La acción anterior se repite tomando como muestra de test cada uno de los $k$ grupos y se suman los errores de predicción. 
@@ -447,14 +435,10 @@ cv_out <- cv.glmnet(x[entreno, ], y[entreno], alpha = 0)
 plot(cv_out)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/sparse2-1} 
-
-}
-
-\caption{Valor del error cuadrático medio y su intervalo de confianza (calculado sobre los 10 grupos) para distintos valores del parámetro de penalización.}(\#fig:sparse2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="150020_sparse_prm_files/figure-html/sparse2-1.png" alt="Valor del error cuadrático medio y su intervalo de confianza (calculado sobre los 10 grupos) para distintos valores del parámetro de penalización." width="60%" />
+<p class="caption">(\#fig:sparse2)Valor del error cuadrático medio y su intervalo de confianza (calculado sobre los 10 grupos) para distintos valores del parámetro de penalización.</p>
+</div>
 
 ```r
 mejorlam <- cv_out$lambda.min
@@ -481,26 +465,22 @@ Uno de los puntos débiles de la regresión *ridge* es que no hace selección de
 
 \index{regresión!Lasso}
 La regresión Lasso (*least absolute srinkage and selection operator*, por sus siglas en inglés), introducida por @Tibshirani96, es una alternativa a la regresión *ridge* cuyo objetivo es precisamente corregir la limitación anteriormente mencionada de la regresión *ridge*, y es útil cuando la mayoría de las variables predictoras no son relevantes en el modelo. Los coeficientes Lasso, $\hat \beta^L$, minimizan la siguiente cantidad:
-$$\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ij}\right )^2+\lambda \sum_{j=1}^p |\beta_j|=RSS+\lambda \sum_{j=1}^p |\beta_j|.$$
+$$\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ji}\right )^2+\lambda \sum_{j=1}^p |\beta_j|=RSS+\lambda \sum_{j=1}^p |\beta_j|.$$
 Ahora los coeficientes se *contraen* hacia cero utilizando la suma de los coeficientes en valor absoluto en vez de la suma de los cuadrados de dichos coeficientes. A esta norma se la llama $l_1$, $\|\beta\|_1=\sum_{j=1}^p|\beta_j|$. El cambio que supone es sutil pero importante. En ambos casos los coeficientes se contraen hacia $0$, pero en el caso de la regresión Lasso cuando $\lambda$ es suficientemente grande los coeficientes serán $0$, de modo que se está haciendo una selección de variables. Por consiguiente, la regresión Lasso anulará los coeficientes de las variables que no son importantes a la hora de explicar el comportamiento de la variable respuesta mediante un valor de $\lambda$ lo suficientemente grande. En este sentido el modelo de regresión Lasso es lo que se llama un **modelo** ***sparse***\index{modelo!sparse@\textit{sparse}} (un modelo con un número *sparse*, o escaso, de parámetros). 
 
 **¿Por qué Lasso hace que los coeficientes se contraigan exactamente hacia cero?** 
 Para entenderlo se va a ver una formulación equivalente a la de los mínimos cuadrados penalizados en el caso de la regresión Lasso:
-$$\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ij}\right )^2\quad \text{sujeto a} \quad \sum_{j=1}^p |\beta_j|<s.$$
+$$\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ji}\right )^2\quad \text{sujeto a} \quad \sum_{j=1}^p |\beta_j|<s.$$
 Dicha formulación equivalente corresponde a mínimos cuadrados con una restricción, o lo que es lo mismo, con un *presupuesto* en la norma $l_1$ sobre los coeficientes. Las dos formulaciones son equivalentes en el sentido de que, si se tiene  un *presupuesto* $s$, habrá un $\lambda$  en la primera formulación que corresponda al presupuesto $s$ en la segunda, y viceversa.
 Supóngase que se hacen mínimos cuadrados y se obtienen las estimaciones de los parámetros (coeficientes) tales que la suma de sus valores absolutos es 10,
  pero alguien dice que nuestro *presupuesto* es $5$ (la suma de los valores absolutos de los coeficientes no puede ser mayor que esa cantidad). Entonces, hay que resolver el problema de mínimos cuadrados, pero los coeficientes no pueden tomar cualquier valor, ya que se tiene una restricción sobre los mismos. Cuanto más pequeño sea el *presupuesto*, más próximos a cero serán los coeficientes. Si el *presupuesto* es $0$, todos los coeficientes serán también $0$. Si el presupuesto es muy alto, hay libertad para que los coeficientes tomen el valor que quieran, y se estaría en el caso de mínimos cuadrados. El *presupuesto* impone que haya un equilibrio entre el ajuste a los datos y el tamaño de los coeficientes.
 
 La Fig. \@ref(fig:lassoridge) [tomada de @james2013introduction] muestra por qué el modelo de regresión Lasso es *sparse*. El gráfico corresponde a un modelo de regresión con dos variables predictoras. El punto donde está el vector de coeficientes, $\hat{\boldsymbol{\beta}}$, es donde se alcanza el valor mínimo de la suma de los cuadrados de los residuos del modelo (RSS) y los contornos son combinaciones de valores de $\beta_1$ y $\beta_2$ que dan lugar al mismo valor de RSS, pero que ya no sería el mínimo. Las regiones de restricción son $|\beta_1|+|\beta_2|<s$ (Lasso) y $\beta_1^2 +\beta_2^2<s$ (*ridge*). En el caso de la regresión *ridge*, el *presupuesto* es el radio del círculo y la regresión *ridge* busca el primer lugar en el que el contorno toca a la región de restricción, pero, al ser un círculo, difícilmente uno u otro coeficiente va a ser $0$. En el caso de la regresión Lasso, la región de restricción tiene forma de diamante y, por lo tanto, tiene vértices. Como puede apreciarse, en la Fig. \@ref(fig:lassoridge) el contorno toca a la región de restricción en el caso en que $\beta_1=0$.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{./img/lasso_ridge} 
-
-}
-
-\caption{Contornos (rojo) de RSS y regiones de restricción (en azul) para la regresión Lasso (izquierda) y $ridge$ (derecha).}(\#fig:lassoridge)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="./img/lasso_ridge.png" alt="Contornos (rojo) de RSS y regiones de restricción (en azul) para la regresión Lasso (izquierda) y $ridge$ (derecha)." width="60%" />
+<p class="caption">(\#fig:lassoridge)Contornos (rojo) de RSS y regiones de restricción (en azul) para la regresión Lasso (izquierda) y $ridge$ (derecha).</p>
+</div>
 
 
 
@@ -512,14 +492,10 @@ lasso_mod <- glmnet(x[entreno, ], y[entreno], alpha = 1, lambda = grid)
 plot(lasso_mod)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/sparse3-1} 
-
-}
-
-\caption{Valor de los parámetros estimados para distintos valores de la penalización (que depende del parámetro de penalización).}(\#fig:sparse3)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="150020_sparse_prm_files/figure-html/sparse3-1.png" alt="Valor de los parámetros estimados para distintos valores de la penalización (que depende del parámetro de penalización)." width="60%" />
+<p class="caption">(\#fig:sparse3)Valor de los parámetros estimados para distintos valores de la penalización (que depende del parámetro de penalización).</p>
+</div>
 
 
 En la Fig. \@ref(fig:sparse3) se puede ver que, dependiendo del valor del parámetro de penalización, algunos de los coeficientes se hacen exactamente $0$. Para elegir el valor de dicho parámetro y calcular el MSE resultante en el conjunto de test se procede como sigue:
@@ -531,14 +507,10 @@ cv_out <- cv.glmnet(x[entreno, ], y[entreno], alpha = 1)
 plot(cv_out)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/sparse4-1} 
-
-}
-
-\caption{Valor del error cuadrático medio y su intervalo de confianza para distintos valores del parámetro de penalización.}(\#fig:sparse4)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="150020_sparse_prm_files/figure-html/sparse4-1.png" alt="Valor del error cuadrático medio y su intervalo de confianza para distintos valores del parámetro de penalización." width="60%" />
+<p class="caption">(\#fig:sparse4)Valor del error cuadrático medio y su intervalo de confianza para distintos valores del parámetro de penalización.</p>
+</div>
 
 ```r
 mejorlab <- cv_out$lambda.min
@@ -564,9 +536,9 @@ lasso_coef[lasso_coef != 0]
 \index{elastic net@\textit{elastic net}}
   
 Uno de los problemas de la regresión Lasso es cuando hay variables predictoras correlacionadas entre sí, pues elegirá una de ellas (y los coeficientes de las demás los hará cero) sin un criterio objetivo. Además, supóngase que se está en una situación en la que el número de variables $p$ es mayor que el número de observaciones $n$; en este caso la regresión Lasso elegiría como mucho $n$ variables; mientras que la regresión *ridge* las utilizaría todas, aumentando la complejidad del modelo (esto en algunos casos puede ser lo deseable o no). *Elastic net* [@Zou2005] es una generalización de los métodos anteriores que combina las penalizaciones de las regresiones *ridge* y Lasso:
-$$\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ij}\right )^2+\lambda_1 \sum_{j=1}^p \beta_j^2+\lambda_2 \sum_{j=1}^p |\beta_j|.$$
+$$\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ji}\right )^2+\lambda_1 \sum_{j=1}^p \beta_j^2+\lambda_2 \sum_{j=1}^p |\beta_j|.$$
 También aparece en muchas ocasiones de esta otra forma:
-$$\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ij}\right )^2+\lambda \left [ \frac{1}{2} (1-\alpha)\sum_{j=1}^p \beta_j^2+\alpha \sum_{j=1}^p |\beta_j|\right ],$$
+$$\sum_{i=1}^n \left ( y_i-\beta_0-\sum_{j=1}^p \beta_jx_{ji}\right )^2+\lambda \left [ \frac{1}{2} (1-\alpha)\sum_{j=1}^p \beta_j^2+\alpha \sum_{j=1}^p |\beta_j|\right ],$$
 donde $\alpha\in [0,1]$. El parámetro $\alpha$ es el que gobierna la combinación de las dos penalizaciones, mientras que $\lambda$ es el que controla la cantidad de penalización. Si $\alpha=0$ se está en el caso de la regresión *ridge*; $\alpha=1$ lleva a la regresión Lasso.
 
 La función `glmnet()` también sirve para ajustar *elastic net*, pero el parámetro $\alpha$ hay que elegirlo *a priori*. Otra opción es utilizar el paquete `caret` para hacer validación cruzada sobre $\alpha$ y $\lambda$ simultáneamente:
@@ -589,14 +561,10 @@ cv_glmnet$bestTune
 ggplot(cv_glmnet)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{150020_sparse_prm_files/figure-latex/sparse5-1} 
-
-}
-
-\caption{Valor de la raíz cuadrada del error cudrático medio para distintas combinaciones de $\alpha$ y $\lambda$.}(\#fig:sparse5)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="150020_sparse_prm_files/figure-html/sparse5-1.png" alt="Valor de la raíz cuadrada del error cudrático medio para distintas combinaciones de $\alpha$ y $\lambda$." width="60%" />
+<p class="caption">(\#fig:sparse5)Valor de la raíz cuadrada del error cudrático medio para distintas combinaciones de $\alpha$ y $\lambda$.</p>
+</div>
 
 La Fig. \@ref(fig:sparse5) muestra cómo la combinación de $\alpha$ y $\lambda$ da lugar a diferentes MSE (en la figura aparece el RMSE, o sea, su raíz cuadrada). Cada línea corresponde a un valor de $\lambda$ distinto, y en el eje $x$ se representan los valores de $\alpha$.
 

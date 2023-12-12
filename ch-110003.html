@@ -7,7 +7,7 @@
 <title>Capítulo 3 R para ciencia de datos | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Emilio L. Cano Universidad Rey Juan Carlos  3.1 Introducción  El análisis estadístico de datos es una tarea fundamental en la transformación digital de las empresas y organizaciones. Siempre ha...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 3 R para ciencia de datos | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -150,7 +150,7 @@ como Excel, se debería
 utilizar software especializado para el análisis de datos. Existen distintos
 paquetes estadísticos comerciales, como SPSS, Statgraphics, Stata, SAS, JMP o Minitab. En los últimos
 años se ha abierto camino como alternativa el <a href="http://www.r-project.org">software estadístico y lenguaje de
-programación <strong>R</strong></a> <span class="citation">(<a href="referncias.html#ref-R-base">R Core Team 2021</a>)</span>. Hay otras alternativas que, en su mayoría, o son parciales, referidas a un
+programación <strong>R</strong></a> <span class="citation">(<a href="referencias.html#ref-R-base">R Core Team 2023</a>)</span>. Hay otras alternativas que, en su mayoría, o son parciales, referidas a un
 ámbito concreto, o son más lenguajes de programación que software estadístico, como Python.
 <strong>R</strong> es software libre, pero su gratuidad solo es una
 de sus ventajas, como se verá a lo largo del libro. Su gran inconveniente
@@ -161,15 +161,15 @@ hay que ejecutar desde scripts (archivos de código).</p>
 <strong>lenguaje de programación</strong>. Ha sido ampliamente utilizado en investigación y docencia,
 y actualmente también
 en las empresas y organismos públicos. Es la evolución del trabajo de los laboratorios Bell con el
-lenguaje S <span class="citation">(<a href="referncias.html#ref-venables2002modern">Venables and Ripley 2002</a>)</span>,
-llevado al mundo del software libre por Ross Ihaka y Robert Gentleman en los años 90 <span class="citation">(<a href="referncias.html#ref-ihaka1996r">Ihaka and Gentleman 1996</a>)</span>.
+lenguaje S <span class="citation">(<a href="referencias.html#ref-venables2002modern">Venables and Ripley 2002</a>)</span>,
+llevado al mundo del software libre por Ross Ihaka y Robert Gentleman en los años 90 <span class="citation">(<a href="referencias.html#ref-ihaka1996r">Ihaka and Gentleman 1996</a>)</span>.
 La version R 1.0.0 se publicó el 29 de febrero de 2000.</p>
 <p></p>
 <p>Uno de los aspectos más espectaculares de <strong>R</strong> es la cantidad de <strong>paquetes</strong>
 disponibles. Un paquete (<em>package</em>) de <strong>R</strong> es un componente con funcionalidad adicional que se puede
 instalar en el sistema para ser utilizado por <strong>R</strong>. En el momento de
 compilar este libro, el número de paquetes disponibles en el repositorio oficial
-es de 20042.</p>
+es de 20191.</p>
 <p>Una vez conocido el mundo de <strong>R</strong>, se plantea la siguiente pregunta: ¿y por qué
 utilizar <strong>R</strong>? Es imposible dar un único motivo. A continuación se enumeran
 algunos de ellos:</p>
@@ -206,7 +206,7 @@ manteniendo el mismo nivel de interacción: consola y scripts.<a class="footnote
 es seguir un estilo consistente en cuanto a nombres de objetos, espacios
 en blanco y el uso de delimitadores y tabulación en el script. Véase por ejemplo
 la &lt;a href="http://adv-r.had.co.nz/Style.html"&gt;guía de estilo de Hadley Wickham&lt;/a&gt;
-&lt;span class="citation"&gt;(&lt;a href="referncias.html#ref-wickham2015advanced"&gt;H. Wickham 2015a&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>4</sup></a> Al igual que <strong>R</strong>, RStudio es una aplicación de software libre, pero, en este caso, desarrollada y mantenida por la compañía privada Posit PBC.</p>
+&lt;span class="citation"&gt;(&lt;a href="referencias.html#ref-wickham2015advanced"&gt;H. Wickham 2015a&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>4</sup></a> Al igual que <strong>R</strong>, RStudio es una aplicación de software libre, pero, en este caso, desarrollada y mantenida por la compañía privada Posit PBC.</p>
 <div class="infobox">
 <p><strong>Nota</strong></p>
 <p>Una cosa muy importante en <strong>R</strong> es que las expresiones son <strong>sensibles a mayúsculas</strong>,
@@ -228,15 +228,15 @@ Windows, MacOS y Linux. Por cuestiones de espacio, no se incluyen detalles en es
 </li>
 </ol>
 <p>Para completar la instalación de <strong>R</strong>, se muestra cómo instalar<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Una vez instalado un paquete no hay que volver a instalarlo.&lt;/p&gt;"><sup>5</sup></a> los paquetes del <code>tidyverse</code><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;El &lt;em&gt;tidyverse&lt;/em&gt; es un conjunto de paquetes que se irán describiendo a medida que se utilicen, especialmente en la Sec. &lt;a href="#110003-tidyverse"&gt;&lt;strong&gt;??&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>6</sup></a> mediante expresiones en la consola o script con la función <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"tidyverse"</span><span class="op">)</span></span></code></pre></div>
 <p>Una vez instalado el paquete, se cargará con la instrucción <code><a href="https://rdrr.io/r/base/library.html">library("nombre_paquete")</a></code> en la sesión de <strong>R</strong> donde se quiera utilizar.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span></code></pre></div>
 <p>A veces resulta útil usar directamente
 la función que se va a utilizar en vez de cargar todo el paquete. Esto se hace con el operador <code>::</code>, es decir, <code>nombre_paquete::funcion()</code>. La siguiente expresión serviría para usar
 la función <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> del paquete <code>dplyr</code> sin cargar el paquete entero.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="id_110003-proyectos" class="section level2" number="3.4">
@@ -258,30 +258,30 @@ y depende del proyecto particular. Las siguientes carpetas pueden ser
 las tres primeras se pueden usar prácticamente en cualquier proyecto:</p>
 <ul>
 <li>
-<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"></path></svg><code>data</code>: en esta carpeta se tienen los archivos de
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"></path></svg><code>data</code>: en esta carpeta se tienen los archivos de
 datos, tanto aquellos orígenes de datos que se quieran importar como los
 que se puedan guardar desde un script.</li>
 <li>
-<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"></path></svg><code>R</code>: para los scripts. Es posible que solamente haya un script
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"></path></svg><code>R</code>: para los scripts. Es posible que solamente haya un script
 en nuestro proyecto, pero si hubiera más se pueden guardar en esta carpeta.</li>
 <li>
-<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"></path></svg><code>inform</code>: aquí se pueden guardar los archivos Quarto o R Markdown
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"></path></svg><code>inform</code>: aquí se pueden guardar los archivos Quarto o R Markdown
 que se utilicen para generar informes o presentaciones.</li>
 <li>
-<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"></path></svg><code>img</code>: si en nuestro proyecto se utilizan imágenes
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"></path></svg><code>img</code>: si en nuestro proyecto se utilizan imágenes
 de cualquier tipo, es una buena idea tenerlas en una carpeta aparte.</li>
 <li>
-<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"></path></svg><code>test</code>: si se quieren separar los scripts que se utilicen para
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"></path></svg><code>test</code>: si se quieren separar los scripts que se utilicen para
 pruebas y no se quieren mezclar con los “buenos” en la carpeta <code>R</code>.</li>
 <li>
-<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"></path></svg><code>aux</code>, <code>tmp</code>, <code>util</code>, <code>notas</code>, <code>doc</code>, …:
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H192c20.1 0 39.1 9.5 51.2 25.6l19.2 25.6c6 8.1 15.5 12.8 25.6 12.8H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"></path></svg><code>aux</code>, <code>tmp</code>, <code>util</code>, <code>notas</code>, <code>doc</code>, …:
 este tipo de carpetas vienen bien cuando
 hay información que está relacionada o es útil para un proyecto, pero el archivo no es
 del proyecto de análisis de datos en sí. Por ejemplo, unas especificaciones de
 un producto o servicio, un artículo científico, fotografías de una fábrica,
 comunicaciones con clientes, etc.</li>
 <li>
-<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"></path></svg><code>ejercicios</code>, <code>practicas</code>, …: si nuestro proyecto
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M512 416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H192c20.1 0 39.1 9.5 51.2 25.6l19.2 25.6c6 8.1 15.5 12.8 25.6 12.8H448c35.3 0 64 28.7 64 64V416zM232 376c0 13.3 10.7 24 24 24s24-10.7 24-24V312h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V200c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z"></path></svg><code>ejercicios</code>, <code>practicas</code>, …: si nuestro proyecto
 forma parte de una asignatura, curso o similar.</li>
 </ul>
 <div class="infobox">
@@ -304,7 +304,7 @@ organizadas en columnas,
 en las que cada fila se corresponde con algún elemento en el que se han
 observado las características que representan las variables. La forma más común
 es el <code>data.frame</code>. Cada columna del <code>data.frame</code> es, en realidad, otra estructura de datos, en concreto, un <code>vector</code>. Un ejemplo de <code>data.frame</code> es el conjunto de datos <code>tempmin_data</code> del paquete <code>CDR</code> que se analiza en el Cap. <a href="datos-espaciales.html#datos-espaciales">40</a> y del que se muestran a continuación las primeras tres filas con la función <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tempmin_data</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        fecha indicativo tmin  longitud  latitud</span></span>
@@ -319,11 +319,11 @@ nombre del <code>data.frame</code>, y a continuación el nombre de la variable.<
 <p>El operador <code>&lt;-</code> asigna al “símbolo” que hay a su izquierda el resultado
 de la expresión que hay a su derecha, y lo guarda con ese nombre
 en el espacio de trabajo.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;También se puede utilizar el símbolo igual (&lt;code&gt;=&lt;/code&gt;) para realizar asignaciones. No obstante, en el marco de este libro se recomienda el uso del operador específico &lt;code&gt;&amp;lt;-&lt;/code&gt;.&lt;/p&gt;"><sup>8</sup></a> Por ejemplo, la siguiente expresión extrae todas las filas de la columna <code>tmin</code> o, dicho de otra forma, el vector con todas las temperaturas mínimas registradas y lo guarda en el objeto <code>temp_min</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">temp_min</span> <span class="op">&lt;-</span> <span class="va">tempmin_data</span><span class="op">$</span><span class="va">tmin</span></span></code></pre></div>
 <p>
 <strong>Vectores y matrices</strong>. Ya se ha visto que una columna de una tabla de datos es un vector. También se pueden crear vectores con la función <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> y los elementos del vector separados por comas. Una matriz es un vector organizado en filas y columnas. A modo de ejemplo, la primera de las siguientes expresiones crea un vector llamado <code>nombres</code> con dos cadenas de texto, y la segunda crea una matriz numérica llamada <code>coordenadas</code> a partir de las columnas 4 y 5 del conjunto de datos <code>tempmin_data</code>. Nótese que la extracción de valores de un conjunto de datos o de una matriz se puede realizar también por sus índices de filas y columnas entre corchetes separados por una coma. En este caso se extraen todas las filas (pues no se especifica ninguna en la dimensión 1) de las columnas 4 y 5.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"longitud"</span>, <span class="st">"latitud"</span><span class="op">)</span></span>
 <span><span class="va">coordenadas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">tempmin_data</span><span class="op">[</span>, <span class="fl">4</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <p>
@@ -331,7 +331,7 @@ en el espacio de trabajo.<a class="footnote-ref" tabindex="0" data-toggle="popov
 de valores diferentes (categorías), identificados con etiquetas (<em>labels</em>) y que se llaman
 <strong>niveles</strong> del factor (<em>levels</em>).
 Un ejemplo es el dataset <code>dp_entr</code> del paquete <code>CDR</code> que se analiza en el Cap. <a href="cap-arboles.html#cap-arboles">24</a>. La columna <code>ind_pro11</code> es un indicador que toma los valores <code>S</code> y <code>N</code>, mientras que <code>des_nivel_edu</code> toma tres posibles valores.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dp_entr</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">17</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;     ind_pro11 des_nivel_edu</span></span>
 <span><span class="co">#&gt; 1           S         MEDIO</span></span>
@@ -349,20 +349,20 @@ Pueden ser heterogéneas,
 en el sentido de que cada elemento de la lista puede ser
 de cualquier tipo.</p>
 <p>A modo de ejemplo, se muestran los nombres del objeto <code>tempmax_data</code> del paquete <code>CDR</code>, que contiene seis elementos de distintas clases.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">tempmax_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ESP"             "ESP_utm"         "grd_sf"          "grd_sp"         </span></span>
 <span><span class="co">#&gt; [5] "temp_max_utm_sf" "temp_max_utm_sp"</span></span></code></pre></div>
 <p>
 <strong>Fechas</strong>. Son un tipo de datos especial que algunas veces provoca problemas
 al compartir datos entre programas. El conjunto de datos <code>tempmin_data</code> contiene la columna <code>fecha</code>, que puede convertirse de manera inmediata a tipo fecha (<code>Date</code>) porque viene en un formato estándar (véase la ayuda de <code>strptime</code> para especificar otros formatos). El paquete <code>lubridate</code> del <em>tidyverse</em> contiene funciones para hacer más fácil el trabajo con fechas.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tempmin_data</span><span class="op">$</span><span class="va">fecha</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">tempmin_data</span><span class="op">$</span><span class="va">fecha</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">tempmin_data</span><span class="op">$</span><span class="va">fecha</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Date"</span></span></code></pre></div>
 <p>
 <strong>Cadenas de texto</strong>. Son estructuras de datos que aparecen en forma de vector de caracteres. La columna <code>indicativo</code> del conjunto de datos <code>tempmin_data</code> es un ejemplo de este tipo de datos. La ayuda de <code><a href="https://rdrr.io/r/base/grep.html">?regexpr</a></code> proporciona la información necesaria sobre cómo extraer texto con expresiones regulares, y la de <code><a href="https://rdrr.io/r/base/paste.html">?paste</a></code>, para aprender a unir cadenas de texto. El paquete <code>stringr</code> del <em>tidyverse</em> contiene funciones para facilitar el trabajo con cadenas de texto.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tempmin_data</span><span class="op">$</span><span class="va">indicativo</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "4358X" "4220X" "6106X" "9698U" "4410X" "1331A"</span></span></code></pre></div>
 </div>
@@ -376,29 +376,29 @@ En el apartado anterior se han utilizado tablas de datos que están incluidas en
 mediante <strong>hojas de cálculo como Microsoft Excel</strong>.
 Hay varios paquetes con los que se puede trabajar con archivos de Excel. En este libro se utiliza
 el paquete <code>readxl</code> del <em>tidyverse</em>. Con la siguiente expresión se puede descargar un archivo Excel de ejemplo.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La función &lt;code&gt;download.file()&lt;/code&gt; permite descargar cualquier archivo disponible en la &lt;code&gt;url&lt;/code&gt; que se indique. Es obligatorio indicar el archivo de destino con el argumento &lt;code&gt;destfile&lt;/code&gt;. Si el archivo no es de texto plano, se debe indicar &lt;code&gt;mode = "wb"&lt;/code&gt;.&lt;/p&gt;'><sup>10</sup></a></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"http://emilio.lcano.com/b/adr/p/datos/RRHH.xlsx"</span>,</span>
 <span>              destfile <span class="op">=</span> <span class="st">"data/RRHH.xlsx"</span>,</span>
 <span>              mode <span class="op">=</span> <span class="st">"wb"</span><span class="op">)</span></span></code></pre></div>
 <p>Una vez el archivo está en el directorio de trabajo de la sesión de <strong>R</strong>, se puede importar su contenido al espacio de trabajo con la siguiente expresión:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rrhh</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/RRHH.xlsx"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Texto</strong>. Los <strong>archivos de texto</strong> son el formato más utilizado y conveniente para compartir datos. Es también
 muy común que el equipamiento o el software genere datos en formato de texto. Estos
 archivos suelen tener extensión <code>.csv</code> (<em>comma separated values</em>) o <code>.txt</code>, aunque
 pueden tener cualquier otra, o incluso no tener extensión. A modo de ejemplo, con la siguiente expresión se puede descargar un archivo csv.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"http://emilio.lcano.com/b/adr/p/datos/ejDatos.csv"</span>,</span>
 <span>              destfile <span class="op">=</span> <span class="st">"data/ejDatos.csv"</span><span class="op">)</span></span></code></pre></div>
 <p>Si el archivo tiene extensión <code>.csv</code>, como el anterior, vendrá
 ya con una especificación muy concreta, pudiéndose usar directamente las funciones
 <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> o <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv2()</a></code> para tener la tabla de datos en el espacio de trabajo.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">merma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv2</a></span><span class="op">(</span><span class="st">"data/ejDatos.csv"</span><span class="op">)</span></span></code></pre></div>
 <p>La función genérica de <strong>R</strong> para importar datos de texto es <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code>, que puede importar cualquier especificación cambiando los argumentos adecuados.
 Por ejemplo, la siguiente expresión tendría el mismo resultado que se ha
 obtenido con la función <code>read.csv2</code>:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Con el argumento &lt;code&gt;header&lt;/code&gt; se indica si la primera fila tiene encabezados (&lt;code&gt;TRUE&lt;/code&gt;) o no (&lt;code&gt;FALSE&lt;/code&gt;, opción por defecto). También hay que especificar el separador de columnas &lt;code&gt;sep&lt;/code&gt; y el símbolo decimal &lt;code&gt;dec&lt;/code&gt;. &lt;code&gt;fileEncoding&lt;/code&gt; es la especificación de la codificación de texto; las más habituales son &lt;code&gt;utf-8&lt;/code&gt; y ’&lt;code&gt;latin1&lt;/code&gt;.&lt;/p&gt;"><sup>11</sup></a></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">merma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/ejDatos.csv"</span>,</span>
 <span>                    header <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                    sep <span class="op">=</span> <span class="st">";"</span>,</span>
@@ -412,7 +412,7 @@ Cap. <a href="datos-sql.html#datos-sql">5</a>.</p>
 <p>Hay infinidad de otras fuentes de las que se pueden importar datos a <strong>R</strong>. Por ejemplo, el paquete <code>rvest</code>, que forma parte
 del <em>tidyverse</em>, se puede utilizar para obtener datos de páginas web y otras fuentes de Internet, lo que se suele llamar <em>web scraping</em>. Por ejemplo, supóngase que se quiere importar la tabla con los datos de comunidades y ciudades autónomas españolas del enlace <a href="https://www.ine.es/daco/daco42/codmun/cod_ccaa_provincia.htm" class="uri">https://www.ine.es/daco/daco42/codmun/cod_ccaa_provincia.htm</a>.
 Las siguientes expresiones importan esta tabla al conjunto de datos <code>ccaa_ine</code>.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rvest.tidyverse.org/">"rvest"</a></span><span class="op">)</span></span>
 <span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://www.ine.es/daco/daco42/codmun/cod_ccaa_provincia.htm"</span></span>
 <span><span class="va">ccaa_ine</span> <span class="op">&lt;-</span> <span class="va">url</span> <span class="op">|&gt;</span> </span>
@@ -432,22 +432,22 @@ Para exportar los datos a Excel, se utiliza la función <code>write.xlsx()</code
 Si lo que se quiere es exportarlo a texto, se pueden utilizar los equivalentes
 a las funciones de importación <code><a href="https://rdrr.io/r/utils/write.table.html">write.csv()</a></code>, <code><a href="https://rdrr.io/r/utils/write.table.html">write.csv2()</a></code> o <code><a href="https://rdrr.io/r/utils/write.table.html">write.table()</a></code>.</p>
 <p>La siguiente expresión exporta la tabla de datos <code>tempmin_data</code> a ficheros Excel y csv (formato en inglés).</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">openxlsx</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/write.xlsx.html">write.xlsx</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">tempmin_data</span>, </span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">openxlsx</span><span class="fu">::</span><span class="fu">write.xlsx</span><span class="op">(</span>x <span class="op">=</span> <span class="va">tempmin_data</span>, </span>
 <span>                     file <span class="op">=</span> <span class="st">"data/temp_min_Filomena.csv"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.csv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">tempmin_data</span>, file <span class="op">=</span> <span class="st">"data/temp_min_Filomena.csv"</span><span class="op">)</span></span></code></pre></div>
 <p>También se pueden guardar los datos en formato “nativo” de <strong>R</strong>. Los archivos <code>.RData</code> almacenan un espacio de trabajo entero, y por tanto
 pueden guardar varios objetos en el mismo archivo. Cuando posteriormente se importe,
 los objetos estarán en el espacio de trabajo con su nombre original.
 Se guardan con la función <code><a href="https://rdrr.io/r/base/save.html">save()</a></code> y se restauran con la función <code><a href="https://rdrr.io/r/base/load.html">load()</a></code>, como en el siguiente ejemplo.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">tempmin_data</span>, <span class="va">tempmax_data</span>, </span>
 <span>     file <span class="op">=</span> <span class="st">"data/datos_temperaturas.RData"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/datos_temperaturas.RData"</span><span class="op">)</span> <span class="co">#carga de nuevo el objeto</span></span></code></pre></div>
 <p>Los archivos <code>.rds</code> almacenan un único objeto en un archivo. Cuando posteriormente se quieran importar,
 hay que asignar el resultado al nombre que se quiera. Se guardan con la
 función <code>writeRDS()</code> y se restauran con la función <code><a href="https://rdrr.io/r/base/readRDS.html">readRDS()</a></code>, como en el siguiente ejemplo.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">tempmin_data</span>, </span>
 <span>        file <span class="op">=</span> <span class="st">"data/datos_temperaturas.rds"</span><span class="op">)</span></span>
 <span><span class="va">nuevo_objeto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/datos_temperaturas.rds"</span><span class="op">)</span></span></code></pre></div>
@@ -473,9 +473,9 @@ Las principales ventajas (opinables) de utilizar el <em>tidyverse</em> son tres:
 <li>Para la mayoría de las operaciones, es computacionalmente más eficiente.</li>
 </ol>
 <p>Uno de los paquetes más populares del <em>tidyverse</em> es <code>ggplot2</code>, que proporciona una “gramática de gráficos”
-<span class="citation">(<a href="referncias.html#ref-Wickham2016">Hadley Wickham 2016a</a>)</span> y es una pieza clave del <em>tidyverse</em> actual, junto con los paquetes <code>dplyr</code> (gramática para la manipulación de datos) y <code>tidyr</code> (herramienta para crear datos <em>tidy</em>).
+<span class="citation">(<a href="referencias.html#ref-Wickham2016">Hadley Wickham 2016a</a>)</span> y es una pieza clave del <em>tidyverse</em> actual, junto con los paquetes <code>dplyr</code> (gramática para la manipulación de datos) y <code>tidyr</code> (herramienta para crear datos <em>tidy</em>).
 El flujo de trabajo propuesto por el <em>tidyverse</em> se describe en el libro
-<em>R for Data Science</em> <span class="citation">(<a href="referncias.html#ref-wickham2016r">H. Wickham and Grolemund 2016</a>)</span> y se sintetiza en la Fig. <a href="ch-110003.html#fig:ch-110003-flujods">3.1</a>.</p>
+<em>R for Data Science</em> <span class="citation">(<a href="referencias.html#ref-wickham2016r">H. Wickham and Grolemund 2016</a>)</span> y se sintetiza en la Fig. <a href="ch-110003.html#fig:ch-110003-flujods">3.1</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ch-110003-flujods"></span>
 <img src="img/data-science.png" alt="Flujo de trabajo en ciencia de datos propuesto por el $tidyverse$. Fuente: Wickham and Grolemund (2016)." width="80%"><p class="caption">
@@ -512,7 +512,7 @@ que se puede obtener con el atajo de teclado <code>CTRL+MAYUS+M</code>. El opera
 se pone en medio de dos expresiones de <strong>R</strong>, sean <code>lado_izquierdo</code>
 y <code>lado_derecho</code> las expresiones que se ponen a izquierda y derecha
 del <em>pipe</em>. Entonces se utiliza de la siguiente manera:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="ch-110003.html#cb23-1" tabindex="-1"></a>lado_izquierdo <span class="sc">|&gt;</span> lado_derecho</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ch-110003.html#cb24-1" tabindex="-1"></a>lado_izquierdo <span class="sc">|&gt;</span> lado_derecho</span></code></pre></div>
 <div class="infobox">
 <p><strong>Nota</strong></p>
 <p>El operador <em>nativo</em> de <strong>R</strong>, <code>|&gt;</code>, apareció en la versión R-4.1.0. Hay un operador alternativo que proviene del paquete <code>magrittr</code>, <code>%&gt;%</code>, que había que usar antes de esta versión, y mucha literatura y documentación está escrita usándolo. Hay diferencias, pero a los efectos de este capítulo ambos operadores se pueden utilizar indistintamente.</p>
@@ -524,10 +524,10 @@ argumento el valor producido en la parte izquierda.
 Si se desea guardar el resultado final, se debe asignar el resultado
 a algún nombre de objeto para que se almacene en el espacio de trabajo.
 La siguiente expresión sería un ejemplo de uso.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ch-110003.html#cb24-1" tabindex="-1"></a>nombre_objeto <span class="ot">&lt;-</span> lado_izquierdo <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="ch-110003.html#cb24-2" tabindex="-1"></a>  lado_derecho</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="ch-110003.html#cb25-1" tabindex="-1"></a>nombre_objeto <span class="ot">&lt;-</span> lado_izquierdo <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="ch-110003.html#cb25-2" tabindex="-1"></a>  lado_derecho</span></code></pre></div>
 <p>La ventaja de usar los <em>pipes</em> es que se pueden encadenar, de forma que el resultado de cada operación pasa a la siguiente expresión del <em>pipeline</em> (secuencia de operaciones con <em>pipe</em>), como en el siguiente ejemplo:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span></span>
 <span><span class="va">contam_mad</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 12</span></span></code></pre></div>
@@ -550,7 +550,7 @@ Los verbos definidos para estas operaciones son:</p>
 <li>
 <strong><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code></strong>: elige filas en función de los valores de la columna.</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pm10</span> <span class="op">&lt;-</span> <span class="va">contam_mad</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nom_abv</span> <span class="op">==</span> <span class="st">"PM10"</span><span class="op">)</span>   <span class="co"># se filtra por PM10</span></span></code></pre></div>
 <p></p>
@@ -558,7 +558,7 @@ Los verbos definidos para estas operaciones son:</p>
 <li>
 <strong><code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code></strong>: cambia el orden de las filas con algún criterio.</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">zonas</span><span class="op">&lt;-</span> <span class="va">contam_mad</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">zona</span><span class="op">)</span>, <span class="va">daily_mean</span><span class="op">)</span></span></code></pre></div>
 <p></p>
@@ -583,7 +583,7 @@ que puede haber más de una fila que cumpla la condición.</li>
 </li>
 </ul>
 <p>Véase el resultado de los siguientes ejemplos:</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pm10</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">10</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span> <span class="co"># extrae filas desde la 10 a la 15</span></span>
 <span><span class="va">pm10</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_tail</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># extrae las tres últimas filas</span></span>
 <span><span class="va">pm10</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">daily_mean</span><span class="op">)</span> <span class="co"># día con mayor valor medio de PM10</span></span>
@@ -600,18 +600,18 @@ que puede haber más de una fila que cumpla la condición.</li>
 <li>
 <strong><code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code></strong>: indica cuando una columna se incluye o no. Se pueden utilizar <em>helpers</em> para seleccionar columnas que cumplan cierta condición (por ejemplo, ser numéricas) y también para “quitar” columnas de la selección (con el signo menos, [<code>-</code>]).</li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pm10</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">longitud</span>, <span class="va">latitud</span>, <span class="va">daily_mean</span>, <span class="va">tipo</span><span class="op">)</span></span>
-<span><span class="va">pm10</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">pm10</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">pm10</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">id</span><span class="op">:</span><span class="va">latitud</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>En cuanto a la <strong>modificación</strong> de datos, existen múltiples posibilidades. Algunas de ellas son:</p>
 <ul>
 <li><p><strong><code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code></strong>: cambia el nombre de la columna.</p></li>
-<li><p><strong><code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code></strong>: cambia los valores de las columnas y crea nuevas columnas. La función <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute()</a></code> funciona igual que <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, pero la tabla de datos
+<li><p><strong><code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code></strong>: cambia los valores de las columnas y crea nuevas columnas. La función <code><a href="https://dplyr.tidyverse.org/reference/transmute.html">transmute()</a></code> funciona igual que <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, pero la tabla de datos
 resultante solo contiene las nuevas columnas creadas.</p></li>
 <li><p><strong><code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code></strong>: cambia el orden de las columnas.</p></li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pm10</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>zona_calidad_aire <span class="op">=</span> <span class="va">zona</span><span class="op">)</span></span>
 <span><span class="va">pm10</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">fecha</span>, .before <span class="op">=</span> <span class="va">estaciones</span><span class="op">)</span></span>
 <span><span class="va">pm10_na</span> <span class="op">&lt;-</span> <span class="va">pm10</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>isna <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">daily_mean</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -633,7 +633,7 @@ de un <code>data.frame</code>. La función <code><a href="https://dplyr.tidyvers
 de filas para cada valor diferente de dicha/s variable/s. Estos recuentos se
 pueden añadir a la tabla de datos con las funciones <code><a href="https://dplyr.tidyverse.org/reference/count.html">add_count()</a></code> y <code><a href="https://dplyr.tidyverse.org/reference/count.html">add_tally()</a></code>,
 lo que permite calcular frecuencias absolutas y relativas fácilmente.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pm10</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       n</span></span>
 <span><span class="co">#&gt; 1 53794</span></span>
@@ -659,25 +659,25 @@ datos, para lo que se utiliza la función <code><a href="https://dplyr.tidyverse
 En el conjunto de datos <code>contam_mad</code> del paquete <code>CDR</code>, se filtra por el
 nombre de contaminante “NOx”. Después se agrupan los datos por zona y se
 calculan algunos estadísticos de resumen para cada zona.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="ch-110003.html#cb32-1" tabindex="-1"></a>contam_mad <span class="sc">|&gt;</span>  </span>
-<span id="cb32-2"><a href="ch-110003.html#cb32-2" tabindex="-1"></a>  <span class="fu">filter</span>(nom_abv <span class="sc">==</span> <span class="st">"NOx"</span>) <span class="sc">|&gt;</span> <span class="co"># se filtra por N0x</span></span>
-<span id="cb32-3"><a href="ch-110003.html#cb32-3" tabindex="-1"></a>  <span class="fu">group_by</span>(zona) <span class="sc">|&gt;</span></span>
-<span id="cb32-4"><a href="ch-110003.html#cb32-4" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb32-5"><a href="ch-110003.html#cb32-5" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(daily_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb32-6"><a href="ch-110003.html#cb32-6" tabindex="-1"></a>    <span class="at">q1 =</span> <span class="fu">quantile</span>(daily_mean, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb32-7"><a href="ch-110003.html#cb32-7" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(daily_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb32-8"><a href="ch-110003.html#cb32-8" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(daily_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb32-9"><a href="ch-110003.html#cb32-9" tabindex="-1"></a>    <span class="at">q3 =</span> <span class="fu">quantile</span>(daily_mean, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb32-10"><a href="ch-110003.html#cb32-10" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(daily_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb32-11"><a href="ch-110003.html#cb32-11" tabindex="-1"></a>  )</span>
-<span id="cb32-12"><a href="ch-110003.html#cb32-12" tabindex="-1"></a><span class="co">#&gt; A tibble: 5 × 7</span></span>
-<span id="cb32-13"><a href="ch-110003.html#cb32-13" tabindex="-1"></a>    zona            min    q1 median  mean    q3   max</span>
-<span id="cb32-14"><a href="ch-110003.html#cb32-14" tabindex="-1"></a>    <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>         <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb32-15"><a href="ch-110003.html#cb32-15" tabindex="-1"></a><span class="co">#&gt; 1 Interior M30 0.0833  32.4   54.1  72.9  90.0  759.</span></span>
-<span id="cb32-16"><a href="ch-110003.html#cb32-16" tabindex="-1"></a><span class="co">#&gt; 2 Noreste      1       23.8   39.6  56.2  68.9  516.</span></span>
-<span id="cb32-17"><a href="ch-110003.html#cb32-17" tabindex="-1"></a><span class="co">#&gt; 3 Noroeste     0       12.0   20.3  29.7  34.5  352.</span></span>
-<span id="cb32-18"><a href="ch-110003.html#cb32-18" tabindex="-1"></a><span class="co">#&gt; 4 Sureste      0       29.1   45.4  64.6  77.2  453 </span></span>
-<span id="cb32-19"><a href="ch-110003.html#cb32-19" tabindex="-1"></a><span class="co">#&gt; 5 Suroeste     0.667   33.5   59.6  90.5 114.   666.</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="ch-110003.html#cb33-1" tabindex="-1"></a>contam_mad <span class="sc">|&gt;</span>  </span>
+<span id="cb33-2"><a href="ch-110003.html#cb33-2" tabindex="-1"></a>  <span class="fu">filter</span>(nom_abv <span class="sc">==</span> <span class="st">"NOx"</span>) <span class="sc">|&gt;</span> <span class="co"># se filtra por N0x</span></span>
+<span id="cb33-3"><a href="ch-110003.html#cb33-3" tabindex="-1"></a>  <span class="fu">group_by</span>(zona) <span class="sc">|&gt;</span></span>
+<span id="cb33-4"><a href="ch-110003.html#cb33-4" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb33-5"><a href="ch-110003.html#cb33-5" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(daily_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb33-6"><a href="ch-110003.html#cb33-6" tabindex="-1"></a>    <span class="at">q1 =</span> <span class="fu">quantile</span>(daily_mean, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb33-7"><a href="ch-110003.html#cb33-7" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(daily_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb33-8"><a href="ch-110003.html#cb33-8" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(daily_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb33-9"><a href="ch-110003.html#cb33-9" tabindex="-1"></a>    <span class="at">q3 =</span> <span class="fu">quantile</span>(daily_mean, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb33-10"><a href="ch-110003.html#cb33-10" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(daily_mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-11"><a href="ch-110003.html#cb33-11" tabindex="-1"></a>  )</span>
+<span id="cb33-12"><a href="ch-110003.html#cb33-12" tabindex="-1"></a><span class="co">#&gt; A tibble: 5 × 7</span></span>
+<span id="cb33-13"><a href="ch-110003.html#cb33-13" tabindex="-1"></a>    zona            min    q1 median  mean    q3   max</span>
+<span id="cb33-14"><a href="ch-110003.html#cb33-14" tabindex="-1"></a>    <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>         <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb33-15"><a href="ch-110003.html#cb33-15" tabindex="-1"></a><span class="co">#&gt; 1 Interior M30 0.0833  32.4   54.1  72.9  90.0  759.</span></span>
+<span id="cb33-16"><a href="ch-110003.html#cb33-16" tabindex="-1"></a><span class="co">#&gt; 2 Noreste      1       23.8   39.6  56.2  68.9  516.</span></span>
+<span id="cb33-17"><a href="ch-110003.html#cb33-17" tabindex="-1"></a><span class="co">#&gt; 3 Noroeste     0       12.0   20.3  29.7  34.5  352.</span></span>
+<span id="cb33-18"><a href="ch-110003.html#cb33-18" tabindex="-1"></a><span class="co">#&gt; 4 Sureste      0       29.1   45.4  64.6  77.2  453 </span></span>
+<span id="cb33-19"><a href="ch-110003.html#cb33-19" tabindex="-1"></a><span class="co">#&gt; 5 Suroeste     0.667   33.5   59.6  90.5 114.   666.</span></span></code></pre></div>
 </div>
 </div>
 <div id="combinación-de-datos" class="section level3" number="3.6.3">
@@ -709,7 +709,7 @@ hace las uniones por todas las columnas coincidentes en ambas tablas. Para
 las filas que solo están en una de las tablas, se añaden valores <code>NA</code>
 donde no haya coincidencias.</p>
 <p>A modo de ejemplo, las siguientes expresiones unen dos datasets para combinar datos de municipios con su renta. En el Cap. <a href="#130009"><strong>??</strong></a> se verán estas uniones en la práctica.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/">"sf"</a></span><span class="op">)</span></span>
 <span><span class="va">munis_renta</span> <span class="op">&lt;-</span> <span class="va">municipios</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">renta_municipio_data</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -717,7 +717,7 @@ donde no haya coincidencias.</p>
 <span><span class="co">#&gt; Joining, by = "codigo_ine"</span></span></code></pre></div>
 <p>Otra forma de unir tablas es, simplemente, añadiendo columnas (que tengan el mismo
 número de filas) o filas (que tengan el mismo número de columnas). Para ello se usan
-las funciones <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code> y <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code>, respectivamente.
+las funciones <code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols()</a></code> y <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows()</a></code>, respectivamente.
 Otra forma conveniente de añadir nuevas filas o columnas son las funciones
 <code><a href="https://tibble.tidyverse.org/reference/add_row.html">add_row()</a></code> y <code><a href="https://tibble.tidyverse.org/reference/add_column.html">add_column()</a></code>. Se pueden añadir antes o después de una fila/columna
 especificada con el argumento <code>.before</code>, y pasando los valores como pares “variable = valor” para cada variable en el conjunto de datos.</p>
@@ -759,7 +759,7 @@ ocasiones será suficiente con las comentadas (<code>xx_from</code> y <code>xx_t
 de las funciones, o la lectura del <a href="https://tidyr.tidyverse.org/articles/pivot.html">artículo sobre <em>pivoting</em></a>.</p>
 </div>
 <p>A modo de ejemplo, el conjunto de datos <code>contam_mad</code> tiene los datos “mezclados” de varias variables medioambientales en la columna <code>daily_mean</code>. La columna <code>nom_abv</code> contiene el parámetro al que se refiere la columna de datos. Entonces, interesa “extender” la tabla para tener cada parámetro en una columna, de forma que se pueda hacer un análisis de datos adecuado, como en el siguiente código:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyr.tidyverse.org">"tidyr"</a></span><span class="op">)</span></span>
 <span><span class="va">extendida</span> <span class="op">&lt;-</span> <span class="va">contam_mad</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"nom_abv"</span>,</span>
@@ -775,7 +775,7 @@ de las funciones, o la lectura del <a href="https://tidyr.tidyverse.org/articles
 <p>El paquete <code>tidyr</code> también contiene funciones para reorganizar las columnas
 de la tabla uniendo columnas con la función <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code>, o separando una columna
 en dos o más con la función <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> (véanse los detalles en la ayuda de las funciones).</p>
-<p>@
+<p>
 Para terminar este apartado de reorganización de datos, se da una
 primera aproximación al tratamiento de valores perdidos, que se abordará en el
 Cap. <a href="#130009"><strong>??</strong></a>. En <strong>R</strong>, un valor
@@ -790,7 +790,7 @@ especificado.</p></li>
 <li><p><code><a href="https://tidyr.tidyverse.org/reference/fill.html">fill()</a></code>: permite “rellenar” valores perdidos con los últimos encontrados.</p></li>
 </ul>
 <p>Los datos de contaminación a menudo tienen muchos valores perdidos. La siguiente expresión elimina las filas del conjunto de datos <code>contam_mad</code> con valores perdidos y, después, cuenta las filas.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">contam_mad</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># se omiten los NAs para el análisis</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -862,7 +862,7 @@ en el sistema para poder usar RStudio.</p></li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

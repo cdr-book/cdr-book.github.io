@@ -20,7 +20,7 @@ Aunque el algoritmo NB es sencillo y de fácil implementación, destaca por su p
 (Cap. \@ref(cap-svm)), *random forest* (Cap. \@ref(cap-bagg-rf)) o *boosting* (Cap. \@ref(cap-boosting-xgboost)). Sin embargo, cuando el tamaño del conjunto de datos es pequeño, esta ventaja se reduce notablemente, pues en ese caso la optimización de estos últimos algoritmos no es tan exigente, y la ventaja en tiempo de computación del NB podría no compensar la pérdida en capacidad predictiva.
 
 
-Los conceptos probabilísticos necesarios para entender el funcionamiento del algoritmo NB pueden verse en el  Cap. \@ref(Funda-probab). No obstante, a continuación se muestra un brevísimo repaso del teorema de Bayes, que es la base del algoritmo. \index{teorema!de Bayes} 
+Los conceptos probabilísticos necesarios para entender el funcionamiento del algoritmo NB pueden verse en el  Cap. \@ref(Funda-probab). No obstante, a continuación se muestra un brevísimo repaso del teorema de Bayes, que es la base del algoritmo. \index{teorema de Bayes} 
 
 ## Teorema de Bayes
 
@@ -54,7 +54,7 @@ Esta expresión es conocida como teorema de Bayes. Para ampliar los conceptos pr
 
 ## El algoritmo Naive Bayes
 
-Supóngase un conjunto de datos con $p$ variables predictoras, $X_1,X_2,...,X_p$, y una variable respuesta con $k$ clases, $c_1, c_2,...,c_k$. Considérese el caso, instancia u observación ${\bf{x}}^{\prime}_j=(x_1, x_2,...,x_p), \hspace{0,2cm} j=1,2,...,N$. Entonces, la adaptación del teorema de Bayes\index{teorema!de Bayes} para aplicarlo a un problema de clasificación es como sigue:  se trata de calcular la probabilidad de que, dada una observación, ${\bf{x}}_j$, esta pertenezca a una determinada clase de la variable respuesta, por ejemplo la *m*-ésima clase, $c_m$, de tal manera que dicha observación se asignará a la clase para la que se obtenga una mayor probabilidad:  
+Supóngase un conjunto de datos con $p$ variables predictoras, $X_1,X_2,...,X_p$, y una variable respuesta con $k$ clases, $c_1, c_2,...,c_k$. Considérese el caso, instancia u observación ${\bf{x}}^{\prime}_j=(x_1, x_2,...,x_p), \hspace{0,2cm} j=1,2,...,N$. Entonces, la adaptación del teorema de Bayes\index{teorema de Bayes} para aplicarlo a un problema de clasificación es como sigue:  se trata de calcular la probabilidad de que, dada una observación, ${\bf{x}}_j$, esta pertenezca a una determinada clase de la variable respuesta, por ejemplo la *m*-ésima clase, $c_m$, de tal manera que dicha observación se asignará a la clase para la que se obtenga una mayor probabilidad:  
 
 
 \begin{equation}
@@ -82,7 +82,7 @@ La forma como el algoritmo KNN supera esta limitación es adoptar el supuesto de
 
 Dos sucesos $A$ y $B$ son *condicionalmente independientes* dado un tercero, $C$, si:
 
-\index{independencia condicional} 
+\index{independencia!condicional} 
 
 \begin{equation}
 P(AB|C) = P(A|C)\cdot P(B|C).
@@ -369,14 +369,10 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
 
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.55\linewidth]{img/nb_boxplot} 
-
-}
-
-\caption{Resultados del modelo Naive Bayes obtenidos durante el proceso de validación cruzada.}(\#fig:NBRESULTS)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/nb_boxplot.png" alt="Resultados del modelo Naive Bayes obtenidos durante el proceso de validación cruzada." width="55%" />
+<p class="caption">(\#fig:NBRESULTS)Resultados del modelo Naive Bayes obtenidos durante el proceso de validación cruzada.</p>
+</div>
 
 En la Fig. \@ref(fig:NBRESULTS) se puede observar que la `accuracy` oscila entre el 75% y el 95% en el proceso de validación cruzada, aunque en uno de los resultados se obtuvo un 96%, que aparece marcado como un *outlier*. La `kappa` de Cohen oscila entre el 63% y el 82%, con un *outlier* en el 82%.
 

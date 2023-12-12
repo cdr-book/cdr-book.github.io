@@ -7,11 +7,11 @@ Red Eléctrica de España
 
 ## Introducción
 \index{consumo eléctrico}
-\index{red neuronal}
+\index{red!neuronal}
 
 Red Eléctrica, como operador del sistema eléctrico español, tiene como misión principal garantizar la continuidad del suministro eléctrico en España. Para ello, entre otras muchas tareas, se desarrollan, evolucionan y mantienen algoritmos de previsión del consumo eléctrico y de la producción con las principales energías renovables (eólica y solar) para distintas frecuencias (horas, días, meses, años, etc.) y escalas temporales (anual, horaria, quinceminutal).
 
-Este caso de uso se sitúa en el departamento de Ciencia de Datos del Operador del Sistema. Es el principio del año 2018 y el área de planificación de la empresa solicita una **predicción del consumo eléctrico en España**, medida en MWH, para el año actual y el siguiente (2018 y 2019). La predicción se llevará a cabo con una red neuronal artificial (RNA, véase Cap. \@ref(capNN)) y es importante destacar que este desarrollo no está previsto en el presupuesto del año, por lo que tanto el software como los datos de entrada deben ser, en la medida de lo posible, gratuitos.
+Este caso de uso se sitúa en el departamento de Ciencia de Datos del Operador del Sistema. Es el principio del año 2018 y el área de planificación de la empresa solicita una **predicción del consumo eléctrico en España**, medida en MWh, para el año actual y el siguiente (2018 y 2019). La predicción se llevará a cabo con una red neuronal artificial (RNA, véase Cap. \@ref(capNN)) y es importante destacar que este desarrollo no está previsto en el presupuesto del año, por lo que tanto el software como los datos de entrada deben ser, en la medida de lo posible, gratuitos.
 
 ## Datos de entrada {#ree-datos}
 
@@ -79,20 +79,16 @@ ggplot(df_m_plot_melt, aes(Año, value, col = variable)) +
   geom_line(size = 2.5)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{212054_cd_electricidad_files/figure-latex/plot-ree1-1} 
-
-}
-
-\caption{Evolución del PIB y el consumo eléctrico en España.}(\#fig:plot-ree1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="212054_cd_electricidad_files/figure-html/plot-ree1-1.png" alt="Evolución del PIB y el consumo eléctrico en España." width="80%" />
+<p class="caption">(\#fig:plot-ree1)Evolución del PIB y el consumo eléctrico en España.</p>
+</div>
 
 En la Fig. \@ref(fig:plot-ree1) se observa que hasta 2005  las curvas que representan la evolución temporal de ambas variables están prácticamente superpuestas, pero desde 2006 las líneas se separan. ¿A qué puede deberse? Uno de los principales motivos probablemente sea las medidas de eficiencia energética que se han ido introduciendo en los últimos lustros (iluminación led, electrodomésticos, dispositivos con menor consumo, etc.).
 
 Una vez se han explorado los datos (en este caso la exploración ha sido muy breve, pero es muy habitual en proyectos reales que la exploración y limpieza de los datos requiera en torno al 80% del tiempo), se procede a dividir el conjunto de datos (desde 2000 hasta 2017, ya que 2018 y 2019 son los años en los que se pretende predecir) en dos partes: 
 
-(i) Subconjunto de entrenamiento y la validación (90% de las filas);
+(i)  subconjunto de entrenamiento y validación (90% de las filas);
 (ii) subconjunto de test (10% restante).
 
 Previamente, se debe escalar también la variable PIB per cápita para que sus valores varíen entre 0 y 1 (las otras dos variables explicativas ya venían escaladas en la fuente de la cual se tomaron) y que la RNA funcione de forma correcta:[^Note-RNA-2]
@@ -114,7 +110,7 @@ df_test
 ```
 
 
-El siguiente paso sería modelizar los datos con distintos modelos de *machine learning* \index{machine learning@\textit{machine learning}} y comparar sus resultados para determinar cuál es el más preciso para este conjunto de datos. En este ejemplo, por simplicidad no se incluye este proceso de prueba y comparación entre distintos modelos, que en el caso de uso real da lugar a elegir una red neuronal \index{red neuronal} simple o  perceptrón multicapa  (véase Cap. \@ref(capNN)), también conocido por su acrónimo en inglés MLP (*multi layer perceptron*).
+El siguiente paso sería modelizar los datos con distintos modelos de *machine learning* \index{machine learning@\textit{machine learning}} y comparar sus resultados para determinar cuál es el más preciso para este conjunto de datos. En este ejemplo, por simplicidad no se incluye este proceso de prueba y comparación entre distintos modelos, que en el caso de uso real da lugar a elegir una red neuronal \index{red!neuronal} simple o  perceptrón multicapa  (véase Cap. \@ref(capNN)), también conocido por su acrónimo en inglés MLP (*multi layer perceptron*).
 
 Para elegir el valor de los hiperparámetros \index{hiperparámetros} que faciliten el mejor resultado (en este caso el número de capas ocultas y el número de neuronas en cada una de estas capas) se utilizan las dos siguientes técnicas: $(i)$ *grid search* (para probar distintas combinaciones de hiperparámetros) y $(ii)$ *cross-validation* (para entrenar y validar aprovechando todos los registros del conjunto de entrenamiento-validación).
 
@@ -241,14 +237,10 @@ ggplot(df_m_mlp_plot, aes(Año, value, col = variable)) +
   geom_line()
 ```
 
-\begin{figure}
+<div class="figure" style="text-align: center">
+<img src="img/212054PIBConsumoPrediccion.png" alt="Consumo eléctrico real y predicho en España: 2018 y 2019." width="100%" />
+<p class="caption">(\#fig:reshape-plot-ree2)Consumo eléctrico real y predicho en España: 2018 y 2019.</p>
+</div>
 
-{\centering \includegraphics[width=1\linewidth]{img/212054PIBConsumoPrediccion} 
-
-}
-
-\caption{Consumo electrico real y predicho en España: 2018 y 2019.}(\#fig:reshape-plot-ree2)
-\end{figure}
-
-En la Fig. \@ref(fig:reshape-plot-ree2), se puede comprobar que las predicciones (puntos azules) las predicciones son bastante buenas, con unos errores del orden de los que se habían obtenido en el conjunto de test, por lo que parece que no hay sobreentrenamiento\index{sobreentrenamiento}.
+En la Fig. \@ref(fig:reshape-plot-ree2), se puede comprobar que las predicciones (puntos azules) son bastante buenas, con unos errores del orden de los que se habían obtenido en el conjunto de test, por lo que parece que no hay sobreentrenamiento\index{sobreentrenamiento}.
 

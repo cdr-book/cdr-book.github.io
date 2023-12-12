@@ -33,4 +33,8 @@ pre code {
   background: #FAC0C0 5px center/3em no-repeat;
 }
 
+div.csl-entry {
+  clear: both;
+  margin-bottom: 10px;
+}
 

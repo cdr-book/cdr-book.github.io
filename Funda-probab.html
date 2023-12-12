@@ -7,7 +7,7 @@
 <title>Capítulo 12 Probabilidad | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Mª Leticia Meseguer Santamaría\(^{a}\) y Manuel Vargas Vargas\(^{a}\) \(^{a}\) Universidad de Castilla-La Mancha  12.1 Introducción a la probabilidad La incertidumbre es inevitable en muchos...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 12 Probabilidad | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -142,7 +142,7 @@
 <p>Producto de la <strong>incertidumbre</strong>, las decisiones que se toman (o la validez de los resultados que se obtienen) conllevan un <strong>riesgo</strong>, que puede concretarse en enunciados equivocados, modelos con escaso poder predictivo o decisiones con resultados no deseados. Sin embargo, no se prescinde de tomar decisiones en ambientes de incertidumbre, sino que se intenta evaluar y minimizar los riesgos asociados.</p>
 <p>Así pues, resulta importante poder “<strong>medir</strong>” la incertidumbre, es decir, cuantificar su magnitud y establecer reglas de medida que permitan su tratamiento –la estimación de riesgo– y ayuden a la toma de decisiones. La <strong>teoría de la probabilidad</strong> se puede entender como un ente que proporciona reglas de comportamiento que ayudan a conseguir los objetivos anteriores, siendo el campo de aplicación tan amplio que puede cubrir cualquier rama de las ciencias sociales, técnicas y naturales.</p>
 <p>El concepto de probabilidad apareció en la antiguedad, asociado a los juegos de azar, y se ha ido refinando y formalizando a lo largo de la historia. Sin embargo, la mayoría de las definiciones tradicionales presenta limitaciones que impiden su uso riguroso en cualquier situación. Aún así, siguen estando en el subconsciente colectivo, de forma que se entienden expresiones como “es muy probable que llueva mañana”, “es improbable que me toque la lotería de Navidad”, o “es probable que se obtenga en breve una vacuna contra cierta enfermedad”, cuando responden a conceptualizaciones diferentes y, en muchos casos, vagas e imprecisas.</p>
-<p>Aunque sigue habiendo debates filosóficos y epistemológicos sobre el concepto de probabilidad <span class="citation">(véase, por ejemplo, <a href="referncias.html#ref-Hajek2016">Hajek and Hitchcock 2016</a>)</span>, su uso generalizado en muchos campos científicos está más relacionado con el desarrollo de su carácter de <strong>medida de la incertidumbre</strong> que con un tratamiento matemático que permite su aplicación práctica <span class="citation">(véase, por ejemplo, <a href="referncias.html#ref-Ross2012">Ross 2012</a>; <a href="referncias.html#ref-Morin2016">Morin 2016</a>; o <a href="referncias.html#ref-Balakrishnanetal2019">Balakrishnan, Koutras, and Politis 2019</a>)</span>. Es este enfoque el que se desarrolla sucintamente en este capítulo.</p>
+<p>Aunque sigue habiendo debates filosóficos y epistemológicos sobre el concepto de probabilidad <span class="citation">(véase, por ejemplo, <a href="referencias.html#ref-Hajek2016">Hajek and Hitchcock 2016</a>)</span>, su uso generalizado en muchos campos científicos está más relacionado con el desarrollo de su carácter de <strong>medida de la incertidumbre</strong> que con un tratamiento matemático que permite su aplicación práctica <span class="citation">(véase, por ejemplo, <a href="referencias.html#ref-Ross2012">Ross 2012</a>; <a href="referencias.html#ref-Morin2016">Morin 2016</a>; o <a href="referencias.html#ref-Balakrishnanetal2019">Balakrishnan, Koutras, and Politis 2019</a>)</span>. Es este enfoque el que se desarrolla sucintamente en este capítulo.</p>
 </div>
 <div id="probabilidad-elementos-básicos-definición-y-teoremas" class="section level2" number="12.2">
 <h2>
@@ -166,7 +166,7 @@
 <span class="math inline">\(P \left( \underset {i}{\cup} S_i \right) = \underset{i}{\sum} P(S_i)\)</span>.</li>
 </ol></li>
 </ul>
-<p>Así, una probabilidad es una medida que cumple esta axiomática, asignando a cada suceso un número real (entre 0 y 1) que expresa el grado de creencia en la ocurrencia de dicho suceso, entendiendo que 0 indica que se cree que no ocurre nunca y 1 que ocurre seguramente <span class="citation">(véase, por ejemplo <a href="referncias.html#ref-deFinetti2017">Finetti 2017</a> para su fundamentación)</span>.</p>
+<p>Así, una probabilidad es una medida que cumple esta axiomática, asignando a cada suceso un número real (entre 0 y 1) que expresa el grado de creencia en la ocurrencia de dicho suceso, entendiendo que 0 indica que se cree que no ocurre nunca y 1 que ocurre seguramente <span class="citation">(véase, por ejemplo <a href="referencias.html#ref-deFinetti2017">Finetti 2017</a> para su fundamentación)</span>.</p>
 <p>Algunas consecuencias que se derivan de la axiomática de Kolmogorov de forma inmediata son:</p>
 <ul>
 <li><p><span class="math inline">\(P(\emptyset)=0\)</span>.</p></li>
@@ -214,9 +214,9 @@ P(A_i/B)={P(A_i\cap B) \over P(B)} = {P(B/A_i)P(A_i) \over \underset {j}{\sum} P
 Este teorema, aplicación directa de la definición de probabilidad condicionada y del teorema de la probabilidad total, es un resultado tan importante que su uso ha dado nombre a una rama entera de la estadística, la conocida como <strong>estadística bayesiana</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(P(A_i)\)&lt;/span&gt; se denominan &lt;strong&gt;probabilidades&lt;/strong&gt; &lt;strong&gt;&lt;em&gt;a priori&lt;/em&gt;&lt;/strong&gt;, &lt;span class="math inline"&gt;\(P(B/A_i)\)&lt;/span&gt; &lt;strong&gt;verosimilitudes&lt;/strong&gt; y &lt;span class="math inline"&gt;\(P(A_i/B)\)&lt;/span&gt; &lt;strong&gt;probabilidades&lt;/strong&gt; &lt;strong&gt;&lt;em&gt;a posteriori&lt;/em&gt;&lt;/strong&gt;. El teorema establece cómo se modifican las probabilidades cuando se introduce información en forma de verosimilitudes, siendo muy utilizada su versión para distribuciones de probabilidad.&lt;/p&gt;'><sup>98</sup></a> También es utilizado en la moderna <strong>inteligencia artificial</strong>, en técnicas como Naive Bayes (véase Cap. <a href="cap-naive-bayes.html#cap-naive-bayes">27</a>)</p></li>
 </ul>
 </div>
-<div id="variable-aleatoria-y-su-distribución-de-probabilidad" class="section level2" number="12.3">
+<div id="prob-va" class="section level2" number="12.3">
 <h2>
-<span class="header-section-number">12.3</span> Variable aleatoria y su distribución de probabilidad<a class="anchor" aria-label="anchor" href="#variable-aleatoria-y-su-distribuci%C3%B3n-de-probabilidad"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3</span> Variable aleatoria y su distribución de probabilidad<a class="anchor" aria-label="anchor" href="#prob-va"><i class="fas fa-link"></i></a>
 </h2>
 <p>Una limitación operativa de la probabilidad, tal como se ha utilizado hasta ahora, es que hace referencia a sucesos y operaciones entre conjuntos, lo que dificulta su tratamiento. Sin embargo, en muchos casos los sucesos están caracterizados por valores numéricos, por lo que podrían ser utilizados en sustitución de los primeros para facilitar los cálculos. A esta idea corresponde la noción de <strong>variable aleatoria</strong> (v.a.), que es una función que asigna un valor numérico a cada suceso de un experimento aleatorio. Para trabajar con probabilidades sobre números, a cada uno se le asigna la probabilidad de los sucesos que están caracterizados por dicho valor.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Matemáticamente, una variable aleatoria es una función &lt;span class="math inline"&gt;\(X: \Omega \longrightarrow \mathbb R\)&lt;/span&gt; que, para cada valor real, cumple &lt;span class="math inline"&gt;\(X^{-1}(x) \in \Omega\)&lt;/span&gt;, de forma que se pueda asignar &lt;span class="math inline"&gt;\(P(x)=P \left ( X^{-1}(x) \right )\)&lt;/span&gt;.&lt;/p&gt;'><sup>99</sup></a></p>
 <p>Dada una v.a. <span class="math inline">\(X\)</span>, su <strong>función de distribución</strong> asigna a cada número real <span class="math inline">\(x\)</span> la probabilidad de que la variable tome un valor menor o igual que <span class="math inline">\(x\)</span>,</p>
@@ -225,15 +225,18 @@ Este teorema, aplicación directa de la definición de probabilidad condicionada
 F_X (x) = P(X \leq x).
 \end{equation}\]</span></p>
 <p>Una variable se dice <strong>discreta</strong> si solo puede tomar un conjunto finito (o infinito numerable) de valores con probabilidad positiva. A ese conjunto de valores y sus probabilidades <span class="math inline">\(\left\{ x_i ; P(X=x_i) \right\}\)</span> se le denomina <strong>función de cuantía</strong>.</p>
-<p>Una variable se denomina <strong>continua</strong> si su función de distribución es continua y existe su primera derivada y es continua. Como consecuencia, la probabilidad en un valor concreto siempre será cero, <span class="math inline">\(P(X=x_i)=0\)</span>, por lo que solo habrá probabilidades positivas sobre intervalos. Se denomina <strong>función de densidad</strong> a la derivada de la función de distribución
-<span class="math inline">\(f(x)=F^{\prime}(x)=\frac{dF(x)}{dx}\)</span>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La función de densidad es el equivalente continuo de la función de cuantía, indicando, de forma intuitiva, dónde se “concentra” la probabilidad de observar valores de &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;. De hecho, no es raro que se utilice el término general de “densidad” independientemente del tipo de variable que sea.&lt;/p&gt;'><sup>100</sup></a></p>
+<p>Una variable se denomina <strong>continua</strong> si su función de distribución es continua y existe su primera derivada y es continua. Como consecuencia, la probabilidad en un valor concreto siempre será cero, <span class="math inline">\(P(X=x_i)=0\)</span>, por lo que solo habrá probabilidades positivas sobre intervalos. Se denomina <strong>función de densidad</strong> a la derivada de la función de distribución:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La función de densidad es el equivalente continuo de la función de cuantía, indicando, de forma intuitiva, dónde se “concentra” la probabilidad de observar valores de &lt;span class="math inline"&gt;\(X\)&lt;/span&gt;. De hecho, no es raro que se utilice el término general de “densidad” independientemente del tipo de variable que sea.&lt;/p&gt;'><sup>100</sup></a></p>
+<p><span class="math display" id="eq:funcdens">\[\begin{equation}
+\tag{12.5}
+f(x)=F^{\prime}(x)=\frac{dF(x)}{dx}.
+\end{equation}\]</span></p>
 <p>Dado que una v.a. <span class="math inline">\(X\)</span> está caracterizada por su distribución de probabilidad (a través de la función de distribución o de la de cuantía-densidad), se han desarrollado <strong>modelos de distribución de probabilidad</strong> que permiten modelizar el comportamiento aleatorio de las v.a. y calcular probabilidades de forma sencilla.</p>
 </div>
 <div id="modelos-de-distribución-de-probabilidad" class="section level2" number="12.4">
 <h2>
 <span class="header-section-number">12.4</span> Modelos de distribución de probabilidad<a class="anchor" aria-label="anchor" href="#modelos-de-distribuci%C3%B3n-de-probabilidad"><i class="fas fa-link"></i></a>
 </h2>
-<p>En esta sección se presentan los modelos más utilizados en la práctica, distinguiendo entre modelos discretos y continuos, según la naturaleza de la v.a. Para una visión completa, se puede consultar, por ejemplo, <span class="citation">Johnson, Kemp, and Kotz (<a href="referncias.html#ref-JohnsonKempKotz2008">2008</a>)</span>.</p>
+<p>En esta sección se presentan los modelos más utilizados en la práctica, distinguiendo entre modelos discretos y continuos, según la naturaleza de la v.a. Para una visión completa, se puede consultar, por ejemplo, <span class="citation">Johnson, Kemp, and Kotz (<a href="referencias.html#ref-JohnsonKempKotz2008">2008</a>)</span>.</p>
 <div id="modelos-discretos" class="section level3" number="12.4.1">
 <h3>
 <span class="header-section-number">12.4.1</span> Modelos discretos<a class="anchor" aria-label="anchor" href="#modelos-discretos"><i class="fas fa-link"></i></a>
@@ -250,7 +253,7 @@ P(X=x)=\binom{n}{x}p^xq^{n-x} \equiv \frac {n!}{x!(n-x)!} p^xq^{n-x}.
 \end{equation}\]</span>
 Su esperanza, valor esperado o media es <span class="math inline">\(E(X)=\mu=np\)</span>, y su varianza <span class="math inline">\(Var(X)=\sigma^2=npq\)</span>.</p>
 <p>La representación gráfica de las funciones de cuantía y distribución se muestra en la Fig. <a href="Funda-probab.html#fig:150014binomd">12.1</a>.</p>
-<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">0</span><span class="op">:</span><span class="fl">10</span></span>
 <span><span class="va">dens</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">10</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
@@ -274,11 +277,11 @@ P(X=x)=\binom{x+r-1}{x}q^xp^r \equiv \frac {(x+r-1)!}{(r-1)!x!}q^xp^r,
 \end{equation}\]</span>
 con media <span class="math inline">\(E(X)=r\frac{q}{p}\)</span> y varianza <span class="math inline">\(Var(X)=r\frac{q}{p^2}\)</span>.</p>
 <p>La representación gráfica de las funciones de cuantía y distribución se muestra en la Fig. <a href="Funda-probab.html#fig:150014nbin">12.2</a>.</p>
-<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">0</span><span class="op">:</span><span class="fl">20</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/NegBinomial.html">dnbinom</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span>, <span class="fl">0</span>,<span class="fl">35</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"h"</span>, ylab <span class="op">=</span> <span class="st">"P(x)"</span>, xlab <span class="op">=</span> <span class="st">"x"</span>, main <span class="op">=</span> <span class="st">"Función de cuantía"</span>, col <span class="op">=</span> <span class="st">"pink"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/NegBinomial.html">pnbinom</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span>, <span class="fl">0</span>,<span class="fl">35</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="st">"F(x)"</span>, xlab <span class="op">=</span> <span class="st">"x"</span>, type <span class="op">=</span> <span class="st">"s"</span>, main <span class="op">=</span> <span class="st">"Función de distribución"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/NegBinomial.html">dnbinom</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span>, <span class="fl">0</span>, <span class="fl">35</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"h"</span>, ylab <span class="op">=</span> <span class="st">"P(x)"</span>, xlab <span class="op">=</span> <span class="st">"x"</span>, main <span class="op">=</span> <span class="st">"Función de cuantía"</span>, col <span class="op">=</span> <span class="st">"pink"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/NegBinomial.html">pnbinom</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span>, <span class="fl">0</span>, <span class="fl">35</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="st">"F(x)"</span>, xlab <span class="op">=</span> <span class="st">"x"</span>, type <span class="op">=</span> <span class="st">"s"</span>, main <span class="op">=</span> <span class="st">"Función de distribución"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:150014nbin"></span>
 <img src="img/150014img02.png" alt="Función de cuantía y de distribución para una variable BN(3; 0,35)." width="60%"><p class="caption">
@@ -297,7 +300,7 @@ P(X=x)=\frac{e^\lambda\lambda^x}{x!}.
 \end{equation}\]</span>
 Su media es <span class="math inline">\(E(X)=\lambda\)</span> y su varianza <span class="math inline">\(Var(X)=\lambda\)</span>.</p>
 <p>La representación gráfica de las funciones de cuantía y distribución se muestra en la Fig. <a href="Funda-probab.html#fig:150014poisson">12.3</a>.</p>
-<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">0</span><span class="op">:</span><span class="fl">10</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"h"</span>, ylab <span class="op">=</span> <span class="st">"P(x)"</span>, xlab <span class="op">=</span> <span class="st">"x"</span>, main <span class="op">=</span> <span class="st">"Función de cuantía"</span>, col <span class="op">=</span> <span class="st">"darkred"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
@@ -326,7 +329,7 @@ f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)
 \end{equation}\]</span>
 Su media es <span class="math inline">\(E[X]=\mu\)</span> y su varianza, <span class="math inline">\(Var(X)=\sigma^2\)</span>. Por ello, se suele decir que la normal está caracterizada por su media y su desviación típica.</p>
 <p>La gráfica de la función de densidad tiene forma de campana (conocida como <strong>campana de Gauss</strong>) y es simétrica respecto de la media, con mayor probabilidad en las colas conforme aumenta la desviación típica, como muestra la Fig. <a href="Funda-probab.html#fig:150014norm">12.4</a>.</p>
-<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">0.01</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="st">"P(x)"</span>, xlab <span class="op">=</span> <span class="st">"x"</span>, main <span class="op">=</span> <span class="st">"Función de densidad"</span>, type <span class="op">=</span> <span class="st">"l"</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
@@ -359,7 +362,7 @@ f(x) = \frac {1}{\beta^\alpha \Gamma (\alpha)}x^{\alpha-1}e^{-x/\beta},
 \end{equation}\]</span>
 donde <span class="math inline">\(\Gamma( \alpha)= \int_0^\infty x^{\alpha-1}e^{-x}dx=(\alpha -1)!\)</span> si <span class="math inline">\(\alpha\)</span> es un número natural.</p>
 <p>Su media es <span class="math inline">\(E(X)=\alpha\beta\)</span> y su varianza, <span class="math inline">\(Var(X)=\alpha\beta^2\)</span>. El parámetro <span class="math inline">\(\alpha\)</span> es conocido como <strong>parámetro de forma</strong>; si <span class="math inline">\(\alpha\leq1\)</span>, la función de densidad tiene forma de “L”; si <span class="math inline">\(\alpha&gt;1\)</span>, la distribución es campaniforme, con asimetría positiva, y conforme va aumentando, el centro de la distribución se desplaza hacia la derecha. <strong><span class="math inline">\(\beta\)</span></strong> se conoce como <strong>parámetro de escala</strong> y determina el alcance de la asimetría positiva. La Fig. <a href="Funda-probab.html#fig:150014gamma">12.5</a> muestra la representación gráfica de las funciones de densidad y distribución para varias combinaciones de valores de los parámetros (<span class="math inline">\(\beta=2\)</span>; <span class="math inline">\(\alpha=1\)</span> [azul], <span class="math inline">\(\alpha=2\)</span> [morado], <span class="math inline">\(\alpha=5\)</span> [rojo] y <span class="math inline">\(\alpha=10\)</span> [verde]).</p>
-<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">0.01</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">dgamma</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span>, ylab <span class="op">=</span> <span class="st">"f(x)"</span>, main <span class="op">=</span> <span class="st">"Función de densidad"</span>, col <span class="op">=</span> <span class="st">"purple"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
@@ -392,13 +395,16 @@ Figura 12.5: Función de densidad y de distribución de variables gamma.
 <strong>Distribución</strong> <strong><em>t</em></strong>–<strong>Student</strong>
 </li>
 </ul>
-<p>La distribución <em>t</em>–Student surge, entre otros contextos, en el muestreo de poblaciones normales (véase la Sec. <a href="Fundainfer.html#pobnormales">13.6</a>), asociada al uso de medias. Se dice que una v.a. <span class="math inline">\(X\)</span> sigue una distribución <em>t</em>–Student con <span class="math inline">\(n\)</span> <strong>grados de libertad</strong> si es el cociente entre una distribución normal estándar y la raíz de una <span class="math inline">\(\chi^2_n\)</span> dividida entre sus grados de libertad, ambas independientes: <span class="math inline">\(X \sim \frac{N(0,1)}{\sqrt{\chi^2_n /n}}\)</span>.</p>
+<p>La distribución <em>t</em>–Student surge, entre otros contextos, en el muestreo de poblaciones normales (véase la Sec. <a href="Fundainfer.html#pobnormales">13.6</a>), asociada al uso de medias. Se dice que una v.a. <span class="math inline">\(X\)</span> sigue una distribución <em>t</em>–Student con <span class="math inline">\(n\)</span> <strong>grados de libertad</strong> si es el cociente entre una distribución normal estándar y la raíz de una <span class="math inline">\(\chi^2_n\)</span> dividida entre sus grados de libertad, ambas independientes:</p>
+<p><span class="math display">\[\begin{equation}
+X \sim \frac{N(0,1)}{\sqrt{\chi^2_n /n}}.
+\end{equation}\]</span></p>
 <p>Su función de densidad viene dada por:
 <span class="math display">\[\begin{equation}
 f(x)=\frac{\Gamma((n+1)/2)}{\sqrt{n\pi}\Gamma(n/2)}(1+x^2/n)^{-(n+1)/2},
 \end{equation}\]</span>
 con media <span class="math inline">\(E(X)=0\)</span> y varianza <span class="math inline">\(Var(X)=\frac{n}{n-2}\)</span>, siendo <span class="math inline">\(n&gt;2\)</span>. Su densidad tiene forma acampanada, simétrica respecto a cero y parecida a la de la normal, pero con mayor probabilidad en las colas. En la Fig. <a href="Funda-probab.html#fig:150014student">12.6</a> se muestran las funciones de densidad y distribución para tres <em>t</em>–Student.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Para valores de &lt;span class="math inline"&gt;\(n\)&lt;/span&gt; mayores que 30, la distribución &lt;em&gt;t&lt;/em&gt;–Student y la &lt;span class="math inline"&gt;\(N(0,1)\)&lt;/span&gt; prácticamente coinciden.&lt;/p&gt;'><sup>103</sup></a></p>
-<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">0.01</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">dt</a></span><span class="op">(</span><span class="va">x</span>, df <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span>, ylab <span class="op">=</span> <span class="st">"f(x)"</span>, main <span class="op">=</span> <span class="st">"Función de densidad"</span>, col <span class="op">=</span> <span class="st">"blue"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
@@ -409,8 +415,8 @@ con media <span class="math inline">\(E(X)=0\)</span> y varianza <span class="ma
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">x</span>, df <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="st">"darkgreen"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:150014student"></span>
-<img src="img/150014img06.png" alt="Función de densidad y de distribución de variables *t*--Student, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad." width="60%"><p class="caption">
-Figura 12.6: Función de densidad y de distribución de variables <em>t</em>–Student, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad.
+<img src="img/150014img06.png" alt="Función de densidad y de distribución de variables $t$$-$Student, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad." width="60%"><p class="caption">
+Figura 12.6: Función de densidad y de distribución de variables <span class="math inline">\(t\)</span><span class="math inline">\(-\)</span>Student, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad.
 </p>
 </div>
 <ul>
@@ -421,11 +427,11 @@ Figura 12.6: Función de densidad y de distribución de variables <em>t</em>–S
 <p>Este modelo también está asociado al muestreo sobre poblaciones normales, en este caso, a la comparación de varianzas. Se define una distribución <span class="math inline">\(F\)</span> de Snedecor con <span class="math inline">\(n\)</span> y <span class="math inline">\(m\)</span> grados de libertad como el cociente de dos distribuciones <span class="math inline">\(\chi^2\)</span> independientes divididas entre sus grados de libertad, <span class="math inline">\(F_{n,m} = \frac {\chi^2_{n}/n}{\chi^2_{m}/m}\)</span>.</p>
 <p>La función de densidad <span class="math inline">\(F_{n,m}\)</span> viene dada por:
 <span class="math display">\[\begin{equation}
-f(x)=\frac{\Gamma(\frac{n+m}{2})}{\Gamma(\frac{n}{2})\Gamma(\frac{m}{2})}\left(\frac{n}{m}\right)^{\frac{n}{2}}\frac{x^{\frac{n-2}{2}}}{(1+\frac{nx}{m})^{\frac{n+m}{2}}}
+f(x)=\frac{\Gamma(\frac{n+m}{2})}{\Gamma(\frac{n}{2})\Gamma(\frac{m}{2})}\left(\frac{n}{m}\right)^{\frac{n}{2}}\frac{x^{\frac{n-2}{2}}}{(1+\frac{nx}{m})^{\frac{n+m}{2}}}.
 \end{equation}\]</span>
 con media <span class="math inline">\(E(X)=\frac{m}{m-2}\)</span>, siendo <span class="math inline">\(m&gt;2\)</span> y varianza <span class="math inline">\(Var(X)=\frac{2m^2(n+m-2)}{n(m-2)^2(m-4)}\)</span>, cuando <span class="math inline">\(m&gt;4\)</span>.</p>
 <p>La gráfica de la función de densidad es parecida a la de la <span class="math inline">\(\chi_n^2\)</span>. Así, solo está definida para el semieje positivo y su apariencia variará según los grados de libertad. La Fig. <a href="Funda-probab.html#fig:150014FSnedecor">12.7</a> muestra las funciones de densidad y distribución para varias distribuciones <span class="math inline">\(F\)</span> de Snedecor.</p>
-<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span>, <span class="fl">0.01</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">df</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span>, ylab <span class="op">=</span> <span class="st">"f(x)"</span>, main <span class="op">=</span> <span class="st">"Función de densidad"</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
@@ -546,28 +552,31 @@ El TCL indica que la distribución de la suma de <span class="math inline">\(n\)
 <li>Si se analizan 10 imágenes de personas, calcúlese la probabilidad de que identifique correctamente siete.</li>
 </ol>
 <p>Denominando <span class="math inline">\(X\)</span> al número de imágenes de personas correctamente clasificadas, se tiene que <span class="math inline">\(X \sim B(10;0,8)\)</span>. Se pide <span class="math inline">\(P(X=7)\)</span>:</p>
-<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">7</span>, size <span class="op">=</span> <span class="fl">10</span>, prob <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.2013266</span></span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Para el resto de imágenes, calcúlese la probabilidad de que identifique correctamente como mucho 50 hasta que se produzca el segundo error.</li>
 </ol>
 <p>Denominando <span class="math inline">\(Y\)</span> al número de imágenes correctamente identificadas hasta el segundo error, se tiene que <span class="math inline">\(Y \sim BN(2;0,05)\)</span>. Se pide <span class="math inline">\(P(Y \leq 50)\)</span>:</p>
-<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/NegBinomial.html">pnbinom</a></span><span class="op">(</span><span class="fl">50</span>, size <span class="op">=</span> <span class="fl">2</span>, prob <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.7405031</span></span></code></pre></div>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Históricamente, el número medio diario de imágenes incorrectamente clasificadas es de 7. Calcular la probabilidad de que un día seleccionado al azar clasifique incorrectamente entre 6 y 9 imágenes.</li>
 </ol>
 <p>Denominando <span class="math inline">\(T\)</span> al número de imágenes incorrectamente identificadas en un día, se tiene que <span class="math inline">\(T \sim P(\lambda = 7)\)</span>. Se pide <span class="math inline">\(P(6 \leq T \leq 9) = P(T \leq 9) - P(T \leq 5)\)</span>:</p>
-<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">ppois</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">7</span>, lower.tail <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">ppois</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">7</span>, lower.tail <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.5297877</span></span></code></pre></div>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>Calcúlese la probabilidad de que en un lote de 20 imágenes del mismo tipo todas sean correctamente clasificadas.</li>
 </ol>
-<p>Como no se especifica el tipo de imágenes, hay que calcular dicha probabilidad condicionada a cada grupo y utilizar el teorema de la probabilidad total: <span class="math display">\[P(acierto)=P(acierto/personas)\cdot P(personas)+P(acierto/otras) \cdot P(otras)\]</span>.</p>
-<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<p>Como no se especifica el tipo de imágenes, hay que calcular dicha probabilidad condicionada a cada grupo y utilizar el teorema de la probabilidad total:</p>
+<p><span class="math display">\[\begin{equation}
+P(acierto)=P(acierto/personas)\cdot P(personas)+P(acierto/otras) \cdot P(otras).
+\end{equation}\]</span></p>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acierto_personas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">0.2</span><span class="op">)</span></span>
 <span><span class="va">acierto_otras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="va">acierto_total</span> <span class="op">&lt;-</span> <span class="va">acierto_personas</span> <span class="op">*</span> <span class="fl">0.25</span> <span class="op">+</span> <span class="va">acierto_otras</span> <span class="op">*</span> <span class="fl">0.75</span></span>
@@ -576,8 +585,11 @@ El TCL indica que la distribución de la suma de <span class="math inline">\(n\)
 <ol start="5" style="list-style-type: lower-alpha">
 <li>Si se han clasificado correctamente las 20 imágenes del lote, calcúlese la probabilidad de que correspondan a imágenes de personas.</li>
 </ol>
-<p>En este caso hay que utilizar el teorema de Bayes: <span class="math inline">\(P(personas/acierto)= \frac {P(acierto/personas)*P(personas)}{P(acierto)}\)</span>.</p>
-<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<p>En este caso hay que utilizar el teorema de Bayes:</p>
+<p><span class="math display">\[\begin{equation}
+(personas/acierto)= \frac {P(acierto/personas)\dot (personas)}{P(acierto)}.
+\end{equation}\]</span></p>
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acierto_personas</span> <span class="op">*</span> <span class="fl">0.25</span> <span class="op">/</span> <span class="va">acierto_total</span></span>
 <span><span class="co">#&gt; [1] 0.01060658</span></span></code></pre></div>
 </div>
@@ -589,13 +601,13 @@ El TCL indica que la distribución de la suma de <span class="math inline">\(n\)
 <ol style="list-style-type: lower-alpha">
 <li>La probabilidad de que una persona obtenga una calificación inferior a 4.</li>
 </ol>
-<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">4</span>, mean <span class="op">=</span> <span class="fl">6</span>, sd <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.05479929</span></span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>El número esperado de personas que obtendrán sobresaliente (9 o más) en un grupo de 60 personas.</li>
 </ol>
-<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">6</span>, <span class="fl">1.25</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">p</span></span>
 <span><span class="co">#&gt; [1] 0.008197536</span></span>
@@ -605,17 +617,17 @@ El TCL indica que la distribución de la suma de <span class="math inline">\(n\)
 <ol start="3" style="list-style-type: lower-alpha">
 <li>la nota mínima para estar en el 30% de personas con mejores calificaciones.</li>
 </ol>
-<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">6</span>, <span class="fl">1.25</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 6.655501</span></span></code></pre></div>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>En un curso de informática las calificaciones siguen una de distribución normal <span class="math inline">\(N(5; 1,75)\)</span>, independientes de las de estadística. Calcular la probabilidad de que una persona matriculada en ambos cursos saque mayor calificación en estadística.</li>
 </ol>
 <p>Llamando <span class="math inline">\(X=C_e-C_i\)</span> a la diferencia entre las calificaciones en estadística (<span class="math inline">\(C_e\)</span>) y en informática (<span class="math inline">\(C_i\)</span>), ambas normales e independientes, la distribución de <span class="math inline">\(X\)</span> será <span class="math inline">\(X \sim N \left (6-5, \sqrt{1.25^2+1.75^2} \right )\)</span>. Se pide <span class="math inline">\(P(X&gt;0)\)</span>, que se representa en la Fig. <a href="Funda-probab.html#fig:150014graf">12.8</a>.</p>
-<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">0</span>, mean <span class="op">=</span> <span class="fl">1</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">1.25</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1.75</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.6790309</span></span></code></pre></div>
-<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">media</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="va">desv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">1.25</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1.75</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">area_n</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">media</span>, <span class="va">desv</span>, <span class="va">lb</span>, <span class="va">ub</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
@@ -664,7 +676,7 @@ Figura 12.8: <span class="math inline">\(P(X&gt;0)\)</span> representada como el
 <li><a class="nav-link" href="#Funda-probab"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="nav-link" href="#introducci%C3%B3n-a-la-probabilidad"><span class="header-section-number">12.1</span> Introducción a la probabilidad</a></li>
 <li><a class="nav-link" href="#probabilidad-elementos-b%C3%A1sicos-definici%C3%B3n-y-teoremas"><span class="header-section-number">12.2</span> Probabilidad: elementos básicos, definición y teoremas</a></li>
-<li><a class="nav-link" href="#variable-aleatoria-y-su-distribuci%C3%B3n-de-probabilidad"><span class="header-section-number">12.3</span> Variable aleatoria y su distribución de probabilidad</a></li>
+<li><a class="nav-link" href="#prob-va"><span class="header-section-number">12.3</span> Variable aleatoria y su distribución de probabilidad</a></li>
 <li>
 <a class="nav-link" href="#modelos-de-distribuci%C3%B3n-de-probabilidad"><span class="header-section-number">12.4</span> Modelos de distribución de probabilidad</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#modelos-discretos"><span class="header-section-number">12.4.1</span> Modelos discretos</a></li>
@@ -695,7 +707,7 @@ Figura 12.8: <span class="math inline">\(P(X&gt;0)\)</span> representada como el
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -16,7 +16,7 @@ $^{b}$Università degli Studi di Roma Tor Vergata
 
 ## Introducción 
 
-En la actualidad, entre el 80 % y el 90 % de los datos que se generan diariamente son datos no estructurados (véase Cap. \ref{datos-no-sql}). Un ejemplo típico de datos no estructurados son los textos, desde los comentarios o mensajes de las redes sociales, reseñas, blogs y microblogs, chats o WhatsApp hasta las noticias periodísticas, los discursos políticos o las obras literarias. En consecuencia, aprender a procesar y analizar datos exige aprender a procesar y analizar textos.
+En la actualidad, entre el 80 % y el 90 % de los datos que se generan diariamente son datos no estructurados (véase Cap. \@ref(cap-nosql)). Un ejemplo típico de datos no estructurados son los textos, desde los comentarios o mensajes de las redes sociales, reseñas, blogs y microblogs, chats o WhatsApp hasta las noticias periodísticas, los discursos políticos o las obras literarias. En consecuencia, aprender a procesar y analizar datos exige aprender a procesar y analizar textos.
 
 Los textos precisan, sin embargo, un tratamiento especial. A diferencia de la mayoría de los datos que se tratan en este libro, que son datos estructurados, los datos textuales requieren que se les otorgue un orden y estructura para su manejo y análisis con el software **R**. Además, al utilizar un lenguaje natural --es decir, un idioma como, por ejemplo, el español, el chino o el inglés--, los textos no pueden ser procesados directamente por un ordenador. Es preciso "traducirlos" antes a un lenguaje formal que los ordenadores puedan entender. 
 
@@ -51,7 +51,7 @@ Generalmente, los *tokens* son **palabras**, es decir, secuencias de caracteres 
 ::: {.infobox data-latex=""}
 **Nota** 
 
-También puede ser útil obtener la **tasa de riqueza léxica**\index{tasa de riqueza léxica, TTR} (TTR, del inglés *type-token ratio*), que mide la relación entre el número de palabras diferentes que contiene un texto (*types*) y el número de palabras totales de dicho texto (*tokens*)^[Véase https://www.fundeu.es/consideraciones-teoricas/]. 
+También puede ser útil obtener la **tasa de riqueza léxica**\index{tasa!de riqueza léxica, TTR} (TTR, del inglés *type-token ratio*), que mide la relación entre el número de palabras diferentes que contiene un texto (*types*) y el número de palabras totales de dicho texto (*tokens*).^[Véase https://www.fundeu.es/consideraciones-teoricas/] 
 $$TTR=\dfrac{{Types}}{Tokens}$$
 :::
 
@@ -87,7 +87,7 @@ En la actualidad, el análisis estilométrico se usa en ámbitos muy dispares: d
 
 El **análisis de sentimientos**\index{análisis!de sentimientos} (en inglés, *sentiment analysis*) es una aplicación de la minería de textos que tiene como finalidad la detección, extracción, clasificación, análisis y visualización de la dimensión subjetiva asociada a los temas o tópicos presentes en los textos. La dimensión subjetiva comprende no solo los sentimientos, sino también las **emociones**\index{emociones}, sensaciones y estados afectivos y anímicos, así como las opiniones, creencias, percepciones, puntos de vista, actitudes, juicios y valoraciones. De ahí que reciba también el nombre de **minería de opinión**\index{minería!de opinión} (en inglés, *opinion mining*) [@zahonero2020].
 
-El análisis de sentimientos asigna a esta dimensión subjetiva una polaridad, que puede ser positiva o negativa [@pang2008opinion]. Algunas técnicas añaden además una polaridad neutra. En algunos casos, el análisis de sentimientos se refina hasta llegar a las emociones básicas: este subcampo del análisis de sentimientos se conoce como **detección de emociones**\index{detección de emociones}.
+El análisis de sentimientos asigna a esta dimensión subjetiva una polaridad, que puede ser positiva o negativa [@pang2008opinion]. Algunas técnicas añaden además una polaridad neutra. En algunos casos, el análisis de sentimientos se refina hasta llegar a las emociones básicas: este subcampo del análisis de sentimientos se conoce como **detección de emociones**\index{detección!de emociones}.
 
 La primera aplicación del análisis de sentimientos fue la investigación de mercados. A partir del año 2000, se registra un crecimiento exponencial de textos como reseñas, chats, foros, blogs, microblogs o comentarios y mensajes de las redes sociales, en los que predomina la expresión de emociones y opiniones personales. Mediante el análisis de sentimientos se extrae de ellos información que permite conocer los gustos del consumidor y diseñar productos a su medida. Esta idea se extendió después a otros ámbitos, en especial a aquellos en los que predomina la comunicación persuasiva, como las campañas publicitarias o políticas. Recientemente, ha empezado a utilizarse también con fines predictivos y preventivos en muchas esferas: desde cuáles son los políticos, las empresas, las películas, canciones u obras literarias que obtendrán un mayor rendimiento, mejores resultados o más votos o ventas hasta cómo detectar y prevenir, por ejemplo, conductas suicidas mediante el análisis de mensajes en las redes sociales. 
 
@@ -105,13 +105,13 @@ En **R** existen diversos paquetes y funciones que facilitan la minería de text
 
 * `tokenizers`: incluye *tokenizadores* de palabras, oraciones, párrafos, $n$-gramas, *tweets*, expresiones regulares, así como funciones para contar caracteres, palabras y oraciones, y para dividir textos más largos en documentos separados, cada uno con el mismo número de palabras.
 
-* `wordcloud`: permite visualizar **nubes de palabras**\index{nubes de palabras}. Las palabras más frecuentes aparecen en mayor tamaño permitiendo, de un vistazo, conocer las palabras clave del texto.
+* `wordcloud`: permite visualizar **nubes de palabras**\index{nube!de palabras}. Las palabras más frecuentes aparecen en mayor tamaño permitiendo, de un vistazo, conocer las palabras clave del texto.
 
-* `quanteda`: maneja **matrices de documentos-términos**\index{matriz!de documentos} y destaca en tareas cuantitativas, como el recuento de palabras o sílabas.
+* `quanteda`: maneja **matrices de documentos-términos**\index{matriz! de documentos} y destaca en tareas cuantitativas, como el recuento de palabras o sílabas.
 
 *	`syuzhet`: incluye distintas funciones que facilitan el análisis de textos, en particular el *análisis de sentimientos*\index{análisis!de sentimientos} de textos literarios. 
 
-* `gutenbergr`: almacena las obras del proyecto Gutenberg[^Note-mintext-2]; muy útil si se quieren analizar textos literarios.
+* `gutenbergr`: almacena las obras del proyecto Gutenberg;[^Note-mintext-2] muy útil si se quieren analizar textos literarios.
 
 [^Note-mintext-2]: Proyecto desarrollado por Michael Hart en 1971 para crear una biblioteca de libros electrónicos gratuitos y accesibles en Internet, a partir de libros en soporte físico, generalmente de dominio público. Cuenta con más de 50.000 libros.
 
@@ -155,7 +155,7 @@ tabla <- table(palabras[[1]])
   recuento = as.numeric(tabla)
 ) |>
   arrange(desc(recuento)))
-#> # A tibble: 390 x 2
+#> # A tibble: 390 × 2
 #>    palabra recuento
 #>    <chr>      <dbl>
 #>  1 de            43
@@ -168,7 +168,7 @@ tabla <- table(palabras[[1]])
 #>  8 el            17
 #>  9 al            14
 #> 10 para          14
-#> # i 380 more rows
+#> # ℹ 380 more rows
 ```
 En la primera fila de la salida se indican las dimensiones de la `tibble`, por lo que se puede ver que en la Declaración hay 390 "palabras" distintas (los números se consideran como palabras).
 
@@ -205,14 +205,10 @@ head(longitud_o)
 #> [1]  2  2 39 33 33 32
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{210045-mineria-textos_files/figure-latex/mintex-graf-long-o-1} 
-
-}
-
-\caption{Número de palabras en cada oración de la Declaración.}(\#fig:mintex-graf-long-o)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210045-mineria-textos_files/figure-html/mintex-graf-long-o-1.png" alt="Número de palabras en cada oración de la Declaración." width="60%" />
+<p class="caption">(\#fig:mintex-graf-long-o)Número de palabras en cada oración de la Declaración.</p>
+</div>
 
 
 ### Análisis exploratorio 
@@ -239,36 +235,24 @@ knitr::kable(tabla[1:10, ],
 )
 ```
 
-\begin{table}
 
-\caption{(\#tab:mintex-MFW-tabla)Palabras más frecuentes (sin palabras vacías)}
-\centering
-\begin{tabular}[t]{l|r}
-\hline
-palabra & recuento\\
-\hline
-virus & 9\\
-\hline
-recursos & 7\\
-\hline
-social & 5\\
-\hline
-alarma & 4\\
-\hline
-conjunto & 4\\
-\hline
-emergencia & 4\\
-\hline
-españa & 4\\
-\hline
-semanas & 4\\
-\hline
-va & 4\\
-\hline
-cada & 3\\
-\hline
-\end{tabular}
-\end{table}
+
+Table: (\#tab:mintex-MFW-tabla)Palabras más frecuentes (sin palabras vacías)
+
+|palabra    | recuento|
+|:----------|--------:|
+|virus      |        9|
+|recursos   |        7|
+|social     |        5|
+|alarma     |        4|
+|conjunto   |        4|
+|emergencia |        4|
+|españa     |        4|
+|semanas    |        4|
+|va         |        4|
+|cada       |        3|
+
+
 
 El resultado, Tabla \@ref(tab:mintex-MFW-tabla), se puede considerar el primer análisis léxico con valor informativo: la palabra más frecuente es *virus*, seguida de *recursos* y *social*. Se podría ver que en total hay 319 palabras no vacías distintas.
 
@@ -277,7 +261,7 @@ El método de eliminar palabras con el paquete `stopwords` no es perfecto. Por e
 
 #### Nubes de palabras
 
-Una manera habitual de mostrar la información de forma visual es con las denominadas **nubes de palabras**\index{nubes de palabras}, acudiendo a la función `wordcloud()` del paquete con el mismo nombre. Como esta función contiene un componente aleatorio, se fija con `set.seed()` (para la reproducibilidad del gráfico por parte del lector).
+Una manera habitual de mostrar la información de forma visual es con las denominadas **nubes de palabras**\index{nube!de palabras}, acudiendo a la función `wordcloud()` del paquete con el mismo nombre. Como esta función contiene un componente aleatorio, se fija con `set.seed()` (para la reproducibilidad del gráfico por parte del lector).
 
 
 ```r
@@ -286,14 +270,10 @@ library("wordcloud")
 wordcloud(tabla$palabra, tabla$recuento, max.words = 50, colors = rainbow(3))
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{210045-mineria-textos_files/figure-latex/mintex-nube-palabras-1} 
-
-}
-
-\caption{Nube de palabras más frecuentes de la Declaración.}(\#fig:mintex-nube-palabras)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210045-mineria-textos_files/figure-html/mintex-nube-palabras-1.png" alt="Nube de palabras más frecuentes de la Declaración." width="80%" />
+<p class="caption">(\#fig:mintex-nube-palabras)Nube de palabras más frecuentes de la Declaración.</p>
+</div>
 
 El resultado se muestra en la Fig. \@ref(fig:mintex-nube-palabras). Como se puede observar, el tamaño de letra de la palabra, y en este caso también el color, están relacionados con su frecuencia.
 
@@ -363,7 +343,7 @@ Table: (\#tab:mintex-tablaBingNRC) Palabras más frecuentes de la Declaración u
 |adequate       |  1|unfortunately  |  2|good          |  2|combat        |  1|
 +===============+===+===============+===+==============+===+==============+===+
 
-Con el léxico `NRC` pueden detectarse emociones\index{detección de emociones}. La misma palabra puede tener asociadas distintas emociones/sentimientos. En la Fig. \@ref(fig:mintex-barplot-NRC) se puede observar la dispar frecuencia de palabras de cada tipo:
+Con el léxico `NRC` pueden detectarse emociones\index{detección!de emociones}. La misma palabra puede tener asociadas distintas emociones/sentimientos. En la Fig. \@ref(fig:mintex-barplot-NRC) se puede observar la dispar frecuencia de palabras de cada tipo:
 
 
 ```r
@@ -373,14 +353,10 @@ emo |> ggplot(aes(sentiment)) +
 ```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{img/text-emo1} 
-
-}
-
-\caption{Gráfico de barras con la frecuencia de las emociones del lexicón NRC.}(\#fig:mintex-barplot-NRC)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/text-emo1.png" alt="Gráfico de barras con la frecuencia de las emociones del lexicón NRC." width="85%" />
+<p class="caption">(\#fig:mintex-barplot-NRC)Gráfico de barras con la frecuencia de las emociones del lexicón NRC.</p>
+</div>
 
 
 El análisis de sentimientos y la detección de emociones de la Declaración mediante NRC se puede realizar con el siguiente código, mediante el cual se obtiene la tabla de frecuencias por emociones y sentimientos:
@@ -414,17 +390,13 @@ emo_tab |>
   geom_text(aes(label = n), vjust = -0.25)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{img/text-emo2} 
-
-}
-
-\caption{Frecuencia de emociones de la Declaración utilizando NRC.}(\#fig:mintex-emobarras)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/text-emo2.png" alt="Frecuencia de emociones de la Declaración utilizando NRC." width="85%" />
+<p class="caption">(\#fig:mintex-emobarras)Frecuencia de emociones de la Declaración utilizando NRC.</p>
+</div>
 
 
-Entre las distintas opciones para dibujar nubes de palabras\index{nubes de palabras} para el análisis de sentimientos es interesante la que se obtiene con el paquete `syuzhet`, dado que permite visualizar las palabras agrupadas por emociones. Su obtención requiere distintos pasos en los que primero las palabras se agrupan por emoción y después se organizan en una **matriz de documentos**\index{matriz!de documentos} con la función `TermDocumentMatrix()` del paquete `tm`. Finalmente, la función `comparison.cloud()` permite visualizar el gráfico (tiene distintos argumentos opcionales que admiten distintas posibilidades). En el ejemplo que figura a continuación solo se han escogido tres emociones.[^Note-mintex-3]
+Entre las distintas opciones para dibujar nubes de palabras\index{nube!de palabras} para el análisis de sentimientos es interesante la que se obtiene con el paquete `syuzhet`, dado que permite visualizar las palabras agrupadas por emociones. Su obtención requiere distintos pasos en los que primero las palabras se agrupan por emoción y después se organizan en una **matriz de documentos**\index{matriz! de documentos} con la función `TermDocumentMatrix()` del paquete `tm`. Finalmente, la función `comparison.cloud()` permite visualizar el gráfico (tiene distintos argumentos opcionales que admiten distintas posibilidades). En el ejemplo que figura a continuación solo se han escogido tres emociones.[^Note-mintex-3]
 
 [^Note-mintex-3]: Se deja al lector el análisis de la Declaración con más emociones, en castellano, etc.
 
@@ -452,14 +424,10 @@ comparison.cloud(TDM,
 )
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.88\linewidth]{img/text-emo3} 
-
-}
-
-\caption{Nube de palabras de la Declaración de tres emociones NRC seleccionadas.}(\#fig:mintex-emonube)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/text-emo3.png" alt="Nube de palabras de la Declaración de tres emociones NRC seleccionadas." width="88%" />
+<p class="caption">(\#fig:mintex-emonube)Nube de palabras de la Declaración de tres emociones NRC seleccionadas.</p>
+</div>
 
 ### *N*-gramas
 \index{n-gramas@\textit{n}-gramas}
@@ -495,7 +463,7 @@ bigramas <- declara2 |>
   count(bigram, sort = TRUE)
 
 bigramas[1:5, ]
-#> # A tibble: 5 x 2
+#> # A tibble: 5 × 2
 #>   bigram         n
 #>   <chr>      <int>
 #> 1 todos los      6
@@ -515,7 +483,7 @@ bigramas_limpios <- bigramas |>
   unite(bigram, word1, word2, sep = " ")
 
 bigramas_limpios[1:5, ]
-#> # A tibble: 5 x 2
+#> # A tibble: 5 × 2
 #>   bigram                       n
 #>   <chr>                    <int>
 #> 1 autoridades sanitarias       2
@@ -536,7 +504,7 @@ bigramas_no <- bigramas |>
   count(word1, word2, sort = TRUE)
 
 bigramas_no
-#> # A tibble: 3 x 3
+#> # A tibble: 3 × 3
 #>   word1 word2       n
 #>   <chr> <chr>   <int>
 #> 1 no    atiende     1
@@ -580,14 +548,10 @@ library("patchwork")
 g1 + g2
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{210045-mineria-textos_files/figure-latex/mintex-figredes-1} 
-
-}
-
-\caption{Redes de bigramas de la Declaración sin palabras vacías y con ellas.}(\#fig:mintex-figredes)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="210045-mineria-textos_files/figure-html/mintex-figredes-1.png" alt="Redes de bigramas de la Declaración sin palabras vacías y con ellas." width="85%" />
+<p class="caption">(\#fig:mintex-figredes)Redes de bigramas de la Declaración sin palabras vacías y con ellas.</p>
+</div>
 
 
 ::: {.infobox_resume data-latex=""}

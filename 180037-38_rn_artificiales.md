@@ -14,20 +14,16 @@ $^{b}$Ubotica Technologies
 
 \index{deep learning@\textit{deep learning}}
 
-La inteligencia artificial (IA)\index{inteligencia artificial} es una disciplina científica que se ocupa de crear programas informáticos que ejecutan operaciones comparables a las que realiza la mente humana, como el aprendizaje o el razonamiento lógico [@definicionIA]. Entre otros ejemplos, se pueden encontrar en la actualidad tanto robots que son capaces de realizar tareas de manera similar a un humano en una fábrica, como las denominadas casas inteligentes o los vehículos autónomos.
+La inteligencia artificial (IA)\index{inteligencia artificial} es una disciplina científica que se ocupa de crear programas informáticos que ejecutan operaciones comparables a las que realiza la mente humana, como el aprendizaje o el razonamiento lógico [@definicionIA]. Entre otros ejemplos, se pueden encontrar en la actualidad tanto robots que son capaces de realizar tareas de manera similar a un humano en una fábrica como las denominadas casas inteligentes o los vehículos autónomos.
 
 Dentro de las técnicas utilizadas para la IA\index{inteligencia artificial} se encuentran las técnicas clásicas de *machine learning*\index{machine learning@\textit{machine learning}} (véase Parte VI de este manual), las cuales tienen la habilidad de aprender sin haber sido explícitamente programadas para una tarea en particular, pudiendo ser utilizadas para varios fines y aplicaciones.
 
-A su vez, dentro de las técnicas de *machine learning*, se enmarcan, como un subconjunto de ellas, las técnicas de *deep learning*, las cuales intentan simular tanto la arquitectura como el comportamiento del sistema nervioso humano -- en particular, de las redes de neuronas que componen el encéfalo y que se encargan de realizar tareas específicas (véase la Fig. \@ref(fig:iaMLDL)). Para ello, estas técnicas se basan en el concepto de redes neuronales, que intentan emular la forma de aprendizaje de los humanos [@goodfellow2016deep].
+A su vez, dentro de las técnicas de *machine learning*, se enmarcan, como un subconjunto de ellas, las técnicas de *deep learning*, las cuales intentan simular tanto la arquitectura como el comportamiento del sistema nervioso humano --en particular, de las redes de neuronas que componen el encéfalo y que se encargan de realizar tareas específicas (véase la Fig. \@ref(fig:iaMLDL))--. Para ello, estas técnicas se basan en el concepto de redes neuronales, que intentan emular la forma de aprendizaje de los humanos [@goodfellow2016deep].
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{img/conc_dl_01_iaMLDL} 
-
-}
-
-\caption{Inteligencia artificial, $machine$ $learning$ y $deep$ $learning$.}(\#fig:iaMLDL)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/conc_dl_01_iaMLDL.png" alt="Inteligencia artificial, $machine$ $learning$ y $deep$ $learning$." width="90%" />
+<p class="caption">(\#fig:iaMLDL)Inteligencia artificial, $machine$ $learning$ y $deep$ $learning$.</p>
+</div>
 
 ### Diferencias entre las técnicas de *machine learning* tradicional y el *deep learning*
 
@@ -38,23 +34,19 @@ Como se vio en el Cap. \@ref(metodologia), los métodos de ciencia de datos tien
 
 Por ejemplo, en el caso de querer detectar una cara dentro de una imagen, sería necesario definir qué tipo de características servirían para detectar la misma, como podrían ser, a bajo nivel, determinados tipos de bordes de la imagen (véase la Fig. \@ref(fig:scharrpitu)). Estas características proporcionarían la base para detectar a nivel medio elementos de la cara como ojos, narices, orejas, etc. y, definitivamente, a alto nivel, reconocer dónde hay una cara dentro de la imagen.
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/conc_dl_02_Pitu} 
-
-}
-
-\caption{Detección de bordes de una imagen mediante el método de Scharr.}(\#fig:scharrpitu)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/conc_dl_02_Pitu.png" alt="Detección de bordes de una imagen mediante el método de Scharr." width="100%" />
+<p class="caption">(\#fig:scharrpitu)Detección de bordes de una imagen mediante el método de Scharr.</p>
+</div>
 
 En muchas ocasiones, la selección de características requiere la intervención humana, por lo que puede llevar mucho tiempo y diversos experimentos de prueba y error hasta poder encontrar una combinación de características que permita resolver el problema planteado. Pues bien, las técnicas de *deep learning*\index{deep learning@\textit{deep learning}}, a diferencia de las de *machine learning*\index{machine learning@\textit{machine learning}} tradicional, son capaces de aprender cuáles son las características que permiten representar mejor el problema que se quiere resolver sin necesidad de la interacción humana a la vez que buscan la solución al mismo. 
 
-Continuando con el ejemplo anterior de la detección de caras, mientras que en las técnicas de *machine learning* es necesario indicar al algoritmo cuáles son las características base que componen una cara para que sea capaz de reconocerlas, en las técnicas de *deep learning* únicamente es necesario mostrarle suficientes imágenes de caras para conseguir que el algoritmo sea capaz de aprender a identificar una cara por sí mismo, estableciendo de forma automática las características más importantes de una cara.
+Continuando con el ejemplo anterior de la detección de caras, mientras que en las técnicas de *machine learning* es necesario indicar al algoritmo cuáles son las características base que componen una cara para que sea capaz de reconocerla, en las técnicas de *deep learning* únicamente es necesario mostrarle suficientes imágenes de caras para conseguir que el algoritmo sea capaz de aprender a identificar una cara por sí mismo, estableciendo de forma automática las características más importantes de una cara.
 
 Esta capacidad de aprender por sí mismo las características determinantes a la hora de resolver un problema hace que, a nivel teórico, las técnicas de *deep learning* puedan llegar a ser más potentes que las del *machine learning* clásico.
 Sin embargo, dado que las técnicas de *deep learning* enfrentan problemas más complejos y, por consiguiente, procesos de entrenamiento más complicados, necesitan muchos más datos y una mayor potencia de cálculo para entrenar sus algoritmos.
 
-Este hecho explica que, aunque las bases de las técnicas de *deep learning*\index{deep learning@\textit{deep learning}} como el algoritmo del descenso del gradiente\index{descenso del gradiente} [@kiefer1952stochastic], el perceptrón\index{perceptrón} [@rosenblatt1958perceptron], los algoritmos de retropropagación y el perceptrón\index{perceptrón} multicapa [@rumelhart1986learning] y la primera red neuronal convolucional [@lecun1995convolutional] datan de varios años atrás, no sea hasta hace relativamente poco tiempo cuando se han podido empezar a utilizar. Esto se debe a diversos factores:
+Este hecho explica que, aunque las bases de las técnicas de *deep learning*\index{deep learning@\textit{deep learning}} como el algoritmo del descenso del gradiente\index{descenso del gradiente} [@kiefer1952stochastic], el perceptrón\index{perceptrón} [@rosenblatt1958perceptron], los algoritmos de retropropagación y el perceptrón\index{perceptrón} multicapa [@rumelhart1986learning] y la primera red neuronal convolucional [@LeCun1995-LECCNF] datan de varios años atrás, no sea hasta hace relativamente poco tiempo cuando se han podido empezar a utilizar. Esto se debe a diversos factores:
 
 1. **La evolución en el hardware de procesamiento.** En particular, debido a la mejora de la capacidad de paralelismo masivo durante el cómputo que proporcionaron las nuevas tarjetas gráficas (GPU), al incorporar una gran cantidad de microprocesadores específicos, han podido ser utilizadas para las técnicas de *deep learning*\index{deep learning@\textit{deep learning}}. Originalmente su principal uso era representar modelos complejos 3D en los monitores, pero su utilización para técnicas de *deep learning* ha llevado recientemente al desarrollo de tarjetas específicas para este fin. Además, es posible disponer bajo demanda de estos recursos de computación como servicios a través de Internet. Esto es lo que se conoce como *cloud computing*. 
 
@@ -68,18 +60,14 @@ Este hecho explica que, aunque las bases de las técnicas de *deep learning*\ind
 
 Las posibles aplicaciones de las técnicas de *deep learning* son muy diversas y, gracias a la continua investigación desarrollada en el área en la actualidad, no hacen más que aumentar. A continuación se comentan algunas de ellas:
 
-1. **Clasificación de imágenes.** \index{clasificación} Aunque la clasificación de imágenes dentro del área de la visión por computador, o artificial, es una realidad hace muchos años, es con las técnicas de *deep learning* con las que se han logrado los mayores avances (en particular, utilizando las redes neuronales convolucionales)\index{red neuronal!convolucional}. Estas redes permiten determinar a qué clase, perteneciente al conjunto de categorías utilizado para entrenar, corresponde una determinada imagen.
+1. **Clasificación de imágenes.** \index{clasificación} Aunque la clasificación de imágenes dentro del área de la visión por computador, o artificial, es una realidad hace muchos años, es con las técnicas de *deep learning* con las que se han logrado los mayores avances (en particular, utilizando las redes neuronales convolucionales)\index{red!neuronal!convolucional}. Estas redes permiten determinar a qué clase, perteneciente al conjunto de categorías utilizado para entrenar, corresponde una determinada imagen.
 
 2. **Detección de objetos.** \index{detección} Permite localizar los objetos contenidos en una imagen mediante un rectángulo, clasificándolo a su vez por su tipología. Por ejemplo, con este tipo de modelos es posible localizar y diferenciar entre peatones y vehículos utilizando una cámara de seguridad instalada en una calle (Fig. \@ref(fig:camaraTermica)).
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth]{img/conc_dl_04_camaraTermica} 
-
-}
-
-\caption{Detección de peatones y vehículos utilizando una cámara térmica y técnicas de $deep$ $learning$.}(\#fig:camaraTermica)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/conc_dl_04_camaraTermica.png" alt="Detección de peatones y vehículos utilizando una cámara térmica y técnicas de $deep$ $learning$." width="75%" />
+<p class="caption">(\#fig:camaraTermica)Detección de peatones y vehículos utilizando una cámara térmica y técnicas de $deep$ $learning$.</p>
+</div>
 
 3. **Segmentación semántica/de instancias.**\index{segmentación} De forma similar a la detección de objetos, la segmentación semántica permite localizar objetos contenidos en una imagen, además de su tipología, pero en este caso se marcan utilizando una máscara a nivel de píxel. La segmentación de instancias además es capaz de diferenciar entre diferentes instancias de una misma clase aun cuando se encuentren situadas de forma contigua.
 
@@ -87,25 +75,17 @@ Las posibles aplicaciones de las técnicas de *deep learning* son muy diversas y
 
 5. **Traducción automática.** Consiste en utilizar las técnicas de *deep learning* para traducir un texto automáticamente de una lengua a otra sin la necesidad de intervención humana. En la actualidad, no se limita únicamente a la traducción literal, palabra por palabra, del texto, sino que también tiene en cuenta el significado que tendría en el idioma original para adaptarlo al idioma destino (Fig. \@ref(fig:deepL)).
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/conc_dl_05_deepL} 
-
-}
-
-\caption{Traductor automático basado en $deep$ $learning$.}(\#fig:deepL)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/conc_dl_05_deepL.png" alt="Traductor automático basado en $deep$ $learning$." width="100%" />
+<p class="caption">(\#fig:deepL)Traductor automático basado en $deep$ $learning$.</p>
+</div>
 
 6. **Generación automática de imágenes/texto.** Permite obtener, desde una imagen, un texto descriptivo que indique el contenido de la imagen; o al contrario, a partir de un texto descriptivo generar una imagen basada en dicha descripción. Un ejemplo de este último caso sería Dall-E [@borji2022generated], que puede verse en la Fig. \@ref(fig:DallE).
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/conc_dl_06_DallE} 
-
-}
-
-\caption{Algunas salidas posibles del generador de imágenes a partir de texto Dall-E, para el texto: $A$ $cat$ $with$ $glasses$ $studying$ $computer$ $vision$ $in$ $the$ $space$ $with$ $the$ $Earth$ $in$ $the$ $background$.}(\#fig:DallE)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/conc_dl_06_DallE.png" alt="Algunas salidas posibles del generador de imágenes a partir de texto Dall-E, para el texto: $A$ $cat$ $with$ $glasses$ $studying$ $computer$ $vision$ $in$ $the$ $space$ $with$ $the$ $Earth$ $in$ $the$ $background$." width="100%" />
+<p class="caption">(\#fig:DallE)Algunas salidas posibles del generador de imágenes a partir de texto Dall-E, para el texto: $A$ $cat$ $with$ $glasses$ $studying$ $computer$ $vision$ $in$ $the$ $space$ $with$ $the$ $Earth$ $in$ $the$ $background$.</p>
+</div>
 
 7. **Automóvil autónomo.** Las técnicas de *deep learning*\index{deep learning@\textit{deep learning}} están siendo claves para el desarrollo del vehículo autónomo, capaz de circular sin necesidad de la interacción de un conductor humano. Para lograr definitivamente un vehículo con estas características, es necesario que sea capaz de ver, tomar decisiones y conducir al mismo tiempo. Esto se consigue en la actualidad integrando la información de gran cantidad de sensores que obtienen datos en tiempo real sobre el entorno --como serían cámaras, LIDAR, radares o ultrasónicos, entre otros-- que es procesada por varias redes neuronales con el fin de que el sistema de conducción sea capaz de tomar una decisión en cuestión de milisegundos (Fig. \@ref(fig:camaraTermica)).
 
@@ -113,7 +93,7 @@ Las posibles aplicaciones de las técnicas de *deep learning* son muy diversas y
 
 ## Redes neuronales
 
-Las redes neuronales artificiales\index{red neuronal!artificial} (en inglés *artificial neural networks*, ANN) tienen su origen en la definición de neurona artificial de @mcculloch1943logical y en el diseño del perceptrón\index{perceptrón} por parte de Frank Rosenblatt [@rosenblatt1958perceptron]. Cada ANN está formada por un conjunto de elementos conocidos como ``neuronas" cuya organización está inspirada en la que siguen las redes neuronales de los seres vivos. Entre dos neuronas adyacentes existe una serie de conexiones a través de las cuales se envía la información como si de pulsos eléctricos se tratase. De forma aislada, cada neurona\index{neurona} procesa la información recibida para producir un resultado que será utilizado por las siguientes neuronas con las que está conectada.
+Las redes neuronales artificiales\index{red!neuronal!artificial} (en inglés *artificial neural networks*, ANN) tienen su origen en la definición de neurona artificial de @mcculloch1943logical y en el diseño del perceptrón\index{perceptrón} por parte de Frank Rosenblatt [@rosenblatt1958perceptron]. Cada ANN está formada por un conjunto de elementos conocidos como ``neuronas" cuya organización está inspirada en la que siguen las redes neuronales de los seres vivos. Entre dos neuronas adyacentes existe una serie de conexiones a través de las cuales se envía la información como si de pulsos eléctricos se tratase. De forma aislada, cada neurona\index{neurona} procesa la información recibida para producir un resultado que será utilizado por las siguientes neuronas con las que está conectada.
 
 Cada ANN tiene como objetivo resolver una tarea concreta. Por ejemplo, una ANN podría estar diseñada para reconocer un dígito o una letra a partir de una imagen. Para resolver dicha tarea, la red sigue un proceso de aprendizaje automático. Este proceso se conoce como ``entrenamiento" y requiere que se disponga de un conjunto de datos representativos de la tarea a resolver.
 
@@ -142,14 +122,10 @@ f (\bf w^{\prime}   \bf x) =
 
 Por tanto, cada neurona\index{neurona} actúa como un clasificador lineal que puede separar dos conjuntos diferentes dependiendo de si la salida es positiva o negativa (Fig. \@ref(fig:perceptron)).
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{img/perceptron} 
-
-}
-
-\caption{Estructura del perceptrón o neurona.}(\#fig:perceptron)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/perceptron.png" alt="Estructura del perceptrón o neurona." width="80%" />
+<p class="caption">(\#fig:perceptron)Estructura del perceptrón o neurona.</p>
+</div>
 
 
 
@@ -264,14 +240,10 @@ f <- function(x){ x }
 plot_activation_function(f, 'Lineal', c(-4,4))
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{180037-38_rn_artificiales_files/figure-latex/red-lineal-1} 
-
-}
-
-\caption{Representación gráfica de la función lineal.}(\#fig:red-lineal)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="180037-38_rn_artificiales_files/figure-html/red-lineal-1.png" alt="Representación gráfica de la función lineal." width="50%" />
+<p class="caption">(\#fig:red-lineal)Representación gráfica de la función lineal.</p>
+</div>
 
 - **Función umbral.** Esta función recibe también el nombre de función escalón. Si el valor de entrada es menor que el umbral, $u$, la salida es 0. En caso contrario, la salida es 1. Si el umbral es 0, la función se reduce a observar el signo del valor de la salida.
 
@@ -298,14 +270,10 @@ ggplot(data=df, aes(x=x, y=f, group=1)) +
     geom_step(color='red')
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{180037-38_rn_artificiales_files/figure-latex/red-umbral-1} 
-
-}
-
-\caption{Representación gráfica de la función umbral.}(\#fig:red-umbral)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="180037-38_rn_artificiales_files/figure-html/red-umbral-1.png" alt="Representación gráfica de la función umbral." width="50%" />
+<p class="caption">(\#fig:red-umbral)Representación gráfica de la función umbral.</p>
+</div>
 
 - **Función sigmoide.** También conocida como función logística, se trata de una de las funciones más utilizadas para asignar una clase. Si el punto de evaluación de la función es un valor negativo muy bajo, la función da como resultado un valor muy cercano a 0, si se evalúa en 0 el resultado es 0,5 y si se evalúa en un valor positivo alto el resultado es aproximadamente 1.
 
@@ -321,14 +289,10 @@ f <- function(x){1 / (1 + exp(-x))}
 plot_activation_function(f, 'Sigmoide', c(-4,4))
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{180037-38_rn_artificiales_files/figure-latex/red-sigmoide-1} 
-
-}
-
-\caption{Representación gráfica de la función sigmoide.}(\#fig:red-sigmoide)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="180037-38_rn_artificiales_files/figure-html/red-sigmoide-1.png" alt="Representación gráfica de la función sigmoide." width="50%" />
+<p class="caption">(\#fig:red-sigmoide)Representación gráfica de la función sigmoide.</p>
+</div>
 - **Función tangente hiperbólica.** El rango de valores de salida es [-1, 1], donde para valores altos de ${\bf w}^{\prime} \bf x$ la función tiende de manera asintótica a 1 y los valores muy bajos tiende,  también de manera asintótica, a $-1$, de forma similar a la sigmoide.
 
 \begin{equation} 
@@ -343,14 +307,10 @@ tanh_func <- function(x){tanh(x)}
 plot_activation_function(tanh_func, 'Tangente Hiperbólica', c(-4,4))
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{180037-38_rn_artificiales_files/figure-latex/red-hiperbo-1} 
-
-}
-
-\caption{Representación gráfica de la función tangente hiperbólica.}(\#fig:red-hiperbo)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="180037-38_rn_artificiales_files/figure-html/red-hiperbo-1.png" alt="Representación gráfica de la función tangente hiperbólica." width="50%" />
+<p class="caption">(\#fig:red-hiperbo)Representación gráfica de la función tangente hiperbólica.</p>
+</div>
 - **Función ReLU.** Se trata de la unidad lineal rectificada (del inglés *rectified linear unit*). Es posiblemente la función de activación más utilizada actualmente en *deep learning* [@nair2010rectified].
 
 \begin{equation} 
@@ -368,14 +328,10 @@ rec_lu_func <- function(x){ ifelse(x < 0 , 0, x )}
 plot_activation_function(rec_lu_func, 'ReLU', c(-4,4))
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{180037-38_rn_artificiales_files/figure-latex/red-relu-1} 
-
-}
-
-\caption{Representación gráfica de la función ReLU.}(\#fig:red-relu)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="180037-38_rn_artificiales_files/figure-html/red-relu-1.png" alt="Representación gráfica de la función ReLU." width="50%" />
+<p class="caption">(\#fig:red-relu)Representación gráfica de la función ReLU.</p>
+</div>
 
 
 
@@ -389,14 +345,10 @@ Aunque el perceptrón\index{perceptrón} puede aprender muchos tipos de lógica,
 
 Un MLP está compuesto por varias capas con neuronas. La primera capa es la de entrada, que recibe las variables seleccionadas para dar solución al problema a resolver. La última, la salida del MLP, representa las clases de salida (en las que hay que clasificar las entradas). Entre ambas capas hay una o más capas intermedias u "ocultas". Las neuronas de una capa intermedia tienen como entrada la salida de la capa anterior y su salida es la entrada de las neuronas de la siguiente capa (Fig. \@ref(fig:ann)). Este tipo de capas también son llamadas **densas** o **totalmente conectadas**. En la práctica, tanto las capas intermedias como la capa de salida están compuestas por neuronas totalmente conectadas.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{img/ann} 
-
-}
-
-\caption{Estructura del perceptrón multicapa (MLP).}(\#fig:ann)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/ann.png" alt="Estructura del perceptrón multicapa (MLP)." width="80%" />
+<p class="caption">(\#fig:ann)Estructura del perceptrón multicapa (MLP).</p>
+</div>
 
 
 ### Aprendizaje
@@ -572,14 +524,10 @@ En esta sección se entrena una red neuronal artificial para reconocer o clasifi
 
 [^Note-RNA-000]: Para aquellos no familiarizados con la cuestión, un píxel es la menor unidad homogénea en color que forma parte de una imagen digital. Cuanto mayor sea la cantidad de píxeles, mejor calidad tendrá la imagen. En otros términos, son los puntos de color (siendo la escala de grises una gama de color monocromática). Las imágenes se forman como una sucesión de píxeles. En las imágenes de mapa de bits, o en los dispositivos gráficos, cada píxel se codifica mediante un conjunto de bits de longitud determinada (la profundidad de color); por ejemplo, se puede codificar con un byte (8 bits), de manera que cada píxel admite hasta 256 variaciones de color ($2^8$ posibilidades binarias), de 0 a 255. En las denominadas imágenes llamadas de color verdadero se suelen utilizar tres bytes (24 bits) para definir el color de un píxel; por consiguiente, cada píxel permite representar $2^{24}=16.777.216$ variaciones de color. 
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/mlpmnhist} 
-
-}
-
-\caption{MLP para reconocimiento de dígitos manuscritos.}(\#fig:mlpmnhist)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/mlpmnhist.png" alt="MLP para reconocimiento de dígitos manuscritos." width="100%" />
+<p class="caption">(\#fig:mlpmnhist)MLP para reconocimiento de dígitos manuscritos.</p>
+</div>
 
 ### Carga y visualización de los datos
 
@@ -621,14 +569,10 @@ for (j in 1:16) {
 }
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{180037-38_rn_artificiales_files/figure-latex/img-entrenamiento-1} 
-
-}
-
-\caption{Algunas imágenes del conjunto de entrenamiento.}(\#fig:img-entrenamiento)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="180037-38_rn_artificiales_files/figure-html/img-entrenamiento-1.png" alt="Algunas imágenes del conjunto de entrenamiento." width="60%" />
+<p class="caption">(\#fig:img-entrenamiento)Algunas imágenes del conjunto de entrenamiento.</p>
+</div>
 
 ### Preprocesamiento
 
@@ -654,7 +598,7 @@ model <- keras_model_sequential() |>
   layer_dense(10, activation = "softmax")
 ```
 
-Como se puede observar, la red definida está compuesta por una capa de tipo `flatten`[^Note-RNA-0] que se encarga de transformar los $28 \times 28$ valores en un vector de 784 elementos, para que a continuación una capa oculta `dense` [^Note-RNA-00] de 15 neuronas con activación `relu` se encargue de realizar las primeras operaciones con esos datos. Al final, una última capa `dense` se encarga de obtener la probabilidad de que la imagen represente cada una de las posibles clases mediante una activación `softmax`:[^Note-RNA-1]
+Como se puede observar, la red definida está compuesta por una capa de tipo `flatten`[^Note-RNA-0] que se encarga de transformar los $28 \times 28$ valores en un vector de 784 elementos, para que a continuación una capa oculta `dense`[^Note-RNA-00] de 15 neuronas con activación `relu` se encargue de realizar las primeras operaciones con esos datos. Al final, una última capa `dense` se encarga de obtener la probabilidad de que la imagen represente cada una de las posibles clases mediante una activación `softmax`:[^Note-RNA-1]
 
 [^Note-RNA-00]: Una capa densa es aquella en la que todas las neuronas de la capa están conectadas con todas las de la capa anterior.
 
@@ -742,14 +686,10 @@ Las gráficas de coste/pérdida y precisión permiten ver su evolución durante 
 plot(training_evolution)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/curve1} 
-
-}
-
-\caption{Evolución durante el entrenamiento de la función de precisión y de coste/pérdida: conjuntos de entrenamiento y validación.}(\#fig:plot-curve1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/curve1.png" alt="Evolución durante el entrenamiento de la función de precisión y de coste/pérdida: conjuntos de entrenamiento y validación." width="70%" />
+<p class="caption">(\#fig:plot-curve1)Evolución durante el entrenamiento de la función de precisión y de coste/pérdida: conjuntos de entrenamiento y validación.</p>
+</div>
 
 Como se puede observar, la red entrenada tiene alrededor de un 90% de precisión (porcentaje de aciertos al clasificar las imágenes) tanto para las imágenes del conjunto de entrenamiento como para las del conjunto de validación. En el caso de la función de pérdida o coste, que mide el error cometido al realizar la clasificación, se aprecia que se reduce conforme la precisión del modelo aumenta.
 
@@ -954,14 +894,10 @@ Las gráficas de coste/pérdida y error durante el proceso de entrenamiento pued
 plot(training_evolution)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/curve2} 
-
-}
-
-\caption{Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación.}(\#fig:plot-curve2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/curve2.png" alt="Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación." width="70%" />
+<p class="caption">(\#fig:plot-curve2)Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación.</p>
+</div>
 
 Como se puede observar, en este caso el modelo tiene aún posibilidad de mejora, ya que la pérdida es elevada y no se ha estancado, por lo que incrementando el número de épocas y el tiempo de entrenamiento se podría obtener un mejor resultado.
 

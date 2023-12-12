@@ -38,7 +38,7 @@ El método básico de muestreo es el conocido como **muestreo aleatorio simple (
 
 Este procedimiento es el que se asume en la inmensa mayoría de las técnicas estadísticas convencionales, pero presenta dos inconvenientes. En primer lugar, presupone que existe un registro, o listado, completo de todos los individuos de la población (lo que no siempre es posible), y su aplicación práctica puede resultar costosa (en medios, tiempo y dinero). En segundo lugar, presupone que la característica estudiada es homogénea en todos los individuos de la población, es decir, la distribución poblacional es idéntica en todos los individuos. Frecuentemente, esta homogeneidad poblacional no se cumple, por lo que sería necesario abordar otros métodos de muestreo que se expondrán más adelante. En todo caso, si se utiliza un m.a.s., la heterogeneidad induce un aumento de la variabilidad muestral, hecho que debe ser tenido en cuenta en la interpretación de resultados.
 
-Además de la forma de selección, el factor que determina la representatividad de una muestra es su tamaño (véase el teorema de Glivenko-Cantelli mostrado en la ecuación \@ref(eq:glivenko)). Al utilizar la información muestral para aproximar los aspectos o parámetros desconocidos en la población se comete el llamado **error muestral**\index{error muestral}, que representa el margen de error que se está dispuesto a aceptar (por tanto, está íntimamente relacionado con los intervalos de confianza)[^mas2]; si el tamaño de la muestra está determinado, el margen de error muestral marca el grado de precisión con el que se pueden extrapolar los resultados. Una alternativa es predeterminar un error muestral a cierto nivel de confianza y calcular cuál es el menor tamaño muestral que cumple ese requisito.
+Además de la forma de selección, el factor que determina la representatividad de una muestra es su tamaño (véase el teorema de Glivenko-Cantelli mostrado en la ecuación \@ref(eq:glivenko)). Al utilizar la información muestral para aproximar los aspectos o parámetros desconocidos en la población se comete el llamado **error muestral**\index{error!muestral}, que representa el margen de error que se está dispuesto a aceptar (por tanto, está íntimamente relacionado con los intervalos de confianza)[^mas2]; si el tamaño de la muestra está determinado, el margen de error muestral marca el grado de precisión con el que se pueden extrapolar los resultados. Una alternativa es predeterminar un error muestral a cierto nivel de confianza y calcular cuál es el menor tamaño muestral que cumple ese requisito.
 
 [^mas2]: Por ejemplo, si la proporción de votantes que vota a un determinado partido ha sido estimada en el 60% y el margen de error muestral se fija en el 3%, para un nivel de confianza del 95%, se puede concluir que, con dicho nivel de confianza, el porcentaje de votantes a dicho partido estará entre el 57% y el 63% del total de votantes.
 
@@ -343,14 +343,10 @@ lines(density(muestras_boot))
 abline(v = val_crit)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/150015img04} 
-
-}
-
-\caption{Distribución empírica de la media remuestreada.}(\#fig:150015dist)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150015img04.png" alt="Distribución empírica de la media remuestreada." width="60%" />
+<p class="caption">(\#fig:150015dist)Distribución empírica de la media remuestreada.</p>
+</div>
 
 El paquete `boot` de **R** permite también obtener réplicas de un estadístico sobre una muestra. La función básica de este paquete es `boot()`, que permite utilizar distintos métodos de remuestreo. En su estructura más simple, basta con indicar los datos originales, el estadístico que se quiere remuestrear y el número de réplicas.
 

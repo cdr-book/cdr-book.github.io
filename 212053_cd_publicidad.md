@@ -11,34 +11,30 @@ Uno de los principales retos a los que se enfrentan los departamentos de marketi
 
 [^Gartner]: Véase *Gartner Identifies Four Methods for Measuring Marketing’s Impact*, disponible en [https://www.gartner.com/en/newsroom/press-releases/2020-03-04-gartner-identifies-four-methods-for-measuring-marketi](https://www.gartner.com/en/newsroom/press-releases/2020-03-04-gartner-identifies-four-methods-for-measuring-marketi)
 
-\index{Return On Investment@\textit{Return On Investment}, ROI}
+\index{Return on Investment@\textit{Return on Investment}, ROI}
 
 1. **_Marketing Mix Modeling_ (MMM)**\index{Marketing Mix Modeling@\textit{Marketing Mix Modeling}, MMM}: modelos de series temporales que sirven para estimar la contribución del marketing u otras variables explicativas a las ventas desde un punto de vista estratégico. \index{marketing}
 
 2. **_Multitouch Attribution_ (MTA)**\index{Multitouch Attribution@\textit{Multitouch Attribution}, MTA}: modelos de atribución que valoran cada punto de contacto (*touchpoint*) del recorrido del cliente (*customer journey*), asignando a cada uno un peso en la conversión (venta, descarga de folleto, etc). Son modelos tácticos que normalmente se centran en el canal online. 
 
-3. **_Holdout Testing o Experiments_ (EXP)**\index{Holdout Testing o Experiments@\textit{Holdout Testing o Experiments}, EXP}: modelos causales que evalúan el impacto de una campaña publicitaria a partir de una muestra de control y otra de test. 
+3. **_Holdout Testing of Experiments_ (EXP)**\index{Holdout Testing of Experiments@\textit{Holdout Testing of Experiments}, EXP}: modelos causales que evalúan el impacto de una campaña publicitaria a partir de una muestra de control y otra de test. 
 
 4. **_Unified Measurement Approaches_ (UMA)**\index{Unified Measurement Approaches@\textit{Unified Measurement Approaches}, UMA}: combinación de los modelos anteriores (MMM + MTA + EXP) con el objetivo de tener una visión unificada de los resultados.
 
 En la comparativa que se muestra en la Fig. \@ref(fig:comparativa-modelos) se resume el objetivo de cada uno de los modelos, así como las preguntas que permiten responder:
 
-\begin{figure}
+<div class="figure" style="text-align: center">
+<img src="img/Comparativa_modelos2.png" alt="Comparativa de metodologías de medición." width="100%" />
+<p class="caption">(\#fig:comparativa-modelos)Comparativa de metodologías de medición.</p>
+</div>
 
-{\centering \includegraphics[width=1\linewidth]{img/Comparativa_modelos2} 
-
-}
-
-\caption{Comparativa de metodologías de medición.}(\#fig:comparativa-modelos)
-\end{figure}
-
-En los últimos años se han producido una serie de cambios en el entorno de la industria del marketing digital enfocados a garantizar el más estricto control de la privacidad de los usuarios. Desde el lanzamiento de la nueva ley de protección de datos (GDPR), en 2018, hasta la reciente confirmación por parte de Google de la prohibición de uso de *cookies* de tercera parte en Chrome, la posibilidad de acceder a datos de identificación personal para la medición y optimización del impacto de las campañas de publicidad digital está cada vez más limitada. 
+En los últimos años se han producido una serie de cambios en el entorno de la industria del marketing digital enfocados a garantizar el más estricto control de la privacidad de los usuarios. Desde el lanzamiento de la nueva ley de protección de datos (GDPR), en 2018, hasta la reciente confirmación por parte de Google de la prohibición de uso de *cookies* de terceros en Chrome, la posibilidad de acceder a datos de identificación personal para la medición y optimización del impacto de las campañas de publicidad digital está cada vez más limitada. 
 
 Esta situación está provocando que el primer tipo de enfoque, el MMM, esté siendo el gran beneficiado, dado que es una técnica que no depende del acceso a datos a nivel de individuo. El ejemplo más claro sobre el protagonismo que está alcanzando el MMM es que grandes compañías como Meta, Google y Uber están desarrollando soluciones *open source* basadas en técnicas de *machine learning* que integran grandes avances y mejoras sobre las metodologías tradicionales. Entre las metodologías que han desarrollado hay claras diferencias en las bases teóricas sobre las que se rigen, así como diferencias en tiempos de computación, lenguaje en el que se han desarrollado o capacidades funcionales. A continuación se detallan las principales características de cada una de ellas:
 
 •	**Robyn**:[^Robyn] desarrollado por Meta [@Robyn] y pensado para datasets con gran cantidad de variables independientes dado que trabaja con regresiones *ridge* (cubiertas en el Cap. \@ref(cap-sparse)), las cuales están pensadas para lidiar con problemas de multicolinealidad, muy presentes en este tipo de análisis. Cabe destacar que, entre las pruebas que realiza, ofrece una serie de *outputs* visuales avanzados que permiten al usuario seleccionar el que mejor se adapta al contexto de negocio y necesidad. Requiere tiempos de cómputo alto, pudiendo llegar hasta las tres horas, y permite hacer optimizaciones de presupuesto. 
 
-•	**Lightweight**[^Lightweight]: desarrollado por Google, sus fundamentos teóricos se basan en modelos bayesianos. La particularidad de esta solución es la posibilidad de incluir datos geográficos para su posterior segregación. Lightweight también considera distintos tipos de *adstock*\index{adstock@\textit{adstock}} (recuerdo publicitario), así como la tendencia y estacionalidad de la serie a explicar. El uso de esta herramienta es más sencillo, aunque los resultados se exponen en un *notebook* y no posee *outputs* más elaborados como el resto de soluciones. Por último, también permite realizar optimizaciones de presupuesto.
+•	**Lightweight**:[^Lightweight] desarrollado por Google, sus fundamentos teóricos se basan en modelos bayesianos. La particularidad de esta solución es la posibilidad de incluir datos geográficos para su posterior segregación. Lightweight también considera distintos tipos de *adstock*\index{adstock@\textit{adstock}} (recuerdo publicitario), así como la tendencia y estacionalidad de la serie a explicar. El uso de esta herramienta es más sencillo, aunque los resultados se exponen en un *notebook* y no posee *outputs* más elaborados como el resto de soluciones. Por último, también permite realizar optimizaciones de presupuesto.
 
 •	**Orbit**:[^Orbit] desarrollado por Uber, se basa en modelos bayesianos. Permite al usuario medir los retornos a lo largo del tiempo, lo cual hace que sea un modelo adecuado para compañías con grandes picos de ventas. Incluye análisis de estacionalidad mediante la descomposición de la serie en series de Fourier. Es el modelo más complejo de desarrollar; sin embargo, el tiempo de ejecución es bajo. Cabe destacar que es la librería más estable y, por lo tanto, se podría utilizar para realizar reportes con mayor frecuencia. No incluye la posibilidad de optimizar presupuestos.
 
@@ -61,11 +57,11 @@ t &= \text{instante de las variables (por ejemplo, semanas)}, \\
 j &= \text{subíndice del medio (por ejemplo, TV o Display)},  \\
 \beta_0 &= \text{intercepto}, \\
 Scurve(x,j) &= \beta_j \times  \frac{x_{decay_{ t,j}}^\alpha}{x_{decay_{ t,j}}^\alpha + \gamma^\alpha} \, \text{transformación no lineal de curva en S}, \\
-\alpha,\gamma &= \text{hiperparámetros que definen la S curve}, \\
+\alpha,\gamma &= \text{hiperparámetros que definen la $S$ $curve$}, \\
 x_{decay_{t,j}} &= x_{t,j} + \theta_j x_{decay_{ t,j-1}} \hspace{0,1cm}(adstock, \text{es decir, el recuerdo publicitario)}, \\
 x_j &= \text{inversión publicitaria en cada medio}\,j, \\
 \theta_j &= \text{tasa fija de decrecimiento en cada medio}\,j, \\
-\gamma &: \text{implementada en la S curve, donde} \,\gamma_{tran} = cuantil(x_{decay_j}, \gamma), \\
+\gamma &: \text{implementada en la $S$ $curve$, donde} \,\gamma_{tran} = cuantil(x_{decay_j}, \gamma), \\
 \beta_j &= \text{coeficientes de cada medio}\,j, \\
 hol &=\, \text{festivos}, \\
 sea &=\, \text{estacionalidad}, \\
@@ -77,7 +73,7 @@ ETC &=\, \text{resto de variables independientes (precio, promociones, etc)}, \\
 
 
 
-Las variables de medios no suelen presentar un efecto lineal sobre la variable de negocio que se modeliza, sino que la publicidad tiende a presentar rendimientos decrecientes no lineales. Para modelizar este efecto se utiliza la función biparamétrica de *S Curve* o curva de rendimientos decrecientes. Esta curva permite optimizar los repartos presupuestarios en todos los canales de medios, ya que su forma en "S" indica tanto el umbral a partir del cual los resultados del gasto presupuestario mejoran significativamente el objetivo (por ejemplo, ventas) como en qué punto está saturando y, por lo tanto, perdiendo eficacia. 
+Las variables de medios no suelen presentar un efecto lineal sobre la variable de negocio que se modeliza, sino que la publicidad tiende a presentar rendimientos decrecientes no lineales. Para modelizar este efecto se utiliza la función biparamétrica de *S curve* o curva de rendimientos decrecientes. Esta curva permite optimizar los repartos presupuestarios en todos los canales de medios, ya que su forma en "S" indica tanto el umbral a partir del cual los resultados del gasto presupuestario mejoran significativamente el objetivo (por ejemplo, ventas) como en qué punto está saturando y, por lo tanto, perdiendo eficacia. 
 
 A continuación, se aplica `Robyn` sobre un ejemplo con información simulada del sector hotelero, donde el objetivo es predecir el número de reservas de un hotel en función de una serie de predictores (entre ellos, las inversiones publicitarias). Toda la información sobre cómo aplicar esta metodología se puede consultar en GitHub.[^Github1] La versión utilizada en este ejemplo práctico es la 3.6.3, disponible en el CRAN o descargable desde GitHub.[^Github2] Este ejercicio traza el camino más corto que se puede seguir hasta llegar a los principales *outputs* y a la interpretación de los mismos. Sin embargo, para conocer en detalle la metodología, se recomienda seguir profundizando a través de la realización de pruebas adicionales más complejas.
 
@@ -106,7 +102,7 @@ py_install("nevergrad", pip = TRUE)
 py_config()
 ```
 
-En caso de encontrar alguna dificultad al cargar `nevergrad`, existen distintas alternativas para su instalación que se pueden consultar en GitHub[^Github3].
+En caso de encontrar alguna dificultad al cargar `nevergrad`, existen distintas alternativas para su instalación que se pueden consultar en GitHub.[^Github3]
 
 [^Github3]: Alternativas a la instalación de `nevergrad` disponibles en [https://github.com/facebookexperimental/Robyn/issues/189](https://github.com/facebookexperimental/Robyn/issues/189)
 
@@ -127,7 +123,7 @@ Se detalla a continuación la información que contiene cada variable:
 4.	*covid_mov*: movilidad desde el comienzo de la pandemia.
 5.	*notoriedad*: conocimiento espontáneo de la marca a lo largo del tiempo.
 6.	*temperatura*: temperatura media.
-7.	*tv_grps20* y *tv_inv*: métrica de impactos (los GRPs) e inversión realizada en TV.
+7.	*tv_grps20* y *tv_inv*: métrica de impactos (los GRP) e inversión realizada en TV.
 8.	*resto_off_inv*: resto de inversiones offline realizadas.
 9.	*paidsearch_imp* y *paidsearch_inv*: métrica de impactos (impresiones) e inversión realizada en Paid Search.
 10.	*display_imp* y *display_inv*: métrica de impactos (impresiones) e inversión realizada en Display.
@@ -162,7 +158,7 @@ InputCollect <- robyn_inputs(
     dt_input = hotel_tablonsemanal,
     dt_holidays = festivos,
     date_var = "semana", # tiene que tener este formato "2020-01-01"
-    dep_var = "reservas", # sólo una variable dependiente
+    dep_var = "reservas", # solo una variable dependiente
     dep_var_type = "conversion", # "revenue" o "conversion". En nuestro caso son reservas.
     prophet_vars = c("trend", "season", "holiday"), # "trend=tendencia","season=estacionalidad", "weekday=dia de la semana" & "holiday=festivos"
     prophet_signs = c("default", "default", "default"),
@@ -176,7 +172,7 @@ InputCollect <- robyn_inputs(
     paid_media_signs = c("positive", "positive", "positive", "positive", "positive"),
     paid_media_vars = c("display_imp", "onlinevideo_imp",	
                         "paidsearch_imp"	,"resto_off_inv" ,"tv_grps20"), # variables de impacto si están disponibles. Si no están disponibles utilice el coste como en el caso de Resto_off_inversion
-    factor_vars = c("eventos") # especifique variables que son factores. En nuestro caso, sólo la variable de Eventos
+    factor_vars = c("eventos") # especifique variables que son factores. En nuestro caso, solo la variable de Eventos
     window_start = "2018-10-01", #fecha de inicio del modelo. En nuestro caso, octubre 2010 porque previamente no se tienen datos de reservas
     window_end = "2021-09-27", #fecha fin del modelo
     adstock = "geometric" # tipo de adstock. Seleccione el adstock geométrico para reducir tiempos de cómputo
@@ -247,14 +243,10 @@ print(OutputCollect)
 
 Para finalizar, se revisan los distintos modelos obtenidos y el resumen gráfico proporcionado por `Robyn`. Se recomienda profundizar en la interpretación de uno de los modelos obtenidos con buen ajuste. A través del *one-pager* (Fig. \@ref(fig:output-robyn)), se puede consultar toda la información relativa al impacto de la publicidad, incluyendo métricas relativas a la bondad del ajuste como el coeficiente de determinación o R2 y el NRMSE (panel superior izquierdo).
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/Output_Robyn_7_394_4} 
-
-}
-
-\caption{One-pager de resultados de Robyn.}(\#fig:output-robyn)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/Output_Robyn_7_394_4.PNG" alt="One-pager de resultados de Robyn." width="100%" />
+<p class="caption">(\#fig:output-robyn)One-pager de resultados de Robyn.</p>
+</div>
 
 Los principales *outputs* a evaluar de los modelos se visualizan en los gráficos del *one-pager*:
 
@@ -266,7 +258,7 @@ Los principales *outputs* a evaluar de los modelos se visualizan en los gráfico
 
 4. **Curvas de respuesta y gastos medios por canal** (*Response Curves and Mean Spends by Channel*): muestra la relación no lineal existente entre las inversiones y las reservas. Es el *input* principal a la hora de optimizar las inversiones.
 
-5. **Adstock geométrico: tasa constante de decrecimiento en el tiempo** (*Geometric Adstock: Fixed Decay Rate Over Time*): muestra el efecto recuerdo (*adstock*) de cada medio publicitario. Se puede observar que los medios offline (TV y Resto Medios Offline) son aquellos que presentan un efecto recuerdo más prolongado. No se debe olvidar que la configuración del modelo permite fijar el rango de valores que puede tomar el *adstock* en cada uno de los medios.
+5. ***Adstock* geométrico: tasa constante de decrecimiento en el tiempo** (*Geometric Adstock: Fixed Decay Rate Over Time*): muestra el efecto recuerdo (*adstock*) de cada medio publicitario. Se puede observar que los medios offline (TV y Resto Medios Offline) son aquellos que presentan un efecto recuerdo más prolongado. No se debe olvidar que la configuración del modelo permite fijar el rango de valores que puede tomar el *adstock* en cada uno de los medios.
 
 6. **Ajustados frente a residuos** (*Fitted vs. Residual*): muestra la nube de puntos para los datos ajustados (eje x) y los residuos (eje y). Este gráfico debe mostrar que los puntos están aleatoriamente ubicados alrededor del eje horizontal.
 

@@ -7,7 +7,7 @@
 <title>Capítulo 25 Máquinas de vector soporte | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Ramón A. Carrasco\(^{a}\), Itzcóatl Bueno\(^{a,\hspace{0,05cm}b}\) y José-María Montero\(^{c}\) \(^{a}\)Universidad Complutense de Madrid\(^{b}\)Instituto Nacional de...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 25 Máquinas de vector soporte | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -138,7 +138,7 @@
 <h2>
 <span class="header-section-number">25.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-11"><i class="fas fa-link"></i></a>
 </h2>
-<p>Aunque las máquinas de vector soporte (SVM por sus siglas inglés: <em>support vector machines</em>) se desarrollaron en los años 90 dentro de la comunidad informática <span class="citation">(<a href="referncias.html#ref-boser1992training">Boser, Guyon, and Vapnik 1992</a>; <a href="referncias.html#ref-cortes1995support">Cortes and Vapnik 1995</a>)</span> como un método de clasificación binaria, su aplicación se ha extendido a problemas de clasificación múltiple y de regresión. Como técnica de clasificación, las SVM son similares a la regresión logística (quizás la técnica más popular en este campo; véase Cap. <a href="cap-gam.html#cap-gam">17</a>), pero las SVM ponen el énfasis en el concepto de <strong>margen</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La regresión logística utiliza la función sigmoide para asignar un valor entre 0 y 1 a cada punto del espacio de variables predictoras. La observación se clasifica en el grupo de interés cuando la salida está por encima de un valor umbral, normalmente 0,5; en caso contrario se asigna al otro grupo. El objetivo de las SMV es localizar el hiperplano del espacio de variables predictoras que proporcione la separación óptima de las observaciones de cada clase. La principal diferencia entre la regresión logística y las SVM es que las SVM intentan maximizar el margen entre los vectores de soporte más cercanos (es decir, entre las observaciones más cercanas a la frontera de decisión), mientras que la regresión logística maximiza la probabilidad &lt;em&gt;a posteriori&lt;/em&gt; de pertenencia a una clase; las SVM son deterministas, mientras que la regresión logística tiene un enfoque probabilístico.&lt;/p&gt;"><sup>191</sup></a> Entrando un poco más en detalle, el margen es la distancia perpendicular desde un hiperplano separador dado hasta la observación del conjunto de entrenamiento más cercana a él. Dado un conjunto de observaciones que puede ser separado por un hiperplano, entonces puede ser separado por un número infinito de ellos (siempre se puede mover el hiperplano un poquito hacia arriba o hacia abajo, o rotarlo, sin que toque ninguna observación), se denomina <strong>hiperplano de máximo margen</strong> a aquel para el cual el margen es mayor. La utilización de un hiperplano separador es una característica propia de las SVM respecto del análisis discriminante lineal, la regresión logística, los árboles de decisión, el <em>bagging</em> y el <em>boosting</em>.</p>
+<p>Aunque las máquinas de vector soporte (SVM por sus siglas inglés: <em>support vector machines</em>) se desarrollaron en los años 90 dentro de la comunidad informática <span class="citation">(<a href="referencias.html#ref-boser1992training">Boser, Guyon, and Vapnik 1992</a>; <a href="referencias.html#ref-cortes1995support">Cortes and Vapnik 1995</a>)</span> como un método de clasificación binaria, su aplicación se ha extendido a problemas de clasificación múltiple y de regresión. Como técnica de clasificación, las SVM son similares a la regresión logística (quizás la técnica más popular en este campo; véase Cap. <a href="cap-glm.html#cap-glm">16</a>), pero las SVM ponen el énfasis en el concepto de <strong>margen</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La regresión logística utiliza la función sigmoide para asignar un valor entre 0 y 1 a cada punto del espacio de variables predictoras. La observación se clasifica en el grupo de interés cuando la salida está por encima de un valor umbral, normalmente 0,5; en caso contrario se asigna al otro grupo. El objetivo de las SMV es localizar el hiperplano del espacio de variables predictoras que proporcione la separación óptima de las observaciones de cada clase. La principal diferencia entre la regresión logística y las SVM es que las SVM intentan maximizar el margen entre los vectores de soporte más cercanos (es decir, entre las observaciones más cercanas a la frontera de decisión), mientras que la regresión logística maximiza la probabilidad &lt;em&gt;a posteriori&lt;/em&gt; de pertenencia a una clase; las SVM son deterministas, mientras que la regresión logística tiene un enfoque probabilístico.&lt;/p&gt;"><sup>191</sup></a> Entrando un poco más en detalle, el margen es la distancia perpendicular desde un hiperplano separador dado hasta la observación del conjunto de entrenamiento más cercana a él. Dado un conjunto de observaciones que puede ser separado por un hiperplano, entonces puede ser separado por un número infinito de ellos (siempre se puede mover el hiperplano un poquito hacia arriba o hacia abajo, o rotarlo, sin que toque ninguna observación), se denomina <strong>hiperplano de máximo margen</strong> a aquel para el cual el margen es mayor. La utilización de un hiperplano separador es una característica propia de las SVM respecto del análisis discriminante lineal, la regresión logística, los árboles de decisión, el <em>bagging</em> y el <em>boosting</em>.</p>
 <p>La observación del conjunto de entrenamiento más cercana al hiperplano separador con el máximo margen (criterio natural para elegir el hiperplano separador) se denomina <strong>vector soporte</strong> y puede haber varias que estén a la misma distancia; en este caso hay varios vectores soporte. Nótese que si estas observaciones cambian, aunque sea mínimamente, también cambiará el hiperplano de máximo margen. Por el contrario, las demás observaciones no tienen influencia alguna en dicho hiperplano.</p>
 <p>Aunque los clasificadores de máximo margen pudiesen parecer la forma natural de llevar a cabo una clasificación en el caso de que exista un hiperplano separador, en muchas ocasiones tal hiperplano no existe. En tales casos, la solución pasa por suavizar el concepto de “hiperplano separador” hasta el de “hiperplano que casi separa las dos clases”, así como por relajar el concepto de “margen”
 y pasar a utilizar el de “margen suave”. Pues bien, esta generalización del clasificador de máximo margen al caso no separable es lo que se conoce como clasificador basado en vectores soportes.</p>
@@ -169,7 +169,7 @@ Figura 25.2: SVM <span class="math inline">\(vs.\)</span> regresión logística:
 <span class="header-section-number">25.2</span> Algoritmo SVM para clasificación binaria<a class="anchor" aria-label="anchor" href="#algoritmo-svm-para-clasificaci%C3%B3n-binaria"><i class="fas fa-link"></i></a>
 </h2>
 <p>
-El algoritmo por el que se obtiene un modelo SVM <span class="citation">(<a href="referncias.html#ref-vapnik1997support">Vapnik 1997</a>)</span> se basa en la ecuación del hiperplano compuesta por dos hiperparámetros: un vector de números reales <span class="math inline">\(\bf{w}\)</span> de la misma dimensión que el vector de variables de entrada <span class="math inline">\(\bf x\)</span>, y un número real <span class="math inline">\(b\)</span> tal que:</p>
+El algoritmo por el que se obtiene un modelo SVM <span class="citation">(<a href="referencias.html#ref-vapnik1997support">Vapnik 1997</a>)</span> se basa en la ecuación del hiperplano compuesta por dos hiperparámetros: un vector de números reales <span class="math inline">\(\bf{w}\)</span> de la misma dimensión que el vector de variables de entrada <span class="math inline">\(\bf x\)</span>, y un número real <span class="math inline">\(b\)</span> tal que:</p>
 <span class="math display">\[\begin{equation}
   {\bf{w}}^{\prime} {\bf{x}} - b= 0,
 \end{equation}\]</span>
@@ -195,7 +195,7 @@ El algoritmo por el que se obtiene un modelo SVM <span class="citation">(<a href
 <h2>
 <span class="header-section-number">25.4</span> Truco del <em>kernel</em>: tratando con la no linealidad<a class="anchor" aria-label="anchor" href="#truco-del-kernel-tratando-con-la-no-linealidad"><i class="fas fa-link"></i></a>
 </h2>
-<p>Las SVM funcionan muy bien si la separación entre clases es lineal. Sin embargo, si la separación es más compleja se intenta transformar el espacio en otro de mayor dimensionalidad donde las clases sí sean separables linealmente. Y ello porque en un espacio de alta dimensión existe una mayor probabilidad de que los datos se vuelvan separables linealmente. Para que las clases sean linealmente separables, el modelo SVM se extiende incluyendo la función de pérdida (<span class="math inline">\(\ell\)</span>) <em>hinge loss</em> <span class="citation">(<a href="referncias.html#ref-gentile1998linear">Gentile and Warmuth 1998</a>; <a href="referncias.html#ref-lee2013study">Lee and Lin 2013</a>)</span> definida como:</p>
+<p>Las SVM funcionan muy bien si la separación entre clases es lineal. Sin embargo, si la separación es más compleja se intenta transformar el espacio en otro de mayor dimensionalidad donde las clases sí sean separables linealmente. Y ello porque en un espacio de alta dimensión existe una mayor probabilidad de que los datos se vuelvan separables linealmente. Para que las clases sean linealmente separables, el modelo SVM se extiende incluyendo la función de pérdida (<span class="math inline">\(\ell\)</span>) <em>hinge loss</em> <span class="citation">(<a href="referencias.html#ref-gentile1998linear">Gentile and Warmuth 1998</a>; <a href="referencias.html#ref-lee2013study">Lee and Lin 2013</a>)</span> definida como:</p>
 <span class="math display">\[\begin{equation}
 \ell(y_i) = \max(0,1-y_i({\bf{w}} {\bf{x}}_j-b)),
 \end{equation}\]</span>
@@ -218,7 +218,7 @@ Figura 25.3: Izquierda: las dos clases en el espacio original (2-D). Derecha: la
 <h3>
 <span class="header-section-number">25.4.1</span> Algunos <em>kernels</em> populares<a class="anchor" aria-label="anchor" href="#algunos-kernels-populares"><i class="fas fa-link"></i></a>
 </h3>
-<p>Los <em>kernels</em> <span class="citation">(<a href="referncias.html#ref-scholkopf1997prior">Schölkopf et al. 1997a</a>, <a href="referncias.html#ref-scholkopf1997comparing">1997b</a>)</span> más populares en el entrenamiento de SVM están incluidos en la función <code><a href="https://rdrr.io/pkg/e1071/man/svm.html">svm()</a></code> del paquete <code>e1071</code> y se especifican en el hiperparámetro <code>kernel</code>. Estos <em>kernels</em> son:</p>
+<p>Los <em>kernels</em> <span class="citation">(<a href="referencias.html#ref-scholkopf1997prior">Schölkopf, Simard, et al. 1997</a>; <a href="referencias.html#ref-scholkopf1997comparing">Schölkopf, Sung, et al. 1997</a>)</span> más populares en el entrenamiento de SVM están incluidos en la función <code><a href="https://rdrr.io/pkg/e1071/man/svm.html">svm()</a></code> del paquete <code>e1071</code> y se especifican en el hiperparámetro <code>kernel</code>. Estos <em>kernels</em> son:</p>
 <ul>
 <li>Lineal: <span class="math inline">\(K({\bf{u}},{\bf{v}}) = \langle {\bf{u}},{\bf{v}}\rangle\)</span>, donde <span class="math inline">\(\langle {\bf{u}},{\bf{v}}\rangle = \sum_{i=1}^{n}{u_iv_i}\)</span> es el producto escalar de <span class="math inline">\(\bf u\)</span> y <span class="math inline">\(\bf v\)</span>,</li>
 <li>Polinomial de grado <span class="math inline">\(\delta\)</span>: <span class="math inline">\(K({\bf{u}},{\bf{v}}) = \gamma \left(k_1+\langle {\bf{u}},{\bf{v}}\rangle\right )^\delta\)</span>,</li>
@@ -226,10 +226,10 @@ Figura 25.3: Izquierda: las dos clases en el espacio original (2-D). Derecha: la
 <li>Sigmoidal: <span class="math inline">\(K({\bf{u}},{\bf{v}}) = \tanh\left(\gamma\langle{\bf{u}},{\bf{v}}\rangle+k_1\right)\)</span>,</li>
 </ul>
 <p>donde <span class="math inline">\(\bf u\)</span> y <span class="math inline">\(\bf u\)</span> son vectores (en este caso de observaciones) y <span class="math inline">\(\delta\)</span>, <span class="math inline">\(\gamma\)</span> y <span class="math inline">\(k_1\)</span> son hiperparámetros de <em>kernel</em> que hay que <em>tunear</em>, es decir, ajustar (el ajuste se lleva a cabo de manera automática) para optimizar el rendimiento de la SVM. Los hiperparámetros a ajustar se pueden conocer utilizando la función <code>modelLookup</code> de <code>caret</code>. Por ejemplo, para una SVM con <em>kernel</em> de base radial son el coste, <span class="math inline">\(C\)</span>, que aparece en la ecuación <a href="cap-svm.html#eq:svmloss">(25.1)</a> y <span class="math inline">\(\sigma\)</span>, que equivale a <span class="math inline">\(\gamma\)</span> en la ecuación <a href="cap-svm.html#eq:svmloss">(25.1)</a> (este hiperparámetro suele llamarse <span class="math inline">\(\gamma\)</span> en la literatura, pero la función <code>svm</code> lo llama <span class="math inline">\(\sigma\)</span>).</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="cap-svm.html#cb363-1" tabindex="-1"></a><span class="fu">modelLookup</span>(<span class="st">"svmRadial"</span>)</span>
-<span id="cb363-2"><a href="cap-svm.html#cb363-2" tabindex="-1"></a>      model parameter label forReg forClass probModel</span>
-<span id="cb363-3"><a href="cap-svm.html#cb363-3" tabindex="-1"></a><span class="dv">1</span> svmRadial     sigma Sigma   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span>
-<span id="cb363-4"><a href="cap-svm.html#cb363-4" tabindex="-1"></a><span class="dv">2</span> svmRadial         C  Cost   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="cap-svm.html#cb364-1" tabindex="-1"></a><span class="fu">modelLookup</span>(<span class="st">"svmRadial"</span>)</span>
+<span id="cb364-2"><a href="cap-svm.html#cb364-2" tabindex="-1"></a>      model parameter label forReg forClass probModel</span>
+<span id="cb364-3"><a href="cap-svm.html#cb364-3" tabindex="-1"></a><span class="dv">1</span> svmRadial     sigma Sigma   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span>
+<span id="cb364-4"><a href="cap-svm.html#cb364-4" tabindex="-1"></a><span class="dv">2</span> svmRadial         C  Cost   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span></code></pre></div>
 </div>
 </div>
 <div id="procedimiento-con-r-la-función-svm" class="section level2" number="25.5">
@@ -237,7 +237,7 @@ Figura 25.3: Izquierda: las dos clases en el espacio original (2-D). Derecha: la
 <span class="header-section-number">25.5</span> Procedimiento con <strong>R</strong>: la función <code>svm()</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-la-funci%C3%B3n-svm"><i class="fas fa-link"></i></a>
 </h2>
 <p>En el paquete <code>e1071</code> de <strong>R</strong> se encuentra la función <code><a href="https://rdrr.io/pkg/e1071/man/svm.html">svm()</a></code> que se utiliza para entrenar un modelo SVM:</p>
-<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb365"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">svm</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, scale <span class="op">=</span> <span class="cn">TRUE</span>, type <span class="op">=</span> <span class="cn">NULL</span>, kernel <span class="op">=</span> <span class="va">...</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <p>donde:</p>
 <ul>
@@ -259,7 +259,7 @@ Figura 25.3: Izquierda: las dos clases en el espacio original (2-D). Derecha: la
 </h2>
 <p>Para llevar a cabo la aplicación en la que se centra esta sección se retoma el ejemplo expuesto en el Cap. <a href="cap-arboles.html#cap-arboles">24</a>, relativo a la empresa Beauty eSheep, que pretende vender tensiómetros digitales, obteniéndose las predicciones sobre si el cliente comprará o no un tensiómetro en función de una serie de variables incluidas en el conjunto de datos <code>dp_ENTR</code>del paquete <code>CDR</code>, y que se resume en la Tabla <a href="cap-arboles.html#tab:dpentr">24.8</a>.</p>
 <p>Los datos utilizados para entrenar el modelo SVM se cargan desde la librería <code>CDR</code>. Además, para su entrenamiento se requieren las librerías <code>caret</code> y <code>e1071</code>.</p>
-<div class="sourceCode" id="cb365"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/topepo/caret/">"caret"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"e1071"</span><span class="op">)</span></span>
@@ -268,7 +268,7 @@ Figura 25.3: Izquierda: las dos clases en el espacio original (2-D). Derecha: la
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">dp_entr_NUM</span><span class="op">)</span></span></code></pre></div>
 <p>Se entrena un modelo SVM con <em>kernel</em> radial utilizando el conjunto de entrenamiento con todas las variables numéricas. Previamente se aplica una normalización <em>z-score</em> (véase Cap. <a href="chap-feature.html#chap-feature">9</a>) para que todas las variables utilizadas estén la misma escala. Además, se ajustan automáticamente los hiperparámetros de dicho algoritmo (<span class="math inline">\(C\)</span> y <span class="math inline">\(\sigma\)</span>) durante el proceso de entrenamiento.</p>
-<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb367"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">trControl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/trainControl.html">trainControl</a></span><span class="op">(</span></span>
 <span>  method <span class="op">=</span> <span class="st">"cv"</span>,</span>
 <span>  number <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -281,7 +281,7 @@ Figura 25.3: Izquierda: las dos clases en el espacio original (2-D). Derecha: la
 <span><span class="va">tuneGrid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">0.1</span>, to<span class="op">=</span><span class="fl">0.2</span>, by<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span>,</span>
 <span>                        C <span class="op">=</span> <span class="fl">10</span><span class="op">**</span><span class="op">(</span><span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Para el entrenamiento y validación se define un remuestreo por validación cruzada con 10 grupos (véase Cap. <a href="chap-herramientas.html#chap-herramientas">10</a>). Además, se le indica al algoritmo que debe calcular las probabilidades de clase en cada remuestreo en caso de estar entrenando un modelo de clasificación. Con el argumento <code>summaryFunction = twoClassSummary</code> se le indica al modelo que, para evaluar la clasificación realizada, se calculen la sensibilidad, especificidad y el área bajo la curva ROC. Como se ha comentado anteriormente, conviene estandarizar los datos; esto se le indica a la función a través del argumento <code>preProcOptions</code>, con la opción <code>center</code> (téngase en cuenta que, previamente, ya se había aplicado una normalización <span class="math inline">\(z-score\)</span> para que todas las variables estuviesen en la misma escala. A su vez, se define una red de hiperparámetros a optimizar. A través de la función <code><a href="https://rdrr.io/pkg/caret/man/train.html">train()</a></code> se ajusta automáticamente el modelo con los hiperparámetros óptimos.</p>
-<div class="sourceCode" id="cb367"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se fija la semilla aleatoria</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span></span>
@@ -292,45 +292,45 @@ Figura 25.3: Izquierda: las dos clases en el espacio original (2-D). Derecha: la
 <span>             metric<span class="op">=</span><span class="st">"ROC"</span>,</span>
 <span>             trControl<span class="op">=</span><span class="va">trControl</span>,</span>
 <span>             tuneGrid<span class="op">=</span><span class="va">tuneGrid</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="cap-svm.html#cb368-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
-<span id="cb368-2"><a href="cap-svm.html#cb368-2" tabindex="-1"></a>model</span>
-<span id="cb368-3"><a href="cap-svm.html#cb368-3" tabindex="-1"></a></span>
-<span id="cb368-4"><a href="cap-svm.html#cb368-4" tabindex="-1"></a>Support Vector Machines with Radial Basis Function Kernel</span>
-<span id="cb368-5"><a href="cap-svm.html#cb368-5" tabindex="-1"></a></span>
-<span id="cb368-6"><a href="cap-svm.html#cb368-6" tabindex="-1"></a><span class="dv">558</span> samples</span>
-<span id="cb368-7"><a href="cap-svm.html#cb368-7" tabindex="-1"></a> <span class="dv">19</span> predictor</span>
-<span id="cb368-8"><a href="cap-svm.html#cb368-8" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span></span>
-<span id="cb368-9"><a href="cap-svm.html#cb368-9" tabindex="-1"></a></span>
-<span id="cb368-10"><a href="cap-svm.html#cb368-10" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
-<span id="cb368-11"><a href="cap-svm.html#cb368-11" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold)</span>
-<span id="cb368-12"><a href="cap-svm.html#cb368-12" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ...</span>
-<span id="cb368-13"><a href="cap-svm.html#cb368-13" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
-<span id="cb368-14"><a href="cap-svm.html#cb368-14" tabindex="-1"></a></span>
-<span id="cb368-15"><a href="cap-svm.html#cb368-15" tabindex="-1"></a>  sigma  C      ROC        Sens       Spec</span>
-<span id="cb368-16"><a href="cap-svm.html#cb368-16" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e-02</span>  <span class="fl">0.9553241</span>  <span class="fl">0.8785714</span>  <span class="fl">0.7071429</span></span>
-<span id="cb368-17"><a href="cap-svm.html#cb368-17" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e-01</span>  <span class="fl">0.9566327</span>  <span class="fl">0.8924603</span>  <span class="fl">0.8247354</span></span>
-<span id="cb368-18"><a href="cap-svm.html#cb368-18" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e+00</span>  <span class="fl">0.9434902</span>  <span class="fl">0.8604497</span>  <span class="fl">0.8496032</span></span>
-<span id="cb368-19"><a href="cap-svm.html#cb368-19" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e+01</span>  <span class="fl">0.9227230</span>  <span class="fl">0.8460317</span>  <span class="fl">0.8423280</span></span>
-<span id="cb368-20"><a href="cap-svm.html#cb368-20" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e+02</span>  <span class="fl">0.8804894</span>  <span class="fl">0.8567460</span>  <span class="fl">0.8279101</span></span>
-<span id="cb368-21"><a href="cap-svm.html#cb368-21" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e+03</span>  <span class="fl">0.8645692</span>  <span class="fl">0.8674603</span>  <span class="fl">0.8206349</span></span>
-<span id="cb368-22"><a href="cap-svm.html#cb368-22" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e+04</span>  <span class="fl">0.8548469</span>  <span class="fl">0.8423280</span>  <span class="fl">0.8242063</span></span>
-<span id="cb368-23"><a href="cap-svm.html#cb368-23" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e-02</span>  <span class="fl">0.9527636</span>  <span class="fl">0.8535714</span>  <span class="fl">0.6642857</span></span>
-<span id="cb368-24"><a href="cap-svm.html#cb368-24" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e-01</span>  <span class="fl">0.9513653</span>  <span class="fl">0.9105820</span>  <span class="fl">0.8105820</span></span>
-<span id="cb368-25"><a href="cap-svm.html#cb368-25" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e+00</span>  <span class="fl">0.9310091</span>  <span class="fl">0.8783069</span>  <span class="fl">0.8494709</span></span>
-<span id="cb368-26"><a href="cap-svm.html#cb368-26" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e+01</span>  <span class="fl">0.8941421</span>  <span class="fl">0.8531746</span>  <span class="fl">0.8387566</span></span>
-<span id="cb368-27"><a href="cap-svm.html#cb368-27" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e+02</span>  <span class="fl">0.8602088</span>  <span class="fl">0.8781746</span>  <span class="fl">0.8242063</span></span>
-<span id="cb368-28"><a href="cap-svm.html#cb368-28" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e+03</span>  <span class="fl">0.8369331</span>  <span class="fl">0.8458995</span>  <span class="fl">0.8134921</span></span>
-<span id="cb368-29"><a href="cap-svm.html#cb368-29" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e+04</span>  <span class="fl">0.8369284</span>  <span class="fl">0.8637566</span>  <span class="fl">0.8064815</span></span>
-<span id="cb368-30"><a href="cap-svm.html#cb368-30" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e-02</span>  <span class="fl">0.9443925</span>  <span class="fl">0.8535714</span>  <span class="fl">0.6321429</span></span>
-<span id="cb368-31"><a href="cap-svm.html#cb368-31" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e-01</span>  <span class="fl">0.9440098</span>  <span class="fl">0.9250000</span>  <span class="fl">0.7384921</span></span>
-<span id="cb368-32"><a href="cap-svm.html#cb368-32" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e+00</span>  <span class="fl">0.9199310</span>  <span class="fl">0.8818783</span>  <span class="fl">0.8387566</span></span>
-<span id="cb368-33"><a href="cap-svm.html#cb368-33" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e+01</span>  <span class="fl">0.8752031</span>  <span class="fl">0.8674603</span>  <span class="fl">0.8207672</span></span>
-<span id="cb368-34"><a href="cap-svm.html#cb368-34" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e+02</span>  <span class="fl">0.8477324</span>  <span class="fl">0.8674603</span>  <span class="fl">0.8063492</span></span>
-<span id="cb368-35"><a href="cap-svm.html#cb368-35" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e+03</span>  <span class="fl">0.8308296</span>  <span class="fl">0.8638889</span>  <span class="fl">0.8134921</span></span>
-<span id="cb368-36"><a href="cap-svm.html#cb368-36" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e+04</span>  <span class="fl">0.8308296</span>  <span class="fl">0.8638889</span>  <span class="fl">0.8099206</span></span>
-<span id="cb368-37"><a href="cap-svm.html#cb368-37" tabindex="-1"></a></span>
-<span id="cb368-38"><a href="cap-svm.html#cb368-38" tabindex="-1"></a>ROC was used to select the optimal model using the largest value.</span>
-<span id="cb368-39"><a href="cap-svm.html#cb368-39" tabindex="-1"></a>The final values used <span class="cf">for</span> the model were sigma <span class="ot">=</span> <span class="fl">0.1</span> and C <span class="ot">=</span> <span class="dv">0</span>.<span class="fl">1.</span></span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="cap-svm.html#cb369-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
+<span id="cb369-2"><a href="cap-svm.html#cb369-2" tabindex="-1"></a>model</span>
+<span id="cb369-3"><a href="cap-svm.html#cb369-3" tabindex="-1"></a></span>
+<span id="cb369-4"><a href="cap-svm.html#cb369-4" tabindex="-1"></a>Support Vector Machines with Radial Basis Function Kernel</span>
+<span id="cb369-5"><a href="cap-svm.html#cb369-5" tabindex="-1"></a></span>
+<span id="cb369-6"><a href="cap-svm.html#cb369-6" tabindex="-1"></a><span class="dv">558</span> samples</span>
+<span id="cb369-7"><a href="cap-svm.html#cb369-7" tabindex="-1"></a> <span class="dv">19</span> predictor</span>
+<span id="cb369-8"><a href="cap-svm.html#cb369-8" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span></span>
+<span id="cb369-9"><a href="cap-svm.html#cb369-9" tabindex="-1"></a></span>
+<span id="cb369-10"><a href="cap-svm.html#cb369-10" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
+<span id="cb369-11"><a href="cap-svm.html#cb369-11" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold)</span>
+<span id="cb369-12"><a href="cap-svm.html#cb369-12" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ...</span>
+<span id="cb369-13"><a href="cap-svm.html#cb369-13" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
+<span id="cb369-14"><a href="cap-svm.html#cb369-14" tabindex="-1"></a></span>
+<span id="cb369-15"><a href="cap-svm.html#cb369-15" tabindex="-1"></a>  sigma  C      ROC        Sens       Spec</span>
+<span id="cb369-16"><a href="cap-svm.html#cb369-16" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e-02</span>  <span class="fl">0.9553241</span>  <span class="fl">0.8785714</span>  <span class="fl">0.7071429</span></span>
+<span id="cb369-17"><a href="cap-svm.html#cb369-17" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e-01</span>  <span class="fl">0.9566327</span>  <span class="fl">0.8924603</span>  <span class="fl">0.8247354</span></span>
+<span id="cb369-18"><a href="cap-svm.html#cb369-18" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e+00</span>  <span class="fl">0.9434902</span>  <span class="fl">0.8604497</span>  <span class="fl">0.8496032</span></span>
+<span id="cb369-19"><a href="cap-svm.html#cb369-19" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e+01</span>  <span class="fl">0.9227230</span>  <span class="fl">0.8460317</span>  <span class="fl">0.8423280</span></span>
+<span id="cb369-20"><a href="cap-svm.html#cb369-20" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e+02</span>  <span class="fl">0.8804894</span>  <span class="fl">0.8567460</span>  <span class="fl">0.8279101</span></span>
+<span id="cb369-21"><a href="cap-svm.html#cb369-21" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e+03</span>  <span class="fl">0.8645692</span>  <span class="fl">0.8674603</span>  <span class="fl">0.8206349</span></span>
+<span id="cb369-22"><a href="cap-svm.html#cb369-22" tabindex="-1"></a>  <span class="fl">0.10</span>   <span class="fl">1e+04</span>  <span class="fl">0.8548469</span>  <span class="fl">0.8423280</span>  <span class="fl">0.8242063</span></span>
+<span id="cb369-23"><a href="cap-svm.html#cb369-23" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e-02</span>  <span class="fl">0.9527636</span>  <span class="fl">0.8535714</span>  <span class="fl">0.6642857</span></span>
+<span id="cb369-24"><a href="cap-svm.html#cb369-24" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e-01</span>  <span class="fl">0.9513653</span>  <span class="fl">0.9105820</span>  <span class="fl">0.8105820</span></span>
+<span id="cb369-25"><a href="cap-svm.html#cb369-25" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e+00</span>  <span class="fl">0.9310091</span>  <span class="fl">0.8783069</span>  <span class="fl">0.8494709</span></span>
+<span id="cb369-26"><a href="cap-svm.html#cb369-26" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e+01</span>  <span class="fl">0.8941421</span>  <span class="fl">0.8531746</span>  <span class="fl">0.8387566</span></span>
+<span id="cb369-27"><a href="cap-svm.html#cb369-27" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e+02</span>  <span class="fl">0.8602088</span>  <span class="fl">0.8781746</span>  <span class="fl">0.8242063</span></span>
+<span id="cb369-28"><a href="cap-svm.html#cb369-28" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e+03</span>  <span class="fl">0.8369331</span>  <span class="fl">0.8458995</span>  <span class="fl">0.8134921</span></span>
+<span id="cb369-29"><a href="cap-svm.html#cb369-29" tabindex="-1"></a>  <span class="fl">0.15</span>   <span class="fl">1e+04</span>  <span class="fl">0.8369284</span>  <span class="fl">0.8637566</span>  <span class="fl">0.8064815</span></span>
+<span id="cb369-30"><a href="cap-svm.html#cb369-30" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e-02</span>  <span class="fl">0.9443925</span>  <span class="fl">0.8535714</span>  <span class="fl">0.6321429</span></span>
+<span id="cb369-31"><a href="cap-svm.html#cb369-31" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e-01</span>  <span class="fl">0.9440098</span>  <span class="fl">0.9250000</span>  <span class="fl">0.7384921</span></span>
+<span id="cb369-32"><a href="cap-svm.html#cb369-32" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e+00</span>  <span class="fl">0.9199310</span>  <span class="fl">0.8818783</span>  <span class="fl">0.8387566</span></span>
+<span id="cb369-33"><a href="cap-svm.html#cb369-33" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e+01</span>  <span class="fl">0.8752031</span>  <span class="fl">0.8674603</span>  <span class="fl">0.8207672</span></span>
+<span id="cb369-34"><a href="cap-svm.html#cb369-34" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e+02</span>  <span class="fl">0.8477324</span>  <span class="fl">0.8674603</span>  <span class="fl">0.8063492</span></span>
+<span id="cb369-35"><a href="cap-svm.html#cb369-35" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e+03</span>  <span class="fl">0.8308296</span>  <span class="fl">0.8638889</span>  <span class="fl">0.8134921</span></span>
+<span id="cb369-36"><a href="cap-svm.html#cb369-36" tabindex="-1"></a>  <span class="fl">0.20</span>   <span class="fl">1e+04</span>  <span class="fl">0.8308296</span>  <span class="fl">0.8638889</span>  <span class="fl">0.8099206</span></span>
+<span id="cb369-37"><a href="cap-svm.html#cb369-37" tabindex="-1"></a></span>
+<span id="cb369-38"><a href="cap-svm.html#cb369-38" tabindex="-1"></a>ROC was used to select the optimal model using the largest value.</span>
+<span id="cb369-39"><a href="cap-svm.html#cb369-39" tabindex="-1"></a>The final values used <span class="cf">for</span> the model were sigma <span class="ot">=</span> <span class="fl">0.1</span> and C <span class="ot">=</span> <span class="dv">0</span>.<span class="fl">1.</span></span></code></pre></div>
 <p>Los argumentos que requiere la función son:</p>
 <ul>
 <li>La <code>formula</code>, donde se indica la variable respuesta y qué predictores intervienen en el modelo.</li>
@@ -340,7 +340,7 @@ Figura 25.3: Izquierda: las dos clases en el espacio original (2-D). Derecha: la
 <li>Las opciones de entrenamiento.</li>
 <li>La red de hiperparámetros a probar para determinar la combinación óptima; en este caso, <span class="math inline">\(C\)</span> (véase la ecuación <a href="cap-svm.html#eq:svmloss">(25.1)</a>) y <span class="math inline">\(\sigma\)</span> (en la literatura escrita se suele llamar gamma; sin embargo, la función <code>svm</code> lo llama sigma). Los valores de dichos hiperparámetros en el modelo entrenado son <span class="math inline">\(\sigma=0.1\)</span> y <span class="math inline">\(C=0.1\)</span>, véase la salida del modelo y la Fig. <a href="cap-svm.html#fig:006-002-202SVMTUNEPLOT">25.4</a>.</li>
 </ul>
-<div class="sourceCode" id="cb369"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:006-002-202SVMTUNEPLOT"></span>
@@ -349,37 +349,37 @@ Figura 25.4: Optimización de los parámetros C y sigma de una SVM.
 </p>
 </div>
 <p>Los resultados que se derivan de la matriz de confusión correspondiente al modelo resultante son los siguientes:</p>
-<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb371"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/caret/man/confusionMatrix.html">confusionMatrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>, <span class="va">dp_entr_NUM</span><span class="op">$</span><span class="va">CLS_PRO_pro13</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="cap-svm.html#cb371-1" tabindex="-1"></a>Confusion Matrix and Statistics</span>
-<span id="cb371-2"><a href="cap-svm.html#cb371-2" tabindex="-1"></a></span>
-<span id="cb371-3"><a href="cap-svm.html#cb371-3" tabindex="-1"></a>          Reference</span>
-<span id="cb371-4"><a href="cap-svm.html#cb371-4" tabindex="-1"></a>Prediction   S   N</span>
-<span id="cb371-5"><a href="cap-svm.html#cb371-5" tabindex="-1"></a>         S <span class="dv">253</span>  <span class="dv">30</span></span>
-<span id="cb371-6"><a href="cap-svm.html#cb371-6" tabindex="-1"></a>         N  <span class="dv">26</span> <span class="dv">249</span></span>
-<span id="cb371-7"><a href="cap-svm.html#cb371-7" tabindex="-1"></a></span>
-<span id="cb371-8"><a href="cap-svm.html#cb371-8" tabindex="-1"></a>               Accuracy <span class="sc">:</span> <span class="fl">0.8996</span></span>
-<span id="cb371-9"><a href="cap-svm.html#cb371-9" tabindex="-1"></a>                 <span class="dv">95</span>% CI <span class="sc">:</span> (<span class="fl">0.8717</span>, <span class="fl">0.9233</span>)</span>
-<span id="cb371-10"><a href="cap-svm.html#cb371-10" tabindex="-1"></a>    No Information Rate <span class="sc">:</span> <span class="fl">0.5</span></span>
-<span id="cb371-11"><a href="cap-svm.html#cb371-11" tabindex="-1"></a>    P<span class="sc">-</span>Value [Acc <span class="sc">&gt;</span> NIR] <span class="sc">:</span> <span class="er">&lt;</span><span class="fl">2e-16</span></span>
-<span id="cb371-12"><a href="cap-svm.html#cb371-12" tabindex="-1"></a></span>
-<span id="cb371-13"><a href="cap-svm.html#cb371-13" tabindex="-1"></a>                  Kappa <span class="sc">:</span> <span class="fl">0.7993</span></span>
-<span id="cb371-14"><a href="cap-svm.html#cb371-14" tabindex="-1"></a></span>
-<span id="cb371-15"><a href="cap-svm.html#cb371-15" tabindex="-1"></a> Mcnemar<span class="st">'s Test P-Value : 0.6885</span></span>
-<span id="cb371-16"><a href="cap-svm.html#cb371-16" tabindex="-1"></a></span>
-<span id="cb371-17"><a href="cap-svm.html#cb371-17" tabindex="-1"></a><span class="st">            Sensitivity : 0.9068</span></span>
-<span id="cb371-18"><a href="cap-svm.html#cb371-18" tabindex="-1"></a><span class="st">            Specificity : 0.8925</span></span>
-<span id="cb371-19"><a href="cap-svm.html#cb371-19" tabindex="-1"></a><span class="st">         Pos Pred Value : 0.8940</span></span>
-<span id="cb371-20"><a href="cap-svm.html#cb371-20" tabindex="-1"></a><span class="st">         Neg Pred Value : 0.9055</span></span>
-<span id="cb371-21"><a href="cap-svm.html#cb371-21" tabindex="-1"></a><span class="st">             Prevalence : 0.5000</span></span>
-<span id="cb371-22"><a href="cap-svm.html#cb371-22" tabindex="-1"></a><span class="st">         Detection Rate : 0.4534</span></span>
-<span id="cb371-23"><a href="cap-svm.html#cb371-23" tabindex="-1"></a><span class="st">   Detection Prevalence : 0.5072</span></span>
-<span id="cb371-24"><a href="cap-svm.html#cb371-24" tabindex="-1"></a><span class="st">      Balanced Accuracy : 0.8996</span></span>
-<span id="cb371-25"><a href="cap-svm.html#cb371-25" tabindex="-1"></a></span>
-<span id="cb371-26"><a href="cap-svm.html#cb371-26" tabindex="-1"></a><span class="st">       '</span>Positive<span class="st">' Class : S</span></span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="cap-svm.html#cb372-1" tabindex="-1"></a>Confusion Matrix and Statistics</span>
+<span id="cb372-2"><a href="cap-svm.html#cb372-2" tabindex="-1"></a></span>
+<span id="cb372-3"><a href="cap-svm.html#cb372-3" tabindex="-1"></a>          Reference</span>
+<span id="cb372-4"><a href="cap-svm.html#cb372-4" tabindex="-1"></a>Prediction   S   N</span>
+<span id="cb372-5"><a href="cap-svm.html#cb372-5" tabindex="-1"></a>         S <span class="dv">253</span>  <span class="dv">30</span></span>
+<span id="cb372-6"><a href="cap-svm.html#cb372-6" tabindex="-1"></a>         N  <span class="dv">26</span> <span class="dv">249</span></span>
+<span id="cb372-7"><a href="cap-svm.html#cb372-7" tabindex="-1"></a></span>
+<span id="cb372-8"><a href="cap-svm.html#cb372-8" tabindex="-1"></a>               Accuracy <span class="sc">:</span> <span class="fl">0.8996</span></span>
+<span id="cb372-9"><a href="cap-svm.html#cb372-9" tabindex="-1"></a>                 <span class="dv">95</span>% CI <span class="sc">:</span> (<span class="fl">0.8717</span>, <span class="fl">0.9233</span>)</span>
+<span id="cb372-10"><a href="cap-svm.html#cb372-10" tabindex="-1"></a>    No Information Rate <span class="sc">:</span> <span class="fl">0.5</span></span>
+<span id="cb372-11"><a href="cap-svm.html#cb372-11" tabindex="-1"></a>    P<span class="sc">-</span>Value [Acc <span class="sc">&gt;</span> NIR] <span class="sc">:</span> <span class="er">&lt;</span><span class="fl">2e-16</span></span>
+<span id="cb372-12"><a href="cap-svm.html#cb372-12" tabindex="-1"></a></span>
+<span id="cb372-13"><a href="cap-svm.html#cb372-13" tabindex="-1"></a>                  Kappa <span class="sc">:</span> <span class="fl">0.7993</span></span>
+<span id="cb372-14"><a href="cap-svm.html#cb372-14" tabindex="-1"></a></span>
+<span id="cb372-15"><a href="cap-svm.html#cb372-15" tabindex="-1"></a> Mcnemar<span class="st">'s Test P-Value : 0.6885</span></span>
+<span id="cb372-16"><a href="cap-svm.html#cb372-16" tabindex="-1"></a></span>
+<span id="cb372-17"><a href="cap-svm.html#cb372-17" tabindex="-1"></a><span class="st">            Sensitivity : 0.9068</span></span>
+<span id="cb372-18"><a href="cap-svm.html#cb372-18" tabindex="-1"></a><span class="st">            Specificity : 0.8925</span></span>
+<span id="cb372-19"><a href="cap-svm.html#cb372-19" tabindex="-1"></a><span class="st">         Pos Pred Value : 0.8940</span></span>
+<span id="cb372-20"><a href="cap-svm.html#cb372-20" tabindex="-1"></a><span class="st">         Neg Pred Value : 0.9055</span></span>
+<span id="cb372-21"><a href="cap-svm.html#cb372-21" tabindex="-1"></a><span class="st">             Prevalence : 0.5000</span></span>
+<span id="cb372-22"><a href="cap-svm.html#cb372-22" tabindex="-1"></a><span class="st">         Detection Rate : 0.4534</span></span>
+<span id="cb372-23"><a href="cap-svm.html#cb372-23" tabindex="-1"></a><span class="st">   Detection Prevalence : 0.5072</span></span>
+<span id="cb372-24"><a href="cap-svm.html#cb372-24" tabindex="-1"></a><span class="st">      Balanced Accuracy : 0.8996</span></span>
+<span id="cb372-25"><a href="cap-svm.html#cb372-25" tabindex="-1"></a></span>
+<span id="cb372-26"><a href="cap-svm.html#cb372-26" tabindex="-1"></a><span class="st">       '</span>Positive<span class="st">' Class : S</span></span></code></pre></div>
 <p>Los <em>box-plot</em> de la Fig. <a href="cap-svm.html#fig:006-002-202SVMRESULTS3">25.5</a> muestran un resumen del rendimiento del modelo en las diez repeticiones del proceso de validación cruzada. Se observa que la sensibilidad es superior al 85% y la especificidad supera el 75%. Estos resultados indican que el modelo entrenado es capaz de clasificar bastante bien tanto a los clientes que van a comprar el nuevo producto como a los que no lo van a hacer.</p>
-<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb373"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">resample</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>show.legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
@@ -394,17 +394,17 @@ Figura 25.5: Resultados del modelo obtenidos durante la validación cruzada.
 <span class="header-section-number">25.6.1</span> Importancia de las variables<a class="anchor" aria-label="anchor" href="#importancia-de-las-variables"><i class="fas fa-link"></i></a>
 </h3>
 <p>En <em>machine learning</em>, muchos de los algoritmos de caja negra (definidos en el Cap. <a href="cap-etica.html#cap-etica">4</a>) no proporcionan información sobre la importancia que tiene cada variable en el modelo. En el caso de las SVM, como de otros algoritmos, es posible cuantificar la importancia de cada variable utilizando paquetes de <strong>R</strong> como <code>DALEX</code>, <code>iml</code> o <code>vip</code>.</p>
-<p>Este último paquete incluye una función con el mismo nombre, <code><a href="https://rdrr.io/pkg/vip/man/vip.html">vip()</a></code>, donde para medir la importancia se indica qué métrica se utilizó en el proceso de entrenamiento del modelo. En el caso concreto de la SVM se indica que la métrica utilizada en el proceso de entrenamiento fue el área bajo la curva (<code>metric=auc</code>). En el argumento <code>pred_wrapper</code> (donde “pred” se refiere a predicción) se indica una función de medida que contenga tanto los valores observados como los valores predichos. Dado que la SVM entrenada utiliza el área bajo la curva ROC para medir el rendimiento del modelo ajustado, la función de medida indicada en <code>pred_wrapper</code> devolverá la probabilidad de que el modelo asigne una observación a la clase de referencia. En este ejemplo, la función de predicción se define como:</p>
-<div class="sourceCode" id="cb373"><pre class="downlit sourceCode r">
+<p>Este último paquete incluye una función con el mismo nombre, <code>vip()</code>, donde para medir la importancia se indica qué métrica se utilizó en el proceso de entrenamiento del modelo. En el caso concreto de la SVM se indica que la métrica utilizada en el proceso de entrenamiento fue el área bajo la curva (<code>metric=auc</code>). En el argumento <code>pred_wrapper</code> (donde “pred” se refiere a predicción) se indica una función de medida que contenga tanto los valores observados como los valores predichos. Dado que la SVM entrenada utiliza el área bajo la curva ROC para medir el rendimiento del modelo ajustado, la función de medida indicada en <code>pred_wrapper</code> devolverá la probabilidad de que el modelo asigne una observación a la clase de referencia. En este ejemplo, la función de predicción se define como:</p>
+<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">prob_si</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">object</span>, <span class="va">newdata</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">object</span>, newdata <span class="op">=</span> <span class="va">newdata</span>, type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span><span class="op">[</span>, <span class="st">"S"</span><span class="op">]</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>Ejecutando la función <code><a href="https://rdrr.io/pkg/vip/man/vip.html">vip()</a></code> con los argumentos mencionados se genera la Fig. <a href="cap-svm.html#fig:vip-svm">25.6</a>. Este gráfico indica, en orden descendente, la importancia de cada variable en el modelo. En este caso, la variable más importante es el importe gastado en el <em>smartchwatch fitness</em>, seguida muy de cerca por la variable que indica si el cliente compra o no el <em>smartchwatch fitness</em>. En el otro extremo, se observa que las variables que indican si el cliente tiene un nivel de educación básico o no, no son muy relevantes en la SVM entrenada.</p>
-<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
+<p>Ejecutando la función <code>vip()</code> con los argumentos mencionados se genera la Fig. <a href="cap-svm.html#fig:vip-svm">25.6</a>. Este gráfico indica, en orden descendente, la importancia de cada variable en el modelo. En este caso, la variable más importante es el importe gastado en el <em>smartchwatch fitness</em>, seguida muy de cerca por la variable que indica si el cliente compra o no el <em>smartchwatch fitness</em>. En el otro extremo, se observa que las variables que indican si el cliente tiene un nivel de educación básico o no, no son muy relevantes en la SVM entrenada.</p>
+<div class="sourceCode" id="cb375"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/koalaverse/vip/">"vip"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span>  </span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/vip/man/vip.html">vip</a></span><span class="op">(</span><span class="va">model</span>, train <span class="op">=</span> <span class="va">dp_entr_NUM</span>, target <span class="op">=</span> <span class="st">"CLS_PRO_pro13"</span>, metric <span class="op">=</span> <span class="st">"auc"</span>,</span>
+<span><span class="fu">vip</span><span class="op">(</span><span class="va">model</span>, train <span class="op">=</span> <span class="va">dp_entr_NUM</span>, target <span class="op">=</span> <span class="st">"CLS_PRO_pro13"</span>, metric <span class="op">=</span> <span class="st">"auc"</span>,</span>
 <span>    reference_class <span class="op">=</span> <span class="st">"S"</span>, pred_wrapper <span class="op">=</span> <span class="va">prob_si</span>, method<span class="op">=</span><span class="st">"permute"</span>,</span>
 <span>    aesthetics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"steelblue2"</span>, fill <span class="op">=</span> <span class="st">"steelblue2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -468,7 +468,7 @@ Figura 25.6: Importancia de las variables incluidas en la SVM.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

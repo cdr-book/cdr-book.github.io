@@ -19,14 +19,10 @@ Universidad de Castilla-La Mancha
 
 Los **datos espaciales**, también conocidos como **datos geográficos** o **datos georreferenciados**, son aquellos que contienen información de una localización o área geográfica de la superficie de la Tierra o que están relacionados con dicha localización. Se podría decir también que son aquellos que están anclados al espacio. El primer análisis de datos espaciales fue realizado por el médico John Snow en 1854 [@snow1856cholera]. Él construyó un famoso mapa que mostraba las muertes causadas por un brote de cólera (que mató a 127 personas en 3 días) en el barrio del Soho de Londres junto con la ubicación de las bombas de agua en el área (véase Fig. \@ref(fig:snow-cholera-map-ch40)). Snow descubrió que había un agrupamiento significativo de muertes alrededor de una determinada bomba, y al quitar la manija de la bomba se detuvo el brote. Tanto los datos de muertes con los que trabajó Snow como aquellos que contienen las coordenadas de las ubicaciones donde estaban situadas las bombas de agua son datos espaciales.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.45\linewidth]{img/colera_new} 
-
-}
-
-\caption{Mapa de cólera en Londres según Snow. Fuente: adaptado de Snow (1856).}(\#fig:snow-cholera-map-ch40)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/colera_new.png" alt="Mapa de cólera en Londres según Snow. Fuente: adaptado de Snow (1856)." width="45%" />
+<p class="caption">(\#fig:snow-cholera-map-ch40)Mapa de cólera en Londres según Snow. Fuente: adaptado de Snow (1856).</p>
+</div>
 
 [^diego]: Quisiera agradecer a Diego Hernangómez la ayuda prestada en la elaboración de este capítulo.
 
@@ -43,14 +39,10 @@ Debido a que los datos espaciales surgen en múltiples campos y aplicaciones, ha
 En este libro, el estudio de los datos geoestadísticos se aborda en el Cap. \@ref(geo), el análisis de los datos *lattice* se lleva a cabo en el Cap. \@ref(cap-econom-esp), dedicado a la econometría espacial, y los datos de patrones de puntos se analizan en el Cap. \@ref(cap-pp).
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/cressie_simulados} 
-
-}
-
-\caption{Clasificación de datos espaciales propuesta por Cressie (1993).}(\#fig:hengl-cressie)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/cressie_simulados.png" alt="Clasificación de datos espaciales propuesta por Cressie (1993)." width="60%" />
+<p class="caption">(\#fig:hengl-cressie)Clasificación de datos espaciales propuesta por Cressie (1993).</p>
+</div>
 
 ## Conceptos clave
 
@@ -67,17 +59,13 @@ ggplot(data = accidentes2020_data,
 ```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/fig-accidentes1} 
-
-}
-
-\caption{Accidentes de tráfico en Madrid (2020).}(\#fig:fig-accidentes1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/fig-accidentes1.png" alt="Accidentes de tráfico en Madrid (2020)." width="60%" />
+<p class="caption">(\#fig:fig-accidentes1)Accidentes de tráfico en Madrid (2020).</p>
+</div>
 
 
-Además de las coordenadas\index{coordenadas}, en la representación de geodatos es importante el marco o contexto espacial, así como el conocimiento del (i) **sistema de referencia de coordenadas**\index{sistema de referencia de coordenadas} o *coordinate reference system* \index{coordinate reference system@\textit{coordinate reference system}} (**CRS**) \index{CRS} en el que están goerreferenciadas o proyectadas las coordenadas y (ii) el formato de los datos con los que se está trabajando: vector o *raster*.
+Además de las coordenadas\index{coordenadas}, en la representación de geodatos es importante el marco o contexto espacial, así como el conocimiento del (i) **sistema de referencia de coordenadas**\index{sistema!de referencia de coordenadas} o *coordinate reference system* \index{coordinate reference system@\textit{coordinate reference system}} (**CRS**) \index{CRS} en el que están goerreferenciadas o proyectadas las coordenadas y (ii) el formato de los datos con los que se está trabajando: vector o *raster*.
 
 
 ```r
@@ -102,14 +90,10 @@ ggplot() +
 ```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{img/accidentes2} 
-
-}
-
-\caption{Accidentes de tráfico en Madrid proyectados y con mapa de carreteras (2020).}(\#fig:fig-accidentes2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/accidentes2.png" alt="Accidentes de tráfico en Madrid proyectados y con mapa de carreteras (2020)." width="80%" />
+<p class="caption">(\#fig:fig-accidentes2)Accidentes de tráfico en Madrid proyectados y con mapa de carreteras (2020).</p>
+</div>
 
 
 La Fig. \@ref(fig:fig-accidentes2) incluye el marco o contexto espacial  (el mapa de carreteras de Madrid) en el que tuvieron lugar los accidentes mostrados en la Fig. \@ref(fig:fig-accidentes1), lo cual permite observar ciertos patrones en la ocurrencia de accidentes. Por ejemplo, apenas se producen accidentes en la Casa de Campo o en el Monte del Pardo y parece observarse cierta concentración en la ciudad y en las autopistas de salida de la ciudad.
@@ -134,26 +118,22 @@ plot(st_geometry(puertos), add = TRUE, col="2", pch=20, lwd=2.5)
 ```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{img/mapa-mundi-ko} 
-
-}
-
-\caption{Localización de los puertos en el mapamundi (distinto CRS en los puertos y el mapa).}(\#fig:plot-puertos-error)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/mapa-mundi-ko.png" alt="Localización de los puertos en el mapamundi (distinto CRS en los puertos y el mapa)." width="80%" />
+<p class="caption">(\#fig:plot-puertos-error)Localización de los puertos en el mapamundi (distinto CRS en los puertos y el mapa).</p>
+</div>
 
 
 Los dos tipos de CRS que existen se describen a continuación:
 
-(i) **Geográficos**\index{CRS!geográficos}: aquellos en los que los parámetros empleados para localizar una posición espacial son la latitud (Norte-Sur [-90º, 90º]) y la longitud (Este-Oeste [-180º, 180º]). Están basados en la geometría esférica. En este caso las distancias entre dos puntos son **distancias angulares**[^chap-40-dist-angular].\index{distancia!angular}
+(i) **Geográficos**\index{CRS!geográficos}: aquellos en los que los parámetros empleados para localizar una posición espacial son la latitud (Norte-Sur [$-$90º, 90º]) y la longitud (Este-Oeste [$-$180º, 180º]). Están basados en la geometría esférica. En este caso las distancias entre dos puntos son **distancias angulares**.[^chap-40-dist-angular]\index{distancia!angular}
 
 [^chap-40-dist-angular]: Distancia del arco que une dos puntos, medida en grados o radianes.
 
 
 (ii) **Proyectados**\index{CRS!proyectados}: permiten reducir la superficie de la esfera terrestre (3D) a un sistema cartesiano (2D). Para ello, es necesario transformar las coordenadas longitud y latitud en coordenadas cartesianas $X$ e $Y$. La unidad de distancia, habitualmente, es el **metro**. 
 
-\index{proyección!Robinson}
+\index{proyeccion@proyección Robinson}
 
 Retomando el ejemplo de los puertos marítimos, tras proyectar los puertos al mismo CRS que el mapamundi utilizando la proyección de Robinson (la proyección cartográfica más popular para mapamundis), la Fig. \@ref(fig:plot-puertos-ok) ya muestra adecuadamente la localización de los puertos en el mapamundi.
 
@@ -167,14 +147,10 @@ plot(st_geometry(puertos_robin), add = TRUE, col=4, pch=20)
 ```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{img/mapa-muni-ok} 
-
-}
-
-\caption{Localización de los puertos en el mapamundi (mismo CRS en los puertos y el mapa).}(\#fig:plot-puertos-ok)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/mapa-muni-ok.png" alt="Localización de los puertos en el mapamundi (mismo CRS en los puertos y el mapa)." width="80%" />
+<p class="caption">(\#fig:plot-puertos-ok)Localización de los puertos en el mapamundi (mismo CRS en los puertos y el mapa).</p>
+</div>
 
 
 
@@ -208,14 +184,10 @@ ggplot() +
   theme(legend.position = "right")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth]{img/centros-toledo} 
-
-}
-
-\caption{Hospitales y centros de salud en Toledo.}(\#fig:plot-puntos)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/centros-toledo.png" alt="Hospitales y centros de salud en Toledo." width="75%" />
+<p class="caption">(\#fig:plot-puntos)Hospitales y centros de salud en Toledo.</p>
+</div>
 
 
 
@@ -231,14 +203,10 @@ ggplot(toledo) +
   theme_minimal()
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth]{img/rio-toledo} 
-
-}
-
-\caption{Datos vector: Puntos, líneas y polígonos.}(\#fig:plot-lineas-pol)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/rio-toledo.png" alt="Datos vector: Puntos, líneas y polígonos." width="75%" />
+<p class="caption">(\#fig:plot-lineas-pol)Datos vector: Puntos, líneas y polígonos.</p>
+</div>
 
 
 Las extensiones más habituales de los archivos que contienen datos de vectores se muestran en la Tabla \@ref(tab:geo-ficheros-vector):
@@ -276,14 +244,10 @@ plot(pols, add = TRUE, border = "grey90")
 plot(st_geometry(Tol_prov), add = TRUE)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/elev-toledo} 
-
-}
-
-\caption{Datos $raster$. Altitud de la provincia de Toledo.}(\#fig:plot-raster-to)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/elev-toledo.png" alt="Datos $raster$. Altitud de la provincia de Toledo." width="70%" />
+<p class="caption">(\#fig:plot-raster-to)Datos $raster$. Altitud de la provincia de Toledo.</p>
+</div>
 
 
 En la Fig. \@ref(fig:plot-raster-to) el objeto *raster* `elev` 
@@ -332,14 +296,10 @@ ggplot(munis_renta) +
 ```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth]{img/renta-ko} 
-
-}
-
-\caption{Renta neta media por persona (€) a escala municipal en España en 2019.}(\#fig:plot-renta-ko)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/renta-ko.png" alt="Renta neta media por persona (€) a escala municipal en España en 2019." width="75%" />
+<p class="caption">(\#fig:plot-renta-ko)Renta neta media por persona (€) a escala municipal en España en 2019.</p>
+</div>
 
 
 La Fig. \@ref(fig:plot-renta-ko) muestra un mapa temático de coropletas,[^Note-cloropeta] es decir, una visualización sencilla de cómo varía la distribución de una variable (en este caso la renta neta media por persona) en una área geográfica (España). En la información contenida en el objeto `munis_renta` pueden verse una serie de elementos gráficos característicos de los objetos espaciales: los datos son de tipo vector, el tipo de geometría es MULTIPOLYGON, el CRS es ETRS89 y una leyenda explica el significado de la variable.
@@ -373,7 +333,7 @@ Si se construye un mapa de coropletas como el de la Fig. \@ref(fig:plot-renta-ko
 (ii) la escala de color a utilizar;
 (iii) el tratamiento de los valores perdidos.
 
-Recuérdese que los mapas de coropletas muestran la distribución espacial de una variable cuyos valores se dividen en clases o intervalos a los cuales se les aplica un esquema de colores, también llamado paleta, de tal manera que a cada clase le corresponde un color de la paleta. Aunque hay muchas formas en las que pueden agrupar los valores de una variable en clases, el **método de Fisher-Jenks** es el más popular en los mapas temáticos y en especial, en los de coropletas. 
+Recuérdese que los mapas de coropletas muestran la distribución espacial de una variable cuyos valores se dividen en clases o intervalos a los cuales se les aplica un esquema de colores, también llamado paleta, de tal manera que a cada clase le corresponde un color de la paleta. Aunque hay muchas formas en las que se pueden agrupar los valores de una variable en clases, el **método de Fisher-Jenks** es el más popular en los mapas temáticos y en especial, en los de coropletas. 
 
 
 
@@ -419,14 +379,10 @@ theme_minimal()
 ```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/renta-fj} 
-
-}
-
-\caption{Renta neta per cápita en España, a escala municipal, en 2019, con Fisher-Jenks.}(\#fig:plot-mapa-fisher)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/renta-fj.png" alt="Renta neta per cápita en España, a escala municipal, en 2019, con Fisher-Jenks." width="70%" />
+<p class="caption">(\#fig:plot-mapa-fisher)Renta neta per cápita en España, a escala municipal, en 2019, con Fisher-Jenks.</p>
+</div>
 
 
 
@@ -468,14 +424,10 @@ ggplot(esp2) +
 ```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{img/ms-spain} 
-
-}
-
-\caption{Estaciones de la AEMET en la Península Ibérica.}(\#fig:plot-aemet)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/ms-spain.png" alt="Estaciones de la AEMET en la Península Ibérica." width="50%" />
+<p class="caption">(\#fig:plot-aemet)Estaciones de la AEMET en la Península Ibérica.</p>
+</div>
 
 
 Por último, se representa el mapa espaciotemporal con la función `ggplot()`, indicando en el argumento `facet_wrap()` la dimensión temporal.
@@ -510,14 +462,10 @@ ggplot() +
 ```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{img/st-spain} 
-
-}
-
-\caption{Temperatura mínima en España (6-10 enero 2021).}(\#fig:plot-tmin-st)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/st-spain.png" alt="Temperatura mínima en España (6-10 enero 2021)." width="90%" />
+<p class="caption">(\#fig:plot-tmin-st)Temperatura mínima en España (6-10 enero 2021).</p>
+</div>
 
 
 
@@ -553,14 +501,10 @@ snow_map
 
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{img/snow_map} 
-
-}
-
-\caption{Mapa interactivo de las muertes por cólera en barrio del Soho (Londres) según Snow en 1854.}(\#fig:snow-map-png-ch40)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/snow_map.png" alt="Mapa interactivo de las muertes por cólera en barrio del Soho (Londres) según Snow en 1854." width="75%" />
+<p class="caption">(\#fig:snow-map-png-ch40)Mapa interactivo de las muertes por cólera en barrio del Soho (Londres) según Snow en 1854.</p>
+</div>
 
 
 ::: {.infobox_resume data-latex=""}

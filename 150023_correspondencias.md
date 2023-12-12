@@ -12,7 +12,7 @@ $^{a}$Universidad de Castilla-La Mancha
 
 El **análisis de correspondencias**\index{análisis!de correspondencias} es un método gráfico descriptivo de reducción de la dimensión incluido entre los algoritmos de aprendizaje no supervisado. La idea principal es equivalente al método de componentes principales, pero aplicado a variables cualitativas. El objetivo es representar los valores (**niveles** en *R*) \index{nivel} de variables cualitativas (**factores** en *R*) \index{factor} en ejes cuantitativos cuyas coordenadas representen la cercanía o lejanía entre los niveles de los factores. Es decir, es un método de reducción de la dimensionalidad para factores representables en pocas dimensiones.
 
-Por sencillez, el punto de partida será una **tabla de contingencia** $R \times C$ \index{tabla de contingencia R x C} (véase Cap. \@ref(tablas-contingencia)) con dos factores $A$ y $B$ cuyos niveles son $A_1,A_2,...,A_R$ y $B_1,B_2,...,B_C$, respectivamente, que recoge la frecuencia de las distintas combinaciones que se pueden llevar a cabo con los niveles de $A$ y $B$, como se muestra en la Tabla \@ref(tab:tabconting).
+Por sencillez, el punto de partida será una **tabla de contingencia** $R \times C$ \index{tabla!de contingencia!R $\times$ C} (véase Cap. \@ref(tablas-contingencia)) con dos factores $A$ y $B$ cuyos niveles son $A_1,A_2,...,A_R$ y $B_1,B_2,...,B_C$, respectivamente, que recoge la frecuencia de las distintas combinaciones que se pueden llevar a cabo con los niveles de $A$ y $B$, como se muestra en la Tabla \@ref(tab:tabconting).
 
 Table: (\#tab:tabconting) Ejemplo de tabla de contingencia $R \times C$
 
@@ -24,9 +24,9 @@ Table: (\#tab:tabconting) Ejemplo de tabla de contingencia $R \times C$
   | $A_R$ | $n_{R1}$ | $n_{R2}$ | ... | $n_{RC}$ | $n_{R.}$ |
   | Total | $n_{.1}$ | $n_{.2}$ | ... | $n_{.C}$ | $N$ |
 
-Cada fila representa el **perfil condicional** del nivel $A_i$, \index{perfil condicional} siendo la última el **perfil marginal** \index{perfil marginal} del factor $A$. Igualmente, cada columna representa el **perfil condicional** del nivel $B_j$, siendo la última el **perfil marginal** del factor $B$.
+Cada fila representa el **perfil condicional** del nivel $A_i$, \index{perfil! condicional} siendo la última el **perfil marginal** \index{perfil! marginal} del factor $A$. Igualmente, cada columna representa el **perfil condicional** del nivel $B_j$, siendo la última el **perfil marginal** del factor $B$.
 
-Como se vio en el Cap. \@ref(tablas-contingencia), si los factores son independientes, el **valor esperado** en cada casilla sería $E_{ij}=\frac{n_{i.}n_{.j}}{N}$, por lo que la diferencia tipificada, $r_{ij}=\frac{n_{ij}- E_{ij}}{\sqrt{E_{ij}}}$ es una medida de asociación entre las modalidades $A_i$ y $B_j$. La matriz formada por estos “residuos estandarizados” \index{residuo!estandarizado} (véase Sec. \@ref(medidas-rxc)), ${\bf R}_{est}=\lbrace r_{ij} \rbrace$, que resume la asociación entre los atributos, es el objetivo básico del análisis de correspondencias; básicamente, se realiza una proyección de las filas y columnas de la tabla de frecuencias relativas (proyecciones también denominadas transformadas de las frecuencias relativas) para obtener las coordenadas en ejes cuantitativos, coordenadas representables en la forma habitual como diagramas de puntos.
+Como se vio en el Cap. \@ref(tablas-contingencia), si los factores son independientes, el **valor esperado** en cada casilla sería $E_{ij}=\frac{n_{i.}n_{.j}}{N}$, por lo que la diferencia tipificada, $r_{ij}=\frac{n_{ij}- E_{ij}}{\sqrt{E_{ij}}}$ es una medida de asociación entre las modalidades $A_i$ y $B_j$. La matriz formada por estos “residuos estandarizados” \index{residuos!estandarizados} (véase Sec. \@ref(medidas-rxc)), ${\bf R}_{est}=\lbrace r_{ij} \rbrace$, que resume la asociación entre los atributos, es el objetivo básico del análisis de correspondencias; básicamente, se realiza una proyección de las filas y columnas de la tabla de frecuencias relativas (proyecciones también denominadas transformadas de las frecuencias relativas) para obtener las coordenadas en ejes cuantitativos, coordenadas representables en la forma habitual como diagramas de puntos.
 
 Para un estudio en profundidad de esta técnica pueden consultarse, entre otros, @Greenacre2008 (en español) o @BehLombardo2014. En el resto del capítulo se hará una breve exposición de la metodología y se ejemplificará con el análisis de dos tablas de contingencia.
 
@@ -63,7 +63,7 @@ siendo $\textbf{a}_i$ las coordenadas del nivel fila $A_i$ y $\textbf{b}_j$ las 
 
 \begin{equation}
 \begin{array}{crl}
-{d(\textbf{a}_i , \textbf{a}_{i'})= \sqrt {(a_{i1}-a_{i'1})^2+(a_{i2}-a_{i'2})^2} \approx d_{ii'}}, \\ {d(\textbf{b}_j , \textbf{b}_{j'})= \sqrt {(b_{j1}-b_{j'1})^2+(b_{j2}-b_{j'2})^2} \approx d_{jj'}}, \\ {\bf a}_{i}^{\prime}  \textbf{b}_j \approx r_{ij} \end{array}.
+{d(\textbf{a}_i , \textbf{a}_{i'})= \sqrt {(a_{i1}-a_{i'1})^2+(a_{i2}-a_{i'2})^2} \approx d_{ii'}}, \\ {d(\textbf{b}_j , \textbf{b}_{j'})= \sqrt {(b_{j1}-b_{j'1})^2+(b_{j2}-b_{j'2})^2} \approx d_{jj'}}, \\ {\bf a}_{i}^{\prime}  \textbf{b}_j \approx r_{ij}. \end{array}
 \end{equation}
 
 Una vez en disposición de las coordenadas contenidas en las matrices $\bf A$ y $\bf B$ es posible “visualizar” la posición relativa de cada factor en las nuevas dimensiones. Esta estructura permite ver tanto las "distancias” que hay entre los niveles de cada factor (mediante la distancia de representación en el plano) como las "asociaciones" entre niveles de ambos factores (ya que mientras más asociación haya, más cerca se representarán en el plano).
@@ -105,17 +105,17 @@ A partir de esta descomposición se pueden obtener:
 
 - Las **inercias principales**, $\lambda_i=\mu_i^2$.
 
-\index{coordenadas principales}  \index{inercias principales}
+\index{coordenadas!principales}  \index{inercias principales}
 
 Las coordenadas estándar permiten representar los perfiles en un plano, pero no permiten una comparación fácil entre perfiles fila y columna. Para evitar este efecto, se escalan, dando lugar a las coordenadas principales, utilizadas para definir las **proyecciones fila** y **proyecciones columna**, que representan los correspondientes perfiles, formando los llamados **mapas asimétricos**. Las inercias principales indican el grado de variabilidad entre los perfiles fila o columna y los respectivos vectores de medias, por lo que tienen una interpretación equivalente a la variabilidad explicada por cada componente principal en el análisis de componentes principales (véase Cap. \@ref(acp)).
 
 
 Por último, las matrices $\textbf{A}=\textbf{D}_R^{-\frac {1}{2}} \textbf{UD}$ y $\textbf{B}=\textbf{D}_C^{-\frac {1}{2}} \textbf{VD}$ representan las coordenadas de ambos perfiles en un espacio común, llamado **mapa simétrico**.
 
-\index{proyecciones fila}
-\index{proyecciones columna}
-\index{mapa asimétrico}
-\index{mapa simétrico}
+\index{proyecciones!fila}
+\index{proyecciones!columna}
+\index{mapa!asimétrico}
+\index{mapa!simétrico}
 
 
 ## Procedimiento con **R**: la función `ca()`
@@ -214,14 +214,10 @@ plot(ca_house, map = "rowprincipal", what = c("all", "none"), xlab = "Perfiles f
 plot(ca_house, map = "colprincipal", what = c("none", "all"), xlab = "Perfiles columna")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{img/150023img01} 
-
-}
-
-\caption{Proyecciones de los perfiles fila.}(\#fig:150023proyecciones)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150023img01.png" alt="Proyecciones de los perfiles fila." width="60%" />
+<p class="caption">(\#fig:150023proyecciones)Proyecciones de los perfiles fila.</p>
+</div>
 
 Respecto a las filas, se aprecian varios grupos: el compuesto por *Breakfast*, *Dinner*, *Main_meal* y *Laundry*; otro por *Shopping*, *Dishes* y *Tidying*; uno tercero por *Insurance* y *Finance*; y el compuesto por *Driving* y *Official*. Los niveles *Holiday* y *Repairs* están alejados del resto.
 
@@ -237,14 +233,10 @@ plot(ca_house,
 )
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth,height=0.5\textheight]{150023_correspondencias_files/figure-latex/150023simetrica2-1} 
-
-}
-
-\caption{Proyección simétrica de ambos factores.}(\#fig:150023simetrica2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="150023_correspondencias_files/figure-html/150023simetrica2-1.png" alt="Proyección simétrica de ambos factores." width="60%" height="50%" />
+<p class="caption">(\#fig:150023simetrica2)Proyección simétrica de ambos factores.</p>
+</div>
 
 <!-- # ```{r 150023sunetrica, echo=FALSE, , fig.width=8, fig.height=20} -->
 <!-- # knitr::include_graphics("img/150023img02.png") -->
@@ -341,14 +333,10 @@ plot(ca_tabla,
 )
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{150023_correspondencias_files/figure-latex/150023accid2-1} 
-
-}
-
-\caption{Proyección simétrica de ambos factores.}(\#fig:150023accid2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="150023_correspondencias_files/figure-html/150023accid2-1.png" alt="Proyección simétrica de ambos factores." width="70%" />
+<p class="caption">(\#fig:150023accid2)Proyección simétrica de ambos factores.</p>
+</div>
 
 <!-- # ```{r 150023accid, echo=FALSE, fig.cap="Proyección simétrica de ambos factores.", out.width="70%"} -->
 <!-- # knitr::include_graphics("img/150023img03.png") -->

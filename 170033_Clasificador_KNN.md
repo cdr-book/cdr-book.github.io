@@ -18,14 +18,10 @@ El número de casos ($k$)\index{k-vecinos@\textit{k}-vecinos} a utilizar para cl
 
 A modo de ejemplo, en la Fig. \@ref(fig:knn-ejemplo), tanto con $k=3$ como con $k=7$ la nueva observación se clasifica en la categoría roja, puesto que esta es la mayoritaria en ambos casos.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/knn} 
-
-}
-
-\caption{Ejemplo de $k$-vecinos más próximos.}(\#fig:knn-ejemplo)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/knn.png" alt="Ejemplo de $k$-vecinos más próximos." width="60%" />
+<p class="caption">(\#fig:knn-ejemplo)Ejemplo de $k$-vecinos más próximos.</p>
+</div>
 
 La escala\index{escala} de las variables puede desvirtuar el resultado del modelo KNN. Por ello, el conjunto de datos debe escalarse para que las variables con unidades de medida grandes no tengan más importancia en el cálculo de la similitud entre las observaciones que las que tienen magnitudes menores. De esta manera desaparece el efecto "escala" o "unidades de medida" y se estandariza la varianza.
 
@@ -237,14 +233,10 @@ ggplot(model) +
   theme_light()
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/knn-tune-k} 
-
-}
-
-\caption{Número óptimo de vecinos ($k$).}(\#fig:006-002-102KNNKCHOOSING3)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/knn-tune-k.png" alt="Número óptimo de vecinos ($k$)." width="60%" />
+<p class="caption">(\#fig:006-002-102KNNKCHOOSING3)Número óptimo de vecinos ($k$).</p>
+</div>
 
 El *box plot* de los resultados obtenidos durante el proceso de validación cruzada (Fig. \@ref(fig:006-002-102KNNRESULTS3)) muestra que el AUC del modelo oscila entre un 60% y un 85% aproximadamente.
 
@@ -255,14 +247,10 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
   xlab(NULL) + ylab(NULL)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/knn-boxplot} 
-
-}
-
-\caption{Resultados obtenidos durante el proceso de validación cruzada.}(\#fig:006-002-102KNNRESULTS3)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/knn-boxplot.png" alt="Resultados obtenidos durante el proceso de validación cruzada." width="60%" />
+<p class="caption">(\#fig:006-002-102KNNRESULTS3)Resultados obtenidos durante el proceso de validación cruzada.</p>
+</div>
 
 El modelo se resiente en su rendimiento al tener dificultades en clasificar correctamente la clase positiva; más concretamente se puede observar en la Fig. \@ref(fig:006-002-102KNNRESULTS3) que la sensibilidad oscila entre el 40% y el 75%, resultados ligeramente peores que los que obtienen al clasificar observaciones de la clase negativa, los cuales oscilan entre el 50% y el 85%.
 

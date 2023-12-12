@@ -21,7 +21,7 @@ Por tanto, cuando se habla de datos masivos, se está hablando también de gesti
 
 Por consiguiente, se puede concluir que *big data* es el "conjunto de datos masivos heterogéneos que supera la capacidad del software habitual para ser capturados, gestionados y procesados en un tiempo razonable". Esta definición tiene en cuenta tres de las V del *big data* (véase Sec. \@ref(VsBigData)): volumen, variabilidad y velocidad. Así, cuando se habla de *big data* se está haciendo referencia a conjuntos de datos o combinaciones de conjuntos de datos cuyo tamaño (**volumen**), complejidad (**variabilidad**) y **velocidad** de crecimiento dificultan su captura, gestión, procesamiento y análisis mediante tecnologías y herramientas convencionales, tales como las bases de datos relacionales y los paquetes de visualización y técnicas estadísticas convencionales, en el tiempo necesario para que sean útiles.
 
-## Las V del \bf{\textit{big data} {#VsBigData}
+## Las V del \textit{big data} {#VsBigData}
 \index{big data@\textit{big data}!V}
 
 El **volumen** se refiere a la cantidad de datos que son generados cada segundo, minuto y día en nuestro entorno. Es la característica más asociada al *big data*, ya que hace referencia a las cantidades masivas de datos que se almacenan con la finalidad de procesar dicha información, transformando los datos en acciones. Las personas están cada vez más conectadas al mundo digital, por lo que se generan más y más datos. Para algunas empresas, el estar en el mundo digital es algo obligatorio, por lo que la cantidad de datos generados es aún mayor. Por ejemplo, a una empresa que vende sus productos únicamente a través de un canal online, le convendría implantar tecnología *big data* para procesar toda aquella información que recoge su página web rastreando todas las acciones que lleva a cabo el cliente: conocer donde cliquea más veces, cuántas veces ha pasado por el carrito de la compra, cuáles son los productos más vistos, las páginas más visitadas, etc.
@@ -35,7 +35,7 @@ La **variedad** se refiere a que los sistemas de procesamiento del *big data* de
 
 Con el tiempo, se han ido incorporando, progresivamente, otras V: las V de **valor** (de enorme interés en el análisis de datos), **veracidad**, **viabilidad** y **visualización** [@IIC2016].
 
-## Tipos de datos en entornos \bf{\textit{big}} \bf{\textit{data}}
+## Tipos de datos en entornos \textit{big} \textit{data}
 
 En función de la estructura con la que se organizan los datos (forma en la que se agrupan, almacenan y se relacionan entre sí y manera en la que se puede acceder a ellos, analizarlos o modificarlos), estos pueden clasificarse en: estructurados, no estructurados o semiestructurados.
 
@@ -52,9 +52,9 @@ En función de la estructura con la que se organizan los datos (forma en la que 
 
 
 ## ¿Por qué bases de datos NoSQL?
-\index{base de datos!SQL}
-\index{base de datos!relacionales}
-\index{base de datos!NoSQL}
+\index{base!de datos!SQL}
+\index{base!de datos!relacionales}
+\index{base!de datos!NoSQL}
 
 Lo que hace que el *big data* sea tan útil para muchas empresas e instituciones es el hecho de que proporciona respuestas a muchas preguntas que dichas empresas e instituciones ni siquiera sabían que tenían. En otras palabras, proporciona un punto de referencia. Con una cantidad tan grande de información, los datos pueden ser moldeados o probados de cualquier manera que la organización considere adecuada. Al hacerlo, las organizaciones son capaces de identificar los problemas de una forma más comprensible.
 
@@ -88,7 +88,7 @@ Otra gran diferencia respecto a las tecnologías tradicionales es que los entorn
 
 ## Bases de datos NoSQL
 
-\index{base de datos!NoSQL}
+\index{base!de datos!NoSQL}
 
 ### Fundamentos de las bases de datos NoSQL{#FundamentosNoSQL}
 
@@ -123,7 +123,7 @@ Además, como se esbozó al principio de la sección, las bases de datos NoSQL s
 Las bases de datos relacionales modernas normalmente han mostrado poca eficiencia en determinadas aplicaciones que usan los datos de forma intensiva, incluyendo el indexado de un gran número de documentos, la presentación de páginas en sitios que tienen gran tráfico y en sitios de *streaming* audiovisual. Las implementaciones típicas de los sistemas gestores de bases de datos realacionales (SGBDR) se han afinado, bien para una cantidad pequeña pero frecuente de lecturas y escrituras, bien para un gran conjunto de transacciones que tiene pocos accesos de escritura. Sin embargo, NoSQL puede servir gran cantidad de carga de lecturas y escrituras.
 
 ### Necesidades no cubiertas por las bases de datos relacionales
-\index{base de datos!NoSQL}
+\index{base!de datos!NoSQL}
 
 Las bases de datos NoSQL son, principalmente, bases de datos distribuidas escalables horizontalmente y que no se basan en esquemas de datos predefinidos, por lo que ofrecen una fácil replicación y un conjunto sencillo de operaciones y consultas  para el acceso a un gran volumen de datos.
 
@@ -135,14 +135,10 @@ Como se avanzó en la Sec. \@ref(FundamentosNoSQL), las características de las 
 -   **Escalabilidad**. Al principio, la web se consideró una interfaz más, pero no es solo eso; se ha convertido en un elemento generador y consumidor de datos (fundamentalmente semiestructurados y no estructurados). En el contexto actual, las compañías necesitan mantener una respuesta rápida, aunque se incremente el número de usuarios simultáneos o el volumen de datos manejado. Además, la arquitectura de las bases de datos NoSQL permite: $(i)$ escalar sin disminuir el rendimiento; $(ii)$ añadir nodos sobre la marcha, es decir, sin interrupciones del servicio; $(iii)$ evitar que se generen cuellos de botella. La Fig. \@ref(fig:FigNoSQL1) [adaptada de @LO2017] muestra una representación comparativa de la escalabilidad de las bases de datos NoSQL frente a las relacionales. Como se observa, aunque las bases de datos relacionales tienen un mejor rendimiento para volúmenes de datos reducidos, este se reduce drásticamente para grandes volúmenes. Mientras, el rendimiento de las bases de datos NoSQL tiende a ser constante, por lo que escalan mejor para datos masivos.
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/NoSQL1} 
-
-}
-
-\caption{Comparativa de escalabilidad entre bases de datos relacionales y NoSQL. Elaboración propia a partir de Lo (2017).}(\#fig:FigNoSQL1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/NoSQL1.png" alt="Comparativa de escalabilidad entre bases de datos relacionales y NoSQL. Elaboración propia a partir de Lo (2017)." width="70%" />
+<p class="caption">(\#fig:FigNoSQL1)Comparativa de escalabilidad entre bases de datos relacionales y NoSQL. Elaboración propia a partir de Lo (2017).</p>
+</div>
 
 ::: {.infobox data-latex=""}
 **Nota** 
@@ -163,14 +159,10 @@ Se pueden distinguir al menos cuatro tipos de bases de datos NoSQL [@Hecht2011]:
 
 -   **Almacenamiento documental**. Este tipo de base de datos almacena datos semi-estructurados. Los datos se llaman documentos, y pueden estar formateados en XML (Extensible Markup Language), JSON (JavaScript Object Notation), BSON (Binary JSON) o el que acepte la propia base de datos, pero suele ser un formato de texto. Un ejemplo de cómo se usa es un blog: se almacena el autor, la fecha, el título, el resumen y el contenido del post. Todos los documentos tienen una clave única con la que se puede acceder e identificarlos explícitamente. Estos documentos no son opacos al sistema, por lo que se pueden interpretar y lanzar consultas sobre ellos, véase la Fig. \@ref(fig:FigNoSQL3)  adaptada de [@Sanchez2017]. CouchDB o MongoDB son, quizás, los sistemas de bases de datos más conocidos. Hay que hacer mención especial a MapReduce, una tecnología de Google inicialmente diseñada para su algoritmo `PageRank`, que permite seleccionar un subconjunto de datos, agruparlos o reducirlos y cargarlos en otra colección, y a Hadoop, que es una tecnología de Apache diseñada para almacenar y procesar grandes cantidades de datos. Por ejemplo, MongoDB es una base de datos orientada a documentos. Los documentos se guardan en BSON, que es una forma de representar de forma binaria objetos JSON. De esta forma, con el comando `insert` y pasando un objeto JSON, MongoDB crea automáticamente un documento y lo añade en la base de datos generando un *ObjectId* para el nuevo documento [@Rubenfa2014]. Este objeto está especialmente pensado para garantizar unicidad en entornos distribuidos como MongoDB. El campo está compuesto por 12 bytes. Los cuatro primeros bytes son un *timestamp* con los segundos; los tres siguientes bytes representan el identificador único de la máquina; los dos siguientes el identificador del proceso; y, para finalizar, los últimos tres bytes son un campo incremental. En definitiva, los nueve primeros bytes garantizan un identificador único por segundo, máquina y proceso. Los tres últimos bytes garantizan que cada segundo se pueden insertar 2^24^ = 16.777.216 documentos con un identificador distinto. Esta composición del *ObjectId* proporciona funcionalidades muy útiles. La primera es indicar el orden de creación de los documentos. También sirve para obtener la fecha de creación del documento.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/NoSQL3} 
-
-}
-
-\caption{Ejemplo representativo de base de datos NoSQL documental. Elaboración propia a partir de Sánchez (2017).}(\#fig:FigNoSQL3)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/NoSQL3.png" alt="Ejemplo representativo de base de datos NoSQL documental. Elaboración propia a partir de Sánchez (2017)." width="70%" />
+<p class="caption">(\#fig:FigNoSQL3)Ejemplo representativo de base de datos NoSQL documental. Elaboración propia a partir de Sánchez (2017).</p>
+</div>
 
 -   **Almacenamiento en grafo**. Este tipo de almacenamiento maneja datos semi-estructurados y está basado en la teoría de grafos (véase Cap. \@ref(grafos)). En las bases de datos NoSQL se establece que la información son los nodos y las relaciones entre la información son las aristas (algo similar al modelo relacional). Su mayor uso se contempla en caso de tener que relacionar grandes cantidades de datos que pueden ser muy variables. Por ejemplo, los nodos pueden contener objetos, variables y atributos diferentes en unos y otros. Las operaciones de consulta con `join` se sustituyen por recorridos a través del grafo, y se guarda una lista de adyacencias entre los nodos. A modo de ejemplo, en Facebook se considera cada usuario como un nodo, que puede tener aristas de amistad con otros usuarios, o aristas de publicación con nodos de contenidos. Soluciones como Neo4J y GraphDB son las más conocidas dentro de las bases de datos orientadas a grafos.
 
@@ -187,7 +179,7 @@ Entre las técnicas se encuentran: $(i)$ cómo se modelan los datos correctament
 
 
 ## Integración de bases de datos NoSQL en **R**
-\index{base de datos!integración}
+\index{base!de datos!integración}
 
 En esta sección se verá cómo **R** puede ser utilizado para conectarse a una base de datos NoSQL: en particular a MongoDB. En la Sec. \@ref(introMongo) se presenta una introducción a MongoDB. En la Sec. \@ref(paquetesCaso) se explican los paquetes de **R** utilizados para acceder a MongoDB. La Sec. \@ref(conexionMongo) indica cómo conectarse a una base de datos MongoDB remota. Las secciones \@ref(consultaViajes) y \@ref(analisisViajes) realizan consultas y análisis sobre una colección de viajes realizados por los usuarios de un servicio de bicicletas compartidas con sede en la ciudad de Nueva York.
 
@@ -211,14 +203,10 @@ MongoDB trabaja con el concepto de colección y documento. La Tabla \@ref(tab:ta
 
 Asimismo, MongoDB proporciona una función, `MapReduce`, que se puede utilizar para el procesamiento por lotes de datos y operaciones de agregación. El *framework* de agregación permite realizar operaciones similares a las que se obtienen con el comando SQL `GROUP BY`. El *framework* de agregación está construido como un *pipeline* (flujo de trabajo) en el que los datos van pasando a través de diferentes etapas en las cuales estos datos son modificados, agregados, filtrados y formateados hasta obtener el resultado deseado (véase ejemplo esquemático en la Fig. \@ref(fig:FigNoSQL6), adaptada de @Morgan2015). Todo este procesado es capaz de utilizar índices, si existieran, y se produce en memoria.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/NoSQL6} 
-
-}
-
-\caption{Ejemplo esquemático del $pipeline$ de agregación en MongoDB. Elaboración propia a partir de Morgan (2015).}(\#fig:FigNoSQL6)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/NoSQL6.png" alt="Ejemplo esquemático del $pipeline$ de agregación en MongoDB. Elaboración propia a partir de Morgan (2015)." width="70%" />
+<p class="caption">(\#fig:FigNoSQL6)Ejemplo esquemático del $pipeline$ de agregación en MongoDB. Elaboración propia a partir de Morgan (2015).</p>
+</div>
 
 ### Plataforma tecnológica para el caso práctico {#paquetesCaso}
 
@@ -355,14 +343,10 @@ ggplot(df, aes(x = reorder(`_id`, Count), y = Count)) +
   xlab("Tipo de usuario")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{110005_Gestion_bases_nosql_files/figure-latex/usuario-viaje-1} 
-
-}
-
-\caption{Suscripción por tipo de usuario.}(\#fig:usuario-viaje)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="110005_Gestion_bases_nosql_files/figure-html/usuario-viaje-1.png" alt="Suscripción por tipo de usuario." width="60%" />
+<p class="caption">(\#fig:usuario-viaje)Suscripción por tipo de usuario.</p>
+</div>
 
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}

@@ -40,7 +40,7 @@ glimpse(Madrid_Polygons)
 ```
 
     
-La combinación de conjuntos de datos se realiza, fundamentalmente, con las funciones de unión. En el Cap. \@ref(ch-110003) se mostraban las cuatro funciones de unión principales del paquete `tidyverse`: `left_join(), inner_join(), right_join() y full_join()`. Sin embargo, también merece la pena mencionar las uniones de filtrado entre dos objetos $x$ e $y$, que se llevan a cabo mediante las siguientes funciones: \index{uniones!filtrado}
+La combinación de conjuntos de datos se realiza, fundamentalmente, con las funciones de unión. En el Cap. \@ref(ch-110003) se mostraban las cuatro funciones de unión principales del paquete `tidyverse`: `left_join(), inner_join(), right_join() y full_join()`. Sin embargo, también merece la pena mencionar las uniones de filtrado entre dos objetos $x$ e $y$, que se llevan a cabo mediante las siguientes funciones: \index{uniones de filtrado}
 
 
 
@@ -50,7 +50,7 @@ La combinación de conjuntos de datos se realiza, fundamentalmente, con las func
 
 ### Integración de los ficheros `Madrid_Sale` y `Madrid_POIS`
 
-Como se avanzó anteriormente, dos interesantes resultados que se podrían obtener mediante la integración  de estos conjuntos de datos son: $(i)$ la determinación del número de estaciones de metro a menos de 500 metros de la localización de la vivienda de interés, y $(ii)$ la distancia a la estación de metro más cercana. Para la integración entre los dos ficheros, se utiliza la función `st_join()`, función de unión para datos espaciales, del paquete `sf`.[^Note_Jorge_1-2]
+Como se avanzó anteriormente, dos resultados interesantes que se podrían obtener mediante la integración  de estos conjuntos de datos son: $(i)$ la determinación del número de estaciones de metro a menos de 500 metros de la localización de la vivienda de interés, y $(ii)$ la distancia a la estación de metro más cercana. Para la integración entre los dos ficheros, se utiliza la función `st_join()`, función de unión para datos espaciales, del paquete `sf`.[^Note_Jorge_1-2]
 
 [^Note_Jorge_1-2]: Téngase en cuenta que la vivienda es un bien anclado a una localización geográfica.
 
@@ -61,7 +61,7 @@ vivs_madrid <- Madrid_Sale |>
   st_join(Madrid_Polygons, left = TRUE)
 ```
 
-Para proceder a la integración de ambos ficheros, primeramente se crean las variables que indican cuál es el sistema de referencia de coordenadas (SRC) que se va a utilizar y que permite determinar la posición de un punto en relación a otro en base a líneas imaginarias (en el ejemplo que nos ocupa, permite representar la ubicación de las viviendas en la superficie de la Tierra). En este caso, la asignación de coordenadas se realiza a través de las variables `projcrc_src` y `projcrs_dest`, en las que se establecen los parámetros de:
+Para proceder a la integración de ambos ficheros, en primer lugar se crean las variables que indican cuál es el sistema de referencia de coordenadas (SRC) que se va a utilizar y que permite determinar la posición de un punto en relación a otro en base a líneas imaginarias (en el ejemplo que nos ocupa, permite representar la ubicación de las viviendas en la superficie de la Tierra). En este caso, la asignación de coordenadas se realiza a través de las variables `projcrc_src` y `projcrs_dest`, en las que se establecen los parámetros de:
 
 - Nombre de la proyección (`proj`). 
 - Zona UTM (`zone`) donde se ubica el conjunto de viviendas. 
@@ -136,7 +136,7 @@ vivs_madrid <- vivs_madrid |>
 
 En esta subsección se muestran los detalles para construir un mapa de precio medio del metro cuadrado de la vivienda en la ciudad de Madrid, por distritos, tras la integración de los conjuntos de datos `Madrid_Sale` y `Madrid_Polygons`. 
 
-Para proceder a la integración de ambos ficheros, primeramente se realiza la conversión del conjunto de datos `Madrid_Polygons` a objeto espacial y se le asocia la coordenada de referencia (de forma similar a como se hizo en la integración de los ficheros `Madrid_Sale` y `Madrid_POIS`): 
+Para proceder a la integración de ambos ficheros, en primer lugar se realiza la conversión del conjunto de datos `Madrid_Polygons` a objeto espacial y se le asocia la coordenada de referencia (de forma similar a como se hizo en la integración de los ficheros `Madrid_Sale` y `Madrid_POIS`): 
 
 
 ```r
@@ -166,14 +166,10 @@ A partir del resultado de esta integración, se construye la Fig. \@ref(fig:madr
 ```r
 plot(Madrid_Sale_Polygons["preciopm2"])
 ```
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/madrid33} 
-
-}
-
-\caption{Precio por metro cuadrado de viviendas a la venta en Madrid por distrito.}(\#fig:madrid)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/madrid33.png" alt="Precio por metro cuadrado de viviendas a la venta en Madrid por distrito." width="50%" />
+<p class="caption">(\#fig:madrid)Precio por metro cuadrado de viviendas a la venta en Madrid por distrito.</p>
+</div>
 
 ## Limpieza de datos
 \index{datos!problemas de calidad} \index{datos!limpieza}
@@ -181,14 +177,10 @@ plot(Madrid_Sale_Polygons["preciopm2"])
 Es más habitual de lo deseable que algunas variables presenten problemas en la calidad de sus datos. En el Cap. \@ref(DGDQM), se mencionaban una serie de causas y la posibilidad de realizar el perfilado para tener una medición de la calidad de los datos. Si los datos no tienen el nivel de calidad adecuado, deben realizarse tareas de limpieza para transformarlos en datos consistentes, corrigiendo datos incorrectos, corruptos, con formato incorrecto, duplicados o incompletos. 
 
 En la Fig. \@ref(fig:limpieza) se muestra un proceso general de limpieza de datos. Cada rectángulo azul representa datos en un estado determinado, mientras que cada flecha representa las actividades necesarias para pasar de un estado a otro. En el primer estado están los datos tal y como se recogen (**datos en bruto** o **sin procesar**). Pueden carecer de encabezados, contener tipos de datos incorrectos, etiquetas de categoría incorrectas, codificación de caracteres desconocida o inesperada, etc. Una vez realizadas las correcciones necesarias, los datos pueden considerarse **datos técnicamente correctos**. Es decir, en este estado, los datos se pueden leer en un `data.frame` de **R**, con los nombres, tipos y etiquetas correctos. Sin embargo, esto no significa que los valores estén libres de errores o completos. Los **datos consistentes** son aquellos que están preparados para las fases de modelado. 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/limpieza} 
-
-}
-
-\caption{Flujo del proceso de limpieza de datos.}(\#fig:limpieza)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/limpieza.png" alt="Flujo del proceso de limpieza de datos." width="90%" />
+<p class="caption">(\#fig:limpieza)Flujo del proceso de limpieza de datos.</p>
+</div>
 
 
 Si bien las técnicas utilizadas para la limpieza de datos pueden variar según el tipo de datos que se esté procesando, en general, se pueden dividir en cinco grupos:
@@ -249,7 +241,7 @@ diagnose(Madrid_Sale_red)
 ```
 Al ejecutar la función, se comprueba que todas las variables, excepto el identificador `ASSETID`, son de tipo numérico (o *integer*), lo que es correcto. En caso de tener que modificar el tipo de dato, por considerarse un error estructural, o porque sea conveniente para las fases de modelado, debería hacerse usando las funciones `as.factor(), as.numeric()` y `as.character()`, según el caso.
 
-Corregir **errores estructurales tipográficos de variables categóricas** es especialmente relevante en algunas áreas de la ciencia de datos, como la minería de textos o *text mining* (que se verá con más profundidad en el Cap.\@ref(mineria-textos)), donde la limpieza de textos consiste en eliminar todo aquello que no aporte información sobre su temática, estructura o contenido. A continuación, se muestra una función creada a partir del paquete `stringr` que permite realizar una limpieza básica de un texto, y que se ejecuta sobre la variable `Madrid_Polygons$LOCATIONNAME`, generando la variable `LOCATIONNAME1`.
+Corregir **errores estructurales tipográficos de variables categóricas** es especialmente relevante en algunas áreas de la ciencia de datos, como la minería de textos o *text mining* (que se verá con más profundidad en el Cap. \@ref(mineria-textos)), donde la limpieza de textos consiste en eliminar todo aquello que no aporte información sobre su temática, estructura o contenido. A continuación, se muestra una función creada a partir del paquete `stringr` que permite realizar una limpieza básica de un texto, y que se ejecuta sobre la variable `Madrid_Polygons$LOCATIONNAME`, generando la variable `LOCATIONNAME1`.
 
 ```r
 library("stringr")
@@ -337,14 +329,10 @@ ggplot(Madrid_Sale_int, aes(x = reorder(LOCATIONNAME, PRICE / CONSTRUCTEDAREA, n
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
   labs(x = "Distrito", y = "Precio metro cuadrado")
 ```
-\begin{figure}
-
-{\centering \includegraphics[width=0.95\linewidth]{img/idealistagraf1} 
-
-}
-
-\caption{Precio medio del metro cuadrado por distritos.}(\#fig:idealistagraf1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/idealistagraf1.png" alt="Precio medio del metro cuadrado por distritos." width="95%" />
+<p class="caption">(\#fig:idealistagraf1)Precio medio del metro cuadrado por distritos.</p>
+</div>
 
 
 Los *box-plots* y gráficos de dispersión de variables, para las categorías dadas de otra, así como las  correlaciones entre dichas variables, también pueden utilizarse para detectar valores atípicos. Por ejemplo, se puede considerar la relación del precio del metro cuadrado de la vivienda con otras variables, como la superficie construida, la distancia al metro y el número de habitaciones. Para ello, primeramente se crea el conjunto de datos `Madrid_Sale_red2` con la variable derivada `price_bin` (de tipo factor), cuyas categorías o clases (o *bins*) son los cuartiles de la variable `PRICE`.
@@ -366,14 +354,10 @@ ggpairs(Madrid_Sale_red2,
 ```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.95\linewidth]{img/idealistagraf2} 
-
-}
-
-\caption{Distribuciones y correlaciones cruzadas algunas variables de $Madrid$-$Sale$-$red$.}(\#fig:idealistagraf2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/idealistagraf2.png" alt="Distribuciones y correlaciones cruzadas algunas variables de $Madrid$-$Sale$-$red$." width="95%" />
+<p class="caption">(\#fig:idealistagraf2)Distribuciones y correlaciones cruzadas algunas variables de $Madrid$-$Sale$-$red$.</p>
+</div>
 
 
 
@@ -404,8 +388,10 @@ Madrid_Sale_red2$ROOMNUMBER[Madrid_Sale_red2$ROOMNUMBER >= 30 & Madrid_Sale_red2
 
 
 
-### Gestión de datos faltantes (*missing*)
+### Gestión de datos faltantes (*missing*) {#imputacion}
+
 \index{datos!missing @\textit{missing}}
+
 Los datos pueden faltar por multitud de razones, aunque generalmente se suelen agrupar en dos categorías: **valores faltantes informativos** [@kuhn2013applied] y **valores faltantes aleatorios** [@little2019statistical]. Los informativos implican una causa estructural, ya sea por deficiencias en la forma en que se recopilaron los datos o por anomalías en el entorno de observación. Los aleatorios son aquellos que tienen lugar independientemente del proceso de recopilación de datos.
 
 Dependiendo de si los valores faltantes son de uno u otro tipo, se procederá de una u otra manera. A los informativos, en general, se les puede asignar un valor concreto (por ejemplo,
@@ -422,14 +408,10 @@ gg_miss_fct(x = `Madrid_Sale_red2`, fct = price_bin)
 <!-- gg_miss_var(Madrid_Sale_red2, show_pct = TRUE, facet = price_bin) -->
 
 En la Fig. \@ref(fig:missing1)  se puede observar claramente que hay datos faltantes en la variable `LOCATIONNAME`, sobre todo en los dos primeros cuartiles (*bins*). Concretamente, hay 42 valores faltantes. No obstante, aunque el degradado del color morado apenas permite apreciarlo, también hay un valor faltantes en  `ROOMNUMBER`.
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/missing1} 
-
-}
-
-\caption{Visualización de valores faltantes.}(\#fig:missing1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/missing1.png" alt="Visualización de valores faltantes." width="60%" />
+<p class="caption">(\#fig:missing1)Visualización de valores faltantes.</p>
+</div>
 
 La gestión de los valores faltantes debe hacerse considerando la problemática que se quiera resolver. Una primera opción a considerar sería excluirlos, si bien se estaría eliminando información. Para filtrar los registros faltantes, se podría utilizar la función `is.na()`. En el caso de `ROOMNUMBER`:
 
@@ -479,7 +461,7 @@ El paquete `recipes` también es recomendable. Por ejemplo, para la imputación 
 :::
   
 ### Validación y control de calidad
-  \index{control de calidad del dato} \index{validación}
+  \index{control!de calidad del dato} \index{validación}
 Al final del proceso de limpieza de datos, estos deberían ser consistentes y seguir las reglas apropiadas para su campo de negocio. De no ser así, los modelos que se estimen en base a ellos no representarán convenientemente la realidad objeto de estudio y las conclusiones que se obtengan de dichos modelos no serán de utilidad para dicha realidad.
 
 La verificación de si los datos son o no consistentes y si siguen o no las reglas del campo de negocio del cual proceden se puede llevar a cabo con el paquete `tidyverse`, que permite hacer selecciones, filtrados o tablas de frecuencias, entre otras acciones. A modo de ejemplo, en el caso del precio medio del metro cuadrado de los distritos de la ciudad de Madrid, se puede usar la función `count()` para obtener la distribución de frecuencias de la variable `METRO_STOP_MASCERCANO_DISTANCIA` y comprobar si es consistente con el conocimiento que se tiene de esa variable y del conjunto de datos. Se muestran las distancias a la estación más cercana para las viviendas correspondientes a los seis primeros registros.

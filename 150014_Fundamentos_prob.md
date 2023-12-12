@@ -88,9 +88,9 @@ Este teorema, aplicación directa de la definición de probabilidad condicionada
 
 [^Prob2]: $P(A_i)$ se denominan **probabilidades** ***a priori***, $P(B/A_i)$ **verosimilitudes** y $P(A_i/B)$ **probabilidades** ***a posteriori***. El teorema establece cómo se modifican las probabilidades cuando se introduce información en forma de verosimilitudes, siendo muy utilizada su versión para distribuciones de probabilidad.
 
-## Variable aleatoria y su distribución de probabilidad
+## Variable aleatoria y su distribución de probabilidad {#prob-va}
 
-Una limitación operativa de la probabilidad, tal como se ha utilizado hasta ahora, es que hace referencia a sucesos y operaciones entre conjuntos, lo que dificulta su tratamiento. Sin embargo, en muchos casos los sucesos están caracterizados por valores numéricos, por lo que podrían ser utilizados en sustitución de los primeros para facilitar los cálculos. A esta idea corresponde la noción de **variable aleatoria**\index{variable aleatoria} (v.a.), que es una función que asigna un valor numérico a cada suceso de un experimento aleatorio. Para trabajar con probabilidades sobre números, a cada uno se le asigna la probabilidad de los sucesos que están caracterizados por dicho valor.[^Prob3]
+Una limitación operativa de la probabilidad, tal como se ha utilizado hasta ahora, es que hace referencia a sucesos y operaciones entre conjuntos, lo que dificulta su tratamiento. Sin embargo, en muchos casos los sucesos están caracterizados por valores numéricos, por lo que podrían ser utilizados en sustitución de los primeros para facilitar los cálculos. A esta idea corresponde la noción de **variable aleatoria**\index{variable! aleatoria} (v.a.), que es una función que asigna un valor numérico a cada suceso de un experimento aleatorio. Para trabajar con probabilidades sobre números, a cada uno se le asigna la probabilidad de los sucesos que están caracterizados por dicho valor.[^Prob3]
 
 [^Prob3]: Matemáticamente, una variable aleatoria es una función $X: \Omega \longrightarrow \mathbb R$ que, para cada valor real, cumple $X^{-1}(x) \in \Omega$, de forma que se pueda asignar $P(x)=P \left ( X^{-1}(x) \right )$.
 
@@ -103,8 +103,12 @@ F_X (x) = P(X \leq x).
 
 Una variable se dice **discreta** si solo puede tomar un conjunto finito (o infinito  numerable) de valores con probabilidad positiva. A ese conjunto de valores y sus probabilidades $\left\{ x_i  ;  P(X=x_i) \right\}$ se le denomina **función de cuantía**.
 
-Una variable se denomina **continua** si su función de distribución es continua y existe su primera derivada y es continua. Como consecuencia, la probabilidad en un valor concreto siempre será cero, $P(X=x_i)=0$, por lo que solo habrá probabilidades positivas sobre intervalos. Se denomina **función de densidad** a la derivada de la función de distribución 
-$f(x)=F^{\prime}(x)=\frac{dF(x)}{dx}$.[^Prob4]
+Una variable se denomina **continua** si su función de distribución es continua y existe su primera derivada y es continua. Como consecuencia, la probabilidad en un valor concreto siempre será cero, $P(X=x_i)=0$, por lo que solo habrá probabilidades positivas sobre intervalos. Se denomina **función de densidad** a la derivada de la función de distribución:[^Prob4] 
+
+\begin{equation}
+(\#eq:funcdens)
+f(x)=F^{\prime}(x)=\frac{dF(x)}{dx}.
+\end{equation}
 
 [^Prob4]: La función de densidad es el equivalente continuo de la función de cuantía, indicando, de forma intuitiva, dónde se "concentra" la probabilidad de observar valores de $X$. De hecho, no es raro que se utilice el término general de "densidad" independientemente del tipo de variable que sea.
 
@@ -137,14 +141,10 @@ plot(x, y = dens, type = "h", xlab = "x", ylab = "P(x)", main = "Función de cua
 plot(x, pbinom(x, 10, 0.5), ylab = "F(x)", xlab = "x", type = "s", main = "Función de distribución", lwd = 2)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/150014img01} 
-
-}
-
-\caption{Función de cuantía y de distribución para una variable B(10;0,5).}(\#fig:150014binomd)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150014img01.png" alt="Función de cuantía y de distribución para una variable B(10;0,5)." width="60%" />
+<p class="caption">(\#fig:150014binomd)Función de cuantía y de distribución para una variable B(10;0,5).</p>
+</div>
 
 En el **caso particular** de que *n*=1, B(1, *p*), se denomina **distribución de Bernoulli, B(*p*)**.
 
@@ -162,18 +162,14 @@ La representación gráfica de las funciones de cuantía y distribución se mues
 ```r
 par(mfrow = c(1, 2))
 x <- 0:20
-plot(x, dnbinom(x, 3, 0,35), type = "h", ylab = "P(x)", xlab = "x", main = "Función de cuantía", col = "pink", lwd = 2)
-plot(x, pnbinom(x, 3, 0,35), ylab = "F(x)", xlab = "x", type = "s", main = "Función de distribución", lwd = 2)
+plot(x, dnbinom(x, 3, 0, 35), type = "h", ylab = "P(x)", xlab = "x", main = "Función de cuantía", col = "pink", lwd = 2)
+plot(x, pnbinom(x, 3, 0, 35), ylab = "F(x)", xlab = "x", type = "s", main = "Función de distribución", lwd = 2)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/150014img02} 
-
-}
-
-\caption{Función de cuantía y de distribución para una variable BN(3; 0,35).}(\#fig:150014nbin)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150014img02.png" alt="Función de cuantía y de distribución para una variable BN(3; 0,35)." width="60%" />
+<p class="caption">(\#fig:150014nbin)Función de cuantía y de distribución para una variable BN(3; 0,35).</p>
+</div>
 
 En el **caso particular** de que $r=1$, BN(1, $p$), se denomina **distribución geométrica, G($p$)**.
 
@@ -195,14 +191,10 @@ plot(x, dpois(x, 3), type = "h", ylab = "P(x)", xlab = "x", main = "Función de 
 plot(x, ppois(x, 3), ylab = "F(x)", xlab = "x", type = "s", main = "Función de distribución", lwd = 2)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/150014img03} 
-
-}
-
-\caption{Función de cuantía y de distribución para una variable P(2,5).}(\#fig:150014poisson)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150014img03.png" alt="Función de cuantía y de distribución para una variable P(2,5)." width="60%" />
+<p class="caption">(\#fig:150014poisson)Función de cuantía y de distribución para una variable P(2,5).</p>
+</div>
 
 ### Modelos continuos
 
@@ -210,7 +202,7 @@ Los modelos de distribución para variables continuas más habituales son el nor
 
 - **Distribución normal,** **N****(**$\bf\mu$**,** $\bf\sigma$**)**
 
-La distribución normal\index{distribución normal}, de Gauss o gaussiana tiene una gran importancia debido a que un gran número de fenómenos aleatorios se puede modelizar a partir de ella  (véase la Sec. \@ref(tcl) sobre el teorema central del límite). Además, es la distribución que se toma como supuesto y en la que se basan muchas de las técnicas estadísticas que se ven en este libro.
+La distribución normal\index{distribución!normal}, de Gauss o gaussiana tiene una gran importancia debido a que un gran número de fenómenos aleatorios se puede modelizar a partir de ella  (véase la Sec. \@ref(tcl) sobre el teorema central del límite). Además, es la distribución que se toma como supuesto y en la que se basan muchas de las técnicas estadísticas que se ven en este libro.
 
 Una v.a. se dice que sigue una distribución normal de parámetros $\mu$ y $\sigma$ si puede tomar cualquier valor real y su función de densidad es de la forma:
 
@@ -233,14 +225,10 @@ curve(pnorm(x, 0, 1.5), ylab = "P(x)", add = TRUE, type = "l", col = "red")
 curve(pnorm(x, 0, 2), ylab = "P(x)", add = TRUE, type = "l", col = "darkgreen")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/150014img04} 
-
-}
-
-\caption{Función de densidad y de distribución de variables normales, con media 0 y desviación típica 1 (azul), 1,5 (rojo) y 2 (verde).}(\#fig:150014norm)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150014img04.png" alt="Función de densidad y de distribución de variables normales, con media 0 y desviación típica 1 (azul), 1,5 (rojo) y 2 (verde)." width="60%" />
+<p class="caption">(\#fig:150014norm)Función de densidad y de distribución de variables normales, con media 0 y desviación típica 1 (azul), 1,5 (rojo) y 2 (verde).</p>
+</div>
 
 Una característica importante de la distribución normal es que verifica la 
 **propiedad aditiva o reproductiva**, es decir, que las combinaciones lineales de distribuciones normales independientes siguen siendo distribuciones normales. Si se consideran $n$ variables aleatorias independientes con distribuciones $N(\mu_i,\sigma_i)$, cualquier combinación lineal cumple:
@@ -278,14 +266,10 @@ curve(pgamma(x, 10, 2), type = "l", add = TRUE, col = "green", lwd = 2)
 curve(pgamma(x, 1, 2), type = "l", add = TRUE, col = "blue", lwd = 2)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/150014img05} 
-
-}
-
-\caption{Función de densidad y de distribución de variables gamma.}(\#fig:150014gamma)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150014img05.png" alt="Función de densidad y de distribución de variables gamma." width="60%" />
+<p class="caption">(\#fig:150014gamma)Función de densidad y de distribución de variables gamma.</p>
+</div>
 
 El **caso particular** de que $\alpha=1$ se denomina **distribución exponencial** de parámetro $\beta$.
 
@@ -302,7 +286,11 @@ Al parámetro $n$ se le llama **grados de libertad**. Su media es $E(X)=n$ y su 
 
 - **Distribución** ***t***--**Student**
 
-La distribución *t*--Student surge, entre otros contextos, en el muestreo de poblaciones normales (véase la Sec. \@ref(pobnormales)), asociada al uso de medias. Se dice que una v.a. $X$ sigue una distribución *t*--Student con $n$ **grados de libertad** si es el cociente entre una distribución normal estándar y la raíz de una $\chi^2_n$ dividida entre sus grados de libertad, ambas independientes: $X \sim \frac{N(0,1)}{\sqrt{\chi^2_n /n}}$.
+La distribución *t*--Student surge, entre otros contextos, en el muestreo de poblaciones normales (véase la Sec. \@ref(pobnormales)), asociada al uso de medias. Se dice que una v.a. $X$ sigue una distribución *t*--Student con $n$ **grados de libertad** si es el cociente entre una distribución normal estándar y la raíz de una $\chi^2_n$ dividida entre sus grados de libertad, ambas independientes: 
+
+\begin{equation}
+X \sim \frac{N(0,1)}{\sqrt{\chi^2_n /n}}.
+\end{equation} 
 
 Su función de densidad viene dada por:
 \begin{equation}
@@ -324,14 +312,10 @@ curve(pt(x, df = 10), type = "l", add = TRUE, col = "red", lwd = 2)
 curve(pt(x, df = 3), type = "l", add = TRUE, col = "darkgreen", lwd = 2)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/150014img06} 
-
-}
-
-\caption{Función de densidad y de distribución de variables *t*--Student, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad.}(\#fig:150014student)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150014img06.png" alt="Función de densidad y de distribución de variables $t$$-$Student, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad." width="60%" />
+<p class="caption">(\#fig:150014student)Función de densidad y de distribución de variables $t$$-$Student, con 3 (verde), 10 (rojo) y 100 (azul) grados de libertad.</p>
+</div>
 
 - **Distribución** ***F*** **de Snedecor**
 
@@ -339,7 +323,7 @@ Este modelo también está asociado al muestreo sobre poblaciones normales, en e
 
 La función de densidad $F_{n,m}$ viene dada por:
 \begin{equation}
-f(x)=\frac{\Gamma(\frac{n+m}{2})}{\Gamma(\frac{n}{2})\Gamma(\frac{m}{2})}\left(\frac{n}{m}\right)^{\frac{n}{2}}\frac{x^{\frac{n-2}{2}}}{(1+\frac{nx}{m})^{\frac{n+m}{2}}}
+f(x)=\frac{\Gamma(\frac{n+m}{2})}{\Gamma(\frac{n}{2})\Gamma(\frac{m}{2})}\left(\frac{n}{m}\right)^{\frac{n}{2}}\frac{x^{\frac{n-2}{2}}}{(1+\frac{nx}{m})^{\frac{n+m}{2}}}.
 \end{equation}
 con media $E(X)=\frac{m}{m-2}$, siendo $m>2$ y varianza $Var(X)=\frac{2m^2(n+m-2)}{n(m-2)^2(m-4)}$, cuando $m>4$.
 
@@ -357,14 +341,10 @@ curve(pf(x, 10, 5), type = "l", add = TRUE, col = "red")
 curve(pf(x, 5, 5), type = "l", add = TRUE, col = "darkgreen")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/150014img07} 
-
-}
-
-\caption{Función de densidad y de distribución de variables $F$ de Snedecor, en azul con (5, 10) grados de libertad, en rojo con (10, 5) y en verde con (5, 5).}(\#fig:150014FSnedecor)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150014img07.png" alt="Función de densidad y de distribución de variables $F$ de Snedecor, en azul con (5, 10) grados de libertad, en rojo con (10, 5) y en verde con (5, 5)." width="60%" />
+<p class="caption">(\#fig:150014FSnedecor)Función de densidad y de distribución de variables $F$ de Snedecor, en azul con (5, 10) grados de libertad, en rojo con (10, 5) y en verde con (5, 5).</p>
+</div>
 
 
 ## Teorema central del límite  {#tcl}
@@ -434,7 +414,12 @@ ppois(9, 7, lower.tail = TRUE) - ppois(5, 7, lower.tail = TRUE)
 ```
 d) Calcúlese la probabilidad de que en un lote de 20 imágenes del mismo tipo todas sean correctamente clasificadas.
 
-Como no se especifica el tipo de imágenes, hay que calcular dicha probabilidad condicionada a cada grupo y utilizar el teorema de la probabilidad total: $$P(acierto)=P(acierto/personas)\cdot P(personas)+P(acierto/otras) \cdot P(otras)$$.
+Como no se especifica el tipo de imágenes, hay que calcular dicha probabilidad condicionada a cada grupo y utilizar el teorema de la probabilidad total: 
+
+\begin{equation}
+P(acierto)=P(acierto/personas)\cdot P(personas)+P(acierto/otras) \cdot P(otras).
+\end{equation}
+
 
 ```r
 acierto_personas <- dbinom(0, 20, 0.2)
@@ -445,7 +430,11 @@ acierto_total
 ```
 e) Si se han clasificado correctamente las 20 imágenes del lote, calcúlese la probabilidad de que correspondan a imágenes de personas.
 
-En este caso hay que utilizar el teorema de Bayes: $P(personas/acierto)= \frac {P(acierto/personas)*P(personas)}{P(acierto)}$.
+En este caso hay que utilizar el teorema de Bayes: 
+
+\begin{equation}
+(personas/acierto)= \frac {P(acierto/personas)\dot (personas)}{P(acierto)}.
+\end{equation}
 
 
 ```r
@@ -520,14 +509,10 @@ area_n <- function(media, desv, lb, ub, ...) {
 area_n(media, desv, 0, 10)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/150014img08} 
-
-}
-
-\caption{$P(X>0)$ representada como el área bajo la función de densidad de $X$.}(\#fig:150014graf)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/150014img08.png" alt="$P(X&gt;0)$ representada como el área bajo la función de densidad de $X$." width="60%" />
+<p class="caption">(\#fig:150014graf)$P(X>0)$ representada como el área bajo la función de densidad de $X$.</p>
+</div>
 
 ::: {.infobox_resume data-latex=""}
 ### Resumen {-}

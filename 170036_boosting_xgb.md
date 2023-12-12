@@ -15,7 +15,7 @@ Para diferenciar uno de otro de una forma intuitiva, si se quisiera organizar un
 
 ## ¿Qué es el *boosting*?
 
-Como se a avanzado en la sección anterior, el *boosting*\index{boosting@\textit{boosting}} [@schapire2012] es, junto con el *bagging*,  el paradigma de aprendizaje ensamblado más popular. \index{aprendizaje ensamblado} Como el *bagging*, el *boosting* agrega múltiples modelos con menor precisión (débiles) combinando sus predicciones para obtener un metamodelo con un porcentaje de clasificación correcta más alto. Los árboles de decisión\index{a@árbol!de decisión} son los modelos base o débiles que se usan más frecuentemente. En este caso, para llegar al metamodelo a partir de los modelos base, es necesario introducir ponderaciones a los árboles basándose en las clasificaciones erróneas del árbol previamente entrenado.
+Como se a avanzado en la sección anterior, el *boosting*\index{boosting@\textit{boosting}} [@schapire2012] es, junto con el *bagging*,  el paradigma de aprendizaje ensamblado más popular. \index{aprendizaje!ensamblado} Como el *bagging*, el *boosting* agrega múltiples modelos con menor precisión (débiles) combinando sus predicciones para obtener un metamodelo con un porcentaje de clasificación correcta más alto. Los árboles de decisión\index{a@árbol!de decisión} son los modelos base o débiles que se usan más frecuentemente. En este caso, para llegar al metamodelo a partir de los modelos base, es necesario introducir ponderaciones a los árboles basándose en las clasificaciones erróneas del árbol previamente entrenado.
 
 Continuando con las diferencias entre ambos paradigmas, en cuanto al objetivo, el principal objetivo intrínseco de los algoritmos de *bagging* es el de la reducción de la varianza, mientras que el de los algoritmos de *boosting* es la reducción del sesgo.
 
@@ -57,14 +57,10 @@ Uno de los algoritmos de *boosting* más conocidos es el ***gradient boosting***
 [^Note-0-boosting]: El término *gradient boosting machine* viene del hecho de  que este procedimiento puede generalizarse a funciones de pérdida distintas a la suma del cuadrado del error de predicción. Por otra parte, el *gradient descent* (descenso por el gradiente) es un algoritmo de optimización muy genérico capaz de ajustar parámetros iterativamente con el objetivo de minimizar una función de coste. La idea es descender por la "montaña" de la función de coste buscando, en cada punto, la parte más empinada, para llegar antes al mínimo (a la base de la montaña, donde el gradiente es nulo).
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{img/boosting} 
-
-}
-
-\caption{Ejemplo de $gradient$ $boosting$.}(\#fig:boosting)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/boosting.png" alt="Ejemplo de $gradient$ $boosting$." width="100%" />
+<p class="caption">(\#fig:boosting)Ejemplo de $gradient$ $boosting$.</p>
+</div>
 
 
 Matemáticamente, un algoritmo *gradient boosting*\index{gradient boosting@\textit{gradient boosting}} para clasificación sigue los pasos que se detallan a continuación. Sea un problema de clasificación binaria. Asumiendo que se tienen $K$ árboles de clasificación, la predicción del *gradient boosting* se obtiene utilizando la función sigmoide, como en la regresión logística (véase Cap. \@ref(cap-glm)), tal que:
@@ -122,7 +118,7 @@ Un modelo de *gradient boosting* tiene dos tipos de hiperparámetros\index{hiper
 
 #### Hiperparámetros de *boosting*
 
-Los hiperparámetros de *boosting* son principalmente dos: el número de árboles\index{número!de árboles} y la tasa de aprendizaje\index{tasa!de aprendizaje}.
+Los hiperparámetros de *boosting* son principalmente dos: el número de árboles\index{numero@número!de árboles} y la tasa de aprendizaje\index{tasa!de aprendizaje}.
 
 El primero indica el número de árboles a construir que, como se ha comentado, es importante optimizar para evitar el sobreajuste del modelo. A diferencia de los modelos *random forest*\index{random forest@\textit{random forest}} o *bagging*\index{bagging@\textit{bagging}}, en el *boosting*\index{boosting@\textit{boosting}} el conjunto de árboles débiles crece de forma secuencial para que cada árbol corrija los errores del anterior. El número de árboles necesarios para que el modelo sea buen predictor puede verse incrementado en función de los valores que tomen los otros hiperparámetros.
 
@@ -241,18 +237,14 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
   xlab(NULL) + ylab(NULL)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/boxplotgbm} 
-
-}
-
-\caption{Resultados del modelo GB obtenidos durante el proceso de validación cruzada.}(\#fig:GBMBOXPLOT)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/boxplotgbm.png" alt="Resultados del modelo GB obtenidos durante el proceso de validación cruzada." width="60%" />
+<p class="caption">(\#fig:GBMBOXPLOT)Resultados del modelo GB obtenidos durante el proceso de validación cruzada.</p>
+</div>
 
 ### *Gradient Boosting* con ajuste automático
 
-En la sección precedente los valores de los hiperparámetros se tomaron por defecto (número mínimo de observaciones en los nodos terminales y de la tasa de aprendizaje) o fueron elegidos entre los que la función `gbm()` establece por defecto (la profundidad del árbol y el número de árboles). En esta sección, los cuatro hiperparámetros del método `gbm` anteriormente referidos se ajustan de manera automática entre los valores establecidos por el investigador: \index{ajuste automático}
+En la sección precedente los valores de los hiperparámetros se tomaron por defecto (número mínimo de observaciones en los nodos terminales y de la tasa de aprendizaje) o fueron elegidos entre los que la función `gbm()` establece por defecto (la profundidad del árbol y el número de árboles). En esta sección, los cuatro hiperparámetros del método `gbm` anteriormente referidos se ajustan de manera automática entre los valores establecidos por el investigador: \index{ajuste!automático}
 
 
 ```r
@@ -313,18 +305,14 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
   xlab(NULL) + ylab(NULL)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/boxplottunedgbm} 
-
-}
-
-\caption{Resultados del modelo GB con ajuste automático obtenidos durante el proceso de validación cruzada.}(\#fig:modelgbmboxplot)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/boxplottunedgbm.png" alt="Resultados del modelo GB con ajuste automático obtenidos durante el proceso de validación cruzada." width="60%" />
+<p class="caption">(\#fig:modelgbmboxplot)Resultados del modelo GB con ajuste automático obtenidos durante el proceso de validación cruzada.</p>
+</div>
 
 ## $\bf\textit{eXtreme}$ $\bf\textit{gradient}$ $\bf\textit{boosting}$ 
 
-El eXtreme Gradient Boosting\index{eXtreme Gradient Boosting@\textit{eXtreme gradient boosting} es una implementación eficiente y escalable del modelo *gradient boosting*\index{gradient boosting@\textit{gradient boosting}}. Este modelo, abreviado como XGBoost, es un paquete de código abierto en C++, Java, Python [@wade2020hands], **R**, Julia, Perl y Scala. En **R**, el modelo se incluye dentro del paquete `xgboost` [@chen2015xgboost]. El paquete incluye un procedimiento para la solución eficiente de modelos lineales y un algoritmo de aprendizaje de árboles.
+El eXtreme Gradient Boosting\index{eXtreme Gradient Boosting@\textit{eXtreme gradient boosting}} es una implementación eficiente y escalable del modelo *gradient boosting*\index{gradient boosting@\textit{gradient boosting}}. Este modelo, abreviado como XGBoost, es un paquete de código abierto en C++, Java, Python [@wade2020hands], **R**, Julia, Perl y Scala. En **R**, el modelo se incluye dentro del paquete `xgboost` [@chen2015xgboost]. El paquete incluye un procedimiento para la solución eficiente de modelos lineales y un algoritmo de aprendizaje de árboles.
 
 `Xgboost` es compatible con funciones objetivo de regresión, clasificación y ranking. Además, tiene varias características importantes:
 
@@ -411,14 +399,10 @@ ggplot(melt(model$resample[,-4]), aes(x = variable, y = value, fill=variable)) +
   xlab(NULL) + ylab(NULL)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/boxplotxgbm} 
-
-}
-
-\caption{Resultados del modelo durante la validación cruzada.}(\#fig:XGBRESULTS)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/boxplotxgbm.png" alt="Resultados del modelo durante la validación cruzada." width="60%" />
+<p class="caption">(\#fig:XGBRESULTS)Resultados del modelo durante la validación cruzada.</p>
+</div>
 
 ### XGBoost con ajuste automático
 
@@ -471,14 +455,10 @@ Como puede verse en los resultados obtenidos, el modelo resultante establece que
 
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{img/boxplottunedxgbm} 
-
-}
-
-\caption{Resultados del modelo durante la validación cruzada.}(\#fig:xgb-tuned-RESULTS)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/boxplottunedxgbm.png" alt="Resultados del modelo durante la validación cruzada." width="50%" />
+<p class="caption">(\#fig:xgb-tuned-RESULTS)Resultados del modelo durante la validación cruzada.</p>
+</div>
 
 Los resultados obtenidos durante la validación cruzada (Fig. \@ref(fig:xgb-tuned-RESULTS)) muestran que la precisión es muy similar a la del modelo de la sección anterior (entre el 85% y el 95%); sin embargo, el valor mediano de la precisión aumenta hasta el 90%.
 

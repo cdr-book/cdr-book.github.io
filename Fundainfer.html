@@ -7,7 +7,7 @@
 <title>Capítulo 13 Inferencia estadística | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Mª Leticia Meseguer Santamaría\(^{a}\) y Manuel Vargas Vargas\(^{a}\) \(^{a}\) Universidad de Castilla-La Mancha  13.1 Introducción Cuando se estudian fenómenos mediante variables aleatorias, el...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 13 Inferencia estadística | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -166,7 +166,7 @@ F(X_1,...,X_n)=F_{X_1}(x_1)...F_{X_n}(x_n)=F(x_1)...F(x_n).
 \underset {n \rightarrow \infty}{lim} \ E \left [ {\left ( \hat{\mathbb{F}}_n (x)- F(x) \right )^2} \right ] = 0,
 \end{equation}\]</span></p>
 <p>expresión conocida como <strong>teorema de Glivenko-Cantelli</strong>. Este resultado es fundamental en inferencia, pues garantiza que el muestreo aleatorio simple produce muestras representativas de la población, ya que, a medida que aumenta el tamaño muestral, la distribución empírica de la muestra se aproxima cada vez más a la distribución poblacional (véase Fig. <a href="Fundainfer.html#fig:150015distrempir">13.1</a>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Un tema que se abordará en el Cap. &lt;a href="muestreo.html#muestreo"&gt;14&lt;/a&gt; es la determinación del tamaño muestral necesario para que la aproximación tenga un error menor que uno prefijado.&lt;/p&gt;'><sup>105</sup></a> Así, cualquier característica (media, varianza…) de una distribución poblacional puede ser aproximada por su equivalente en la distribución empírica.</p>
-<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">196</span><span class="op">)</span></span>
 <span><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span>
@@ -241,7 +241,7 @@ ECM_\theta (\hat{\theta})=Var_\theta (\hat{\theta}) + \left ( E_{\theta}(\hat{\t
 <li><p>Seleccionar estimadores “insesgados”, es decir, de sesgo cero, o sea, <span class="math inline">\(E(\hat{\theta})=\theta\)</span> (el valor medio del estimador coincide con el parámetro).</p></li>
 <li><p>De entre los estimadores inesgados, seleccionar el de varianza mínima, <span class="math inline">\(Var(\hat{\theta}_{MC})= \underset {\hat{\theta}} {min} Var(\hat{\theta})\)</span>.</p></li>
 </ul>
-<p>Queda fuera del objetivo de este capítulo plantear la obtención del estimador de mínimos cuadrados para cualquier distribución poblacional y parámetros, que el lector interesado puede encontrar en cualquier texto teórico de inferencia estadística <span class="citation">(<a href="referncias.html#ref-martin2007fundamentos">Martı́n-Pliego and Ruiz-Maya 2007</a>; <a href="referncias.html#ref-CasellaBerger2007">Casella and Berger 2007</a>; <a href="referncias.html#ref-Blais2020">Blais 2020</a>; <a href="referncias.html#ref-Almudevar2021">Almudevar 2021</a>)</span>.</p>
+<p>Queda fuera del objetivo de este capítulo plantear la obtención del estimador de mínimos cuadrados para cualquier distribución poblacional y parámetros, que el lector interesado puede encontrar en cualquier texto teórico de inferencia estadística <span class="citation">(<a href="referencias.html#ref-martin2007fundamentos">Martı́n-Pliego and Ruiz-Maya 2007</a>; <a href="referencias.html#ref-CasellaBerger2007">Casella and Berger 2007</a>; <a href="referencias.html#ref-Blais2020">Blais 2020</a>; <a href="referencias.html#ref-Almudevar2021">Almudevar 2021</a>)</span>.</p>
 <p>Otro planteamiento para encontrar estimadores puntuales se basa en la función de densidad conjunta de la muestra, que depende de esta y del parámetro que caracteriza a la distribución poblacional:</p>
 <p><span class="math display" id="eq:verosimilitud">\[\begin{equation}
 \tag{13.9}
@@ -280,13 +280,14 @@ Hay situaciones donde no interesa tanto estimar el valor de un parámetro, sino 
 <p><span class="math display">\[\begin{equation}
 H_0 \equiv \theta = \theta_0.
 \end{equation}\]</span></p>
-<p>Suponiendo cierta la hipótesis nula, la distribución muestral del estimador permite obtener la probabilidad de observar un valor del estimador más “distante” del valor del parámetro fijado en la hipótesis nula que el obtenido en la muestra, probabilidad conocida como <strong><span class="math inline">\(p-\)</span>valor</strong>: si es muy pequeño, es muy poco probable que se observe el valor obtenido en la muestra cuando la hipótesis es cierta, por lo que la evidencia empírica no es congruente con ella; si no es pequeño, dicho valor es probable que se observe (bajo la hipótesis nula), por lo que no habría evidencia empírica “en contra” de ella.</p>
-<p>Se habla de <strong><span class="math inline">\(p-\)</span>valor bilateral</strong> o “a dos colas” cuando la distancia se considera tanto por la derecha como por la izquierda de la distribución del estimador bajo la hipótesis nula. En caso de que se considere solo por la izquierda o por la derecha, se habla de <strong><span class="math inline">\(p-\)</span>valor unilateral</strong> (a la izquierda o a la derecha, respectivamente) o “a una cola”. La comparación (distancia) entre el valor del parámetro establecido en la hipótesis nula y el del estimador de dicho parámetro puede llevarse a cabo por diferencia (tal es el caso del contraste de medias) o por cociente (caso de los contrastes de varianzas).</p>
+<p>Suponiendo cierta la hipótesis nula, la distribución muestral del estimador permite obtener la probabilidad de observar un valor del estimador más “distante” del valor del parámetro fijado en la hipótesis nula que el obtenido en la muestra, probabilidad conocida como <strong><span class="math inline">\(\bf{\textit{p}}-\)</span>valor</strong>: si es muy pequeño, es muy poco probable que se observe el valor obtenido en la muestra cuando la hipótesis es cierta, por lo que la evidencia empírica no es congruente con ella; si no es pequeño, dicho valor es probable que se observe (bajo la hipótesis nula), por lo que no habría evidencia empírica “en contra” de ella.</p>
+<p></p>
+<p>Se habla de <strong><span class="math inline">\(\bf{\textit{p}}-\)</span>valor bilateral</strong> o “a dos colas” cuando la distancia se considera tanto por la derecha como por la izquierda de la distribución del estimador bajo la hipótesis nula. En caso de que se considere solo por la izquierda o por la derecha, se habla de <strong><span class="math inline">\(\bf{\textit{p}}-\)</span>valor unilateral</strong> (a la izquierda o a la derecha, respectivamente) o “a una cola”. La comparación (distancia) entre el valor del parámetro establecido en la hipótesis nula y el del estimador de dicho parámetro puede llevarse a cabo por diferencia (tal es el caso del contraste de medias) o por cociente (caso de los contrastes de varianzas).</p>
 <p>Habitualmente, se considera que un <span class="math inline">\(p-\)</span>valor por debajo de 0,05 ya indica que la evidencia empírica no permite asumir como cierta la hipótesis nula, expresándose como que el valor del parámetro es “significativamente distinto (menor o mayor)” que <span class="math inline">\(\theta_0\)</span>. También es posible interpretar el <span class="math inline">\(p-\)</span>valor como “la probabilidad máxima de cometer el error de rechazar la hipótesis nula cuando es cierta”, abreviado como “tamaño del error si se rechaza la hipótesis nula”.</p>
 <p>Estos contrastes de significación, originalmente desarrollados por Ronald Fisher, fueron incluidos en un esquema de toma de decisiones por Jerzy Neyman y Egon Pearson, planteando que, de no ser cierta la hipótesis nula, se debe plantear una hipótesis alternativa <span class="math inline">\(H_1\)</span>. La decisión de qué hipótesis resulta más congruente con los datos se basa en la comparación por cociente de las verosimilitudes de la muestra bajo cada una de ellas, decidiendo el rechazo de la hipótesis nula a favor de la alternativa cuando dicho cociente es, en probabilidad, inferior a un valor prefijado, <span class="math inline">\(\alpha\)</span>, conocido como <strong>nivel de significación</strong>. Dependiendo de la estructura de las hipótesis (simples, si solo determinan un valor del parámetro, o compuestas, si determinan más de uno; a su vez, unilaterales si los valores son todos menores, o mayores, que uno dado, o bilaterales en caso contrario) la regla de decisión del contraste resulta más o menos compleja de obtener.</p>
 <p>Cuando se adopta el planteamiento decisional de Neyman-Pearson, el nivel de significación permite evaluar la probabilidad de rechazar la hipótesis nula cuando es cierta (conocida también como <strong>probabilidad de error de tipo I</strong>, <span class="math inline">\(\alpha\)</span>), pero también la probabilidad de aceptar como cierta <span class="math inline">\(H_0\)</span> cuando es más correcta <span class="math inline">\(H_1\)</span> (denominada <strong>probabilidad de error de tipo II</strong>, <span class="math inline">\(\beta\)</span>) o, equivalentemente, su complementario: la probabilidad de rechazar <span class="math inline">\(H_0\)</span> cuando <span class="math inline">\(H_1\)</span> es más correcta, probabilidad conocida como <strong>potencia del contraste</strong>, <span class="math inline">\((1-\beta)\)</span>. Si la hipótesis alternativa es simple, es posible evaluar la potencia, por lo que se tiene una medida probabilística de la magnitud de ambos errores (de tipo I y de tipo II), lo cual permite una valoración completa del resultado de la regla de decisión (contraste de hipótesis). Sin embargo, si la hipótesis <span class="math inline">\(H_1\)</span> es compuesta, la magnitud de la potencia es una función evaluada en el rango de valores que establezca dicha hipótesis. En este caso, se dispone de una medida probabilística del error de tipo I pero no del error de tipo II, puesto que depende de valores concretos del parámetro que no son especificados en la hipótesis alternativa, <span class="math inline">\(H_1\)</span>.</p>
 <p>Computacionalmente, dada la información muestral, es más fácil calcular el <em>p</em>–valor que plantear el esquema de decisión de Neyman-Pearson, por lo que es la estrategia utilizada en la práctica.</p>
-<p>Dado el carácter breve e introductorio de este capítulo, no se profundizará más en este esquema de decisión, que puede consultarse, por ejemplo, en <span class="citation">Casella and Berger (<a href="referncias.html#ref-CasellaBerger2007">2007</a>)</span>, <span class="citation">Blais (<a href="referncias.html#ref-Blais2020">2020</a>)</span> o <span class="citation">Almudevar (<a href="referncias.html#ref-Almudevar2021">2021</a>)</span>, entre otros muchos.</p>
+<p>Dado el carácter breve e introductorio de este capítulo, no se profundizará más en este esquema de decisión, que puede consultarse, por ejemplo, en <span class="citation">Casella and Berger (<a href="referencias.html#ref-CasellaBerger2007">2007</a>)</span>, <span class="citation">Blais (<a href="referencias.html#ref-Blais2020">2020</a>)</span> o <span class="citation">Almudevar (<a href="referencias.html#ref-Almudevar2021">2021</a>)</span>, entre otros muchos.</p>
 </div>
 <div id="pobnormales" class="section level2" number="13.6">
 <h2>
@@ -367,7 +368,7 @@ si se utiliza la cuasivarianza muestral.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Obtener una estimación de la velocidad media y de la desviación típica de ambas variables, usando el método de máxima verosimilitud.</li>
 </ol>
-<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://www.r-project.org">"Rlab"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://lbbe.univ-lyon1.fr/fr/fitdistrplus">"fitdistrplus"</a></span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Wind</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">76</span><span class="op">]</span></span>
@@ -388,7 +389,7 @@ si se utiliza la cuasivarianza muestral.</p>
 <span><span class="co">#&gt; sd   3.142891  0.2532613</span></span></code></pre></div>
 <p>El resultado muestra las estimaciones de la media y la desviación típica de la velocidad del viento (junto al “error estándar” o desviación típica de los estimadores respectivos) para las dos variables anteriormente creadas.</p>
 <p>La orden <code>plot(mle_x)</code> permite visualizar la congruencia entre la muestra y la distribución probabilística basada en las estimaciones realizadas; por ejemplo, optando por el primer período, se obtiene la Fig. <a href="Fundainfer.html#fig:150015mle">13.2</a>, que representa el histograma de los valores muestrales junto a la distribución teórica construida con las estimaciones.</p>
-<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mle_x</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:150015mle"></span>
@@ -399,7 +400,7 @@ Figura 13.2: Resultados gráficos de la estimación por máxima verosimilitud.
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Construir un intervalo de confianza para la velocidad media del viento hasta el 15 de julio, con un nivel de confianza del 95%.</li>
 </ol>
-<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://andrisignorell.github.io/DescTools/">"DescTools"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://andrisignorell.github.io/DescTools/reference/MeanCI.html">MeanCI</a></span><span class="op">(</span><span class="va">x</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      mean    lwr.ci    upr.ci </span></span>
@@ -407,14 +408,14 @@ Figura 13.2: Resultados gráficos de la estimación por máxima verosimilitud.
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Calcular un intervalo de confianza para la desviación típica de la velocidad del viento desde el 16 de julio, con un nivel de confianza del 90%.</li>
 </ol>
-<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://andrisignorell.github.io/DescTools/reference/VarCI.html">VarCI</a></span><span class="op">(</span><span class="va">y</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      var   lwr.ci   upr.ci </span></span>
 <span><span class="co">#&gt; 3.163501 2.795147 3.655468</span></span></code></pre></div>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>¿Se puede considerar que las varianzas poblacionales en ambos períodos son iguales, con un nivel de significación del 1%?</li>
 </ol>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/var.test.html">var.test</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, conf.level <span class="op">=</span> <span class="fl">0.99</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  F test to compare two variances</span></span>
@@ -431,7 +432,7 @@ Figura 13.2: Resultados gráficos de la estimación por máxima verosimilitud.
 <ol start="5" style="list-style-type: lower-alpha">
 <li>Teniendo en cuenta los resultados del apartado anterior, ¿se puede afirmar que la velocidad media del viento en el primer período es mayor que la del segundo, con un nivel de significación del 1%?</li>
 </ol>
-<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, conf.level <span class="op">=</span> <span class="fl">0.99</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>, var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Two Sample t-test</span></span>
@@ -454,7 +455,7 @@ Figura 13.2: Resultados gráficos de la estimación por máxima verosimilitud.
 <p>Posiblemente el test más potente para contrastar la normalidad sea la prueba de Shapiro-Wilks, que asume como hipótesis nula que los datos están generados por una distribución normal. Un rechazo de esta hipótesis (<span class="math inline">\(p-\)</span>valor muy bajo) debería hacer reflexionar sobre la adecuación de muchas técnicas y la interpretación de los resultados. En <strong>R</strong>, la función <code><a href="https://rdrr.io/r/stats/shapiro.test.html">shapiro.test()</a></code> proporciona dicho contraste de normalidad.</p>
 <p>Una alternativa es el uso del test de Kolmogorov-Smirnov, diseñado para comparar las distribuciones de dos muestras, fijando que una de ellas sea la distribución normal (este test puede ser igualmente utilizado para cualquier otra distribución usual). La función <code><a href="https://rdrr.io/r/stats/ks.test.html">ks.test()</a></code> permite en <strong>R</strong> obtener los resultados de este contraste.</p>
 <p>Para ilustrar el uso del test de Shapiro-Wilk en <strong>R</strong> se recurre de nuevo a los datos sobre calidad del aire en la ciudad de Nueva York del ejemplo anterior (Sec. <a href="Fundainfer.html#ejemplopobnorm">13.7</a>) y se contrasta si se puede asumir que las variables <code>Temp</code> y <code>Wind</code> están generadas por distribuciones normales:</p>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/shapiro.test.html">shapiro.test</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Shapiro-Wilk normality test</span></span>
@@ -468,7 +469,7 @@ Figura 13.2: Resultados gráficos de la estimación por máxima verosimilitud.
 <span><span class="co">#&gt; data:  airquality$Wind</span></span>
 <span><span class="co">#&gt; W = 0.98575, p-value = 0.1178</span></span></code></pre></div>
 <p>Para la variable <code>Temp</code> el <em>p</em>–valor (0,0093) es muy bajo en comparación con los niveles de significación habituales (0,01; 0,05), por lo que hay suficiente evidencia empírica como para rechazar que dicha variable tenga una distribución normal. Por el contrario, en el caso de la variable <code>Wind</code>, el <em>p</em>–valor (0,1178) no es pequeño, por lo que no hay suficiente evidencia como para rechazar que esté generada por una distribución normal. La Fig. <a href="Fundainfer.html#fig:150015qqplots">13.3</a> muestra la comparación entre los cuantiles empíricos de ambas variables y los teóricos de una distribución normal.</p>
-<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqnorm</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span>, main <span class="op">=</span> <span class="st">"Normal Q-Q Plot for Temp"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqnorm</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">$</span><span class="va">Wind</span>, main <span class="op">=</span> <span class="st">"Normal Q-Q Plot for Wind"</span><span class="op">)</span></span></code></pre></div>
@@ -524,7 +525,7 @@ Figura 13.3: Gráficos Q-Q normales para las variables Temp (izq.) y Wind (dcha.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

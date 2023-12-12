@@ -40,7 +40,7 @@ en proyectos de software colaborativos de manera eficiente y segura.
 Git y GitHub son herramientas para el desarrollo de software moderno que tienen tres importantes ventajas:
 
 1.  **Control de versiones y colaboración eficiente.** Git es un sistema
-    de control de versiones \index{control de versiones} distribuido que permite registrar y rastrear
+    de control de versiones \index{control!de versiones} distribuido que permite registrar y rastrear
     los cambios realizados en un archivo o conjunto de archivos a lo
     largo del tiempo. Esto es especialmente útil cuando se trabaja en
     proyectos de software colaborativos, donde múltiples personas pueden
@@ -61,7 +61,7 @@ Git y GitHub son herramientas para el desarrollo de software moderno que tienen 
 
 3.  **Fomenta la transparencia y la comunidad.** GitHub es una plataforma de alojamiento de código que facilita la colaboración y el versionado de código. Aunque gran parte del código alojado en GitHub es de acceso público debido a su modelo de código abierto, no todos los proyectos son accesibles para el público en general; algunos pueden ser privados y solo estar disponibles para ciertos usuarios o equipos, proporcionando así la flexibilidad de mantener tanto la transparencia del código abierto como la privacidad del código interno dentro de una organización. Además, GitHub cuenta con una vasta comunidad de desarrolladores que pueden ofrecer apoyo y retroalimentación a otros miembros de la comunidad.
     
-\index{código abierto}
+\index{codigo@código abierto}
 
 
 
@@ -128,14 +128,10 @@ etiquetados. Para ello, se debe abrir la línea de comandos, Git
 Bash, o la terminal de RStudio (Fig. \@ref(fig:c310003002)) y ejecutar los siguientes comandos:
 \index{Git!configurar}
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/terminal} 
-
-}
-
-\caption{Terminal de RStudio. }(\#fig:c310003002)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/terminal.jpg" alt="Terminal de RStudio. " width="60%" />
+<p class="caption">(\#fig:c310003002)Terminal de RStudio. </p>
+</div>
 
 
 ```git
@@ -191,14 +187,10 @@ y agregarla a la cuenta de GitHub siguiendo las instrucciones en la página de c
 
 -   haga clic en "New SSH key" para agregar la clave SSH (Fig. \@ref(fig:c310003008));
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/ssh-add-ssh-key-with-auth} 
-
-}
-
-\caption{Llaves SSH en GitHub.}(\#fig:c310003008)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/ssh-add-ssh-key-with-auth.png" alt="Llaves SSH en GitHub." width="60%" />
+<p class="caption">(\#fig:c310003008)Llaves SSH en GitHub.</p>
+</div>
 
 -   en el campo "Title" (Título), agregue una etiqueta descriptiva para
     la clave nueva. Por ejemplo, si está utilizando un portátil
@@ -219,14 +211,10 @@ y agregarla a la cuenta de GitHub siguiendo las instrucciones en la página de c
 [^git-token]: Para más información sobre el *token* de acceso personal consulte el 
 Cap. 9 de @happygitwithr (https://happygitwithr.com/https-pat.html).
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/ssh-key-paste-with-type} 
-
-}
-
-\caption{Añadir llave SSH en GitHub.}(\#fig:c310003009)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/ssh-key-paste-with-type.png" alt="Añadir llave SSH en GitHub." width="60%" />
+<p class="caption">(\#fig:c310003009)Añadir llave SSH en GitHub.</p>
+</div>
 
 
 ### Autentificación basada en *token* de acceso personal {#token}
@@ -315,14 +303,10 @@ con RStudio:
     "Global Options" y luego seleccionar "Git/SVN" (Fig. \@ref(fig:c310003014)). Desde allí, se debe
     configurar la ubicación del ejecutable de Git en el sistema.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{img/tools-general-options} 
-
-}
-
-\caption{Tools de RStudio.}(\#fig:c310003014)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/tools-general-options.png" alt="Tools de RStudio." width="50%" />
+<p class="caption">(\#fig:c310003014)Tools de RStudio.</p>
+</div>
 
 <!-- \text -->
 
@@ -339,14 +323,10 @@ $ git --version
 
 3.  Crear un proyecto nuevo desde "File" -> "New project" (Fig. \@ref(fig:c310003016)).
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{img/new-project} 
-
-}
-
-\caption{Nuevo proyecto de RStudio.}(\#fig:c310003016)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/new-project.png" alt="Nuevo proyecto de RStudio." width="50%" />
+<p class="caption">(\#fig:c310003016)Nuevo proyecto de RStudio.</p>
+</div>
 
 
 4.  En el cuadro de la Fig. \@ref(fig:c310003016) se procede dando clic en "New directory"
@@ -354,14 +334,10 @@ $ git --version
     proyecto, y se marca la opción "Create a git repository" para crear
     un nuevo proyecto con repositorio de Git (Fig. \@ref(fig:c310003017)).
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{img/new-project-rstudo} 
-
-}
-
-\caption{Nuevo proyecto en un directorio nuevo.}(\#fig:c310003017)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/new-project-rstudo.png" alt="Nuevo proyecto en un directorio nuevo." width="50%" />
+<p class="caption">(\#fig:c310003017)Nuevo proyecto en un directorio nuevo.</p>
+</div>
 
 
 <!-- \pagebreak -->
@@ -370,14 +346,10 @@ $ git --version
     revisión de cambios, se añaden los ficheros pinchando en los ticks,
     se añade el mensaje de confirmación y se hace clic en "commit" (Fig. \@ref(fig:c310003018)).
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{img/commit-rstudio} 
-
-}
-
-\caption{Revisión de cambios.}(\#fig:c310003018)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/commit-rstudio.png" alt="Revisión de cambios." width="50%" />
+<p class="caption">(\#fig:c310003018)Revisión de cambios.</p>
+</div>
 
 
 6.  Alternativamente, se puede utilizar la pestaña de Git, marcando los
@@ -385,14 +357,10 @@ $ git --version
     tras el cual se abrirá el cuadro de diálogo anterior (Fig. \@ref(fig:c310003019)).
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{img/git-pestana} 
-
-}
-
-\caption{Revisión de cambios.}(\#fig:c310003019)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/git-pestana.png" alt="Revisión de cambios." width="60%" />
+<p class="caption">(\#fig:c310003019)Revisión de cambios.</p>
+</div>
 
 
 
@@ -438,28 +406,20 @@ configurado previamente:
 
 \pagebreak
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{img/new-project} 
-
-}
-
-\caption{Nuevo proyecto de RStudio.}(\#fig:c310003022)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/new-project.png" alt="Nuevo proyecto de RStudio." width="50%" />
+<p class="caption">(\#fig:c310003022)Nuevo proyecto de RStudio.</p>
+</div>
 
 
 
 
 2.  En la ventana emergente que aparece, elija "Git" (Fig. \@ref(fig:c310003023)).
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{img/new-project-git} 
-
-}
-
-\caption{Crear proyecto desde control de versiones.}(\#fig:c310003023)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/new-project-git.png" alt="Crear proyecto desde control de versiones." width="50%" />
+<p class="caption">(\#fig:c310003023)Crear proyecto desde control de versiones.</p>
+</div>
 
 
 3.  En la ventana que se muestra en la Fig. \@ref(fig:c310003024), pegue la URL del repositorio que desee clonar y presione "Create Project". RStudio preguntará en qué
@@ -467,14 +427,10 @@ configurado previamente:
     ubicación, el proyecto se clonará en la computadora.
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{img/new-project-git-repo} 
-
-}
-
-\caption{Nuevo proyecto desde un repositorio de Git.}(\#fig:c310003024)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/new-project-git-repo.png" alt="Nuevo proyecto desde un repositorio de Git." width="50%" />
+<p class="caption">(\#fig:c310003024)Nuevo proyecto desde un repositorio de Git.</p>
+</div>
 
 
 

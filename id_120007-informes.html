@@ -7,7 +7,7 @@
 <title>Capítulo 44 Informes reproducibles con R Markdown y Quarto | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Emilio L. Cano Universidad Rey Juan Carlos  44.1 ¿Por qué informes reproducibles?  El resultado final de un proyecto de análisis de datos termina comunicándose a distintos niveles, tanto “aguas...">
-<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Capítulo 44 Informes reproducibles con R Markdown y Quarto | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,10 +18,9 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
-<link href="libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,7 +45,8 @@
       <nav aria-label="Contenido"><h2>Contenido</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
-<li><a class="" href="pr%C3%B3logo.html">Prólogo</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
 <li class="book-part">Ciencia, datos, software… y científicos</li>
 <li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
 <li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
@@ -69,7 +69,7 @@
 <li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
 <li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
 <li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
-<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos sparse y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
 <li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
 <li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
@@ -82,11 +82,11 @@
 <li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
 <li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
 <li class="book-part">Machine learning no supervisado</li>
-<li><a class="" href="an%C3%A1lisis-cl%C3%BAster-clusterizaci%C3%B3n-jer%C3%A1rquica.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
 <li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
 <li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
-<li><a class="" href="an%C3%A1lisis-factorial.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
-<li><a class="" href="escalamiento-multidimensional.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
 <li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
 <li class="book-part">Deep learning</li>
 <li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
@@ -108,7 +108,7 @@
 <li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
 <li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
 <li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
-<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
 <li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
 <li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
 <li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
@@ -120,7 +120,7 @@
 <li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
-<li><a class="" href="referncias.html">Referncias</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -138,7 +138,8 @@
 <h2>
 <span class="header-section-number">44.1</span> ¿Por qué informes reproducibles?<a class="anchor" aria-label="anchor" href="#por-qu%C3%A9-informes-reproducibles"><i class="fas fa-link"></i></a>
 </h2>
-<p></p>
+<p>
+</p>
 <p>El resultado final de un proyecto de análisis de datos termina
 comunicándose a distintos niveles, tanto “aguas arriba” como “aguas abajo”.
 Esta comunicación es “la última milla” del flujo de análisis que se
@@ -161,7 +162,7 @@ estadístico y después se utilizan
 los resultados del análisis como base de un informe escrito, posiblemente
 con algunas iteraciones del proceso si el proyecto tiene cierta envergadura.
 El software estadístico comercial suele incluir formas de generar resultados listos para integrar en un informe, pero habitualmente bajo este paradigma de incluir el
-resultado <em>a posteriori</em> <span class="citation">(<a href="referncias.html#ref-leisch2002sweave">Leisch 2002</a>)</span>.</p>
+resultado <em>a posteriori</em> <span class="citation">(<a href="referencias.html#ref-leisch2002sweave">Leisch 2002</a>)</span>.</p>
 <p>Esta forma de trabajar genera un alto coste de mantenimiento (debido a la regeneración manual del informe) a la vez que
 provoca inconsistencias (por ejemplo, entre unos grupos y otros,
 entre diferentes analistas, etc.), errores, contenidos desactualizados o no
@@ -172,10 +173,10 @@ Además, cada vez que hay que hacer un cambio, debe hacerse en muchos
 sitios, con la consiguiente pérdida de tiempo y posibles errores.</p>
 <p>El enfoque de la <strong>investigación reproducible</strong> supera muchos de los obstáculos a la hora de preparar informes de análisis de datos. El objetivo es
 vincular instrucciones para análisis de datos con datos experimentales de forma que
-los resultados se puedan <span class="math inline">\((i)\)</span> volver a obtener automáticamente, <span class="math inline">\((ii)\)</span> entender mejor y <span class="math inline">\((iii\)</span>) verificar <span class="citation">(<a href="referncias.html#ref-rrtaskview">Kuhn 2019</a>)</span>.</p>
+los resultados se puedan <span class="math inline">\((i)\)</span> volver a obtener automáticamente, <span class="math inline">\((ii)\)</span> entender mejor y <span class="math inline">\((iii\)</span>) verificar <span class="citation">(<a href="referencias.html#ref-rrtaskview">Kuhn 2019</a>)</span>.</p>
 <p>
 Un concepto muy relacionado que se utiliza en <strong>R</strong> es la <strong>programación
-literaria</strong>,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La programación literaria es una metodología que combina un lenguaje de programación con un lenguaje de documentación &lt;span class="citation"&gt;(&lt;a href="referncias.html#ref-knuth1984literate"&gt;Knuth 1984&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>277</sup></a> mediante la cual se combina un lenguaje de programación como <strong>R</strong> con documentación de todo tipo (por ejemplo, comentarios en el
+literaria</strong>,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La programación literaria es una metodología que combina un lenguaje de programación con un lenguaje de documentación &lt;span class="citation"&gt;(&lt;a href="referencias.html#ref-knuth1984literate"&gt;Knuth 1984&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>277</sup></a> mediante la cual se combina un lenguaje de programación como <strong>R</strong> con documentación de todo tipo (por ejemplo, comentarios en el
 código fuente o inclusión de ficheros <em>readme</em>).</p>
 <p>Con el enfoque de la investigación reproducible lo que se hace es darle la vuelta
 al enfoque “corta-pega”, de forma que se escribe el informe a la vez que se realiza
@@ -224,12 +225,12 @@ incluir un gráfico, solo hay que añadir las líneas de código que lo crean y
 volver a generar el informe.</p>
 <p><strong>R Markdown</strong> ha evolucionado a un nuevo formato denominado <strong>Quarto</strong>,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://quarto.org" class="uri"&gt;https://quarto.org&lt;/a&gt;.&lt;/p&gt;'><sup>281</sup></a> que extiende aún más la funcionalidad de Markdown y está pensado para ser usado con otros lenguajes de programación. En esencia, y a los efectos de este capítulo, hay pocas diferencias.</p>
 <p>Para poder utilizar las capacidades de <strong>R Markdown</strong> y <strong>Quarto</strong>, es necesario tener instalado
-el paquete <code>knitr</code> <span class="citation">(<a href="referncias.html#ref-xie2017dynamic">Xie 2017</a>)</span>, que utiliza también otros paquetes como <code>rmarkdown</code>.
+el paquete <code>knitr</code> <span class="citation">(<a href="referencias.html#ref-xie2017dynamic">Xie 2017</a>)</span>, que utiliza también otros paquetes como <code>rmarkdown</code>.
 Aunque <code>knitr</code> no forma parte del <code>tidyverse</code>, sí es un enfoque moderno de <strong>R</strong>
 que vino a hacer más fácil la generación de documentos que se hacían en <strong>R</strong> base
-con la función <code>Sweave</code> <span class="citation">(<a href="referncias.html#ref-leisch2002sweave">Leisch 2002</a>)</span>. Para usar <strong>Quarto</strong> se necesita también el paquete <code>quarto</code> <span class="citation">(<a href="referncias.html#ref-R-quarto">Allaire 2022</a>)</span> y tener instalado el software <strong>Quarto</strong> en el ordenador.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La instalación es trivial para cualquier sistema desde la web de Quarto, &lt;a href="https://quarto.org" class="uri"&gt;https://quarto.org&lt;/a&gt;.&lt;/p&gt;'><sup>282</sup></a></p>
+con la función <code>Sweave</code> <span class="citation">(<a href="referencias.html#ref-leisch2002sweave">Leisch 2002</a>)</span>. Para usar <strong>Quarto</strong> se necesita también el paquete <code>quarto</code> <span class="citation">(<a href="referencias.html#ref-R-quarto">Allaire 2022</a>)</span> y tener instalado el software <strong>Quarto</strong> en el ordenador.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La instalación es trivial para cualquier sistema desde la web de Quarto, &lt;a href="https://quarto.org" class="uri"&gt;https://quarto.org&lt;/a&gt;.&lt;/p&gt;'><sup>282</sup></a></p>
 <p>Para crear un nuevo documento <strong>Quarto</strong>, se selecciona <em>Quarto Document…</em> en el
-icono <svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 64C0 28.65 28.65 0 64 0H229.5C246.5 0 262.7 6.743 274.7 18.75L365.3 109.3C377.3 121.3 384 137.5 384 154.5V448C384 483.3 355.3 512 320 512H64C28.65 512 0 483.3 0 448V64zM336 448V160H256C238.3 160 224 145.7 224 128V48H64C55.16 48 48 55.16 48 64V448C48 456.8 55.16 464 64 464H320C328.8 464 336 456.8 336 448z"></path></svg> “New file” de la barra de herramientas o en el menú <em>File</em>. Entonces
+icono <svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M320 464c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64z"></path></svg> “New file” de la barra de herramientas o en el menú <em>File</em>. Entonces
 se abre el cuadro de diálogo <em>New Quarto Document</em>. Hay varios
 tipos de archivos que se pueden crear, que producirán formatos diferentes: <em>Document</em> (documento),
 <em>Presentation</em> (presentación de diapositivas) e <em>Interactive</em> (aplicación web interactiva con Shiny u Observable JS). De momento se verán los documentos. Se puede crear un archivo <strong>Quarto</strong> vacío si no se quiere crear la estructura. Para que se cree con una estructura mínima,
@@ -423,12 +424,12 @@ ejecutarán al generar el documento de salida. El marcador de inicio son tres
 símbolos de tilde grave seguidos de unas llaves con la letra <code>r</code>
 dentro. El marcador de cierre del <em>chunk</em> son de nuevo
 tres tildes graves, sin más. Y dentro del <em>chunk</em> se pueden poner expresiones de <strong>R</strong> de la misma forma en que se trabaja con los scripts. Al convertir (“renderizar”) el documento, el código se ejecutará con las opciones que se indiquen, como se explica más adelante, y el archivo de salida incluirá el resultado de la ejecución del <em>chunk</em>. El siguiente sería un ejemplo de código para incluir gráficos en el informe.</p>
-<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="id_120007-informes.html#cb670-1" tabindex="-1"></a>    <span class="st">```</span><span class="at">{r}</span></span>
-<span id="cb670-2"><a href="id_120007-informes.html#cb670-2" tabindex="-1"></a><span class="at">    library("CDR")</span></span>
-<span id="cb670-3"><a href="id_120007-informes.html#cb670-3" tabindex="-1"></a><span class="at">    library("corrplot")</span></span>
-<span id="cb670-4"><a href="id_120007-informes.html#cb670-4" tabindex="-1"></a><span class="at">    mcor_tic &lt;- cor(TIC2021)  </span></span>
-<span id="cb670-5"><a href="id_120007-informes.html#cb670-5" tabindex="-1"></a><span class="at">    corrplot.mixed(mcor_tic, order = 'AOE')</span></span>
-<span id="cb670-6"><a href="id_120007-informes.html#cb670-6" tabindex="-1"></a><span class="at">     </span><span class="st">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="id_120007-informes.html#cb671-1" tabindex="-1"></a>    <span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb671-2"><a href="id_120007-informes.html#cb671-2" tabindex="-1"></a><span class="at">    library("CDR")</span></span>
+<span id="cb671-3"><a href="id_120007-informes.html#cb671-3" tabindex="-1"></a><span class="at">    library("corrplot")</span></span>
+<span id="cb671-4"><a href="id_120007-informes.html#cb671-4" tabindex="-1"></a><span class="at">    mcor_tic &lt;- cor(TIC2021)</span></span>
+<span id="cb671-5"><a href="id_120007-informes.html#cb671-5" tabindex="-1"></a><span class="at">    corrplot.mixed(mcor_tic, order = 'AOE')</span></span>
+<span id="cb671-6"><a href="id_120007-informes.html#cb671-6" tabindex="-1"></a><span class="at">     </span><span class="st">```</span></span></code></pre></div>
 <p>En todo caso, no hay que escribir los marcadores de inicio y final, ya que
 se dispone del atajo de teclado <code>CTRL+ALT+I</code> que lo hace automáticamente o,
 alternativamente, el icono <em>Insert a new code chunk</em> de la barra de herramientas del
@@ -440,7 +441,7 @@ del mismo modo que se hace en un script (<code>CTRL+ENTER</code>), o el <em>chun
 y no como un bloque. En esos casos se puede insertar un bloque en línea
 poniendo, entre dos tildes graves, la letra <code>r</code> como primer carácter,
 y después una expresión de <strong>R</strong> que se pueda “imprimir” como cadena de texto:</p>
-<div class="sourceCode" id="cb671"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb671-1"><a href="id_120007-informes.html#cb671-1" tabindex="-1"></a><span class="in">`r expresion_de_R `</span>    </span></code></pre></div>
+<div class="sourceCode" id="cb672"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb672-1"><a href="id_120007-informes.html#cb672-1" tabindex="-1"></a><span class="in">`r expresion_de_R `</span></span></code></pre></div>
 <p></p>
 <p>Una opción muy interesante de los informes de <strong>Quarto</strong> es la parametrización.
 Esta opción es muy útil para informes automatizados que pueden
@@ -470,26 +471,26 @@ el informe mostrará por defecto el código de entrada y las salidas
 y como opciones <code>echo: false</code> y <code>fig.align: 'center'</code>, lo que indica que el código
 no se mostrará en el informe final y que el gráfico producido se alineará en el centro
 del texto.</p>
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="id_120007-informes.html#cb673-1" tabindex="-1"></a>    <span class="st">```</span><span class="at">{r}</span></span>
-<span id="cb673-2"><a href="id_120007-informes.html#cb673-2" tabindex="-1"></a><span class="at">    #| label: "Ejemplo"</span></span>
-<span id="cb673-3"><a href="id_120007-informes.html#cb673-3" tabindex="-1"></a><span class="at">    #| echo: false</span></span>
-<span id="cb673-4"><a href="id_120007-informes.html#cb673-4" tabindex="-1"></a><span class="at">    #| fig-align: 'center'</span></span>
-<span id="cb673-5"><a href="id_120007-informes.html#cb673-5" tabindex="-1"></a><span class="at">    plot(cars)</span></span>
-<span id="cb673-6"><a href="id_120007-informes.html#cb673-6" tabindex="-1"></a><span class="at">     </span><span class="st">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="id_120007-informes.html#cb674-1" tabindex="-1"></a>    <span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb674-2"><a href="id_120007-informes.html#cb674-2" tabindex="-1"></a><span class="at">    #| label: "Ejemplo"</span></span>
+<span id="cb674-3"><a href="id_120007-informes.html#cb674-3" tabindex="-1"></a><span class="at">    #| echo: false</span></span>
+<span id="cb674-4"><a href="id_120007-informes.html#cb674-4" tabindex="-1"></a><span class="at">    #| fig-align: 'center'</span></span>
+<span id="cb674-5"><a href="id_120007-informes.html#cb674-5" tabindex="-1"></a><span class="at">    plot(cars)</span></span>
+<span id="cb674-6"><a href="id_120007-informes.html#cb674-6" tabindex="-1"></a><span class="at">     </span><span class="st">```</span></span></code></pre></div>
 <p>Las opciones de <em>chunk</em> se pueden incluir de forma global en el documento estableciéndolas en el encabezado YAML del mismo, por ejemplo para mantener las opciones anteriores en todos los <em>chunks</em> por defecto:</p>
 <pre><code>---
 title: "Mi documento"
 format: html
 knitr:
-  opts_chunk: 
+  opts_chunk:
     echo: false
     fig-align: 'center'
 ---</code></pre>
 <p>Es importante señalar que las opciones establecidas en los <em>chunks</em> tienen prioridad sobre las opciones establecidas en el documento.</p>
 <p>Hay varias opciones de <em>chunk</em> que tienen que ver con la presentación en la salida. Por defecto, si se produce un error, el proceso se detiene y no se genera
 el archivo de destino. Este comportamiento, y otras muchas opciones,
-se pueden configurar como opciones del <em>chunk</em>. Las más habituales son: <code>error: true</code> para mostrar los errores y no detener la generación del documento; <code>warning: false</code> y <code>message: false</code> para no mostrar <em>warnings</em> ni mensajes, respectivamente; <code>include: false</code> para ejecutar el código pero no mostrar ningún tipo de salida; <code>eval: false</code> para no ejecutar el código; <code>results: "hide"</code> para indicar que no se muestren los resultados (otras opciones son <code>asis</code>, <code>hold</code> o <code>markup</code>); <code>comment: simbolo</code> para cambiar el símbolo que se usará como comentario del <em>output</em> (a veces es conveniente simplemente no poner comentario, es decir, <code>" "</code>). Estas opciones del <em>chunk</em> se pueden incluir a nivel global en el encabezado YAML como se ha indicado anteriormente. La lista completa de opciones se encuentra en la <em>R Markdown reference guide</em>
-que está disponible en el menú <em>Help/Cheatsheets</em>, o en la <a href="https://quarto.org/docs/computations/execution-options.html">documentación de Quarto sobre opciones de ejecución</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://quarto.org/docs/computations/execution-options.html" class="uri"&gt;https://quarto.org/docs/computations/execution-options.html&lt;/a&gt;&lt;/p&gt;'><sup>285</sup></a>.</p>
+se pueden configurar como opciones del <em>chunk</em>. Las más habituales son: <code>error: true</code> para mostrar los errores y no detener la generación del documento; <code>warning: false</code> y <code>message: false</code> para no mostrar <em>warnings</em> ni mensajes, respectivamente; <code>include: false</code> para ejecutar el código, pero no mostrar ningún tipo de salida; <code>eval: false</code> para no ejecutar el código; <code>results: "hide"</code> para indicar que no se muestren los resultados (otras opciones son <code>asis</code>, <code>hold</code> o <code>markup</code>); <code>comment: simbolo</code> para cambiar el símbolo que se usará como comentario del <em>output</em> (a veces es conveniente simplemente no poner comentario, es decir, <code>" "</code>). Estas opciones del <em>chunk</em> se pueden incluir a nivel global en el encabezado YAML como se ha indicado anteriormente. La lista completa de opciones se encuentra en la <em>R Markdown reference guide</em>
+que está disponible en el menú <em>Help/Cheatsheets</em>, o en la <a href="https://quarto.org/docs/computations/execution-options.html">documentación de Quarto sobre opciones de ejecución</a>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://quarto.org/docs/computations/execution-options.html" class="uri"&gt;https://quarto.org/docs/computations/execution-options.html&lt;/a&gt;&lt;/p&gt;'><sup>285</sup></a></p>
 <p>La ayuda contextual resulta muy cómoda al escribir las opciones del <em>chunk</em>. Al comenzar a escribir, o pulsando la combinación de teclas <code>CTRL+ESPACIO</code>, se
 muestran las opciones disponibles, y al seleccionar una opción, si tiene
 varios posibles valores, aparecen también para seleccionar uno de ellos.</p>
@@ -501,131 +502,83 @@ varios posibles valores, aparecen también para seleccionar uno de ellos.</p>
 <p></p>
 <p>La salida tabular por defecto de la consola normalmente no es adecuada para un informe. En su lugar, lo que se desea es tener una tabla formateada adecuadamente para el formato de salida. En los informes de <strong>Quarto</strong> se pueden incluir tablas formateadas de calidad. Para ello, se debe utilizar alguna función que formatee la tabla de acuerdo al formato de salida (HTML, PDF, Word) y, a veces, configurar la opción <code>results</code> del <em>chunk</em> como <code>'asis'</code>. Muchas de estas funciones preparan automáticamente el formato según el fichero de salida que se está generando.
 Por ejemplo, el siguiente <em>chunk</em> generaría una tabla en cualquiera de los formatos de salida usando la función <code>kable</code> del paquete <code>knitr</code>:</p>
-<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="id_120007-informes.html#cb675-1" tabindex="-1"></a>    <span class="st">```</span><span class="at">{r}</span></span>
-<span id="cb675-2"><a href="id_120007-informes.html#cb675-2" tabindex="-1"></a><span class="at">     knitr::kable(TIC2021)</span></span>
-<span id="cb675-3"><a href="id_120007-informes.html#cb675-3" tabindex="-1"></a><span class="at">     </span><span class="st">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="id_120007-informes.html#cb676-1" tabindex="-1"></a>    <span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb676-2"><a href="id_120007-informes.html#cb676-2" tabindex="-1"></a><span class="at">     knitr::kable(TIC2021)</span></span>
+<span id="cb676-3"><a href="id_120007-informes.html#cb676-3" tabindex="-1"></a><span class="at">     </span><span class="st">```</span></span></code></pre></div>
 <p>Hay otros paquetes con multitud de opciones de formato y presentación para las tablas, como <code>xtable</code>, <code>flextable</code>, <code>kableExtra</code>, <code>DT</code> y <code>gt</code>. Se anima al lector a consultar la documentación de estos paquetes para aprender a crear tablas de calidad que comuniquen adecuadamente los resultados de los análisis.</p>
 <p></p>
 <p>Tanto las tablas como las figuras se deben referenciar adecuadamente en los informes. Para ello se utilizan las <strong>referencias cruzadas</strong> de los informes <strong>Quarto</strong>. Para poder referenciar un gráfico creado en un <em>chunk</em>, es necesario: <span class="math inline">\((i)\)</span> que el <em>chunk</em> tenga una etiqueta (<code>label: 'etiqueta'</code>) y <span class="math inline">\((ii)\)</span> que el <em>chunk</em> tenga una opción <code>fig-cap</code> para el título de la figura. Entonces el gráfico se puede referenciar en cualquier lugar del documento <strong>Quarto</strong> simplemente escribiendo <code>@etiqueta</code>. Por ejemplo, el siguiente <em>chunk</em> genera el gráfico de la Fig. <a href="id_120007-informes.html#fig:ch-120007-ref-fig">44.3</a>, y en el texto se referenciaría como “<code>Figura @fig-tic</code>”.</p>
-<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="id_120007-informes.html#cb676-1" tabindex="-1"></a>    <span class="st">```</span><span class="at">{r}</span></span>
-<span id="cb676-2"><a href="id_120007-informes.html#cb676-2" tabindex="-1"></a><span class="at">    #| label: "fig-tic"</span></span>
-<span id="cb676-3"><a href="id_120007-informes.html#cb676-3" tabindex="-1"></a><span class="at">    #| fig-cap: "Ventas $vs.$ porcentaje de empresas con banda ancha."</span></span>
-<span id="cb676-4"><a href="id_120007-informes.html#cb676-4" tabindex="-1"></a><span class="at">    library("ggplot2")</span></span>
-<span id="cb676-5"><a href="id_120007-informes.html#cb676-5" tabindex="-1"></a><span class="at">    library("CDR")</span></span>
-<span id="cb676-6"><a href="id_120007-informes.html#cb676-6" tabindex="-1"></a><span class="at">    TIC2021 |&gt; </span></span>
-<span id="cb676-7"><a href="id_120007-informes.html#cb676-7" tabindex="-1"></a><span class="at">      ggplot(aes(ebroad, esales)) +</span></span>
-<span id="cb676-8"><a href="id_120007-informes.html#cb676-8" tabindex="-1"></a><span class="at">      geom_point() +</span></span>
-<span id="cb676-9"><a href="id_120007-informes.html#cb676-9" tabindex="-1"></a><span class="at">      geom_smooth(method = "lm")</span></span>
-<span id="cb676-10"><a href="id_120007-informes.html#cb676-10" tabindex="-1"></a><span class="at">     </span><span class="st">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="id_120007-informes.html#cb677-1" tabindex="-1"></a>    <span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb677-2"><a href="id_120007-informes.html#cb677-2" tabindex="-1"></a><span class="at">    #| label: "fig-tic"</span></span>
+<span id="cb677-3"><a href="id_120007-informes.html#cb677-3" tabindex="-1"></a><span class="at">    #| fig-cap: "Ventas $vs.$ porcentaje de empresas con banda ancha."</span></span>
+<span id="cb677-4"><a href="id_120007-informes.html#cb677-4" tabindex="-1"></a><span class="at">    library("ggplot2")</span></span>
+<span id="cb677-5"><a href="id_120007-informes.html#cb677-5" tabindex="-1"></a><span class="at">    library("CDR")</span></span>
+<span id="cb677-6"><a href="id_120007-informes.html#cb677-6" tabindex="-1"></a><span class="at">    TIC2021 |&gt;</span></span>
+<span id="cb677-7"><a href="id_120007-informes.html#cb677-7" tabindex="-1"></a><span class="at">      ggplot(aes(ebroad, esales)) +</span></span>
+<span id="cb677-8"><a href="id_120007-informes.html#cb677-8" tabindex="-1"></a><span class="at">      geom_point() +</span></span>
+<span id="cb677-9"><a href="id_120007-informes.html#cb677-9" tabindex="-1"></a><span class="at">      geom_smooth(method = "lm")</span></span>
+<span id="cb677-10"><a href="id_120007-informes.html#cb677-10" tabindex="-1"></a><span class="at">     </span><span class="st">```</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ch-120007-ref-fig"></span>
-<img src="120007_Infor_quarto_files/figure-html/ch-120007-ref-fig-1.png" alt="Ventas vs. \% de empresas con banda ancha." width="55%"><p class="caption">
-Figura 44.3: Ventas vs. % de empresas con banda ancha.
+<img src="120007_Infor_quarto_files/figure-html/ch-120007-ref-fig-1.png" alt="Ventas $vs.$ \% de empresas con banda ancha." width="55%"><p class="caption">
+Figura 44.3: Ventas <span class="math inline">\(vs.\)</span> % de empresas con banda ancha.
 </p>
 </div>
-<p>En cuanto a las tablas, también el <em>chunk</em> que las crea debe tener una etiqueta. El título de la tabla en este caso lo proporciona la propia función que la crea. A modo de ejemplo, el siguiente <em>chunk</em> crea la Tabla <a href="id_120007-informes.html#tab:ch-120007-ref-tab">44.1</a> ya formateada con la función <code>flextable()</code> del paquete homónimo <span class="citation">(<a href="referncias.html#ref-R-flextable">Gohel and Skintzos 2022</a>)</span>, y en el texto se referenciaría como “<code>Tabla @tab-tic</code>”.</p>
-<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="id_120007-informes.html#cb677-1" tabindex="-1"></a>    <span class="st">```</span><span class="at">{r}</span></span>
-<span id="cb677-2"><a href="id_120007-informes.html#cb677-2" tabindex="-1"></a><span class="at">    #| label: "tab-tic"</span></span>
-<span id="cb677-3"><a href="id_120007-informes.html#cb677-3" tabindex="-1"></a><span class="at">    #| fig-cap: "Contaminación media NOx según tipo de estación"</span></span>
-<span id="cb677-4"><a href="id_120007-informes.html#cb677-4" tabindex="-1"></a><span class="at">    library(dplyr)</span></span>
-<span id="cb677-5"><a href="id_120007-informes.html#cb677-5" tabindex="-1"></a><span class="at">    library(flextable)</span></span>
-<span id="cb677-6"><a href="id_120007-informes.html#cb677-6" tabindex="-1"></a><span class="at">    contam_mad |&gt;</span></span>
-<span id="cb677-7"><a href="id_120007-informes.html#cb677-7" tabindex="-1"></a><span class="at">      filter(nom_abv == "NOx") |&gt;</span></span>
-<span id="cb677-8"><a href="id_120007-informes.html#cb677-8" tabindex="-1"></a><span class="at">      group_by(tipo) |&gt; </span></span>
-<span id="cb677-9"><a href="id_120007-informes.html#cb677-9" tabindex="-1"></a><span class="at">      summarise(Media = mean(daily_mean, na.rm = TRUE), n = n(), </span></span>
-<span id="cb677-10"><a href="id_120007-informes.html#cb677-10" tabindex="-1"></a><span class="at">                Desv.Tip = sd(daily_mean, na.rm = TRUE),</span></span>
-<span id="cb677-11"><a href="id_120007-informes.html#cb677-11" tabindex="-1"></a><span class="at">                Perdidos = sum(is.na(daily_mean))) |&gt; </span></span>
-<span id="cb677-12"><a href="id_120007-informes.html#cb677-12" tabindex="-1"></a><span class="at">      flextable() |&gt; </span></span>
-<span id="cb677-13"><a href="id_120007-informes.html#cb677-13" tabindex="-1"></a><span class="at">      set_caption("Contaminación media NOx según tipo de estación") |&gt; </span></span>
-<span id="cb677-14"><a href="id_120007-informes.html#cb677-14" tabindex="-1"></a><span class="at">      autofit()</span></span>
-<span id="cb677-15"><a href="id_120007-informes.html#cb677-15" tabindex="-1"></a><span class="at">     </span><span class="st">```</span></span></code></pre></div>
-<template id="e7cc31a4-19e3-4020-9f83-7b8482d95f16"><style>
-.tabwid table{
-  border-spacing:0px !important;
-  border-collapse:collapse;
-  line-height:1;
-  margin-left:auto;
-  margin-right:auto;
-  border-width: 0;
-  display: table;
-  border-color: transparent;
-  caption-side: top;
-}
-.tabwid-caption-bottom table{
-  caption-side: bottom;
-}
-.tabwid_left table{
-  margin-left:0;
-}
-.tabwid_right table{
-  margin-right:0;
-}
-.tabwid td {
-    padding: 0;
-}
-.tabwid a {
-  text-decoration: none;
-}
-.tabwid thead {
-    background-color: transparent;
-}
-.tabwid tfoot {
-    background-color: transparent;
-}
-.tabwid table tr {
-background-color: transparent;
-}
-.katex-display {
-    margin: 0 0 !important;
-}
-</style>
+<p>En cuanto a las tablas, también el <em>chunk</em> que las crea debe tener una etiqueta. El título de la tabla en este caso lo proporciona la propia función que la crea. A modo de ejemplo, el siguiente <em>chunk</em> crea la Tabla <a href="id_120007-informes.html#tab:ch-120007-ref-tab">44.1</a> ya formateada con la función <code>flextable()</code> del paquete homónimo <span class="citation">(<a href="referencias.html#ref-R-flextable">Gohel and Skintzos 2022</a>)</span>, y en el texto se referenciaría como “<code>Tabla @tab-tic</code>”.</p>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="id_120007-informes.html#cb678-1" tabindex="-1"></a>    <span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb678-2"><a href="id_120007-informes.html#cb678-2" tabindex="-1"></a><span class="at">    #| label: "tab-tic"</span></span>
+<span id="cb678-3"><a href="id_120007-informes.html#cb678-3" tabindex="-1"></a><span class="at">    #| fig-cap: "Contaminación media NOx según tipo de estación"</span></span>
+<span id="cb678-4"><a href="id_120007-informes.html#cb678-4" tabindex="-1"></a><span class="at">    library(dplyr)</span></span>
+<span id="cb678-5"><a href="id_120007-informes.html#cb678-5" tabindex="-1"></a><span class="at">    library(flextable)</span></span>
+<span id="cb678-6"><a href="id_120007-informes.html#cb678-6" tabindex="-1"></a><span class="at">    contam_mad |&gt;</span></span>
+<span id="cb678-7"><a href="id_120007-informes.html#cb678-7" tabindex="-1"></a><span class="at">      filter(nom_abv == "NOx") |&gt;</span></span>
+<span id="cb678-8"><a href="id_120007-informes.html#cb678-8" tabindex="-1"></a><span class="at">      group_by(tipo) |&gt;</span></span>
+<span id="cb678-9"><a href="id_120007-informes.html#cb678-9" tabindex="-1"></a><span class="at">      summarise(Media = mean(daily_mean, na.rm = TRUE), n = n(),</span></span>
+<span id="cb678-10"><a href="id_120007-informes.html#cb678-10" tabindex="-1"></a><span class="at">                Desv.Tip = sd(daily_mean, na.rm = TRUE),</span></span>
+<span id="cb678-11"><a href="id_120007-informes.html#cb678-11" tabindex="-1"></a><span class="at">                Perdidos = sum(is.na(daily_mean))) |&gt;</span></span>
+<span id="cb678-12"><a href="id_120007-informes.html#cb678-12" tabindex="-1"></a><span class="at">      flextable() |&gt;</span></span>
+<span id="cb678-13"><a href="id_120007-informes.html#cb678-13" tabindex="-1"></a><span class="at">      set_caption("Contaminación media NOx según tipo de estación") |&gt;</span></span>
+<span id="cb678-14"><a href="id_120007-informes.html#cb678-14" tabindex="-1"></a><span class="at">      autofit()</span></span>
+<span id="cb678-15"><a href="id_120007-informes.html#cb678-15" tabindex="-1"></a><span class="at">     </span><span class="st">```</span></span></code></pre></div>
 <div class="tabwid">
-<style>.cl-ae8d564a{}.cl-ae8498fc{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ae87eb60{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ae87eb61{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ae880208{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880209{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880212{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880213{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88021c{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88021d{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88021e{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88021f{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880220{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880226{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880227{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae880230{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae809fea{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}</style>
-<div class="inline-table"><table class="cl-ae8d564a">
-<caption>
-<span id="tab:ch-120007-ref-tab">Tabla 44.1: </span><span class="cl-ae809fea">Contaminación media NOx según tipo de estación</span>
+<style>.cl-f02b9f1a{}.cl-f01f26ae{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f0242550{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f0242564{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f0244bde{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0244be8{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0244bf2{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0244bf3{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0244bfc{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0244c06{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0244c07{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0244c08{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0244c10{width:1.109in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0244c11{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0244c12{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0244c1a{width:0.888in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-f02b9f1a">
+<caption style="display:table-caption;margin:0pt;text-align:center;border-bottom: 0.00pt solid transparent;border-top: 0.00pt solid transparent;border-left: 0.00pt solid transparent;border-right: 0.00pt solid transparent;padding-top:3pt;padding-bottom:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;">
+<span id="tab:ch-120007-ref-tab">Tabla 44.1: </span><span>Contaminación media de NOx según el tipo de estación</span>
 </caption>
 
 <thead><tr style="overflow-wrap:break-word;">
-<td class="cl-ae880208"><p class="cl-ae87eb60"><span class="cl-ae8498fc">tipo</span></p></td>
-<td class="cl-ae880209"><p class="cl-ae87eb61"><span class="cl-ae8498fc">Media</span></p></td>
-<td class="cl-ae880212"><p class="cl-ae87eb61"><span class="cl-ae8498fc">n</span></p></td>
-<td class="cl-ae880209"><p class="cl-ae87eb61"><span class="cl-ae8498fc">Desv.Tip</span></p></td>
-<td class="cl-ae880213"><p class="cl-ae87eb61"><span class="cl-ae8498fc">Perdidos</span></p></td>
+<th class="cl-f0244bde"><p class="cl-f0242550"><span class="cl-f01f26ae">tipo</span></p></th>
+<th class="cl-f0244be8"><p class="cl-f0242564"><span class="cl-f01f26ae">Media</span></p></th>
+<th class="cl-f0244bf2"><p class="cl-f0242564"><span class="cl-f01f26ae">n</span></p></th>
+<th class="cl-f0244be8"><p class="cl-f0242564"><span class="cl-f01f26ae">Desv.Tip</span></p></th>
+<th class="cl-f0244bf3"><p class="cl-f0242564"><span class="cl-f01f26ae">Perdidos</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-ae88021c"><p class="cl-ae87eb60"><span class="cl-ae8498fc">Fondo</span></p></td>
-<td class="cl-ae88021d"><p class="cl-ae87eb61"><span class="cl-ae8498fc">64.11108</span></p></td>
-<td class="cl-ae88021e"><p class="cl-ae87eb61"><span class="cl-ae8498fc">49,656</span></p></td>
-<td class="cl-ae88021d"><p class="cl-ae87eb61"><span class="cl-ae8498fc">61.48603</span></p></td>
-<td class="cl-ae88021f"><p class="cl-ae87eb61"><span class="cl-ae8498fc">70</span></p></td>
+<td class="cl-f0244bfc"><p class="cl-f0242550"><span class="cl-f01f26ae">Fondo</span></p></td>
+<td class="cl-f0244c06"><p class="cl-f0242564"><span class="cl-f01f26ae">64.11108</span></p></td>
+<td class="cl-f0244c07"><p class="cl-f0242564"><span class="cl-f01f26ae">49,656</span></p></td>
+<td class="cl-f0244c06"><p class="cl-f0242564"><span class="cl-f01f26ae">61.48603</span></p></td>
+<td class="cl-f0244c08"><p class="cl-f0242564"><span class="cl-f01f26ae">70</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-ae88021c"><p class="cl-ae87eb60"><span class="cl-ae8498fc">Suburbanas</span></p></td>
-<td class="cl-ae88021d"><p class="cl-ae87eb61"><span class="cl-ae8498fc">32.87574</span></p></td>
-<td class="cl-ae88021e"><p class="cl-ae87eb61"><span class="cl-ae8498fc">12,414</span></p></td>
-<td class="cl-ae88021d"><p class="cl-ae87eb61"><span class="cl-ae8498fc">32.13426</span></p></td>
-<td class="cl-ae88021f"><p class="cl-ae87eb61"><span class="cl-ae8498fc">39</span></p></td>
+<td class="cl-f0244bfc"><p class="cl-f0242550"><span class="cl-f01f26ae">Suburbanas</span></p></td>
+<td class="cl-f0244c06"><p class="cl-f0242564"><span class="cl-f01f26ae">32.87574</span></p></td>
+<td class="cl-f0244c07"><p class="cl-f0242564"><span class="cl-f01f26ae">12,414</span></p></td>
+<td class="cl-f0244c06"><p class="cl-f0242564"><span class="cl-f01f26ae">32.13426</span></p></td>
+<td class="cl-f0244c08"><p class="cl-f0242564"><span class="cl-f01f26ae">39</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-ae880220"><p class="cl-ae87eb60"><span class="cl-ae8498fc">Tráfico</span></p></td>
-<td class="cl-ae880226"><p class="cl-ae87eb61"><span class="cl-ae8498fc">81.27392</span></p></td>
-<td class="cl-ae880227"><p class="cl-ae87eb61"><span class="cl-ae8498fc">33,104</span></p></td>
-<td class="cl-ae880226"><p class="cl-ae87eb61"><span class="cl-ae8498fc">68.13974</span></p></td>
-<td class="cl-ae880230"><p class="cl-ae87eb61"><span class="cl-ae8498fc">83</span></p></td>
+<td class="cl-f0244c10"><p class="cl-f0242550"><span class="cl-f01f26ae">Tráfico</span></p></td>
+<td class="cl-f0244c11"><p class="cl-f0242564"><span class="cl-f01f26ae">81.27392</span></p></td>
+<td class="cl-f0244c12"><p class="cl-f0242564"><span class="cl-f01f26ae">33,104</span></p></td>
+<td class="cl-f0244c11"><p class="cl-f0242564"><span class="cl-f01f26ae">68.13974</span></p></td>
+<td class="cl-f0244c1a"><p class="cl-f0242564"><span class="cl-f01f26ae">83</span></p></td>
 </tr>
 </tbody>
 </table></div>
-</div></template><div class="flextable-shadow-host" id="4f502a85-ef4a-42a9-b158-66439f31d620"></div>
-<script>
-var dest = document.getElementById("4f502a85-ef4a-42a9-b158-66439f31d620");
-var template = document.getElementById("e7cc31a4-19e3-4020-9f83-7b8482d95f16");
-var caption = template.content.querySelector("caption");
-var fantome = dest.attachShadow({mode: 'open'});
-var templateContent = template.content;
-fantome.appendChild(templateContent);
-</script>
+</div>
 </div>
 </div>
 <div id="otros-formatos" class="section level2" number="44.3">
@@ -643,7 +596,7 @@ distintos, así como las opciones disponibles, aunque la filosofía es la misma.
 generar cualquiera de los otros formatos y además otros como .docx).</p>
 <p>En cuanto a los formatos de salida, hay una cantidad de opciones muy interesante
 que queda fuera de los objetivos de este libro. A continuación se relacionan
-algunos de ellos, si bien se puede consultar el libro de <span class="citation">Xie, Allaire, and Grolemund (<a href="referncias.html#ref-xie2019r">2019</a>)</span> y la documentación de <strong>Quarto</strong> para obtener más información.</p>
+algunos de ellos, si bien se puede consultar el libro de <span class="citation">Xie, Allaire, and Grolemund (<a href="referencias.html#ref-xie2019r">2019</a>)</span> y la documentación de <strong>Quarto</strong> para obtener más información.</p>
 <ul>
 <li><p><strong>Notebooks</strong>: es un tipo especial de salida HTML, más indicado cuando
 se quieren ir probando cosas guardando el resultado parcial de lo ejecutado en el html.</p></li>
@@ -654,7 +607,7 @@ presentaciones son Reveal JS y beamer (LaTeX) y con <strong>Quarto</strong>, ade
 <li><p><strong>Tableros</strong> (<em>dashboards</em>): pueden ser estáticos, usando el paquete <code>flexdashboard</code>,
 útiles para comunicar resultados en un par de pantallazos. </p></li>
 <li><p><strong>Shiny</strong>: aplicaciones web interactivas que responden a <em>inputs</em> del usuario (<em>reactive</em>). Estas aplicaciones se tratan en detalle en el Cap. <a href="shiny.html#shiny">45</a>. </p></li>
-<li><p><strong>Websites</strong>: websites sencillos con páginas enlazadas en el mismo directorio.</p></li>
+<li><p><strong><em>Websites</em></strong>: <em>websites</em> sencillos con páginas enlazadas en el mismo directorio.</p></li>
 <li><p><strong>Blog</strong>: directamente como proyecto <strong>Quarto</strong>, o con el paquete <code>blogdown</code>, se pueden generar sitios web completos al estilo de un blog con páginas.</p></li>
 <li><p><strong>Libros</strong>: directamente como proyecto <strong>Quarto</strong>, o con el paquete <code>bookdown</code>, se pueden crear libros en varios formatos. El material de este libro está creado con <code>bookdown</code>.</p></li>
 <li><p><strong>Tutoriales</strong>: aparecieron en <strong>RStudio</strong> 1.3; se pueden crear documentos interactivos con preguntas y navegación usando sintaxis <strong>R Markdown</strong>.</p></li>
@@ -724,7 +677,7 @@ la forma en que se ejecutará y mostrará en el informe.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. Generado por última vez el día 2023-11-13.</p>
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
