@@ -58,4 +58,3 @@ Los 50 autores, por orden alfabético, que han participado en el libro se listan
 [**Copyright** ©2024](). Derechos exclusivos de McGraw Hill para manufactura y exportación. Este libro no puede ser re-exportado desde el país al que sea vendido por McGraw-Hill. 
 Reservados todos los derechos. No está permitida la reproducción total o parcial de este libro, ni su tratamiento informático, ni la transmisión de ninguna forma o por cualquier medio, 
 ya sea electrónico, mecánico, por fotocopia, por registro u otros métodos, sin el permiso previo y por escrito de McGraw Hill. 
->>>>>>> 6f6c509490c768aa28450761084fc47225143dde
