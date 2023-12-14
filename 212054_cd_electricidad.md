@@ -217,7 +217,7 @@ tail(df, 3)
 #> 20 2019 1.0000000  20.166 1.0000000 1.0000000       20.16409
 ```
 
-Estos son los datos que se entregarían como resultado de la petición de información (convertidos a MWh aplicando el coeficiente que se mencionó en la Sec. \ref{ree-datos}).
+Estos son los datos que se entregarían como resultado de la petición de información (convertidos a MWh aplicando el coeficiente que se mencionó en la Sec. \@ref(ree-datos)).
 
 Claro está, en el momento en que se entregan las predicciones para 2018 y 2019 todavía no se sabe cuál es su precisión, pero a principios de 2020 ya es posible calcular la bondad del modelo seleccionado, y es lo que se hace en las siguientes *chunks*:
 

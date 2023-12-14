@@ -7,7 +7,7 @@
 <title>Capítulo 30 Análisis clúster: clusterización jerárquica | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="José-María Montero\(^{a}\) y Gema Fernández-Avilés\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  30.1 Introducción El origen de la actividad agrupatoria, hoy en día conocida como análisis...">
-<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="Capítulo 30 Análisis clúster: clusterización jerárquica | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
 <script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
@@ -56,10 +56,10 @@
 <li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
 <li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
 <li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
-<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
 <li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
-<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
 <li class="book-part">Fundamentos de estadística</li>
 <li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
@@ -100,7 +100,7 @@
 <li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
 <li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
 <li class="book-part">Comunica y colabora</li>
-<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
 <li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
 <li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
 <li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
@@ -262,7 +262,7 @@ d_{e}({\bf x}_r;{\bf{x}}_{s})=\sqrt{\sum_{j=1}^{p}\left(  x_{jr}-x_{js}\right)  
 </li>
 </ul>
 <p>Ignora las unidades de medida de las variables y, en consecuencia, aunque es invariante a los cambios de origen, no lo es a los cambios de escala. También ignora las relaciones entre ellas. Resulta de utilidad con variables cuantitativas incorrelacionadas y medidas en las mismas unidades. El cuadrado de la distancia euclídea también suele utilizarse como distancia. Para el conjunto de datos <code>TIC2021</code>, la distancia euclídea se obtiene ejecutando el siguiente código:</p>
-<div class="sourceCode" id="cb433"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"TIC2021"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.sthda.com/english/rpkgs/factoextra">"factoextra"</a></span><span class="op">)</span></span>
@@ -276,7 +276,7 @@ d_{e}({\bf x}_r;{\bf{x}}_{s})=\sqrt{\sum_{j=1}^{p}\left(  x_{jr}-x_{js}\right)  
 <span><span class="co">#&gt; CZ 2.417212 4.616177 0.000000 3.765714 1.366011</span></span>
 <span><span class="co">#&gt; DK 1.870962 7.988106 3.765714 0.000000 3.607589</span></span>
 <span><span class="co">#&gt; DE 2.304686 4.871235 1.366011 3.607589 0.000000</span></span></code></pre></div>
-<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/dist.html">fviz_dist</a></span><span class="op">(</span>dist.obj <span class="op">=</span> <span class="va">d_euclidea</span>, lab_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plot-dist-euclidea"></span>
@@ -537,7 +537,7 @@ En realidad no es una distancia, sino un indicador de similitud. Por tanto, valo
 </ul>
 <p>Surge como una solución a la constricción o dilatación del espacio que provocan los dos métodos anteriores (por eso se dice que es espacio-conservativo y es muy utilizado), utilizando “la distancia promedio”, es decir, la distancia entre un elemento y un conglomerado es la media aritmética de las distancias de dicho elemento a cada uno de los elementos del conglomerado. En caso de dos conglomerados, la distancia entre ellos viene dada por el promedio aritmético de las distancias, dos a dos, tomándose un elemento de cada conglomerado. Igual que los dos métodos precedentes, es invariante a transformaciones monótonas de la distancia utilizada.</p>
 <p>En la Fig. <a href="cap-cluster.html#fig:cluster-compara">30.3</a> se puede ver la constricción, dilatación y conservación del espacio que producen los métodos del vecino más cercano, más lejano y de la distancia media, respectivamente. En este caso se utiliza como representación gráfica el dendrograma (diagrama de árbol). En figuras posteriores se utilizarán otras alternativas al dendrograma, con el objetivo de mostrar las más populares. </p>
-<div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hc_simple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/hcut.html">hcut</a></span><span class="op">(</span><span class="va">tic</span>, k <span class="op">=</span> <span class="fl">3</span>, hc_method <span class="op">=</span> <span class="st">"single"</span><span class="op">)</span></span>
 <span><span class="va">hc_completo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/hcut.html">hcut</a></span><span class="op">(</span><span class="va">tic</span>, k <span class="op">=</span> <span class="fl">3</span>, hc_method <span class="op">=</span> <span class="st">"complete"</span><span class="op">)</span></span>
 <span><span class="va">hc_promedio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/hcut.html">hcut</a></span><span class="op">(</span><span class="va">tic</span>, k <span class="op">=</span> <span class="fl">3</span>, hc_method <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span>
@@ -565,7 +565,7 @@ Figura 30.3: Clusterización jerárquica con distancias euclídeas (dendrograma)
 </ul>
 <p> Viene a superar la limitación del método del centroide. Para ello, la estrategia natural es suponer que los grupos son de igual tamaño. Dicha estrategia se plasma en suponer que la distancia entre un elemento (o un conglomerado, <span class="math inline">\(h\)</span>) y el conglomerado formado por la agrupación de los conglomerados <span class="math inline">\(r\)</span> y <span class="math inline">\(s\)</span> viene dada por la mediana del triángulo formado por sus centroides (de ahí su nombre). Se trata de un método espacio-conservativo, pero, igual que el método del centroide, no es invariante a transformaciones monótonas de la distancia utilizada.</p>
 <p>La Fig. <a href="cap-cluster.html#fig:cluster-compara2">30.4</a>, un tanglegrama o diagrama de laberinto, muestra las agrupaciones producidas por los métodos del centroide y la mediana. En ella se puede observar como el método de la mediana corrige la limitación del método del centroide. </p>
-<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://talgalili.github.io/dendextend/">"dendextend"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://svn.r-project.org/R-packages/trunk/cluster/">"cluster"</a></span><span class="op">)</span></span>
 <span><span class="va">hc_cent_dend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">d_euclidea</span>, method <span class="op">=</span> <span class="st">"centroid"</span><span class="op">)</span><span class="op">)</span></span>
@@ -588,7 +588,7 @@ W=\sum_g\sum_{i \in g} (x_{gi}- \bar{x}_g)^{\prime} (x_{gi}- \bar{x}_g),
 <p>Procediendo de esta manera, los grupos formados no distorsionan los datos originales.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Específicamente, la propuesta de Ward es que la pérdida de información que se produce al integrar los distintos individuos en clústeres sea la mínima posible.&lt;/p&gt;"><sup>208</sup></a> </p>
 <p>Es muy utilizado en la práctica, dado que tiene casi todas las ventajas del método de la media y suele ser más discriminatorio en la determinación de los niveles de agrupación. También suele crear conglomerados muy compactos de tamaño similar. Dado que el menor incremento de <span class="math inline">\(W\)</span> es proporcional a la distancia euclídea al cuadrado entre los centroides de los grupos fusionados, <span class="math inline">\(W\)</span> no es decreciente, solventándose, por tanto, los problemas de los otros métodos basados en centroides.</p>
 <p>La Fig. <a href="cap-cluster.html#fig:plot-igraph">30.5</a> muestra el filograma, diagrama filético en forma de árbol filogenético, generado por la librería <code>igraph</code> con el método de agrupación de Ward. </p>
-<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r.igraph.org/">"igraph"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5665</span><span class="op">)</span></span>
 <span><span class="va">hc_ward</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/hcut.html">hcut</a></span><span class="op">(</span><span class="va">tic</span>, k <span class="op">=</span> <span class="fl">3</span>, hc_method <span class="op">=</span> <span class="st">"ward.D2"</span><span class="op">)</span></span>
@@ -832,7 +832,7 @@ d_{(g_{1};g_{2})}-d_{(g_{2};g_{2})}\right\vert,\]</span> donde <span class="math
 </table></div>
 <p>El algoritmo <em>DIvisive ANAlysis</em> (DIANA) permite llevar a cabo la partición anterior utilizando el diámetro de los clústeres para decidir el orden de partición de los clústeres cuando se tienen varios con más de un elemento, véase Cap. 6 de <span class="citation">Kaufman and Rousseeuw (<a href="referencias.html#ref-kauf_1990">1990</a>)</span>. Proporciona <span class="math inline">\((i\)</span>) el coeficiente divisivo (véase <code><a href="https://rdrr.io/pkg/cluster/man/diana.html">?diana.object</a></code>), que mide la cantidad de estructura de agrupamiento encontrada; y <span class="math inline">\((ii\)</span>) la pancarta, una novedosa presentación gráfica (véase <code><a href="https://rdrr.io/pkg/cluster/man/plot.diana.html">?plot.diana</a></code> para los detalles de la función). </p>
 <p>Para el ejemplo de los datos <code>TIC2021</code>, DIANA proporciona el coeficiente divisivo (valores cercanos a 1 sugieren una estructura de agrupación fuerte), y el dendrograma, en este caso circular, representado en la Fig. <a href="cap-cluster.html#fig:diana">30.6</a>.</p>
-<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hc_diana</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cluster/man/diana.html">diana</a></span><span class="op">(</span><span class="va">tic</span>, metric <span class="op">=</span> <span class="st">"euclidea"</span><span class="op">)</span></span>
 <span><span class="va">hc_diana</span><span class="op">$</span><span class="va">dc</span></span>
 <span><span class="co">#&gt; [1] 0.8043393</span></span>
@@ -930,7 +930,7 @@ Específicamente, el AID realiza divisiones secuenciales dicotómicas de la vari
 <p>Dado que las técnicas jerárquicas imponen una estructura sobre los datos y pueden producir distorsiones significativas en las relaciones entre los datos originales, una vez realizada la jerarquización de los elementos objeto de clusterización, surge la siguiente pregunta: ¿en qué medida la estructura final obtenida representa las similitudes o diferencias entre dichos objetos? En otros términos, ¿en qué medida el dendrograma (la representación gráfica que sea) representa la matriz de distancias o similitudes original?</p>
 <p>El coeficiente de correlación lineal cofenético da respuesta a dichas preguntas. Se define como el coeficiente de correlación lineal entre los <span class="math inline">\(n(n-1)\)</span> elementos del triángulo superior de la matriz de distancias o similitudes y sus homónimos en la matriz cofenética, <span class="math inline">\(\bf C\)</span>, cuyos elementos <span class="math inline">\(\{c_{rs}\}\)</span> son las distancias o similitudes entre los elementos <span class="math inline">\(r\)</span> y <span class="math inline">\(s\)</span> tras la aplicación de la técnica de jerarquización. Obviamente, se utilizará la técnica jerárquica que origine el mayor coeficiente.</p>
 <p>En el ejemplo TIC, el mayor coeficiente cofenético corresponde al método del promedio o del centroide, si bien el de las otras técnicas de agregación es bastante parecido.</p>
-<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># comparación con la distancia euclidea: d_euclidea</span></span>
 <span><span class="va">cof_simp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">hc_simple</span><span class="op">)</span></span>
 <span><span class="va">cof_comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cophenetic.html">cophenetic</a></span><span class="op">(</span><span class="va">hc_completo</span><span class="op">)</span></span>
@@ -972,7 +972,7 @@ Específicamente, el AID realiza divisiones secuenciales dicotómicas de la vari
 <li><p>El <strong>criterio del</strong> <strong><em>gap</em></strong> <strong>(brecha)</strong>, similar al método del codo, tiene como finalidad encontrar la mayor diferencia o distancia entre los diferentes grupos de elementos que se van formando en el proceso de clusterización y que se representan normalmente en un dendrograma. Se computan las distancias de cada uno de los enlaces que forman el dendrograma y se observa cuál es la mayor de ellas. El máximo del gráfico de estas diferencias <em>vs.</em> el número de clústeres indica el número óptimo de clústeres (véase Fig. <a href="cap-cluster.html#fig:plot-kresults-hc">30.7</a>).</p></li>
 </ul>
 <p></p>
-<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_nbclust.html">fviz_nbclust</a></span><span class="op">(</span><span class="va">tic</span>,</span>
 <span>  FUN <span class="op">=</span> <span class="va">hcut</span>, method <span class="op">=</span> <span class="st">"wss"</span>,</span>
 <span>  k.max <span class="op">=</span> <span class="fl">10</span></span>
@@ -1001,7 +1001,7 @@ Figura 30.7: Métodos heurísticos para la determinación del número óptimo de
 </ul>
 <p>
 </p>
-<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"clValid"</span><span class="op">)</span></span>
 <span><span class="va">cut2_hc_prom</span> <span class="op">&lt;-</span> <span class="fu">cutree</span><span class="op">(</span><span class="va">hc_promedio</span>, k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">cut3_hc_prom</span> <span class="op">&lt;-</span> <span class="fu">cutree</span><span class="op">(</span><span class="va">hc_promedio</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>

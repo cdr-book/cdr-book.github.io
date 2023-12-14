@@ -7,7 +7,7 @@
 <title>Capítulo 34 Escalamiento multidimensional | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="José Luis Alfaro Navarro\(^{a}\) y Manuel Vargas Vargas\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  34.1 Introducción El escalado multidimensional (EMD) fue propuesto por primera vez a la...">
-<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="Capítulo 34 Escalamiento multidimensional | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
 <script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
@@ -56,10 +56,10 @@
 <li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
 <li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
 <li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
-<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
 <li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
-<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
 <li class="book-part">Fundamentos de estadística</li>
 <li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
@@ -100,7 +100,7 @@
 <li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
 <li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
 <li class="book-part">Comunica y colabora</li>
-<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
 <li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
 <li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
 <li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
@@ -266,7 +266,7 @@ RSQ=\frac{[\sum_{u,v=1}^N {(d_{uv}-d_{..})(f(\delta_{uv})-f(\delta_{..}))}]^2}{[
 <p>En el modelo de escalamiento métrico se asume que la relación entre las proximidades y las distancias es de tipo lineal, <span class="math inline">\(d_{uv}=a+b \delta_{uv}\)</span>. De esta forma, se conserva la métrica de distancia original entre objetos lo mejor posible; esta forma de EMD resulta adecuada cuando se trabaja con variables cuantitativas (como se avanzó anteriormente). También se conoce como EMD clásico o como análisis de coordenadas principales.</p>
 <p>En el ejemplo que se utiliza en este capítulo para ilustrar la técnica (uso de las TIC en los países de la UE-27), se aplica un EMD métrico con un doble objetivo: por un lado se usa la matriz de correlaciones entre las variables con el objetivo de analizar la similitud entre las mismas y, por otro, se determina la distancia entre los objetos (en este caso los países europeos) para analizar la similitud entre ellos.</p>
 <p>En el primer caso, los “objetos” son las siete variables de la base de datos <code>TIC2021</code> y se utiliza como medida de proximidad (similitud) el coeficiente de correlación entre dichas variables (dos a dos), por lo que se plantea un EMD métrico. </p>
-<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"smacof"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="va">correlacion</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">TIC2021</span><span class="op">)</span></span>
@@ -279,12 +279,12 @@ RSQ=\frac{[\sum_{u,v=1}^N {(d_{uv}-d_{..})(f(\delta_{uv})-f(\delta_{..}))}]^2}{[
 <ol style="list-style-type: decimal">
 <li>Calcular la matriz de disimilaridades sobre la que actúa el paquete <code>smacof()</code>. Para ello, la matriz de correlaciones entre las variables se transforma en una matriz de disimilaridades mediante la función <code><a href="https://rdrr.io/pkg/smacof/man/sim2diss.html">sim2diss()</a></code>. La conversión de similaridades (correlaciones) en disimilaridades se lleva a cabo por el método “corr”, que utiliza la expresión general <span class="math inline">\(\delta_{uv} = 1-s_{uv}\)</span>. Existen otros métodos en la función <code><a href="https://rdrr.io/pkg/smacof/man/sim2diss.html">sim2diss()</a></code> para cuando la matriz de proximidades no sea de correlaciones. El argumento <code>to.dist=TRUE</code> permite convertir el resultado en un objeto de la clase <code>dist</code>.</li>
 </ol>
-<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">datos</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/smacof/man/sim2diss.html">sim2diss</a></span><span class="op">(</span><span class="va">correlacion</span>,method<span class="op">=</span><span class="st">"corr"</span>,to.dist<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Una vez en disposición de la matriz de disimilaridades, se procede con el EMD métrico mediante la función <code><a href="https://rdrr.io/pkg/smacof/man/smacofSym.html">mds()</a></code>, versión equivalente a la función <code><a href="https://rdrr.io/pkg/smacof/man/smacofSym.html">smacofSym()</a></code>.</li>
 </ol>
-<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/smacof/man/smacofSym.html">mds</a></span><span class="op">(</span><span class="va">datos</span>,ndim<span class="op">=</span><span class="fl">2</span>,type<span class="op">=</span><span class="st">"ratio"</span><span class="op">)</span></span>
 <span><span class="va">res</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -296,7 +296,7 @@ RSQ=\frac{[\sum_{u,v=1}^N {(d_{uv}-d_{..})(f(\delta_{uv})-f(\delta_{..}))}]^2}{[
 <span><span class="co">#&gt; Stress-1 value: 0.161 </span></span>
 <span><span class="co">#&gt; Number of iterations: 42</span></span></code></pre></div>
 <p>La Fig. <a href="mds.html#fig:graficoobjetos-ch13">34.1</a> representa los siete objetos en dos dimensiones según sus distancias “reproducidas”. Muestra, por tanto, la configuración final de los siete objetos:</p>
-<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:graficoobjetos-ch13"></span>
@@ -306,7 +306,7 @@ Figura 34.1: Gráfico de objetos en el plano de las distancias reproducidas.
 </div>
 <p>La información numérica detallada se puede obtener con la información de la salida dada por: <code>res$conf</code>, que muestra las coordenadas de los objetos en las dos dimensiones; <code>res$confdist</code>, que proporciona la matriz de distancias reproducidas; <code>res$stress</code>, que aporta la medida de Stress de Kruskal ; y <code>res$spp</code>, que genera la contribución porcentual de cada objeto al Stress.</p>
 <p>En este caso, los resultados muestran que la medida de Stress es razonablemente baja (su valor es de 0,16), indicando una buena “reproducción” de las proximidades originales con tan solo dos dimensiones. Además, la “contribución” relativa al Stress de cada uno de los objetos (las siete variables de la base de datos <code>TIC2021</code>) es bastante homogénea, siendo la variable porcentaje de empresas con banda ancha (EBROAD) la que más contribuye al Stress y el nivel de acceso a Internet de los hogares (HIACC) la que menos. El grado de ajuste se puede ver, gráficamente, mediante el gráfico de Shepard (Fig. <a href="mds.html#fig:graficoShepard-ch13">34.2</a>), que compara las proximidades originales y las distancias obtenidas. </p>
-<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">res</span>,plot.type<span class="op">=</span><span class="st">"Shepard"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:graficoShepard-ch13"></span>
@@ -316,7 +316,7 @@ Figura 34.2: Gráfico de Shepard con el método ratio.
 </div>
 <p>El diagrama de Shepard incluye (en gris claro) las proximidades originales entre los 21 pares distintos de objetos (en este caso países) y las obtenidas por el EMD (en negro). Al utilizarse el argumento <code>method=“ratio”</code> se impone una relación proporcional entre ambos tipos de proximidades, por lo que en la figura aparece una recta (que pasa por el origen).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Visualmente, la recta no parece pasar por el origen. Sin embargo, nótese que el punto de la gráfica más “cercano” al origen es (0,3; 0,45), aproximadamente; si nos desplazamos a la derecha tres décimas, encontramos el punto (0,6; 0,9). Por simetría, con un desplazamiento tres décimas a la izquierda del primer punto deberíamos llegar, aproximadamente, al punto (0; 0), por lo que la recta sí pasa por el origen. Evidentemente, no disponer del gráfico cerca del origen, junto con el hecho de que la escala de los ejes de abscisas y ordenadas es diferente, dificulta “ver” que la recta pasa por el origen, pero este es el gráfico que proporciona la función &lt;code&gt;plot()&lt;/code&gt;.&lt;/p&gt;"><sup>243</sup></a> Dadas las diferencias que se ven en el gráfico, quizás la elección del método <code>ratio</code> (opción por defecto) no sea la más adecuada. Con el método <code>interval</code>, que impone una relación lineal entre ambos tipos de similitudes (recta que no tiene que pasar necesariamente por el origen) se obtiene la Fig. <a href="mds.html#fig:graficoShepard2-ch13">34.3</a>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Igual que ocurriese con la Fig. &lt;a href="mds.html#fig:graficoShepard-ch13"&gt;34.2&lt;/a&gt;, la interpretación de la Fig. &lt;a href="mds.html#fig:graficoShepard2-ch13"&gt;34.3&lt;/a&gt; también es confusa. En este caso parece pasar por el origen, cuando lo habitual es que no lo haga. En realidad, no pasa por el origen sino por el punto (0,3; 0) aproximadamente, por lo que, dada la pendiente (más acusada de lo que parece debido a la diferencia entre las escalas en ambos ejes), la ordenada en el origen debe ser negativa.&lt;/p&gt;'><sup>244</sup></a></p>
 <p></p>
-<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/smacof/man/smacofSym.html">mds</a></span><span class="op">(</span><span class="va">datos</span>, type<span class="op">=</span><span class="st">"interval"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">res2</span>, plot.type<span class="op">=</span><span class="st">"Shepard"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -328,7 +328,7 @@ Figura 34.3: Gráfico de Shepard con el método <span class="math inline">\(inte
 <p>La medida de Stress se ha reducido a la mitad, 0,087, indicando mejor ajuste, y el gráfico de Shepard muestra más concordancia entre las proximidades originales de los pares de objetos y las distancias reproducidas. Otra opción sería usar el método <code>pmspline</code>, que en este caso no reduce las diferencias, por lo que se opta por <code>method=interval</code>. Los tres métodos son métricos, puesto que se fija una forma funcional para relacionar las proximidades originales y las disimilitudes del modelo (una ratio, una función lineal o una función <em>spline</em>).</p>
 <p>• Por último, para “interpretar” el sentido de las dimensiones en las que se representan los objetos, se recurre a ver cuáles están en los extremos. En la parte izquierda de la dimensión 1 están las variables relacionadas con el uso en las empresas, mientras que en la parte derecha están las relacionadas con los hogares y las personas; se podría decir, entonces, que es <strong>una dimensión relacionada con el ámbito de uso de las TIC</strong>. En la dimensión 2, con menos distancias, y una interpretación menos clara, aparecen en la parte superior las variables relacionadas con el tipo de conexión y la existencia de web en las empresas, y en la parte inferior las relacionadas con las redes sociales, las ventas o la frecuencia de uso de Internet por parte de los individuos; se podría decir que es una <strong>dimensión asociada al uso dado a las TIC</strong>.</p>
 <p>Los pasos para desarrollar el mismo análisis agrupando países, es decir, objetos u observaciones en lugar de variables, serían similares, pero usando la matriz de distancias en lugar de la matriz de correlaciones. Por lo tanto:</p>
-<div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.sthda.com/english/rpkgs/factoextra">"factoextra"</a></span><span class="op">)</span></span>
 <span><span class="va">d_euclidea</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/dist.html">get_dist</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">TIC2021</span>, method <span class="op">=</span> <span class="st">"euclidea"</span><span class="op">)</span></span>
 <span><span class="va">res3</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/smacof/man/smacofSym.html">mds</a></span><span class="op">(</span><span class="va">d_euclidea</span>,ndim<span class="op">=</span><span class="fl">2</span>,type<span class="op">=</span><span class="st">"ratio"</span><span class="op">)</span></span>
@@ -341,7 +341,7 @@ Figura 34.3: Gráfico de Shepard con el método <span class="math inline">\(inte
 <span><span class="co">#&gt; Number of objects: 27 </span></span>
 <span><span class="co">#&gt; Stress-1 value: 0.112 </span></span>
 <span><span class="co">#&gt; Number of iterations: 77</span></span></code></pre></div>
-<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">res3</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:mds-ch13"></span>
@@ -357,13 +357,13 @@ Figura 34.4: Gráfico de países sobre el plano de las distancias reproducidas.
 </h3>
 <p>El modelo de escalamiento no métrico (también conocido como EMD ordinal) no asume ninguna fórmula métrica que relacione las proximidades originales con las distancias reproducidas, sino que solo describe un patrón creciente (o decreciente) entre ellas. El valor de distancia entre un par de objetos no importa; lo que importa es su relación con las distancias entre otros pares de objetos, por lo que construye distancias ajustadas que están en el mismo orden de rango que la proximidad original. Por ejemplo, si la distancia entre los objetos A y B ocupa el tercer lugar en los datos de proximidades originales ordenadas, entonces también debería ocupar el tercer lugar en los datos de distancias reproducidas ordenadas. Así, el EMD no métrico busca conservar no tanto los valores de las proximidades originales, sino la ordenación de los objetos en función de dichas proximidades; es, por tanto, un modelo que se ajusta mejor a datos cualitativos que el métrico, aunque también se utiliza cuando se busca mayor flexibilidad en el ajuste.</p>
 <p>A continuación se aplica un EMD no métrico a la matriz de correlaciones de las tasas anuales de siete delitos en 50 estados de EE. UU. (asesinatos, violaciones, robos, asaltos, allanamiento de morada, hurtos y sustracciones de vehículos). Los datos están disponibles en la librería <code>smacof</code> bajo el nombre de <code>crimes</code>:</p>
-<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"crimes"</span><span class="op">)</span></span></code></pre></div>
 <p>En este ejemplo los “objetos” son los siete tipos de delito, y se ha utilizado como medida de proximidad (similitud) el coeficiente de correlación entre las tasas de delito (variables cuantitativas).</p>
 <ul>
 <li>El primer paso consiste en calcular la matriz de disimilaridades sobre la que actúa <code>smacof</code>, utilizando la función <code><a href="https://rdrr.io/pkg/smacof/man/sim2diss.html">sim2diss()</a></code>.</li>
 </ul>
-<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">data</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/smacof/man/sim2diss.html">sim2diss</a></span><span class="op">(</span><span class="va">crimes</span>,method<span class="op">=</span><span class="st">"corr"</span>,to.dist<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">data</span></span>
@@ -378,7 +378,7 @@ Figura 34.4: Gráfico de países sobre el plano de las distancias reproducidas.
 <p>La conversión de similaridades (correlaciones) en disimilaridades se realiza con el método <code>corr</code>, que utiliza la expresión general <span class="math inline">\(\delta_{uv} = \sqrt {1-s_{uv}}\)</span>. Existen otros métodos en la función <code><a href="https://rdrr.io/pkg/smacof/man/sim2diss.html">sim2diss()</a></code> para cuando la matriz de proximidades no sea de correlaciones. El argumento <code>to.dist=TRUE</code> permite convertir el resultado en un objeto de la clase <code>dist</code> si fuese necesario.</p>
 <p>Frente a los métodos métricos, que fijan una forma funcional para relacionar las proximidades originales y las disimilitudes del modelo (una ratio, una función lineal o una función <em>spline</em>), una alternativa más flexible es asumir una relación no métrica, donde solo se conserve la ordenación de las proximidades originales. En este caso, se busca que las distancias reproducidas ordenen los pares de objetos de forma idéntica a la original.</p>
 <p>Para ello, se utiliza el método <code>ordinal</code> dentro de la función <code><a href="https://rdrr.io/pkg/smacof/man/smacofSym.html">mds()</a></code>:</p>
-<div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res4</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/smacof/man/smacofSym.html">mds</a></span><span class="op">(</span><span class="va">data</span>,ndim<span class="op">=</span><span class="fl">2</span>,type<span class="op">=</span><span class="st">"ordinal"</span><span class="op">)</span></span>
 <span><span class="va">res4</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -390,9 +390,9 @@ Figura 34.4: Gráfico de países sobre el plano de las distancias reproducidas.
 <span><span class="co">#&gt; Stress-1 value: 0.002 </span></span>
 <span><span class="co">#&gt; Number of iterations: 15</span></span></code></pre></div>
 <p>La Fig. <a href="mds.html#fig:140013mdsnm041">34.5</a>, obtenida con la función <code><a href="https://rdrr.io/pkg/smacof/man/permtest.smacof.html">permtest()</a></code>, representa la relación entre los niveles de Stress y el <em>p</em>-valor asociado a la significación estadística del ajuste. En el ejemplo, la medida de Stress es muy baja (0,002) y significativa para los niveles de significación habituales, indicando un muy buen ajuste.</p>
-<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ptestnm</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/smacof/man/permtest.smacof.html">permtest</a></span><span class="op">(</span><span class="va">res4</span>,nrep<span class="op">=</span><span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb476"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ptestnm</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/smacof/man/permtest.smacof.html">permtest</a></span><span class="op">(</span><span class="va">res4</span>,nrep<span class="op">=</span><span class="fl">50</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ptestnm</span>, xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.18</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"p-valor"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:140013mdsnm041"></span>
@@ -401,7 +401,7 @@ Figura 34.5: Test de permutaciones para evaluación de la significatividad de la
 </p>
 </div>
 <p>El gráfico de Shepard, representado en la Fig. <a href="mds.html#fig:140013mdsnm05">34.6</a>, incluye las proximidades originales entre pares de objetos (en gris claro) y las obtenidas por el EMD (en negro), mostrando una alta concordancia entre las ordenaciones original y reproducida:</p>
-<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb478"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">res4</span>,plot.type<span class="op">=</span><span class="st">"Shepard"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:140013mdsnm05"></span>
@@ -410,7 +410,7 @@ Figura 34.6: Gráfico de Shepard: concordancia entre las ordenaciones original y
 </p>
 </div>
 <p>La contribución porcentual de cada delito a la medida de Stress y las coordenadas bidimensionales reproducidas son:</p>
-<div class="sourceCode" id="cb478"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res4</span><span class="op">$</span><span class="va">spp</span> <span class="co">#Contribución porcentual de cada objeto al Stress</span></span>
 <span><span class="co">#&gt;     Murder       Rape    Robbery    Assault   Burglary    Larceny Auto.Theft </span></span>
 <span><span class="co">#&gt;      8.064      6.443     39.270      0.104     10.618      9.023     26.478</span></span>
@@ -425,7 +425,7 @@ Figura 34.6: Gráfico de Shepard: concordancia entre las ordenaciones original y
 <span><span class="co">#&gt; Auto.Theft  0.6093  0.42240</span></span></code></pre></div>
 <p>Los delitos de robo (39,27%) y de sustracción de vehículos (26,48%) son responsables del 65,75% del Stress, seguidos muy de lejos por los otros cinco tipos de delito.</p>
 <p>La Fig. <a href="mds.html#fig:140013mdsnm07">34.7</a> muestra la representación bidimensional de la configuración final de los siete delitos según sus distancias “reproducidas”:</p>
-<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">res4</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:140013mdsnm07"></span>

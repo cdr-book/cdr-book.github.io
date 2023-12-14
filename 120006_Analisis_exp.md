@@ -1,5 +1,5 @@
 
-# Análisis exploratorio de datos {#120006-aed}
+# Análisis exploratorio de datos {#cap-120006-aed}
 
 *Emilio L. Cano*
 
@@ -139,7 +139,7 @@ ggplot(data, aes(x = variable)) + geom_histogram() +
 ```
 
 
-## Análisis exploratorio de una variable {#120006-aeduni}
+## Análisis exploratorio de una variable {#sec-120006-aeduni}
 
 ### Variables cualitativas
 \index{variable!cualitativa}\index{factor}\index{atributo}
@@ -149,7 +149,7 @@ la cual se puede representar con un gráfico de barras o con un gráfico
 de sectores.[^sectores] Las frecuencias absolutas son el número de observaciones en cada categoría y las frecuencias relativas son la proporción de observaciones en cada categoría con respecto al total. Por ejemplo, el conjunto de datos `accidentes2020_data`
 disponible en el paquete `CDR` describe los datos de accidentes de tráfico 
 con víctimas y/o daños al patrimonio en la ciudad de Madrid registrados por la Policía Municipal. Entre sus variables, contiene la variable cualitativa de tipología del accidente `tipo_accidente`. Un resumen puede obtenerse tanto con la función `table()` 
-como con el paquete `dplyr`, como se vio en la Sec. \@ref(110003-tidyverse). 
+como con el paquete `dplyr`, como se vio en la Sec. \@ref(sec-110003-tidyverse). 
 En variables cualitativas, la categoría más frecuente se denomina **moda** de la variable.[^nota-orden]
 
 [^sectores]: El gráfico de sectores no es recomendable, ya que proporciona la misma 
@@ -453,9 +453,10 @@ secuencial de las observaciones, bien a través de puntos (`geom_point()`) o a t
 
 
 
-## Análisis exploratorio de varias variables {#120006-aedmulti}
+## Análisis exploratorio de varias variables {#sec-120006-aedmulti}
 \index{tabla!de contingencia}
-En la Sec. \@ref(120006-aeduni) se ha realizado un AED de
+
+En la Sec. \@ref(sec-120006-aeduni) se ha realizado un AED de
 variables aisladas, pero lo usual es incluir las relaciones entre variables 
 en el AED. 
 Las herramientas estadísticas utilizadas son: ($i$) las tablas de frecuencias conjuntas, que, en el caso de dos atributos, son tablas de doble entrada, 

@@ -19,7 +19,7 @@ variables categóricas, o susceptibles de categorizar, con un número de
 categorías finito. Dada su naturaleza, no permiten el uso de las
 tradicionales operaciones aritméticas, con lo cual, en el ámbito de la
 Estadística Descriptiva su análisis suele basarse en diagramas de barras
-y porcentajes (véase Cap. \@ref(120006-aed)), y en la esfera de la
+y porcentajes (véase Cap. \@ref(cap-120006-aed)), y en la esfera de la
 Inferencia Estadística (Cap. \@ref(Fundainfer)) se centra en los
 contrastes de hipótesis no paramétricos y, básicamente, en el contraste
 de independencia entre dos o más de estas variables. Una pregunta que

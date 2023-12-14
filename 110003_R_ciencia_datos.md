@@ -49,7 +49,7 @@ Uno de los aspectos más espectaculares de **R** es la cantidad de **paquetes**
 disponibles. Un paquete (_package_) de **R** es un componente con funcionalidad adicional que se puede
 instalar en el sistema para ser utilizado por **R**. En el momento de 
 compilar este libro, el número de paquetes disponibles en el repositorio oficial 
-es de 20191.  
+es de 20221.  
 
 
 Una vez conocido el mundo de **R**, se plantea la siguiente pregunta: ¿y por qué
@@ -64,7 +64,7 @@ algunos de ellos:
 - Se ha alcanzado una masa crítica de usuarios que lo hace confiable.
 - Es extensible (desde pequeñas funciones, hasta paquetes).
 - Se puede implementar la innovación inmediatamente. En software comercial hay que esperar a nuevas versiones, en el mejor de los casos.
-- Posee características de "investigación reproducible". En el Cap. \@ref(120007-informes) se tratará
+- Posee características de "investigación reproducible". En el Cap. \@ref(cap-120007-informes) se tratará
 qué implica este enfoque. En contextos distintos a la investigación, se puede hablar de informes reproducibles y trazabilidad del análisis.
 
 [^nota-posit]: https://posit.co, antes RStudio PBC.
@@ -138,7 +138,7 @@ dplyr::select()
 
 [^nota-install-pack]: Una vez instalado un paquete no hay que volver a instalarlo.
 
-[^nota-tv]: El _tidyverse_ es un conjunto de paquetes que se irán describiendo a medida que se utilicen, especialmente en la Sec. \@ref(110003-tidyverse).
+[^nota-tv]: El _tidyverse_ es un conjunto de paquetes que se irán describiendo a medida que se utilicen, especialmente en la Sec. \@ref(sec-110003-tidyverse).
 
 
 ## Trabajar con proyectos de RStudio {#110003-proyectos}
@@ -192,7 +192,7 @@ En este apartado se van a empezar a utilizar expresiones de **R**. Las expresion
 
 [^nota-espacio]: Por motivos de espacio, no se incluyen mayores explicaciones de las mismas, pero se anima al lector a explorar la ayuda de cada una de ellas para comprender mejor su funcionamiento.
 
-### Estructuras y tipos de datos {#110003-estructuras}
+### Estructuras y tipos de datos {#sec-110003-estructuras}
 
 Las estructuras y tipos de datos más frecuentes con los que se trabaja en **R** son los que se detallan a continuación.
 
@@ -303,7 +303,7 @@ head(tempmin_data$indicativo)
 
 
 
-### Importación de datos {#110003-importacion}
+### Importación de datos {#sec-110003-importacion}
 
 \index{importar datos}
 En el apartado anterior se han utilizado tablas de datos que están incluidas en un paquete de **R**. Pero lo habitual es que los datos se tengan que importar de fuentes externas, como ficheros. A continuación, se describen algunas de las formas de importar los tipos de ficheros más habituales.[^nota-datafolder]
@@ -442,7 +442,7 @@ exportar datos a otros formatos de archivo, que no se tratan
 en detalle en este capítulo. 
 
 
-## Organización de datos con el _tidyverse_ {#110003-tidyverse}
+## Organización de datos con el _tidyverse_ {#sec-110003-tidyverse}
 
 ### El _tidyverse_ y su flujo de trabajo
 
@@ -478,7 +478,7 @@ _Help/Cheatsheets_).
 
 
 Dentro del flujo de trabajo de la Fig. \@ref(fig:ch-110003-flujods), ya se ha tratado
-la primera etapa (_Import_) en la Sec. \@ref(110003-importacion). Es importante
+la primera etapa (_Import_) en la Sec. \@ref(sec-110003-importacion). Es importante
 señalar que, al utilizar las funciones del _tidyverse_, los datos se organizan
 en objetos de clase `tibble`, que es una extensión del `data.frame` de **R** base.
 Las principales diferencias son:
@@ -491,8 +491,8 @@ Se puede forzar a que una tabla de datos sea de un tipo u otro con las funciones
 
 Siguiendo con el esquema de la Fig. \@ref(fig:ch-110003-flujods), en este apartado se verán
 algunas tareas de las etapas _Tidy_ (organizar) y _Transform_ (transformar), que 
-serán ampliadas en los Cap. \@ref(130009) y \@ref(chap-feature). La visualización
-(_Visualise_) se tratará específicamente en el Cap. \@ref(120006-aed) y transversalmente en muchos otros. La modelización (_Model_) se trata extensamente en los capítulos de las partes IV a IX, y la comunicación (_Communicate_) se verá
+serán ampliadas en los Cap. \@ref(cap-130009) y \@ref(chap-feature). La visualización
+(_Visualise_) se tratará específicamente en el Cap. \@ref(cap-120006-aed) y transversalmente en muchos otros. La modelización (_Model_) se trata extensamente en los capítulos de las partes IV a IX, y la comunicación (_Communicate_) se verá
 en los capítulos de la Parte X.
 Una de las características de la forma en que están programados los paquetes del
 _tidyverse_ es que se puede trabajar[^estilo-tidy] con _pipes_. 
@@ -642,7 +642,7 @@ pm10_na <- pm10 |> mutate(isna = is.na(daily_mean))
 En este punto, es importante señalar que dentro de la función `mutate()`
 se puede usar cualquier función vectorizada para transformar las
 variables. Por ejemplo, se podría transformar una columna con las funciones
-`as.xxx` que se vieron en la Sec. \@ref(110003-estructuras), aplicar formatos
+`as.xxx` que se vieron en la Sec. \@ref(sec-110003-estructuras), aplicar formatos
 a fechas o usar funciones del paquete `lubridate` para trabajar con este
 tipo de datos. A medida que se avance en el libro irán apareciendo aplicaciones
 que ahora, quizás, no sean tan evidentes.
@@ -740,7 +740,7 @@ hace las uniones por todas las columnas coincidentes en ambas tablas. Para
 las filas que solo están en una de las tablas, se añaden valores `NA`
 donde no haya coincidencias.
 
-A modo de ejemplo, las siguientes expresiones unen dos datasets para combinar datos de municipios con su renta. En el Cap. \@ref(130009) se verán estas uniones en la práctica.
+A modo de ejemplo, las siguientes expresiones unen dos datasets para combinar datos de municipios con su renta. En el Cap. \@ref(cap-130009) se verán estas uniones en la práctica.
 
 
 ```r
@@ -828,7 +828,7 @@ en dos o más con la función `separate()` (véanse los detalles en la ayuda de 
 \index{missing@\textit{missing}} \index{valores!perdidos}
 Para terminar este apartado de reorganización de datos, se da una
 primera aproximación al tratamiento de valores perdidos, que se abordará en el 
-Cap. \@ref(130009). En **R**, un valor
+Cap. \@ref(cap-130009). En **R**, un valor
 perdido se representa por el valor especial `NA` (_not available_). Brevemente,
 las funciones más utilizadas en este campo son:
 

@@ -7,7 +7,7 @@
 <title>Capítulo 21 Análisis discriminante | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Mª Leticia Meseguer Santamaría\(^{a}\) y Manuel Vargas Vargas\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  21.1 Introducción El análisis discriminante (AD) es una técnica de dependencia...">
-<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="Capítulo 21 Análisis discriminante | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
 <script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
@@ -56,10 +56,10 @@
 <li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
 <li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
 <li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
-<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
 <li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
-<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
 <li class="book-part">Fundamentos de estadística</li>
 <li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
@@ -100,7 +100,7 @@
 <li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
 <li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
 <li class="book-part">Comunica y colabora</li>
-<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
 <li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
 <li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
 <li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
@@ -148,10 +148,10 @@
 <li><p>Un conjunto de <em>p</em> variables, medidas en intervalo o razón. Estas variables no deben presentar multicolinealidad, es decir, ninguna clasificadora puede ser combinación lineal de otras clasificadoras. Además, dado el enfoque adoptado, se asume que estas variables siguen una distribución normal multivariante.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Este supuesto garantiza que el método clásico propuesto por Fisher es óptimo. En la práctica, el AD es robusto frente a incumplimientos de la normalidad &lt;em&gt;p&lt;/em&gt;-dimensional, por lo que también se aplica en muchos casos donde no se puede garantizar este requisito.&lt;/p&gt;"><sup>156</sup></a></p></li>
 </ul>
 <p>El número de variables discriminantes debe ser inferior en más de dos al número de individuos (<span class="math inline">\(p&lt;N-2\)</span>) para poder identificar los parámetros de las funciones discriminantes. Además, en la práctica, es útil disponer de algún criterio o método que permita seleccionar qué variables se considerarán clasificadoras. Una alternativa pueden ser los métodos de jerarquización de variables desarrollados en análisis de regresión o la selección de variables (<em>feature selection</em>, véase Cap. <a href="chap-feature.html#chap-feature">9</a>). Como punto inicial, es frecuente que se considere que una variable puede ser clasificadora si presenta diferencias en su distribución entre los grupos, utilizando para ello un <em>ANOVA</em>.</p>
-<p>Así, el AD busca determinar un criterio o <em>regla discriminante</em> que clasifique a cada individuo, <span class="math inline">\(i, \hspace{0,2cm}i=1,..., N\)</span>, en uno de los <span class="math inline">\(k\)</span> grupos conociendo las observaciones de cada una de las <span class="math inline">\(p\)</span> variables <span class="math inline">\(X_j\)</span>, es decir, el vector <span class="math inline">\({\bf{x}}_i=(x_{1i},x_{2i}, ... , x_{pi})'\)</span>. Estas reglas discriminantes están basadas en la información muestral y en los supuestos que sobre esta se hacen; en el planteamiento clásico de Fisher, al asumir la normalidad de las variables, se basan en el comportamiento, en los <span class="math inline">\(k\)</span> grupos, de los vectores de medias y de las matrices de varianzas-covarianzas (véase Sec. <a href="#120006-aedmulti"><strong>??</strong></a>). Por ello, se suelen distinguir varios casos que conducen a distintos métodos de obtención de reglas discriminantes, por lo que reciben nombres diferentes:</p>
+<p>Así, el AD busca determinar un criterio o <em>regla discriminante</em> que clasifique a cada individuo, <span class="math inline">\(i, \hspace{0,2cm}i=1,..., N\)</span>, en uno de los <span class="math inline">\(k\)</span> grupos conociendo las observaciones de cada una de las <span class="math inline">\(p\)</span> variables <span class="math inline">\(X_j\)</span>, es decir, el vector <span class="math inline">\({\bf{x}}_i=(x_{1i},x_{2i}, ... , x_{pi})'\)</span>. Estas reglas discriminantes están basadas en la información muestral y en los supuestos que sobre esta se hacen; en el planteamiento clásico de Fisher, al asumir la normalidad de las variables, se basan en el comportamiento, en los <span class="math inline">\(k\)</span> grupos, de los vectores de medias y de las matrices de varianzas-covarianzas (véase Sec. <a href="cap-120006-aed.html#sec-120006-aedmulti">11.3</a>). Por ello, se suelen distinguir varios casos que conducen a distintos métodos de obtención de reglas discriminantes, por lo que reciben nombres diferentes:</p>
 <ul>
-<li><p>El caso más sencillo (e históricamente el más antiguo), además de la normalidad, supone que las matrices de varianzas-covarianzas son iguales en todos los grupos (supuesto de <strong>homocedasticidad</strong>). El método se conoce como <strong>análisis discriminante lineal</strong> (<em>linear discriminant analysis</em> o LDA). En este caso, detallado en la Sec. <a href="#150025lda"><strong>??</strong></a>, la diferencia en la distribución de las variables entre los grupos se produce en los vectores de medias, y la función discriminante obtenida es una combinación lineal de las variables clasificadores que minimiza los errores de clasificación. </p></li>
-<li><p>Otra posibilidad es que se asuma la normalidad pero no que todos los grupos tengan la misma matriz de varianzas-covarianzas. En este caso, la función discriminante es una función cuadrática, por lo que el método se conoce como <strong>análisis discriminante cuadrático</strong> (<em>quadatric discriminant analysis</em> o QDA), detallado en la Sec. <a href="#150025qda"><strong>??</strong></a>. </p></li>
+<li><p>El caso más sencillo (e históricamente el más antiguo), además de la normalidad, supone que las matrices de varianzas-covarianzas son iguales en todos los grupos (supuesto de <strong>homocedasticidad</strong>). El método se conoce como <strong>análisis discriminante lineal</strong> (<em>linear discriminant analysis</em> o LDA). En este caso, detallado en la Sec. <a href="cap-discriminante.html#sec-150025lda">21.2</a>, la diferencia en la distribución de las variables entre los grupos se produce en los vectores de medias, y la función discriminante obtenida es una combinación lineal de las variables clasificadores que minimiza los errores de clasificación. </p></li>
+<li><p>Otra posibilidad es que se asuma la normalidad pero no que todos los grupos tengan la misma matriz de varianzas-covarianzas. En este caso, la función discriminante es una función cuadrática, por lo que el método se conoce como <strong>análisis discriminante cuadrático</strong> (<em>quadatric discriminant analysis</em> o QDA), detallado en la Sec. <a href="cap-discriminante.html#sec-150025qda">21.3</a>. </p></li>
 </ul>
 <p>Sea cual sea el método elegido, las <em>reglas discriminantes</em> que se obtengan para clasificar a un individuo en uno de los grupos deben determinarse minimizando los errores de clasificación, que pueden ser evaluados probabilísticamente al disponer de la distribución de probabilidad de las variables en cada grupo. Así, para cada individuo <span class="math inline">\(i\)</span> y sus valores de las variables clasificadoras <span class="math inline">\({\bf{x}}_i=(x_{1i},x_{2,i}, ... , x_{pi})'\)</span>, se dispone de las verosimilitudes para cada uno de los <span class="math inline">\(k\)</span> grupos, <span class="math inline">\(L_m\left( {\bf{x}}_i;{\bf{\theta}}_m \right )\ ,1\leq m \leq k\)</span>, donde en el vector <span class="math inline">\({\bf{\theta}}_m\)</span> se recogen los parámetros de la distribución probabilísitica de las variables (en el caso de normalidad, dichos parámetros son la media y la desviación típica).</p>
 <p>Conociendo la probabilidad <em>a priori</em> de pertenencia de un individuo a cada grupo,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Lo habitual es que la probabilidad &lt;em&gt;a priori&lt;/em&gt; de pertenencia de un individuo a un grupo
@@ -169,9 +169,9 @@ L_m({\bold {x}}_i;{\bold{\theta}}_m) \pi_m = \underset {m=1,...,k}{\max} L_m({\b
 <p>En general, se pueden cometer dos tipos de error: no clasificar al individuo en un grupo cuando realmente pertenece a él o clasificarlo en un grupo al que realmente no pertenece. Si no se conocen los costes de cometer dichos errores (o son iguales), no afectan a la <strong>regla discriminante</strong>; sin embargo, si son conocidos y han de ser tenidos en cuenta, la regla se modificaría, ponderando cada verosimilitud <span class="math inline">\(L_m({\bf{x}}_i;{\bf{\theta}}_m) ,\hspace{0,2cm} m=1,...,k,\)</span> por el coste de clasificar erróneamente un individuo perteneciente al <em>m</em>-ésimo grupo.</p>
 <p>En las secciones siguientes se abordarán ambos modelos de AD que, aunque no son los únicos, sí representan la gran mayoría de las aplicaciones prácticas.</p>
 </div>
-<div id="id_150025lda" class="section level2" number="21.2">
+<div id="sec-150025lda" class="section level2" number="21.2">
 <h2>
-<span class="header-section-number">21.2</span> Análisis discriminante lineal<a class="anchor" aria-label="anchor" href="#id_150025lda"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.2</span> Análisis discriminante lineal<a class="anchor" aria-label="anchor" href="#sec-150025lda"><i class="fas fa-link"></i></a>
 </h2>
 <p>Es un modelo de <em>AD</em> basado en los supuestos generales expuestos en el epígrafe anterior (<span class="math inline">\(N\)</span> individuos, <span class="math inline">\(k\)</span> grupos y <span class="math inline">\(p\)</span> variables clasificadoras con distribución normal y sin multicolinealidad) y caracterizado por la <strong>igualdad de las matrices de varianza-covarianza</strong> de las variables en todos los grupos. Para la exposición de la metodología, se presenta el caso más sencillo, con solo dos grupos y probabilidades <em>a priori</em> iguales, para generalizarlo posteriormente al caso general de <span class="math inline">\(k\)</span> grupos.</p>
 <div id="dos-grupos-y-una-variable-clasificadora" class="section level3" number="21.2.1">
@@ -421,9 +421,9 @@ Figura 21.6: Regiones bivariantes de clasificación en cada grupo (centroides en
 <p>En este caso, se clasifican correctamente 29 de las 30 “nuevas” flores, indicando un grado de ajuste del 96,9667%.</p>
 </div>
 </div>
-<div id="id_150025qda" class="section level2" number="21.3">
+<div id="sec-150025qda" class="section level2" number="21.3">
 <h2>
-<span class="header-section-number">21.3</span> Análisis discriminante cuadrático<a class="anchor" aria-label="anchor" href="#id_150025qda"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.3</span> Análisis discriminante cuadrático<a class="anchor" aria-label="anchor" href="#sec-150025qda"><i class="fas fa-link"></i></a>
 </h2>
 <p>En el discriminante lineal visto anteriormente, se asume que las variables clasificadoras tienen idénticas matrices de varianzas-covarianzas en los distintos grupos, supuesto que garantiza que las funciones discriminantes son combinaciones lineales de las variables clasificadoras.</p>
 <p>Es posible eliminar esta restricción, permitiendo que las matrices de varianzas-covarianzas sean diferentes en los grupos, lo que introduce términos cuadráticos en las funciones discriminantes que conducen límites de decisión curvilíneos, por lo que el análisis discriminante cuadrático (QDA) puede aplicarse a situaciones en las que la separación entre grupos no es lineal.</p>
@@ -514,7 +514,7 @@ Figura 21.7: Regiones bivariantes de clasificación en cada grupo (centroides en
 <li><a class="nav-link" href="#cap-discriminante"><span class="header-section-number">21</span> Análisis discriminante</a></li>
 <li><a class="nav-link" href="#introducci%C3%B3n-10"><span class="header-section-number">21.1</span> Introducción</a></li>
 <li>
-<a class="nav-link" href="#id_150025lda"><span class="header-section-number">21.2</span> Análisis discriminante lineal</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#sec-150025lda"><span class="header-section-number">21.2</span> Análisis discriminante lineal</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#dos-grupos-y-una-variable-clasificadora"><span class="header-section-number">21.2.1</span> Dos grupos y una variable clasificadora</a></li>
 <li><a class="nav-link" href="#dos-grupos-y-dos-variables-clasificadoras"><span class="header-section-number">21.2.2</span> Dos grupos y dos variables clasificadoras</a></li>
 <li><a class="nav-link" href="#dos-grupos-y-p-variables-clasificadoras"><span class="header-section-number">21.2.3</span> Dos grupos y p variables clasificadoras</a></li>
@@ -523,7 +523,7 @@ Figura 21.7: Regiones bivariantes de clasificación en cada grupo (centroides en
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#id_150025qda"><span class="header-section-number">21.3</span> Análisis discriminante cuadrático</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#sec-150025qda"><span class="header-section-number">21.3</span> Análisis discriminante cuadrático</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#discriminante-cuadr%C3%A1tico-con-r-la-funci%C3%B3n-qda"><span class="header-section-number">21.3.1</span> Discriminante cuadrático con R: la función qda()</a></li>
 <li><a class="nav-link" href="#resumen-20">Resumen</a></li>
 </ul>

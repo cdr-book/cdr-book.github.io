@@ -1,5 +1,5 @@
 
-# Integración y limpieza de datos {#130009}
+# Integración y limpieza de datos {#cap-130009}
   
 *Jorge Velasco López*$^{a}$ y *José-María Montero*$^{b}$
 

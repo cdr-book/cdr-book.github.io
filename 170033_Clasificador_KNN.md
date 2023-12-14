@@ -1,6 +1,6 @@
 # Clasificador $k$-vecinos más próximos {#cap-knn}
 
-*Ramón A. Carrasco*$^{a}$, *Itzcóatl Bueno*$^{a, \hspace{0,05cm}b}$ y *José-María Montero*$^{c}$
+*Ramón A. Carrasco*$^{a}$, *Itzcóatl Bueno*$^{a,b}$ y *José-María Montero*$^{c}$
 
 $^{a}$Universidad Complutense de Madrid  
 $^{b}$Instituto Nacional de Estadística  
@@ -44,23 +44,37 @@ El grado de "vecindad" entre dos observaciones con predictores cuantitativos se 
 
 Sean dos observaciones $p$-dimensionales, ${\bf{x}}_r$ y ${\bf{x}}_s$:
 
--   **Distancia euclídea.** \index{distancia!euclídea} Se define como: \begin{equation}
+-   **Distancia euclídea.** \index{distancia!euclídea} Se define como: 
+
+\begin{equation}
 (\#eq:dist-eu)
     d_{e}({\bf x}_r;{\bf{x}}_{s})=\sqrt{\sum_{k=1}^{p}\left(  x_{rk}-x_{sk}\right)  ^{2}}.
-    \end{equation}
+\end{equation}
+
+
 \index{distancia!euclídea}
 \index{distancia!euclídea al cuadrado}
 
 Ignora las unidades de medida de las variables y, en consecuencia, aunque es invariante a los cambios de origen, no lo es a los cambios de escala. También ignora las relaciones  entre ellas. Resulta de utilidad con variables cuantitativas incorrelacionadas y medidas en las mismas unidades. 
 
-- **Distancia Manhattan** o ***city block.*** \index{distancia!Manhattan} Se define como: \begin{equation} (\#eq:dist-man) d_{MAN}({\bf x}_r;{\bf{x}}_{s})=\sum_{k=1}^{p}\left\vert x_{rk}-x_{sk}\right\vert.
-    \end{equation}
+- **Distancia Manhattan** o ***city block.*** \index{distancia!Manhattan} Se define como: 
+
+\begin{equation} 
+(\#eq:dist-man) 
+d_{MAN}({\bf x}_r;{\bf{x}}_{s})=\sum_{k=1}^{p}\left\vert x_{rk}-x_{sk}\right\vert.
+\end{equation}
+
 \index{distancia!Manhattan}
 
 Le afectan las diferentes escalas de las variables y es menos sensible que la distancia euclídea a los valores extremos. Por ello, es recomendable cuando las variables son cuantitativas, con las mismas unidades de medida (o escaladas), sin relaciones entre ellas y con valores extremos.
 
-- Si no todas las variables son cuantitativas, se utiliza la **medida de similaridad de Gower**: \index{coeficiente!de Gower} \begin{equation} (\#eq:dist-Gow) S_{rs}({\bf x}_r;{\bf{x}}_{s})=\frac{\sum_{k=1}^{p}s_{rs}}{\sum_{k=1}^{p}w_{rs}},
-    \end{equation}
+- Si no todas las variables son cuantitativas, se utiliza la **medida de similaridad de Gower**: \index{coeficiente!de Gower} 
+
+\begin{equation} 
+(\#eq:dist-Gow) 
+S_{rs}({\bf x}_r;{\bf{x}}_{s})=\frac{\sum_{k=1}^{p}s_{rs}}{\sum_{k=1}^{p}w_{rs}},
+\end{equation}
+
 donde $w_{rs}$ vale siempre la unidad, salvo para variables binarias si los dos elementos presentan el valor cero. En cuanto al valor de $S_{rs}$, se distinguen tres casos:
 
     -   Variables cualitativas de más de dos niveles: 1 si ambos elementos son iguales en la *k*-ésima variable; 0 si son diferentes.

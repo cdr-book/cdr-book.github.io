@@ -29,11 +29,11 @@ Aunque existen varios enfoques diferentes, en este capítulo se adoptará el enf
 El número de variables discriminantes debe ser inferior en más de dos al número de individuos ($p<N-2$) para poder identificar los parámetros de las funciones discriminantes. Además, en la práctica, es útil disponer de algún criterio o método que permita seleccionar qué variables se considerarán clasificadoras. Una alternativa pueden ser los métodos de jerarquización de variables desarrollados en análisis de regresión o la selección de variables (*feature selection*,  véase Cap. \@ref(chap-feature)). Como punto inicial, es frecuente que se considere que una variable puede ser clasificadora si presenta diferencias en su distribución entre los grupos, utilizando para ello un *ANOVA*.
 
 
-Así, el AD busca determinar un criterio o *regla discriminante* que clasifique a cada individuo, $i, \hspace{0,2cm}i=1,..., N$, en uno de los $k$ grupos conociendo las observaciones de cada una de las $p$ variables $X_j$, es decir, el vector ${\bf{x}}_i=(x_{1i},x_{2i}, ... , x_{pi})'$. Estas reglas discriminantes están basadas en la información muestral y en los supuestos que sobre esta se hacen; en el planteamiento clásico de Fisher, al asumir la normalidad de las variables, se basan en el comportamiento, en los $k$ grupos, de los vectores de medias y de las matrices de varianzas-covarianzas (véase Sec. \@ref(120006-aedmulti)). Por ello, se suelen distinguir varios casos que conducen a distintos métodos de obtención de reglas discriminantes, por lo que reciben nombres diferentes:
+Así, el AD busca determinar un criterio o *regla discriminante* que clasifique a cada individuo, $i, \hspace{0,2cm}i=1,..., N$, en uno de los $k$ grupos conociendo las observaciones de cada una de las $p$ variables $X_j$, es decir, el vector ${\bf{x}}_i=(x_{1i},x_{2i}, ... , x_{pi})'$. Estas reglas discriminantes están basadas en la información muestral y en los supuestos que sobre esta se hacen; en el planteamiento clásico de Fisher, al asumir la normalidad de las variables, se basan en el comportamiento, en los $k$ grupos, de los vectores de medias y de las matrices de varianzas-covarianzas (véase Sec. \@ref(sec-120006-aedmulti)). Por ello, se suelen distinguir varios casos que conducen a distintos métodos de obtención de reglas discriminantes, por lo que reciben nombres diferentes:
 
-- El caso más sencillo (e históricamente el más antiguo), además de la normalidad, supone que las matrices de varianzas-covarianzas son iguales en todos los grupos (supuesto de **homocedasticidad**). El método se conoce como **análisis discriminante lineal** (*linear discriminant analysis* o LDA). En este caso, detallado en la Sec. \@ref(150025lda), la diferencia en la distribución de las variables entre los grupos se produce en los vectores de medias, y la función discriminante obtenida es una combinación lineal de las variables clasificadores que minimiza los errores de clasificación. \index{análisis!discriminante!lineal}
+- El caso más sencillo (e históricamente el más antiguo), además de la normalidad, supone que las matrices de varianzas-covarianzas son iguales en todos los grupos (supuesto de **homocedasticidad**). El método se conoce como **análisis discriminante lineal** (*linear discriminant analysis* o LDA). En este caso, detallado en la Sec. \@ref(sec-150025lda), la diferencia en la distribución de las variables entre los grupos se produce en los vectores de medias, y la función discriminante obtenida es una combinación lineal de las variables clasificadores que minimiza los errores de clasificación. \index{análisis!discriminante!lineal}
 
-- Otra posibilidad es que se asuma la normalidad pero no que todos los grupos tengan la misma matriz de varianzas-covarianzas. En este caso, la función discriminante es una función cuadrática, por lo que el método se conoce como **análisis discriminante cuadrático** (*quadatric discriminant analysis* o QDA), detallado en la Sec. \@ref(150025qda). \index{análisis!discriminante!cuadrático}
+- Otra posibilidad es que se asuma la normalidad pero no que todos los grupos tengan la misma matriz de varianzas-covarianzas. En este caso, la función discriminante es una función cuadrática, por lo que el método se conoce como **análisis discriminante cuadrático** (*quadatric discriminant analysis* o QDA), detallado en la Sec. \@ref(sec-150025qda). \index{análisis!discriminante!cuadrático}
 
 
 Sea cual sea el método elegido, las *reglas discriminantes* que se obtengan para clasificar a un individuo en uno de los grupos deben determinarse minimizando los errores de clasificación, que pueden ser evaluados probabilísticamente al disponer de la distribución de probabilidad de las variables en cada grupo. Así, para cada individuo $i$ y sus valores de las variables clasificadoras ${\bf{x}}_i=(x_{1i},x_{2,i}, ... , x_{pi})'$,  se dispone de las verosimilitudes para cada uno de los $k$ grupos, $L_m\left( {\bf{x}}_i;{\bf{\theta}}_m \right )\ ,1\leq m \leq k$, donde en el vector ${\bf{\theta}}_m$ se recogen los parámetros de la distribución probabilísitica de las variables (en el caso de normalidad, dichos parámetros son la media y la desviación típica).
@@ -65,7 +65,7 @@ En general, se pueden cometer dos tipos de error: no clasificar al individuo en 
 
 En las secciones siguientes se abordarán ambos modelos de AD que, aunque no son los únicos, sí representan la gran mayoría de las aplicaciones prácticas.
 
-## Análisis discriminante lineal {#150025lda}
+## Análisis discriminante lineal {#sec-150025lda}
 
 Es un modelo de *AD* basado en los supuestos generales expuestos en el epígrafe anterior ($N$ individuos, $k$ grupos y $p$ variables clasificadoras con distribución normal y sin multicolinealidad) y caracterizado por la **igualdad de las matrices de varianza-covarianza** de las variables en todos los grupos. Para la exposición de la metodología, se presenta el caso más sencillo, con solo dos grupos y probabilidades *a priori* iguales, para generalizarlo posteriormente al caso general de $k$ grupos. 
 
@@ -396,7 +396,7 @@ mean(predicciones_lda$class == test_t$Species)
  
  
 
-## Análisis discriminante cuadrático  {#150025qda}
+## Análisis discriminante cuadrático  {#sec-150025qda}
 
 En el discriminante lineal visto anteriormente, se asume que las variables clasificadoras tienen idénticas matrices de varianzas-covarianzas en los distintos grupos, supuesto que garantiza que las funciones discriminantes son combinaciones lineales de las variables clasificadoras.
 

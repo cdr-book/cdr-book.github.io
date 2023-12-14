@@ -6,19 +6,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 9 Selección y transformación de variables | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
-<meta name="description" content="Jorge Velasco López\(^{a}\) y José-María Montero\(^{b}\) \(^{a}\)Instituto Nacional de Estadística de España\(^{b}\)Universidad de Castilla-La Mancha  9.1 Introducción Como se indicó en el Cap....">
-<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta name="description" content="Jorge Velasco López\(^{a}\) y José-María Montero\(^{b}\) \(^{a}\)Instituto Nacional de Estadística de España\(^{b}\)Universidad de Castilla-La Mancha  9.1 Introducción Como se indicó en el Cap. 8,...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="Capítulo 9 Selección y transformación de variables | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
-<meta property="og:description" content="Jorge Velasco López\(^{a}\) y José-María Montero\(^{b}\) \(^{a}\)Instituto Nacional de Estadística de España\(^{b}\)Universidad de Castilla-La Mancha  9.1 Introducción Como se indicó en el Cap....">
+<meta property="og:description" content="Jorge Velasco López\(^{a}\) y José-María Montero\(^{b}\) \(^{a}\)Instituto Nacional de Estadística de España\(^{b}\)Universidad de Castilla-La Mancha  9.1 Introducción Como se indicó en el Cap. 8,...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 9 Selección y transformación de variables | Fundamentos de ciencia de datos con R">
-<meta name="twitter:description" content="Jorge Velasco López\(^{a}\) y José-María Montero\(^{b}\) \(^{a}\)Instituto Nacional de Estadística de España\(^{b}\)Universidad de Castilla-La Mancha  9.1 Introducción Como se indicó en el Cap....">
+<meta name="twitter:description" content="Jorge Velasco López\(^{a}\) y José-María Montero\(^{b}\) \(^{a}\)Instituto Nacional de Estadística de España\(^{b}\)Universidad de Castilla-La Mancha  9.1 Introducción Como se indicó en el Cap. 8,...">
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
 <script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
@@ -56,10 +56,10 @@
 <li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
 <li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
 <li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
-<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="active" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
 <li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
-<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
 <li class="book-part">Fundamentos de estadística</li>
 <li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
@@ -100,7 +100,7 @@
 <li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
 <li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
 <li class="book-part">Comunica y colabora</li>
-<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
 <li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
 <li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
 <li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
@@ -138,7 +138,7 @@
 <h2>
 <span class="header-section-number">9.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-4"><i class="fas fa-link"></i></a>
 </h2>
-<p>Como se indicó en el Cap. <a href="#130009"><strong>??</strong></a>, la preparación de datos, en un contexto de ciencia de datos, consiste en transformarlos de tal forma que se puedan utilizar adecuadamente en las fases posteriores de modelado. Esta preparación o prepreprocesamiento puede ser un proceso laborioso e incluye tareas como la integración y limpieza de datos, que se detallaron en dicho capítulo.</p>
+<p>Como se indicó en el Cap. <a href="cap-130009.html#cap-130009">8</a>, la preparación de datos, en un contexto de ciencia de datos, consiste en transformarlos de tal forma que se puedan utilizar adecuadamente en las fases posteriores de modelado. Esta preparación o prepreprocesamiento puede ser un proceso laborioso e incluye tareas como la integración y limpieza de datos, que se detallaron en dicho capítulo.</p>
 <p>El presente capítulo aborda las tareas relativas a la <strong>selección de variables</strong>
 (<em>feature selection</em>) y <strong>transformación de variables</strong>. La selección de
 variables tiene como objetivo elegir el elenco de variables más relevantes para
@@ -563,7 +563,7 @@ un componente creativo, que requiere de herramientas adecuadas y de experiencia 
 </div>
 
   <div class="chapter-nav">
-<div class="prev"><a href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></div>
+<div class="prev"><a href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></div>
 <div class="next"><a href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>

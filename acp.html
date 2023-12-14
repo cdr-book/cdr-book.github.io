@@ -7,7 +7,7 @@
 <title>Capítulo 32 Análisis de componentes principales | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="José-María Montero\(^{a}\) y José Luis Alfaro Navarro\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  32.1 Introducción En el estudio de cualquier problema de interés, lo ideal es tomar...">
-<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="Capítulo 32 Análisis de componentes principales | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
 <script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
@@ -56,10 +56,10 @@
 <li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
 <li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
 <li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
-<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
 <li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
-<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
 <li class="book-part">Fundamentos de estadística</li>
 <li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
@@ -100,7 +100,7 @@
 <li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
 <li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
 <li class="book-part">Comunica y colabora</li>
-<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
 <li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
 <li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
 <li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
@@ -289,7 +289,7 @@ r_{X_{j},Y_{m}}=\frac{Cov(X_{j},Y_{m})}{\sqrt{Var(X_{j})}\sqrt{Var(Y_{m})}}= \fr
 <p>Hasta el momento, se han derivado las c.p. suponiendo conocida la matriz de covarianzas poblacional <span class="math inline">\(\boldsymbol{\Sigma}\)</span> (o la de correlaciones <span class="math inline">\(\bf P\)</span>). Sin embargo, este no suele ser el caso en la práctica, por lo que se sustituyen por sus homónimas muestrales <span class="math inline">\({\bf{S}}=\frac {1}{N}\bf{X}^\prime\bf{X}\)</span> (o <span class="math inline">\(\bf{R}\)</span>). Nada cambia en el proceso de obtención de las c.p., salvo que el punto de partida es <span class="math inline">\(\bf{S}\)</span> (o <span class="math inline">\(\bf{R}\)</span>) y que los valores de los autovalores y autovectores asociados son estimaciones.</p>
 <p>En el ejemplo que nos ocupa, la matriz de correlaciones muestrales, <span class="math inline">\(\bf R\)</span>, se muestra en la Fig. <a href="acp.html#fig:lee-datos-ch11">32.1</a>. Puede apreciarse que la correlación entre las variables es notable en la mayoría de los casos, lo que invita a analizar el problema con menos variables e incorrelacionadas, es decir, mediante ACP.</p>
 <p></p>
-<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"TIC2021"</span><span class="op">)</span></span>
 <span><span class="va">TIC</span> <span class="op">&lt;-</span> <span class="va">TIC2021</span></span>
@@ -302,7 +302,7 @@ r_{X_{j},Y_{m}}=\frac{Cov(X_{j},Y_{m})}{\sqrt{Var(X_{j})}\sqrt{Var(Y_{m})}}= \fr
 Figura 32.1: Matriz de correlaciones.
 </p>
 </div>
-<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://factominer.free.fr">"FactoMineR"</a></span><span class="op">)</span></span>
 <span><span class="va">acp</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FactoMineR/man/PCA.html">PCA</a></span><span class="op">(</span><span class="va">TIC</span>, ncp<span class="op">=</span><span class="fl">7</span>, graph<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -334,7 +334,7 @@ Figura 32.1: Matriz de correlaciones.
 </ol>
 <p>Otros criterios menos populares son la validación cruzada, el test de esfericidad o igualdad de autovalores de Anderson (requiere normalidad multivariante) y el criterio del bastón roto <span class="citation">(véase <a href="referencias.html#ref-cuadras2007">Cuadras 2007</a> para los dos últimos)</span>. Para grandes conjuntos de datos, <span class="citation">(<a href="#ref-jobson1992"><strong>jobson1992?</strong></a>)</span> propone un criterio basado en la partición de la muestra en submuestras mutuamente excluyentes, similar a la validación cruzada.</p>
 <p>La Fig. <a href="acp.html#fig:autovalores-ch11">32.2</a> muestra el gráfico de sedimentación en el ejemplo que nos ocupa. Puede apreciarse que con tan solo las dos primeras c.p. se captura el 82,07% de la variabilidad total de las siete variables originales.</p>
-<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">acp</span><span class="op">$</span><span class="va">eig</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        eigenvalue percentage of variance</span></span>
 <span><span class="co">#&gt; comp 1      4.644                 66.341</span></span>
@@ -359,7 +359,7 @@ Figura 32.2: Gráfico de sedimentación.
 </h2>
 <p>
 Una primera vía consiste en analizar el signo y la magnitud de los coeficientes (cargas o <em>loadings</em>) de cada variable original en cada componente.</p>
-<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">loadings</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sweep.html">sweep</a></span><span class="op">(</span><span class="va">acp</span><span class="op">$</span><span class="va">var</span><span class="op">$</span><span class="va">coord</span>,<span class="fl">2</span>,<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">acp</span><span class="op">$</span><span class="va">eig</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">loadings</span>,<span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            Dim.1  Dim.2  Dim.3  Dim.4  Dim.5  Dim.6  Dim.7</span></span>
@@ -373,7 +373,7 @@ Una primera vía consiste en analizar el signo y la magnitud de los coeficientes
 <ul>
 <li>Una segunda vía es el análisis de los <span class="math inline">\(r_{X_{j},Y_{m}}, \hspace{0,2cm} \forall {j,m=1,...,p}\)</span>.</li>
 </ul>
-<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">acp</span><span class="op">$</span><span class="va">var</span><span class="op">$</span><span class="va">cor</span>,<span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           Dim.1  Dim.2  Dim.3  Dim.4  Dim.5  Dim.6  Dim.7</span></span>
 <span><span class="co">#&gt; ebroad    0.745  0.195 -0.618  0.012  0.134  0.081 -0.003</span></span>
@@ -399,7 +399,7 @@ Figura 32.3: Gráfico de cosenos o coeficientes de correlación variables-compon
 <p>También es de interés la siguiente consideración: cuando las variables originales están correlacionadas positivamente, la primera c.p. tiene todas sus coordenadas del mismo signo y puede interpretarse como un promedio ponderado de todas ellas.</p>
 </div>
 <p>En la matriz de cargas (o <em>loadings</em>) se aprecia que la primera c.p. es una media ponderada (con ponderaciones similares) de las variables originales, mientras que <em>esales</em>, <em>hbroad</em> y <em>hiacc</em> cargan fuertemente en la segunda (<em>esales</em> positivamente y las otras dos de forma negativa) (Fig. <a href="acp.html#fig:grafico-contribucion-ch11">32.4</a>). La interpretación desde la perspectiva univariante de los coeficientes de correlación lineal es prácticamente la misma. Por ello, cabe interpretar la primera c.p. como un indicador general del uso de las TIC, mientras que la segunda, positivamente relacionada con la dotación TIC de las empresas pero con una fuerte relación negativa con la de los individuos y hogares, pudiera estar relacionada con las ayudas públicas a la implantación de las TIC en el tejido empresarial.</p>
-<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb451"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acp1</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_contrib.html">fviz_contrib</a></span><span class="op">(</span><span class="va">acp</span>, choice <span class="op">=</span> <span class="st">"var"</span>,  axes<span class="op">=</span><span class="fl">1</span>, top <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">acp2</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_contrib.html">fviz_contrib</a></span><span class="op">(</span><span class="va">acp</span>, choice <span class="op">=</span> <span class="st">"var"</span>,  axes<span class="op">=</span><span class="fl">2</span>, top <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
@@ -425,7 +425,7 @@ En la práctica, el punto de partida del ACP es la matriz <span class="math inli
 \end{equation}\]</span></p>
 <p>donde <span class="math inline">\(\bf F\)</span> es la matriz de puntuaciones de las c.p. La expresión anterior proporciona las coordenadas de los <span class="math inline">\(N\)</span> elementos en el espacio de las c.p. y, por tanto, sirve de ayuda en la interpretación de estas. La estandarización de las c.p. asegura que los <span class="math inline">\(m\)</span> ejes (componentes) tengan una métrica homogénea que facilitará la visualización e interpretación. Dichas coordenadas también constituyen el <em>input</em> de técnicas híbridas como, por ejemplo, regresión con c.p., clúster o PLS.</p>
 <p>En el ejemplo del uso de las TIC se tiene que:</p>
-<div class="sourceCode" id="cb451"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">puntuaciones</span><span class="op">&lt;-</span> <span class="va">acp</span><span class="op">$</span><span class="va">ind</span><span class="op">$</span><span class="va">coord</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">puntuaciones</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span>,<span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Dim.1  Dim.2  Dim.3  Dim.4  Dim.5  Dim.6  Dim.7</span></span>
@@ -441,7 +441,7 @@ En la práctica, el punto de partida del ACP es la matriz <span class="math inli
 ={\bf A}^{*}_{p \times k} {\bf I}_{k\times k}{\bf A}^{*^{\prime}}_{k \times p}={\bf A}^{*}_{p \times k}{\bf A}^{*^{\prime}}_{k \times p}.
 \end{eqnarray}\]</span>
 Debajo se muestran las tres primeras filas de la reproducción de <span class="math inline">\(\bf R\)</span> a partir de las dos primeras c.p. De la comparación de sus valores con los de la verdadera <span class="math inline">\(\bf R\)</span> (Fig. <a href="acp.html#fig:lee-datos-ch11">32.1</a>) se concluye que se trata de una buena reproducción.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Con tres c.p. la reproducción es casi perfecta. Se han retenido solo dos para poder mostrar representaciones bidimensionales y para evitar la interpretación de una tercera componente.&lt;/p&gt;"><sup>226</sup></a></p>
-<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb453"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">matrix</span><span class="op">&lt;-</span> <span class="va">acp</span><span class="op">$</span><span class="va">var</span><span class="op">$</span><span class="va">coord</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">acp</span><span class="op">$</span><span class="va">var</span><span class="op">$</span><span class="va">coord</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="op">]</span>,<span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           ebroad esales esocmedia  eweb hbroad hiacc  iuse</span></span>

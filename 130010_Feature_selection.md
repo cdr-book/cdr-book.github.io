@@ -8,7 +8,7 @@ $^{b}$Universidad de Castilla-La Mancha
 
 ## Introducción
 
-Como se indicó en el Cap. \@ref(130009), la preparación de datos, en un contexto de ciencia de datos, consiste en transformarlos de tal forma que se puedan utilizar adecuadamente en las fases posteriores de modelado. Esta preparación o prepreprocesamiento puede ser un proceso laborioso e incluye tareas como la integración y limpieza de datos, que se detallaron en dicho capítulo.
+Como se indicó en el Cap. \@ref(cap-130009), la preparación de datos, en un contexto de ciencia de datos, consiste en transformarlos de tal forma que se puedan utilizar adecuadamente en las fases posteriores de modelado. Esta preparación o prepreprocesamiento puede ser un proceso laborioso e incluye tareas como la integración y limpieza de datos, que se detallaron en dicho capítulo.
 
 El presente capítulo aborda las tareas relativas a la **selección de variables**
 (*feature selection*) y  **transformación de variables**. La selección de

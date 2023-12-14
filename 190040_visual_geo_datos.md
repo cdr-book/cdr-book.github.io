@@ -271,7 +271,7 @@ Definidos los elementos clave de los datos espaciales, a continuación se lleva 
 [^190040_visual_geo_datos-2]: Un análisis detallado puede verse en [@hernangomez_fernandezaviles_2022](https://mdsr-2122-visualizacion.netlify.app/).
 
 
-La integración de conjuntos de datos es una de las tareas iniciales al llevar a cabo un análisis de datos  (véase Cap. \@ref(130009)). En el caso de la representación de la renta neta per cápita a escala municipal, los ficheros que hay que integrar son `renta_municipio-data` y `municipios`, los cuales deben tener, al menos, un campo en común, en este caso `codigo_ine`, para poder proceder a su unión. El siguiente código muestra cómo realizar esta unión con la función `left_join()`.
+La integración de conjuntos de datos es una de las tareas iniciales al llevar a cabo un análisis de datos  (véase Cap. \@ref(cap-130009)). En el caso de la representación de la renta neta per cápita a escala municipal, los ficheros que hay que integrar son `renta_municipio-data` y `municipios`, los cuales deben tener, al menos, un campo en común, en este caso `codigo_ine`, para poder proceder a su unión. El siguiente código muestra cómo realizar esta unión con la función `left_join()`.
 
 
 ```r

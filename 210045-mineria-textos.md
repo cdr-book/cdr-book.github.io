@@ -76,7 +76,7 @@ La minería de textos tiene varios campos de aplicación. Entre ellos destacan t
 
 1. El **análisis de sentimientos**,\index{análisis!de sentimientos} que se tratará con detalle en la Sec. \@ref(secSENTIM) y en el ejemplo de aplicación (Sec. \@ref(secSENTYEMO)).
 
-2. El **modelado de temas**\index{modelado de temas} o **tópicos** (en inglés, *topic modelling*), que, como su propio nombre indica, tiene por objeto identificar los temas principales sobre los que versa el texto haciendo uso de técnicas de clasificación no supervisada del campo del aprendizaje automático, como por ejemplo LDA (*Latent Dirichlet Allocation*). Se ilustrará en el Cap. \ref{nlp-textil}.
+2. El **modelado de temas**\index{modelado de temas} o **tópicos** (en inglés, *topic modelling*), que, como su propio nombre indica, tiene por objeto identificar los temas principales sobre los que versa el texto haciendo uso de técnicas de clasificación no supervisada del campo del aprendizaje automático, como por ejemplo LDA (*Latent Dirichlet Allocation*). Se ilustrará en el Cap. \@ref(nlp-textil).
 
 3. La **estilometría**\index{estilometría} o **análisis estilométrico**, que es una aplicación de la minería de textos cuya finalidad consiste en determinar las relaciones existentes entre el estilo de los textos y los metadatos incluidos en ellos. Se utiliza principalmente en la atribución de autoría. El concepto base es el de **huella lingüística**\index{huella lingüística}, constituida por el conjunto de rasgos lingüísticos que caracterizan el estilo de un autor como un estilo individual y único y permiten identificarlo. Un punto clave es que, contrariamente a lo que podría pensarse, los rasgos que conforman en mayor medida la huella lingüística son los que tienen un mayor índice de frecuencia. La mayor parte de los enfoques utilizan el vector de las "palabras más frecuentes" (MFW, por sus siglas en inglés), que son, como se ha visto antes, las palabras vacías y no las palabras con significado léxico, para determinar el estilo de un autor. Esto es debido fundamentalmente a que las palabras vacías se usan de manera involuntaria e inconsciente, configurando de esta manera, sin ningún tipo de filtros racionales, una clave estilística idiosincrásica [@zahonero2020]. De lo anterior se deduce fácilmente que en este tipo de análisis no deben eliminarse las palabras vacías. 
 
@@ -563,7 +563,7 @@ En este capítulo se introduce al lector en la minería de textos. En particular
 - Se pone de relieve la importancia de la preparación de los datos y su segmentación (a distintos niveles) para obtener buenos resultados, acordes con el objetivo de la investigación.
 - Se muestra el uso de **R** para el análisis de textos y de sentimientos.
 - Se presenta un ejemplo de aplicación para ilustrar las técnicas de minería de textos.
-- Se mencionan otros análisis plausibles de minería de textos, como la estilometría o  el modelado de temas (véase el Cap. \ref{nlp-textil}). 
+- Se mencionan otros análisis plausibles de minería de textos, como la estilometría o  el modelado de temas (véase el Cap. \@ref(nlp-textil)). 
 
 :::
 

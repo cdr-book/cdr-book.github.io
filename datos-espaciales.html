@@ -7,7 +7,7 @@
 <title>Capítulo 40 Trabajando con datos espaciales | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Gema Fernández-Avilés259 Universidad de Castilla-La Mancha   40.1 Introducción Los datos espaciales, también conocidos como datos geográficos o datos georreferenciados, son aquellos que contienen...">
-<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="Capítulo 40 Trabajando con datos espaciales | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
 <script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
@@ -56,10 +56,10 @@
 <li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
 <li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
 <li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
-<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
 <li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
-<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
 <li class="book-part">Fundamentos de estadística</li>
 <li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
@@ -100,7 +100,7 @@
 <li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
 <li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
 <li class="book-part">Comunica y colabora</li>
-<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
 <li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
 <li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
 <li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
@@ -168,7 +168,7 @@ Figura 40.2: Clasificación de datos espaciales propuesta por Cressie (1993).
 <span class="header-section-number">40.2</span> Conceptos clave<a class="anchor" aria-label="anchor" href="#conceptos-clave"><i class="fas fa-link"></i></a>
 </h2>
 <p>Visto el contexto original de los datos espaciales, y antes de entrar en detalle en su análisis, se debe tener en cuenta una serie de conceptos clave. La Fig. <a href="datos-espaciales.html#fig:fig-accidentes1">40.3</a> representa la localización de los accidentes de tráfico registrados en la ciudad de Madrid durante el año 2020. Sin embargo, tal representación no aporta información útil para su análisis. Por ejemplo, sería interesante añadir un mapa de carreteras junto con la localización de los accidentes.</p>
-<div class="sourceCode" id="cb603"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb604"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">accidentes2020_data</span>,</span>
@@ -182,7 +182,7 @@ Figura 40.3: Accidentes de tráfico en Madrid (2020).
 </p>
 </div>
 <p>Además de las coordenadas, en la representación de geodatos es importante el marco o contexto espacial, así como el conocimiento del (i) <strong>sistema de referencia de coordenadas</strong> o <em>coordinate reference system</em> (<strong>CRS</strong>) en el que están goerreferenciadas o proyectadas las coordenadas y (ii) el formato de los datos con los que se está trabajando: vector o <em>raster</em>.</p>
-<div class="sourceCode" id="cb604"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb605"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/">"sf"</a></span><span class="op">)</span></span>
 <span><span class="va">accidentes2020_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">accidentes2020_data</span>,</span>
 <span>  coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"coordenada_x_utm"</span>, <span class="st">"coordenada_y_utm"</span><span class="op">)</span>,</span>
@@ -214,7 +214,7 @@ Figura 40.4: Accidentes de tráfico en Madrid proyectados y con mapa de carreter
 </h3>
 <p>Los CRS permiten identificar con exactitud la posición de los datos sobre el globo terráqueo. Cuando se trabaja con datos espaciales procedentes de distintas fuentes de información es necesario comprobar que las coordenadas correspondientes a dichos datos se encuentran definidas en el mismo CRS. Esto se consigue transformándolas (o proyectándolas) a un CRS común. Una buena referencia para profundizar esta cuestión es el Cap. 2 de <span class="citation">E. Pebesma and Bivand (<a href="referencias.html#ref-pebesma2022spatial">2023</a>)</span>.</p>
 <p>En la Fig. <a href="datos-espaciales.html#fig:plot-puertos-error">40.5</a> se muestran los puertos en un mapa mundial. Todos vienen representados por el punto rojo. ¿A qué se debe? A que los datos están en distintos CRS.</p>
-<div class="sourceCode" id="cb605"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb606"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ropengov.github.io/giscoR/">"giscoR"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">paises</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -241,7 +241,7 @@ Figura 40.5: Localización de los puertos en el mapamundi (distinto CRS en los p
 </ol>
 <p></p>
 <p>Retomando el ejemplo de los puertos marítimos, tras proyectar los puertos al mismo CRS que el mapamundi utilizando la proyección de Robinson (la proyección cartográfica más popular para mapamundis), la Fig. <a href="datos-espaciales.html#fig:plot-puertos-ok">40.6</a> ya muestra adecuadamente la localización de los puertos en el mapamundi.</p>
-<div class="sourceCode" id="cb606"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb607"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">puertos</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">paises_robin</span><span class="op">)</span> <span class="co"># Comprueba CRS</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span>
 <span><span class="va">puertos_robin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">puertos</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">paises_robin</span><span class="op">)</span><span class="op">)</span></span>
@@ -266,7 +266,7 @@ Figura 40.6: Localización de los puertos en el mapamundi (mismo CRS en los puer
 <span class="header-section-number">40.2.2.1</span> Datos de vectores<a class="anchor" aria-label="anchor" href="#vec"><i class="fas fa-link"></i></a>
 </h4>
 <p>Este modelo de datos está basado en puntos georreferenciados. Los <strong>puntos</strong>, por ejemplo, representan localizaciones específicas. Un ejemplo es la localización de los hospitales y centros de salud de la ciudad de Toledo representados en la Fig. <a href="datos-espaciales.html#fig:plot-puntos">40.7</a>.</p>
-<div class="sourceCode" id="cb607"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb608"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hosp_toledo</span>, </span>
 <span>          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Hospitales y Centros Sanitarios"</span><span class="op">)</span>, </span>
@@ -281,7 +281,7 @@ Figura 40.7: Hospitales y centros de salud en Toledo.
 </p>
 </div>
 <p>Los puntos también pueden estar conectados entre sí, de manera que formen geometrías más complejas, como <strong>líneas</strong> y <strong>polígonos</strong>. En la Fig. <a href="datos-espaciales.html#fig:plot-lineas-pol">40.8</a>, el río Tajo está representado como una línea (<code>tajo</code>, sucesión de puntos unidos entre sí) y la ciudad de Toledo como un polígono (<code>toledo</code>, línea de puntos cerrada formando un espacio continuo).</p>
-<div class="sourceCode" id="cb608"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb609"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">toledo</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"cornsilk2"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">tajo</span>, col <span class="op">=</span> <span class="st">"lightblue2"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
@@ -347,7 +347,7 @@ Figura 40.8: Datos vector: Puntos, líneas y polígonos.
 <span class="header-section-number">40.2.2.2</span> Datos <em>raster</em><a class="anchor" aria-label="anchor" href="#raster"><i class="fas fa-link"></i></a>
 </h4>
 <p>Los datos <em>raster</em> son datos proporcionados en una rejilla de píxeles (regulares o no) denominada <strong>matriz</strong>. El caso más popular de un <em>raster</em> es una fotografía, donde la imagen se representa como una serie de celdas, determinadas por la resolución de la imagen, es decir, el tamaño del píxel (por ejemplo, 5 <span class="math inline">\(\times\)</span> 5 unidades, si es regular, 5 <span class="math inline">\(\times\)</span> 10 unidades, si es irregular) y el valor del píxel (RGB –<em>red</em>, <em>green</em>, <em>blue</em>–, por ejemplo) que determina el color que presenta cada uno de estos píxeles. En el ámbito de los datos espaciales, un archivo <em>raster</em> está formado por una malla de píxeles georreferenciada, tal y como muestra la Fig. <a href="datos-espaciales.html#fig:plot-raster-to">40.9</a>. En ella se visualiza el conjunto de datos <code>elev</code> incluido en el paquete <code>CDR</code>, que contiene los datos de altitud de la provincia de Toledo en metros.</p>
-<div class="sourceCode" id="cb609"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb610"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rspatial.org/">"terra"</a></span><span class="op">)</span></span>
 <span><span class="va">elev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/rast.html">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"external/Toledo_DEM.asc"</span>, package <span class="op">=</span> <span class="st">"CDR"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html">plot</a></span><span class="op">(</span><span class="va">elev</span>, main <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
@@ -396,8 +396,8 @@ tiene únicamente una capa. Eso implica que cada píxel tiene asociado un único
 <span class="header-section-number">40.3</span> Mi primer mapa<a class="anchor" aria-label="anchor" href="#primer-mapa"><i class="fas fa-link"></i></a>
 </h2>
 <p>Definidos los elementos clave de los datos espaciales, a continuación se lleva a cabo un primer mapa, el resultado esperado cuando se trabaja con datos espaciales. Concretamente, se representa la distribución de la renta neta per cápita (<code>renta_municipio_data</code>) por municipio (<code>municipios</code>) en España en el año 2019.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Un análisis detallado puede verse en &lt;a href="https://mdsr-2122-visualizacion.netlify.app/"&gt;&lt;span class="citation"&gt;Hernangómez and Fernández-Avilés (&lt;span&gt;2022&lt;/span&gt;)&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>262</sup></a> Los datos están incluidos en el paquete <code>CDR</code>. </p>
-<p>La integración de conjuntos de datos es una de las tareas iniciales al llevar a cabo un análisis de datos (véase Cap. <a href="#130009"><strong>??</strong></a>). En el caso de la representación de la renta neta per cápita a escala municipal, los ficheros que hay que integrar son <code>renta_municipio-data</code> y <code>municipios</code>, los cuales deben tener, al menos, un campo en común, en este caso <code>codigo_ine</code>, para poder proceder a su unión. El siguiente código muestra cómo realizar esta unión con la función <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>.</p>
-<div class="sourceCode" id="cb610"><pre class="downlit sourceCode r">
+<p>La integración de conjuntos de datos es una de las tareas iniciales al llevar a cabo un análisis de datos (véase Cap. <a href="cap-130009.html#cap-130009">8</a>). En el caso de la representación de la renta neta per cápita a escala municipal, los ficheros que hay que integrar son <code>renta_municipio-data</code> y <code>municipios</code>, los cuales deben tener, al menos, un campo en común, en este caso <code>codigo_ine</code>, para poder proceder a su unión. El siguiente código muestra cómo realizar esta unión con la función <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>.</p>
+<div class="sourceCode" id="cb611"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/">"sf"</a></span><span class="op">)</span></span>
 <span><span class="va">munis_renta</span> <span class="op">&lt;-</span> <span class="va">municipios</span> <span class="op">|&gt;</span></span>
@@ -405,7 +405,7 @@ tiene únicamente una capa. Eso implica que cada píxel tiene asociado un único
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">cpro</span>, <span class="va">cmun</span>, <span class="va">`2019`</span><span class="op">)</span>     <span class="co"># selecciona variables</span></span>
 <span><span class="co">#&gt; Joining, by = "codigo_ine"</span></span></code></pre></div>
 <p>El siguiente paso es la representación gráfica de estos datos en el mapa. En la <em>chunk</em> se muestra como llevar a cabo dicha representación con la función <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>.</p>
-<div class="sourceCode" id="cb611"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb612"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">munis_renta</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">`2019`</span><span class="op">)</span>, color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_continuous.html">scale_fill_continuous</a></span><span class="op">(</span></span>
@@ -419,7 +419,7 @@ Figura 40.10: Renta neta media por persona (€) a escala municipal en España e
 </p>
 </div>
 <p>La Fig. <a href="datos-espaciales.html#fig:plot-renta-ko">40.10</a> muestra un mapa temático de coropletas,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Una coropleta es un símbolo o área marcada y delimitada en un mapa que denota la distribución de alguna característica de interés. Un mapa de coropletas es una representación planimétrica de un modelo de datos tridimensional, en donde se consideran superficies y no puntos.&lt;/p&gt;"><sup>263</sup></a> es decir, una visualización sencilla de cómo varía la distribución de una variable (en este caso la renta neta media por persona) en una área geográfica (España). En la información contenida en el objeto <code>munis_renta</code> pueden verse una serie de elementos gráficos característicos de los objetos espaciales: los datos son de tipo vector, el tipo de geometría es MULTIPOLYGON, el CRS es ETRS89 y una leyenda explica el significado de la variable.</p>
-<div class="sourceCode" id="cb612"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb613"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html">head</a></span><span class="op">(</span><span class="va">munis_renta</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span>
 <span><span class="co">#&gt; Simple feature collection with 3 features and 4 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
@@ -455,7 +455,7 @@ Figura 40.10: Renta neta media por persona (€) a escala municipal en España e
 </ul>
 <p>El mapa de la Fig. <a href="datos-espaciales.html#fig:plot-mapa-fisher">40.11</a> proporciona ahora una visualización adecuada de la renta neta per cápita en España, a escala municipal, en 2019.</p>
 <p></p>
-<div class="sourceCode" id="cb613"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb614"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">munis_renta_clean</span> <span class="op">&lt;-</span> <span class="va">munis_renta</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">`2019`</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -485,7 +485,7 @@ Figura 40.11: Renta neta per cápita en España, a escala municipal, en 2019, co
 </h2>
 <p></p>
 <p>La dimensión temporal cobra cada vez más relevancia en el ámbito espacial, y por ello es importante representar en el tiempo los procesos espaciales.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;En especial la interacción espacio-tiempo que da lugar a los datos espaciotemporales.&lt;/p&gt;"><sup>264</sup></a> A modo de ejemplo, la Fig. <a href="datos-espaciales.html#fig:plot-tmin-st">40.13</a> representa la temperatura mínima registrada en España del 6 al 10 de enero de 2021, <code><a href="https://rdrr.io/pkg/CDR/man/tempmin_data.html">CDR::tempmin_data</a></code>, durante la <a href="https://es.wikipedia.org/wiki/Borrasca_Filomena">Borrasca Filomena</a>. Al igual que en ejemplo anterior, para la representación se dispone de dos ficheros <code>tempmin_data</code>, con los datos de temperatura y <code>esp</code>, un objeto <strong>R</strong> que se crea con <code><a href="https://ropenspain.github.io/mapSpain/reference/esp_get_ccaa.html">mapSpain::esp_get_ccaa()</a></code>.</p>
-<div class="sourceCode" id="cb614"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb615"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmin_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">tempmin_data</span>, </span>
 <span>  coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"longitud"</span>, <span class="st">"latitud"</span><span class="op">)</span>,</span>
 <span>  crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span> <span class="co"># coordenadas geográficas longitud/latitud WGS84</span></span>
@@ -493,14 +493,14 @@ Figura 40.11: Renta neta per cápita en España, a escala municipal, en 2019, co
 <span><span class="va">esp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropenspain.github.io/mapSpain/reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># sf objeto, contorno de España</span></span>
 <span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ine.ccaa.name</span> <span class="op">!=</span> <span class="st">"Canarias"</span><span class="op">)</span> <span class="co"># excluye Canarias</span></span></code></pre></div>
 <p>Recuérdese que la primera pregunta que se debe formular es: ¿el CRS de las estaciones de medición de la temperatura está en la misma proyección que el contorno de España?</p>
-<div class="sourceCode" id="cb615"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb616"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">tmin_sf</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">esp</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span>
 <span><span class="va">esp2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">esp</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">tmin_sf</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">tmin_sf</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">esp2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>Comprobado el CRS, es habitual representar las coordenadas con las que se trabaja. La Fig. <a href="datos-espaciales.html#fig:plot-aemet">40.12</a> muestra la localización de las estaciones que registran la temperatura en España.</p>
-<div class="sourceCode" id="cb616"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb617"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">esp2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>   </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">tmin_sf</span><span class="op">)</span> </span></code></pre></div>
@@ -515,7 +515,7 @@ Figura 40.12: Estaciones de la AEMET en la Península Ibérica.
 <p><strong>Nota</strong></p>
 <p>Los paquetes <code>tmap</code> <span class="citation">(<a href="referencias.html#ref-R-tmap">Tennekes 2018</a>)</span> y <code>mapsf</code> <span class="citation">(<a href="referencias.html#ref-R-mapsf">Giraud 2022</a>)</span> son referentes en la construcción de mapas temáticos y pueden utilizarse como alternativa.</p>
 </div>
-<div class="sourceCode" id="cb617"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb618"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># definición de intervalos</span></span>
 <span><span class="va">cortes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">2.5</span><span class="op">)</span>, <span class="cn">Inf</span><span class="op">)</span></span>
 <span><span class="va">colores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">hcl.colors</a></span><span class="op">(</span><span class="fl">15</span>, <span class="st">"PuOr"</span>, rev <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -548,20 +548,20 @@ Figura 40.13: Temperatura mínima en España (6-10 enero 2021).
 <p>
 El desarrollo de la informática ha propiciado también el desarrollo de la geocomputación, que está relacionada con los desarrollos webs y permite, entre otras cosas, la representación de mapas interactivos.</p>
 <p>A modo de ejemplo, en la Fig. <a href="datos-espaciales.html#fig:snow-map-png-ch40">40.14</a> se representa la versión interactiva del mapa de la Fig. <a href="datos-espaciales.html#fig:snow-cholera-map-ch40">40.1</a>. Para ello se utiliza la librería <code>leaflet</code>. Estos mapas dinámicos, ampliables y desplazables son más informativos que los mapas estáticos y, además, constituyen una alternativa que puede proporcionar al usuario una experiencia diferente, además de una mayor interacción.</p>
-<div class="sourceCode" id="cb618"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb619"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rstudio.github.io/leaflet/">"leaflet"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"isdas"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"snow_deaths"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"snow_pumps"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## crea mapa interactivo</span></span>
-<span><span class="va">snow_map</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">setView</span><span class="op">(</span>lng <span class="op">=</span> <span class="op">-</span><span class="fl">0.136</span>, lat <span class="op">=</span> <span class="fl">51.513</span>, zoom <span class="op">=</span> <span class="fl">16</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">addMarkers</span><span class="op">(</span> data <span class="op">=</span> <span class="va">snow_deaths</span>, <span class="op">~</span><span class="va">long</span>, <span class="op">~</span><span class="va">lat</span>,</span>
-<span>    clusterOptions <span class="op">=</span> <span class="fu">markerClusterOptions</span><span class="op">(</span><span class="op">)</span>,</span>
+<span><span class="va">snow_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-methods.html">setView</a></span><span class="op">(</span>lng <span class="op">=</span> <span class="op">-</span><span class="fl">0.136</span>, lat <span class="op">=</span> <span class="fl">51.513</span>, zoom <span class="op">=</span> <span class="fl">16</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span> data <span class="op">=</span> <span class="va">snow_deaths</span>, <span class="op">~</span><span class="va">long</span>, <span class="op">~</span><span class="va">lat</span>,</span>
+<span>    clusterOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-options.html">markerClusterOptions</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    group <span class="op">=</span> <span class="st">"Deaths"</span> <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">addMarkers</span><span class="op">(</span>data <span class="op">=</span> <span class="va">snow_pumps</span>, <span class="op">~</span><span class="va">long</span>, <span class="op">~</span><span class="va">lat</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">snow_pumps</span>, <span class="op">~</span><span class="va">long</span>, <span class="op">~</span><span class="va">lat</span>,</span>
 <span>    group <span class="op">=</span> <span class="st">"Pumps"</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="va">snow_map</span></span></code></pre></div>

@@ -7,7 +7,7 @@
 <title>Capítulo 52 El impacto de las crisis financiera y de la COVID-19 en el paro de CLM | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Isidro Hidalgo Arellano\(^{a,b}\) y Ángel Jiménez Rojas\(^{a}\) \(^{a}\)Observatorio del Mercado de Trabajo de Castilla-La Mancha\(^{b}\)Universidad de Castilla-La Mancha  52.1 Planteamiento En...">
-<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="Capítulo 52 El impacto de las crisis financiera y de la COVID-19 en el paro de CLM | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
 <script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
@@ -56,10 +56,10 @@
 <li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
 <li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
 <li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
-<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
 <li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
-<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
 <li class="book-part">Fundamentos de estadística</li>
 <li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
@@ -100,7 +100,7 @@
 <li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
 <li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
 <li class="book-part">Comunica y colabora</li>
-<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
 <li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
 <li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
 <li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
@@ -141,14 +141,14 @@
 <p>En los últimos 15 años el mundo ha sufrido dos grandes períodos de <strong>crisis económica</strong>: en <strong>2008</strong>, de tipo financiero, y en <strong>2020</strong>, a causa de la pandemia de <strong>COVID-19</strong>. Una de las variables socioeconómicas que se ven más afectadas por este tipo de procesos es el paro registrado. El paro registrado se define como el conjunto de los demandantes inscritos en las oficinas de empleo, una vez excluidos los inscritos sin disponibilidad para trabajar y los demandantes no parados, tales como estudiantes, desempleados en formación, etc. <span class="citation">(<a href="referencias.html#ref-TOHARIA">Toharia 2012</a>)</span>.
 <strong>Castilla-La Mancha</strong> (CLM), comunidad autónoma interior de España, no ha sido ajena a las crisis económicas mencionadas, por lo que en este caso de uso se analiza el impacto de las mismas en la estructura del <strong>paro registrado</strong> de la región. Para ello se utilizan las siguientes variables explicativas: <strong>sexo</strong> y <strong>edad</strong> de la persona desempleada, <strong>sector de actividad económica de procedencia</strong> y <strong>tiempo de búsqueda de empleo</strong>. El conjunto de datos utilizado comprende la <strong>media anual del paro registrado en la comunidad autónoma de Castilla-La Mancha</strong> desagregado según estas variables, a lo largo de los años que van desde 2007 a 2022.</p>
 <p>Para el análisis se usan las librerías y objetos (paletas de colores para los gráficos) siguientes:</p>
-<div class="sourceCode" id="cb776"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb777"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rpkgs.datanovia.com/ggpubr/">"ggpubr"</a></span><span class="op">)</span></span>
 <span><span class="va">paleta_heatmaps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">.7</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">.5</span><span class="op">)</span>,  <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">.13</span>,<span class="fl">.22</span>,<span class="fl">.58</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">paleta_lineas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue4"</span>, <span class="st">"orange"</span>,<span class="st">"darkgreen"</span><span class="op">)</span></span></code></pre></div>
 <p>Para cargar el conjunto de datos, <code>parados_clm</code>, incluido en el paquete <code>CDR</code>, y mostrar la estructura de la <code>tibble</code> se usa:</p>
-<div class="sourceCode" id="cb777"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb778"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"parados_clm"</span><span class="op">)</span></span>
 <span><span class="va">parados_clm</span></span>
 <span><span class="co"># A tibble: 92,215 × 8</span></span>
@@ -166,7 +166,7 @@
 <span class="header-section-number">52.2</span> Evolución del paro medio anual en Castilla-La Mancha<a class="anchor" aria-label="anchor" href="#evoluci%C3%B3n-del-paro-medio-anual-en-castilla-la-mancha"><i class="fas fa-link"></i></a>
 </h2>
 <p>Para ver el paro medio anual en función del tiempo, se construye un gráfico de evolución. Para ello se representa el paro medio por año, marcando los años que suponen un máximo o mínimo en la serie:</p>
-<div class="sourceCode" id="cb778"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb779"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resumen</span> <span class="op">&lt;-</span> <span class="va">parados_clm</span> <span class="op">|&gt;</span></span>
 <span>     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">anyo</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>parados <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">parados</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -204,7 +204,7 @@ Figura 52.1: Evolución del paro medio anual en CLM.
 <span class="header-section-number">52.3</span> Evolución del paro medio anual en función de la edad y el sexo<a class="anchor" aria-label="anchor" href="#evoluci%C3%B3n-del-paro-medio-anual-en-funci%C3%B3n-de-la-edad-y-el-sexo"><i class="fas fa-link"></i></a>
 </h2>
 <p>Para ver cómo ha cambiado la estructura del paro registrado en función de la <code>edad</code> y el <code>sexo</code> de los parados se pueden utilizar diferentes gráficos. En este análisis, se usan mapas de calor y gráficos de distribución de densidad. Para hacer un mapa de calor que permita comparar dos variables simultáneamente, se construye la función <code>heatmap_anyos()</code> con el código siguiente:</p>
-<div class="sourceCode" id="cb779"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb780"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">heatmap_anyos</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">var1</span>, <span class="va">var2</span>, <span class="va">inicio</span> <span class="op">=</span> <span class="fl">2007</span>, <span class="va">intermedio</span> <span class="op">=</span> <span class="fl">2019</span>,</span>
 <span>                          <span class="va">fin</span> <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span><span class="op">{</span></span>
 <span>     <span class="va">tabla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">parados_clm</span>, <span class="va">anyo</span>, <span class="va">var1</span>, <span class="va">var2</span>, <span class="va">parados</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -223,7 +223,7 @@ Figura 52.1: Evolución del paro medio anual en CLM.
 <span>                strip.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span>, face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span><span class="op">)</span></span>
 <span>     <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">graf</span><span class="op">)</span><span class="op">}</span></span></code></pre></div>
 <p>Si se lanza la función <code>heatmap_anyos()</code> para las variables <code>edad</code> y <code>sexo</code>, tomando como años comparativos 2007, 2019 y 2022, se obtiene la Fig. <a href="paro-clm.html#fig:empleo-heatmap-edad-sexo">52.2</a>.</p>
-<div class="sourceCode" id="cb780"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb781"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">heatmap_anyos</span><span class="op">(</span><span class="st">"sexo"</span>, <span class="st">"edad"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:empleo-heatmap-edad-sexo"></span>
@@ -233,7 +233,7 @@ Figura 52.2: Paro medio anual según edad y sexo en 2007, 2019 y 2022.
 </div>
 <p>En la Fig. <a href="paro-clm.html#fig:empleo-heatmap-edad-sexo">52.2</a> se puede apreciar que en los dos procesos críticos se ha producido un <strong>desplazamiento del paro hacia los intervalos de mayor edad</strong>, siendo este cambio más pronunciado en las <strong>mujeres</strong>.<br>
 El mapa de calor es muy útil para una primera impresión de estos cambios, pero si se desea observar detalladamente cómo ha cambiado la distribución del paro según el <code>sexo</code> y la <code>edad</code>, es mejor programar la función <code>densidad_compara()</code>, que proporciona un mayor nivel de detalle: produce un cuadro de gráficos que permite comparar la distribución del paro según la edad para cada estrato de la variable elegida (en este caso sexo) para tres años diferentes (2007, 2019 y 2022 por defecto). Los parámetros <code>alpha</code> y <code>size</code> permiten ajustar tamaño y opacidad de las líneas, respectivamente, mejorando la apariencia general del gráfico.</p>
-<div class="sourceCode" id="cb781"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb782"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">densidad_compara</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">variab</span>, <span class="va">inicio</span> <span class="op">=</span> <span class="fl">2007</span>, <span class="va">medio</span> <span class="op">=</span> <span class="fl">2019</span>,</span>
 <span>                             <span class="va">fin</span> <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span><span class="op">{</span></span>
 <span>     <span class="va">tabla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">parados_clm</span>, <span class="va">anyo</span>, <span class="va">variab</span>, <span class="va">edad</span>, <span class="va">parados</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -256,7 +256,7 @@ El mapa de calor es muy útil para una primera impresión de estos cambios, pero
 <span>                axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span>, face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span><span class="op">)</span></span>
 <span>     <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">graf</span><span class="op">)</span><span class="op">}</span></span></code></pre></div>
 <p>Ejecutando la función <code>densidad_compara()</code> para la variable <code>sexo</code> se obtiene la Fig. <a href="paro-clm.html#fig:empleo-densidad-sexo">52.3</a>:</p>
-<div class="sourceCode" id="cb782"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb783"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">densidad_compara</span><span class="op">(</span><span class="st">"sexo"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:empleo-densidad-sexo"></span>
@@ -271,7 +271,7 @@ Figura 52.3: Distribución del paro medio anual por edad y sexo (2007, 2019 y 20
 <span class="header-section-number">52.4</span> Evolución del paro medio anual según el tiempo de búsqueda de empleo<a class="anchor" aria-label="anchor" href="#evoluci%C3%B3n-del-paro-medio-anual-seg%C3%BAn-el-tiempo-de-b%C3%BAsqueda-de-empleo"><i class="fas fa-link"></i></a>
 </h2>
 <p>Se define el <strong>tiempo de búsqueda de empleo</strong> como el tiempo transcurrido ininterrumpidamente desde la última inscripción de la persona en el paro registrado <span class="citation">(<a href="referencias.html#ref-JIPINFANTE">Pérez Infante 2006</a>)</span>. Si, para simplificar, se agregan los doce intervalos que considera la estadística de paro registrado para el tiempo de búsqueda de empleo en tan solo cuatro, ejecutando la función <code>densidad_compara()</code> para la variable <code>t_bus_e_agr</code> se obtiene la Fig. <a href="paro-clm.html#fig:empleo-densidad-bus-agr">52.4</a>.</p>
-<div class="sourceCode" id="cb783"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb784"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">densidad_compara</span><span class="op">(</span><span class="st">"t_bus_e_agr"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:empleo-densidad-bus-agr"></span>
@@ -281,7 +281,7 @@ Figura 52.4: Distribución del paro medio anual por edad y tiempo de búsqueda d
 </div>
 <p>En la Fig. <a href="paro-clm.html#fig:empleo-densidad-bus-agr">52.4</a> se pone de manifiesto que el tramo con mayor incremento de número de parados es el correspondiente a más de 24 meses de búsqueda de empleo (<strong>paro de muy larga duración</strong>), ya que la crisis financiera de 2008 les redujo su probabilidad de encontrar empleo. Se puede afirmar también que los dos períodos de crisis han provocado la creación de un <strong>paro estructural de larga duración</strong>.</p>
 <p>Se deja al lector ejecutar la función <code>heatmap_anyos()</code> para las variables <code>sexo</code> y <code>t_bus_e</code>, tomando como años comparativos 2007, 2019 y 2022. Observará en el gráfico resultante que el incremento en el paro de muy larga duración es más intenso en el colectivo de las mujeres. El código a utilizar es:</p>
-<div class="sourceCode" id="cb784"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb785"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">heatmap_anyos</span><span class="op">(</span><span class="st">"sexo"</span>, <span class="st">"t_bus_e"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="evolución-del-paro-medio-anual-según-sexo-edad-y-sector-de-procedencia" class="section level2" number="52.5">
@@ -290,7 +290,7 @@ Figura 52.4: Distribución del paro medio anual por edad y tiempo de búsqueda d
 </h2>
 <p>La variable <strong>sector de procedencia</strong> es un tanto particular, ya que, cuando un parado lleva mucho tiempo buscando empleo ininterrumpidamente, “pierde” el sector de procedencia y se clasifica automáticamente en la rúbrica “sin actividad”. A la hora de analizar esta variable, por tanto, es importante tener en cuenta que una parte de los parados ubicados en la rúbrica “sin actividad” realmente tuvo un trabajo hace mucho tiempo.<br>
 La visualización de los cambios producidos en estas variables con un mapa de calor se puede llevar a cabo ejecutando de nuevo la función <code>heatmap_anyos()</code>, obteniendo la Fig. <a href="paro-clm.html#fig:empleo-heatmap-sexo-sector">52.5</a>:</p>
-<div class="sourceCode" id="cb785"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb786"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">heatmap_anyos</span><span class="op">(</span><span class="st">"sexo"</span>, <span class="st">"sector"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:empleo-heatmap-sexo-sector"></span>
@@ -300,7 +300,7 @@ Figura 52.5: Paro medio anual según sexo y sector de procedencia.
 </div>
 <p>En la Fig. <a href="paro-clm.html#fig:empleo-heatmap-sexo-sector">52.5</a> se aprecia el incremento del paro registrado en el sector <strong>servicios</strong>, especialmente en el colectivo femenino.<br>
 Ejecutando la función <code>densidad_compara()</code> para la variable <code>sector</code> se obtiene la Fig. <a href="paro-clm.html#fig:empleo-densidad-sector">52.6</a>.</p>
-<div class="sourceCode" id="cb786"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb787"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">densidad_compara</span><span class="op">(</span><span class="st">"sector"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:empleo-densidad-sector"></span>

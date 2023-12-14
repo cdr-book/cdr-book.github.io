@@ -7,7 +7,7 @@
 <title>Capítulo 60 Detección de fraude de tarjetas de crédito | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Pedro Albarracín García DXC Technology  60.1 Introducción En un informe publicado en diciembre de 2021 por Nilson Report,311 se anunció que los emisores de tarjetas de crédito, comerciantes y...">
-<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="Capítulo 60 Detección de fraude de tarjetas de crédito | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
 <script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
@@ -56,10 +56,10 @@
 <li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
 <li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
 <li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
-<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
 <li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
-<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
 <li class="book-part">Fundamentos de estadística</li>
 <li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
@@ -100,7 +100,7 @@
 <li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
 <li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
 <li class="book-part">Comunica y colabora</li>
-<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
 <li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
 <li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
 <li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
@@ -219,7 +219,7 @@ algunas transformaciones. Por motivos de confidencialidad, las variables
 V1 a V28 no incluyen sus nombres originales ni se añade más información
 de contexto.</p>
 <p><strong>Carga de los datos y obtención de algunos descriptivos</strong></p>
-<div class="sourceCode" id="cb864"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb865"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">creditcard</span> <span class="op">&lt;-</span> <span class="fu">CDR</span><span class="fu">::</span><span class="va">creditcard</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">creditcard</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "Time"   "V1"     "V2"     "V3"     "V4"     "V5"     "V6"     "V7"    </span></span>
@@ -231,7 +231,7 @@ de contexto.</p>
 <p>A continuación es necesario dividir los datos en dos <em>dataframes</em>
 denominados <code>creditcard_X</code> y <code>creditcard_y</code>. De esta forma, se separan
 las variables independientes de la variable dependiente o <code>Class</code>.</p>
-<div class="sourceCode" id="cb865"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb866"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se dividen los datos</span></span>
 <span><span class="va">creditcard_X</span> <span class="op">&lt;-</span> <span class="va">creditcard</span><span class="op">[</span>,<span class="op">-</span><span class="fl">31</span><span class="op">]</span></span>
 <span><span class="va">creditcard_y</span> <span class="op">&lt;-</span> <span class="va">creditcard</span><span class="op">$</span><span class="va">Class</span></span></code></pre></div>
@@ -275,7 +275,7 @@ paquete <code>DMwR</code>.</p>
 submuestreo implementada en una función del paquete <code>unbalanced</code>. Este paquete no se
 encuentra disponible en el repositorio de CRAN por lo que, para su
 instalación, se debe ejecutar el siguiente código:</p>
-<div class="sourceCode" id="cb866"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb867"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#install.packages("devtools") # descomentar para instalar </span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/">"devtools"</a></span><span class="op">)</span></span>
 <span><span class="co"># devtools::install_github("dalpozz/unbalanced") # descomentar para instalar </span></span>
@@ -285,13 +285,13 @@ submuestreo del dataset siguiendo los siguientes pasos:</p>
 <ol style="list-style-type: decimal">
 <li>Convertir la variable dependiente <code>Class</code> en factor:</li>
 </ol>
-<div class="sourceCode" id="cb867"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb868"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">creditcard</span><span class="op">$</span><span class="va">Class</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/is.bool.html">as.factor</a></span><span class="op">(</span><span class="va">creditcard</span><span class="op">$</span><span class="va">Class</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/factors.html">levels</a></span><span class="op">(</span><span class="va">creditcard</span><span class="op">$</span><span class="va">Class</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'0'</span>, <span class="st">'1'</span><span class="op">)</span> </span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Ejecutar la función de submuestreo:</li>
 </ol>
-<div class="sourceCode" id="cb868"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb869"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">undersampled_creditcard</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/unbalanced/man/ubBalance.html">ubBalance</a></span><span class="op">(</span><span class="va">creditcard_X</span>, <span class="va">creditcard</span><span class="op">$</span><span class="va">Class</span>, type<span class="op">=</span><span class="st">'ubUnder'</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Proportion of positives after ubUnder : 50 % of 984 observations</span></span>
 <span><span class="va">undersampled_combined</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">undersampled_creditcard</span><span class="op">$</span><span class="va">X</span>,   </span>
@@ -303,14 +303,14 @@ submuestreo del dataset siguiendo los siguientes pasos:</p>
 <li>Comprobar el número de casos del conjunto de datos sobre el que se ha
 ejecutado la función de submuestreo:</li>
 </ol>
-<div class="sourceCode" id="cb869"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb870"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">creditcard</span><span class="op">$</span><span class="va">Class</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/is.bool.html">as.factor</a></span><span class="op">(</span><span class="va">creditcard</span><span class="op">$</span><span class="va">Class</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/factors.html">levels</a></span><span class="op">(</span><span class="va">creditcard</span><span class="op">$</span><span class="va">Class</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'0'</span>, <span class="st">'1'</span><span class="op">)</span> </span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Construir el gráfico incluido en la Fig. <a href="cap-fraude.html#fig:muestras">60.1</a> para visualizar el número de elementos de cada
 clase después de realizar el submuestreo:</li>
 </ol>
-<div class="sourceCode" id="cb870"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb871"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">undersampled_combined</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Class</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Class</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
@@ -343,7 +343,7 @@ observaciones, un 50% de las cuales son transacciones identificadas como
 fraude.</p>
 <p>Lo primero que hay que hacer es realizar un par de pequeños cambios en el dataset; concretamente: <span class="math inline">\((i)\)</span> eliminar las variables <code>Time</code> y <code>Amount</code>, ya que no son relevantes en el modelo, y <span class="math inline">\((ii)\)</span> cambiar por 0 y 1 las etiquetas <code>Legitima</code>
 y <code>Fraude</code>, respectivamente.</p>
-<div class="sourceCode" id="cb871"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb872"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">undersampled_combined</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/subset.html">subset</a></span><span class="op">(</span> <span class="va">undersampled_combined</span>, select <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Time</span>, <span class="va">Amount</span> <span class="op">)</span> <span class="op">)</span></span>
 <span><span class="va">undersampled_combined</span><span class="op">$</span><span class="va">Class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">undersampled_combined</span><span class="op">$</span><span class="va">Class</span> <span class="op">==</span> <span class="st">"Fraude"</span>,<span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <p>Lo siguiente será dividir el conjunto de datos en los subconjuntos de
@@ -351,7 +351,7 @@ entrenamiento y test, para lo cual se aplica la función <code><a href="https://
 un <code>SplitRatio</code> de 0,80, es decir, un 80% de los datos irá de forma
 aleatoria al subconjunto de entrenamiento (788 observaciones) y
 el 20% restante (196 observaciones) al subconjunto de test.</p>
-<div class="sourceCode" id="cb872"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb873"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#install.packages("caTools") # descomentar para instalar</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"caTools"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
@@ -368,10 +368,10 @@ resto de variables del conjunto de datos: <code>V1</code>…<code>V28</code>).</
 <p>• <code>data</code>: el dataset con los datos de entrenamiento.</p>
 <p>• <code>family</code>: al ser un clasificador con dos valores posibles (0, 1), se
 indica que será de tipo <code>binomial</code>.</p>
-<div class="sourceCode" id="cb873"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb874"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">undersampledModel</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">Class</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">training</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Para ver los resultados del modelo, se ejecutará:</p>
-<div class="sourceCode" id="cb874"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb875"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summary.html">summary</a></span><span class="op">(</span><span class="va">undersampledModel</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Call:</span></span>
@@ -379,43 +379,43 @@ indica que será de tipo <code>binomial</code>.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
 <span><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
-<span><span class="co">#&gt; (Intercept)    2.5009     1.7509   1.428 0.153183    </span></span>
-<span><span class="co">#&gt; V1           -17.9509     4.9954  -3.594 0.000326 ***</span></span>
-<span><span class="co">#&gt; V2            17.5583     4.9540   3.544 0.000394 ***</span></span>
-<span><span class="co">#&gt; V3           -43.3067    11.7479  -3.686 0.000228 ***</span></span>
-<span><span class="co">#&gt; V4            27.9272     7.2714   3.841 0.000123 ***</span></span>
-<span><span class="co">#&gt; V5           -29.4626     8.0343  -3.667 0.000245 ***</span></span>
-<span><span class="co">#&gt; V6           -10.1965     2.7901  -3.654 0.000258 ***</span></span>
-<span><span class="co">#&gt; V7           -56.5920    15.4443  -3.664 0.000248 ***</span></span>
-<span><span class="co">#&gt; V8            11.1555     3.2997   3.381 0.000723 ***</span></span>
-<span><span class="co">#&gt; V9           -28.9426     7.7225  -3.748 0.000178 ***</span></span>
-<span><span class="co">#&gt; V10          -68.2216    18.1381  -3.761 0.000169 ***</span></span>
-<span><span class="co">#&gt; V11           48.0556    12.8217   3.748 0.000178 ***</span></span>
-<span><span class="co">#&gt; V12          -85.8596    22.9005  -3.749 0.000177 ***</span></span>
-<span><span class="co">#&gt; V13            0.3407     0.2936   1.160 0.245887    </span></span>
-<span><span class="co">#&gt; V14          -89.9649    23.8261  -3.776 0.000159 ***</span></span>
-<span><span class="co">#&gt; V15           -1.1620     0.4824  -2.409 0.016008 *  </span></span>
-<span><span class="co">#&gt; V16          -79.8930    21.4102  -3.732 0.000190 ***</span></span>
-<span><span class="co">#&gt; V17         -145.4601    38.9605  -3.734 0.000189 ***</span></span>
-<span><span class="co">#&gt; V18          -54.4924    14.5879  -3.735 0.000187 ***</span></span>
-<span><span class="co">#&gt; V19           18.0532     4.8254   3.741 0.000183 ***</span></span>
-<span><span class="co">#&gt; V20            8.8181     2.6847   3.285 0.001022 ** </span></span>
-<span><span class="co">#&gt; V21           11.8179     3.1719   3.726 0.000195 ***</span></span>
-<span><span class="co">#&gt; V22            1.2859     0.4156   3.094 0.001977 ** </span></span>
-<span><span class="co">#&gt; V23           -1.6211     0.3723  -4.354 1.34e-05 ***</span></span>
-<span><span class="co">#&gt; V24           -0.6138     0.5190  -1.183 0.236943    </span></span>
-<span><span class="co">#&gt; V25            3.2724     1.1378   2.876 0.004027 ** </span></span>
-<span><span class="co">#&gt; V26            0.7369     0.5534   1.332 0.182950    </span></span>
-<span><span class="co">#&gt; V27           16.3942     4.2152   3.889 0.000101 ***</span></span>
-<span><span class="co">#&gt; V28           14.4211     3.7671   3.828 0.000129 ***</span></span>
+<span><span class="co">#&gt; (Intercept)    2.8968     1.8991   1.525 0.127174    </span></span>
+<span><span class="co">#&gt; V1           -19.3882     5.4487  -3.558 0.000373 ***</span></span>
+<span><span class="co">#&gt; V2            18.8190     5.3836   3.496 0.000473 ***</span></span>
+<span><span class="co">#&gt; V3           -46.5002    12.7884  -3.636 0.000277 ***</span></span>
+<span><span class="co">#&gt; V4            30.0389     7.9309   3.788 0.000152 ***</span></span>
+<span><span class="co">#&gt; V5           -31.6476     8.7981  -3.597 0.000322 ***</span></span>
+<span><span class="co">#&gt; V6           -11.1160     3.0512  -3.643 0.000269 ***</span></span>
+<span><span class="co">#&gt; V7           -60.7895    16.8028  -3.618 0.000297 ***</span></span>
+<span><span class="co">#&gt; V8            11.9217     3.6611   3.256 0.001129 ** </span></span>
+<span><span class="co">#&gt; V9           -31.4168     8.4964  -3.698 0.000218 ***</span></span>
+<span><span class="co">#&gt; V10          -73.1397    19.7563  -3.702 0.000214 ***</span></span>
+<span><span class="co">#&gt; V11           51.2964    13.8886   3.693 0.000221 ***</span></span>
+<span><span class="co">#&gt; V12          -92.1290    24.8896  -3.702 0.000214 ***</span></span>
+<span><span class="co">#&gt; V13            0.7029     0.3621   1.941 0.052205 .  </span></span>
+<span><span class="co">#&gt; V14          -95.9796    25.8607  -3.711 0.000206 ***</span></span>
+<span><span class="co">#&gt; V15           -1.6497     0.4985  -3.309 0.000935 ***</span></span>
+<span><span class="co">#&gt; V16          -85.8343    23.3392  -3.678 0.000235 ***</span></span>
+<span><span class="co">#&gt; V17         -155.3119    42.2807  -3.673 0.000239 ***</span></span>
+<span><span class="co">#&gt; V18          -58.0707    15.7961  -3.676 0.000237 ***</span></span>
+<span><span class="co">#&gt; V19           18.9731     5.1934   3.653 0.000259 ***</span></span>
+<span><span class="co">#&gt; V20            9.6771     2.9196   3.315 0.000918 ***</span></span>
+<span><span class="co">#&gt; V21           12.3898     3.4624   3.578 0.000346 ***</span></span>
+<span><span class="co">#&gt; V22            0.8790     0.3838   2.290 0.021994 *  </span></span>
+<span><span class="co">#&gt; V23           -1.8967     0.4297  -4.414 1.02e-05 ***</span></span>
+<span><span class="co">#&gt; V24           -0.5988     0.4908  -1.220 0.222413    </span></span>
+<span><span class="co">#&gt; V25            4.3631     1.1901   3.666 0.000246 ***</span></span>
+<span><span class="co">#&gt; V26            1.1325     0.5764   1.965 0.049432 *  </span></span>
+<span><span class="co">#&gt; V27           16.4727     4.4168   3.730 0.000192 ***</span></span>
+<span><span class="co">#&gt; V28           11.6829     3.1182   3.747 0.000179 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     Null deviance: 1092.40  on 787  degrees of freedom</span></span>
-<span><span class="co">#&gt; Residual deviance:  186.13  on 759  degrees of freedom</span></span>
-<span><span class="co">#&gt; AIC: 244.13</span></span>
+<span><span class="co">#&gt; Residual deviance:  161.48  on 759  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 219.48</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Number of Fisher Scoring iterations: 19</span></span></code></pre></div>
 <p>Con el modelo ya entrenado, se realizan las predicciones para los datos
@@ -427,12 +427,12 @@ vector que estará disponible a partir de la variable <code>fraud_prob</code>;
 y, por último, el parámetro <code>newdata</code>, que hace referencia al dataset en
 el que se descarta la última columna por ser la que representa la
 variable dependiente.</p>
-<div class="sourceCode" id="cb875"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb876"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fraud_prob</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/predict.html">predict</a></span><span class="op">(</span><span class="va">undersampledModel</span>, type <span class="op">=</span> <span class="st">"response"</span>, </span>
 <span>                     newdata <span class="op">=</span> <span class="va">test</span><span class="op">[</span>,<span class="op">-</span><span class="fl">29</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html">head</a></span><span class="op">(</span><span class="va">fraud_prob</span><span class="op">)</span></span>
-<span><span class="co">#&gt;          646         1923         2963         4025         5332         6109 </span></span>
-<span><span class="co">#&gt; 4.544401e-04 1.247090e-13 3.944901e-02 2.558175e-02 4.559502e-04 1.000000e+00</span></span></code></pre></div>
+<span><span class="co">#&gt;        624       6109       6278       6330       6337       6447 </span></span>
+<span><span class="co">#&gt; 0.87499178 1.00000000 0.03753197 0.99999942 1.00000000 1.00000000</span></span></code></pre></div>
 <p>La visualización del vector con las predicciones puede parecer algo
 confusa, por lo que, a menudo, es preciso realizar una conversión de
 esas predicciones en valores 0 y 1, dependiendo del rango de valores a
@@ -440,7 +440,7 @@ partir del cual se estime que una transacción es fraudulenta: por
 ejemplo, a partir del 60% de probabilidad, la transacción será
 etiquetada como “1”; en caso contrario será etiquetada como “0”. Para
 ello se utiliza la función <code>ifelse</code>:</p>
-<div class="sourceCode" id="cb876"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb877"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y_pred</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">fraud_prob</span> <span class="op">&gt;</span> <span class="fl">0.6</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <p><strong>La matriz de confusión</strong></p>
 <p>Como último paso del ejercicio se crea la matriz de confusión con el fin
@@ -452,13 +452,13 @@ decir, los datos etiquetados originalmente, y el vector de sus
 traducciones a 0 y 1, resultado del algoritmo. El resultado, como se
 puede comprobar, es que ha evaluado correctamente 186 de las 196
 observaciones.</p>
-<div class="sourceCode" id="cb877"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb878"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">confusionMatrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">test</span><span class="op">[</span>, <span class="fl">29</span><span class="op">]</span>, <span class="va">y_pred</span><span class="op">)</span></span>
 <span><span class="va">confusionMatrix</span></span>
 <span><span class="co">#&gt;    y_pred</span></span>
 <span><span class="co">#&gt;      0  1</span></span>
-<span><span class="co">#&gt;   0 95  3</span></span>
-<span><span class="co">#&gt;   1  8 90</span></span></code></pre></div>
+<span><span class="co">#&gt;   0 97  1</span></span>
+<span><span class="co">#&gt;   1  7 91</span></span></code></pre></div>
 
 </div>
 </div>

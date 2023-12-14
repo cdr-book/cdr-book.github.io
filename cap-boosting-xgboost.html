@@ -7,7 +7,7 @@
 <title>Capítulo 29 \(\bf \textit{Boosting}\) y el algoritmo XGBoost | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Ramón A. Carrasco\(^{a}\), Itzcóatl Bueno\(^{a,\hspace{0,05cm}b}\) y José-María Montero\(^{c}\) \(^{a}\)Universidad Complutense de Madrid\(^{b}\)Instituto Nacional de...">
-<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="Capítulo 29 \(\bf \textit{Boosting}\) y el algoritmo XGBoost | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
 <script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
@@ -56,10 +56,10 @@
 <li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
 <li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
 <li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
-<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
 <li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
-<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
 <li class="book-part">Fundamentos de estadística</li>
 <li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
@@ -100,7 +100,7 @@
 <li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
 <li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
 <li class="book-part">Comunica y colabora</li>
-<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
 <li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
 <li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
 <li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
@@ -241,7 +241,7 @@ f\leftarrow f+\alpha\rho_\kappa f_\kappa.
 <span class="header-section-number">29.3.3</span> Procedimiento con <strong>R</strong>: la función <code>gbm()</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-la-funci%C3%B3n-gbm"><i class="fas fa-link"></i></a>
 </h3>
 <p>La función <code>gbm()</code> incluida en el paquete con el mismo nombre <code>gbm()</code> de <strong>R</strong> es la que se utiliza en esta sección para entrenar un modelo <em>gradient boosting</em>:</p>
-<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb417"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gbm</span><span class="op">(</span><span class="va">formula</span>,data<span class="op">=</span><span class="va">...</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li><p><code>formula</code>: indica cuál es la variable dependiente y cuáles son las variables predictoras: <span class="math inline">\(Y \sim X_1 + ... + X_p\)</span>; los signos “+” indican un conjunto de variables predictoras y no una relación lineal con la variable dependiente (que puede o no serlo).</p></li>
@@ -254,14 +254,14 @@ f\leftarrow f+\alpha\rho_\kappa f_\kappa.
 </h3>
 <p>Igual que en todos estos capítulos dedicados al <em>machine learning</em> supervisado, la implementación en <strong>R</strong> del
 modelo <em>gradient boosting</em> se lleva a cabo a partir de los datos de compras <code>dp_entr</code>, incluidos en el paquete <code>CDR</code>, con los cuales se trata de clasificar a los clientes de una empresa en compradores o no de un nuevo producto de la empresa: un <em>tensiómetro digital</em>. El modelo se entrena con el conjunto de datos de entrenamiento sin transformar (en su escala original). Así, en lugar de utilizar las variables categóricas transformadas mediante <em>one-hot-encoding</em>,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Estrategia de codificación consistente en crear una columna binaria (que solo puede contener los valores 0 o 1) para cada valor único o categoría que exista en la variable categórica objeto de codificación.&lt;/p&gt;"><sup>201</sup></a> se usan en su escala original, como ocurre con el caso de la variable que mide el nivel educativo. En cuanto a los hiperparámetros, el método <code>gbm</code> (<em>gradient boosting machine</em>) ha elegido los valores 1, 2 y 3 para la profundidad del árbol (<code>interaction.depth</code>) y 50, 100 y 150 para el número de árboles (<code>ntrees</code>); los valores del número mínimo de observaciones en los nodos terminales (<code>nminobsmode</code>) y de la tasa de aprendizaje (<code>shrinkage</code>), toman los valores establecidos por defecto: 10 y 0,1, respectivamente.</p>
-<div class="sourceCode" id="cb417"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/topepo/caret/">"caret"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/gbm-developers/gbm">"gbm"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://had.co.nz/reshape">"reshape"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">dp_entr</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb419"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># se determina la semilla aleatoria</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span></span>
@@ -273,39 +273,39 @@ modelo <em>gradient boosting</em> se lleva a cabo a partir de los datos de compr
 <span>            trControl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/trainControl.html">trainControl</a></span><span class="op">(</span>classProbs <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                                     method <span class="op">=</span> <span class="st">"cv"</span>, number <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span>            <span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="cap-boosting-xgboost.html#cb419-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
-<span id="cb419-2"><a href="cap-boosting-xgboost.html#cb419-2" tabindex="-1"></a>model</span>
-<span id="cb419-3"><a href="cap-boosting-xgboost.html#cb419-3" tabindex="-1"></a></span>
-<span id="cb419-4"><a href="cap-boosting-xgboost.html#cb419-4" tabindex="-1"></a>Stochastic Gradient Boosting </span>
-<span id="cb419-5"><a href="cap-boosting-xgboost.html#cb419-5" tabindex="-1"></a></span>
-<span id="cb419-6"><a href="cap-boosting-xgboost.html#cb419-6" tabindex="-1"></a><span class="dv">558</span> samples</span>
-<span id="cb419-7"><a href="cap-boosting-xgboost.html#cb419-7" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
-<span id="cb419-8"><a href="cap-boosting-xgboost.html#cb419-8" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span> </span>
-<span id="cb419-9"><a href="cap-boosting-xgboost.html#cb419-9" tabindex="-1"></a></span>
-<span id="cb419-10"><a href="cap-boosting-xgboost.html#cb419-10" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
-<span id="cb419-11"><a href="cap-boosting-xgboost.html#cb419-11" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold) </span>
-<span id="cb419-12"><a href="cap-boosting-xgboost.html#cb419-12" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ... </span>
-<span id="cb419-13"><a href="cap-boosting-xgboost.html#cb419-13" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
-<span id="cb419-14"><a href="cap-boosting-xgboost.html#cb419-14" tabindex="-1"></a></span>
-<span id="cb419-15"><a href="cap-boosting-xgboost.html#cb419-15" tabindex="-1"></a>  interaction.depth  n.trees  Accuracy   Kappa    </span>
-<span id="cb419-16"><a href="cap-boosting-xgboost.html#cb419-16" tabindex="-1"></a>  <span class="dv">1</span>                   <span class="dv">50</span>      <span class="fl">0.8564610</span>  <span class="fl">0.7130031</span></span>
-<span id="cb419-17"><a href="cap-boosting-xgboost.html#cb419-17" tabindex="-1"></a>  <span class="dv">1</span>                  <span class="dv">100</span>      <span class="fl">0.8690909</span>  <span class="fl">0.7383556</span></span>
-<span id="cb419-18"><a href="cap-boosting-xgboost.html#cb419-18" tabindex="-1"></a>  <span class="dv">1</span>                  <span class="dv">150</span>      <span class="fl">0.8762338</span>  <span class="fl">0.7526413</span></span>
-<span id="cb419-19"><a href="cap-boosting-xgboost.html#cb419-19" tabindex="-1"></a>  <span class="dv">2</span>                   <span class="dv">50</span>      <span class="fl">0.8690909</span>  <span class="fl">0.7382344</span></span>
-<span id="cb419-20"><a href="cap-boosting-xgboost.html#cb419-20" tabindex="-1"></a>  <span class="dv">2</span>                  <span class="dv">100</span>      <span class="fl">0.8762338</span>  <span class="fl">0.7526413</span></span>
-<span id="cb419-21"><a href="cap-boosting-xgboost.html#cb419-21" tabindex="-1"></a>  <span class="dv">2</span>                  <span class="dv">150</span>      <span class="fl">0.8799026</span>  <span class="fl">0.7599227</span></span>
-<span id="cb419-22"><a href="cap-boosting-xgboost.html#cb419-22" tabindex="-1"></a>  <span class="dv">3</span>                   <span class="dv">50</span>      <span class="fl">0.8763636</span>  <span class="fl">0.7528004</span></span>
-<span id="cb419-23"><a href="cap-boosting-xgboost.html#cb419-23" tabindex="-1"></a>  <span class="dv">3</span>                  <span class="dv">100</span>      <span class="fl">0.8781494</span>  <span class="fl">0.7563575</span></span>
-<span id="cb419-24"><a href="cap-boosting-xgboost.html#cb419-24" tabindex="-1"></a>  <span class="dv">3</span>                  <span class="dv">150</span>      <span class="fl">0.8835390</span>  <span class="fl">0.7671499</span></span>
-<span id="cb419-25"><a href="cap-boosting-xgboost.html#cb419-25" tabindex="-1"></a></span>
-<span id="cb419-26"><a href="cap-boosting-xgboost.html#cb419-26" tabindex="-1"></a>Tuning parameter <span class="st">'shrinkage'</span> was held constant at a value of <span class="fl">0.1</span></span>
-<span id="cb419-27"><a href="cap-boosting-xgboost.html#cb419-27" tabindex="-1"></a>Tuning</span>
-<span id="cb419-28"><a href="cap-boosting-xgboost.html#cb419-28" tabindex="-1"></a> parameter <span class="st">'n.minobsinnode'</span> was held constant at a value of <span class="dv">10</span></span>
-<span id="cb419-29"><a href="cap-boosting-xgboost.html#cb419-29" tabindex="-1"></a>Accuracy was used to select the optimal model using the largest value.</span>
-<span id="cb419-30"><a href="cap-boosting-xgboost.html#cb419-30" tabindex="-1"></a>The final values used <span class="cf">for</span> the model were n.trees <span class="ot">=</span> <span class="dv">150</span>, interaction.depth <span class="ot">=</span></span>
-<span id="cb419-31"><a href="cap-boosting-xgboost.html#cb419-31" tabindex="-1"></a> <span class="dv">3</span>, shrinkage <span class="ot">=</span> <span class="fl">0.1</span> and n.minobsinnode <span class="ot">=</span> <span class="fl">10.</span></span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="cap-boosting-xgboost.html#cb420-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
+<span id="cb420-2"><a href="cap-boosting-xgboost.html#cb420-2" tabindex="-1"></a>model</span>
+<span id="cb420-3"><a href="cap-boosting-xgboost.html#cb420-3" tabindex="-1"></a></span>
+<span id="cb420-4"><a href="cap-boosting-xgboost.html#cb420-4" tabindex="-1"></a>Stochastic Gradient Boosting </span>
+<span id="cb420-5"><a href="cap-boosting-xgboost.html#cb420-5" tabindex="-1"></a></span>
+<span id="cb420-6"><a href="cap-boosting-xgboost.html#cb420-6" tabindex="-1"></a><span class="dv">558</span> samples</span>
+<span id="cb420-7"><a href="cap-boosting-xgboost.html#cb420-7" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
+<span id="cb420-8"><a href="cap-boosting-xgboost.html#cb420-8" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span> </span>
+<span id="cb420-9"><a href="cap-boosting-xgboost.html#cb420-9" tabindex="-1"></a></span>
+<span id="cb420-10"><a href="cap-boosting-xgboost.html#cb420-10" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
+<span id="cb420-11"><a href="cap-boosting-xgboost.html#cb420-11" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold) </span>
+<span id="cb420-12"><a href="cap-boosting-xgboost.html#cb420-12" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ... </span>
+<span id="cb420-13"><a href="cap-boosting-xgboost.html#cb420-13" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
+<span id="cb420-14"><a href="cap-boosting-xgboost.html#cb420-14" tabindex="-1"></a></span>
+<span id="cb420-15"><a href="cap-boosting-xgboost.html#cb420-15" tabindex="-1"></a>  interaction.depth  n.trees  Accuracy   Kappa    </span>
+<span id="cb420-16"><a href="cap-boosting-xgboost.html#cb420-16" tabindex="-1"></a>  <span class="dv">1</span>                   <span class="dv">50</span>      <span class="fl">0.8564610</span>  <span class="fl">0.7130031</span></span>
+<span id="cb420-17"><a href="cap-boosting-xgboost.html#cb420-17" tabindex="-1"></a>  <span class="dv">1</span>                  <span class="dv">100</span>      <span class="fl">0.8690909</span>  <span class="fl">0.7383556</span></span>
+<span id="cb420-18"><a href="cap-boosting-xgboost.html#cb420-18" tabindex="-1"></a>  <span class="dv">1</span>                  <span class="dv">150</span>      <span class="fl">0.8762338</span>  <span class="fl">0.7526413</span></span>
+<span id="cb420-19"><a href="cap-boosting-xgboost.html#cb420-19" tabindex="-1"></a>  <span class="dv">2</span>                   <span class="dv">50</span>      <span class="fl">0.8690909</span>  <span class="fl">0.7382344</span></span>
+<span id="cb420-20"><a href="cap-boosting-xgboost.html#cb420-20" tabindex="-1"></a>  <span class="dv">2</span>                  <span class="dv">100</span>      <span class="fl">0.8762338</span>  <span class="fl">0.7526413</span></span>
+<span id="cb420-21"><a href="cap-boosting-xgboost.html#cb420-21" tabindex="-1"></a>  <span class="dv">2</span>                  <span class="dv">150</span>      <span class="fl">0.8799026</span>  <span class="fl">0.7599227</span></span>
+<span id="cb420-22"><a href="cap-boosting-xgboost.html#cb420-22" tabindex="-1"></a>  <span class="dv">3</span>                   <span class="dv">50</span>      <span class="fl">0.8763636</span>  <span class="fl">0.7528004</span></span>
+<span id="cb420-23"><a href="cap-boosting-xgboost.html#cb420-23" tabindex="-1"></a>  <span class="dv">3</span>                  <span class="dv">100</span>      <span class="fl">0.8781494</span>  <span class="fl">0.7563575</span></span>
+<span id="cb420-24"><a href="cap-boosting-xgboost.html#cb420-24" tabindex="-1"></a>  <span class="dv">3</span>                  <span class="dv">150</span>      <span class="fl">0.8835390</span>  <span class="fl">0.7671499</span></span>
+<span id="cb420-25"><a href="cap-boosting-xgboost.html#cb420-25" tabindex="-1"></a></span>
+<span id="cb420-26"><a href="cap-boosting-xgboost.html#cb420-26" tabindex="-1"></a>Tuning parameter <span class="st">'shrinkage'</span> was held constant at a value of <span class="fl">0.1</span></span>
+<span id="cb420-27"><a href="cap-boosting-xgboost.html#cb420-27" tabindex="-1"></a>Tuning</span>
+<span id="cb420-28"><a href="cap-boosting-xgboost.html#cb420-28" tabindex="-1"></a> parameter <span class="st">'n.minobsinnode'</span> was held constant at a value of <span class="dv">10</span></span>
+<span id="cb420-29"><a href="cap-boosting-xgboost.html#cb420-29" tabindex="-1"></a>Accuracy was used to select the optimal model using the largest value.</span>
+<span id="cb420-30"><a href="cap-boosting-xgboost.html#cb420-30" tabindex="-1"></a>The final values used <span class="cf">for</span> the model were n.trees <span class="ot">=</span> <span class="dv">150</span>, interaction.depth <span class="ot">=</span></span>
+<span id="cb420-31"><a href="cap-boosting-xgboost.html#cb420-31" tabindex="-1"></a> <span class="dv">3</span>, shrinkage <span class="ot">=</span> <span class="fl">0.1</span> and n.minobsinnode <span class="ot">=</span> <span class="fl">10.</span></span></code></pre></div>
 <p>El modelo resultante del proceso de entrenamiento es un <em>gradient boosting</em> que ha ajustado los hiperparámetros a 150 árboles y una profundidad igual a 3. Además, como se avanzó, los valores del número mínimo de observaciones en los nodos terminales y de la tasa de aprendizaje fueron los valores establecidos por defecto: 10 y 0,1, respectivamente. Los resultados en el proceso de validación cruzada se muestran en la Fig. <a href="cap-boosting-xgboost.html#fig:GBMBOXPLOT">29.2</a>, en la que se observa cómo la precisión (<code>accuracy</code>) oscila entre el 84% y el 93% en las iteraciones.</p>
-<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">resample</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>show.legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
@@ -321,21 +321,21 @@ Figura 29.2: Resultados del modelo GB obtenidos durante el proceso de validació
 <span class="header-section-number">29.3.5</span> <em>Gradient Boosting</em> con ajuste automático<a class="anchor" aria-label="anchor" href="#gradient-boosting-con-ajuste-autom%C3%A1tico"><i class="fas fa-link"></i></a>
 </h3>
 <p>En la sección precedente los valores de los hiperparámetros se tomaron por defecto (número mínimo de observaciones en los nodos terminales y de la tasa de aprendizaje) o fueron elegidos entre los que la función <code>gbm()</code> establece por defecto (la profundidad del árbol y el número de árboles). En esta sección, los cuatro hiperparámetros del método <code>gbm</code> anteriormente referidos se ajustan de manera automática entre los valores establecidos por el investigador: </p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="cap-boosting-xgboost.html#cb421-1" tabindex="-1"></a><span class="fu">modelLookup</span>(<span class="st">"gbm"</span>)</span>
-<span id="cb421-2"><a href="cap-boosting-xgboost.html#cb421-2" tabindex="-1"></a>model         parameter                   label forReg forClass probModel</span>
-<span id="cb421-3"><a href="cap-boosting-xgboost.html#cb421-3" tabindex="-1"></a><span class="dv">1</span>   gbm           n.trees   <span class="co"># Boosting Iterations   TRUE     TRUE      TRUE</span></span>
-<span id="cb421-4"><a href="cap-boosting-xgboost.html#cb421-4" tabindex="-1"></a><span class="dv">2</span>   gbm interaction.depth          Max Tree Depth   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span>
-<span id="cb421-5"><a href="cap-boosting-xgboost.html#cb421-5" tabindex="-1"></a><span class="dv">3</span>   gbm         shrinkage               Shrinkage   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span>
-<span id="cb421-6"><a href="cap-boosting-xgboost.html#cb421-6" tabindex="-1"></a><span class="dv">4</span>   gbm    n.minobsinnode Min. Terminal Node Size   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="cap-boosting-xgboost.html#cb422-1" tabindex="-1"></a><span class="fu">modelLookup</span>(<span class="st">"gbm"</span>)</span>
+<span id="cb422-2"><a href="cap-boosting-xgboost.html#cb422-2" tabindex="-1"></a>model         parameter                   label forReg forClass probModel</span>
+<span id="cb422-3"><a href="cap-boosting-xgboost.html#cb422-3" tabindex="-1"></a><span class="dv">1</span>   gbm           n.trees   <span class="co"># Boosting Iterations   TRUE     TRUE      TRUE</span></span>
+<span id="cb422-4"><a href="cap-boosting-xgboost.html#cb422-4" tabindex="-1"></a><span class="dv">2</span>   gbm interaction.depth          Max Tree Depth   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span>
+<span id="cb422-5"><a href="cap-boosting-xgboost.html#cb422-5" tabindex="-1"></a><span class="dv">3</span>   gbm         shrinkage               Shrinkage   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span>
+<span id="cb422-6"><a href="cap-boosting-xgboost.html#cb422-6" tabindex="-1"></a><span class="dv">4</span>   gbm    n.minobsinnode Min. Terminal Node Size   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span></code></pre></div>
 <p>Siguiendo la estrategia descrita anteriormente, los rangos de posibles valores para los hiperparámetros a optimizar son los siguientes:</p>
-<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se especifica un rango de valores posibles para los hiperparámetros</span></span>
 <span><span class="va">tuneGrid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>interaction.depth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">8</span><span class="op">)</span>,</span>
 <span>                        n.trees <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">dp_entr</span><span class="op">)</span>,<span class="fl">300</span>,<span class="fl">500</span><span class="op">)</span>, </span>
 <span>                        shrinkage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span><span class="op">)</span>, </span>
 <span>                        n.minobsinnode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">10</span>,<span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Esta red de posibles valores para los hiperparámetros del modelo se incorpora a la función de entrenamiento. Cuanto más exhaustiva sea la red, mayor será el tiempo de ajuste del modelo. La red presentada está formada por las 81 combinaciones posibles que se pueden llevar a cabo con los valores establecidos para los hiperparámetros.</p>
-<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># se fija la semilla aleatoria</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span></span>
@@ -348,12 +348,12 @@ Figura 29.2: Resultados del modelo GB obtenidos durante el proceso de validació
 <span>                                   method<span class="op">=</span><span class="st">"cv"</span>, number<span class="op">=</span><span class="fl">10</span><span class="op">)</span>,</span>
 <span>            tuneGrid<span class="op">=</span><span class="va">tuneGrid</span><span class="op">)</span></span></code></pre></div>
 <p>El modelo que mejores resultados proporciona es aquel que ajusta los hiperparámetros a los siguientes valores: 180 árboles, una profundidad igual a 6, una tasa de aprendizaje de 0,05 y un número mínimo de 10 observaciones en los nodos terminales.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="cap-boosting-xgboost.html#cb424-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
-<span id="cb424-2"><a href="cap-boosting-xgboost.html#cb424-2" tabindex="-1"></a>model<span class="sc">$</span>bestTune</span>
-<span id="cb424-3"><a href="cap-boosting-xgboost.html#cb424-3" tabindex="-1"></a>   n.trees interaction.depth shrinkage n.minobsinnode</span>
-<span id="cb424-4"><a href="cap-boosting-xgboost.html#cb424-4" tabindex="-1"></a><span class="dv">13</span>     <span class="dv">180</span>                 <span class="dv">6</span>      <span class="fl">0.05</span>             <span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="cap-boosting-xgboost.html#cb425-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
+<span id="cb425-2"><a href="cap-boosting-xgboost.html#cb425-2" tabindex="-1"></a>model<span class="sc">$</span>bestTune</span>
+<span id="cb425-3"><a href="cap-boosting-xgboost.html#cb425-3" tabindex="-1"></a>   n.trees interaction.depth shrinkage n.minobsinnode</span>
+<span id="cb425-4"><a href="cap-boosting-xgboost.html#cb425-4" tabindex="-1"></a><span class="dv">13</span>     <span class="dv">180</span>                 <span class="dv">6</span>      <span class="fl">0.05</span>             <span class="dv">10</span></span></code></pre></div>
 <p>En la Fig. <a href="cap-boosting-xgboost.html#fig:modelgbmboxplot">29.3</a> se muestran los resultados obtenidos durante el proceso de validación cruzada. Se puede ver que los resultados son similares a los del modelo anterior, aunque hay diferencias importantes. En primer lugar, se alcanza un valor máximo de precisión superior al del modelo <code>gbm</code> sin ajuste automático anterior, pues en este caso la precisión oscila entre el 84 % y el 95%. En segundo lugar, el valor mediano de la precisión ha aumentado desde el 87,5 % hasta el 90 %. Por último, nótese que la automatización del proceso de ajuste de los hiperparámetros no ha llevado a una gran mejoría en el rendimiento del modelo, lo que confirma lo ya expuesto sobre el buen rendimiento del modelo de <em>gradient boosting</em> que surge de entrenar el modelo con los valores establecidos por defecto para los hiperparámetros.</p>
-<div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">resample</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>show.legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
@@ -394,19 +394,19 @@ Figura 29.3: Resultados del modelo GB con ajuste automático obtenidos durante e
 <p>Los parámetros de regularización se incluyen para ayudar a evitar el sobreajuste y reducir la complejidad del modelo. Existen tres hiperparámetros que tienen esta función: gamma (<span class="math inline">\(\gamma\)</span>), alpha (<span class="math inline">\(\alpha\)</span>) y lambda (<span class="math inline">\(\lambda\)</span>). El hiperparámetro <span class="math inline">\(\gamma\)</span> es un hiperparámetro de pseudorregularización, conocido como multiplicador Lagrangiano, tal que para hacer una partición adicional en un nodo es necesaria que la reducción en la pérdida (medida por SSE o similar) sea superior a la especificada por <code>gamma</code>. Es un hiperparámetro de poda; así, el modelo XGBoost hace crecer los árboles hasta una profundidad máxima establecida, pero en el proceso de poda eliminará las divisiones que no cumplan con la regularización <span class="math inline">\(\gamma\)</span>. Este hiperparámetro toma valores entre 0 e infinito (<span class="math inline">\(\infty\)</span>), siguiendo la regla de que cuanto mayor sea su valor, mayor será la regularización. Los otros hiperparámetros de regularización, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\lambda\)</span>, son más clásicos. Mientras que <span class="math inline">\(\alpha\)</span> proporciona una regularización <span class="math inline">\(L_1\)</span>, <span class="math inline">\(\lambda\)</span> proporciona una regularización <span class="math inline">\(L_2\)</span>. Estos parámetros de regularización establecen un límite a a la magnitud de los pesos de los nodos en un árbol. Sus valores se encuentran, al igual que los de <span class="math inline">\(\gamma\)</span>, entre 0 y <span class="math inline">\(\infty\)</span>. Tanto <span class="math inline">\(\alpha\)</span> como <span class="math inline">\(\lambda\)</span> hacen que el modelo sea más conservador al aumentar su valor.</p>
 <p>El <em>dropout</em> es un enfoque alternativo para reducir el sobreajuste. Cuando se entrena un modelo de <em>gradient boosting</em>, los primeros árboles tienden a dominar el rendimiento del modelo, mientras que los que se agregan después suelen mejorar la predicción solo para un pequeño grupo de variables. Esto puede llevar a que se incremente el riesgo de sobreajuste. Con el <em>dropout</em>, se descartan árboles aleatoriamente en el proceso de entrenamiento.</p>
 <p>En su implementación en <strong>R</strong>, el modelo XGBoost incluye principalmente los siguientes hiperparámetros: número de iteraciones, profundidad máxima de los árboles, tasa de aprendizaje y regularización <span class="math inline">\(\gamma\)</span>.</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="cap-boosting-xgboost.html#cb426-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">modelLookup</span>(<span class="st">"xgbTree"</span>),<span class="dv">4</span>)</span>
-<span id="cb426-2"><a href="cap-boosting-xgboost.html#cb426-2" tabindex="-1"></a>    model parameter                  label forReg forClass probModel</span>
-<span id="cb426-3"><a href="cap-boosting-xgboost.html#cb426-3" tabindex="-1"></a><span class="dv">1</span> xgbTree   nrounds  <span class="co"># Boosting Iterations   TRUE     TRUE      TRUE</span></span>
-<span id="cb426-4"><a href="cap-boosting-xgboost.html#cb426-4" tabindex="-1"></a><span class="dv">2</span> xgbTree max_depth         Max Tree Depth   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span>
-<span id="cb426-5"><a href="cap-boosting-xgboost.html#cb426-5" tabindex="-1"></a><span class="dv">3</span> xgbTree       eta              Shrinkage   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span>
-<span id="cb426-6"><a href="cap-boosting-xgboost.html#cb426-6" tabindex="-1"></a><span class="dv">4</span> xgbTree     gamma Minimum Loss Reduction   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="cap-boosting-xgboost.html#cb427-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">modelLookup</span>(<span class="st">"xgbTree"</span>),<span class="dv">4</span>)</span>
+<span id="cb427-2"><a href="cap-boosting-xgboost.html#cb427-2" tabindex="-1"></a>    model parameter                  label forReg forClass probModel</span>
+<span id="cb427-3"><a href="cap-boosting-xgboost.html#cb427-3" tabindex="-1"></a><span class="dv">1</span> xgbTree   nrounds  <span class="co"># Boosting Iterations   TRUE     TRUE      TRUE</span></span>
+<span id="cb427-4"><a href="cap-boosting-xgboost.html#cb427-4" tabindex="-1"></a><span class="dv">2</span> xgbTree max_depth         Max Tree Depth   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span>
+<span id="cb427-5"><a href="cap-boosting-xgboost.html#cb427-5" tabindex="-1"></a><span class="dv">3</span> xgbTree       eta              Shrinkage   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span>
+<span id="cb427-6"><a href="cap-boosting-xgboost.html#cb427-6" tabindex="-1"></a><span class="dv">4</span> xgbTree     gamma Minimum Loss Reduction   <span class="cn">TRUE</span>     <span class="cn">TRUE</span>      <span class="cn">TRUE</span></span></code></pre></div>
 </div>
 <div id="procedimiento-con-r-la-función-xgboost" class="section level3" number="29.4.2">
 <h3>
 <span class="header-section-number">29.4.2</span> Procedimiento con R: la función <code>xgboost()</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-la-funci%C3%B3n-xgboost"><i class="fas fa-link"></i></a>
 </h3>
 <p>La función <code>xgboost()</code> del paquete <code>xgboost</code> de <strong>R</strong> se utiliza en esta sección para entrenar un modelo <em>extreme gradient boosting</em>:</p>
-<div class="sourceCode" id="cb427"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">xgboost</span><span class="op">(</span>data <span class="op">=</span> <span class="va">...</span>, label <span class="op">=</span> <span class="va">...</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>
@@ -421,7 +421,7 @@ Figura 29.3: Resultados del modelo GB con ajuste automático obtenidos durante e
 </h3>
 <p>Este modelo se entrena utilizando el conjunto de entrenamiento sin transformar (en su escala original). Para ilustrar su implementación en <strong>R</strong>, sin y con ajuste automatizado de los hiperparámetros, se retoma el ejemplo utilizado en la implementación del modelo <em>gradient boosting</em>.</p>
 <p>Se considera primeramente el entrenamiento del modelo con los valores que asigna por defecto la función <code>xgboost()</code> a los hiperparámetros: para la regularización <span class="math inline">\(\gamma=1\)</span> (0) y para el tamaño mínimo del nodo (<code>n.minobsinnode</code>= 1). Los demás hiperparámetros sí se ajustan.</p>
-<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># se determina la semilla aleatoria</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span></span>
@@ -434,7 +434,7 @@ Figura 29.3: Resultados del modelo GB con ajuste automático obtenidos durante e
 <span>                                      method <span class="op">=</span> <span class="st">"cv"</span>,</span>
 <span>                                      number<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>El modelo XGBoost resultante tiene 50 iteraciones, una profundidad máxima igual a 2 y una tasa de aprendizaje de 0,3. Los resultados de la validación cruzada (Fig. <a href="cap-boosting-xgboost.html#fig:XGBRESULTS">29.4</a>) muestran que la precisión obtenida oscila entre el 85% y el 95%, resultado similar al del <em>gradient boosting</em> con hiperparámetros ajustados. Sin embargo, el valor mediano de la precisión es del 88%, ligeramente inferior al observado en el modelo <em>gradient boosting</em> con ajuste automático.</p>
-<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">resample</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>show.legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
@@ -450,7 +450,7 @@ Figura 29.4: Resultados del modelo durante la validación cruzada.
 <span class="header-section-number">29.4.4</span> XGBoost con ajuste automático<a class="anchor" aria-label="anchor" href="#xgboost-con-ajuste-autom%C3%A1tico"><i class="fas fa-link"></i></a>
 </h3>
 <p>En esta sección los hiperparámetros más relevantes del modelo se ajustan automáticamente. Para ello se genera una red de posibles valores para tales hiperparámetros. Por motivos computacionales, esta no se hace excesivamente exhaustiva (para evitar largos tiempos de entrenamiento). Sin embargo, si se dispone de tiempo suficiente para el entrenamiento, es aconsejable ampliar dicha red.</p>
-<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se especifica un rango de valores típicos para los hiperparámetros</span></span>
 <span><span class="va">tuneGrid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span> <span class="op">(</span>nrounds<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">50</span>,<span class="fl">100</span>,<span class="fl">500</span><span class="op">)</span>, </span>
 <span>                         max_depth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">8</span><span class="op">)</span>,</span>
@@ -459,7 +459,7 @@ Figura 29.4: Resultados del modelo durante la validación cruzada.
 <span>                         colsample_bytree<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span><span class="op">)</span>,</span>
 <span>                         min_child_weight<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>,</span>
 <span>                         subsample<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
-<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># se determina la semilla aleatoria</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span></span>
@@ -472,10 +472,10 @@ Figura 29.4: Resultados del modelo durante la validación cruzada.
 <span>                                      method <span class="op">=</span> <span class="st">"cv"</span>,</span>
 <span>                                      number <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
 <span>               tuneGrid<span class="op">=</span><span class="va">tuneGrid</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="cap-boosting-xgboost.html#cb432-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
-<span id="cb432-2"><a href="cap-boosting-xgboost.html#cb432-2" tabindex="-1"></a>model<span class="sc">$</span>bestTune[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
-<span id="cb432-3"><a href="cap-boosting-xgboost.html#cb432-3" tabindex="-1"></a>   nrounds max_depth eta gamma</span>
-<span id="cb432-4"><a href="cap-boosting-xgboost.html#cb432-4" tabindex="-1"></a><span class="dv">71</span>     <span class="dv">100</span>         <span class="dv">4</span> <span class="fl">0.2</span>     <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="cap-boosting-xgboost.html#cb433-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
+<span id="cb433-2"><a href="cap-boosting-xgboost.html#cb433-2" tabindex="-1"></a>model<span class="sc">$</span>bestTune[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb433-3"><a href="cap-boosting-xgboost.html#cb433-3" tabindex="-1"></a>   nrounds max_depth eta gamma</span>
+<span id="cb433-4"><a href="cap-boosting-xgboost.html#cb433-4" tabindex="-1"></a><span class="dv">71</span>     <span class="dv">100</span>         <span class="dv">4</span> <span class="fl">0.2</span>     <span class="dv">5</span></span></code></pre></div>
 <p>Como puede verse en los resultados obtenidos, el modelo resultante establece que se utilicen 100 iteraciones, que los árboles tengan una profundidad máxima de 4, que la tasa de aprendizaje sea 0,2 y que la regularización <span class="math inline">\(\gamma\)</span> tome el valor 5.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;En los resultados aparece el hiperparámento &lt;code&gt;colsample_bytree&lt;/code&gt;, que representa la fracción de columnas que se muestrean aleatoriamente en cada árbol, pues ello podría reducir el sobreajuste. Su campo de variación es [0, 1] y su valor predeterminado es 1. El hiperparámetro &lt;code&gt;eta&lt;/code&gt;(&lt;code&gt;shrinkage&lt;/code&gt;) es la tasa de aprendizaje.&lt;/p&gt;"><sup>202</sup></a></p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:xgb-tuned-RESULTS"></span>

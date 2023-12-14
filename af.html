@@ -7,7 +7,7 @@
 <title>Capítulo 33 Análisis factorial | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="José-María Montero\(^{a}\) y José Luis Alfaro Navarro\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  33.1 Introducción Según el trabajo pionero de Harman (1976), el objeto del Análisis...">
-<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="Capítulo 33 Análisis factorial | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
 <script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
@@ -56,10 +56,10 @@
 <li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
 <li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
 <li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
-<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
 <li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
-<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
 <li class="book-part">Fundamentos de estadística</li>
 <li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
@@ -100,7 +100,7 @@
 <li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
 <li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
 <li class="book-part">Comunica y colabora</li>
-<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
 <li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
 <li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
 <li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
@@ -158,7 +158,7 @@
 <p>El AF puede ser exploratorio o confirmatorio. En el primero no se establecen consideraciones <em>a priori</em> sobre el número de factores comunes a extraer, sino que este se determina a lo largo del análisis. Por el contrario, en el segundo se trata de contrastar hipótesis relativas al número de factores comunes, así como sobre qué variables serán agrupadas o tendrán más peso en cada factor. Una práctica habitual es validar mediante el <strong>análisis factorial confirmatorio</strong> los modelos teóricos basados en los resultados del <strong>análisis factorial exploratorio</strong>. Sin embargo, <span class="citation">Pérez-Gil, Chacón, and Moreno (<a href="referencias.html#ref-rodriguez2000validez">2000</a>)</span> alertan de los peligros de esta práctica. Este capítulo considera la versión exploratoria del AF.</p>
 <p>
 A efectos prácticos, se utilizará la base de datos <code>TIC2021</code> del paquete <code>CDR</code>, ya trabajada en el Cap. <a href="acp.html#acp">32</a> para el ACP, relativa al uso (por empresas e individuos) y equipación (de los hogares) de las TIC en los países de la UE-27, así como la librería <code>psych</code> <span class="citation">(<a href="referencias.html#ref-Revelle2022">Revelle 2022</a>)</span> de <strong>R</strong>.</p>
-<div class="sourceCode" id="cb453"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://personality-project.org/r/psych/">"psych"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"TIC2021"</span><span class="op">)</span></span></code></pre></div>
@@ -330,7 +330,7 @@ el patrón factorial viene dado por <span class="math inline">\(\bf Z=\bf A \bf 
 <li><p><span class="math inline">\(H_1:\bf R\neq \bf I,\)</span></p></li>
 </ul>
 <p>(o <span class="math inline">\(H_{0}:|\bf{\bf R}|=1\)</span> frente a <span class="math inline">\(H_{1}:|\bf{\bf R}|\neq1\)</span>). El estadístico de contraste es <span class="math inline">\(d_{\bf R}= - \left( N-1-\frac{1}{6} (2p+5)\right) ln|\mathbf{R}|\)</span> y, bajo <span class="math inline">\(H_0\)</span>, sigue una <span class="math inline">\(\chi^2_{\frac{p(p-1)}{2}}\)</span>, siendo nulo en caso de incorrelación.</p>
-<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">TIC2021</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/cortest.bartlett.html">cortest.bartlett</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">TIC2021</span><span class="op">)</span>, <span class="va">n</span><span class="op">)</span><span class="op">$</span><span class="va">chisq</span></span>
 <span><span class="co">#&gt; [1] 149.7113</span></span>
@@ -345,7 +345,7 @@ el patrón factorial viene dado por <span class="math inline">\(\bf Z=\bf A \bf 
 <p>El índice KMO se define como <span class="math inline">\(KMO=\frac{\displaystyle\sum_{j}\displaystyle\sum_{s \neq j} r_{js}^2}{\displaystyle\sum_{j}\displaystyle\sum_{s \neq j} r_{js}^2+\displaystyle\sum_{j}\displaystyle\sum_{s \neq j}r_{js}^{*2}}\)</span>, donde <span class="math inline">\(r_{js}^{*}\)</span> es el coeficiente de correlación parcial entre las variables <span class="math inline">\(Z_j, \hspace{0,1cm} j=1,...,p,\)</span> y <span class="math inline">\(Z_s, \hspace{0,1cm} s=1,...,p\)</span>. Se considera que valores por encima 0,9 implican elevadísismas correlaciones en la matriz <span class="math inline">\(\bf R\)</span>; entre 0,5 y 0,9 permiten el AF; y por debajo de 0,5 resultan inaceptables para el AF.</p>
 <p>Las <span class="math inline">\(MSA_j\)</span> mencionadas anteriormente son la versión del índice KMO limitado a cada variable: <span class="math inline">\(MSA_{j}= \frac{\displaystyle\sum_{s \neq j} r_{js}^2}{\displaystyle\sum_{s \neq j} r_{js}^2+\displaystyle\sum_{s \neq j} r_{js}^{*2}}.\)</span></p>
 <p>La interpretación es similar a la de KMO, pero mide la adecuación de cada variable para realizar un AF, lo que permite no considerar aquellas variables con menor MSA de cara a mejorar el índice KMO. No obstante, para eliminar una variable del estudio es aconsejable tener en cuenta también las comunalidades de cada variable, los residuos del modelo e interpretar los factores obtenidos.</p>
-<div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/KMO.html">KMO</a></span><span class="op">(</span><span class="va">TIC2021</span><span class="op">)</span><span class="op">$</span><span class="va">MSA</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.83</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/KMO.html">KMO</a></span><span class="op">(</span><span class="va">TIC2021</span><span class="op">)</span><span class="op">$</span><span class="va">MSAi</span>, <span class="fl">3</span><span class="op">)</span></span>
@@ -411,9 +411,9 @@ r_{p1} &amp; r_{p2} &amp; \dotsb &amp; \hat{h}_{p(0)}^2\\
 <li><p>Comparación de <span class="math inline">\(\hat{h}_{j(1)}^2\)</span> con <span class="math inline">\(\hat{h}_{j(0)}^2\)</span>, <span class="math inline">\(j=1,2,\cdots,p\)</span>. Si hay diferencia significativa se vuelve al paso 3, y si la discrepancia no supera una cantidad prefijada se aceptan como válidas las últimas estimaciones disponibles.</p></li>
 </ol>
 <p>En el software <strong>R</strong>, el método de los factores principales se implementa con la función <code><a href="https://rdrr.io/pkg/psych/man/fa.html">fa()</a></code> de la librería <code>psych</code>, que parte de <span class="math inline">\({\bf R}^*\)</span>. <span class="citation">Harman (<a href="referencias.html#ref-harman1976">1976</a>)</span> muestra el procedimiento iterativo y <span class="citation">Revelle (<a href="referencias.html#ref-Revelle2022">2022</a>)</span> los detalles sobre la manera como <code><a href="https://rdrr.io/pkg/psych/man/fa.html">fa()</a></code> parte de <span class="math inline">\({\bf R}^*\)</span> y lleva a cabo la extracción de los factores.</p>
-<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">af_facprin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.html">fa</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">TIC2021</span><span class="op">)</span>, nfactors <span class="op">=</span> <span class="fl">2</span>, rotate <span class="op">=</span> <span class="st">"none"</span>, fm <span class="op">=</span> <span class="st">"pa"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb457"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">af_facprin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.html">fa</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">TIC2021</span><span class="op">)</span>, nfactors <span class="op">=</span> <span class="fl">2</span>, rotate <span class="op">=</span> <span class="st">"none"</span>, fm <span class="op">=</span> <span class="st">"pa"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">af_facprin</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Factor Analysis using method = pa</span></span>
 <span><span class="co">#&gt; Call: fa(r = cor(TIC2021), nfactors = 2, rotate = "none", fm = "pa")</span></span>
@@ -435,7 +435,7 @@ r_{p1} &amp; r_{p2} &amp; \dotsb &amp; \hat{h}_{p(0)}^2\\
 En la salida anterior, <span class="math inline">\(SS\)</span> <span class="math inline">\(loadings\)</span> son los autovalores de <span class="math inline">\({\bf R}^*\)</span>, que coinciden con la suma de los cuadrados de las cargas de las variables en cada factor (suma de las cargas al cuadrado por columnas). <span class="math inline">\(h2\)</span> son las comunalidades (suma de las cargas al cuadrado por filas; solo se muestran las cargas para los dos primeros factores puesto que entre ambos ya acumulan una varianza explicada de más del 75%). <span class="math inline">\(u2\)</span> son las varianzas de los factores únicos; finalmente, <span class="math inline">\(com_j\)</span> (en la salida <span class="math inline">\(com\)</span>) indica la complejidad de las cargas factoriales a la hora de explica la variabilidad de la variable <span class="math inline">\(Z_j\)</span>: <span class="math inline">\(com_j=\frac{\left( \sum_{j=1}^{p} a_{jm}^{2} \right)^2}{\sum_{j=1}^{p} a_{jm}^4}\)</span>. Cuanto mayor es <span class="math inline">\(com_j\)</span>, mejor es la calidad de la variable para participar en la extracción factorial (también podría interpretarse como el número de factores comunes necesarios para explicar la variabilidad de <span class="math inline">\(Z_j\)</span>). El promedio de las <span class="math inline">\(com_j\)</span> se denomina <strong>índice de complejidad de Hoffman</strong>. Una solución de estructura simple perfecta tiene una complejidad de uno (cada variable carga solo en un factor); una solución con elementos distribuidos uniformemente tiene una complejidad mayor que 1. Interesa que la estructura no sea simple y perfecta porque entonces no tendría sentido la reducción dimensional. Por tanto, el índice de Hofman deberá ser superior a la unidad. </p>
 <p>Las comunalidades y unicidades son:
 </p>
-<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">af_facprin2</span><span class="op">$</span><span class="va">communality</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ebroad esales esocmedia    eweb hbroad hiacc iuse</span></span>
 <span><span class="co">#&gt;  0.495 0.553      0.678  0.818   0.869 0.982 0.875</span></span>
@@ -544,10 +544,10 @@ con <span class="math inline">\(\gamma= \frac {\beta}{\alpha + \beta}\)</span>. 
 </p>
 <p>La selección del método de rotación, ortogonal u oblicua, depende del objetivo perseguido. Si se pretende reducir el número de variables originales a un conjunto mucho menor de variables incorrelacionadas para su uso posterior en otra técnica, por ejemplo, regresión, la rotación debe ser ortogonal. Si el objetivo es obtener unos factores teóricos significativos, puede resultar apropiada la aplicación de una rotación oblicua.</p>
 <p>En <strong>R</strong> es muy sencillo implementar una rotación ortogonal u oblicua. Basta, por ejemplo, con utilizar la librería <code>GPArotation</code> <span class="citation">(<a href="referencias.html#ref-Coen2005">Bernaards and Jennrich 2005</a>)</span> e indicarlo en el argumento <code>rotate</code> de la función <code>fa</code>. A modo de ejemplo, extrayendo los factores por el método de los factores principales y utilizando una rotación VARIMAX normalizada, sería:</p>
-<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://optimizer.r-forge.r-project.org/GPArotation_www/">"GPArotation"</a></span><span class="op">)</span></span>
 <span><span class="va">af_facprin2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.html">fa</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">TIC2021</span><span class="op">)</span>, nfactors <span class="op">=</span> <span class="fl">2</span>, rotate <span class="op">=</span> <span class="st">"varimax"</span>, fm <span class="op">=</span> <span class="st">"pa"</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb461"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">af_facprin2</span> <span class="co"># el objeto contiene información adicional no relevante en estos momentos</span></span>
 <span><span class="co">#&gt; Factor Analysis using method = pa</span></span>
 <span><span class="co">#&gt; Standardized loadings (pattern matrix) based upon correlation matrix</span></span>
@@ -565,7 +565,7 @@ con <span class="math inline">\(\gamma= \frac {\beta}{\alpha + \beta}\)</span>. 
 <span><span class="co">#&gt; Proportion Var 0.41 0.34</span></span>
 <span><span class="co">#&gt; Cumulative Var 0.41 0.75</span></span></code></pre></div>
 <p>Nótese que la salida por defecto es la normalizada. También se puede utilizar la libería <code>stats</code> indicando <code>T</code> o <code>F</code> en el argumento <code>normalize</code>, dependiendo de que se quiera o no, respectivamente, una rotación VARIMAX (u otra) normalizada .</p>
-<div class="sourceCode" id="cb461"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"stats"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/varimax.html">varimax</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/loadings.html">loadings</a></span><span class="op">(</span><span class="va">af_facprin</span><span class="op">)</span>, normalize <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <p>En el ejemplo del uso las TIC en los países de la UE-27, la rotación VARIMAX ha conseguido facilitar la interpretación de los factores comunes, ya que, tras la rotación, las variables relacionadas con el uso de las TIC a escala individual y de hogar cargan en el primer factor, mientras que las relacionadas con el uso de las TIC a nivel empresarial cargan en el segundo. Por tanto, ambos factores pueden considerarse indicadores de la dotación y uso de las TIC en los ámbitos familiar y empresarial, respectivamente. El lector puede probar (y comparar) con otras rotaciones sin más que incluirlas en el argumento <code>rotate</code>.</p>
@@ -587,7 +587,7 @@ con <span class="math inline">\(\gamma= \frac {\beta}{\alpha + \beta}\)</span>. 
 </ul>
 <p>Otra posibilidad, también muy sencilla, propuesta por <span class="citation">Revelle (<a href="referencias.html#ref-Revelle2022">2022</a>)</span>, es utilizar <span class="math inline">\(fit= 1-\frac{\sum \left (\bf R-{\bf FF}^{\prime}\right)^2}{\sum (\bf R)^2}\)</span>, que indica la reducción proporcional en la matriz de correlación debida al modelo factorial. Nótese que esta medida es sensible al tamaño de las correlaciones originales. Es decir, si los residuos son pequeños, pero las correlaciones son pequeñas, el ajuste es malo. Las medidas clásicas como el RMSE (raíz cuadrada del error cuadrático medio), o similares, también son susceptibles de uso.</p>
 <p>En el ejemplo TIC seguido en este capítulo el ajuste realizado es muy bueno:</p>
-<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">af_facprin2</span><span class="op">$</span><span class="va">residual</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           ebroad esales esocmedia   eweb hbroad  hiacc   iuse</span></span>
 <span><span class="co">#&gt; ebroad     0.505 -0.068     0.008  0.068 -0.045  0.002  0.003</span></span>
@@ -625,7 +625,7 @@ con <span class="math inline">\(\gamma= \frac {\beta}{\alpha + \beta}\)</span>. 
 </ul>
 <p>Las ventajas y desventajas de cada uno de ellos pueden verse en <span class="citation">Mardia, Kent, and Bibby (<a href="referencias.html#ref-mardiaetal1979">1979</a>)</span> y <span class="citation">De la Fuente (<a href="referencias.html#ref-santiagodelafuente2011">2011</a>)</span>.</p>
 <p>En el ejemplo de las TIC, las puntuaciones de los dos factores extraídos con el método de los factores principales y rotados con VARIMAX (la rotación no afecta a las puntuaciones), calculadas por el método de regresión, para los países de la UE-27 (se muestran los de Bélgica, Bulgaria y la República Checa), se obtienen en <strong>R</strong> como sigue:</p>
-<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">af_facprin3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.html">fa</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">TIC2021</span><span class="op">)</span>, nfactors <span class="op">=</span> <span class="fl">2</span>, rotate <span class="op">=</span> <span class="st">"VARIMAX"</span>, fm <span class="op">=</span> <span class="st">"pa"</span>, scores <span class="op">=</span> <span class="st">"regression"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/factor.scores.html">factor.scores</a></span><span class="op">(</span><span class="va">TIC2021</span>, <span class="va">af_facprin3</span><span class="op">)</span><span class="op">$</span><span class="va">scores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span>
 <span><span class="co">#&gt;           PA1         PA2</span></span>

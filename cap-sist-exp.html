@@ -7,7 +7,7 @@
 <title>Capítulo 57 Implementación de un sistema experto en el ámbito pediátrico | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Arturo Peralta\(^{a,b,c}\), José Ángel Olivas\(^{c}\) y Eusebio Angulo\(^{c}\) \(^{a}\)Universidad Internacional de Valencia\(^{b}\)Universidad Internacional de la Rioja\(^{c}\)Universidad de...">
-<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="Capítulo 57 Implementación de un sistema experto en el ámbito pediátrico | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
 <script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
@@ -56,10 +56,10 @@
 <li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
 <li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
 <li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
-<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
 <li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
-<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
 <li class="book-part">Fundamentos de estadística</li>
 <li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
@@ -100,7 +100,7 @@
 <li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
 <li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
 <li class="book-part">Comunica y colabora</li>
-<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
 <li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
 <li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
 <li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
@@ -167,24 +167,24 @@ Es por ello que las limitaciones de todo SE pueden ser que no conoce lo que cono
 <ol style="list-style-type: decimal">
 <li>Las <strong>reglas de producción</strong>, que son la forma más extendida de representar el conocimiento, constan de condiciones (hipótesis) y acciones (conclusiones) y tienen la forma:</li>
 </ol>
-<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="cap-sist-exp.html#cb832-1" tabindex="-1"></a>    <span class="fu">Si</span> (If)</span>
-<span id="cb832-2"><a href="cap-sist-exp.html#cb832-2" tabindex="-1"></a>      Condición <span class="dv">1</span> </span>
-<span id="cb832-3"><a href="cap-sist-exp.html#cb832-3" tabindex="-1"></a>      y Condición <span class="dv">2</span> </span>
-<span id="cb832-4"><a href="cap-sist-exp.html#cb832-4" tabindex="-1"></a>      ... </span>
-<span id="cb832-5"><a href="cap-sist-exp.html#cb832-5" tabindex="-1"></a>      y Condición n</span>
-<span id="cb832-6"><a href="cap-sist-exp.html#cb832-6" tabindex="-1"></a>    <span class="fu">Entonces</span> (Then)</span>
-<span id="cb832-7"><a href="cap-sist-exp.html#cb832-7" tabindex="-1"></a>      Conclusión <span class="dv">1</span></span>
-<span id="cb832-8"><a href="cap-sist-exp.html#cb832-8" tabindex="-1"></a>      Conclusión <span class="dv">2</span></span>
-<span id="cb832-9"><a href="cap-sist-exp.html#cb832-9" tabindex="-1"></a>      ...</span>
-<span id="cb832-10"><a href="cap-sist-exp.html#cb832-10" tabindex="-1"></a>      y Conclusión m</span></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="cap-sist-exp.html#cb833-1" tabindex="-1"></a>    <span class="fu">Si</span> (If)</span>
+<span id="cb833-2"><a href="cap-sist-exp.html#cb833-2" tabindex="-1"></a>      Condición <span class="dv">1</span> </span>
+<span id="cb833-3"><a href="cap-sist-exp.html#cb833-3" tabindex="-1"></a>      y Condición <span class="dv">2</span> </span>
+<span id="cb833-4"><a href="cap-sist-exp.html#cb833-4" tabindex="-1"></a>      ... </span>
+<span id="cb833-5"><a href="cap-sist-exp.html#cb833-5" tabindex="-1"></a>      y Condición n</span>
+<span id="cb833-6"><a href="cap-sist-exp.html#cb833-6" tabindex="-1"></a>    <span class="fu">Entonces</span> (Then)</span>
+<span id="cb833-7"><a href="cap-sist-exp.html#cb833-7" tabindex="-1"></a>      Conclusión <span class="dv">1</span></span>
+<span id="cb833-8"><a href="cap-sist-exp.html#cb833-8" tabindex="-1"></a>      Conclusión <span class="dv">2</span></span>
+<span id="cb833-9"><a href="cap-sist-exp.html#cb833-9" tabindex="-1"></a>      ...</span>
+<span id="cb833-10"><a href="cap-sist-exp.html#cb833-10" tabindex="-1"></a>      y Conclusión m</span></code></pre></div>
 <p>Por ejemplo:</p>
-<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="cap-sist-exp.html#cb833-1" tabindex="-1"></a>    Si </span>
-<span id="cb833-2"><a href="cap-sist-exp.html#cb833-2" tabindex="-1"></a>      ha fallado la bombilla </span>
-<span id="cb833-3"><a href="cap-sist-exp.html#cb833-3" tabindex="-1"></a>      y hay una de repuesto </span>
-<span id="cb833-4"><a href="cap-sist-exp.html#cb833-4" tabindex="-1"></a>      y está útil</span>
-<span id="cb833-5"><a href="cap-sist-exp.html#cb833-5" tabindex="-1"></a>    Entonces</span>
-<span id="cb833-6"><a href="cap-sist-exp.html#cb833-6" tabindex="-1"></a>      cambiar la bombilla por la de repuesto</span>
-<span id="cb833-7"><a href="cap-sist-exp.html#cb833-7" tabindex="-1"></a>      y seguir trabajando</span></code></pre></div>
+<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="cap-sist-exp.html#cb834-1" tabindex="-1"></a>    Si </span>
+<span id="cb834-2"><a href="cap-sist-exp.html#cb834-2" tabindex="-1"></a>      ha fallado la bombilla </span>
+<span id="cb834-3"><a href="cap-sist-exp.html#cb834-3" tabindex="-1"></a>      y hay una de repuesto </span>
+<span id="cb834-4"><a href="cap-sist-exp.html#cb834-4" tabindex="-1"></a>      y está útil</span>
+<span id="cb834-5"><a href="cap-sist-exp.html#cb834-5" tabindex="-1"></a>    Entonces</span>
+<span id="cb834-6"><a href="cap-sist-exp.html#cb834-6" tabindex="-1"></a>      cambiar la bombilla por la de repuesto</span>
+<span id="cb834-7"><a href="cap-sist-exp.html#cb834-7" tabindex="-1"></a>      y seguir trabajando</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><p>La <strong>memoria de trabajo</strong>, que contiene una descripción del estado actual del mundo o entorno de la aplicación en cada paso del proceso de razonamiento.
 Esta descripción es un modelo que sirve para asociar los antecedentes de las reglas con las observaciones del mundo, con el objetivo de seleccionar o producir las acciones apropiadas. En el momento en que se cumplen todas las condiciones de una regla se produce el “disparo” de la misma, ejecutándose la acción. Esta operación altera el contenido de la memoria de trabajo.</p></li>
@@ -319,7 +319,7 @@ Figura 57.2: Ciclo de razonamiento hacia delante.
 <li><p>Cada regla se modela como una lista de antecedentes y un consecuente.</p></li>
 <li><p>La relación entre los consecuentes se modela con el atributo “operador” del siguiente modo: <code>1 = Y lógico, 0 = O lógico, -1 = no hay operaciones</code>.</p></li>
 </ol>
-<div class="sourceCode" id="cb834"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb835"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">r1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>  antecedentes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Causa_Ginecologica"</span>, <span class="st">"Edad_&gt;12a"</span><span class="op">)</span>,</span>
 <span>  consecuente <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"TiempoEvolucion_&gt;73h"</span><span class="op">)</span>, operador <span class="op">=</span> <span class="fl">0</span></span>
@@ -366,14 +366,14 @@ Figura 57.2: Ciclo de razonamiento hacia delante.
 <span><span class="co"># r1[[1]] [1] primero de los antecedentes</span></span>
 <span><span class="co"># r1[2] lista consecuentes</span></span>
 <span><span class="co"># r1[[2]] [1] primero de los consecuentes</span></span></code></pre></div>
-<div class="sourceCode" id="cb835"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb836"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">b_hechos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Causa_Ginecologica"</span>, <span class="st">"Edad_&gt;12a"</span>, <span class="st">"TiempoEvolucion_&gt;73h"</span><span class="op">)</span></span></code></pre></div>
 <p>Se inicializa la BC con el conjunto de reglas y la BH con la circunstancia a evaluar:</p>
-<div class="sourceCode" id="cb836"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb837"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se añaden todas las reglas a la Base de Conocimiento</span></span>
 <span><span class="va">b_conocimiento</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">r1</span>, <span class="va">r2</span>, <span class="va">r3</span>, <span class="va">r4</span>, <span class="va">r5</span>, <span class="va">r6</span>, <span class="va">r7</span>, <span class="va">r8</span>, <span class="va">r9</span>, <span class="va">r10</span><span class="op">)</span></span></code></pre></div>
 <p>Se define una función para comprobar la existencia de un número en una lista. Esta función será usada por el motor del SE:</p>
-<div class="sourceCode" id="cb837"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb838"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Función para comprobar si una lista contiene un número</span></span>
 <span><span class="va">contiene</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">numero</span>, <span class="va">lista</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">existe</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span></span>
@@ -385,7 +385,7 @@ Figura 57.2: Ciclo de razonamiento hacia delante.
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">existe</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Se implementa el motor del SE: el algoritmo ejecuta un bucle en el que, en cada iteración, evalúa las reglas disponibles contenidas en la BC. Considerando los ítems de la BH, si una regla puede ser “disparada” se añade al conjunto conflicto. La regla “disparada” en una iteración será la primera disponible en el conjunto conflicto. Este se inicializa en cada iteración. El consecuente de la regla “disparada” se añade a la BH. Cada regla solo puede “dispararse” una vez, por lo que se actualiza una lista de reglas “disparadas”. El algoritmo finaliza cuando el conjunto conflicto queda vacío, al haber sido “disparadas” todas las reglas o no existir más candidatas a ser “disparadas”.</p>
-<div class="sourceCode" id="cb838"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb839"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Motor del Sistema Experto</span></span>
 <span><span class="va">AlgoritmoSE</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">b_hechos</span>, <span class="va">b_conocimiento</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">c_conflicto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -441,11 +441,11 @@ Figura 57.2: Ciclo de razonamiento hacia delante.
 <span class="header-section-number">57.3.3</span> Puesta en marcha del sistema experto<a class="anchor" aria-label="anchor" href="#puesta-en-marcha-del-sistema-experto"><i class="fas fa-link"></i></a>
 </h3>
 <p>Ahora considérese, por ejemplo, una posible paciente con más de 12 años de edad, que acude a consulta por causa ginecológica con un tiempo de evolución de los síntomas mayor de 73 h. ¿Qué triaje le corresponde? Para responder esta pregunta, se inicializa la BH con la situación propuesta <code>(Causa_Ginecologica, Edad_&gt;12a y TiempoEvolucion_&gt;73h)</code>:</p>
-<div class="sourceCode" id="cb839"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb840"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se inicializa la base de hechos con la situación propuesta (paciente de más de 12 años que acude por causa ginecológica con tiempo de evolución mayor de 73h)</span></span>
 <span><span class="va">b_hechos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Causa_Ginecologica"</span>, <span class="st">"Edad_&gt;12a"</span>, <span class="st">"TiempoEvolucion_&gt;73h"</span><span class="op">)</span></span></code></pre></div>
 <p>y se ejecuta el motor del SE:</p>
-<div class="sourceCode" id="cb840"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb841"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Se lanza la ejecución del motor del Sistema Experto</span></span>
 <span><span class="fu">AlgoritmoSE</span><span class="op">(</span><span class="va">b_hechos</span>, <span class="va">b_conocimiento</span><span class="op">)</span></span></code></pre></div>
 <p>El resultado proporcionado por el algoritmo es un triaje de valor <span class="math inline">\(4\)</span>. Es decir, el tiempo de espera máximo para recibir atención médica debería ser inferior a <span class="math inline">\(60\)</span> minutos. La Tabla <a href="#tab:TablaIteracionesAlgoritmo"><strong>??</strong></a> muestra el proceso realizado por el algoritmo en cada iteración.</p>

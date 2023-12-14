@@ -1,7 +1,7 @@
 ---
 title: "Fundamentos de ciencia de datos con **R**"
 author: "Gema Fernández-Avilés y José-María Montero"
-#date: "2023-12-12"
+#date: "2023-12-14"
 output:
   html_document:
     df_print: paged

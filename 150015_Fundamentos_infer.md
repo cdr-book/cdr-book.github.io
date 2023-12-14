@@ -133,7 +133,7 @@ Así, el criterio de "mínimos cuadrados"\index{estimador!de mínimos cuadrados}
 \hat{\theta}_{MC}= \underset {\hat{\theta}} {min} E_\theta \left[ {\left ( \hat{\theta}-\theta \right )^2} \right].
 \end{equation}
 
-Desarrollando la expresión del ECM (\ref{eq:ecm}), este se puede reexpresar como:
+Desarrollando la expresión del ECM (\@ref(eq:ecm)), este se puede reexpresar como:
 
 \begin{equation}
 ECM_\theta (\hat{\theta})=Var_\theta (\hat{\theta}) + \left ( E_{\theta}(\hat{\theta}) - \theta \right ) ^2  = Var_\theta (\hat{\theta}) + b_\theta ^2 (\hat{\theta}),

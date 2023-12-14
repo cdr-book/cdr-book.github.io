@@ -7,7 +7,7 @@
 <title>Capítulo 41 Geoestadística | Fundamentos de ciencia de datos con R</title>
 <meta name="author" content="Gema Fernández-Avilés y José-María Montero">
 <meta name="description" content="Gema Fernández-Avilés\(^{a}\) y José-María Montero\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  41.1 Introducción El término geoestadística apareció por primera vez en Matheron (1962), y en...">
-<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
 <meta property="og:title" content="Capítulo 41 Geoestadística | Fundamentos de ciencia de datos con R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/cover.png">
@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="/img/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.0/transition.js"></script><script src="libs/bs3compat-0.6.0/tabs.js"></script><script src="libs/bs3compat-0.6.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
 <script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <link rel="stylesheet" href="bs4_book.css">
@@ -56,10 +56,10 @@
 <li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
 <li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
 <li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
-<li><a class="" href="id_130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
 <li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
 <li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
-<li><a class="" href="id_120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
 <li class="book-part">Fundamentos de estadística</li>
 <li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
 <li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
@@ -100,7 +100,7 @@
 <li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
 <li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
 <li class="book-part">Comunica y colabora</li>
-<li><a class="" href="id_120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
 <li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
 <li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
 <li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
@@ -194,7 +194,7 @@ Es decir, la distribución de probabilidad conjunta de <span class="math inline"
 <p></p>
 <p>La <strong>estadística espacial</strong> se basa en la suposición de que las unidades georreferenciadas cercanas están relacionadas (son dependientes) de alguna manera <span class="citation">(<a href="referencias.html#ref-getis1999">Getis 1999</a>)</span>, y tanto más cuanto más cercanas estén <span class="citation">(<a href="referencias.html#ref-tobler1970computer">Tobler 1970</a>)</span>.</p>
 <p>Los procesos con dependencia espacial se reconocen, visualmente, porque muestran un patrón en el espacio; en los que no la tienen, el patrón es el de la aleatoriedad. La Fig. <a href="geo.html#fig:plot-dep-iid-ch41">41.1</a> muestra una simulación de una <em>f.a.</em> con dependencia espacial (panel izquierdo) frente a unos datos totalmente aleatorios (panel derecho).</p>
-<div class="sourceCode" id="cb619"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb620"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.leg.ufpr.br/geoR/">"geoR"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/dnychka/fieldsRPackage">"fields"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -218,10 +218,10 @@ Figura 41.1: Dependencia espacial frente a aleatoriedad.
 </p>
 </div>
 <p>Pasando del terreno de las simulaciones a la realidad, la Fig. <a href="geo.html#fig:plot-temp-max-ch41">41.2</a> muestra la temperatura máxima en España el 6 de agosto de 2022,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Los datos ya procesados para el análisis se encuentran en &lt;code&gt;CDR::tempmax_data&lt;/code&gt;. Una descripción puede verse con &lt;code&gt;summary(CDR::tempmax_data)&lt;/code&gt;. Estos datos han sido descargados con la librería &lt;code&gt;climaemet&lt;/code&gt; y &lt;code&gt;mapSpain&lt;/code&gt;. Un desarrollo completo de manipulación de datos espaciales puede verse en &lt;span class="citation"&gt;Pizarro, Hernangómez, and Fernández-Avilés (&lt;a href="referencias.html#ref-R-climaemet"&gt;2021&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>269</sup></a> en plena ola de calor (este es el ejemplo real que se utilizará a lo largo del capítulo). En ella puede observarse claramente una estructura de dependencia espacial, con máximas cercanas a 40 grados en la meseta central y Extremadura, de 30 grados o menos en la cordillera Cantábrica y las costas atlántica, cantábrica y andaluza, y entre 30 y 35 grados en el resto del país (básicamente Murcia, Comunidad Valenciana y Cataluña).</p>
-<div class="sourceCode" id="cb620"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb621"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
 <span><span class="co">#summary(CDR::tempmax_data)</span></span></code></pre></div>
-<div class="sourceCode" id="cb621"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb622"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
 <span><span class="va">br_paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">17.5</span>, <span class="fl">45</span>, <span class="fl">2.5</span><span class="op">)</span>, <span class="cn">Inf</span><span class="op">)</span></span>
 <span><span class="va">pal_paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">hcl.colors</a></span><span class="op">(</span><span class="fl">15</span>, <span class="st">"YlOrRd"</span>, rev <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -265,7 +265,7 @@ que, en el caso habitual de <em>f.a.</em> estacionarias de segundo orden o intr�
 <p>En el caso no estacionario (por ejemplo, si hay deriva) o intrínsecamente estacionario el semivariograma no tiene meseta.</p>
 <p>El comportamiento a pequeñas distancias, sobre todo cerca del origen, que es donde más dependencia espacial hay, está muy relacionado con el grado de continuidad y regularidad de <em>f.a.</em> Cuanto más continua y regular sea, más suaves y estructuradas serán las realizaciones que produzca, y más regular será el comportamiento del semivariograma cerca del origen (Fig. <a href="geo.html#fig:gauss-sph-plot">41.3</a>, panel izquierdo; representación bidimensional).</p>
 <p>Los semivariogramas con un <strong>comportamiento lineal cerca del origen</strong> son típicos de <em>v.r.</em> continuas, al menos por partes, pero no diferenciables. Su representación gráfica tridimensional está llena de picos. La amplitud de las fluctuaciones aumenta con la distancia entre localizaciones y es proporcional a la pendiente de la tangente en el origen (Fig. <a href="geo.html#fig:gauss-sph-plot">41.3</a>, panel derecho; representación bidimensional).</p>
-<div class="sourceCode" id="cb622"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb623"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -285,7 +285,7 @@ Figura 41.3: Representacion bidimensional de dos <span class="math inline">\(f.a
 (<em>nugget effect</em>) y son típicas de variables regionalizadas muy irregulares y, quizás, discontinuas. Las causas más frecuentes del efecto pepita son la existencia de una estructura con alcance inferior a la distancia más corta entre localizaciones y los errores de posicionamiento o de medida <span class="citation">(véase <a href="referencias.html#ref-chiles1999">Chilès and Delfiner 1999</a> para más detalle)</span>. </p>
 <p>El caso límite del efecto pepita es el <strong>efecto pepita puro</strong>. En ese caso, el semivariograma es constante cualquiera que sea la distancia, indicando ausencia de dependencia espacial.</p>
 <p>La Fig. <a href="geo.html#fig:plot-partes-sem">41.4</a> muestra gráficamente los principales elementos de un semivariograma.</p>
-<div class="sourceCode" id="cb623"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb624"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># función para representar el semivariograma</span></span>
 <span><span class="va">semivar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fl">1</span> <span class="op">-</span> <span class="fu">cov.spatial</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
@@ -397,7 +397,7 @@ J_\alpha \left(\frac{|\mathbf{h}|}{a} \right) \right),
 <!-- model for $\alpha =1/2$ and is one of the few hole-effect models valid -->
 <!-- \index{Valid semivariogram} on $\mathbb{R}^3$ -->
 <p>La Fig. <a href="geo.html#fig:semivar-teo-sill-ch41">41.5</a> muestra una representación gráfica de los anteriores semivariogramas.</p>
-<div class="sourceCode" id="cb624"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb625"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/r-spatial/gstat/">"gstat"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/gstat/man/show.vgms.html">show.vgms</a></span><span class="op">(</span>models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sph"</span>, <span class="st">"Exp"</span>, <span class="st">"Gau"</span>, <span class="st">"Nug"</span>, <span class="st">"Bes"</span>, <span class="st">"Wav"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -428,7 +428,7 @@ capacidad ilimitada de dispersión espacial, es decir, a <em>f.a.</em> intrínse
 <p>donde <span class="math inline">\(b\)</span> es una constante.</p>
 <p></p>
 <p>Una representación gráfica de ambos semivariogramas puede verse en la Fig. <a href="geo.html#fig:semivar-teo-no-sill-ch41">41.6</a>.</p>
-<div class="sourceCode" id="cb625"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb626"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/gstat/man/show.vgms.html">show.vgms</a></span><span class="op">(</span>models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pow"</span>, <span class="st">"Log"</span><span class="op">)</span>, sill <span class="op">=</span> <span class="fl">1</span>, range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, nugget <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:semivar-teo-no-sill-ch41"></span>
@@ -453,7 +453,7 @@ donde <span class="math inline">\(\#N(\mathbf{h})\)</span> es el número de pare
 Los valores semivariográficos se suelen computar para distancias inferiores a la mitad del diámetro de <em>D</em>, porque para distancias superiores el número de parejas de localizaciones suele ser pequeño para proporcionar estimaciones fiables. En la práctica, como en muchas de las direcciones no hay un número de parejas suficiente para calcular el semivariograma con cierta fiabilidad, lo habitual es construir un <strong>semivariograma empírico omnidireccional</strong>, es decir, que depende solo de la distancia (longitud del vector <strong>h</strong>) y no de la dirección. Para ello se crean <strong>regiones de tolerancia</strong>, que no se solapen, basadas en intervalos de distancia (normalmente de la misma longitud) y un <strong>ángulo de tolerancia</strong>. En concreto, la tolerancia se especifica en el módulo de <span class="math inline">\(\mathbf h\)</span> (<span class="math inline">\(\pm\Delta |\mathbf h|\)</span>) y en su dirección (<span class="math inline">\(\pm\Delta\theta\)</span>). Para más detalles y ejemplos, véase <span class="citation">J. M. Montero, Fernández-Avilés, and Mateu (<a href="referencias.html#ref-montero2015spatial">2015</a>)</span>.</p>
 <p> </p>
 <p>La Fig. <a href="geo.html#fig:plot-semivar-emp">41.7</a> muestra la ubicación de los puntos semivariográficos, indicando el número de parejas a cada distancia, en el caso de las temperaturas máximas en España (06/08/2022).</p>
-<div class="sourceCode" id="cb626"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb627"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vgm_tmax</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/variogram.html">variogram</a></span><span class="op">(</span><span class="va">tmax</span> <span class="op">~</span> <span class="fl">1</span>, <span class="va">temp_max_utm_sf</span>,</span>
 <span>  cutoff <span class="op">=</span> <span class="fl">250000</span> <span class="co"># 250 km</span></span>
 <span><span class="op">)</span></span>
@@ -478,7 +478,7 @@ El ajuste puede ser <strong>manual</strong>, utilizando métodos visuales y grá
 <p>
 </p>
 <p>La Fig. <a href="geo.html#fig:plot-fit-semivar">41.8</a> muestra el semivariograma empírico correspondiente a los puntos semivariográficos de la Fig. <a href="geo.html#fig:plot-semivar-emp">41.7</a>. De todos los modelos con meseta, el semivariograma ajustado ha sido un exponencial con alcance 76.404,64 metros y meseta 13,74.</p>
-<div class="sourceCode" id="cb627"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb628"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_vgm_tmax</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/fit.variogram.html">fit.variogram</a></span><span class="op">(</span><span class="va">vgm_tmax</span>,</span>
 <span>                              model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/vgm.html">vgm</a></span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sph"</span>, <span class="st">"Exp"</span>, <span class="st">"Gau"</span>, <span class="st">"Nug"</span>, <span class="st">"Bes"</span>, <span class="st">"Wav"</span><span class="op">)</span><span class="op">)</span>, fit.sills <span class="op">=</span> <span class="cn">TRUE</span>, fit.ranges <span class="op">=</span> <span class="cn">TRUE</span>, fit.kappa <span class="op">=</span> <span class="cn">TRUE</span>, fit.method <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span>
 <span><span class="va">fit_vgm_tmax</span></span>
@@ -520,14 +520,14 @@ obedece a que, bajo estacionariedad de segundo orden, solo se requiere el conoci
 siendo la <strong>varianza del error de predicción</strong>:
 <span class="math inline">\(\sigma_{OK}^2 (\mathbf{s}_0) = \sum\limits_{i = 1}^n {\lambda _i \gamma (\mathbf{s}_i - \mathbf{s}_0 ) + \alpha }\)</span>, donde <span class="math inline">\(\alpha\)</span> es el multiplicador de Lagrange involucrado en el proceso de optimización.</p>
 <p>Retomando el ejemplo de las temperaturas máximas en la España peninsular el 6 de agosto de 2022, a continuación se muestra el código necesario para la creación de un <em>mapping</em> de predicción de dichas temperaturas.</p>
-<div class="sourceCode" id="cb628"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb629"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">kriged_tmax</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/krige.html">krige</a></span><span class="op">(</span><span class="va">tmax</span> <span class="op">~</span> <span class="fl">1</span>,</span>
 <span>  <span class="va">temp_max_utm_sp</span>,</span>
 <span>  <span class="va">grd_sp</span>,</span>
 <span>  model <span class="op">=</span> <span class="va">fit_vgm_tmax</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; [using ordinary kriging]</span></span></code></pre></div>
-<div class="sourceCode" id="cb629"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb630"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">kriged_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">kriged_tmax</span>, xy <span class="op">=</span> <span class="cn">T</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -554,7 +554,7 @@ Figura 41.9: <span class="math inline">\(Mapping\)</span> de temperaturas máxim
 </p>
 </div>
 <p>El <em>mapping</em> de la Fig. <a href="geo.html#fig:plot-kriging-pred">41.9</a> tiene poco valor si no se acompaña de otro que muestre la desviación típica de los errores de predicción. </p>
-<div class="sourceCode" id="cb630"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb631"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">kriged_df</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_contour.html">geom_contour_filled</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">coords.x1</span>, <span class="va">coords.x2</span>, z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">var1.var</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">2.5</span>, <span class="fl">3</span>, <span class="fl">3.5</span>, <span class="fl">4</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">kriged_df</span><span class="op">$</span><span class="va">var1.var</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
