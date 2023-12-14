@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 17 Modelos aditivos generalizados | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="María Durbán\(^{a}\) y Víctor Casero-Alonso\(^{b}\) \(^{a}\)Universidad Carlos III de Madrid\(^{b}\)Universidad de Castilla-La Mancha  17.1 Introducción Los modelos lineales, o los lineales...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Capítulo 17 Modelos aditivos generalizados | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="María Durbán\(^{a}\) y Víctor Casero-Alonso\(^{b}\) \(^{a}\)Universidad Carlos III de Madrid\(^{b}\)Universidad de Castilla-La Mancha  17.1 Introducción Los modelos lineales, o los lineales...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 17 Modelos aditivos generalizados | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="María Durbán\(^{a}\) y Víctor Casero-Alonso\(^{b}\) \(^{a}\)Universidad Carlos III de Madrid\(^{b}\)Universidad de Castilla-La Mancha  17.1 Introducción Los modelos lineales, o los lineales...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="active" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="cap-gam" class="section level1" number="17">
+<h1>
+<span class="header-section-number">Capítulo 17</span> Modelos aditivos generalizados<a class="anchor" aria-label="anchor" href="#cap-gam"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>María Durbán</em><span class="math inline">\(^{a}\)</span> y <em>Víctor Casero-Alonso</em><span class="math inline">\(^{b}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad Carlos III de Madrid<br><span class="math inline">\(^{b}\)</span>Universidad de Castilla-La Mancha</p>
+<div id="introducción-8" class="section level2" number="17.1">
+<h2>
+<span class="header-section-number">17.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-8"><i class="fas fa-link"></i></a>
+</h2>
+<p>Los modelos lineales, o los lineales generalizados (GLM), vistos en los
+capítulos <a href="cap-lm.html#cap-lm">15</a> y <a href="cap-glm.html#cap-glm">16</a> tienen la ventaja de ser fáciles de ajustar e
+interpretar. Además, se dispone de técnicas para contrastar las
+hipótesis del modelo. Sin embargo, cuando la variable respuesta no está
+relacionada de forma lineal con las variables explicativas no tiene
+sentido utilizar modelos lineales (generalizados o no) y hay que acudir
+a modelos que flexibilicen esta relación, que, en el caso de una única variable explicativa, se puede expresar como sigue:
+<span class="math display">\[Y=\beta_0+f(X)+\varepsilon.\]</span></p>
+<p>Puede que la función <span class="math inline">\(f()\)</span> sea conocida de antemano, como ocurre en
+muchos modelos biológicos, donde existe una dependencia de tipo
+exponencial, <span class="math inline">\(f(x)=e^{\beta_0+\beta_1x}.\)</span> En otras ocasiones, dicha
+función es desconocida y se puede utilizar una aproximación. Por
+ejemplo, mediante la regresión polinómica, muy utilizada en la práctica:
+<span class="math display" id="eq:polinom">\[\begin{equation}
+Y = \beta_0 + \beta_1 X + \beta_2 X^2 + \ldots + \beta_p X^p + \varepsilon, \quad \varepsilon \sim N(0,\sigma^2).
+\tag{17.1}
+\end{equation}\]</span></p>
+<p>Sin embargo, la regresión polinómica tiene un gran inconveniente: que no
+se lleva a cabo de forma local y, por tanto, cada vez que se cambia un coeficiente
+del modelo, el cambio impacta a los valores ajustados en todo el rango
+de la variable explicativa. No obstante, es posible utilizar técnicas
+(como las que se presentan en este capítulo) en las que el valor predicho
+en un punto dado solo depende de las observaciones en ese punto y de las
+observaciones vecinas, es decir, el ajuste se lleva a cabo de forma
+local.</p>
+<p>En el caso de disponer de más de una variable explicativa, la extensión
+del modelo de regresión múltiple sería el <strong>modelo
+aditivo</strong> (en el caso de variable respuesta
+gaussiana), donde no se asume que la relación entre la variable respuesta y cada una de
+las variables explicativas tenga que ser lineal:</p>
+<p><span class="math display" id="eq:aditivo">\[\begin{equation}
+Y= f(X_{1})+\ldots +f(X_p)+\epsilon, \quad \varepsilon \sim N(0,\sigma^2).
+\tag{17.2}
+\end{equation}\]</span></p>
+<p>Las funciones <span class="math inline">\(f()\)</span> incluyen también a las funciones
+lineales vistas en el Cap. <a href="cap-lm.html#cap-lm">15</a>. Los <strong>modelos aditivos generalizados</strong>,
+GAM, extienden el modelo anterior a respuestas no gaussianas, como lo
+hacen los GLM respecto de los modelos lineales con respuesta gaussiana
+(véase Cap. <a href="cap-glm.html#cap-glm">16</a>).</p>
+</div>
+<div id="splines-con-penalizaciones" class="section level2" number="17.2">
+<h2>
+<span class="header-section-number">17.2</span> <em>Splines</em> con penalizaciones<a class="anchor" aria-label="anchor" href="#splines-con-penalizaciones"><i class="fas fa-link"></i></a>
+</h2>
+<p>Las funciones de la ecuación <a href="cap-gam.html#eq:aditivo">(17.2)</a> se estiman mediante técnicas de suavizado o <em>smoothers</em>, cuyo objetivo es extraer
+las tendencias (o señales) existentes en la relación entre la variable
+respuesta y las variables explicativas, sin presuponer una forma
+funcional <em>a priori</em> para ellas; solo se asume que la relación entre
+<span class="math inline">\(Y\)</span> y <span class="math inline">\(X\)</span> es suave (tiene poco ruido). Las predicciones obtenidas
+mediante estas técnicas tienen menos variabilidad que la variable respuesta; de ahí que a estas técnicas se les denomine <strong>suavizadores</strong> (la regresión lineal es un suavizador llevado al extremo). Las siguientes son algunas de las técnicas de suavizado más populares:</p>
+<ol style="list-style-type: decimal">
+<li>Regresión polinomial local con pesos, <em>lowess</em>.</li>
+<li>
+<em>Kernels</em>.</li>
+<li>
+<em>Splines</em>.</li>
+</ol>
+<p>Este capítulo se centra en uso de los <strong><em>splines</em></strong>, ya que es la técnica de suavizado más utilizada. Los <em>splines</em> son funciones polinómicas a
+trozos de la variable explicativa, que se unen en puntos llamados <strong>nodos</strong>.
+Existen muchos tipos de <em>splines</em> (naturales, cíclicos,
+B–<em>splines</em>, <em>O</em>–<em>splines</em>, etc.). Independientemente del tipo de <em>spline</em>, este capítulo se centra en los <em>splines</em> con penalizaciones (<em>P</em>–<em>splines</em>), que se basan en: <span class="math inline">\((i)\)</span> hacer una
+aproximación de la función <span class="math inline">\(f()\)</span> mediante una base de funciones, y <span class="math inline">\((ii)\)</span>
+añadir una penalización a la hora de estimar el modelo, de manera que se
+pueda controlar la variabilidad de la curva que se quiere estimar. Hay
+muchas maneras de representar una función a través de una base de funciones (un
+ejemplo sencillo de una base de funciones es el caso de la regresión
+polinómica, en la que la base de funciones, es decir, la matriz de
+regresión, es una matriz cuyas columnas son las potencias de la
+variable explicativa: <span class="math inline">\([X:X^2:\ldots : X^p]\)</span>). Una de las mejores
+opciones son los B–<em>splines</em> <span class="citation">(<a href="referencias.html#ref-boor01">De Boor 2001</a>)</span>, debido a sus buenas propiedades
+numéricas. La penalización se añade en la función de verosimilitud y se
+construye a partir de la derivada de la curva que se quiere penalizar. Generalmente se utilizan penalizaciones de orden 2, lo que implica que se
+penaliza todo aquello que no es lineal en la función; por tanto,
+si la penalización es muy grande la curva estimada es simplemente una
+línea recta. La penalización está controlada por un parámetro llamado
+<strong>parámetro de suavizado</strong> <span class="citation">(véanse <a href="referencias.html#ref-eilers2010splines">P. H. Eilers and Marx 2010</a>; <a href="referencias.html#ref-eilers2015twenty">P. H. Eilers, Marx, and Durbán 2015</a> para más detalle)</span>.
+</p>
+<p>A la hora de ajustar este tipo de modelos hay que tomar dos decisiones
+importantes:</p>
+<ul>
+<li><p>El número de nodos del B–<em>spline</em>: generalmente
+se utiliza esta regla:
+<span class="math display" id="eq:nodos">\[\begin{equation}
+\text{número de nodos}=min\{40,\text{valores únicos de }X/4\}
+\tag{17.3}
+\end{equation}\]</span>
+(por ejemplo, si se tienen 100 observaciones diferentes, se
+elegirían <span class="math inline">\(100/4=25\)</span> nodos).</p></li>
+<li><p>El valor del parámetro de suavizado: se puede estimar por distintos métodos: validación cruzada, validación cruzada generalizada, máxima verosimilitud, máxima verosimilitud restringida, etc. Se recomienda reexpresar el modelo como un modelo mixto (véase Cap. <a href="cap-mxm.html#cap-mxm">18</a>) y estimarlo mediante el <strong>método de máxima verosilimitud restringida</strong>, REML,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Es igual que el de máxima verosimilitud pero teniendo en cuenta los grados de libertad utilizados para estimar los efectos fijos al estimar los componentes de varianza (el método de máxima verosimilitud no lo hace). Para más detalles consúltese &lt;span class="citation"&gt;Henderson (&lt;a href="referencias.html#ref-Henderson1953"&gt;1953&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>142</sup></a> para así poder estimar el parámetro de suavizado junto con los demás parámetros del modelo.</p></li>
+</ul>
+<p>La Fig. <a href="cap-gam.html#fig:psplines">17.1</a> muestra el impacto que el parámetro de
+suavizado tiene en el ajuste final de la curva (los datos
+corresponden al dataset <code>fossil</code> del paquete <code>Semipar</code>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:psplines"></span>
+<img src="150018_gam_files/figure-html/psplines-1.png" alt="Regresión con $P$-$splines$  para diferentes valores del parámetro de suavizado." width="60%"><p class="caption">
+Figura 17.1: Regresión con <span class="math inline">\(P\)</span>-<span class="math inline">\(splines\)</span> para diferentes valores del parámetro de suavizado.
+</p>
+</div>
+</div>
+<div id="aspectos-metodológicos" class="section level2" number="17.3">
+<h2>
+<span class="header-section-number">17.3</span> Aspectos metodológicos<a class="anchor" aria-label="anchor" href="#aspectos-metodol%C3%B3gicos"><i class="fas fa-link"></i></a>
+</h2>
+<p>Al igual que en el caso de los modelos lineales y los modelos GLM, en
+los modelos GAM es necesario conocer algunos aspectos metodológicos que
+son fundamentales para llevar a cabo un ajuste correcto de los modelos y
+entender los resultados obtenidos en el ajuste. A continuación se
+muestran los más relevantes.</p>
+<div id="estimación-de-los-parámetros-del-modelo" class="section level3" number="17.3.1">
+<h3>
+<span class="header-section-number">17.3.1</span> Estimación de los parámetros del modelo<a class="anchor" aria-label="anchor" href="#estimaci%C3%B3n-de-los-par%C3%A1metros-del-modelo"><i class="fas fa-link"></i></a>
+</h3>
+<p>La estimación de los modelos GAM se lleva a cabo mediante máxima
+verosimilitud penalizada. Supóngase el caso de una sola variable
+explicativa y que se quiere ajustar el modelo: <span class="math display">\[Y= f(X)+\epsilon.\]</span>
+Como se comentó anteriormente, los modelos GAM tienen como punto de
+partida la aproximación de la función a estimar mediante una matriz
+formada por B–<em>splines</em>; es decir, se busca transformar el modelo lineal o
+lineal generalizado tradicional de tal forma que <span class="math inline">\(f(X)\)</span> sea el producto
+de una matriz multiplicada por unos coeficientes (esa matriz está
+formada por los B–<em>splines</em>). En otros términos, se elige una base
+(una matriz <span class="math inline">\(\textbf{B}\)</span>) que permita escribir la función <span class="math inline">\(f(X)\)</span> como
+una combinación lineal de sus elementos (los elementos de esta base son
+conocidos ya que se calculan a partir de las variables explicativas):
+<span class="math display">\[f(X)=\sum_{l=1}^k b_l(X)\theta_l,\]</span> donde <span class="math inline">\(b_l(X)\)</span> son las funciones
+B–<em>spline</em> que componen la base. En forma matricial:
+<span class="math display">\[f(X)=\textbf{B}\boldsymbol{\theta}.\]</span>
+Los parámetros
+<span class="math inline">\(\boldsymbol{\theta}\)</span> se estiman minimizando la siguiente expresión (en
+el caso de asumir gaussianidad para los errores, y por tanto para la variable respuesta, los mínimos cuadrados penalizados son
+equivalentes a la máxima verosimilitud penalizada):</p>
+<p><span class="math display">\[(\bf{y}-\bf{B}\boldsymbol{\theta})^\prime(\bf{y}-\bf{B}\boldsymbol{\theta}) + \lambda\boldsymbol{\theta}^\prime\bf{P}\boldsymbol {\theta},\]</span>
+donde <span class="math inline">\(\boldsymbol{P}\)</span> es la matriz de penalización y <span class="math inline">\(\lambda\)</span> es el
+parámetro de suavizado. Dado un valor del parámetro de suavizado, las
+estimaciones de los parámetros vienen dadas por:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Como se avanzó anteriormente, si el modelo se expresa como un modelo mixto, la estimación REML proporciona la estimación del parámetro de suavizado junto con la de los restantes parámetros del modelo.&lt;/p&gt;"><sup>143</sup></a></p>
+<p><span class="math display" id="eq:thetas">\[\begin{equation}
+\hat{\boldsymbol{\theta}} = (\bf{B}^{\prime}T \bf{B} +\lambda \bf{P} )^{-1}\bf{B}^\prime\bf{y},
+\tag{17.4}
+\end{equation}\]</span></p>
+<p>y las estimaciones de la variable respuesta se obtienen
+como:
+<span class="math inline">\(\hat{ \bf{y}}= \underbrace{\bf{B}(\bf{B}^\prime\bf{B} +\lambda \bf{P} )^{-1}\bf{B}^\prime}_{\bf{H}}\bf{y}\)</span>.
+La matriz <span class="math inline">\(\bf{H}\)</span> juega un papel importante, ya que la suma de
+su diagonal da una idea de la complejidad de la curva ajustada (la curva
+más compleja sería la que interpola los datos). Dicha suma se denomina <strong>grados de libertad
+efectivos</strong> (que no se corresponden
+con el número de parámetros ajustados).</p>
+</div>
+<div id="inferencia-sobre-las-funciones-suaves" class="section level3" number="17.3.2">
+<h3>
+<span class="header-section-number">17.3.2</span> Inferencia sobre las funciones suaves<a class="anchor" aria-label="anchor" href="#inferencia-sobre-las-funciones-suaves"><i class="fas fa-link"></i></a>
+</h3>
+<p>Para saber si la relación estimada entre <span class="math inline">\(Y\)</span> y <span class="math inline">\(X\)</span> es o no
+estadísticamente significativa, se debe proceder al contraste:
+<span class="math display">\[\begin{eqnarray*}
+H_0: f(X)=0  &amp; \text{ (no efecto)}\\
+H_1: f(X)\neq 0 &amp; \text{ (efecto)}.
+\end{eqnarray*}\]</span></p>
+<p>Dado que la función <span class="math inline">\(f(X)\)</span> depende de los coeficientes que acompañan a
+las bases de B–<em>splines</em>, el contraste anterior es equivalente al
+contraste: <span class="math display">\[\begin{eqnarray*}
+H_0:   &amp;&amp;\boldsymbol{\theta}=0  \\
+H_1:  &amp;&amp; \boldsymbol{\theta}\neq 0.
+\end{eqnarray*}\]</span> La distribución del estadístico de contraste dependerá
+de si la variable respuesta sigue una distribución normal o no: en caso afirmativo el estadístico de contraste sigue un distribución <span class="math inline">\(F\)</span>. En caso negativo, sigue una distribución <span class="math inline">\(\chi^2\)</span>.</p>
+<p><strong>Comparación de modelos</strong></p>
+<p>Cuando se trabaja con un modelo aditivo
+<a href="cap-gam.html#eq:aditivo">(17.2)</a> en el que hay más de una variable explicativa, puede
+ser de interés comparar versiones de ese modelo que contengan distintos
+conjuntos de variables. La comparación dependerá de la relación entre
+los modelos a comparar:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Modelos anidados</strong>. La comparación se basa, igual que en los
+GLM, en la diferencia en la <em>deviance</em> residual.
+Si se quieren comparar dos modelos <span class="math inline">\(m_1\)</span> y <span class="math inline">\(m_2\)</span> (donde
+<span class="math inline">\(m_1\subset m_2\)</span>), entonces:</li>
+</ol>
+<ul>
+<li>En el caso de variable respuesta normal, el estadístico de contraste es:
+<span class="math display">\[\frac{(DR(m_1)-DR(m_2))/(df_2-df_1)}{DR(m_2)/(n-df_2)}\approx F_{(df_2-df_1), (n-df_2)},\]</span>
+</li>
+</ul>
+<p>donde <span class="math inline">\(DR\)</span> es la <em>deviance</em> residual (suma de cuadrados residual) y <span class="math inline">\(df\)</span>
+son los grados de libertad asociados con cada modelo.</p>
+<ul>
+<li>
+<p>En otro caso, se utiliza como estadístico de contraste el siguiente:</p>
+<p><span class="math display">\[DR(m_1)-DR(m_2)\approx \chi^2_{df_2-df_1}.\]</span></p>
+</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>
+<strong>Modelos no anidados</strong>. En este caso los contrastes anteriores no
+son válidos y se utilizarán criterios basados en el AIC (criterio de
+información de Akaike).</li>
+</ol>
+</div>
+<div id="suavizado-mutidimensional-y-para-datos-no-gaussianos" class="section level3" number="17.3.3">
+<h3>
+<span class="header-section-number">17.3.3</span> Suavizado mutidimensional y para datos no gaussianos<a class="anchor" aria-label="anchor" href="#suavizado-mutidimensional-y-para-datos-no-gaussianos"><i class="fas fa-link"></i></a>
+</h3>
+<p>Para el suavizado penalizado en 2 dimensiones (o más) también se necesita
+una base y una penalización. El modelo sería:
+<span class="math display">\[{Y} = \beta_0+  f\left({X}_{1},{X}_{2}\right)+{\epsilon},\]</span>
+donde <span class="math inline">\(f()\)</span> es una función de las dos covariables <span class="math inline">\({X}_{1}\)</span> y
+<span class="math inline">\({X}_{2}\)</span>. Dicha función se aproxima mediante el producto
+tensorial de las bases de B–<em>splines</em> marginales para cada una de las
+covariables y la penalización dependerá de dos parámetros de suavizado.
+Los términos de suavizado multidimensional se pueden combinar con
+términos unidimensionales y términos lineales. En este caso, la penalización dependería de dos parámetros de suavizado (uno para cada covariable).</p>
+<p>La extensión de los modelos de suavizado al caso en el que la variable
+respuesta no sea gaussiana, se hace de forma similar al caso lineal,
+cuando se pasa de un modelo de regresión lineal a un GLM. Al igual que
+en el caso de los GLM,
+<span class="math inline">\(g({\boldsymbol\mu})=\boldsymbol{\eta}=f(\bf{X})=\bf{B} \boldsymbol{\theta}\)</span>,
+y se añade la penalización a la función de verosimilitud de la
+distribución correspondiente:
+<span class="math display">\[\ell_p(\boldsymbol{\theta})=\ell(\boldsymbol{\theta})+\lambda \boldsymbol{\theta}^\prime \bf P \boldsymbol{\theta},\]</span>
+donde <span class="math inline">\(\ell(\boldsymbol{\theta)}\)</span> es la log-verosimilitud.</p>
+</div>
+</div>
+<div id="procedimiento-con-r-la-función-gam-del-paquete-mgcv" class="section level2" number="17.4">
+<h2>
+<span class="header-section-number">17.4</span> Procedimiento con <strong>R</strong>: la función <code>gam()</code> del paquete <code>mgcv</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-la-funci%C3%B3n-gam-del-paquete-mgcv"><i class="fas fa-link"></i></a>
+</h2>
+<p>Aunque hay muchas librerías disponibles, la principal es <code>mgcv</code>, que
+implementa una gran variedad de modelos de suavizado a través de la
+función <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam()</a></code> (<em>generalized additive models</em>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La principal referencia para esta sección es el libro
+de &lt;span class="citation"&gt;Wood (&lt;a href="referencias.html#ref-Wood06book"&gt;2006&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>144</sup></a></p>
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">gam</span><span class="op">(</span><span class="va">formula</span>, method <span class="op">=</span> <span class="st">""</span>, select <span class="op">=</span> <span class="st">""</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">gaussian</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>
+<code>formula</code> es el argumento principal de esta función; es la ecuación
+del modelo: por ejemplo, <code>y ~ x1 + x2 + s(x3)</code>.
+<ul>
+<li>Lo primero que se tiene que elegir es la base a utilizar para
+representar las funciones suaves, <code>s(x)</code> (véase <code><a href="https://rdrr.io/pkg/mgcv/man/s.html">?s</a></code> o
+<code><a href="https://rdrr.io/pkg/mgcv/man/smooth.terms.html">?smooth.terms</a></code>), o <code>te(x1,x2)</code> en el caso de suavizado
+bidimensional. Por defecto se usan los llamados <em>thin plate
+splines</em>. El tipo de base usada se puede modificar utilizando el
+argumento <code>bs</code> dentro de <code>s(x, bs = "ps")</code>; en este caso <code>ps</code>
+indica el uso de B–<em>splines</em> con penalizaciones. A continuación se
+describen otras alternativas:</li>
+</ul>
+</li>
+</ul>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th><strong><code>bs</code></strong></th>
+<th><strong>Descripción</strong></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>tp</code></td>
+<td><em>Thin plate regression splines</em></td>
+</tr>
+<tr class="even">
+<td><code>ts</code></td>
+<td>
+<em>Thin plate regression splines</em> con regularización</td>
+</tr>
+<tr class="odd">
+<td><code>cr</code></td>
+<td>
+<em>Splines</em> cúbicos de regresión</td>
+</tr>
+<tr class="even">
+<td><code>crs</code></td>
+<td>
+<em>Splines</em> cúbicos de regresión con regularización</td>
+</tr>
+<tr class="odd">
+<td><code>cc</code></td>
+<td>
+<em>Splines</em> cíclicos</td>
+</tr>
+<tr class="even">
+<td><code>ps</code></td>
+<td>
+<em>P</em>–splines</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>
+<code>m</code> indica el orden de la penalización; por defecto es 2.</li>
+<li>
+<code>k</code> es el número de nodos para construir la base. El número por
+defecto suele ser demasiado bajo, por lo que siempre se recomienda
+que el usuario elija el número utilizando la regla dada en
+<a href="cap-gam.html#eq:nodos">(17.3)</a>.</li>
+<li>
+<code>by</code> debe igualarse a una variable numérica o factor de la misma
+dimensión de cada covariable, para hacer interacciones entre curvas y
+variables.</li>
+<li>
+<code>id</code> se utiliza para forzar que diferentes términos suaves utilicen
+la misma base y la misma cantidad de suavizado.</li>
+<li>
+<code>method</code> selecciona el método para estimar el parámetro de suavizado. Se
+puede elegir entre: <code>REML</code> (máxima verosimilitud restringida),
+<code>ML</code> (máxima verosimilitud), <code>GCV.Cp</code> (validación cruzada
+generalizada), <code>GACV.Cp</code> (validación cruzada aproximada
+generalizada). En la práctica, como se indicó anteriormente, se prefiere <code>REML</code>.</li>
+<li>
+<code>family</code> permite elegir la distribución de la variable respuesta
+(binomial, Poisson, etc.); por defecto asume gaussiana.</li>
+<li>
+<code>select = TRUE</code> contrasta si una variable debe entrar o no en el
+modelo.</li>
+</ul>
+<p>Es importante reseñar que si el método elegido para estimar el parámetro de suavizado es REML, entonces, internamente, el modelo se transforma en un modelo mixto y lo estima junto con el resto de los parámetros del modelo (véase Cap. <a href="cap-mxm.html#cap-mxm">18</a>).</p>
+</div>
+<div id="casos-prácticos-1" class="section level2" number="17.5">
+<h2>
+<span class="header-section-number">17.5</span> Casos prácticos<a class="anchor" aria-label="anchor" href="#casos-pr%C3%A1cticos-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>En este apartado se ven una serie de aplicaciones que permiten mostrar
+los diferentes usos de este tipo de modelos.</p>
+<div id="modelo-unidimensional-con-fossil" class="section level3" number="17.5.1">
+<h3>
+<span class="header-section-number">17.5.1</span> Modelo unidimensional con <code>fossil</code><a class="anchor" aria-label="anchor" href="#modelo-unidimensional-con-fossil"><i class="fas fa-link"></i></a>
+</h3>
+<p>Se empieza ilustrando el uso de la función <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam()</a></code> con el conjunto de
+datos <code>fossil</code> del paquete <code>SemiPar</code>. El objetivo es estimar la relación
+entre la edad de los fósiles y la proporción de isótopos de estroncio.</p>
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://matt-wand.utsacademics.info/SPmanu.pdf">"SemiPar"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">fossil</span><span class="op">)</span></span>
+<span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="fl">10000</span> <span class="op">*</span> <span class="va">fossil</span><span class="op">$</span><span class="va">strontium.ratio</span></span>
+<span><span class="va">X</span> <span class="op">&lt;-</span> <span class="va">fossil</span><span class="op">$</span><span class="va">age</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, xlab <span class="op">=</span> <span class="st">"Edad"</span>, ylab <span class="op">=</span> <span class="st">"Proporción de estroncio"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:tsfossil"></span>
+<img src="150018_gam_files/figure-html/tsfossil-1.png" alt="Edad de los fósiles con respecto a la proporción de isótopos de estroncio." width="60%"><p class="caption">
+Figura 17.2: Edad de los fósiles con respecto a la proporción de isótopos de estroncio.
+</p>
+</div>
+<p>A la vista de la Fig. <a href="cap-gam.html#fig:tsfossil">17.2</a>, está claro que se necesita
+ajustar una curva (y no una línea) para estimar la relación entre ambas
+variables. Para ello se utiliza la función <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam()</a></code>, que devuelve un
+objeto de tipo <code>"gam"</code> y que se puede usar con las típicas funciones
+<code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>, <code><a href="https://rdrr.io/r/stats/fitted.values.html">fitted()</a></code>, <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>, <code><a href="https://rdrr.io/r/stats/residuals.html">residuals()</a></code>, etc.</p>
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"mgcv"</span><span class="op">)</span></span>
+<span><span class="va">fit_gam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">X</span>, k <span class="op">=</span> <span class="fl">25</span>, bs <span class="op">=</span> <span class="st">"ps"</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"REML"</span>, select <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># se eligen 25 nodos ya que se lavariable tiene 106 observaciones</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_gam</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Family: gaussian </span></span>
+<span><span class="co">#&gt; Link function: identity </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Formula:</span></span>
+<span><span class="co">#&gt; Y ~ s(X, k = 25, bs = "ps")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Parametric coefficients:</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept) 7.074e+03  2.435e-02  290504   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Approximate significance of smooth terms:</span></span>
+<span><span class="co">#&gt;        edf Ref.df     F p-value    </span></span>
+<span><span class="co">#&gt; s(X) 10.22     24 35.89  &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; R-sq.(adj) =  0.891   Deviance explained = 90.2%</span></span>
+<span><span class="co">#&gt; -REML = 23.946  Scale est. = 0.062849  n = 106</span></span></code></pre></div>
+<p>Como se puede ver, la relación entre la variable
+respuesta (<em>Y</em>, proporción de estroncio) y la variable explicativa (<span class="math inline">\(X\)</span>,
+edad) se ha especificado mediante un <em>spline</em>, <code><a href="https://rdrr.io/pkg/mgcv/man/s.html">s()</a></code>, de tipo penalizado,
+<code>ps</code>, con 25 nodos. Se ha seleccionado <code>REML</code> como método para estimar
+el parámetro de suavizado (los parámetros del <em>spline</em> se estiman también
+mediante <code>REML</code>, ya que da lugar a las mismas estimaciones que máxima
+verosimilitud).</p>
+<p>En la primera parte de la salida anterior aparecen los términos que
+entran linealmente en el modelo (en este caso solo el término independiente o intercepto); en la parte de abajo se muestran los términos de suavizado. Como se
+indicó anteriormente, dado que se ha usado <code>select=TRUE</code>, se está
+contrastando si la variable <code>edad</code> debe entrar en el modelo o no. En
+este caso, es claro que ha de entrar ya que el <em>p</em>–valor de <code>s(x)</code> es
+pequeño y los grados de libertad asociados son aproximadamente 10, lo
+que indica que la relación entre <span class="math inline">\(Y\)</span> y <span class="math inline">\(X\)</span> está lejos de la linealidad.</p>
+<p>La función <code><a href="https://rdrr.io/pkg/mgcv/man/gam.check.html">gam.check()</a></code> devuelve los gráficos de residuos usuales
+(residuos frente a valores ajustados, gráficos de cuantiles para
+comprobar la normalidad, etc., Fig. <a href="cap-gam.html#fig:fig8">17.3</a>), pero, además, proporciona información
+sobre el proceso de ajuste del modelo.</p>
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.check.html">gam.check</a></span><span class="op">(</span><span class="va">fit_gam</span>, cex <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span></span>
+<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; Method: REML Optimizer: outer newton</span></span>
+<span><span class="co">#&gt; full convergence after 5 iterations.</span></span>
+<span><span class="co">#&gt; Gradient range [-4.557319e-06,5.900149e-06]</span></span>
+<span><span class="co">#&gt; (score 23.94602 &amp; scale 0.06284944).</span></span>
+<span><span class="co">#&gt; Hessian positive definite, eigenvalue range [4.557347e-06,53.03185].</span></span>
+<span><span class="co">#&gt; Model rank = 25 / 25</span></span>
+<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; Basis dimension (k) checking results. Low p-value (k-index&lt;1) may</span></span>
+<span><span class="co">#&gt; indicate that k is too low, especially if edf is close to k'.</span></span>
+<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; k' edf k-index p-value</span></span>
+<span><span class="co">#&gt; s(X) 24.0 10.2 1.03 0.63</span></span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"img/gam_check.png"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig8"></span>
+<img src="img/gam_check.png" alt="Gráficos de residuos obtenidos con $gam.check().$ " width="60%"><p class="caption">
+Figura 17.3: Gráficos de residuos obtenidos con <span class="math inline">\(gam.check().\)</span>
+</p>
+</div>
+<p>El test que aparece en la parte de abajo está contrastando si el número
+de nodos elegido es suficiente. Si el valor de <em>k</em> está muy próximo al de
+<em>edf</em>, entonces se debería reajustar el modelo con más nodos.</p>
+<p>El comando <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> permite dibujar la función suave que relaciona <span class="math inline">\(Y\)</span> con <span class="math inline">\(X\)</span>. La curva estimada que aparece en la Fig. <a href="cap-gam.html#fig:fig9">17.4</a> está
+centrada (la función <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> siempre lo hace de esta forma), el
+argumento <code>shade</code> hace que se sombree el intervalo de confianza y
+<code>seWithMean</code> hace que la incertidumbre sobre el término independiente se
+incluya en el cálculo del intervalo de confianza.</p>
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fit_gam</span>, shade <span class="op">=</span> <span class="cn">TRUE</span>, seWithMean <span class="op">=</span> <span class="cn">TRUE</span>, pch <span class="op">=</span> <span class="fl">19</span>, <span class="fl">1</span>, cex <span class="op">=</span> <span class="fl">.55</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig9"></span>
+<img src="150018_gam_files/figure-html/fig9-1.png" alt="Curva ajustada e intervalo de confianza." width="60%"><p class="caption">
+Figura 17.4: Curva ajustada e intervalo de confianza.
+</p>
+</div>
+</div>
+<div id="modelo-aditivo-con-airquality" class="section level3" number="17.5.2">
+<h3>
+<span class="header-section-number">17.5.2</span> Modelo aditivo con <code>airquality</code><a class="anchor" aria-label="anchor" href="#modelo-aditivo-con-airquality"><i class="fas fa-link"></i></a>
+</h3>
+<p>En esta sección se analizan de nuevo los datos <code>airquality</code> (ver airquality<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Conjunto de datos incluido con la instalación base de &lt;strong&gt;R&lt;/strong&gt;.&lt;/p&gt;"><sup>145</sup></a>), que consisten en 154 medidas de calidad del
+aire en Nueva York, de mayo a septiembre de 1973. El objetivo es establecer
+la relación entre las variables meteorológicas y el nivel de concentración de ozono en
+la atmósfera. Ya se ha analizado dicha relación en el Cap. <a href="cap-lm.html#cap-lm">15</a>, donde los ajustes lineales realizados eran
+satisfactorios pero se encontraban problemas en los residuos del
+modelo, lo cual impedía validar la modelización realizada. Allí se sugería que
+la relación entre la variable respuesta y alguna explicativa fuese no
+lineal. Además, se consideró la transformación logarítmica de la
+variable <code>Ozone</code>, y con dicha trasformación se obtenía una distribución
+más similar a la distribución normal.</p>
+<p>En consecuencia, se va a ajustar el modelo incluyendo las variables
+explicativas sin imponerles linealidad; en particular, se van a incluir las
+variables <code>Wind</code>, <code>Temp</code> y <code>Solar.R</code>. Las variables <code>Wind</code> y <code>Temp</code>
+tienen solo 31 y 40 valores únicos, respectivamente, aunque el conjunto de datos tiene 154 valores; por eso, para estas dos variables, se decide establecer el número de nodos en 10 y no más; para la variable <code>Solar.R</code> el número de nodos se fija en 20.</p>
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">airq_gam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Ozone</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">Wind</span>, bs <span class="op">=</span> <span class="st">"ps"</span>, k <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">Temp</span>, bs <span class="op">=</span> <span class="st">"ps"</span>, k <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">Solar.R</span>, bs <span class="op">=</span> <span class="st">"ps"</span>, k <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"REML"</span>, select <span class="op">=</span> <span class="cn">TRUE</span>, data <span class="op">=</span> <span class="va">airquality</span>, na.action <span class="op">=</span> <span class="va">na.omit</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">airq_gam</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Family: gaussian </span></span>
+<span><span class="co">#&gt; Link function: identity </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Formula:</span></span>
+<span><span class="co">#&gt; log(Ozone) ~ s(Wind, bs = "ps", k = 10) + s(Temp, bs = "ps", </span></span>
+<span><span class="co">#&gt;     k = 10) + s(Solar.R, bs = "ps", k = 20)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Parametric coefficients:</span></span>
+<span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept)  3.41593    0.04586   74.49   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Approximate significance of smooth terms:</span></span>
+<span><span class="co">#&gt;              edf Ref.df     F  p-value    </span></span>
+<span><span class="co">#&gt; s(Wind)    2.318      9 2.255 3.13e-05 ***</span></span>
+<span><span class="co">#&gt; s(Temp)    1.852      9 6.128  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; s(Solar.R) 2.145     19 1.397 2.31e-06 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; R-sq.(adj) =  0.689   Deviance explained = 70.7%</span></span>
+<span><span class="co">#&gt; -REML = 86.106  Scale est. = 0.23342   n = 111</span></span></code></pre></div>
+<p>Los resultados indican que todas las variables son significativas
+(<em>p</em>–valores pequeños), estando la variable <code>Temp</code> próxima a la linealidad
+(los grados de libertad efectivos asociados a la variable son 1,8). El <span class="math inline">\(R^2\)</span>
+ajustado es 0,69, por lo que el modelo ajusta moderadamente bien los
+datos.</p>
+<p>La Fig. <a href="cap-gam.html#fig:fig18">17.5</a> muestra las tres curvas ajustadas junto con sus correspondientes intervalos de confianza. También incluye los denominados <strong>residuos parciales</strong> que corresponden a, por ejemplo, en el caso del gráfico del viento,
+<span class="math inline">\(log(Ozone)-\hat \beta_0-\hat f(Temp)- \hat f(Solar.R)\)</span>, es decir, lo
+que queda sin explicar después de haber ajustado los demás términos del
+modelo.</p>
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/mfasiolo/mgcViz">"mgcViz"</a></span><span class="op">)</span></span>
+<span><span class="co"># getViz es otra opción para dibujar los términos de un modelo gam()</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcViz/man/getViz.html">getViz</a></span><span class="op">(</span><span class="va">airq_gam</span><span class="op">)</span></span>
+<span><span class="va">pl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcViz/man/l_points.html">l_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcViz/man/l_fitLine.html">l_fitLine</a></span><span class="op">(</span>linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcViz/man/l_ciLine.html">l_ciLine</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">pl</span>, pages <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig18"></span>
+<img src="150018_gam_files/figure-html/fig18-1.png" alt="Curvas estimadas para $Wind$, $Temp$ y $Solar$. " width="60%"><p class="caption">
+Figura 17.5: Curvas estimadas para <span class="math inline">\(Wind\)</span>, <span class="math inline">\(Temp\)</span> y <span class="math inline">\(Solar\)</span>.
+</p>
+</div>
+</div>
+<div id="modelo-semiparamétrico-con-onions" class="section level3" number="17.5.3">
+<h3>
+<span class="header-section-number">17.5.3</span> Modelo semiparamétrico con <code>onions</code><a class="anchor" aria-label="anchor" href="#modelo-semiparam%C3%A9trico-con-onions"><i class="fas fa-link"></i></a>
+</h3>
+<p>Es un caso particular del modelo aditivo, pues en este modelo todas las
+variables entran de forma lineal excepto una:
+<span class="math display">\[{Y}= \beta_0 +\beta_1 {X}_{1}+\ldots +
+\beta_{p-1}{X}_{p-1}+f({X}_p)+\epsilon.\]</span></p>
+<p>La forma de ajustar el modelo es exactamente igual a la anterior. Pero
+hay un caso que merece especial interés: cuando en la parte paramétrica
+se incluye una variable categórica con dos o más niveles. Al igual que
+en el caso de regresión lineal, se puede plantear si se quieren ajustar
+dos o más rectas paralelas (modelo aditivo) o no paralelas (modelo con
+interacción).</p>
+<p>Para ilustrar este caso se acude al <code>data.frame</code> <code>onions</code> (librería
+<code>SemiPar</code>). Contiene 84 observaciones de un experimento sobre la
+producción de un tipo de cebolla en dos localidades: Purnong Landing (la localidad de referencia) y Virginia. El objetivo es relacionar el logaritmo de la producción de
+cebollas con la densidad de plantas por metro cuadrado, <code>dens</code>. El modelo lineal básico sería:
+<span class="math display">\[ \log(\text{yield}_i) = \beta_0 + \beta_1\text{location}_{i} + \beta_2 \text{dens}_i + \epsilon_i,\]</span>
+donde
+<span class="math display">\[\text{location}_{i} =
+\left\{\begin{array}{cl}
+0 &amp; \mbox{si la observación $i$ es de Purnong Landing.} \\
+1 &amp; \mbox{si la observación $i$ es de Virginia.}
+\end{array}\right.\]</span></p>
+<p>Se comienza por ajustar el siguiente modelo: <span class="math display">\[
+\log(\text{yield}_i) = \beta_0 + \beta_1\text{location}_{i} + f(\text{dens}_i) + \epsilon_i.\]</span></p>
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"mgcv"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://matt-wand.utsacademics.info/SPmanu.pdf">"SemiPar"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">onions</span><span class="op">)</span></span>
+<span><span class="co"># Se indica a R que la variable locationVirginia es categórica</span></span>
+<span><span class="va">onions</span><span class="op">$</span><span class="va">location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">onions</span><span class="op">$</span><span class="va">location</span><span class="op">)</span></span>
+<span><span class="co"># Se recodifica la variable</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">onions</span><span class="op">$</span><span class="va">location</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Purnong Landing"</span>, <span class="st">"Virginia"</span><span class="op">)</span></span>
+<span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">yield</span><span class="op">)</span> <span class="op">~</span> <span class="va">location</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">dens</span>, k <span class="op">=</span> <span class="fl">20</span>, bs <span class="op">=</span> <span class="st">"ps"</span><span class="op">)</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"REML"</span>, select <span class="op">=</span> <span class="cn">TRUE</span>, data <span class="op">=</span> <span class="va">onions</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Family: gaussian </span></span>
+<span><span class="co">#&gt; Link function: identity </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Formula:</span></span>
+<span><span class="co">#&gt; log(yield) ~ location + s(dens, k = 20, bs = "ps")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Parametric coefficients:</span></span>
+<span><span class="co">#&gt;                  Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept)       4.85011    0.01688  287.39   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; locationVirginia -0.33284    0.02409  -13.82   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Approximate significance of smooth terms:</span></span>
+<span><span class="co">#&gt;           edf Ref.df     F p-value    </span></span>
+<span><span class="co">#&gt; s(dens) 4.568     19 72.76  &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; R-sq.(adj) =  0.946   Deviance explained = 94.9%</span></span>
+<span><span class="co">#&gt; -REML = -54.242  Scale est. = 0.011737  n = 84</span></span></code></pre></div>
+<p>En este ejemplo se ve que en la parte lineal aparecen dos parámetros,
+ambos significativos: la ordenada en el origen o intercepto y el coeficiente de la categoría <code>Virginia</code> de la variable <code>location</code>, que es negativo,
+indicando que la producción media en Purnong Landing es mayor que en Virginia. El término de suavizado también es significativo.</p>
+<p>En este caso, la función <code><a href="https://rdrr.io/pkg/mgcv/man/plot.gam.html">plot.gam()</a></code> solo dibuja una curva, pues las curvas para
+las dos localizaciones son paralelas y la diferencia entre ellas es igual al valor del parámetro correspondiente a <code>localización</code>. Para dibujar las curvas para cada localización se utiliza
+la función <code>plot_smooth()</code> de la librería <code>tidymv</code>. Los argumentos son:
+primero el modelo, después la variable explicativa y, por último, la variable categórica (Fig. <a href="cap-gam.html#fig:fig20">17.6</a>).</p>
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/stefanocoretta/tidymv">"tidymv"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://stefanocoretta.github.io/tidymv/reference/plot_smooths.html">plot_smooths</a></span><span class="op">(</span><span class="va">fit1</span>, <span class="va">dens</span>, <span class="va">location</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig20"></span>
+<img src="150018_gam_files/figure-html/fig20-1.png" alt="Curvas ajustadas para ambas localidades." width="60%"><p class="caption">
+Figura 17.6: Curvas ajustadas para ambas localidades.
+</p>
+</div>
+<p>Asumir curvas paralelas para ambas localidades implica que el descenso
+en la producción de cebollas a medida que aumenta la densidad de plantas es
+el mismo para ambas localidades, y esto no tiene por qué ser cierto.
+Para relajar esta hipótesis se puede ajustar un modelo con interacción
+(de manera similar a lo que se hace en el caso de regresión lineal):
+<span class="math display">\[\log(\text{yield}_i) =\beta_0 +  \beta_1\text{location}_{i} +  f(\text{dens}_i){L(i)} + \epsilon_i,\]</span>
+donde <span class="math display">\[L(i) =
+\left\{\begin{array}{cl}
+0 &amp; \mbox{si la $i$-ésima observación es de Purnong Landing.} \\
+1 &amp; \mbox{si la $i$-ésima observación es de Virginia.}
+\end{array}\right.\]</span></p>
+<p>Para hacerlo en <strong>R</strong>, se introduce el argumento
+<code>by=location</code> dentro de la curva (Fig. <a href="cap-gam.html#fig:fig21">17.7</a>).</p>
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">yield</span><span class="op">)</span> <span class="op">~</span> <span class="va">location</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">dens</span>, k <span class="op">=</span> <span class="fl">20</span>, bs <span class="op">=</span> <span class="st">"ps"</span>, by <span class="op">=</span> <span class="va">location</span><span class="op">)</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"REML"</span>, data <span class="op">=</span> <span class="va">onions</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Family: gaussian </span></span>
+<span><span class="co">#&gt; Link function: identity </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Formula:</span></span>
+<span><span class="co">#&gt; log(yield) ~ location + s(dens, k = 20, bs = "ps", by = location)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Parametric coefficients:</span></span>
+<span><span class="co">#&gt;                  Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept)       4.84415    0.01603  302.19   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; locationVirginia -0.33018    0.02270  -14.54   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Approximate significance of smooth terms:</span></span>
+<span><span class="co">#&gt;                                   edf Ref.df     F p-value    </span></span>
+<span><span class="co">#&gt; s(dens):locationPurnong Landing 3.096  3.834 176.9  &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; s(dens):locationVirginia        4.742  5.795 153.0  &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; R-sq.(adj) =  0.952   Deviance explained = 95.7%</span></span>
+<span><span class="co">#&gt; -REML = -58.541  Scale est. = 0.010446  n = 84</span></span></code></pre></div>
+<p>Ahora aparecen dos términos suaves, uno para cada localidad, de modo que
+estas curvas no tienen por qué ser paralelas, sino que cada una se
+ajustará a la forma que tengan los datos. En este caso, la Fig.
+<a href="cap-gam.html#fig:fig21">17.7</a>, generada de nuevo con <code>plot_smooths</code>, muestra como las
+curvas se van alejando a medida que aumenta la densidad de plantas.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig21"></span>
+<img src="150018_gam_files/figure-html/fig21-1.png" alt="Curvas ajustadas para ambas localidades permitiendo que no sean paralelas." width="60%"><p class="caption">
+Figura 17.7: Curvas ajustadas para ambas localidades permitiendo que no sean paralelas.
+</p>
+</div>
+<p>Para finalizar se comparan ambos modelos con el criterio AIC.</p>
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] -125.2307</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] -131.2181</span></span></code></pre></div>
+<p>Dado que el menor valor se alcanza en el segundo modelo, se escogería el
+modelo que incluye la interacción entre la variable densidad y la
+localidad.</p>
+</div>
+<div id="modelo-aditivo-generalizado-y-multidimensional-con-smacker" class="section level3" number="17.5.4">
+<h3>
+<span class="header-section-number">17.5.4</span> Modelo aditivo generalizado y multidimensional con <code>smacker</code><a class="anchor" aria-label="anchor" href="#modelo-aditivo-generalizado-y-multidimensional-con-smacker"><i class="fas fa-link"></i></a>
+</h3>
+<p>En este epígrafe se analizan los datos <code>smacker</code> del paquete <code>sm</code>. El objetivo es
+ver cómo influyen las condiciones del mar (temperatura de agua, etc.) en
+la ausencia o presencia de huevos de jurel en el mar Cantábrico. Además,
+se incorporará al modelo la posición geográfica mediante las covariables latitud y longitud; de esta forma se podrá captar el efecto espacial.</p>
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"sm"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">smacker</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span></span>
+<span><span class="va">smacker</span> <span class="op">&lt;-</span> <span class="va">smacker</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    Presence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">Density</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>    smack.long <span class="op">=</span> <span class="op">-</span><span class="va">smack.long</span>,</span>
+<span>    ldepth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">smack.depth</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"maps"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>pty <span class="op">=</span> <span class="st">"s"</span><span class="op">)</span></span>
+<span><span class="va">Position</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">smacker</span><span class="op">$</span><span class="va">smack.long</span>, <span class="va">smacker</span><span class="op">$</span><span class="va">smack.lat</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">Position</span>, col <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">43</span>, <span class="fl">48</span><span class="op">)</span>, cex <span class="op">=</span> <span class="fl">1.2</span>, xlab <span class="op">=</span> <span class="st">"longitud"</span>, ylab <span class="op">=</span> <span class="st">"latitud"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/maps/man/map.html">map</a></span><span class="op">(</span><span class="st">"world"</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, fill <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">Position</span><span class="op">[</span><span class="va">smacker</span><span class="op">$</span><span class="va">Presence</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>, pch <span class="op">=</span> <span class="fl">1</span>, cex <span class="op">=</span> <span class="fl">.5</span>, col <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">Position</span><span class="op">[</span><span class="va">smacker</span><span class="op">$</span><span class="va">Presence</span> <span class="op">==</span> <span class="fl">0</span>, <span class="op">]</span>, pch <span class="op">=</span> <span class="fl">16</span>, cex <span class="op">=</span> <span class="fl">.5</span>, col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Presencia "</span>, <span class="st">"Ausencia"</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">16</span><span class="op">)</span>, cex <span class="op">=</span> <span class="fl">.85</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig27"></span>
+<img src="150018_gam_files/figure-html/fig27-1.png" alt="Área donde se constató la ausencia/presencia de huevos de jurel." width="60%"><p class="caption">
+Figura 17.8: Área donde se constató la ausencia/presencia de huevos de jurel.
+</p>
+</div>
+<p>Dado que la variable respuesta es dicotómica, se utiliza un modelo
+de regresión logística en el que se flexibiliza la relación lineal de las variables explicativas con la respuesta y, además, se usa una superficie para estimar el efecto de
+la localización como una función en dos dimensiones (latitud y longitud, Fig. <a href="cap-gam.html#fig:fig27">17.8</a>). En este caso, en vez de usar <code><a href="https://rdrr.io/pkg/mgcv/man/te.html">te()</a></code> se usa <code><a href="https://rdrr.io/pkg/mgcv/man/s.html">s()</a></code> también para el caso de 2 dimensiones. La
+diferencia fundamental con <code><a href="https://rdrr.io/pkg/mgcv/man/te.html">te()</a></code> es que <code><a href="https://rdrr.io/pkg/mgcv/man/s.html">s()</a></code> asume un suavizado
+isotrópico, es decir, el mismo parámetro de suavizado para la latitud y
+longitud. No se debe usar <code><a href="https://rdrr.io/pkg/mgcv/man/s.html">s()</a></code> para el suavizado en dos dimensiones si
+las covariables están medidas en unidades diferentes. En este caso, como tanto la longitud como la latitud están medidas en las mismas unidades, se puede usar el suavizado isotrópico.</p>
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">logit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span><span class="va">Presence</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">ldepth</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">Temperature</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">smack.long</span>, <span class="va">smack.lat</span>, k <span class="op">=</span> <span class="fl">60</span><span class="op">)</span>,</span>
+<span>  family <span class="op">=</span> <span class="va">binomial</span>, select <span class="op">=</span> <span class="cn">TRUE</span>, data <span class="op">=</span> <span class="va">smacker</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcViz/man/getViz.html">getViz</a></span><span class="op">(</span><span class="va">logit1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">b</span>, allTerms <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, pages <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig22"></span>
+<img src="150018_gam_files/figure-html/fig22-1.png" alt="Efectos suaves estimados por el modelo para las variables. Efecto de la profundidad y temperatura en la fila superior y efecto espacial en la inferior." width="60%"><p class="caption">
+Figura 17.9: Efectos suaves estimados por el modelo para las variables. Efecto de la profundidad y temperatura en la fila superior y efecto espacial en la inferior.
+</p>
+</div>
+<p>En la Fig. <a href="cap-gam.html#fig:fig22">17.9</a> se aprecia que la relación entre la probabilidad de presencia de huevos y la temperatura no es lineal, mientras que sí lo es en el caso de la profundidad. El <span class="math inline">\(R^2\)</span> es tan solo <span class="math inline">\(0,4\)</span>, por lo que convendría utilizar más variables explicativas para obtener buenas predicciones.</p>
+<p>Las probabilidades predichas se pueden obtener con la función <code>predict</code>.</p>
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">logit1</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="resumen-16" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-16"><i class="fas fa-link"></i></a>
+</h3>
+<p>En este capítulo se introducen los modelos aditivos generalizados.
+En particular:</p>
+<ul>
+<li><p>Se presentan distintos aspectos metodológicos de carácter inferencial en este tipo de modelos.</p></li>
+<li><p>Se muestra el uso de <strong>R</strong> para llevar a cabo su ajuste.</p></li>
+<li><p>Se presentan diversos casos prácticos que ilustran la
+versatilidad de estos modelos para analizar datos complejos.</p></li>
+</ul>
+</div>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></div>
+<div class="next"><a href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cap-gam"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="nav-link" href="#introducci%C3%B3n-8"><span class="header-section-number">17.1</span> Introducción</a></li>
+<li><a class="nav-link" href="#splines-con-penalizaciones"><span class="header-section-number">17.2</span> Splines con penalizaciones</a></li>
+<li>
+<a class="nav-link" href="#aspectos-metodol%C3%B3gicos"><span class="header-section-number">17.3</span> Aspectos metodológicos</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#estimaci%C3%B3n-de-los-par%C3%A1metros-del-modelo"><span class="header-section-number">17.3.1</span> Estimación de los parámetros del modelo</a></li>
+<li><a class="nav-link" href="#inferencia-sobre-las-funciones-suaves"><span class="header-section-number">17.3.2</span> Inferencia sobre las funciones suaves</a></li>
+<li><a class="nav-link" href="#suavizado-mutidimensional-y-para-datos-no-gaussianos"><span class="header-section-number">17.3.3</span> Suavizado mutidimensional y para datos no gaussianos</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#procedimiento-con-r-la-funci%C3%B3n-gam-del-paquete-mgcv"><span class="header-section-number">17.4</span> Procedimiento con R: la función gam() del paquete mgcv</a></li>
+<li>
+<a class="nav-link" href="#casos-pr%C3%A1cticos-1"><span class="header-section-number">17.5</span> Casos prácticos</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#modelo-unidimensional-con-fossil"><span class="header-section-number">17.5.1</span> Modelo unidimensional con fossil</a></li>
+<li><a class="nav-link" href="#modelo-aditivo-con-airquality"><span class="header-section-number">17.5.2</span> Modelo aditivo con airquality</a></li>
+<li><a class="nav-link" href="#modelo-semiparam%C3%A9trico-con-onions"><span class="header-section-number">17.5.3</span> Modelo semiparamétrico con onions</a></li>
+<li><a class="nav-link" href="#modelo-aditivo-generalizado-y-multidimensional-con-smacker"><span class="header-section-number">17.5.4</span> Modelo aditivo generalizado y multidimensional con smacker</a></li>
+<li><a class="nav-link" href="#resumen-16">Resumen</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 18 Modelos mixtos | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="María Durbán\(^{a}\) y Víctor Casero-Alonso\(^{b}\) \(^{a}\)Universidad Carlos III de Madrid\(^{b}\)Universidad de Castilla-La Mancha  18.1 Conceptos básicos Los modelos mixtos (MM) para variables...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Capítulo 18 Modelos mixtos | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="María Durbán\(^{a}\) y Víctor Casero-Alonso\(^{b}\) \(^{a}\)Universidad Carlos III de Madrid\(^{b}\)Universidad de Castilla-La Mancha  18.1 Conceptos básicos Los modelos mixtos (MM) para variables...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 18 Modelos mixtos | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="María Durbán\(^{a}\) y Víctor Casero-Alonso\(^{b}\) \(^{a}\)Universidad Carlos III de Madrid\(^{b}\)Universidad de Castilla-La Mancha  18.1 Conceptos básicos Los modelos mixtos (MM) para variables...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="active" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="cap-mxm" class="section level1" number="18">
+<h1>
+<span class="header-section-number">Capítulo 18</span> Modelos mixtos<a class="anchor" aria-label="anchor" href="#cap-mxm"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>María Durbán</em><span class="math inline">\(^{a}\)</span> y <em>Víctor Casero-Alonso</em><span class="math inline">\(^{b}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad Carlos III de Madrid<br><span class="math inline">\(^{b}\)</span>Universidad de Castilla-La Mancha</p>
+<div id="conceptos-básicos" class="section level2" number="18.1">
+<h2>
+<span class="header-section-number">18.1</span> Conceptos básicos<a class="anchor" aria-label="anchor" href="#conceptos-b%C3%A1sicos"><i class="fas fa-link"></i></a>
+</h2>
+<p>Los <strong>modelos mixtos</strong> (MM) para variables de respuesta continuas son
+modelos estadísticos en los que los residuos siguen una distribución
+normal pero puede que no sean independientes o no tengan varianza
+constante. Son necesarios en muchas situaciones, sobre todo en
+experimentos donde se realiza algún tipo de muestreo:</p>
+<ol style="list-style-type: decimal">
+<li>Estudios con datos agrupados, como, por ejemplo, alumnos en una
+clase, individuos en una ciudad.</li>
+<li>Estudios longitudinales o de medidas repetidas, donde un elemento o individuo
+es medido repetidamente a lo largo del tiempo o bajo condiciones
+distintas.</li>
+</ol>
+<p>Este tipo de estudios se pueden encontrar en diferentes áreas como
+medicina, biología, ciencias experimentales y sociales.</p>
+<div id="tipo-y-estructura-de-los-datos" class="section level3" number="18.1.1">
+<h3>
+<span class="header-section-number">18.1.1</span> Tipo y estructura de los datos<a class="anchor" aria-label="anchor" href="#tipo-y-estructura-de-los-datos"><i class="fas fa-link"></i></a>
+</h3>
+<p>La estructura de los datos con la que se trabaja es el factor
+determinante para saber si se han de utilizar modelos mixtos, y en su
+caso, qué tipo de modelo.</p>
+<div id="datos-jerárquicos-o-agrupados" class="section level4" number="18.1.1.1">
+<h4>
+<span class="header-section-number">18.1.1.1</span> Datos jerárquicos (o agrupados)<a class="anchor" aria-label="anchor" href="#datos-jer%C3%A1rquicos-o-agrupados"><i class="fas fa-link"></i></a>
+</h4>
+<p></p>
+<p>En este tipo de datos, la variable dependiente (de respuesta, de interés)
+se mide una sola vez en cada unidad de análisis (individuos, objetos, elementos …), y los
+individuos<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;En adelante nos referiremos a las unidades de análisis como individuos.&lt;/p&gt;"><sup>146</sup></a>
+están agrupados (o anidados) en unidades mayores. Muchos tipos
+de datos tienen una estructura jerárquica: alumnos en escuelas, personas
+en municipios, pacientes en hospitales, plantas en una parcela…</p>
+<p>Las jerarquías son una forma de representar la relación de dependencia
+que hay entre los individuos y los grupos a los que pertenecen. Por
+ejemplo, supóngase que se quiere hacer un estudio sobre el tiempo de
+recuperación en pacientes hospitalizados por COVID-19 en diferentes
+hospitales. Se tiene la siguiente estructura con dos niveles:</p>
+<ul>
+<li>Muchos individuos en el nivel <span class="math inline">\(1\)</span> (pacientes).</li>
+<li>Agrupados en unas pocas unidades en el nivel <span class="math inline">\(2\)</span> (hospitales).</li>
+</ul>
+<div class="inline-figure">
+<img src="img/Presentacion1.png" width="60%" style="display: block; margin: auto;">
+Las estructuras multinivel pueden aparecer también como consecuencia del
+diseño del estudio que se está llevando a cabo. Por ejemplo, una
+encuesta sobre el estado de salud puede dar lugar a un diseño a tres
+niveles: primero se muestrean regiones, luego distritos y después
+individuos.</div>
+<p>En cada nivel de la jerarquía se pueden medir variables. Algunas estarán
+medidas en su nivel <em>natural</em>; por ejemplo, en el nivel “hospital” se
+podría medir el tamaño y en el nivel “pacientes”, situación socioeconómica. Además, se pueden mover las variables de un
+nivel a otro mediante agregación o desagregación:</p>
+<ul>
+<li>
+<strong>Agregación</strong>: la variable correspondiente al nivel más bajo se mueve a un nivel
+más alto; por ejemplo, se puede asociar a cada hospital la media
+del nivel socioeconómico de sus pacientes.</li>
+<li>
+<strong>Desagregación</strong>: mover las variables a un nivel más bajo; por
+ejemplo, asignarle a cada paciente una variable que indique el
+tamaño de su hospital de referencia.</li>
+</ul>
+</div>
+<div id="medidas-repetidas-y-datos-longitudinales" class="section level4" number="18.1.1.2">
+<h4>
+<span class="header-section-number">18.1.1.2</span> Medidas repetidas y datos longitudinales<a class="anchor" aria-label="anchor" href="#medidas-repetidas-y-datos-longitudinales"><i class="fas fa-link"></i></a>
+</h4>
+<p>En este tipo de datos, la variable dependiente se mide más de una vez en
+un mismo individuo <span class="citation">(<a href="referencias.html#ref-Singer03">Singer and Willett 2003</a>)</span>. Por ejemplo, se miden los niveles de
+glucosa de un enfermo antes y después de haberle inyectado insulina.
+Este tipo de datos también puede ser considerado como datos multinivel
+(o jerárquicos) donde el nivel 2 representa a los individuos y el nivel
+1, a las diferentes medidas tomadas. Dado que las medidas se
+toman a un mismo individuo, es probable que no sean
+independientes, por lo que utilizar un modelo lineal ordinario no sería
+apropiado.</p>
+<div class="inline-figure"><img src="img/Presentacion3.png" width="60%" style="display: block; margin: auto;"></div>
+<p>Por <strong>datos longitudinales</strong> se entienden datos en los que la variable
+dependiente se ha medido en distintos instantes de tiempo en cada una de
+las unidades de análisis. En algunos casos, cuando la variable
+dependiente se mide a lo largo del tiempo, puede ser difícil identificar
+si los datos son medidas repetidas o datos longitudinales. Desde el
+punto de vista del análisis de los datos mediante MM esta distinción no
+es un elemento crítico. Lo importante es que en ambos tipos de datos la
+variable dependiente se ha medido repetidas veces en la misma unidad de
+análisis, y que, por tanto, las observaciones no son independientes.</p>
+</div>
+</div>
+<div id="efectos-fijos-o-aleatorios" class="section level3" number="18.1.2">
+<h3>
+<span class="header-section-number">18.1.2</span> ¿Efectos fijos o aleatorios?<a class="anchor" aria-label="anchor" href="#efectos-fijos-o-aleatorios"><i class="fas fa-link"></i></a>
+</h3>
+<p>En un modelo mixto la clave se encuentra en la distinción entre efectos
+fijos y aleatorios <span class="citation">(<a href="referencias.html#ref-Snijers03">Snijders 2005</a>)</span>. Esto es importante porque la inferencia y
+el análisis de ambos efectos es distinta.</p>
+<p>Los <strong>efectos fijos</strong> son variables en las cuales el investigador ha
+incluido solo los niveles (o tratamientos) que son de su interés. Por
+ejemplo, en un experimento se puede estar interesado en comparar dos
+grupos, uno al que se le aplica un tratamiento y otro de control. En
+este caso, el estudio compara los grupos y no interesa
+generalizar los resultados a otros tratamientos que podrían haber sido
+incluidos. Otro ejemplo sería el caso en el que se hace una encuesta y se
+eligen 10 ciudades. Si solo interesan los resultados para esas 10
+ciudades y no se quieren generalizar al resto de ciudades
+que podrían haber sido seleccionadas, la variable ‘ciudad’ es un
+efecto fijo. Si se eligen las ciudades de forma aleatoria de una
+población grande de ciudades, la variable ‘ciudad’ es un <strong>efecto aleatorio</strong>.</p>
+<p>Una cantidad se considera aleatoria cuando cambia sobre las unidades de
+una población. Cuando un efecto en un modelo estadístico es considerado
+aleatorio, se está asumiendo que se quieren extraer conclusiones sobre
+la población de la cual se han elegido las unidades observadas, y no se
+tiene interés en esas unidades en particular. En este contexto se habla
+de <strong>intercambiabilidad</strong>, en el sentido de que se podría cambiar una
+unidad de la muestra por otra de la población y sería indiferente. Este
+es el caso de los factores de agrupamiento o diseño, como las
+parcelas en un experimento agrícola, o los días cuando un experimento se
+lleva a cabo en días distintos, o el técnico de laboratorio cuando hay
+varios haciendo el experimento; también lo serían los sujetos en un
+diseño de medidas repetidas o las localizaciones donde se recogen
+muestras en un río, si el objetivo es generalizar a todo el río.</p>
+<p>Los métodos estándar utilizados para construir tests e intervalos de
+confianza para los efectos fijos no son válidos para los efectos
+aleatorios, pues en este último caso los efectos observados son solo una muestra de todos
+los posibles efectos.</p>
+<p>La clave para distinguir, estadísticamente hablando, entre efectos fijos
+y aleatorios, es si los niveles de la variable se pueden interpretar como
+extraídos de una población con una cierta distribución de probabilidad.
+En el caso de un efecto fijo, normalmente interesa comparar los
+resultados de la variable dependiente para los distintos niveles de la
+variable explicativa, es decir, interesa la diferencia entre las
+medias. En el caso de efectos aleatorios, no interesa específicamente
+comparar si las medias son distintas, sino cómo el efecto aleatorio
+explica la variabilidad en la variable dependiente. Por lo tanto, para
+que un efecto pueda considerarse aleatorio, es necesario que la variable
+dependiente presente cierta variabilidad no explicada asociada con las
+unidades del efecto aleatorio.</p>
+<p>La Fig. <a href="cap-mxm.html#fig:tab1">18.1</a> puede ayudar a determinar si un efecto es fijo
+o aleatorio:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:tab1"></span>
+<img src="img/efectos.png" alt="Cuestiones para determinar si un efecto es fijo o aleatorio." width="80%"><p class="caption">
+Figura 18.1: Cuestiones para determinar si un efecto es fijo o aleatorio.
+</p>
+</div>
+<p>Por ejemplo, en un estudio sobre satisfacción en el trabajo (variable
+dependiente) de los empleados (unidades observadas) de un cierto número
+de empresas (efecto aleatorio), si el nivel de satisfacción de los
+empleados de unas empresas es mayor que el de otras y el investigador no
+lo tiene en cuenta, habrá una cierta variabilidad residual asociada con
+el efecto ‘empresa’. Si esta variabilidad fuera próxima a cero, no sería
+necesario incluir el efecto aleatorio asociado con la empresa.</p>
+<p><strong>¿Por qué hay que utilizar modelos mixtos?</strong></p>
+<p>Cuando las observaciones están agrupadas en niveles o siguen una cierta
+jerarquía, las unidades se ven afectadas por el grupo al que pertenecen.
+Las jerarquías (o niveles) permiten representar la relación de
+dependencia entre los individuos y los grupos a los que pertenecen. Los
+alumnos que están en una misma escuela se parecen más entre sí que si se
+hubieran seleccionado aleatoriamente de entre toda la población de
+alumnos. Los modelos mixtos permiten tener en cuenta que las
+observaciones no son independientes.</p>
+</div>
+</div>
+<div id="formulación-del-modelo-con-efectos-aleatorios-o-modelos-mixtos" class="section level2" number="18.2">
+<h2>
+<span class="header-section-number">18.2</span> Formulación del modelo con efectos aleatorios o modelos mixtos<a class="anchor" aria-label="anchor" href="#formulaci%C3%B3n-del-modelo-con-efectos-aleatorios-o-modelos-mixtos"><i class="fas fa-link"></i></a>
+</h2>
+<p>El nombre de <strong>modelos mixtos lineales</strong> viene del hecho de que estos
+modelos son lineales en los parámetros y en las covariables y pueden
+implicar efectos fijos o aleatorios. Son, por lo tanto, una extensión de
+los modelos lineales de regresión.</p>
+<div id="formulación-general" class="section level3" number="18.2.1">
+<h3>
+<span class="header-section-number">18.2.1</span> Formulación general<a class="anchor" aria-label="anchor" href="#formulaci%C3%B3n-general"><i class="fas fa-link"></i></a>
+</h3>
+<p>La formulación general de un modelo mixto tiene la siguiente forma:</p>
+<p><span class="math display" id="eq:mm1">\[\begin{equation}
+\bf{y} = \bf{X} \boldsymbol{\beta} + \bf{Z} \bf{u} + \boldsymbol{\epsilon}, \quad \bf{u}\sim N(0, \bf{G}), \quad \boldsymbol{\epsilon} \sim N(0, \bf {R}),
+\tag{18.1}
+\end{equation}\]</span>
+donde:</p>
+<ul>
+<li>
+<span class="math inline">\(\bf{X}\)</span> es una matriz <span class="math inline">\(n \times p_1\)</span> (<span class="math inline">\(p_1\)</span> es el número de efectos fijos).</li>
+<li>
+<span class="math inline">\(\bf {Z}\)</span> es una matriz <span class="math inline">\(n \times p_2\)</span> (<span class="math inline">\(p_2\)</span> es el número de efectos
+aleatorios).</li>
+<li>
+<span class="math inline">\(\boldsymbol{\beta}\)</span> es el vector de efectos fijos y <span class="math inline">\(\boldsymbol{u}\)</span> el de efectos aleatorios.</li>
+<li>
+<span class="math inline">\(\bf {G}\)</span> es la matriz de varianzas-covarianzas de los efectos aleatorios,
+con dimensión <span class="math inline">\(p \times p\)</span>.</li>
+<li>
+<span class="math inline">\(\bf{R}\)</span> es la matriz de varianzas-covarianzas del error.</li>
+</ul>
+<div id="estimación-de-boldsymbolbeta-y-boldsymbolu" class="section level4" number="18.2.1.1">
+<h4>
+<span class="header-section-number">18.2.1.1</span> Estimación de <span class="math inline">\(\boldsymbol{\beta}\)</span> y <span class="math inline">\(\boldsymbol{u}\)</span><a class="anchor" aria-label="anchor" href="#estimaci%C3%B3n-de-boldsymbolbeta-y-boldsymbolu"><i class="fas fa-link"></i></a>
+</h4>
+<p>Se hace mediante las llamadas <strong>ecuaciones de Henderson</strong> <span class="citation">(<a href="referencias.html#ref-Henderson1953">Henderson 1953</a>)</span>. Permiten
+obtener el mejor estimador lineal insesgado de <span class="math inline">\(\boldsymbol{\beta}\)</span> y el mejor
+predictor lineal insesgado de <span class="math inline">\(\boldsymbol{u}\)</span>. Se obtienen maximizando la densidad
+conjunta de <span class="math inline">\(\boldsymbol{y}\)</span> y <span class="math inline">\(\boldsymbol{u}\)</span>:</p>
+<p><span class="math display" id="eq:mm2">\[\begin{equation}
+f(\bf{y},\bf {u}) = f(\bf {y} |\bf{u})f(\bf{u}), \quad \bf{y} | \bf{u} \sim
+    N(\bf{X}\boldsymbol{\beta} + \bf{Z}\bf{u}, \bf{R})\quad \bf{u}\sim N(0, \bf{G}).
+    \tag{18.2}
+    \end{equation}\]</span>
+Derivando con respecto a <span class="math inline">\(\boldsymbol{\beta}\)</span> y <span class="math inline">\(\boldsymbol {u}\)</span> e igualando a cero se obtienen las ecuaciones de
+Henderson, cuya solución es:
+<span class="math display" id="eq:mm3">\[\begin{eqnarray}
+\hat{\boldsymbol{\beta}}&amp;=&amp; \left ( \bf{X}^\prime\bf{V}^{-1}\bf{X} \right )^{-1} \bf{X}^\prime\bf{V}^{-1} \bf {y} \\
+\hat{\bf{u}} &amp;=&amp;\bf{G}\boldsymbol{Z}^\prime\bf{V}^{-1} ( \bf{y} -\bf{X} \hat{\boldsymbol{\beta}}),
+\tag{18.3}
+\end{eqnarray}\]</span></p>
+<p>donde <span class="math inline">\(\bf{V} =\bf{Z}\bf{G}\bf{Z}^\prime + \bf{R}\)</span>. Sin embargo, <span class="math inline">\(\bf{V}\)</span> depende de los parámetros de la
+varianza en el modelo, que forman parte de <span class="math inline">\(\bf{G}\)</span> y <span class="math inline">\(\bf{R}\)</span> y que es necesario
+estimar, como se muestra a continuación.</p>
+</div>
+<div id="estimación-de-los-componentes-de-la-varianza" class="section level4" number="18.2.1.2">
+<h4>
+<span class="header-section-number">18.2.1.2</span> Estimación de los componentes de la varianza<a class="anchor" aria-label="anchor" href="#estimaci%C3%B3n-de-los-componentes-de-la-varianza"><i class="fas fa-link"></i></a>
+</h4>
+<p>Los métodos más comunes para la estimación de los parámetros de las
+matrices de covarianzas son: máxima verosimilitud (ML) y máxima
+verosimilitid restringida (REML). No existe una solución cerrada para los estimadores, y se estiman de forma
+numérica o mediante algoritmos iterativos. REML tiene en cuenta los grados de libertad utilizados para estimar los
+efectos fijos en el modelo. Si <span class="math inline">\(n\)</span> es pequeño, REML dará mejores
+estimaciones que ML; si <span class="math inline">\(n\)</span> es grande, no habrá prácticamente ninguna
+diferencia. El método preferido es REML.</p>
+</div>
+</div>
+<div id="inferencia-y-selección-del-modelo" class="section level3" number="18.2.2">
+<h3>
+<span class="header-section-number">18.2.2</span> Inferencia y selección del modelo<a class="anchor" aria-label="anchor" href="#inferencia-y-selecci%C3%B3n-del-modelo"><i class="fas fa-link"></i></a>
+</h3>
+<div id="contrastes-de-hipótesis-para-los-efectos-fijos-boldsymbolbeta" class="section level4" number="18.2.2.1">
+<h4>
+<span class="header-section-number">18.2.2.1</span> Contrastes de hipótesis para los efectos fijos, <span class="math inline">\(\boldsymbol{\beta}\)</span><a class="anchor" aria-label="anchor" href="#contrastes-de-hip%C3%B3tesis-para-los-efectos-fijos-boldsymbolbeta"><i class="fas fa-link"></i></a>
+</h4>
+<p>Utilizando la distribución aproximada:
+<span class="math display">\[\hat{\boldsymbol{\beta}} \sim N \left ( \boldsymbol{\beta}, \underbrace{(  \bf{X}^\prime \hat{ \bf{V}}^{-1} \bf{X} )^{-1}}_{Var(\hat{\boldsymbol{\beta}})} \right ),\]</span></p>
+<ul>
+<li>Si se contrastan parámetros individuales, se utiliza el t-test para
+un solo efecto.</li>
+<li>Si se contrasta un conjunto de parámetros, se utiliza el F-test para
+más de un efecto.</li>
+<li>También se pueden comparar modelos usando el test de la razón de
+verosimilitud, LRT por sus siglas en inglés:</li>
+</ul>
+<p><span class="math display" id="eq:LRT">\[\begin{equation}
+LRT = -2\left [ ln(l_{H_0})- ln(l_{H_1}) \right ]\approx \chi^2_{df}.
+\tag{18.4}
+\end{equation}\]</span></p>
+<div class="infobox">
+<p><strong>Nota</strong></p>
+<p>En este caso hay que utilizar ML para estimar los parámetros de la varianza.</p>
+</div>
+</div>
+<div id="contrastes-de-hipótesis-para-los-parámetros-de-varianza" class="section level4" number="18.2.2.2">
+<h4>
+<span class="header-section-number">18.2.2.2</span> Contrastes de hipótesis para los parámetros de varianza<a class="anchor" aria-label="anchor" href="#contrastes-de-hip%C3%B3tesis-para-los-par%C3%A1metros-de-varianza"><i class="fas fa-link"></i></a>
+</h4>
+<p>Al usar el test LRT (ecuación <a href="cap-mxm.html#eq:LRT">(18.4)</a>) se ha de tener en cuenta
+que la distribución asintótica del estadístico del test depende de si el
+valor del parámetro bajo la hipótesis nula (<span class="math inline">\(H_0\)</span>) está o no en la frontera del
+espacio paramétrico.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;El espacio paramétrico es el conjunto de posibles valores del parámetro. Los valores que están en la frontera son los valores que están en el límite inferior (el mínimo) o el superior (máximo) del conjunto de valores posible. Dado que la varianza es positiva, si se contrasta si el valor es cero, estaría tomando un valor en la frontera.&lt;/p&gt;"><sup>147</sup></a></p>
+<ul>
+<li><p><strong>Caso 1</strong>: El valor de los parámetros de varianza bajo <span class="math inline">\(H_0\)</span> no
+está en la frontera del espacio paramétrico (por ejemplo, al
+contrastar si los parámetros de varianza de dos efectos aleatorios
+son iguales o no). En ese caso se utiliza el test normalmente.</p></li>
+<li><p><strong>Caso 2</strong>: El valor de los parámetros de varianza bajo <span class="math inline">\(H_0\)</span>
+está en la frontera del espacio paramétrico (por ejemplo, si se
+quiere contrastar si la varianza del efecto aleatorio es cero o
+no). La distribución asintótica del estadístico del test es una
+mixtura entre <span class="math inline">\(\chi^2_p\)</span> y <span class="math inline">\(\chi^2_{p-1}\)</span>,
+concretamente <span class="math inline">\(0,5 \chi^2_p + 0,5\chi^2_{p-1}\)</span>,
+donde <span class="math inline">\(p\)</span> es el número de parámetros de la varianza que se hacen
+cero bajo la <span class="math inline">\(H_0\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div id="diagnosis-del-modelo" class="section level3" number="18.2.3">
+<h3>
+<span class="header-section-number">18.2.3</span> Diagnosis del modelo<a class="anchor" aria-label="anchor" href="#diagnosis-del-modelo"><i class="fas fa-link"></i></a>
+</h3>
+<p>En el caso de modelos mixtos, se ha de contrastar la hipótesis de
+normalidad tanto para los residuos al nivel más bajo como para los efectos aleatorios.</p>
+<p>En este tipo de modelos se utilizan los residuos
+condicionales, que son la diferencia entre los valores observados y el
+valor predicho condicional:
+<span class="math display">\[\boldsymbol {\hat\epsilon} = \bf y-\bf X \boldsymbol{\hat \beta} -\bf Z \bf\hat u.\]</span>
+Estos residuos tienden a estar correlacionados y sus varianzas pueden cambiar
+de un grupo a otro, aunque en el verdadero modelo los residuos están
+incorrelacionados y tienen varianza constante. Para solucionar este problema se
+pueden escalar los residuos por sus desviaciones estándar (o las
+estimaciones de estas), dando lugar a los <strong>residuos estandarizados</strong> (si
+las desviaciones estándar son conocidas), o a los <strong>residuos studentizados</strong> (si son desconocidas y se utilizan estimaciones de las
+mismas). Con estos residuos se hace un análisis similar al caso de los
+modelos de regresión lineal.</p>
+</div>
+</div>
+<div id="procedimiento-con-r-para-ajustar-modelos-mixtos" class="section level2" number="18.3">
+<h2>
+<span class="header-section-number">18.3</span> Procedimiento con <strong>R</strong> para ajustar modelos mixtos<a class="anchor" aria-label="anchor" href="#procedimiento-con-r-para-ajustar-modelos-mixtos"><i class="fas fa-link"></i></a>
+</h2>
+<p>Hay varios paquetes de <strong>R</strong> para el ajuste de modelos mixtos. Los más usados son <code>nlme</code> y <code>lme4</code>. El segundo es una versión del primero que
+incluye modelos más generales y mejora los gráficos. A continuación se
+describe la función principal del paquete <code>lme4</code>.</p>
+<div id="la-función-lmer" class="section level3" number="18.3.1">
+<h3>
+<span class="header-section-number">18.3.1</span> La función <code>lmer()</code><a class="anchor" aria-label="anchor" href="#la-funci%C3%B3n-lmer"><i class="fas fa-link"></i></a>
+</h3>
+<p>Esta función permite el uso de efectos aleatorios anidados y de errores
+correlacionados y/o heterocedásticos dentro de los grupos. En general, para
+definir un modelo mixto se necesita especificar la estructura de la
+media y de la parte aleatoria del modelo, incluidos los factores de
+agrupamiento, así como la estructura de correlación (si la hay).</p>
+<p>También se puede especificar el método de estimación: <code>REML</code> o <code>ML</code>.</p>
+<p>La parte aleatoria del modelo se incluye entre paréntesis en la ecuación y “<span class="math inline">\(|\)</span>” separa las variables de agrupamiento de las
+predictoras. Si no hay variables predictoras para la parte aleatoria se pone un 1.</p>
+<p>La función <code><a href="https://rdrr.io/pkg/nlme/man/VarCorr.html">VarCorr()</a></code> aplicada a un objeto <code>lmer</code> proporciona información sobre la estructura de componentes de varianza.</p>
+</div>
+</div>
+<div id="caso-práctico" class="section level2" number="18.4">
+<h2>
+<span class="header-section-number">18.4</span> Caso práctico<a class="anchor" aria-label="anchor" href="#caso-pr%C3%A1ctico"><i class="fas fa-link"></i></a>
+</h2>
+<p>En esta sección se comienza viendo cómo construir diferentes modelos con efectos aleatorios según a qué nivel estén medidas las variables explicativas y se termina dando una guía de construcción de estos modelos en la práctica. Los datos con los que se va a trabajar se encuentran en el <code>data.frame</code> <code>Hsb82</code> del paquete <code>mlmRev</code> y provienen de un estudio titulado <em>High School and Beyond</em>. Los datos corresponden a 7.185 estudiantes repartidos en 160 escuelas,
+el número de alumnos por escuela varía entre 14 y 67.
+La variable de interés, <code>mAch</code>, es el nivel estandarizado alcanzado en
+matemáticas. Una cuestión inicial que se puede plantear es si el nivel socioeconómico (<code>cses</code>)
+del alumno predice las diferencias en el nivel de matemáticas. Para ello
+se ajusta el modelo:
+<span class="math display">\[y_i = \beta_0 + \beta_1x_i + \epsilon_i, \]</span>
+que ignora que los alumnos provienen de distintos centros (por
+eso solo aparece el subíndice <span class="math inline">\(i\)</span>, que es el que representa a las unidades
+de nivel más bajo, en este caso, a los alumnos).</p>
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"mlmRev"</span><span class="op">)</span></span>
+<span><span class="va">Hsb82</span><span class="op">$</span><span class="va">school</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Hsb82</span><span class="op">$</span><span class="va">school</span>, ordered<span class="op">=</span><span class="cn">F</span><span class="op">)</span></span>
+<span><span class="va">multi0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">cses</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">multi0</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; lm(formula = mAch ~ cses, data = Hsb82)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residuals:</span></span>
+<span><span class="co">#&gt;      Min       1Q   Median       3Q      Max </span></span>
+<span><span class="co">#&gt; -17.8660  -5.1165   0.2966   5.3880  14.8705 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept) 12.74785    0.07933  160.69   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; cses         2.19117    0.12010   18.24   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residual standard error: 6.725 on 7183 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.04429,    Adjusted R-squared:  0.04415 </span></span>
+<span><span class="co">#&gt; F-statistic: 332.8 on 1 and 7183 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div>
+<p>La ordenada en el origen es 12,75 y la pendiente 2,19, lo que indica que
+por cada unidad que aumenta el nivel socioeconómico, la puntuación del
+test aumenta en 2,19 unidades; además, se puede ver que el coeficiente es
+significativo.</p>
+<p>Supóngase que ocurre la situación mostrada en la Fig. <a href="cap-mxm.html#fig:rectas1">18.2</a>:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:rectas1"></span>
+<img src="img/rectas1.png" alt="Ilustración de posibles escenarios para dos escuelas." width="60%"><p class="caption">
+Figura 18.2: Ilustración de posibles escenarios para dos escuelas.
+</p>
+</div>
+<p>Los alumnos de la escuela A (rombos negros) sacan, en promedio, mejores notas que las
+que le asigna el modelo ajustado; con la escuela B (círculos azules) ocurre lo
+contrario. El gráfico indica que la ordenada en el origen (el intercepto) no debería ser
+la misma para todos los centros, sino que debería ser distinta para
+distintos centros. Es decir, el valor predicho debe ajustarse hacia
+arriba o hacia abajo. Eso se puede conseguir permitiendo que cada escuela
+tenga su propia ordenada en el origen:
+<span class="math display">\[y_{ki} = \beta_{0k} + \beta_1x_{ki} + \epsilon_{ki}.\]</span></p>
+<p>Este modelo es similar al anterior añadiendo el subíndice <span class="math inline">\(k\)</span> para
+identificar el centro al que pertenece cada alumno. En realidad, se
+utiliza una variable categórica con tantas categorías como escuelas.</p>
+<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">multi1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">cses</span> <span class="op">+</span> <span class="va">school</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span></code></pre></div>
+<p>Se están considerando las escuelas como un efecto fijo y no aleatorio,
+es decir, implícitamente se está suponiendo que solo interesan estas
+escuelas en particular.</p>
+<p>La situación se pueden complicar más: es posible que el efecto del nivel
+socioeconómico sea distinto para cada centro, es decir, que un aumento
+de una unidad en ese nivel pueda dar lugar a un aumento distinto en la
+nota del test en cada centro. En la Fig. <a href="cap-mxm.html#fig:rectas2">18.3</a> se ve como la
+pendiente de la recta para la escuela C es distinta a la dos
+anteriores.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:rectas2"></span>
+<img src="img/rectas2.png" alt="Ilustración de posibles escenarios para tres escuelas." width="60%"><p class="caption">
+Figura 18.3: Ilustración de posibles escenarios para tres escuelas.
+</p>
+</div>
+<p>El modelo que permite tener en cuenta esta situación es:
+<span class="math display">\[y_{ki} = \beta_{0k} + \beta_{1k}x_{ki} + \epsilon_{ki},\]</span>
+donde aparece ahora el subíndice <span class="math inline">\(k\)</span> también en la pendiente, lo que indica que cada centro
+tiene una pendiente diferente.</p>
+<p>El código</p>
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">multi2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">cses</span><span class="op">*</span><span class="va">school</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span></code></pre></div>
+<p>generaría 159 coeficientes más (uno por cada escuela), que son los que se incluirían con
+la interacción. Pero no interesan estas escuelas en
+concreto, sino la población de la que estas escuelas son una muestra.</p>
+<p>Con un modelo con efectos aleatorios, sin embargo, se pueden contestar preguntas como: ¿Cuáles
+son las causas de esta variabilidad? ¿Qué variables pueden explicarla?</p>
+<div id="modelo-con-ordenada-en-el-origen-aleatoria" class="section level3" number="18.4.1">
+<h3>
+<span class="header-section-number">18.4.1</span> Modelo con ordenada en el origen aleatoria<a class="anchor" aria-label="anchor" href="#modelo-con-ordenada-en-el-origen-aleatoria"><i class="fas fa-link"></i></a>
+</h3>
+<p>Es el modelo mixto más sencillo. Se considera que los datos tienen
+una estructura con dos niveles: los alumnos están en el nivel 1 y están
+agrupados en escuelas, nivel 2. Se empieza suponiendo que no se
+dispone de ninguna variable explicativa, y que por lo tanto el
+único interés es la diferencia entre las notas medias del test de
+matemáticas en los distintos centros.</p>
+<p>Los dos niveles del modelo son:
+<span class="math display">\[\text{Nivel 1: } y_{ki} = \beta_{0k} + \epsilon_{ki},\]</span>
+donde:</p>
+<ul>
+<li>El subíndice <span class="math inline">\(i\)</span> corresponde a alumnos y el <span class="math inline">\(k\)</span> a escuelas, si se
+considera a las escuelas como un efecto aleatorio,</li>
+<li>
+<span class="math inline">\(\beta_{0k}\)</span> (la media de cada escuela) vendría dada por:
+<span class="math display">\[\text{Nivel 2: } \beta_{0k} = \beta_{0} + u_{k},\]</span>
+</li>
+<li>
+<span class="math inline">\(\beta_{0}\)</span> es la media de todos los alumnos,</li>
+<li>
+<span class="math inline">\(u_{k}\)</span> es la desviación de la media de la escuela <span class="math inline">\(k\)</span> respecto de la media de todas las escuelas.</li>
+</ul>
+<p>Poniendo las dos ecuaciones juntas:</p>
+<p><span class="math display" id="eq:b0aleat">\[\begin{equation}
+y_{ki} = \beta_{0} + u_{k} + \epsilon_{ki}, \quad k = 1, \ldots, m, \quad i = 1, \ldots n_m,
+\tag{18.5}
+\end{equation}\]</span>
+tal que:</p>
+<ul>
+<li>La media de <span class="math inline">\(y\)</span> para el grupo <span class="math inline">\(k\)</span> es <span class="math inline">\(\beta_0 + u_k\)</span>,</li>
+<li>Los residuos a nivel individual <span class="math inline">\(\epsilon_{ki}\)</span> son la diferencia
+entre el valor de la variable respuesta del individuo <span class="math inline">\(i\)</span> y la media
+del grupo al que pertenece,</li>
+<li>
+<span class="math inline">\(u_k\sim N( 0, \sigma^2_u )\)</span>, <span class="math inline">\(\epsilon_{ki}\sim N(0, \sigma^2 )\)</span>, y
+ambos son independientes, es decir, las observaciones que provienen
+de distintas escuelas son independientes.</li>
+</ul>
+<p>En el ejemplo de las escuelas:</p>
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/lme4/lme4/">"lme4"</a></span><span class="op">)</span></span>
+<span><span class="va">Modelo0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="fl">1</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">school</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
+<span><span class="va">Modelo0</span></span>
+<span><span class="co">#&gt; Linear mixed model fit by REML ['lmerMod']</span></span>
+<span><span class="co">#&gt; Formula: mAch ~ 1 + (1 | school)</span></span>
+<span><span class="co">#&gt;    Data: Hsb82</span></span>
+<span><span class="co">#&gt; REML criterion at convergence: 47116.79</span></span>
+<span><span class="co">#&gt; Random effects:</span></span>
+<span><span class="co">#&gt;  Groups   Name        Std.Dev.</span></span>
+<span><span class="co">#&gt;  school   (Intercept) 2.935   </span></span>
+<span><span class="co">#&gt;  Residual             6.257   </span></span>
+<span><span class="co">#&gt; Number of obs: 7185, groups:  school, 160</span></span>
+<span><span class="co">#&gt; Fixed Effects:</span></span>
+<span><span class="co">#&gt; (Intercept)  </span></span>
+<span><span class="co">#&gt;       12.64</span></span></code></pre></div>
+<ul>
+<li>La media total estimada es 12,64,</li>
+<li>La media estimada para la escuela <span class="math inline">\(k\)</span> es 12,64 + <span class="math inline">\(\hat u_k\)</span>, donde <span class="math inline">\(\hat u_k\)</span> es el efecto aleatorio predicho para dicha escuela.</li>
+</ul>
+<p>Para obtener los valores predichos de los efectos aleatorios, y ver si siguen una distribución normal, se utiliza la función <code><a href="https://rdrr.io/pkg/nlme/man/random.effects.html">ranef()</a></code>.</p>
+<p>La Fig. <a href="cap-mxm.html#fig:plot-qqmath">18.4</a> permite ver los efectos aleatorios junto con sus intervalos de
+confianza (las escuelas han sido ordenadas atendiendo a su media para
+apreciar mejor la variabilidad entre las mismas). Para ello se ajusta el modelo con la función <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer()</a></code>:</p>
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://lattice.r-forge.r-project.org/">"lattice"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/qqmath.html">qqmath</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/nlme/man/random.effects.html">ranef</a></span><span class="op">(</span><span class="va">Modelo0</span>, condVar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">school</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:plot-qqmath"></span>
+<img src="150019_mxm_files/figure-html/plot-qqmath-1.png" alt=" Efectos aleatorios junto con  sus intervalos de confianza." width="60%"><p class="caption">
+Figura 18.4:  Efectos aleatorios junto con sus intervalos de confianza.
+</p>
+</div>
+<p>Una primera aproximación para contrastar si hay o no diferencias entre
+los grupos sería calcular el intervalo de confianza para <span class="math inline">\(\sigma_u\)</span>:</p>
+<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">Modelo0</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                 2.5 %    97.5 %</span></span>
+<span><span class="co">#&gt; .sig01       2.594729  3.315880</span></span>
+<span><span class="co">#&gt; .sigma       6.154803  6.361786</span></span>
+<span><span class="co">#&gt; (Intercept) 12.156289 13.117121</span></span></code></pre></div>
+<p>pudiéndose apreciar que el intervalo para sig01 no contiene al cero. Sin embargo, la forma más correcta de hacerlo
+sería utilizando el LRT (véase <a href="cap-mxm.html#eq:LRT">(18.4)</a>) con:
+<span class="math display">\[\begin{array}{ll}
+H_0: \quad \sigma^2_u = 0 \Rightarrow y_{ki} = \beta_0 + \epsilon_{ki} \\
+H_1: \quad \sigma^2_u\neq 0 \Rightarrow y_{ki} = \beta_0 + u_k + \epsilon_{ki}.
+\end{array}\]</span></p>
+<p>El resultado del test se compara con el valor de una
+mixtura de distribuciones Chi-cuadrado <span class="math inline">\(0.5 \chi^2_0\)</span> + <span class="math inline">\(0.5\chi^2_1\)</span>, concretamente <span class="math inline">\(0.5 \chi^2_p\)</span> + <span class="math inline">\(0.5\chi^2_{p-1}\)</span>, donde <span class="math inline">\(p\)</span> es el número de parámetros de la varianza que se hacen cero bajo <span class="math inline">\(H_0\)</span>.</p>
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Modelo_NULL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
+<span><span class="va">test</span> <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo_NULL</span>, REML <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">+</span> <span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo0</span>, REML <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">pchisq</a></span><span class="op">(</span><span class="va">test</span>, df <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">)</span>  </span>
+<span><span class="co">#&gt; [1] 9.320673e-217</span></span></code></pre></div>
+<p>Conclusión: el efecto aleatorio es necesario en el modelo.</p>
+<p>El siguiente paso sería introducir las variables explicativas (en este caso solo hay una), ya estén al nivel 1 o al 2.</p>
+<div id="variables-explicativas-en-el-nivel-1-individuos" class="section level4" number="18.4.1.1">
+<h4>
+<span class="header-section-number">18.4.1.1</span> Variables explicativas en el nivel <span class="math inline">\(1\)</span> (individuos)<a class="anchor" aria-label="anchor" href="#variables-explicativas-en-el-nivel-1-individuos"><i class="fas fa-link"></i></a>
+</h4>
+<p>Como la variable explicativa está medida al nivel 1, se introduce en la
+ecuación del nivel 1:</p>
+<ul>
+<li>
+<span class="math inline">\(\text{Nivel 1:}\quad y_{ki} = \beta_{0k} + \beta_1x_{ki} + \epsilon_{ki}\)</span>.</li>
+<li>
+<span class="math inline">\(\text{Nivel 2:} \quad \beta_{0k} = \beta_0 + u_k\)</span>.</li>
+</ul>
+<p>Si <span class="math inline">\(X\)</span> es una variable continua, este modelo asume que la pendiente de
+la recta es la misma para todas las escuelas (por eso <span class="math inline">\(\beta_1\)</span> no lleva
+el subíndice <span class="math inline">\(k\)</span>). Poniendo las dos ecuaciones juntas:
+<span class="math display">\[y_{ki} = \underbrace{\beta_0 + \beta_1x_{ki}}_{\text{efectos fijos}} +
+\underbrace{u_{k} + \epsilon_{ki}}_{\text{efectos aleatorios}}.\]</span></p>
+<p>En este modelo, la relación global entre <span class="math inline">\(Y\)</span> y <span class="math inline">\(X\)</span> viene representada
+por la línea recta con ordenada en el origen <span class="math inline">\(\beta_0\)</span> y pendiente
+<span class="math inline">\(\beta_1\)</span>. Sin embargo, la ordenada en el origen para una determinada
+escuela <span class="math inline">\(k\)</span> viene dada por <span class="math inline">\(\beta_0 + u_k\)</span>. Será mayor o menor que que la
+ordenada en el origen global <span class="math inline">\(\beta_0\)</span> en una cantidad <span class="math inline">\(u_k\)</span>. Aunque la
+ordenada en el origen varía de grupo a grupo, la pendiente es la misma
+para todos los grupos. Todas las líneas rectas ajustadas para cada grupo
+son paralelas.</p>
+<p>En el ejemplo de las escuelas, se introduce como variable explicativa
+<code>cses</code> (nivel socioeconómico centrado en su media):</p>
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Modelo1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">cses</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">school</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
+<span><span class="va">Modelo1</span></span>
+<span><span class="co">#&gt; Linear mixed model fit by REML ['lmerMod']</span></span>
+<span><span class="co">#&gt; Formula: mAch ~ cses + (1 | school)</span></span>
+<span><span class="co">#&gt;    Data: Hsb82</span></span>
+<span><span class="co">#&gt; REML criterion at convergence: 46724</span></span>
+<span><span class="co">#&gt; Random effects:</span></span>
+<span><span class="co">#&gt;  Groups   Name        Std.Dev.</span></span>
+<span><span class="co">#&gt;  school   (Intercept) 2.945   </span></span>
+<span><span class="co">#&gt;  Residual             6.084   </span></span>
+<span><span class="co">#&gt; Number of obs: 7185, groups:  school, 160</span></span>
+<span><span class="co">#&gt; Fixed Effects:</span></span>
+<span><span class="co">#&gt; (Intercept)         cses  </span></span>
+<span><span class="co">#&gt;      12.636        2.191</span></span></code></pre></div>
+<p>Ahora se tienen dos efectos fijos:
+<span class="math display">\[\begin{array}{l}
+\hat \beta_0 = 12.64\\
+\hat \beta_1 = 2.19,\\
+\end{array}\]</span></p>
+<p>donde <span class="math inline">\(\hat \beta_0\)</span> es la nota media para alumnos con nivel socieconómico
+medio (la variable está centrada). La recta media vendría dada por:
+<span class="math display">\[E[y | cses] = 12.64 + 2.19~cses.\]</span></p>
+<p>Para contrastar si la variable <code>cses</code> es significativa, se utiliza el
+LRT <a href="cap-mxm.html#eq:LRT">(18.4)</a>. Primero se tienen que
+ajustar de nuevo los modelos que se quieren comparar usando máxima
+verosimilitud (en vez de REML). Si se utiliza la función <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer()</a></code> para
+ajustar el modelo no es necesario reajustar con ML, pues la función <code>anova</code>
+lo hará automáticamente, mientras que si se usa la función <code><a href="https://rdrr.io/pkg/nlme/man/lme.html">lme()</a></code> sí será necesario hacerlo.</p>
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">Modelo0</span>, <span class="va">Modelo1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Data: Hsb82</span></span>
+<span><span class="co">#&gt; Models:</span></span>
+<span><span class="co">#&gt; Modelo0: mAch ~ 1 + (1 | school)</span></span>
+<span><span class="co">#&gt; Modelo1: mAch ~ cses + (1 | school)</span></span>
+<span><span class="co">#&gt;         npar   AIC   BIC logLik deviance Chisq Df Pr(&gt;Chisq)    </span></span>
+<span><span class="co">#&gt; Modelo0    3 47122 47142 -23558    47116                        </span></span>
+<span><span class="co">#&gt; Modelo1    4 46728 46756 -23360    46720 395.4  1  &lt; 2.2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
+<p>Por lo tanto, el nivel socioeconómico afecta a los resultados escolares.
+Comparado con el modelo sin la variable explicativa (Modelo0), la
+inclusión del nivel socioeconómico (Modelo1) ha reducido la
+variabilidad a nivel del alumno en un 2,8% (6,084 - 6,257)/6,257 = -0,028).</p>
+</div>
+<div id="variables-explicativas-en-el-nivel-2-grupos" class="section level4" number="18.4.1.2">
+<h4>
+<span class="header-section-number">18.4.1.2</span> Variables explicativas en el nivel <span class="math inline">\(2\)</span> (grupos)<a class="anchor" aria-label="anchor" href="#variables-explicativas-en-el-nivel-2-grupos"><i class="fas fa-link"></i></a>
+</h4>
+<p>Si las variables explicativas se miden al nivel 2, entonces:
+<span class="math display">\[\begin{array}{l}
+\text{Nivel 1:}\quad y_{ki} = \beta_{0k} + \epsilon_{ki} \\
+\text{Nivel 2:}\quad \beta_{0k} = \beta_0 + \beta_{2}s_{k} + u_{k}\\
+\\
+y_{ij} = \underbrace{\beta_0 + \beta_2s_{k}}_{\text{efectos fijos}}+\underbrace{u_{k} + \epsilon_{ki}}_{\text{efectos aleatorios}}.\\
+\end{array}\]</span></p>
+<p>En nuestro ejemplo, la variable utilizada es <code>sector</code> (público o
+católico):
+<span class="math display">\[mAch = \beta_0 + \beta_2~sector + u_{k} + \epsilon_{ki}.\]</span></p>
+<p>Se ajusta el modelo usando la función <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer()</a></code>:</p>
+<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Modelo2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">sector</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">school</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
+<span><span class="va">Modelo2</span></span>
+<span><span class="co">#&gt; Linear mixed model fit by REML ['lmerMod']</span></span>
+<span><span class="co">#&gt; Formula: mAch ~ sector + (1 | school)</span></span>
+<span><span class="co">#&gt;    Data: Hsb82</span></span>
+<span><span class="co">#&gt; REML criterion at convergence: 47080.13</span></span>
+<span><span class="co">#&gt; Random effects:</span></span>
+<span><span class="co">#&gt;  Groups   Name        Std.Dev.</span></span>
+<span><span class="co">#&gt;  school   (Intercept) 2.584   </span></span>
+<span><span class="co">#&gt;  Residual             6.257   </span></span>
+<span><span class="co">#&gt; Number of obs: 7185, groups:  school, 160</span></span>
+<span><span class="co">#&gt; Fixed Effects:</span></span>
+<span><span class="co">#&gt;    (Intercept)  sectorCatholic  </span></span>
+<span><span class="co">#&gt;         11.393           2.805</span></span></code></pre></div>
+<p><span class="math display">\[E[y | sector] = 11.39 + 2.8~sector,\]</span>
+o equivalentemente
+<span class="math display">\[\begin{array}{l}
+E[y | sector = 0] = 11.39\\
+E[y | sector = 1] = 11.39 + 2.8 = 14.19.\\
+\end{array}\]</span>
+La nota de un alumno en una escuela católica se espera que sea 2,8 unidades
+mayor que la de un alumno en una escuela pública (este resultado no solo es válido para las escuelas de la muestra, sino que se puede generalizar a todas las escuelas,
+pues se asume que las escuelas son un efecto aleatorio). La varianza del
+efecto aleatorio de nivel 2, <span class="math inline">\(\sigma^2_u\)</span>, ha
+descendido: <span class="math inline">\((2.935^2-2.584^2)/2.935^2 =\)</span> <span class="math inline">\(0.22\)</span>, es decir, al introducir
+la variable sector la variabilidad a nivel de escuela se ha reducido en
+un <span class="math inline">\(22 \%\)</span>.</p>
+<p>Para contrastar si la variable sector es significativa se usa de nuevo el test LRT:</p>
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">Modelo0</span>, <span class="va">Modelo2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Data: Hsb82</span></span>
+<span><span class="co">#&gt; Models:</span></span>
+<span><span class="co">#&gt; Modelo0: mAch ~ 1 + (1 | school)</span></span>
+<span><span class="co">#&gt; Modelo2: mAch ~ sector + (1 | school)</span></span>
+<span><span class="co">#&gt;         npar   AIC   BIC logLik deviance  Chisq Df Pr(&gt;Chisq)    </span></span>
+<span><span class="co">#&gt; Modelo0    3 47122 47142 -23558    47116                         </span></span>
+<span><span class="co">#&gt; Modelo2    4 47087 47115 -23540    47079 36.705  1  1.374e-09 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
+<p>Por lo tanto, el hecho de que la escuela sea pública o católica influye
+en el resultado académico de los alumnos.</p>
+</div>
+</div>
+<div id="modelo-con-pendiente-aleatoria" class="section level3" number="18.4.2">
+<h3>
+<span class="header-section-number">18.4.2</span> Modelo con pendiente aleatoria<a class="anchor" aria-label="anchor" href="#modelo-con-pendiente-aleatoria"><i class="fas fa-link"></i></a>
+</h3>
+<p>En este tipo de modelos se supone que la relación entre la variable
+respuesta y las variables explicativas es distinta para las
+distintas unidades de nivel 2, es decir, la relación puede cambiar de un
+centro educativo a otro. Por ejemplo, el efecto del nivel socioeconómico en las
+notas puede ser distinto en distintos centros, de modo que se puede
+relajar el modelo anterior, en el que la pendiente era la misma para
+todos los grupos, permitiendo que la pendiente varíe aleatoriamente
+entre los grupos:
+<span class="math display">\[\begin{array}{ll}
+\text{Nivel 1:} &amp;\quad y_{ki} = \beta_{0k} + \beta_{1k}x_{ki} + \epsilon_{ki} \\
+\text{Nivel 2:} &amp; \quad \beta_{0k} = \beta_0 + u_{k}\\
+&amp; \quad \beta_{1k} = \beta_{1} + v_{k}. \\
+\end{array}\]</span>
+Poniendo las dos ecuaciones juntas:
+<span class="math display">\[y_{ki} = \underbrace{\beta_0 + \beta_{1}x_{ki}}_{\text{efectos
+fijos}} +
+\underbrace{u_{k} + v_{k}x_{ki} + \epsilon_{ki}}_{\text{efectos aleatorios}}, \quad  \left (\begin{array}{c} u_{k}\\ v_{k}\\
+  \end{array}\right ) \sim N(0, {\bf{G}}_{k}), \quad {\bf{G}}_{k} = \left
+( \begin{array}{cc}
+\sigma^2_{u} &amp;\\
+\sigma_{uv}&amp; \sigma^2_{v}\\
+\end{array}\right ),\]</span></p>
+<p>donde <span class="math inline">\(\sigma_{uv}\)</span> es la covarianza entre las ordenadas en el
+origen y las pendientes de los grupos (<span class="math inline">\(\beta_{0k}\)</span> y <span class="math inline">\(\beta_{1k}\)</span>, respectivamente). Un valor positivo de la
+covarianza implica que los grupos con un valor del efecto de grupo <span class="math inline">\(u_k\)</span>
+elevado tienden a tener valores elevados de <span class="math inline">\(v_k\)</span>, o equivalentemente,
+centros educativos con ordenada en el origen alta, tienen pendiente alta.</p>
+<p>El modelo en <strong>R</strong> sería:</p>
+<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Modelo3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span> <span class="va">mAch</span><span class="op">~</span> <span class="va">cses</span> <span class="op">+</span> <span class="op">(</span><span class="va">cses</span> <span class="op">|</span> <span class="va">school</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
+<span><span class="va">Modelo3</span></span>
+<span><span class="co">#&gt; Linear mixed model fit by REML ['lmerMod']</span></span>
+<span><span class="co">#&gt; Formula: mAch ~ cses + (cses | school)</span></span>
+<span><span class="co">#&gt;    Data: Hsb82</span></span>
+<span><span class="co">#&gt; REML criterion at convergence: 46714.23</span></span>
+<span><span class="co">#&gt; Random effects:</span></span>
+<span><span class="co">#&gt;  Groups   Name        Std.Dev. Corr</span></span>
+<span><span class="co">#&gt;  school   (Intercept) 2.9464       </span></span>
+<span><span class="co">#&gt;           cses        0.8331   0.02</span></span>
+<span><span class="co">#&gt;  Residual             6.0581       </span></span>
+<span><span class="co">#&gt; Number of obs: 7185, groups:  school, 160</span></span>
+<span><span class="co">#&gt; Fixed Effects:</span></span>
+<span><span class="co">#&gt; (Intercept)         cses  </span></span>
+<span><span class="co">#&gt;      12.636        2.193</span></span></code></pre></div>
+<p>El efecto del nivel socieconómico en la escuela <span class="math inline">\(k\)</span> se estima como
+<span class="math inline">\(2.19 + \hat u_k\)</span>, y la varianza de las pendientes para las escuelas es
+<span class="math inline">\(0.833^2 = 0.694\)</span>. Para la <em>escuela promedio</em> se predice un aumento de
+<span class="math inline">\(2.19\)</span> en la puntuación cuando el nivel socioeconómico aumenta en una
+unidad.</p>
+<p>Ahora se tienen las siguientes estimaciones de los parámetros de varianza: <span class="math inline">\(\hat \sigma^2_{u}\)</span> = 8,68; <span class="math inline">\(\hat \sigma^2_{v}\)</span> = 0,694; <span class="math inline">\(\hat \sigma_{uv} = \rho \sigma_{u} \sigma_{v}\)</span> = 0,051 y <span class="math inline">\(\hat \sigma^2\)</span> = 36,7. La varianza de la ordenada en el origen estimada, <span class="math inline">\(8.68\)</span>, se interpreta como
+la variabilidad (de la nota) entre las escuelas para un nivel socioeconómico medio (valor nulo de la variable por estar centrada).</p>
+<p>El parámetro de covarianza estimado es <span class="math inline">\(\sigma_{uv}=0.051\)</span>, por lo que se puede plantear si es necesario o no.</p>
+<p>Para comprobarlo, el contraste de hipótesis sería en este caso:
+<span class="math display">\[H_0:
+\sigma_{uv} = 0 \quad \text{ y } \quad H_1: \sigma_{uv}\neq 0.\]</span></p>
+<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Modelo3.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">ses</span> <span class="op">~</span> <span class="va">cses</span> <span class="op">+</span> <span class="op">(</span><span class="va">cses</span> <span class="op">||</span> <span class="va">school</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span></code></pre></div>
+<p>Cuando se quiere que haya un efecto aleatorio para la ordenada en el
+origen y para la pendiente, pero que estén incorrelacionados, en la función
+solo hay que poner doble barra en vez
+de simple.</p>
+<p>En este caso no es necesario utilizar la mixtura de distribuciones Chi-cuadrado para contrastar <span class="math inline">\(H_0:\)</span>
+<span class="math inline">\(\sigma_{uv} = 0\)</span>, pues <span class="math inline">\(\sigma_{uv}\)</span> puede tomar cualquier valor.</p>
+<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">Modelo3.1</span>, <span class="va">Modelo3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Data: Hsb82</span></span>
+<span><span class="co">#&gt; Models:</span></span>
+<span><span class="co">#&gt; Modelo3.1: ses ~ cses + ((1 | school) + (0 + cses | school))</span></span>
+<span><span class="co">#&gt; Modelo3: mAch ~ cses + (cses | school)</span></span>
+<span><span class="co">#&gt;           npar     AIC     BIC logLik deviance Chisq Df Pr(&gt;Chisq)</span></span>
+<span><span class="co">#&gt; Modelo3.1    5 -226164 -226129 113087  -226174                    </span></span>
+<span><span class="co">#&gt; Modelo3      6   46723   46764 -23355    46711     0  1          1</span></span></code></pre></div>
+<p>Por lo tanto, se puede suponer que la covarianza es 0.</p>
+<p>El siguiente paso sería contrastar si es necesario que las rectas tengan
+pendientes diferentes, es decir, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma^2_v = 0\)</span>, <span class="math inline">\(H_1\)</span>:
+<span class="math inline">\(\sigma^2_v&gt;0\)</span>. En este caso sí se necesita la aproximación:</p>
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">test</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo1</span>, REML <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>         <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo3.1</span>, REML <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">pchisq</a></span><span class="op">(</span><span class="va">test</span>, df <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<p>Por lo tanto, la pendiente es diferente en las distintas escuelas.</p>
+<p>Además, se puede usar algún criterio de información para comparar los
+modelos:</p>
+<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo3</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; [1] 46726.23</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo3.1</span><span class="op">)</span><span class="op">)</span>  </span>
+<span><span class="co">#&gt; [1] -226113.6</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html">logLik</a></span><span class="op">(</span><span class="va">Modelo1</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; [1] 46732</span></span></code></pre></div>
+<p>A veces la covariable medida a nivel 2 (a nivel de grupo, en este caso
+escuelas) puede explicar tanto la variabilidad de la ordenada en el
+origen como de la pendiente:
+<span class="math display">\[\begin{array}{ll}
+  \text{Nivel 1:} &amp;\quad y_{ki}=\beta_{0k}+\beta_{1k}x_{ki}+\epsilon_{ki} \\
+\text{Nivel 2:} &amp; \quad \beta_{0k}=\beta_0+\beta_{2}s_k+u_{k}\\
+&amp; \quad \beta_{1k}=\beta_{1}+\beta_{3}s_k +v_{k} \\
+\end{array}\]</span>
+<span class="math display">\[y_{ki} = \underbrace{\beta_0 +\beta_1x_{ki} + \beta_{2}s_{k}+\beta_{3} x_{ki}s_k}_{\text{efectos fijos}} +
+\underbrace{u_{k} +v_kx_{ki}+ \epsilon_{ki}}_{\text{efectos aleatorios}}.\]</span></p>
+<p>Al introducir la variable medida al nivel 2, la parte fija se modifica
+(con respecto al Modelo 3), pero no la parte aleatoria:</p>
+<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Modelo4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">cses</span><span class="op">*</span><span class="va">sector</span> <span class="op">+</span> <span class="op">(</span><span class="va">cses</span> <span class="op">||</span> <span class="va">school</span><span class="op">)</span>, </span>
+<span>                     data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
+<span><span class="va">Modelo4</span></span>
+<span><span class="co">#&gt; Linear mixed model fit by REML ['lmerMod']</span></span>
+<span><span class="co">#&gt; Formula: mAch ~ cses * sector + ((1 | school) + (0 + cses | school))</span></span>
+<span><span class="co">#&gt;    Data: Hsb82</span></span>
+<span><span class="co">#&gt; REML criterion at convergence: 46648.85</span></span>
+<span><span class="co">#&gt; Random effects:</span></span>
+<span><span class="co">#&gt;  Groups   Name        Std.Dev.</span></span>
+<span><span class="co">#&gt;  school   (Intercept) 2.5971  </span></span>
+<span><span class="co">#&gt;  school.1 cses        0.5182  </span></span>
+<span><span class="co">#&gt;  Residual             6.0580  </span></span>
+<span><span class="co">#&gt; Number of obs: 7185, groups:  school, 160</span></span>
+<span><span class="co">#&gt; Fixed Effects:</span></span>
+<span><span class="co">#&gt;         (Intercept)                 cses       sectorCatholic  </span></span>
+<span><span class="co">#&gt;              11.393                2.784                2.805  </span></span>
+<span><span class="co">#&gt; cses:sectorCatholic  </span></span>
+<span><span class="co">#&gt;              -1.346</span></span></code></pre></div>
+<p>Los centros católicos tienen una nota media más alta que los públicos
+(2,81 puntos más), y una pendiente más suave que la de dichos centros públicos
+(-1,35). Esto último indica que en un colegio católico la mejora de la nota con respecto al
+nivel socioeconómico es más lenta que un colegio público.</p>
+</div>
+<div id="cómo-construir-el-modelo-en-la-práctica" class="section level3" number="18.4.3">
+<h3>
+<span class="header-section-number">18.4.3</span> ¿Cómo construir el modelo en la práctica?<a class="anchor" aria-label="anchor" href="#c%C3%B3mo-construir-el-modelo-en-la-pr%C3%A1ctica"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>Se ajusta el modelo con todos los efectos fijos y aleatorios
+posibles.</li>
+</ol>
+<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Modelo5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">mAch</span> <span class="op">~</span> <span class="va">cses</span> <span class="op">*</span> <span class="va">sector</span><span class="op">+</span><span class="op">(</span><span class="va">cses</span> <span class="op">|</span> <span class="va">school</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Se contrasta qué efectos aleatorios son significativos, sin mover
+los efectos fijos.</li>
+</ol>
+<p>Primero se contrasta si la covarianza entre efectos fijos y aleatorios es cero
+o no:</p>
+<div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Se ajusta el modelo con covarianza = 0</span></span>
+<span><span class="va">Modelo5.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="va">ses</span> <span class="op">~</span> <span class="va">cses</span> <span class="op">*</span> <span class="va">sector</span><span class="op">+</span><span class="op">(</span><span class="va">cses</span><span class="op">||</span><span class="va">school</span><span class="op">)</span>,</span>
+<span>                 data <span class="op">=</span> <span class="va">Hsb82</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">Modelo5.1</span>, <span class="va">Modelo5</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Data: Hsb82</span></span>
+<span><span class="co">#&gt; Models:</span></span>
+<span><span class="co">#&gt; Modelo5.1: ses ~ cses * sector + ((1 | school) + (0 + cses | school))</span></span>
+<span><span class="co">#&gt; Modelo5: mAch ~ cses * sector + (cses | school)</span></span>
+<span><span class="co">#&gt;           npar     AIC     BIC logLik deviance Chisq Df Pr(&gt;Chisq)</span></span>
+<span><span class="co">#&gt; Modelo5.1    7 -220069 -220021 110042  -220083                    </span></span>
+<span><span class="co">#&gt; Modelo5      8   46650   46705 -23317    46634     0  1          1</span></span></code></pre></div>
+<p>Como lo es, no se tendría que contrastar nada más. Los efectos
+aleatorios son los que se han incluido en el <code>Modelo5</code>. Si no hubiera sido
+significativa, se continuaría contrastando si la pendiente aleatoria es
+significativa y si la ordenada en el origen lo es.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Una vez elegidos los efectos aleatorios que se mantienen en el modelo,
+se eligen los efectos fijos:</li>
+</ol>
+<div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Modelo6</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">Modelo5</span>, <span class="va">.</span> <span class="op">~</span> <span class="va">.</span><span class="op">-</span><span class="va">cses</span><span class="op">:</span><span class="va">sector</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">Modelo6</span>, <span class="va">Modelo5</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Data: Hsb82</span></span>
+<span><span class="co">#&gt; Models:</span></span>
+<span><span class="co">#&gt; Modelo6: mAch ~ cses + sector + (cses | school)</span></span>
+<span><span class="co">#&gt; Modelo5: mAch ~ cses * sector + (cses | school)</span></span>
+<span><span class="co">#&gt;         npar   AIC   BIC logLik deviance  Chisq Df Pr(&gt;Chisq)    </span></span>
+<span><span class="co">#&gt; Modelo6    7 46678 46726 -23332    46664                         </span></span>
+<span><span class="co">#&gt; Modelo5    8 46650 46705 -23317    46634 29.983  1  4.358e-08 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
+<p>Dado que la interacción es significativa, se opta por dejar los efectos fijos <code>cses</code> y <code>sector</code> en el modelo (en aras de facilitar las interpretaciones), por lo que no sería necesario contrastar su significatividad y este sería el modelo final.</p>
+</div>
+<div id="resumen-17" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-17"><i class="fas fa-link"></i></a>
+</h3>
+<p>En este capítulo se introducen los modelos mixtos o modelos con efectos aleatorios. En particular:</p>
+<ul>
+<li><p>Se dan las claves para distinguir entre efectos fijos y aleatorios.</p></li>
+<li><p>Se presenta la formulación del modelo y se indica cómo llevar a cabo la estimación del mismo.</p></li>
+<li><p>Se explican las etapas del proceso a seguir para el ajuste de este tipo de modelos.</p></li>
+<li><p>Se muestra el uso de <strong>R</strong> para ajustar estos modelos.</p></li>
+<li><p>Se ilustra el análisis de modelos multinivel como caso particular de un modelo con efectos aleatorios.</p></li>
+</ul>
+</div>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></div>
+<div class="next"><a href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cap-mxm"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li>
+<a class="nav-link" href="#conceptos-b%C3%A1sicos"><span class="header-section-number">18.1</span> Conceptos básicos</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tipo-y-estructura-de-los-datos"><span class="header-section-number">18.1.1</span> Tipo y estructura de los datos</a></li>
+<li><a class="nav-link" href="#efectos-fijos-o-aleatorios"><span class="header-section-number">18.1.2</span> ¿Efectos fijos o aleatorios?</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#formulaci%C3%B3n-del-modelo-con-efectos-aleatorios-o-modelos-mixtos"><span class="header-section-number">18.2</span> Formulación del modelo con efectos aleatorios o modelos mixtos</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#formulaci%C3%B3n-general"><span class="header-section-number">18.2.1</span> Formulación general</a></li>
+<li><a class="nav-link" href="#inferencia-y-selecci%C3%B3n-del-modelo"><span class="header-section-number">18.2.2</span> Inferencia y selección del modelo</a></li>
+<li><a class="nav-link" href="#diagnosis-del-modelo"><span class="header-section-number">18.2.3</span> Diagnosis del modelo</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#procedimiento-con-r-para-ajustar-modelos-mixtos"><span class="header-section-number">18.3</span> Procedimiento con R para ajustar modelos mixtos</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#la-funci%C3%B3n-lmer"><span class="header-section-number">18.3.1</span> La función lmer()</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#caso-pr%C3%A1ctico"><span class="header-section-number">18.4</span> Caso práctico</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#modelo-con-ordenada-en-el-origen-aleatoria"><span class="header-section-number">18.4.1</span> Modelo con ordenada en el origen aleatoria</a></li>
+<li><a class="nav-link" href="#modelo-con-pendiente-aleatoria"><span class="header-section-number">18.4.2</span> Modelo con pendiente aleatoria</a></li>
+<li><a class="nav-link" href="#c%C3%B3mo-construir-el-modelo-en-la-pr%C3%A1ctica"><span class="header-section-number">18.4.3</span> ¿Cómo construir el modelo en la práctica?</a></li>
+<li><a class="nav-link" href="#resumen-17">Resumen</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

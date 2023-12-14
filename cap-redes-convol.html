@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 37 Redes neuronales convolucionales | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="Noelia Vállez Enano\(^{a}\) y José Luis Espinosa Aranda\(^{a,b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Ubotica Technologies  37.1 Introducción Las redes neuronales convolucionales (en...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Capítulo 37 Redes neuronales convolucionales | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="Noelia Vállez Enano\(^{a}\) y José Luis Espinosa Aranda\(^{a,b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Ubotica Technologies  37.1 Introducción Las redes neuronales convolucionales (en...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 37 Redes neuronales convolucionales | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="Noelia Vállez Enano\(^{a}\) y José Luis Espinosa Aranda\(^{a,b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Ubotica Technologies  37.1 Introducción Las redes neuronales convolucionales (en...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="active" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="cap-redes-convol" class="section level1" number="37">
+<h1>
+<span class="header-section-number">Capítulo 37</span> Redes neuronales convolucionales<a class="anchor" aria-label="anchor" href="#cap-redes-convol"><i class="fas fa-link"></i></a>
+</h1>
+<p></p>
+<p><em>Noelia Vállez Enano</em><span class="math inline">\(^{a}\)</span> y <em>José Luis Espinosa Aranda</em><span class="math inline">\(^{a,b}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad de Castilla-La Mancha<br><span class="math inline">\(^{b}\)</span>Ubotica Technologies</p>
+<div id="introducción-17" class="section level2" number="37.1">
+<h2>
+<span class="header-section-number">37.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-17"><i class="fas fa-link"></i></a>
+</h2>
+<p>Las redes neuronales convolucionales (en inglés <em>convolutional neural network</em>, CNN) son una extensión de las redes neuronales artificiales (ANN) en las que se incluyen capas convolucionales, explicadas en detalle en las siguientes secciones, para aprender a extraer, de forma automática, las características de los datos de entrenamiento al inicio de la arquitectura (Fig. <a href="cap-redes-convol.html#fig:cnn">37.1</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:cnn"></span>
+<img src="img/cnn.png" alt="Estructura general de una CNN." width="90%"><p class="caption">
+Figura 37.1: Estructura general de una CNN.
+</p>
+</div>
+<p>Las primeras capas convolucionales de la red aprenden a extraer características generales de los datos de entrada, mientras que las últimas capas convolucionales extraen características mucho más específicas. Cuanto más larga (o más <strong>profunda</strong>) es la red, mayor cantidad de detalles podrá aprender a distinguir. Esto es lo que ha propiciado la aparición del término ``aprendizaje profundo” <span class="citation">(<a href="referencias.html#ref-goodfellow2016deep">Goodfellow, Bengio, and Courville 2016</a>)</span>.</p>
+<p>Tras las capas convolucionales suelen encontrarse las capas <strong>densas</strong> o <strong>totalmente conectadas</strong> de la misma tipología de las vistas en el Cap. <a href="capNN.html#capNN">36</a>. Esta parte de la red será la encargada de realizar la clasificación de las observaciones en función de los valores de las características extraídas en la parte convolucional. Por tanto, se dice que este tipo de redes tiene dos partes: una de extracción de características (realizada por la red convolucional) y otra de clasificación o regresión (como las vistas en el Cap. <a href="capNN.html#capNN">36</a>).</p>
+</div>
+<div id="convolución" class="section level2" number="37.2">
+<h2>
+<span class="header-section-number">37.2</span> Convolución<a class="anchor" aria-label="anchor" href="#convoluci%C3%B3n"><i class="fas fa-link"></i></a>
+</h2>
+<p>Aunque las ANN pueden utilizarse con los valores de color de una imagen como variables para reconocer qué hay en ella (véase Cap. <a href="capNN.html#capNN">36</a>), no permiten extraer información de carácter espacial (de indudable importancia en el estudio de fenómenos con datos anclados al espacio y con dependencia espacial, entre otros ámbitos). Para lidiar con este problema, las CNN incorporan capas convolucionales para extraer características de las observaciones con las que se alimenta la red, incluyendo información sobre la estructura espacial <span class="citation">(<a href="referencias.html#ref-LeCun1995-LECCNF">LeCun and Bengio 1995</a>)</span>.</p>
+<p>Las convoluciones realizan una tarea similar al sistema visual humano; de hecho, se inspiran en cómo el ser humano percibe y procesa las características de los objetos. Aunque se diseñaron principalmente para ayudar a resolver tareas de visión por computador, donde la entrada de la red es una imagen, es posible utilizarlas también con entradas vectoriales o series temporales.</p>
+<p>Una convolución aplica un filtro sobre la entrada siguiendo un proceso de ventana deslizante. El filtro (o <em>kernel</em>) no es otra cosa que una matriz con unos pesos que se centra en cada uno de los valores de la entrada para calcular una media ponderada de los valores de la entrada, siendo las ponderaciones los valores del filtro <span class="citation">(<a href="referencias.html#ref-Bueno2015">Bueno et al. 2015</a>)</span>. El tamaño de los filtros suele ser, por tanto, impar.</p>
+<p>La Fig. <a href="cap-redes-convol.html#fig:convolution">37.2</a> muestra el resultado de aplicar la operación de convolución con un filtro de tamaño <span class="math inline">\(3 \times 3\)</span> sobre una matriz de entrada de tamaño <span class="math inline">\(5 \times 5\)</span>. El resultado será una matriz, <span class="math inline">\(\bf M\)</span>, de tamaño <span class="math inline">\(3 \times 3\)</span>, cuyos elementos se calculan como sigue: se pone el filtro sobre los valores de entrada de tal manera que quede centrado sobre el valor de interés de la entrada y se calcula la suma ponderada de los valores de las entradas sobre las que se sitúa el filtro, siendo las ponderaciones los valores del filtro.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Nótese que el filtro no puede aplicarse a los bordes de la matriz de entrada. En la Sec. &lt;a href="cap-redes-convol.html#relleno"&gt;37.4&lt;/a&gt; se tratan algunas soluciones a este problema.&lt;/p&gt;'><sup>250</sup></a></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:convolution"></span>
+<img src="img/convolution.png" alt="Ejemplo de convolución. De izquierda a derecha: entrada (negro = 0, blanco = 1), filtro y salida." width="75%"><p class="caption">
+Figura 37.2: Ejemplo de convolución. De izquierda a derecha: entrada (negro = 0, blanco = 1), filtro y salida.
+</p>
+</div>
+<p>En general, una convolución en dos dimensiones se define como:</p>
+<p><span class="math display">\[\begin{equation}
+{\bf M}[x,y]=\sum_{s=-a}^{a}\sum_{t=-b}^{b} {\bf F}[s,t] {\bf E}[x-s,y-t],
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(\bf F\)</span> es el filtro a aplicar, <span class="math inline">\(\bf E\)</span> es la matriz de entrada, <span class="math inline">\(\bf M\)</span> es la matriz de resultado, que recibe también el nombre de ``mapa de características”, y <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> son los tamaños de los desplazamientos desde el centro del filtro a cualquier otro valor.</p>
+<p>Por tanto, cada valor del ejemplo de la Fig. <a href="cap-redes-convol.html#fig:convolution">37.2</a> se obtiene como:</p>
+<p><span class="math display">\[\begin{gather}
+\begin{aligned}
+M_{1,1} = 1\cdot0+ 0\cdot 0+1 \cdot 0+0 \cdot 0 + &amp; 1 \cdot 1 + 0 \cdot 1+ 1\cdot 0 +0\cdot 1 +1 \cdot 1=2 \\
+M_{1,2} = 1\cdot0+ 0\cdot 0+1 \cdot 0+0 \cdot 1 + &amp; 1 \cdot 1 + 0 \cdot 1+ 1\cdot 1 +0\cdot 1 +1 \cdot 1=3 \\
+&amp; \cdots \\
+M_{2,2} = 1\cdot1+ 0\cdot 1+1 \cdot 1+0 \cdot 1 + &amp; 1 \cdot 1 + 0 \cdot 1+ 1\cdot 1 +0\cdot 1 +1 \cdot 1=5 \\
+&amp; \cdots \\
+M_{3,3} = 1\cdot1+ 0\cdot 1+1 \cdot 0+0 \cdot 1 + &amp; 1 \cdot 1 + 0 \cdot 0+ 1\cdot 0 +0\cdot 0 +1 \cdot 0=2
+\end{aligned}
+\end{gather}\]</span></p>
+<p>La elección de unos u otros valores del filtro dará lugar a matrices de salida que realcen o suavicen ciertas partes de la entrada. Por ejemplo, si la entrada es una imagen, es posible definir filtros que realcen los bordes, que los suavicen o incluso que detecten dichos bordes y cómo de marcados están. La Fig. <a href="cap-redes-convol.html#fig:filtros">37.3</a> muestra el resultado de aplicar distintos filtros a una imagen de entrada.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:filtros"></span>
+<img src="img/filtros.png" alt="Resultado de aplicar diferentes filtros de convolución sobre una imagen dada." width="70%"><p class="caption">
+Figura 37.3: Resultado de aplicar diferentes filtros de convolución sobre una imagen dada.
+</p>
+</div>
+<p>Los valores (o pesos) de los filtros se ajustaban tradicionalmente de forma
+manual según el problema a resolver. En los <em>frameworks</em> actuales se ajustan durante el proceso de entrenamiento de la CNN junto con el resto de pesos de la red, lo cual permite encontrar los valores del filtro que maximicen la precisión de la red.</p>
+</div>
+<div id="neuronas-convolucionales" class="section level2" number="37.3">
+<h2>
+<span class="header-section-number">37.3</span> Neuronas convolucionales<a class="anchor" aria-label="anchor" href="#neuronas-convolucionales"><i class="fas fa-link"></i></a>
+</h2>
+<p>Las capas convolucionales de la CNN no están compuestas por perceptrones, sino por neuronas convolucionales que aplican los filtros de convolución sobre la salida de la capa anterior. Por tanto, los pesos de estas neuronas convolucionales se organizan en forma de matriz, siendo cada matriz un filtro. Cada neurona da lugar a una matriz cuyos valores pasarán por la función de activación para obtener finalmente lo que se conoce como <strong>mapa de activaciones</strong>. Por tanto, la salida de una capa convolucional compuesta por varias de estas neuronas está formada por un conjunto de estos mapas y tiene forma de matriz 3D (Fig. <a href="cap-redes-convol.html#fig:mapas">37.4</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mapas"></span>
+<img src="img/mapas.png" alt="Conjunto de mapas de activaciones de una determinada capa (cada filtro de la capa da lugar a un mapa diferente)." width="60%"><p class="caption">
+Figura 37.4: Conjunto de mapas de activaciones de una determinada capa (cada filtro de la capa da lugar a un mapa diferente).
+</p>
+</div>
+<p>Al igual que los perceptrones, las neuronas convolucionales incluyen términos independientes que se suman al resultado de realizar la convolución con el filtro. Por ejemplo, una capa con 64 filtros de tamaño 7 <span class="math inline">\(\times\)</span> 7 tendrá 64 de estos valores, uno para cada filtro. A estos valores se les conoce también con el nombre de <em>bias</em>. Por tanto, la salida de una neurona convolucional, <span class="math inline">\(\bf Y\)</span>, se obtiene como sigue:</p>
+<p><span class="math display">\[\begin{equation}
+{\bf Y} = g ({ \bf F} \otimes {\bf E} + {\bf B}) ,
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(\bf E\)</span> es la matriz de la entrada, <span class="math inline">\(\bf F\)</span> es la matriz que representa el filtro, <span class="math inline">\(g\)</span> es la función de activación y <span class="math inline">\(\bf B\)</span> es una matriz de términos independientes, con todos los valores iguales.</p>
+<p>La mayoría de las CNN utilizan la ReLU como función de activación, o alguna variante de esta. Esta función de activación funciona muy bien con el método del descenso del gradiente que se utiliza para actualizar los pesos.</p>
+<p>En el caso de que la entrada no sea una matriz 2D sino una matriz 3D como, por ejemplo, una imagen con varios canales de color o un conjunto de mapas de activación, los filtros contarán con una tercera dimensión. La Fig. <a href="cap-redes-convol.html#fig:relu">37.5</a> muestra el resultado de aplicar un filtro de tamaño <span class="math inline">\(3 \times 3 \times 3\)</span> sobre una imagen con 3 canales de color antes y después de pasar por una función de activación de tipo ReLU.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:relu"></span>
+<img src="img/relu.png" alt="Resultado de aplicar un filtro 3D a una imagen antes y después de pasar por el filtro de activación." width="100%"><p class="caption">
+Figura 37.5: Resultado de aplicar un filtro 3D a una imagen antes y después de pasar por el filtro de activación.
+</p>
+</div>
+</div>
+<div id="relleno" class="section level2" number="37.4">
+<h2>
+<span class="header-section-number">37.4</span> Relleno del borde<a class="anchor" aria-label="anchor" href="#relleno"><i class="fas fa-link"></i></a>
+</h2>
+<p>Si se aplica el filtro convolucional a una entrada, la matriz resultante será algo más pequeña ya que no se puede centrar el filtro en los bordes de la matriz. Para poder hacerlo, se suele incrementar la entrada con un relleno (en inglés <em>padding</em>). El relleno se puede realizar con ceros, con algún valor, con el valor más cercano del borde, etc. La Fig. <a href="cap-redes-convol.html#fig:padding">37.6</a> muestra algunos de los rellenos más empleados.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:padding"></span>
+<img src="img/padding.png" alt="Distintos tipos de relleno del borde." width="100%"><p class="caption">
+Figura 37.6: Distintos tipos de relleno del borde.
+</p>
+</div>
+<p></p>
+<div id="desplazamiento" class="section level3" number="37.4.1">
+<h3>
+<span class="header-section-number">37.4.1</span> Desplazamiento<a class="anchor" aria-label="anchor" href="#desplazamiento"><i class="fas fa-link"></i></a>
+</h3>
+<p>El desplazamiento (en inglés <em>stride</em>) básico con el que se aplica un filtro convolucional es de 1. Sin embargo, la aplicación de muchos filtros repartidos en capas a lo largo de la red hace que sea especialmente difícil mantener todos los datos generados en un momento determinado del entrenamiento. Para reducir este volumen de datos, se suelen aplicar las convoluciones con un desplazamiento mayor que 1. Esto reduce el tamaño del mapa de activaciones obtenido por una determinada capa (véase Fig. <a href="cap-redes-convol.html#fig:stride">37.7</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:stride"></span>
+<img src="img/stride.png" alt="Desplazamiento 2 x 2 del filtro. El punto es el centro de la zona en la que se aplica el filtro en cada momento." width="25%"><p class="caption">
+Figura 37.7: Desplazamiento 2 x 2 del filtro. El punto es el centro de la zona en la que se aplica el filtro en cada momento.
+</p>
+</div>
+</div>
+</div>
+<div id="capas-de-agrupación" class="section level2" number="37.5">
+<h2>
+<span class="header-section-number">37.5</span> Capas de agrupación<a class="anchor" aria-label="anchor" href="#capas-de-agrupaci%C3%B3n"><i class="fas fa-link"></i></a>
+</h2>
+<p>La ejecución en secuencia de varias capas convolucionales es muy efectiva a la hora de decidir si ciertas características están o no presentes en la entrada. Sin embargo, una de sus ventajas, y a la vez una de sus limitaciones, es que mantiene la localización espacial de las características. Aunque es necesaria cierta información espacial como, por ejemplo, el que hubiera unos bigotes cerca de una boca sería característico de una imagen que contuviese un gato, pequeños movimientos del contenido de la imagen producirían mapas de características diferentes.</p>
+<p>Una forma de mitigar este problema es usar capas de agrupación (en inglés <em>pooling</em>). Estas capas agrupan un número de valores adyacentes de los mapas de características obteniendo un nuevo conjunto de mapas más pequeños. Es posible emplear distintos tipos de operaciones con las que realizar la agrupación. Los más empleados suelen ser el <em>max pooling</em> y el <em>average pooling</em> <span class="citation">(<a href="referencias.html#ref-goodfellow2016deep">Goodfellow, Bengio, and Courville 2016</a>)</span>, que seleccionan el máximo de los valores o su media, respectivamente (Fig. <a href="cap-redes-convol.html#fig:pooling">37.8</a>). El tamaño más típico es 2 <span class="math inline">\(\times\)</span> 2.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:pooling"></span>
+<img src="img/pooling.png" alt="Resultado de emplear dos métodos de agrupación diferentes para reducir la dimensión de los datos." width="80%"><p class="caption">
+Figura 37.8: Resultado de emplear dos métodos de agrupación diferentes para reducir la dimensión de los datos.
+</p>
+</div>
+</div>
+<div id="desvanecimiento-del-gradiente" class="section level2" number="37.6">
+<h2>
+<span class="header-section-number">37.6</span> Desvanecimiento del gradiente<a class="anchor" aria-label="anchor" href="#desvanecimiento-del-gradiente"><i class="fas fa-link"></i></a>
+</h2>
+<p>La primera red convolucional fue propuesta en 1982 <span class="citation">(<a href="referencias.html#ref-fukushima1982neocognitron">Fukushima and Miyake 1982</a>)</span>. Esta arquitectura recibió el nombre de Neocognitron y ya constaba de capas convolucionales y capas de <em>pooling</em>.
+Siguiendo la misma idea, en 1998 se diseñó otra CNN para resolver el problema de reconocimiento de dígitos manuscritos, MNIST <span class="citation">(<a href="referencias.html#ref-lecun1998gradient">LeCun et al. 1998</a>)</span>. A esta arquitectura de CNN se la conoce con el nombre de LeNet y es una de las arquitecturas más pequeñas que se puede definir para resolver un problema de clasificación (Fig. <a href="cap-redes-convol.html#fig:lenet">37.9</a>). El extractor de características consta de dos capas convolucionales alternadas con 2 capas de <em>pooling</em> que obtienen un total de 400 variables. La parte final con el clasificador está compuesta por 3 capas densas de 120, 84 y 10 neuronas.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:lenet"></span>
+<img src="img/lenet.png" alt="Arquitectura LeNet." width="80%"><p class="caption">
+Figura 37.9: Arquitectura LeNet.
+</p>
+</div>
+<p>A pesar de los buenos resultados obtenidos por la arquitectura, el uso de estos métodos para resolver problemas reales estaba aún lejos debido a la carga computacional requerida para su entrenamiento. No fue hasta el año 2012, cuando los ganadores del concurso ImageNet Challenge presentaron una nueva arquitectura llamada AlexNet, que las CNN volvieron a estar en el punto de mira de los investigadores <span class="citation">(<a href="referencias.html#ref-deng2012imagenet">Deng et al. 2012</a>)</span>. A partir de ese momento, y teniendo en cuenta los grandes avances computacionales de las tarjetas gráficas (GPU), que permitían ejecutar operaciones matriciales de forma eficiente, se empezaron a desarrollar cada vez más arquitecturas diferentes.</p>
+<p>Durante los primeros años, las arquitecturas desarrolladas tenían cada vez más capas y más filtros en cada una de ellas para extraer la mayor cantidad de información posible de la entrada. Sin embargo, las arquitecturas más profundas se encontraron con un problema: el desvanecimiento del gradiente.</p>
+<p>Ciertas funciones de activación como, por ejemplo, la sigmoide, comprimen el espacio de entrada entre 0 y 1. Esto hace que grandes cambios en la entrada produzcan cambios muy pequeños en la salida, haciendo que la derivada sea pequeña. Como los gradientes de la red se calculan durante la propagación hacia atrás, capa a capa, siguiendo la regla de la cadena, si los valores son muy cercanos a 0, la multiplicación de muchos de estos valores hará que el gradiente de la red caiga rápidamente. Un gradiente muy pequeño hará que los pesos de las capas iniciales apenas se modifiquen con cada iteración y no lleguen a obtener valores adecuados durante el entrenamiento.</p>
+<p>Algunas soluciones a este problema son:</p>
+<ul>
+<li><p>El uso de activaciones tipo ReLU, cuya derivada no genera valores muy pequeños.</p></li>
+<li><p>Capas de normalización. Si se normalizan los datos de entrada ya no habrá grandes cambios entre ellos y los valores estarán lejos de los extremos de la sigmoide.</p></li>
+<li><p>Uso de bloques con conexiones residuales que añaden (o concatenan) el valor de la entrada del bloque a su salida. Esta estrategia se utiliza en las arquitecturas tipo ResNet. Para más detalles, véase <span class="citation">Alarcon Vargas (<a href="referencias.html#ref-alarcon2022deteccion">2022</a>)</span>.</p></li>
+</ul>
+</div>
+<div id="sobreajuste-1" class="section level2" number="37.7">
+<h2>
+<span class="header-section-number">37.7</span> Sobreajuste<a class="anchor" aria-label="anchor" href="#sobreajuste-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>Cuanto mayor es el número de parámetros de la red, mayor probabilidad hay de que ``memorice” los datos de entrenamiento. Esto se debe a la cantidad de características que la red es capaz de extraer y medir. Si la red es muy profunda, aprenderá cosas muy concretas del conjunto de entrenamiento, lo que dará lugar a modelos que no generalizan bien con nuevos datos <span class="citation">(<a href="referencias.html#ref-tetko1995neural">Tetko, Livingstone, and Luik 1995</a>)</span>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;El problema del sobreajuste también surge en las redes neuronales artificiales, si bien es más evidente en las convolucionales por ser más profundas.&lt;/p&gt;"><sup>251</sup></a></p>
+<p>Además de esto, la no linealidad que añaden las funciones de activación puede hacer que se encuentren fronteras de decisión que modelen datos que no son linealmente separables, pero también facilita que se produzca el sobreajuste (Fig. <a href="cap-redes-convol.html#fig:overfitting">37.10</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:overfitting"></span>
+<img src="img/overfitting.png" alt="Tipos de ajuste del modelo a los datos." width="80%"><p class="caption">
+Figura 37.10: Tipos de ajuste del modelo a los datos.
+</p>
+</div>
+<p>Para evitar que se produzca el sobreajuste se suelen emplear técnicas de regularización. Se trata de técnicas que impiden que los modelos sean demasiado complejos mejorando su capacidad de generalización. Algunas de estas técnicas son:
+</p>
+<ul>
+<li><p><em>Dropout</em>. Durante el entrenamiento, algunas activaciones se ponen a 0 de forma aleatoria (entre el 10% y el 50%). Esto hace que una capa de la red no dependa siempre de los mismos nodos anteriores.</p></li>
+<li><p><em>Early Stopping</em>. Se trata de parar el entrenamiento antes de que se produzca el sobreajuste y seleccionar ese modelo como final. Para ello se utilizan dos conjuntos: uno de entrenamiento y otro de validación. Cuando las curvas de pérdida de ambos conjuntos comienzan a divergir, se para el entrenamiento y se selecciona el modelo resultante del momento anterior al comienzo de la divergencia (Fig. <a href="cap-redes-convol.html#fig:early">37.11</a>).</p></li>
+<li><p>Regularización L1. Penaliza los pesos grandes, por lo que fuerza a los pesos a tener valores cercanos a 0 (sin ser 0). Añade un término de penalización a la función de coste sumando todos los pesos de la matriz y multiplicado por el valor de <span class="math inline">\(\alpha\)</span>, otro hiperparámetro:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Aunque hay algunos métodos que ayudan a encontrar la mejor combinación de valores de los hiperparámetros, en la práctica los establece el investigador.&lt;/p&gt;"><sup>252</sup></a></p></li>
+</ul>
+<p><span class="math display">\[\begin{equation}
+\alpha||\boldsymbol W||_1 = \alpha\sum_i\sum_j|w_{ij}| .
+\end{equation}\]</span></p>
+<ul>
+<li>Regularización L2 o <em>weight decay</em>. Es parecida a la regularización L1, pero con una expresión algo diferente:</li>
+</ul>
+<p><span class="math display">\[\begin{equation}
+\frac{\alpha}{2} ||\boldsymbol W||_2^2 = \frac{\alpha}{2}\sum_i\sum_j w^2_{ij} .
+\end{equation}\]</span></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:early"></span>
+<img src="img/early.png" alt="Selección del modelo antes del sobreajuste." width="80%"><p class="caption">
+Figura 37.11: Selección del modelo antes del sobreajuste.
+</p>
+</div>
+</div>
+<div id="generación-de-datos-de-entrenamiento-artificiales" class="section level2" number="37.8">
+<h2>
+<span class="header-section-number">37.8</span> Generación de datos de entrenamiento artificiales<a class="anchor" aria-label="anchor" href="#generaci%C3%B3n-de-datos-de-entrenamiento-artificiales"><i class="fas fa-link"></i></a>
+</h2>
+<p>Como se ha comentado anteriormente, las técnicas de <em>deep learning</em> suelen requerir de gran cantidad de datos para su correcto funcionamiento. En muchas situaciones, se dispone de un conjunto limitado para poder entrenar los modelos de forma correcta, por lo que para tratar de suplir la falta de datos se recurre a la generación de datos artificiales, mediante técnicas de <em>data augmentation</em> (en la literatura en español también se denominan con su nombre en inglés) <span class="citation">(<a href="referencias.html#ref-shorten2019survey">Shorten and Khoshgoftaar 2019</a>)</span>. </p>
+<p>Esta técnica realiza pequeñas variaciones en los datos del conjunto de entrenamiento del que se dispone para obtener datos adicionales, manteniendo el significado semántico de los mismos. También permite mejorar la generalización de los modelos. Por ejemplo, si se tienen imágenes donde una de ellas contiene un elemento de la clase “gato”, las modificaciones que se realicen deben permitir poder reconocer esa misma clase a partir de las imágenes modificadas.</p>
+<p>Algunos ejemplos de técnicas de <em>data augmentation</em> en imagen pueden ser: la realización de rotaciones, modificación del contraste o cambios en la iluminación, reescalados, adición/eliminación de ruido o cambio en las proyecciones de las mismas (Fig. <a href="cap-redes-convol.html#fig:dataAugmentation">37.12</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:dataAugmentation"></span>
+<img src="img/data_augmentation.png" alt="Ejemplos de técnicas de generación de datos artificiales." width="100%"><p class="caption">
+Figura 37.12: Ejemplos de técnicas de generación de datos artificiales.
+</p>
+</div>
+<p>Para utilizar las técnicas de <em>data augmentation</em> en <strong>R</strong>, se pueden incluir capas específicas de preprocesado durante la definición del modelo, que serán ejecutadas durante el entrenamiento de forma aleatoria. Es decir, cada vez que el proceso de entrenamiento necesite una imagen, decidirá de forma aleatoria si aplicar cada una de las capas o no. En el siguiente ejemplo se realizan rotaciones aleatorias, volteados horizontales y acercamientos a la imagen:</p>
+<div class="sourceCode" id="cb528"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_augmentation</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu">keras_model_sequential</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">layer_random_rotation</span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">layer_random_flip</span><span class="op">(</span><span class="st">"horizontal"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">layer_random_zoom</span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span></span></code></pre></div>
+<p>A continuación se muestran los diferentes tipos de preprocesado disponibles para imagen y redes neuronales convolucionales:</p>
+<div class="sourceCode" id="cb529"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">layer_random_crop</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">layer_random_flip</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">layer_random_flip</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">layer_random_translation</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">layer_random_rotation</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">layer_random_zoom</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">layer_random_height</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">layer_random_width</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">layer_random_contrast</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="infobox">
+<p><strong>NOta</strong></p>
+<p>Otros tipos de <em>data augmentation</em> disponibles en <code>keras</code> y <strong>R</strong> para otro tipo de datos pueden consultarse en:</p>
+<p><a href="https://tensorflow.rstudio.com/guides/keras/preprocessing_layers" class="uri">https://tensorflow.rstudio.com/guides/keras/preprocessing_layers</a></p>
+</div>
+</div>
+<div id="ejemplo-en-r-para-el-conjunto-de-datos-cifar10" class="section level2" number="37.9">
+<h2>
+<span class="header-section-number">37.9</span> Ejemplo en <strong>R</strong> para el conjunto de datos <code>CIFAR10</code><a class="anchor" aria-label="anchor" href="#ejemplo-en-r-para-el-conjunto-de-datos-cifar10"><i class="fas fa-link"></i></a>
+</h2>
+<p>En esta sección se entrena una red neuronal convolucional para clasificar las observaciones (imágenes) contenidas en el conjunto de datos <a href="https://en.wikipedia.org/wiki/CIFAR-10">CIFAR10</a> en las correspondientes clases. Cada una de las imágenes contenidas en el conjunto de datos contiene un único elemento que puede ser clasificado como avión, coche, pájaro, gato, ciervo, perro, rana, caballo, barco o camión.
+La descarga de los datos debe hacerse a través del enlace <a href="https://drive.google.com/file/d/1-pFGg-bkooss1fNp5UNYR0-hLUmDP_XO/view?usp=sharing" class="uri">https://drive.google.com/file/d/1-pFGg-bkooss1fNp5UNYR0-hLUmDP_XO/view?usp=sharing</a> y tiene que guardarse en una carpeta <code>data</code> dentro del proyecto de trabajo para asegurar la reproducibilidad del ejemplo.</p>
+<div class="infobox">
+<p><strong>Nota</strong></p>
+<p>Existe otra versión del conjunto de datos, denominada como CIFAR100, en la cual se definen un total de 100 posibles categorías en las que pueden ser clasificadas las imágenes que contiene:
+<a href="https://www.rdocumentation.org/packages/keras/versions/2.9.0/topics/dataset_cifar100" class="uri">https://www.rdocumentation.org/packages/keras/versions/2.9.0/topics/dataset_cifar100</a></p>
+</div>
+<p>Cada una de las imágenes contenidas en el conjunto tiene un tamaño de 32 <span class="math inline">\(\times\)</span> 32 píxeles en color, representándose mediante los 3 canales RGB, lo cual lo hace diferente del ejemplo del Cap. <a href="capNN.html#capNN">36</a>, en el cual se trabaja con imágenes en escala de grises y, por tanto, con un único canal.</p>
+<p>A continuación se exponen los pasos que llevan desde la carga y visualización de los datos hasta determinar el rendimiento de la red con las imágenes del conjunto de test, pasos similares a los ya descritos en el Cap. <a href="capNN.html#capNN">36</a>, pero adaptando la red al tipo de dato utilizado.</p>
+<div id="visualizacion" class="section level3" number="37.9.1">
+<h3>
+<span class="header-section-number">37.9.1</span> Carga y visualización de los datos<a class="anchor" aria-label="anchor" href="#visualizacion"><i class="fas fa-link"></i></a>
+</h3>
+<p>El primer paso es cargar la librería <code>keras</code>, para crear las redes neuronales necesarias y cargar el conjunto de imágenes CIFAR10, que se encuentra disponible públicamente:</p>
+<div class="sourceCode" id="cb530"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tensorflow.rstudio.com/">keras</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/cifar10.RData"</span><span class="op">)</span></span></code></pre></div>
+<p>A continuación, se ve (o comprueba) el contenido de las variables generadas, pudiéndose observar que el conjunto de datos <code>CIFAR10</code> ya viene separado en dos subconjuntos: el de entrenamiento y el de test. El conjunto de entrenamiento está compuesto por 50.000 imágenes y el de test por 10.000. En ambos casos, estas imágenes se almacenan en la variable <em>x</em>.</p>
+<div class="sourceCode" id="cb531"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">cifar</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "train" "test"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">cifar</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 50000    32    32     3</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">cifar</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 50000     1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">cifar</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 10000    32    32     3</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">cifar</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 10000     1</span></span></code></pre></div>
+<p>Además, las imágenes de cada subconjunto tienen definida la clase a la que pertenecen; en este caso, cualquiera de las 10 clases indicadas anteriormente. En ambos subconjuntos, esta etiqueta se almacena en la variable <em>y</em>. A continuación, se muestra un pequeño ejemplo que permite mostrar alguna de las imágenes contenidas en el conjunto de datos de entrenamiento junto con su etiqueta (Fig. <a href="cap-redes-convol.html#fig:cifar-eti">37.13</a>):</p>
+<div class="sourceCode" id="cb532"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">class_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'avion'</span>, <span class="st">'coche'</span>, <span class="st">'pajaro'</span>, <span class="st">'gato'</span>, <span class="st">'ciervo'</span>,</span>
+<span>               <span class="st">'perro'</span>, <span class="st">'rana'</span>, <span class="st">'caballo'</span>, <span class="st">'barco'</span>, <span class="st">'camion'</span><span class="op">)</span></span>
+<span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">30</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfcol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>, oma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cifar</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="va">index</span>,,,<span class="op">]</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/array-coercion.html">array_tree</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="va">class_names</span><span class="op">[</span><span class="va">cifar</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="va">index</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">as.raster</span>, max <span class="op">=</span> <span class="fl">255</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/imap.html">iwalk</a></span><span class="op">(</span><span class="op">~</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op">(</span><span class="va">.y</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:cifar-eti"></span>
+<img src="180039_rn_convolucionales_files/figure-html/cifar-eti-1.png" alt="Imágenes del conjunto de datos de entrenamiento con su etiqueta." width="60%"><p class="caption">
+Figura 37.13: Imágenes del conjunto de datos de entrenamiento con su etiqueta.
+</p>
+</div>
+</div>
+<div id="preprocesamiento-2" class="section level3" number="37.9.2">
+<h3>
+<span class="header-section-number">37.9.2</span> Preprocesamiento<a class="anchor" aria-label="anchor" href="#preprocesamiento-2"><i class="fas fa-link"></i></a>
+</h3>
+<p></p>
+<p>Una vez cargados los datos y comprobado su contenido, igual que en el Cap. <a href="capNN.html#capNN">36</a>, se puede realizar algún tipo de preprocesado. Al estar trabajando con imágenes, es muy típico estandarizar sus valores de color para mitigar las diferencias producidas por las diferentes condiciones de iluminación.</p>
+<p>En este caso, también igual que en el Cap. <a href="capNN.html#capNN">36</a>, se transforman los valores originales de la imagen (en rango de 0 a 255) a valores entre 0 y 1 dividiendo cada valor por el máximo, 255:</p>
+<div class="sourceCode" id="cb533"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cifar</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">cifar</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">x</span><span class="op">/</span><span class="fl">255</span></span>
+<span><span class="va">cifar</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">cifar</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span><span class="op">/</span><span class="fl">255</span></span></code></pre></div>
+</div>
+<div id="generación-de-la-red-neuronal-1" class="section level3" number="37.9.3">
+<h3>
+<span class="header-section-number">37.9.3</span> Generación de la red neuronal<a class="anchor" aria-label="anchor" href="#generaci%C3%B3n-de-la-red-neuronal-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>La CNN se crea en dos pasos, para, además, mostrar cómo se pueden utilizar las funciones proporcionadas por la librería <code>keras</code> para definir una CNN en varias partes, combinándolas poco a poco.</p>
+<p>En el primero, se define la base convolucional de la red combinando varias capas <code>Conv2d</code> con <code>MaxPooling2D</code>. Para ello se utiliza la interfaz <em>sequential</em> proporcionada por Tensorflow/Keras a través de la función <code>keras_model_sequential()</code>. Esta es la parte de la red que se encarga de aprender las características que permitirán representar el contenido de la imagen. Otra de las diferencias principales que se puede observar en esta red es que, al aceptar imágenes de 3 canales, RGB, en vez de imágenes en escala de grises, el tamaño de la entrada de la primera capa tiene que reflejar esta circunstancia: <code>input_shape = c(32, 32, 3)</code>.</p>
+<div class="sourceCode" id="cb534"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">keras_model_sequential</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">layer_conv_2d</span><span class="op">(</span>filters <span class="op">=</span> <span class="fl">32</span>, kernel_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>, activation <span class="op">=</span> <span class="st">"relu"</span>, </span>
+<span>                input_shape <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">32</span>,<span class="fl">32</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">layer_max_pooling_2d</span><span class="op">(</span>pool_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">layer_conv_2d</span><span class="op">(</span>filters <span class="op">=</span> <span class="fl">64</span>, kernel_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>, activation <span class="op">=</span> <span class="st">"relu"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">layer_max_pooling_2d</span><span class="op">(</span>pool_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">layer_conv_2d</span><span class="op">(</span>filters <span class="op">=</span> <span class="fl">64</span>, kernel_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>, activation <span class="op">=</span> <span class="st">"relu"</span><span class="op">)</span></span></code></pre></div>
+<p>Como se puede observar, en esta parte de la red se reduce la dimensión de la información de manera paulatina en cada capa, obteniendo las características representativas del objeto contenido en cada imagen hasta llegar a un tamaño de <span class="math inline">\(4\times 4\times 64\)</span>.</p>
+<div class="sourceCode" id="cb535"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span>, line_length<span class="op">=</span><span class="fl">74</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Model: "sequential_2"</span></span>
+<span><span class="co">#&gt; __________________________________________________________________________</span></span>
+<span><span class="co">#&gt;  Layer (type)                    Output Shape                 Param #     </span></span>
+<span><span class="co">#&gt; ==========================================================================</span></span>
+<span><span class="co">#&gt;  conv2d_2 (Conv2D)               (None, 30, 30, 32)           896         </span></span>
+<span><span class="co">#&gt;  max_pooling2d_1 (MaxPooling2D)  (None, 15, 15, 32)           0           </span></span>
+<span><span class="co">#&gt;  conv2d_1 (Conv2D)               (None, 13, 13, 64)           18496       </span></span>
+<span><span class="co">#&gt;  max_pooling2d (MaxPooling2D)    (None, 6, 6, 64)             0           </span></span>
+<span><span class="co">#&gt;  conv2d (Conv2D)                 (None, 4, 4, 64)             36928       </span></span>
+<span><span class="co">#&gt; ==========================================================================</span></span>
+<span><span class="co">#&gt; Total params: 56,320</span></span>
+<span><span class="co">#&gt; Trainable params: 56,320</span></span>
+<span><span class="co">#&gt; Non-trainable params: 0</span></span>
+<span><span class="co">#&gt; __________________________________________________________________________</span></span></code></pre></div>
+<p>Ahora, se añaden capas que transformen los resultados de la parte convolucional de la red implementada en la probabilidad de que la imagen represente cada una de las posibles clases.</p>
+<p>Para ello, primero se inserta una capa de tipo <code>flatten</code> que se encarga de transformar la salida de la última capa convolucional <span class="math inline">\(4\times4\times64\)</span> a un vector de 1.024 elementos. A continuación, una capa oculta <code>dense</code> de 64 neuronas con activación <code>relu</code> se encarga de realizar las primeras operaciones con esos datos y de reducir la dimensionalidad. Finalmente, una última capa <code>dense</code> con activación <code>softmax</code> se encarga de obtener la probabilidad de que la imagen represente cada una de las 10 posibles clases:</p>
+<div class="sourceCode" id="cb536"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">layer_flatten</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">layer_dense</span><span class="op">(</span>units <span class="op">=</span> <span class="fl">64</span>, activation <span class="op">=</span> <span class="st">"relu"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">layer_dense</span><span class="op">(</span>units <span class="op">=</span> <span class="fl">10</span>, activation <span class="op">=</span> <span class="st">"softmax"</span><span class="op">)</span></span></code></pre></div>
+<p>A continuación se muestra la estructura final del modelo implementado:</p>
+<div class="sourceCode" id="cb537"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span>, line_length<span class="op">=</span><span class="fl">74</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Model: "sequential_2"</span></span>
+<span><span class="co">#&gt; __________________________________________________________________________</span></span>
+<span><span class="co">#&gt;  Layer (type)                    Output Shape                 Param #     </span></span>
+<span><span class="co">#&gt; ==========================================================================</span></span>
+<span><span class="co">#&gt;  conv2d_2 (Conv2D)               (None, 30, 30, 32)           896         </span></span>
+<span><span class="co">#&gt;  max_pooling2d_1 (MaxPooling2D)  (None, 15, 15, 32)           0           </span></span>
+<span><span class="co">#&gt;  conv2d_1 (Conv2D)               (None, 13, 13, 64)           18496       </span></span>
+<span><span class="co">#&gt;  max_pooling2d (MaxPooling2D)    (None, 6, 6, 64)             0           </span></span>
+<span><span class="co">#&gt;  conv2d (Conv2D)                 (None, 4, 4, 64)             36928       </span></span>
+<span><span class="co">#&gt;  flatten_1 (Flatten)             (None, 1024)                 0           </span></span>
+<span><span class="co">#&gt;  dense_7 (Dense)                 (None, 64)                   65600       </span></span>
+<span><span class="co">#&gt;  dense_6 (Dense)                 (None, 10)                   650         </span></span>
+<span><span class="co">#&gt; ==========================================================================</span></span>
+<span><span class="co">#&gt; Total params: 122,570</span></span>
+<span><span class="co">#&gt; Trainable params: 122,570</span></span>
+<span><span class="co">#&gt; Non-trainable params: 0</span></span>
+<span><span class="co">#&gt; __________________________________________________________________________</span></span></code></pre></div>
+<div class="infobox">
+<p><strong>Nota</strong></p>
+<p>Un detalle a tener en cuenta con respecto al ejemplo del Cap. <a href="capNN.html#capNN">36</a> es la variable <code>Total params</code>. Este valor indica el número de parámetros que contiene la red neuronal y, en cierta manera, el tamaño de la misma. Se puede observar que en este caso la CNN tiene 122.570 parámetros, mientras que la red del ejemplo del Cap. <a href="capNN.html#capNN">36</a> tiene 11.935.</p>
+</div>
+<p>Finalmente, es necesario compilar el modelo, indicando algunos de los parámetros de configuración necesarios para el proceso de entrenamiento, como el optimizador a utilizar, la función de coste y las métricas a calcular para poder evaluar la red entrenada:</p>
+<div class="sourceCode" id="cb538"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">|&gt;</span> <span class="fu">compile</span><span class="op">(</span></span>
+<span>  optimizer <span class="op">=</span> <span class="st">"sgd"</span>, <span class="co"># stochastic gradient descent</span></span>
+<span>  loss <span class="op">=</span> <span class="st">"sparse_categorical_crossentropy"</span>, <span class="co"># función utilizada para problemas de clasificación con varias clases</span></span>
+<span>  metrics <span class="op">=</span> <span class="st">"accuracy"</span> <span class="co"># Precisión</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p></p>
+</div>
+<div id="entrenamiento-1" class="section level3" number="37.9.4">
+<h3>
+<span class="header-section-number">37.9.4</span> Entrenamiento<a class="anchor" aria-label="anchor" href="#entrenamiento-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Una vez generada la estructura de la red neuronal convolucional, ya se puede entrenar, mediante la función <code>fit()</code>, para resolver el problema de clasificación. Para ello, se le debe indicar el conjunto de imágenes de entrenamiento, <em>x</em>, que debe utilizar y sus etiquetas correspondientes, <em>y</em>. Además de otros parámetros, se podrá configurar el número de épocas (<code>epochs</code>, pasadas sobre el conjunto completo de entrenamiento), el tamaño del <em>batch</em> que se utilizará en cada iteración (con <code>batch_size</code>, número de imágenes por iteración), qué porcentaje de elementos del conjunto de datos se utilizarán para validar el modelo (con <code>validation_split</code>, imágenes utilizadas durante el entrenamiento pero solo para obtener una estimación real del error cometido) o la tasa de aprendizaje (<code>learning_rate</code>), entre otros.</p>
+<div class="sourceCode" id="cb539"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">training_evolution</span> <span class="op">&lt;-</span> <span class="va">model</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">fit</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">cifar</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">x</span>, y <span class="op">=</span> <span class="va">cifar</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">y</span>,</span>
+<span>    epochs <span class="op">=</span> <span class="fl">10</span>, batch_size <span class="op">=</span> <span class="fl">32</span>,</span>
+<span>    validation_split <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span>    learning_rate <span class="op">=</span> <span class="fl">0.1</span>,</span>
+<span>    verbose <span class="op">=</span> <span class="fl">2</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<div class="infobox">
+<p><strong>Nota</strong></p>
+<p>Como se puede observar, el <code>batch_size</code> configurado es menor que el del Cap. <a href="capNN.html#capNN">36</a> (32 <span class="math inline">\(vs.\)</span> 128). Esto es debido a que el número máximo de imágenes que el equipo utilizado para entrenar puede procesar en una iteración viene determinado por el tamaño de la red neuronal, es decir, por la variable <em>Total params</em> indicada en la nota anterior. Cuanto mayor sea el tamaño de la red, menor será el número máximo de imágenes que podrá tener el <em>batch</em>.</p>
+</div>
+<div class="sourceCode" id="cb540"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#&gt; Epoch 1/10</span></span>
+<span><span class="co">#&gt; 1250/1250 - 12s - loss: 2.1097 - accuracy: 0.2316 - val_loss: 1.9339 - val_accuracy: 0.2958 - 12s/epoch - 9ms/step</span></span>
+<span><span class="co">#&gt; Epoch 2/10</span></span>
+<span><span class="co">#&gt; 1250/1250 - 8s - loss: 1.7478 - accuracy: 0.3667 - val_loss: 1.6987 - val_accuracy: 0.3965 - 8s/epoch - 6ms/step</span></span>
+<span><span class="co">#&gt; Epoch 3/10</span></span>
+<span><span class="co">#&gt; 1250/1250 - 8s - loss: 1.5464 - accuracy: 0.4399 - val_loss: 1.4731 - val_accuracy: 0.4707 - 8s/epoch - 7ms/step</span></span>
+<span><span class="co">#&gt; Epoch 4/10</span></span>
+<span><span class="co">#&gt; 1250/1250 - 9s - loss: 1.4304 - accuracy: 0.4866 - val_loss: 1.3653 - val_accuracy: 0.5149 - 9s/epoch - 7ms/step</span></span>
+<span><span class="co">#&gt; Epoch 5/10</span></span>
+<span><span class="co">#&gt; 1250/1250 - 8s - loss: 1.3477 - accuracy: 0.5199 - val_loss: 1.3407 - val_accuracy: 0.5257 - 8s/epoch - 6ms/step</span></span>
+<span><span class="co">#&gt; Epoch 6/10</span></span>
+<span><span class="co">#&gt; 1250/1250 - 7s - loss: 1.2784 - accuracy: 0.5437 - val_loss: 1.2563 - val_accuracy: 0.5564 - 7s/epoch - 6ms/step</span></span>
+<span><span class="co">#&gt; Epoch 7/10</span></span>
+<span><span class="co">#&gt; 1250/1250 - 7s - loss: 1.2118 - accuracy: 0.5705 - val_loss: 1.2331 - val_accuracy: 0.5720 - 7s/epoch - 6ms/step</span></span>
+<span><span class="co">#&gt; Epoch 8/10</span></span>
+<span><span class="co">#&gt; 1250/1250 - 8s - loss: 1.1539 - accuracy: 0.5954 - val_loss: 1.1807 - val_accuracy: 0.5882 - 8s/epoch - 6ms/step</span></span>
+<span><span class="co">#&gt; Epoch 9/10</span></span>
+<span><span class="co">#&gt; 1250/1250 - 7s - loss: 1.1015 - accuracy: 0.6135 - val_loss: 1.1516 - val_accuracy: 0.5935 - 7s/epoch - 6ms/step</span></span>
+<span><span class="co">#&gt; Epoch 10/10</span></span>
+<span><span class="co">#&gt; 1250/1250 - 7s - loss: 1.0526 - accuracy: 0.6286 - val_loss: 1.1014 - val_accuracy: 0.6128 - 7s/epoch - 6ms/step</span></span></code></pre></div>
+<p>Tras el entrenamiento, se puede observar la evolución del mismo mediante las gráficas de coste/pérdida y precisión (Fig. <a href="cap-redes-convol.html#fig:plot-curve3">37.14</a>).</p>
+<div class="sourceCode" id="cb541"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">training_evolution</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:plot-curve3"></span>
+<img src="img/curve3.png" alt="Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación." width="60%"><p class="caption">
+Figura 37.14: Evolución durante el entrenamiento de la precisión y la pérdida: conjuntos de entrenamiento y validación.
+</p>
+</div>
+<p>Como se puede apreciar, la red entrenada es capaz de alcanzar un 60% de precisión tanto en el conjunto de entrenamiento como en el de validación.</p>
+</div>
+<div id="test-2" class="section level3" number="37.9.5">
+<h3>
+<span class="header-section-number">37.9.5</span> Test<a class="anchor" aria-label="anchor" href="#test-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Una vez entrenado el modelo ya se puede aplicarse al conjunto de test. La clasificación de cualquiera de las imágenes en una de las posibles clases se lleva a cabo mediante la función <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>. En realidad, la salida de la función es la probabilidad de que dicha imagen pertenezca a cada una de las posibles clases, clasificándose en aquella para la cual la probabilidad sea mayor:</p>
+<div class="sourceCode" id="cb542"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">predictions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">cifar</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">predictions</span>, digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]</span></span>
+<span><span class="co">#&gt; [1,] 0.03 0.00 0.18 0.47 0.01 0.14 0.16    0 0.00 0.00</span></span>
+<span><span class="co">#&gt; [2,] 0.04 0.07 0.00 0.00 0.00 0.00 0.00    0 0.89 0.00</span></span>
+<span><span class="co">#&gt; [3,] 0.08 0.28 0.00 0.00 0.00 0.00 0.00    0 0.55 0.07</span></span>
+<span><span class="co">#&gt; [4,] 0.82 0.01 0.04 0.00 0.00 0.00 0.00    0 0.11 0.00</span></span>
+<span><span class="co">#&gt; [5,] 0.00 0.00 0.05 0.11 0.11 0.03 0.69    0 0.00 0.00</span></span></code></pre></div>
+<p>Con la función <code>evaluate()</code> se calculan tanto el coste o pérdida como la precisión de la red neuronal sobre el conjunto de test. Como se puede observar, se obtienen valores muy similares a los que se obtuvieron para el conjunto de entrenamiento:</p>
+<div class="sourceCode" id="cb543"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">evaluate</span><span class="op">(</span><span class="va">model</span>, <span class="va">cifar</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span>, <span class="va">cifar</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">y</span>, verbose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      loss accuracy</span></span>
+<span><span class="co">#&gt;  1.094381 0.611100</span></span></code></pre></div>
+<p>Con la función <em>predict</em> también se puede generar la matriz de confusión de la red:</p>
+<div class="sourceCode" id="cb544"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">prediction_matrix</span> <span class="op">&lt;-</span> <span class="va">model</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">cifar</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">x</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">k_argmax</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">confusion_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/array.html">as.array</a></span><span class="op">(</span><span class="va">prediction_matrix</span><span class="op">)</span>, <span class="va">cifar</span><span class="op">$</span><span class="va">test</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
+<span><span class="va">confusion_matrix</span></span></code></pre></div>
+<pre><code>#&gt;    
+#&gt;       0   1   2   3   4   5   6   7   8   9
+#&gt;   0 650  25  57  12  39  12   3  21  82  35
+#&gt;   1  43 790  15  18  13  11  16  12  43 179
+#&gt;   2 119  20 676 180 325 170 112  94  33  26
+#&gt;   3  23  15  57 427  76 184  54  48  18  18
+#&gt;   4   1   0  13  20 236  12   5  21   3   2
+#&gt;   5   6   7  52 145  41 488  24  82   5  10
+#&gt;   6  14   5  71 110 119  42 755  13   4  14
+#&gt;   7   7   6  30  46 126  60  16 676   9  18
+#&gt;   8 114  58  15  19  20  13   6   5 777  62
+#&gt;   9  23  74  14  23   5   8   9  28  26 636</code></pre>
+</div>
+<div id="otros-ejemplos-de-interés" class="section level3" number="37.9.6">
+<h3>
+<span class="header-section-number">37.9.6</span> Otros ejemplos de interés<a class="anchor" aria-label="anchor" href="#otros-ejemplos-de-inter%C3%A9s"><i class="fas fa-link"></i></a>
+</h3>
+<p>Otros ejemplos para trabajar en <strong>R</strong> pueden encontrarse en los siguiente enlaces: (i) <em>Transfer learning and fine tuning</em>, explicación de estas técnicas para clasificar imágenes que contienen perros y gatos
+<a href="https://tensorflow.rstudio.com/guides/keras/transfer_learning" class="uri">https://tensorflow.rstudio.com/guides/keras/transfer_learning</a> (ii) <a href="https://tensorflow.rstudio.com/guides/" class="uri">https://tensorflow.rstudio.com/guides/</a> y (iii) <a href="https://tensorflow.rstudio.com/examples/" class="uri">https://tensorflow.rstudio.com/examples/</a></p>
+<p>
+</p>
+</div>
+<div id="resumen-36" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-36"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>Este capítulo presenta las principales características de las redes neuronales convolucionales y sus diferencias con el perceptrón multicapa.</p></li>
+<li><p>Además, se exponen los principales problemas a la hora de diseñar este tipo de redes profundas y se plantean sus posibles soluciones.</p></li>
+<li><p>Finalmente, se exponen los pasos necesarios para entrenar y poner en práctica una red neuronal convolucional en <strong>R</strong>, con la librería <code>Tensorflow/Keras</code>, que clasifique las imágenes del conjunto de datos <code>CIFAR10</code> en 10 posibles clases.</p></li>
+</ul>
+</div>
+
+</div>
+</div>
+
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></div>
+<div class="next"><a href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cap-redes-convol"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li><a class="nav-link" href="#introducci%C3%B3n-17"><span class="header-section-number">37.1</span> Introducción</a></li>
+<li><a class="nav-link" href="#convoluci%C3%B3n"><span class="header-section-number">37.2</span> Convolución</a></li>
+<li><a class="nav-link" href="#neuronas-convolucionales"><span class="header-section-number">37.3</span> Neuronas convolucionales</a></li>
+<li>
+<a class="nav-link" href="#relleno"><span class="header-section-number">37.4</span> Relleno del borde</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#desplazamiento"><span class="header-section-number">37.4.1</span> Desplazamiento</a></li></ul>
+</li>
+<li><a class="nav-link" href="#capas-de-agrupaci%C3%B3n"><span class="header-section-number">37.5</span> Capas de agrupación</a></li>
+<li><a class="nav-link" href="#desvanecimiento-del-gradiente"><span class="header-section-number">37.6</span> Desvanecimiento del gradiente</a></li>
+<li><a class="nav-link" href="#sobreajuste-1"><span class="header-section-number">37.7</span> Sobreajuste</a></li>
+<li><a class="nav-link" href="#generaci%C3%B3n-de-datos-de-entrenamiento-artificiales"><span class="header-section-number">37.8</span> Generación de datos de entrenamiento artificiales</a></li>
+<li>
+<a class="nav-link" href="#ejemplo-en-r-para-el-conjunto-de-datos-cifar10"><span class="header-section-number">37.9</span> Ejemplo en R para el conjunto de datos CIFAR10</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#visualizacion"><span class="header-section-number">37.9.1</span> Carga y visualización de los datos</a></li>
+<li><a class="nav-link" href="#preprocesamiento-2"><span class="header-section-number">37.9.2</span> Preprocesamiento</a></li>
+<li><a class="nav-link" href="#generaci%C3%B3n-de-la-red-neuronal-1"><span class="header-section-number">37.9.3</span> Generación de la red neuronal</a></li>
+<li><a class="nav-link" href="#entrenamiento-1"><span class="header-section-number">37.9.4</span> Entrenamiento</a></li>
+<li><a class="nav-link" href="#test-2"><span class="header-section-number">37.9.5</span> Test</a></li>
+<li><a class="nav-link" href="#otros-ejemplos-de-inter%C3%A9s"><span class="header-section-number">37.9.6</span> Otros ejemplos de interés</a></li>
+<li><a class="nav-link" href="#resumen-36">Resumen</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 2 Metodología en ciencia de datos | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="Gema Fernández-Avilés\(^{a}\) y Ramón A. Carrasco\(^{b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Complutense de Madrid  2.1 Preliminares En el Cap. 1 se puso de manifiesto...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Capítulo 2 Metodología en ciencia de datos | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="Gema Fernández-Avilés\(^{a}\) y Ramón A. Carrasco\(^{b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Complutense de Madrid  2.1 Preliminares En el Cap. 1 se puso de manifiesto...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 2 Metodología en ciencia de datos | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="Gema Fernández-Avilés\(^{a}\) y Ramón A. Carrasco\(^{b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)Universidad Complutense de Madrid  2.1 Preliminares En el Cap. 1 se puso de manifiesto...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="active" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="metodologia" class="section level1" number="2">
+<h1>
+<span class="header-section-number">Capítulo 2</span> Metodología en ciencia de datos<a class="anchor" aria-label="anchor" href="#metodologia"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>Gema Fernández-Avilés</em><span class="math inline">\(^{a}\)</span> y <em>Ramón A. Carrasco</em><span class="math inline">\(^{b}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad de Castilla-La Mancha<br><span class="math inline">\(^{b}\)</span>Universidad Complutense de Madrid</p>
+<div id="preliminares" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Preliminares<a class="anchor" aria-label="anchor" href="#preliminares"><i class="fas fa-link"></i></a>
+</h2>
+<p>En el Cap. <a href="ciencia-datos.html#ciencia-datos">1</a> se puso de manifiesto que el método científico es el elemento
+que define la ciencia. <span class="citation">Bunge (<a href="referencias.html#ref-Bunge_2018">2018</a>)</span>, al hablar del método científico, lo define como: “un procedimiento para
+tratar un conjunto de problemas […]. Los problemas del conocimiento, a diferencia de los del lenguaje o los de
+la acción, requieren la invención o la aplicación de procedimientos especiales adecuados para
+los varios estadios del tratamiento de los problemas…”. De acuerdo con su concepción del
+<strong>método</strong>, <span class="citation">Bunge (<a href="referencias.html#ref-Bunge_2018">2018</a>)</span> destaca ocho operaciones en la aplicación de este:
+</p>
+<ol style="list-style-type: lower-roman">
+<li><p>Enunciar preguntas bien formuladas y verosímilmente fecundas.</p></li>
+<li><p>Arbitrar conjeturas, fundadas y contrastables con la experiencia, para contestar las preguntas.</p></li>
+<li><p>Derivar consecuencias lógicas de las conjeturas.</p></li>
+<li><p>Arbitrar técnicas para someter las conjeturas a contraste.</p></li>
+<li><p>Someter a contraste esas técnicas para comprobar su relevancia y la validez que merecen.</p></li>
+<li><p>Llevar a cabo la contrastación e interpretar sus resultados.</p></li>
+<li><p>Estimar la pretensión de verdad de las conjeturas y la fidelidad de las técnicas.</p></li>
+<li><p>Determinar los dominios en los cuales valen las conjeturas y las técnicas, y formular los
+nuevos problemas originados por la investigación.</p></li>
+</ol>
+<p>A su vez, sugiere una serie de reglas para la ejecución ordenada de las operaciones anteriores:</p>
+<ol style="list-style-type: lower-roman">
+<li><p>Formular el problema con precisión y, al principio, específicamente.</p></li>
+<li><p>Proponer conjeturas bien definidas y fundadas de algún modo, y no suposiciones que no
+comprometan cuestiones concretas ni tampoco ocurrencias sin fundamento visible.</p></li>
+<li><p>Someter las hipótesis a contrastación dura, no laxa.</p></li>
+<li><p>No declarar verdadera una hipótesis satisfactoriamente confirmada; considerarla, en el
+mejor de los casos, como parcialmente verdadera.</p></li>
+<li><p>Preguntarse por qué la respuesta es como es y no de otra manera.</p></li>
+</ol>
+<p>Sin embargo, de acuerdo con <span class="citation">José María Montero (<a href="referencias.html#ref-Montero_1997">1997</a>)</span>, estas reglas no son definitivas ni infalibles y necesitan de
+ulterior perfeccionamiento, que se llevará a cabo a lo largo de la investigación científica. Además,
+las reglas del método científico no son autosuficientes, necesitan apoyarse en la inteligencia y
+creatividad humanas.</p>
+<p>En resumen, es el tratamiento sistemático de los problemas, de la forma descrita, y no la certeza
+de los resultados obtenidos o la utilización de las técnicas muy concretas y específicas, el que
+garantiza el carácter científico de las conclusiones <span class="citation">(<a href="referencias.html#ref-cancelo_1991">Cancelo 1997</a>)</span>. La ciencia de datos, como no podía ser
+de otra forma, proporciona una serie de metodologías que guían el trabajo de los científicos de
+datos. Las principales metodologías se presentan a continuación.</p>
+</div>
+<div id="principales-metodologías-en-ciencia-de-datos" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Principales metodologías en ciencia de datos<a class="anchor" aria-label="anchor" href="#principales-metodolog%C3%ADas-en-ciencia-de-datos"><i class="fas fa-link"></i></a>
+</h2>
+<p></p>
+<p>En un proyecto de ciencia de datos es muy importante la metodología, pues proporciona al
+científico de datos una estrategia y un marco con el que trabajar. Desde finales del siglo XX se
+han ido proponiendo diversas metodologías, centradas en la resolución de problemas concretos
+mediante el uso de los datos, que hoy podrían englobarse bajo el paraguas común de la ciencia de
+datos.</p>
+<p>Estas metodologías han nacido y se han desarrollado en el ámbito de los problemas de negocio,
+aunque todas son extrapolables a otros ámbitos de conocimiento (educación, ciencia, salud,
+etc.). Por tanto, en este capítulo (y, en general, en todo el manual)
+el término de “negocio” (empleado en las propias metodologías
+frecuentemente) debe ser entendido en sentido amplio, abarcando los diversos ámbitos del
+conocimiento en los que se aplica la ciencia de datos.</p>
+<p>Por su amplio uso, destacan tres metodologías:</p>
+<ol style="list-style-type: lower-roman">
+<li><p>Obtención de conocimiento en bases de datos (en inglés <em>Knowledge Discovery in Databases</em>, <strong>KDD</strong>), propuesta
+por <span class="citation">Fayyad et al. (<a href="referencias.html#ref-fayyad_1996">1996</a>)</span> e inspirada en un trabajo previo de <span class="citation">Brachman and Anand (<a href="referencias.html#ref-brachman_1994">1994</a>)</span>, fue
+la primera metodología aceptada por la comunidad científica. Se trata
+del primer intento serio de sistematizar el proceso conocido hoy día como ciencia de datos y en
+aquellos tiempos como conocimiento basado en bases de datos, pues se centraba en la minería
+de datos.</p></li>
+<li><p><strong>SEMMA</strong>, acrónimo que coincide con las etapas de las que consta (en inglés,
+<em>Sample</em>, <em>Explore</em>, <em>Modify</em>, <em>Model and Assess</em>) fue desarrollada y mantenida
+por el Instituto SAS en 2012. Se define como el proceso de selección, exploración y modelización de grandes
+bases de datos para descubrir patrones de negocio desconocidos. </p></li>
+<li><p><strong>CRISP-DM</strong>, acrónimo en inglés de <em>Cross Industry Standard Process for Data Mining</em>, planteada
+inicialmente en 1996, publicada formalmente en <span class="citation">Chapman et al. (<a href="referencias.html#ref-chapman2000crisp">2000</a>)</span> y mantenida durante varios años por
+la compañía SPSS, posteriormente adquirida por IBM, que se ha encargado de mantenerla y
+refinarla hasta la actualidad. Esta metodología define una secuencia flexible de
+seis fases que permiten la construcción e implementación de un modelo de minería de datos para
+ser utilizado en un entorno real, que contribuya a respaldar la toma de decisiones de negocio.
+Se considera la metodología más utilizada en la actualidad <span class="citation">(<a href="referencias.html#ref-azevedo_2008">Azevedo and Santos 2008</a>; <a href="referencias.html#ref-shafique_2014">Shafique and Qaiser 2014</a>, entre otros)</span> y
+se describe en la siguiente sección. </p></li>
+</ol>
+</div>
+<div id="met-crisp-dm" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> CRISP-DM para ciencia de datos<a class="anchor" aria-label="anchor" href="#met-crisp-dm"><i class="fas fa-link"></i></a>
+</h2>
+<p>La metodología CRISP-DM consta de seis etapas, que no han variado desde su publicación en
+2000 (Fig. <a href="metodologia.html#fig:crisp-dm">2.1</a>) y una serie de funciones que se han sido refinando en el tiempo
+<a href="https://www.ibm.com/docs/es/spss-modeler/saas?topic=dm-crisp-help-overview">(CRISP-DM, 2021)</a>.
+De manera esquemática, dichas etapas son:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:crisp-dm"></span>
+<img src="img/crisp-dm2.png" alt="Etapas de la metodología CRISP-DM." width="60%"><p class="caption">
+Figura 2.1: Etapas de la metodología CRISP-DM.
+</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>
+<p><strong>Entendimiento del negocio</strong>. Fundamental para el éxito del mismo.
+Consta de cuatro fases:</p>
+<ul>
+<li><p><em>Determinación de los objetivos de negocio</em>, consensuados
+previamente con la organización. Es importante fijar los <em>key
+performance indicators</em> (KPI) que permitan medir fidedignamente el
+grado de consecución de dichos objetivos.</p></li>
+<li><p><em>Evaluación de la situación actual</em>. Inventariar las fuentes de datos que
+estarán disponibles, los recursos materiales y humanos con los que se podrá contar,
+los factores de riesgo y el plan de contingencia para los mismos.</p></li>
+<li><p><em>Determinación de los objetivos del proyecto</em>, que debe alinearse con el correspondiente
+rendimiento de los modelos (por ejemplo, cuál debe de ser su nivel de precisión).</p></li>
+<li><p><em>Plan del proyecto</em>, con los procesos a realizar y recursos
+asignados.</p></li>
+</ul>
+</li>
+<li>
+<p><strong>Comprensión de los datos</strong>. Consta de cuatro fases que giran en torno a los datos:</p>
+<ul>
+<li><p><em>Recopilación</em>, tanto de datos internos como externos a la organización. Esta fase
+incluye, si es necesario, la obtención de datos adicionales y el etiquetado de casos no
+clasificados con anterioridad.</p></li>
+<li><p><em>Descripción</em>, especificando aspectos como la cantidad de datos disponibles,
+anticipando posibles problemas de rendimiento en el modelado posterior, tipología de las
+variables (numéricas, categóricas, booleanas, etc.),
+codificación de las mismas (especialmente para las categóricas), etc.</p></li>
+<li><p><em>Exploración</em>, a tavés del análisis exploratorio de datos (AED). Esta tarea ayuda a
+formular hipótesis sobre los datos y dirige las posteriores etapas de preparación y modelado.</p></li>
+<li><p><em>Verificación de la calidad</em>, detectando problemas como la existencia de valores perdidos, errores en
+datos (por ejemplo, tipográficos), errores de las mediciones (datos que son correctos
+pero que están expresados en unidades de medida incorrectas), incoherencias en la
+codificación (especialmente en las variables categóricas).</p></li>
+</ul>
+</li>
+<li>
+<p><strong>Preparación de los datos</strong>. Esta etapa del proyecto suele ser la que requiere más tiempo y esfuerzo (frecuentemente más del 70 %). Consta de cinco fases:</p>
+<ul>
+<li><p><em>Selección:</em> se toman decisiones sobre los casos o filas que hay que seleccionar y sobre
+los atributos (variables) o columnas que hay que incluir.</p></li>
+<li><p><em>Limpieza:</em> si en la subfase de verificación de la calidad de los datos se han detectado problemas, hay que subsanarlos. Los valores perdidos se pueden excluir o interpolar; los errores en los datos se pueden corregir con algún esquema lógico o manualmente; si hubiera incoherencias en la codificación se podría llevar a cabo una recodificación que sustituyese a la codificación original.</p></li>
+<li><p><em>Construcción</em>: a partir de los datos ya disponibles, de nuevos atributos (variables) o columnas y de nuevas filas o registros.</p></li>
+<li><p><em>Integración</em>: necesaria para construir un concepto de negocio unificado (por ejemplo, el concepto de cliente) si se han usado diversas fuentes (tíquet de compra y registros de cliente). La fusión de columnas con algunas claves en común (<em>join</em>), adición de filas con las columnas en común (<em>union</em>), la agrupación, etc., se utilizan frecuentemente.</p></li>
+<li><p><em>Formateo</em>: orientada a las necesidades de los modelos que se usarán posteriormente. La conversión de variables categóricas a numéricas (usando técnicas de <em>one hot encoding</em>) o viceversa, la normalización (usando normalizaciones <em>min-max</em> o <em>z-score</em>), etc., son tareas comunes en esta etapa.</p></li>
+</ul>
+</li>
+</ol>
+<ol start="4" style="list-style-type: lower-roman">
+<li>
+<p><strong>Modelado</strong>: se trata de que los modelos ingieran dichos datos y aprendan de ellos, de forma
+automática, cómo resolver el problema de negocio planteado mediante técnicas, especialmente
+de <em>machine learning</em>. Las subfases de las que consta esta fase son:</p>
+<ul>
+<li><p><em>Selección de técnicas de modelado</em>, si se va a usar <em>machine learning</em> supervisado o no supervisado y, especifícamente, el tipo de algoritmos a usar en cada una de estas técnicas. Por supuesto, se tienen en cuenta los requisitos fijados en la primera fase, la cantidad y tipo de datos de los que se dispone, los requisitos concretos de cada modelo, etc.</p></li>
+<li><p><em>Generación de un diseño de comprobación</em>, a través de medidas
+y criterios de bondad del modelo: el área bajo la curva ROC, el criterio de información de Akaike (AIC), el coeficiente de determinación lineal (<span class="math inline">\(R^2\)</span>), la matriz de confusión, etc.</p></li>
+<li><p><em>Generación de modelos</em>, que se entrenan oportunamente para seleccionar, posteriormente, el más adecuado.</p></li>
+<li><p><em>Validación del modelo</em>, en función de los modelos generados y del plan de pruebas especificado.</p></li>
+</ul>
+</li>
+<li><p><strong>Evaluación</strong>. Se debe comprobar que el modelo final generado cumple las expectativas de
+negocio especificadas en la primera fase. Hay que hacer hincapié en este aspecto ya que se
+suele confundir en la práctica esta fase de evaluación con la subfase de la anterior etapa
+de validación del modelo. Ahora la evaluación se lleva a cabo desde el punto de vista del negocio.
+Así, por ejemplo, cabe plantearse si con el modelo elegido se pueden alcanzar las metas de
+negocio especificadas y medidas con los correspondientes KPI. Tras esta evaluación de los
+resultados del modelo se abre un proceso de revisión que permitirá valorar si
+cumple las expectativas o se tiene que volver a etapas anteriores.</p></li>
+<li>
+<p><strong>Implementación</strong>. El conocimiento obtenido con el modelado es puesto en valor en esta
+fase de cara a satisfacer los objetivos de negocio planteados en el proyecto. Este despliegue
+depende mucho del tipo de proyecto que se esté realizando, aunque generalmente incluye
+las actividades siguientes:</p>
+<ul>
+<li><p><em>Planificación del despliegue</em>: del modelado y/o del
+conocimiento obtenido.</p></li>
+<li><p><em>Planificación del control y del mantenimiento</em>. Así, por ejemplo, hay que verificar que el modelo está cumpliendo con las expectativas para las que se ha desarrollado, comprobar si hay que reentrenarlo o sustituirlo por otro, etc.</p></li>
+<li><p><em>Creación del informe final</em>: para comunicar los resultados del proyecto y los pasos siguientes.</p></li>
+<li><p><em>Revisión final del proyecto</em>: donde se establecen las conclusiones finales y se formalizan las lecciones aprendidas para incorporarlas a futuros proyectos de ciencia de datos.</p></li>
+</ul>
+</li>
+</ol>
+<p>Para concluir, cabe subrayar que, aunque son varias las metodologías propuestas, CRISP-DM
+es la más completa, la más desarrollada y, además, puede ser implementada, como
+todas las propuestas en la literatura, mediante el lenguaje <strong>R</strong>.</p>
+<div id="resumen-1" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-1"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>El método científico es el elemento clave en la definición de ciencia.</p></li>
+<li><p><span class="citation">Bunge (<a href="referencias.html#ref-Bunge_2018">2018</a>)</span> establece una serie de reglas y características para la correcta aplicación de la metodología científica. En un proyecto de ciencia de datos es muy importante la metodología, pues proporciona al
+científico de datos una estrategia y un marco en el que trabajar. Entre ellas destaca
+el CRISP-DM como la más aceptada y utilizada por las empresas y científicos.</p></li>
+<li><p>El CRISP-DM se basa en la organización flexible de seis pilares: entendimiento del negocio, compresión de los
+datos, preparación de los datos, modelado, evaluación e implementación.</p></li>
+</ul>
+</div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></div>
+<div class="next"><a href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#metodologia"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="nav-link" href="#preliminares"><span class="header-section-number">2.1</span> Preliminares</a></li>
+<li><a class="nav-link" href="#principales-metodolog%C3%ADas-en-ciencia-de-datos"><span class="header-section-number">2.2</span> Principales metodologías en ciencia de datos</a></li>
+<li>
+<a class="nav-link" href="#met-crisp-dm"><span class="header-section-number">2.3</span> CRISP-DM para ciencia de datos</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#resumen-1">Resumen</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

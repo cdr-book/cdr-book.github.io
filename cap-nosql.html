@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 6 Gestión de bases de datos NoSQL | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="Ricardo Pérez-Castillo\(^{a}\) e Ismael Caballero\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  6.1 Introducción al big data  Actualmente se vive en la era de la información, con un teléfono...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Capítulo 6 Gestión de bases de datos NoSQL | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="Ricardo Pérez-Castillo\(^{a}\) e Ismael Caballero\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  6.1 Introducción al big data  Actualmente se vive en la era de la información, con un teléfono...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 6 Gestión de bases de datos NoSQL | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="Ricardo Pérez-Castillo\(^{a}\) e Ismael Caballero\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  6.1 Introducción al big data  Actualmente se vive en la era de la información, con un teléfono...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="active" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="cap-nosql" class="section level1" number="6">
+<h1>
+<span class="header-section-number">Capítulo 6</span> Gestión de bases de datos NoSQL<a class="anchor" aria-label="anchor" href="#cap-nosql"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>Ricardo Pérez-Castillo</em><span class="math inline">\(^{a}\)</span> e <em>Ismael Caballero</em><span class="math inline">\(^{a}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad de Castilla-La Mancha</p>
+<div id="introducción-al-big-data" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> Introducción al <em>big data</em><a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-al-big-data"><i class="fas fa-link"></i></a>
+</h2>
+<p></p>
+<p>Actualmente se vive en la era de la información, con un teléfono móvil en cada bolsillo, un ordenador portátil en cada mochila y grandes sistemas de tecnología funcionando diariamente mandando datos y datos cada segundo. El mundo tiene más datos que nunca, pero esto no es todo, ya que el volumen aumenta de forma exponencial <span class="citation">(<a href="referencias.html#ref-Lopez2012">López 2012</a>)</span>. Es la era de las bases de datos masivos, en inglés <em>big data</em>.</p>
+<p>En particular, el volumen de datos disponibles para las empresas aumentó drásticamente desde 2004. En 2004, la cantidad total de datos almacenados en Internet fue de 1 petabyte (equivalente a 100 años de todo el contenido de televisión). En 2011 la cantidad total de información almacenada en todo el mundo ya era de 1 zettabyte (1 millón de petabytes o 36 millones de años de vídeo de alta definición); en 2015 alcanzó los 7,9 zettabytes (o 7,9 millones de petabytes) y en 2020 se disparó a 35 zettabytes (o 35 millones de petabytes). Este gran volumen de datos, y su crecimiento continuo y exponencial, supera las capacidades de las herramientas de datos tradicionales para capturarlos, almacenarlos, administrarlos y analizarlos <span class="citation">(<a href="referencias.html#ref-Kalyvas2014">Kalyvas and Overly 2014</a>)</span>. Por este motivo, se hace necesario el uso de nuevos métodos, técnicas y herramientas de gestión de datos. Este espacio es el que cubre <em>big data</em>.</p>
+<p><em>Big data</em> es un término abstracto que, en cierta medida, se ha puesto de moda en diferentes ámbitos: negocios, marketing, <em>social media</em> y diferentes ingenierías como la informática, sistemas de información, almacenamiento y recuperación de datos, etc. <em>Big data</em> es un término que hace referencia al gran volumen de datos (tanto estructurados como no estructurados) que inundan día a día a cualquier organización. Pero lo más relevante no es la cantidad de datos. Lo que realmente importa es lo que las organizaciones pueden hacer con los datos. Los grandes volúmenes de datos se pueden analizar, por ejemplo, en busca de ideas conducentes a una mejor toma de decisiones y movimientos comerciales estratégicos <span class="citation">(<a href="referencias.html#ref-SAS2017">SAS Institute 2017</a>)</span>.</p>
+<p>Cuando se acumulan grandes volúmenes de datos, se plantea la necesidad de ver qué se puede hacer con ellos. Esto implica gestionar los datos con una finalidad organizativa y disponer de tecnología y metodologías específicas. La propia gestión de datos lleva a generar información relevante en el contexto de la organización, es decir, a generar conocimiento para la acción que sea aplicable: por ejemplo, a la toma de decisiones, al diseño de acciones o a la elaboración de planes estratégicos <span class="citation">(<a href="referencias.html#ref-Alsina2017">García-Alsina 2017</a>)</span>.</p>
+<p>Por tanto, cuando se habla de datos masivos, se está hablando también de gestión de la información y de generación de conocimiento para la acción. Este campo científico es el que proporciona las pautas metodológicas para gestionar grandes volúmenes de datos con el fin de crear valor mediante una serie de procesos y procedimientos. Pero exige contar con la tecnología para capturar los datos, procesarlos, analizarlos e interpretarlos de manera eficaz y eficiente <span class="citation">(<a href="referencias.html#ref-Alsina2017">García-Alsina 2017</a>; <a href="referencias.html#ref-GomezGarcia2015">Gómez García, Conesa, and Caralt 2015</a>)</span>.</p>
+<p>Por consiguiente, se puede concluir que <em>big data</em> es el “conjunto de datos masivos heterogéneos que supera la capacidad del software habitual para ser capturados, gestionados y procesados en un tiempo razonable”. Esta definición tiene en cuenta tres de las V del <em>big data</em> (véase Sec. <a href="cap-nosql.html#VsBigData">6.2</a>): volumen, variabilidad y velocidad. Así, cuando se habla de <em>big data</em> se está haciendo referencia a conjuntos de datos o combinaciones de conjuntos de datos cuyo tamaño (<strong>volumen</strong>), complejidad (<strong>variabilidad</strong>) y <strong>velocidad</strong> de crecimiento dificultan su captura, gestión, procesamiento y análisis mediante tecnologías y herramientas convencionales, tales como las bases de datos relacionales y los paquetes de visualización y técnicas estadísticas convencionales, en el tiempo necesario para que sean útiles.</p>
+</div>
+<div id="VsBigData" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Las V del <a class="anchor" aria-label="anchor" href="#VsBigData"><i class="fas fa-link"></i></a>
+</h2>
+<p></p>
+<p>El <strong>volumen</strong> se refiere a la cantidad de datos que son generados cada segundo, minuto y día en nuestro entorno. Es la característica más asociada al <em>big data</em>, ya que hace referencia a las cantidades masivas de datos que se almacenan con la finalidad de procesar dicha información, transformando los datos en acciones. Las personas están cada vez más conectadas al mundo digital, por lo que se generan más y más datos. Para algunas empresas, el estar en el mundo digital es algo obligatorio, por lo que la cantidad de datos generados es aún mayor. Por ejemplo, a una empresa que vende sus productos únicamente a través de un canal online, le convendría implantar tecnología <em>big data</em> para procesar toda aquella información que recoge su página web rastreando todas las acciones que lleva a cabo el cliente: conocer donde cliquea más veces, cuántas veces ha pasado por el carrito de la compra, cuáles son los productos más vistos, las páginas más visitadas, etc.</p>
+<p>La <strong>velocidad</strong> se refiere a la rapidez con la que los datos son creados, almacenados y procesados en tiempo real. Así, en procesos como la detección de fraude en una transacción bancaria o la monitorización de un evento en redes sociales, el tratamiento de la información en tiempo real es imprescindible para que resulten útiles y den lugar a acciones efectivas. Otros ejemplos son la gestión de catástrofes naturales o pandemias, o el seguimiento de una campaña analizando comentarios de los actores a quienes esta va dirigida, para ir reorientándola en función de la retroalimentación que fluye en redes sociales <span class="citation">(<a href="referencias.html#ref-Alsina2017">García-Alsina 2017</a>)</span>.</p>
+<p>La <strong>variedad</strong> se refiere a que los sistemas de procesamiento del <em>big data</em> deben ser capaces de procesar datos de diversas formas, tipos y fuentes. Los datos pueden ser estructurados y fáciles de gestionar, como las bases de datos relacionales, o no estructurados, entre los que se incluyen desde documentos de texto, correos electrónicos, datos de sensores, audios, vídeos o imágenes que se tienen en un dispositivo móvil hasta publicaciones en los perfiles de redes sociales, artículos en blogs, secuencias de clic que los usuarios hacen en una misma página, formularios de registro e infinidad de acciones más que se realizan desde un <em>smartphone</em>, una <em>tablet</em> o un ordenador. Este tipo de datos requiere un herramental específico, ya que su tratamiento es totalmente diferente al de los datos estructurados. Por ello, las empresas necesitan disponer de las herramientas apropiadas para integrar, observar y procesar este tipo de datos.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Los datos estructurados y no estructurados se abordan en detalle en la siguiente sección.&lt;/p&gt;"><sup>51</sup></a></p>
+<p>Con el tiempo, se han ido incorporando, progresivamente, otras V: las V de <strong>valor</strong> (de enorme interés en el análisis de datos), <strong>veracidad</strong>, <strong>viabilidad</strong> y <strong>visualización</strong> <span class="citation">(<a href="referencias.html#ref-IIC2016">IIC 2016</a>)</span>.</p>
+</div>
+<div id="tipos-de-datos-en-entornos" class="section level2" number="6.3">
+<h2>
+<span class="header-section-number">6.3</span> Tipos de datos en entornos <a class="anchor" aria-label="anchor" href="#tipos-de-datos-en-entornos"><i class="fas fa-link"></i></a>
+</h2>
+<p>En función de la estructura con la que se organizan los datos (forma en la que se agrupan, almacenan y se relacionan entre sí y manera en la que se puede acceder a ellos, analizarlos o modificarlos), estos pueden clasificarse en: estructurados, no estructurados o semiestructurados.</p>
+<p>
+</p>
+<ul>
+<li><p><strong>Datos estructurados</strong>: son aquellos que tienen longitud y formato, como las fechas, los números o las cadenas de caracteres. En esta categoría entran los que se compilan en los censos de población, los diferentes tipos de encuestas, los datos de transacciones bancarias, las compras en tiendas online, etc.</p></li>
+<li><p><strong>Datos no estructurados</strong>: son los que carecen de un formato determinado y no pueden ser almacenados en una tabla. Pueden ser de tipo texto (los que generan los usuarios de foros, redes sociales, documentos de Word, etc.), y los de tipo no-texto (cualquier fichero de imagen, audio, vídeo …). Este tipo de datos no tiene campos fijos y normalmente se tiene poco control sobre ellos. Su manipulación requiere tecnología de bases de datos <em>bigdata</em>, también conocidas como bases de datos NoSQL (<em>Not only SQL</em>).</p></li>
+<li><p><strong>Datos semiestructurados</strong>: poseen organización interna o marcadores que facilitan el tratamiento de sus elementos. No pertenecen a bases de datos relacionales. Es el caso de documentos XML, HTML o los datos almacenados en bases de datos NoSQL, que tienen una cierta estructura, aunque sin llegar a estar totalmente estructurados. También se pueden incluir en este tipo de datos los multiestructurados o híbridos (datos de mercados emergentes, <em>e-commerce</em>, datos meteorológicos, etc.).</p></li>
+</ul>
+</div>
+<div id="por-qué-bases-de-datos-nosql" class="section level2" number="6.4">
+<h2>
+<span class="header-section-number">6.4</span> ¿Por qué bases de datos NoSQL?<a class="anchor" aria-label="anchor" href="#por-qu%C3%A9-bases-de-datos-nosql"><i class="fas fa-link"></i></a>
+</h2>
+<p>
+</p>
+<p>Lo que hace que el <em>big data</em> sea tan útil para muchas empresas e instituciones es el hecho de que proporciona respuestas a muchas preguntas que dichas empresas e instituciones ni siquiera sabían que tenían. En otras palabras, proporciona un punto de referencia. Con una cantidad tan grande de información, los datos pueden ser moldeados o probados de cualquier manera que la organización considere adecuada. Al hacerlo, las organizaciones son capaces de identificar los problemas de una forma más comprensible.</p>
+<p>La recopilación de grandes cantidades de datos y la búsqueda de tendencias en ellos permite que las organizaciones sean más ágiles y actúen mucho más rápidamente, sin problemas y de manera más eficaz. También les permite eliminar las áreas problemáticas antes de que los problemas acaben con sus beneficios o su reputación.</p>
+<p>El análisis de <em>big data</em> ayuda a las organizaciones a aprovechar sus datos y utilizarlos para identificar nuevas oportunidades. Eso, a su vez, conduce a movimientos de negocio (o de otro tipo) más inteligentes, operaciones más eficientes, mayores ganancias y clientes más satisfechos. Las organizaciones más existosas con <em>big data</em> consiguen valor de las siguientes formas:</p>
+<ul>
+<li>
+<strong>Reducción de costes</strong>. Las grandes tecnologías de datos, como Hadoop y el análisis basado en la nube, aportan importantes ventajas en términos de costes cuando se trata de almacenar grandes cantidades de datos, además de identificar maneras más eficientes de hacer negocios.</li>
+<li>
+<strong>Mejores decisiones y más rápidas</strong>. Con la velocidad de las bases de datos NoSQL y la analítica en memoria, combinada con la capacidad de analizar nuevas fuentes de datos, las organizaciones pueden analizar la información inmediatamente y tomar decisiones basadas en lo que han aprendido.</li>
+<li>
+<strong>Nuevos productos y servicios</strong>. Con la capacidad de medir las necesidades de los clientes y su satisfacción a través de análisis, viene la posibilidad de dar a los clientes lo que quieren. Con la analítica de <em>big data</em>, cada vez son más las organizaciones que están creando nuevos productos para satisfacer las necesidades de los clientes.</li>
+</ul>
+<p>Existen ciertas diferencias entre las fuentes de datos tradicionales y las nuevas fuentes de datos que considera <em>big data</em>. Un resumen de las mismas puede verse en la Tabla <a href="cap-nosql.html#tab:tab1">6.1</a>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:tab1">Tabla 6.1: </span> Diferencias entre tecnologías tradicionales y tecnologías <em>big data</em>
+</caption>
+<colgroup>
+<col width="44%">
+<col width="55%">
+</colgroup>
+<thead><tr class="header">
+<th align="center"><strong>Tradicionales</strong></th>
+<th align="center"><strong><em>Big data</em></strong></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">Bases de datos relacionales</td>
+<td align="center">Bases de datos relacionales + NoSQL</td>
+</tr>
+<tr class="even">
+<td align="center">Consultas</td>
+<td align="center">Consultas, capturas y procesamientos</td>
+</tr>
+<tr class="odd">
+<td align="center">Datos homogéneos</td>
+<td align="center">Datos heterogéneos</td>
+</tr>
+<tr class="even">
+<td align="center">Ámbito de la informática</td>
+<td align="center">Todos los ámbitos</td>
+</tr>
+</tbody>
+</table></div>
+<p>En primer lugar, la tecnología tradicional de almacenamiento y gestión de datos (desde final de los años 80) han sido las bases de datos relacionales. Aunque las bases de datos relacionales no son, ni mucho menos, una tecnología en desuso, los entornos <em>big data</em> consideran otras tecnologías como, por ejemplo, las bases de datos NoSQL, que son bases de datos no relacionales optimizadas para modelos de datos sin esquema y de desempeño escalable. También son muy conocidas por su facilidad de desarrollo, baja latencia y resiliencia <span class="citation">(<a href="referencias.html#ref-AWS2018">Amazon Web Services 2018</a>)</span>.</p>
+<p>A diferencia de las bases de datos basadas en SQL, las bases NoSQL no usan tablas tradicionales con líneas y columnas para almacenar datos, sino que los organizan con técnicas más flexibles, como, por ejemplo, documentos, gráficos, pares de valores y columnas. Por ello, son ideales para aplicaciones en las que se procesan grandes volúmenes de datos y que requieren estructuras flexibles. Como los sistemas NoSQL hacen uso de clústeres de hardware y servidores de nube, las capacidades se distribuyen de manera uniforme y la base de datos funciona con fluidez, aunque el volumen de datos sea grande. A diferencia de las bases de datos relacionales, cuyo rendimiento se reduce notablemente cuando aumenta el volumen de datos, las bases NoSQL suponen una solución potente, flexible y escalable incluso con grandes volúmenes de datos. Otra particularidad de los sistemas NoSQL es el escalamiento horizontal. Las bases de datos SQL relacionales cuentan con un escalamiento vertical y toda su capacidad de rendimiento se basa en un solo servidor. Sin embargo, en general, las soluciones NoSQL distribuyen los datos en varios servidores. Si aumenta el volumen de datos, simplemente se añaden nuevos servidores.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.ionos.es/digitalguide/hosting/cuestiones-tecnicas/nosql/" class="uri"&gt;https://www.ionos.es/digitalguide/hosting/cuestiones-tecnicas/nosql/&lt;/a&gt;&lt;/p&gt;'><sup>52</sup></a></p>
+<p>Otra gran diferencia respecto a las tecnologías tradicionales es que los entornos <em>big data</em> no solo se centran en la consulta de datos, sino también en su captura y procesamiento (véase la Tabla <a href="cap-nosql.html#tab:tab1">6.1</a>). Además, las fuentes de datos pueden proveer datos heterogéneos con formatos heterogéneos. Estas diferencias hacen que no siempre sea suficiente un ámbito de trabajo puramente informático, tendiendo a equipos multidisciplinares cuando se habla de proyectos <em>big data</em> (ingeniería, estadística, etc.).</p>
+</div>
+<div id="bases-de-datos-nosql" class="section level2" number="6.5">
+<h2>
+<span class="header-section-number">6.5</span> Bases de datos NoSQL<a class="anchor" aria-label="anchor" href="#bases-de-datos-nosql"><i class="fas fa-link"></i></a>
+</h2>
+<p></p>
+<div id="FundamentosNoSQL" class="section level3" number="6.5.1">
+<h3>
+<span class="header-section-number">6.5.1</span> Fundamentos de las bases de datos NoSQL<a class="anchor" aria-label="anchor" href="#FundamentosNoSQL"><i class="fas fa-link"></i></a>
+</h3>
+<p>El término NoSQL se usa la primera vez en 1998 para referirse a una base de datos relacional sin SQL <span class="citation">(<a href="referencias.html#ref-Strozzi98">Strozzi 1998</a>)</span>. NoSQL no significa estar en contra de SQL, y de hecho esto suele ser una falacia encontrada en la literatura. Sin embargo, para determinados problemas hay otras soluciones de almacenamiento más apropiadas. En la actualidad el término NoSQL se refiere a bases de datos que no solo tienen SQL (<em>not only</em> SQL).</p>
+<p>Hay una gran variedad de sistemas de gestión de bases de datos que no usan SQL como principal lenguaje de consultas. Los datos almacenados no requieren estructuras fijas como tablas y no se garantizan completamente los <strong>principios ACID</strong> (<em>atomicity</em>, <em>consistency</em>, <em>isolation</em>, <em>durability</em>) que sí deben cumplir las bases de datos relacionales (SQL):</p>
+<ul>
+<li>
+<strong>Atomicidad</strong>. Las <em>transacciones</em> se ejecutan completamente o no. Si fallan es como si ni siquiera se hubieran intentado ejecutar.</li>
+<li>
+<strong>Consistencia</strong>. Un sistema consistente garantiza que cualquier <em>transacción</em> llevará a la base de datos de un estado válido a otro estado válido. Cualquier dato que se escriba en la base de datos tiene que ser válido de acuerdo con todas las reglas de integridad definidas en el modelo.</li>
+<li>
+<strong>Aislamiento</strong>. Cuando varias <em>transacciones</em> se ejecutan en paralelo, cada una de ellas ataca la base de datos de la misma manera a como lo haría si se ejecutara cada operación individual de forma aislada o secuencial.</li>
+<li>
+<strong>Durabilidad</strong>. El resultado de las transacciones es un cambio en el estado del sistema persistente. Si se apaga la máquina y se arranca de nuevo, el cambio producido por la transacción aún está presente.</li>
+</ul>
+<div class="infobox">
+<p><strong>Nota</strong></p>
+<p>Una <strong><em>transacción</em></strong> en una base de datos se refiere a un bloque de operaciones sobre los datos que debe completarse en su conjunto, o de lo contrario, en caso de un error puntual, se restaura el estado de la base de datos a su estado anterior, antes del inicio de la transacción.</p>
+</div>
+<p>A pesar de todo, las bases de datos NoSQL se denominan “no solo SQL” para subrayar el hecho de que también pueden soportar lenguajes de consulta de tipo SQL.</p>
+<p>Se puede decir el término NoSQL aparece con la llegada de la web 2.0, ya que hasta ese momento solo subían contenido a la red aquellas empresas que tenían un portal. Pero con la llegada de aplicaciones como Facebook, Twitter o YouTube, entre otras, cualquier usuario podía subir contenido, provocando así un crecimiento exponencial de los datos <span class="citation">(<a href="referencias.html#ref-Acens2014">acens.com 2014</a>)</span>.</p>
+<p>Es en este momento cuando empiezan a aparecer los primeros problemas relacionados con la gestión de toda esa información almacenada en bases de datos relacionales.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Recuérdese (Cap. &lt;a href="datos-sql.html#datos-sql"&gt;5&lt;/a&gt;) que una base de datos relacional se basa en una organización tabular de los datos y que pivota sobre el concepto de “relación” (que no es precisamente el que al lector le viene a la mente de inmediato). Formalmente, una relación representa un conjunto de entidades con las mismas propiedades y se compone de una serie de filas (o registros; también denominados tuplas) y columnas (atributos). Un ejemplo de relación pueden ser los equipos de fútbol de la primera división española, estando en cada fila los distintos equipos y en cada columna los atributos que se consideran (ciudad a la que pertenece, presupuesto, nombre del entrenador, puesto en el último campeonato, número de jugadores españoles…).&lt;/p&gt;'><sup>53</sup></a> En un principio, para solucionar estos problemas de accesibilidad, las empresas optaron por utilizar un mayor número de máquinas, pero pronto se dieron cuenta de que esto no solucionaba el problema, además de ser una solución muy cara. La otra opción era la creación de sistemas pensados para un uso específico que con el paso del tiempo han dado lugar a soluciones robustas, apareciendo así el movimiento NoSQL <span class="citation">(<a href="referencias.html#ref-Acens2014">acens.com 2014</a>)</span>.</p>
+<p>Por tanto, siguiendo de nuevo a <span class="citation">acens.com (<a href="referencias.html#ref-Acens2014">2014</a>)</span>, hablar de bases de datos NoSQL es hablar de estructuras que permiten almacenar información en aquellas situaciones en las que las bases de datos relacionales generan ciertos problemas debidos, principalmente, al aumento progresivo de la capacidad de almacenamiento (escalabilidad) y rendimiento al darse cita miles de usuarios concurrentes y con millones de consultas diarias.</p>
+<p>Además, como se esbozó al principio de la sección, las bases de datos NoSQL son sistemas de almacenamiento de información que no cumplen con el esquema “entidad–relación”. Tampoco utilizan una estructura de datos en forma de tabla donde se van almacenando los datos, sino que para el almacenamiento hacen uso de otros formatos como “clave–valor”, mapeo de columnas o grafos.</p>
+<p>Las bases de datos relacionales modernas normalmente han mostrado poca eficiencia en determinadas aplicaciones que usan los datos de forma intensiva, incluyendo el indexado de un gran número de documentos, la presentación de páginas en sitios que tienen gran tráfico y en sitios de <em>streaming</em> audiovisual. Las implementaciones típicas de los sistemas gestores de bases de datos realacionales (SGBDR) se han afinado, bien para una cantidad pequeña pero frecuente de lecturas y escrituras, bien para un gran conjunto de transacciones que tiene pocos accesos de escritura. Sin embargo, NoSQL puede servir gran cantidad de carga de lecturas y escrituras.</p>
+</div>
+<div id="necesidades-no-cubiertas-por-las-bases-de-datos-relacionales" class="section level3" number="6.5.2">
+<h3>
+<span class="header-section-number">6.5.2</span> Necesidades no cubiertas por las bases de datos relacionales<a class="anchor" aria-label="anchor" href="#necesidades-no-cubiertas-por-las-bases-de-datos-relacionales"><i class="fas fa-link"></i></a>
+</h3>
+<p></p>
+<p>Las bases de datos NoSQL son, principalmente, bases de datos distribuidas escalables horizontalmente y que no se basan en esquemas de datos predefinidos, por lo que ofrecen una fácil replicación y un conjunto sencillo de operaciones y consultas para el acceso a un gran volumen de datos.</p>
+<p>La necesidad de este tipo de bases de datos surge porque hay fuentes de datos que son difíciles de modelar en bases de datos relacionales. Algunos ejemplos son texto (datos no estructurados), procesado en <em>streaming</em> (flujo continuo de datos) y bases de datos científicas (estructuras multidimensionales).</p>
+<p>Como se avanzó en la Sec. <a href="cap-nosql.html#FundamentosNoSQL">6.5.1</a>, las características de las nuevas aplicaciones de Internet, como las redes sociales, juegos online, etc., hacen que las bases de datos NoSQL sean necesarias para conseguir mayor velocidad, escalabilidad, independencia de la localización, disponibilidad y mejor gestión, sea cual sea el tipo de datos:</p>
+<ul>
+<li>
+<strong>Velocidad</strong>. Para demostrar la importancia de la velocidad en Internet, sirva como ejemplo cómo dos grandes compañías monetizan la velocidad de acceso. Por un lado, Amazon tiene estudiado que cuando el tiempo de respuesta disminuye 100 ms los ingresos aumentan en un 1%. Por otro lado, Yahoo asegura que el tráfico aumenta en un 9% cuando el rendimiento mejora en 400 ms. De ahí la importancia de esta V del <em>big data</em> para la evolución hacia bases de datos NoSQL.</li>
+<li>
+<strong>Escalabilidad</strong>. Al principio, la web se consideró una interfaz más, pero no es solo eso; se ha convertido en un elemento generador y consumidor de datos (fundamentalmente semiestructurados y no estructurados). En el contexto actual, las compañías necesitan mantener una respuesta rápida, aunque se incremente el número de usuarios simultáneos o el volumen de datos manejado. Además, la arquitectura de las bases de datos NoSQL permite: <span class="math inline">\((i)\)</span> escalar sin disminuir el rendimiento; <span class="math inline">\((ii)\)</span> añadir nodos sobre la marcha, es decir, sin interrupciones del servicio; <span class="math inline">\((iii)\)</span> evitar que se generen cuellos de botella. La Fig. <a href="cap-nosql.html#fig:FigNoSQL1">6.1</a> <span class="citation">(adaptada de <a href="referencias.html#ref-LO2017">Lo 2017</a>)</span> muestra una representación comparativa de la escalabilidad de las bases de datos NoSQL frente a las relacionales. Como se observa, aunque las bases de datos relacionales tienen un mejor rendimiento para volúmenes de datos reducidos, este se reduce drásticamente para grandes volúmenes. Mientras, el rendimiento de las bases de datos NoSQL tiende a ser constante, por lo que escalan mejor para datos masivos.</li>
+</ul>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:FigNoSQL1"></span>
+<img src="img/NoSQL1.png" alt="Comparativa de escalabilidad entre bases de datos relacionales y NoSQL. Elaboración propia a partir de Lo (2017)." width="70%"><p class="caption">
+Figura 6.1: Comparativa de escalabilidad entre bases de datos relacionales y NoSQL. Elaboración propia a partir de Lo (2017).
+</p>
+</div>
+<div class="infobox">
+<p><strong>Nota</strong></p>
+<p><strong><em>Escalabilidad</em></strong> es un anglicismo que describe la capacidad de un negocio o sistema para crecer en magnitud.</p>
+</div>
+<ul>
+<li>
+<strong>Independencia de la localización</strong>. La globalización del mercado en <em>World Wide Web</em> (WWW) obliga a dar servicio rápido y en todas partes del mundo. Las bases de datos no relacionales son distribuidas de acuerdo con diferentes arquitecturas como <em>“nodo principal y nodo secundario”</em>, o bien <em>“peer-to-peer”</em>.</li>
+<li>
+<strong>Disponibilidad</strong>. Similar a la independencia de la localización, la disponibilidad en el mercado WWW es uno de los factores más críticos, ya que se espera una disponibilidad de servicio 24/7. Es decir, hay que pasar de una alta disponibilidad a la disponibilidad continua, cuyas características son: <span class="math inline">\((i)\)</span> diseño que no sigue el modelo <em>principal-secundario</em>; <span class="math inline">\((ii)\)</span> centro multidatos (<em>multi-data center</em>); <span class="math inline">\((iii)\)</span> disponibilidad <em>cloud</em>; <span class="math inline">\((iv)\)</span> copias de datos y funcionalidad en múltiples localizaciones.</li>
+<li>
+<strong>Gestión de todos los tipos de datos</strong>. Un factor clave en las bases de datos no relacionales es la necesidad de manejar tanto datos estructurados como no estructurados y semiestructurados; y todo esto sin perder el enfoque de un almacenamiento eficiente. En ese sentido, a menudo, las bases de datos NoSQL están altamente optimizadas para las operaciones de recuperar y agregar, y normalmente no ofrecen mucho más que la funcionalidad de almacenar los registros (por ejemplo, almacenamiento clave-valor). La pérdida de flexibilidad en el tiempo de ejecución, comparada con las bases de datos SQL clásicas, se ve compensada por ganancias significativas en escalabilidad y rendimiento cuando se trata con ciertos tipos de almacenamiento de datos.</li>
+</ul>
+</div>
+<div id="tipos-de-almacenamiento-en-bases-de-datos-nosql" class="section level3" number="6.5.3">
+<h3>
+<span class="header-section-number">6.5.3</span> Tipos de almacenamiento en bases de datos NoSQL<a class="anchor" aria-label="anchor" href="#tipos-de-almacenamiento-en-bases-de-datos-nosql"><i class="fas fa-link"></i></a>
+</h3>
+<p>Se pueden distinguir al menos cuatro tipos de bases de datos NoSQL <span class="citation">(<a href="referencias.html#ref-Hecht2011">Hecht and Jablonski 2011</a>)</span>: clave-valor, documental, en grafo y orientadas a columnas.</p>
+<ul>
+<li><p><strong>Almacenamiento clave-valor</strong>. Los datos se almacenan de forma similar a los mapas o diccionarios de datos, donde se accede al dato a partir de una clave única. Los valores (datos) son aislados e independientes entre ellos, y no son interpretados por el sistema. Pueden ser variables simples, como enteros o caracteres, u objetos. Por otro lado, este sistema de almacenamiento carece de una estructura de datos clara y establecida, por lo que no requiere un formateo de los datos muy estricto. Son útiles para operaciones simples basadas en las claves. Apache Cassandra es la tecnología de almacenamiento clave-valor más reconocida por los usuarios.</p></li>
+<li><p><strong>Almacenamiento documental</strong>. Este tipo de base de datos almacena datos semi-estructurados. Los datos se llaman documentos, y pueden estar formateados en XML (Extensible Markup Language), JSON (JavaScript Object Notation), BSON (Binary JSON) o el que acepte la propia base de datos, pero suele ser un formato de texto. Un ejemplo de cómo se usa es un blog: se almacena el autor, la fecha, el título, el resumen y el contenido del post. Todos los documentos tienen una clave única con la que se puede acceder e identificarlos explícitamente. Estos documentos no son opacos al sistema, por lo que se pueden interpretar y lanzar consultas sobre ellos, véase la Fig. <a href="cap-nosql.html#fig:FigNoSQL3">6.2</a> adaptada de <span class="citation">(<a href="referencias.html#ref-Sanchez2017">Sánchez 2017</a>)</span>. CouchDB o MongoDB son, quizás, los sistemas de bases de datos más conocidos. Hay que hacer mención especial a MapReduce, una tecnología de Google inicialmente diseñada para su algoritmo <code>PageRank</code>, que permite seleccionar un subconjunto de datos, agruparlos o reducirlos y cargarlos en otra colección, y a Hadoop, que es una tecnología de Apache diseñada para almacenar y procesar grandes cantidades de datos. Por ejemplo, MongoDB es una base de datos orientada a documentos. Los documentos se guardan en BSON, que es una forma de representar de forma binaria objetos JSON. De esta forma, con el comando <code>insert</code> y pasando un objeto JSON, MongoDB crea automáticamente un documento y lo añade en la base de datos generando un <em>ObjectId</em> para el nuevo documento <span class="citation">(<a href="referencias.html#ref-Rubenfa2014">Rubenfa 2014</a>)</span>. Este objeto está especialmente pensado para garantizar unicidad en entornos distribuidos como MongoDB. El campo está compuesto por 12 bytes. Los cuatro primeros bytes son un <em>timestamp</em> con los segundos; los tres siguientes bytes representan el identificador único de la máquina; los dos siguientes el identificador del proceso; y, para finalizar, los últimos tres bytes son un campo incremental. En definitiva, los nueve primeros bytes garantizan un identificador único por segundo, máquina y proceso. Los tres últimos bytes garantizan que cada segundo se pueden insertar 2<sup>24</sup> = 16.777.216 documentos con un identificador distinto. Esta composición del <em>ObjectId</em> proporciona funcionalidades muy útiles. La primera es indicar el orden de creación de los documentos. También sirve para obtener la fecha de creación del documento.</p></li>
+</ul>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:FigNoSQL3"></span>
+<img src="img/NoSQL3.png" alt="Ejemplo representativo de base de datos NoSQL documental. Elaboración propia a partir de Sánchez (2017)." width="70%"><p class="caption">
+Figura 6.2: Ejemplo representativo de base de datos NoSQL documental. Elaboración propia a partir de Sánchez (2017).
+</p>
+</div>
+<ul>
+<li><p><strong>Almacenamiento en grafo</strong>. Este tipo de almacenamiento maneja datos semi-estructurados y está basado en la teoría de grafos (véase Cap. <a href="grafos.html#grafos">39</a>). En las bases de datos NoSQL se establece que la información son los nodos y las relaciones entre la información son las aristas (algo similar al modelo relacional). Su mayor uso se contempla en caso de tener que relacionar grandes cantidades de datos que pueden ser muy variables. Por ejemplo, los nodos pueden contener objetos, variables y atributos diferentes en unos y otros. Las operaciones de consulta con <code>join</code> se sustituyen por recorridos a través del grafo, y se guarda una lista de adyacencias entre los nodos. A modo de ejemplo, en Facebook se considera cada usuario como un nodo, que puede tener aristas de amistad con otros usuarios, o aristas de publicación con nodos de contenidos. Soluciones como Neo4J y GraphDB son las más conocidas dentro de las bases de datos orientadas a grafos.</p></li>
+<li><p><strong>Almacenamiento orientado a columnas</strong>. Es similar al almacenamiento documental. Su modelo de datos se define como “un mapa de datos multidimensional poco denso, distribuido y persistente” <span class="citation">(<a href="referencias.html#ref-Hecht2011">Hecht and Jablonski 2011</a>)</span>. Se orienta a almacenar datos con tendencia a escalar horizontalmente, por lo que permite guardar diferentes atributos y objetos bajo una misma clave. A diferencia del documental y del clave-valor, en este caso se pueden almacenar varios atributos y objetos, pero no serán interpretables directamente por el sistema. Permite agrupar columnas en familias y guardar la información cronológicamente, mejorando el rendimiento. Esta tecnología se suele usar en casos con 100 o más atributos por clave. Su precursor es BigTable de Google, pero han aparecido nuevas soluciones como HBase o HyperTable.</p></li>
+</ul>
+</div>
+<div id="limitaciones-de-las-bases-de-datos-nosql" class="section level3" number="6.5.4">
+<h3>
+<span class="header-section-number">6.5.4</span> Limitaciones de las bases de datos NoSQL<a class="anchor" aria-label="anchor" href="#limitaciones-de-las-bases-de-datos-nosql"><i class="fas fa-link"></i></a>
+</h3>
+<p>Las bases de datos NoSQL no solo tienen ventajas; también tienen algunas limitaciones, tanto técnicas como de carácter no tecnológico.</p>
+<p>Entre las técnicas se encuentran: <span class="math inline">\((i)\)</span> cómo se modelan los datos correctamente para maximizar las capacidades; <span class="math inline">\((ii)\)</span> nivel bajo de seguridad; <span class="math inline">\((iii)\)</span> no soporte de transacciones; <span class="math inline">\((iv)\)</span> falta de madurez en <em>Business Intelligence</em>; y <span class="math inline">\((v)\)</span> problemas de compatibilidad ya resueltos en los modelos relacionales. Entre las de carácter no tecnológico pueden citarse <span class="math inline">\((i)\)</span> la falta de expertos; <span class="math inline">\((ii)\)</span> la resistencia al cambio; <span class="math inline">\((iii)\)</span> la disponibilidad del vendedor; y <span class="math inline">\((iv)\)</span> que el código abierto puede implicar problema de soporte para las empresas.</p>
+</div>
+</div>
+<div id="integración-de-bases-de-datos-nosql-en-r" class="section level2" number="6.6">
+<h2>
+<span class="header-section-number">6.6</span> Integración de bases de datos NoSQL en <strong>R</strong><a class="anchor" aria-label="anchor" href="#integraci%C3%B3n-de-bases-de-datos-nosql-en-r"><i class="fas fa-link"></i></a>
+</h2>
+<p></p>
+<p>En esta sección se verá cómo <strong>R</strong> puede ser utilizado para conectarse a una base de datos NoSQL: en particular a MongoDB. En la Sec. <a href="cap-nosql.html#introMongo">6.6.1</a> se presenta una introducción a MongoDB. En la Sec. <a href="cap-nosql.html#paquetesCaso">6.6.2</a> se explican los paquetes de <strong>R</strong> utilizados para acceder a MongoDB. La Sec. <a href="cap-nosql.html#conexionMongo">6.6.3</a> indica cómo conectarse a una base de datos MongoDB remota. Las secciones <a href="cap-nosql.html#consultaViajes">6.6.4</a> y <a href="cap-nosql.html#analisisViajes">6.6.5</a> realizan consultas y análisis sobre una colección de viajes realizados por los usuarios de un servicio de bicicletas compartidas con sede en la ciudad de Nueva York.</p>
+<div id="introMongo" class="section level3" number="6.6.1">
+<h3>
+<span class="header-section-number">6.6.1</span> Introducción a MongoDB<a class="anchor" aria-label="anchor" href="#introMongo"><i class="fas fa-link"></i></a>
+</h3>
+<p>MongoDB (de la palabra inglesa <em>humongous</em>, que significa ‘enorme’) es un sistema de base de datos NoSQL orientado a documentos, desarrollado bajo el concepto de código abierto. MongoDB forma parte de la nueva familia de sistemas de bases de datos NoSQL. En lugar de guardar los datos en tablas como se hace en las bases de datos relacionales, MongoDB guarda estructuras de datos en documentos similares a JSON con un esquema dinámico (MongoDB utiliza una especificación llamada BSON), haciendo que la integración de los datos en ciertas aplicaciones sea más fácil y rápida. MongoDB soporta la búsqueda por campos, consultas de rangos y expresiones regulares. Las consultas pueden devolver un campo específico del documento, pero también puede ser una función JavaScript definida por el usuario. Cualquier campo en un documento de MongoDB puede ser indexado, al igual que es posible hacer índices secundarios. El concepto de índices en MongoDB es similar a los encontrados en bases de datos relacionales. Tecnológicamente, MongoDB es una base de datos multiplataforma, orientada a documentos, que brinda alto rendimiento, alta disponibilidad y facilita la escalabilidad.</p>
+<p></p>
+<p>MongoDB trabaja con el concepto de colección y documento. La Tabla <a href="cap-nosql.html#tab:tab2">6.2</a> muestra la relación de esta terminología respecto a las bases de datos relacionales.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:tab2">Tabla 6.2: </span> Diferencias entre conceptos y terminología en bases de datos relacionales y MongoDB</caption>
+<colgroup>
+<col width="41%">
+<col width="58%">
+</colgroup>
+<thead><tr class="header">
+<th align="center"><strong>Bases de datos relacionales</strong></th>
+<th align="center"><strong>MongoDB</strong></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">Bases de datos</td>
+<td align="center">Bases de datos</td>
+</tr>
+<tr class="even">
+<td align="center">Tabla</td>
+<td align="center">Colección</td>
+</tr>
+<tr class="odd">
+<td align="center">Tupla o fila</td>
+<td align="center">Documento</td>
+</tr>
+<tr class="even">
+<td align="center">Tabla <em>Join</em>
+</td>
+<td align="center">Documentos incrustados (<em>embedded</em>)</td>
+</tr>
+<tr class="odd">
+<td align="center"><em>Primary Key</em></td>
+<td align="center">Por defecto, <em>key_id</em> (gestionada por MongoDB)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Asimismo, MongoDB proporciona una función, <code>MapReduce</code>, que se puede utilizar para el procesamiento por lotes de datos y operaciones de agregación. El <em>framework</em> de agregación permite realizar operaciones similares a las que se obtienen con el comando SQL <code>GROUP BY</code>. El <em>framework</em> de agregación está construido como un <em>pipeline</em> (flujo de trabajo) en el que los datos van pasando a través de diferentes etapas en las cuales estos datos son modificados, agregados, filtrados y formateados hasta obtener el resultado deseado (véase ejemplo esquemático en la Fig. <a href="cap-nosql.html#fig:FigNoSQL6">6.3</a>, adaptada de <span class="citation">Morgan (<a href="referencias.html#ref-Morgan2015">2015</a>)</span>). Todo este procesado es capaz de utilizar índices, si existieran, y se produce en memoria.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:FigNoSQL6"></span>
+<img src="img/NoSQL6.png" alt="Ejemplo esquemático del $pipeline$ de agregación en MongoDB. Elaboración propia a partir de Morgan (2015)." width="70%"><p class="caption">
+Figura 6.3: Ejemplo esquemático del <span class="math inline">\(pipeline\)</span> de agregación en MongoDB. Elaboración propia a partir de Morgan (2015).
+</p>
+</div>
+</div>
+<div id="paquetesCaso" class="section level3" number="6.6.2">
+<h3>
+<span class="header-section-number">6.6.2</span> Plataforma tecnológica para el caso práctico<a class="anchor" aria-label="anchor" href="#paquetesCaso"><i class="fas fa-link"></i></a>
+</h3>
+<p>Para la realización del caso práctico se utiliza <strong>Atlas</strong>,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.mongodb.com/cloud/atlas/" class="uri"&gt;https://www.mongodb.com/cloud/atlas/&lt;/a&gt;&lt;/p&gt;'><sup>54</sup></a> un servicio en la nube gratuito para manejar bases de datos MongoDB. Atlas es fácil de configurar y tiene conjuntos de datos de muestra para ejemplos de <strong>R</strong> con MongoDB. Puede cargar conjuntos de datos de muestra usando el botón <code>...</code> junto al de colecciones en la página de su clúster (el servidor). No obstante, aunque en Atlas se puede crear un clúster específico, en este ejemplo práctico se parte de uno ya creado.</p>
+<p>Adicionalmente, a modo de apoyo, se recomienda utilizar una herramienta <code>cliente</code> para conectarse a MongoDB y poder inspeccionar los datos contenidos. Es muy útil para realizar las consultas. Puede considerarse la herramienta para la gestión de la instalación de MongoDB.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.mongodb.com/cloud/atlas/" class="uri"&gt;https://www.mongodb.com/cloud/atlas/&lt;/a&gt;&lt;/p&gt;'><sup>55</sup></a> Además, si se crea el propio clúster en Atlas, este tiene una interfaz amigable para inspeccionar los datos.</p>
+<p>Como complemento a estas funciones, existe documentación de las colecciones de documentos y la información contenida en esta base de datos<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://docs.atlas.mongodb.com/sample-data/sample-training/" class="uri"&gt;https://docs.atlas.mongodb.com/sample-data/sample-training/&lt;/a&gt;&lt;/p&gt;'><sup>56</sup></a> de ejemplo.</p>
+<p>Para la resolución de ejercicios puede consultarse el Manual de MongoDB,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://docs.mongodb.com/manual/" class="uri"&gt;https://docs.mongodb.com/manual/&lt;/a&gt;),&lt;/p&gt;'><sup>57</sup></a> que contiene ejemplos y explicaciones de la sintaxis de MongoDB.</p>
+<div id="paquetes-r-utilizados" class="section level4" number="6.6.2.1">
+<h4>
+<span class="header-section-number">6.6.2.1</span> Paquetes <strong>R</strong> utilizados<a class="anchor" aria-label="anchor" href="#paquetes-r-utilizados"><i class="fas fa-link"></i></a>
+</h4>
+<p>El controlador <strong>R</strong> preferido por la comunidad de MongoDB es <code>mongolite</code>; por ello se utiliza en los siguientes ejemplos. Es rápido y tiene una sintaxis similar a la del <em>shell</em> MongoDB. <code>Mongolite</code> es el controlador <strong>R</strong> para MongoDB más reciente y puede realizar operaciones de indexación, canalizaciones de agregación, cifrado TLS (<em>transport layer security</em>) y autenticación SASL (<em>simple authentication and security layer</em>), entre otras. Está basado en los paquetes <code>jsonlite</code> y <code>mongo-c-driver</code>. Se puede instalar desde CRAN o desde RStudio. Existen otros paquetes para conectar MongoDB y <strong>R</strong>, como, por ejemplo, <code>RMongo</code> y <code>rmongodb</code>, aunque no han estado muy activos en GitHub últimamente, por lo que carecen de soporte.</p>
+<p>Para poder usar el paquete <code>mongolite</code> hay que instalarlo previamente, además de importar la librería con el siguiente comando.</p>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/jeroen/mongolite/">"mongolite"</a></span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="conexionMongo" class="section level3" number="6.6.3">
+<h3>
+<span class="header-section-number">6.6.3</span> Conexión y acceso a MongoDB desde <strong>R</strong><a class="anchor" aria-label="anchor" href="#conexionMongo"><i class="fas fa-link"></i></a>
+</h3>
+<p>La variable <code>cadena_conexion</code> representa la cadena de conexión a MongoDB en Atlas. Si se desea, se puede sustituir por otro servidor o clúster en Atlas, o por un servidor local.</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cadena_conexion</span> <span class="op">&lt;-</span> <span class="st">"mongodb+srv://user01:user01@cluster0.mcblc3z.mongodb.net/test"</span></span></code></pre></div>
+<p>En opciones de seguridad se establece la no validación de certificados SSL (<em>secure sockets layer</em>), para evitar que exista un error de conexión a Atlas.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">opciones_conexion</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mongolite/man/ssl_options.html">ssl_options</a></span><span class="op">(</span>weak_cert_validation <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<div class="infobox">
+<p><strong>Nota</strong></p>
+<p>En entornos reales de producción se aconseja realizar esta comprobación por razones de seguridad.</p>
+</div>
+<p>Después de establecer la conexión a MongoDB se recupera la colección <em>trips</em> (colección de viajes de la base de datos <code>sample_training</code>) con la función <code><a href="https://rdrr.io/pkg/mongolite/man/mongo.html">mongo()</a></code> en código <strong>R</strong>. Esta colección contiene datos de viajes realizados por los usuarios de un servicio de bicicletas compartidas con sede en la ciudad de Nueva York.</p>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">viajes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mongolite/man/mongo.html">mongo</a></span><span class="op">(</span>collection <span class="op">=</span> <span class="st">"trips"</span>, db <span class="op">=</span> <span class="st">"sample_training"</span>, url <span class="op">=</span> <span class="va">cadena_conexion</span>, options <span class="op">=</span> <span class="va">opciones_conexion</span><span class="op">)</span></span></code></pre></div>
+<p>Se puede verificar que el código está conectado a la colección mediante la consulta del número total de documentos en esta colección. Para hacerlo, se usa la función <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>.</p>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">viajes</span><span class="op">$</span><span class="fu">count</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 10000</span></span></code></pre></div>
+</div>
+<div id="consultaViajes" class="section level3" number="6.6.4">
+<h3>
+<span class="header-section-number">6.6.4</span> Obtención de datos en <strong>R</strong> desde MongoDB<a class="anchor" aria-label="anchor" href="#consultaViajes"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ahora que hay una conexión establecida con la base de datos, se pueden leer los datos de la misma para ser procesados por <strong>R</strong>. Para recuperar datos de MongoDB y mostrarlos se puede usar la interfaz de usuario de Atlas (en este caso para ver los documentos de <code>trip_collection</code>). Se puede obtener cualquier documento de muestra de la colección usando la función <a href="https://jeroen.github.io/mongolite/query-data.html#iterating">$iterate().$one()</a>, pudiéndose, así, examinar la estructura de los datos de la colección.</p>
+<p>Una vez se conoce la estructura de los documentos, se pueden realizar consultas más avanzadas, como buscar los tres viajes más largos y luego enumerar la duración en orden descendente. La consulta propuesta utiliza operadores de clasificación y límite<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://jeroen.github.io/mongolite/query-data.html#sort-and-limit" class="uri"&gt;https://jeroen.github.io/mongolite/query-data.html#sort-and-limit&lt;/a&gt;&lt;/p&gt;'><sup>58</sup></a> para producir este conjunto de resultados.</p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">viajes</span><span class="op">$</span><span class="fu">find</span><span class="op">(</span>sort <span class="op">=</span> <span class="st">'{"tripduration" : -1}'</span>, limit <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   tripduration start station id          start station name end station id</span></span>
+<span><span class="co">#&gt; 1       326222              391         Clark St &amp; Henry St            310</span></span>
+<span><span class="co">#&gt; 2       279620             3165 Central Park West &amp; W 72 St           3019</span></span>
+<span><span class="co">#&gt; 3       173357             3155     Lexington Ave &amp; E 63 St           3083</span></span>
+<span><span class="co">#&gt;           end station name bikeid   usertype birth year</span></span>
+<span><span class="co">#&gt; 1      State St &amp; Smith St  18591 Subscriber       1979</span></span>
+<span><span class="co">#&gt; 2        NYCBS Depot - DEL  17547   Customer           </span></span>
+<span><span class="co">#&gt; 3 Bushwick Ave &amp; Powers St  15881   Customer           </span></span>
+<span><span class="co">#&gt;   start station location.type start station location.coordinates</span></span>
+<span><span class="co">#&gt; 1                       Point                -73.99345, 40.69760</span></span>
+<span><span class="co">#&gt; 2                       Point                -73.97621, 40.77579</span></span>
+<span><span class="co">#&gt; 3                       Point                -73.96649, 40.76440</span></span>
+<span><span class="co">#&gt;   end station location.type end station location.coordinates</span></span>
+<span><span class="co">#&gt; 1                     Point              -73.98913, 40.68927</span></span>
+<span><span class="co">#&gt; 2                     Point              -73.98193, 40.71663</span></span>
+<span><span class="co">#&gt; 3                     Point              -73.94100, 40.71248</span></span>
+<span><span class="co">#&gt;            start time           stop time</span></span>
+<span><span class="co">#&gt; 1 2016-01-01 01:58:20 2016-01-04 20:35:23</span></span>
+<span><span class="co">#&gt; 2 2016-01-02 17:07:26 2016-01-05 22:47:46</span></span>
+<span><span class="co">#&gt; 3 2016-01-02 15:25:36 2016-01-04 15:34:53</span></span></code></pre></div>
+</div>
+<div id="analisisViajes" class="section level3" number="6.6.5">
+<h3>
+<span class="header-section-number">6.6.5</span> Análisis de datos de MongoDB en <strong>R</strong><a class="anchor" aria-label="anchor" href="#analisisViajes"><i class="fas fa-link"></i></a>
+</h3>
+<p>Para analizar datos de MongoDB en <strong>R</strong> con más detalle, se puede usar el marco de agregación de datos de MongoDB. Este marco permite a los operadores crear canalizaciones de agregación que ayuden a obtener los datos con una sola consulta.</p>
+<p>Para saber cuántos suscriptores realizaron viajes de una duración mayor que 240 segundos y regresaron a la misma estación donde comenzaron, la consulta usa la cláusula <a href="https://docs.mongodb.com/manual/reference/operator/query/expr/">$expr</a>, que compara dos campos en el mismo documento.</p>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">query</span> <span class="op">&lt;-</span> <span class="va">viajes</span><span class="op">$</span><span class="fu">find</span><span class="op">(</span><span class="st">'{"usertype":"Subscriber","tripduration":{"$gt":240},</span></span>
+<span><span class="st">                     "$expr": {"$eq": ["$start station name","$end station name"]}}'</span><span class="op">)</span></span></code></pre></div>
+<p>Combinando estos operadores con código <strong>R</strong>, también se puede ver, por ejemplo, qué tipo de usuarios es más común: <em>suscriptores</em> o <em>clientes únicos</em>. Para ello, se pueden <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/group/">agrupar</a> usuarios por el campo <em>usertype</em>, que define el tipo de usuario.</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tipos_usuario</span> <span class="op">&lt;-</span> <span class="va">viajes</span><span class="op">$</span><span class="fu">aggregate</span><span class="op">(</span><span class="st">'[{"$group":{"_id":"$usertype", </span></span>
+<span><span class="st">                                  "Count": {"$sum":1}}}]'</span><span class="op">)</span></span></code></pre></div>
+<p>Para comparar los resultados, se pueden visualizar (véase Fig. <a href="cap-nosql.html#fig:usuario-viaje">6.4</a>). Es conveniente convertir los datos obtenidos de <code>mongolite</code> en un <code>data.frame</code> (<a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/data.frame">marco de datos</a>) y, por ejemplo, usar el paquete <code>ggplot2</code>, para trazar estos datos.</p>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">tipos_usuario</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">`_id`</span>, <span class="va">Count</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">Count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, color <span class="op">=</span> <span class="st">"blue"</span>, fill <span class="op">=</span> <span class="st">"pink"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Tipo de usuario"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:usuario-viaje"></span>
+<img src="110005_Gestion_bases_nosql_files/figure-html/usuario-viaje-1.png" alt="Suscripción por tipo de usuario." width="60%"><p class="caption">
+Figura 6.4: Suscripción por tipo de usuario.
+</p>
+</div>
+</div>
+<div id="resumen-5" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-5"><i class="fas fa-link"></i></a>
+</h3>
+<p>En este capítulo se presenta el concepto de <em>big data</em>, por qué surge y qué aporta respecto a soluciones previas.</p>
+<ul>
+<li><p>En particular, se discute qué son las bases de datos NoSQL y cuáles son sus diferencias con las bases de datos relacionales (más tradicionales).</p></li>
+<li><p>Posteriormente, se explican algunas limitaciones de las bases de datos NoSQL.</p></li>
+<li><p>Finalmente, como ejemplo, se muestra la integración de datos en <strong>R</strong> desde MongoDB, explicando cómo acceder a este tipo de datos y cómo analizarlos en el caso concreto de una base de datos documental como MongoDB.</p></li>
+</ul>
+</div>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></div>
+<div class="next"><a href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cap-nosql"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="nav-link" href="#introducci%C3%B3n-al-big-data"><span class="header-section-number">6.1</span> Introducción al big data</a></li>
+<li><a class="nav-link" href="#VsBigData"><span class="header-section-number">6.2</span> Las V del </a></li>
+<li><a class="nav-link" href="#tipos-de-datos-en-entornos"><span class="header-section-number">6.3</span> Tipos de datos en entornos </a></li>
+<li><a class="nav-link" href="#por-qu%C3%A9-bases-de-datos-nosql"><span class="header-section-number">6.4</span> ¿Por qué bases de datos NoSQL?</a></li>
+<li>
+<a class="nav-link" href="#bases-de-datos-nosql"><span class="header-section-number">6.5</span> Bases de datos NoSQL</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#FundamentosNoSQL"><span class="header-section-number">6.5.1</span> Fundamentos de las bases de datos NoSQL</a></li>
+<li><a class="nav-link" href="#necesidades-no-cubiertas-por-las-bases-de-datos-relacionales"><span class="header-section-number">6.5.2</span> Necesidades no cubiertas por las bases de datos relacionales</a></li>
+<li><a class="nav-link" href="#tipos-de-almacenamiento-en-bases-de-datos-nosql"><span class="header-section-number">6.5.3</span> Tipos de almacenamiento en bases de datos NoSQL</a></li>
+<li><a class="nav-link" href="#limitaciones-de-las-bases-de-datos-nosql"><span class="header-section-number">6.5.4</span> Limitaciones de las bases de datos NoSQL</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#integraci%C3%B3n-de-bases-de-datos-nosql-en-r"><span class="header-section-number">6.6</span> Integración de bases de datos NoSQL en R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#introMongo"><span class="header-section-number">6.6.1</span> Introducción a MongoDB</a></li>
+<li><a class="nav-link" href="#paquetesCaso"><span class="header-section-number">6.6.2</span> Plataforma tecnológica para el caso práctico</a></li>
+<li><a class="nav-link" href="#conexionMongo"><span class="header-section-number">6.6.3</span> Conexión y acceso a MongoDB desde R</a></li>
+<li><a class="nav-link" href="#consultaViajes"><span class="header-section-number">6.6.4</span> Obtención de datos en R desde MongoDB</a></li>
+<li><a class="nav-link" href="#analisisViajes"><span class="header-section-number">6.6.5</span> Análisis de datos de MongoDB en R</a></li>
+<li><a class="nav-link" href="#resumen-5">Resumen</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

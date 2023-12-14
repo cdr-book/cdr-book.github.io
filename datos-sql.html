@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 5 Gestión de bases de datos relacionales | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="Ismael Caballero\(^{a}\), Ricardo Pérez del Castillo\(^{a}\) y Fernando Gualo\(^{a,b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)DQTeam SL  5.1 Introducción  El mundo real en el que...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Capítulo 5 Gestión de bases de datos relacionales | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="Ismael Caballero\(^{a}\), Ricardo Pérez del Castillo\(^{a}\) y Fernando Gualo\(^{a,b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)DQTeam SL  5.1 Introducción  El mundo real en el que...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 5 Gestión de bases de datos relacionales | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="Ismael Caballero\(^{a}\), Ricardo Pérez del Castillo\(^{a}\) y Fernando Gualo\(^{a,b}\) \(^{a}\)Universidad de Castilla-La Mancha\(^{b}\)DQTeam SL  5.1 Introducción  El mundo real en el que...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="active" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="datos-sql" class="section level1" number="5">
+<h1>
+<span class="header-section-number">Capítulo 5</span> Gestión de bases de datos relacionales<a class="anchor" aria-label="anchor" href="#datos-sql"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>Ismael Caballero</em><span class="math inline">\(^{a}\)</span>, <em>Ricardo Pérez del Castillo</em><span class="math inline">\(^{a}\)</span> y <em>Fernando Gualo</em><span class="math inline">\(^{a,b}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad de Castilla-La Mancha<br><span class="math inline">\(^{b}\)</span>DQTeam SL</p>
+<div id="introducción-1" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>
+El mundo real en el que estamos inmersos es puramente analógico: está lleno de <strong>entidades</strong> que se relacionan entre ellas o consigo mismas a través de unos determinados eventos que representan determinados <strong>hechos</strong>. Tanto <strong>entidades</strong> como <strong>hechos</strong> tienen una colección de características observables (normalmente llamadas <strong>atributos</strong><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Es importante resaltar que, en el ámbito de la Estadística, &lt;strong&gt;atributo&lt;/strong&gt; es una denominación reservada para las variables cualitativas.&lt;/p&gt;"><sup>26</sup></a> en el ámbito del diseño de bases de datos), que pueden ser de interés en el contexto de una determinada aplicación.</p>
+<p>Para estas aplicaciones que demandan el uso de datos del mundo real, es preciso realizar <strong>observaciones</strong> de esos <strong>atributos</strong> de las <strong>entidades</strong> y de los <strong>hechos</strong> que son relevantes. Al conjunto de entidades y hechos del mundo real que son relevantes para una aplicación se les conoce como <strong>Universo del Discurso</strong> <span class="citation">(<a href="referencias.html#ref-Piattinietal2006">Piattini et al. 2006</a>)</span>. Para poder tener éxito en las aplicaciones, es importante capturar la semántica del Universo del Discurso mediante los modelos correspondientes.</p>
+<p>Los datos que son de interés para una determinada aplicación deben ser capturados mediante un <strong>proceso de observación y digitalización</strong> de los valores de los atributos relevantes de las entidades y hechos del mundo real. Durante el proceso de observación y captura se pueden producir errores que pueden derivar en problemas relacionados con la calidad de los datos <span class="citation">(<a href="referencias.html#ref-price2004semiotic">Price and Shanks 2004</a>)</span>. Por ejemplo, supóngase que las observaciones requieren una determinada frecuencia mínima de observación en relación con la velocidad en la producción de los hechos; si esta frecuencia no es adecuada, la cantidad de observaciones realizada será insuficiente para modelar el hecho, llevando a un estado inconsistente entre lo sucedido y lo observado.</p>
+<p>Una vez capturados estos datos, pueden ser usados en los procesos de negocio para una tarea determinada, o bien ser analizados para producir un conocimiento del mundo real que hasta ahora no se tenía <span class="citation">(<a href="referencias.html#ref-davenport2017competing">T. Davenport and Harris 2017</a>)</span>.</p>
+</div>
+<div id="concepto-de-base-de-datos" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> Concepto de base de datos<a class="anchor" aria-label="anchor" href="#concepto-de-base-de-datos"><i class="fas fa-link"></i></a>
+</h2>
+<p>
+Para poder habilitar el procesamiento o los análisis de forma automática mediante las potentes técnicas tratadas en el resto de capítulos de este manual, es necesario almacenar previamente los datos en algún lugar como <code>repositorios</code> o <code>bases de datos</code>, donde los datos se puedan añadir, borrar, recuperar o modificar fácilmente.</p>
+<p>De acuerdo con <span class="citation">Piattini et al. (<a href="referencias.html#ref-Piattinietal2006">2006</a>)</span>, una <strong>base de datos (BD)</strong> es una colección o depósito de datos integrados, almacenados en soporte secundario (no volátil) y con redundancia controlada. En una base de datos, los valores correspondientes a los atributos que han de ser compartidos por diferentes usuarios y aplicaciones deben mantenerse independientes de ellos, y su definición (estructura de la base de datos), única y almacenada junto con los datos, se ha de apoyar en un modelo de datos. Este modelo debe captar las interrelaciones y restricciones existentes en las entidades y hechos del mundo real al que representan. Existen diferentes tipos de modelos que permiten estructurar y representar la semántica de los datos, como, por ejemplo, el modelo relacional <span class="citation">(<a href="referencias.html#ref-codd1970relational">Codd 1970</a>)</span>, que es el fundamento de las bases de datos relacionales en las que se centra este capítulo.</p>
+<p>
+En el ámbito de los Sistemas de Información, se han desarrollado programas que dan soporte a todo el proceso de creación y explotación de las bases de datos. A estos programas se los conoce como <strong>Sistemas Gestores de Bases de Datos (SGBD)</strong>. Como ejemplos de estos SGBD se pueden citar Microsoft Access, Microsoft SQL Server, Oracle Server, MySQL, MariaDB, Informix, MongoDB… En cualquier caso, como se verá más adelante en este capítulo, los SGBD más utilizados son los conocidos como <strong>relacionales (SGBDR)</strong>, aunque, con el auge del <em>Big Data</em> y del <em>Machine Learning</em>, esta tendencia está cambiando y empiezan a desplegarse cada vez más SGBD conocidos como <em>not only structured query language</em>, <strong>NoSQL</strong> (no solo lenguaje estructurado de consulta) (véase Cap. <a href="cap-nosql.html#cap-nosql">6</a>). Para evitar confusiones, es importante diferenciar entre la base de datos propiamente dicha (como una colección de datos almacenada en un fichero de datos) y el software SGBD específico, ya sea relacional o NoSQL: una misma base de datos, con las correspondientes adaptaciones, puede ser gestionada usando diferentes tipos de SGBD. Habitualmente, los tipos de SGBDR más usados son los que tienen capacidades multiproceso/multiusuario, ya que permiten acceder a datos compartidos mediante el uso de interfaces de datos para ejecutar diferentes tipos de análisis, empleando lenguajes de programación más potentes –o versátiles–, como <strong>R</strong> software o Python, que los lenguajes típicos de programación.</p>
+<div id="gestión-de-los-datos-en-una-base-o-repositorio-de-datos" class="section level3" number="5.2.1">
+<h3>
+<span class="header-section-number">5.2.1</span> Gestión de los datos en una base o repositorio de datos<a class="anchor" aria-label="anchor" href="#gesti%C3%B3n-de-los-datos-en-una-base-o-repositorio-de-datos"><i class="fas fa-link"></i></a>
+</h3>
+<p>Las organizaciones usan datos para sus procesos de negocio. La Tabla <a href="#tab:TablaTiposDatos"><strong>??</strong></a> muestra la tipología de datos sugerida por <span class="citation">Mahanti (<a href="referencias.html#ref-Mahanti2019">2019</a>)</span>.</p>
+<!-- Para compilar en HTML -->
+<!-- tabla-html -->
+<div class="inline-figure"><img src="img/tabla-5-1-tipos-datos.png" width="100%" style="display: block; margin: auto;"></div>
+<p> </p>
+<p>Para poder usar estos datos, las aplicaciones pueden realizar los siguientes cuatro tipo de operaciones (normalmente conocidas como “operaciones CRUD”): </p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Crear datos (<em>Create</em>)</strong>: inserta datos en el repositorio de datos.</li>
+<li>
+<strong>Leer datos (<em>Read</em>)</strong>: recupera datos del repositorio para aprovisionar el proceso de negocio, o bien para realizar alguna operación de análisis específica.</li>
+<li>
+<strong>Actualizar datos (<em>Update</em>)</strong>: modifica el valor de los atributos correspondientes a los hechos o entidades para actualizarlos a nuevas observaciones.</li>
+<li>
+<strong>Borrar datos (<em>Delete</em>)</strong>: elimina en bloque o selectivamente los datos almacenados en el repositorio de los datos.</li>
+</ol>
+<p>En cualquier caso, estos procedimientos de inserción, actualización, recuperación y borrado deben garantizar siempre la seguridad del conjunto de los datos, de modo que solo sean accesibles por aquellos usuarios que estén autorizados a trabajar con ellos, y siempre para el propósito establecido para los datos <span class="citation">(<a href="referencias.html#ref-Piattinietal2006">Piattini et al. 2006</a>)</span>.
+La forma de implementar estas operaciones depende fuertemente del formato (modelo lógico) en el que estén almacenados los datos. Aunque existen diferentes modelos (estructurados, semiestructurados, no estructurados), en este capítulo el énfasis se pone en el modelo relacional <span class="citation">(<a href="referencias.html#ref-codd1970relational">Codd 1970</a>)</span>, ya que es el más ampliamente usado en el ámbito organizacional y el que implementan los SGBDR. Para poder dar soporte a las operaciones CRUD anteriormente citadas en bases de datos relacionales, se desarrolló un lenguaje llamado “lenguaje estructurado de consulta” (<em>structured query language</em>, <strong>SQL</strong>), que se aborda en la siguiente sección.</p>
+<p></p>
+</div>
+</div>
+<div id="sql-el-lenguaje-estructurado-de-consulta" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> SQL: el lenguaje estructurado de consulta<a class="anchor" aria-label="anchor" href="#sql-el-lenguaje-estructurado-de-consulta"><i class="fas fa-link"></i></a>
+</h2>
+<p>Los principios de SQL están establecidos en el estándar internacional <a href="https://www.iso.org/standard/16662.html">ISO/IEC 9075:1989</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.iso.org/standard/16662.html" class="uri"&gt;https://www.iso.org/standard/16662.html&lt;/a&gt;&lt;/p&gt;'><sup>27</sup></a> como un mecanismo para identificar y regular las expresiones necesarias que permiten manejar bases de datos relacionales. Al ser un estándar, es importante señalar que cada fabricante de SGBDR, como Oracle con <a href="https://www.oracle.com/database/">Oracle Database Manager Server</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.oracle.com/database/" class="uri"&gt;https://www.oracle.com/database/&lt;/a&gt;&lt;/p&gt;'><sup>28</sup></a> o con <a href="https://www.mysql.com/products/enterprise/database/">MySQL</a>,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.mysql.com/products/enterprise/database/" class="uri"&gt;https://www.mysql.com/products/enterprise/database/&lt;/a&gt;&lt;/p&gt;'><sup>29</sup></a> Microsoft con <a href="https://www.microsoft.com/es-es/sql-server/">SQL Server</a>,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.microsoft.com/es-es/sql-server/" class="uri"&gt;https://www.microsoft.com/es-es/sql-server/&lt;/a&gt;&lt;/p&gt;'><sup>30</sup></a> IBM con <a href="https://www.ibm.com/es-es/db2">DB2</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.ibm.com/es-es/db2" class="uri"&gt;https://www.ibm.com/es-es/db2&lt;/a&gt;&lt;/p&gt;'><sup>31</sup></a>…, implementa en sus productos su propia versión del estándar SQL. Y aunque son prácticamente iguales, hay ligeros matices que les permiten diferenciarse de la competencia y que, por tanto, deben ser conocidos cuando se utilicen los correspondientes productos comerciales. No obstante, existen en el mercado algunas soluciones <em>open source</em> como <a href="https://mariadb.org/">MariaDB</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://mariadb.org/" class="uri"&gt;https://mariadb.org/&lt;/a&gt;&lt;/p&gt;'><sup>32</sup></a> o <a href="https://www.postgresql.org/">PostgreSQL</a>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.postgresql.org/" class="uri"&gt;https://www.postgresql.org/&lt;/a&gt;&lt;/p&gt;'><sup>33</sup></a> En este capítulo, todos los ejemplos que se han desarrollado trabajan contra un servidor <a href="https://www.mysql.com/products/">MySQL 8</a>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.mysql.com/products/" class="uri"&gt;https://www.mysql.com/products/&lt;/a&gt;&lt;/p&gt;'><sup>34</sup></a></p>
+<p></p>
+<p>SQL tiene diferentes tipos de sentencias o instrucciones que dan soporte a los diferentes aspectos de las interacciones con la base de datos. Cualquier manual de SQL permite tratar en profundidad todos los elementos sintácticos del lenguaje, pero es importante señalar que los detalles específicos de la sintaxis específica dependerán fuertemente del SGBDR empleado. Para los ejemplos propuestos en este libro, puede consultarse el <a href="https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html">manual de referencia de SQL de MySQL v8.0</a>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html" class="uri"&gt;https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html&lt;/a&gt;&lt;/p&gt;'><sup>35</sup></a> Las siguientes secciones proporcionan una visión global de dichos grupos de sentencias.</p>
+<div id="sql-como-lenguaje-de-definición-de-datos" class="section level3" number="5.3.1">
+<h3>
+<span class="header-section-number">5.3.1</span> SQL como lenguaje de definición de datos<a class="anchor" aria-label="anchor" href="#sql-como-lenguaje-de-definici%C3%B3n-de-datos"><i class="fas fa-link"></i></a>
+</h3>
+<p>Una base de datos relacional tiene una organización en forma de tabla y su concepto fundamental es el de “relación”, que no es el que el lector se puede imaginar a primera vista. Una “relación” representa un conjunto de entidades con las mismas propiedades y se compone de filas (o registros; también denominadas tuplas) cuyos valores dependen de los atributos que se representen en las columnas. Por ejemplo, una relación puede ser el conjunto de equipos de fútbol de la primera división española, siendo los atributos su presupuesto, nombre del entrenador, número de jugadores españoles…</p>
+<p>Las bases de datos relacionales se caracterizan por utilizar el lenguaje de consulta estructurado (SQL) y, por ello, son también denominadas bases de datos SQL. En particular, SQL se utiliza para definir todos los elementos necesarios para crear y modificar las tablas de datos. Se tienen tres tipos de instrucciones básicas para gestionar las tablas como estructuras de datos:</p>
+<ul>
+<li>
+<strong><em>Create</em></strong>: permite crear un componente de la base de datos, tal como la base de datos propiamente dicha, una tabla, una vista… En el siguiente ejemplo, se crea, usando instrucciones SQL, primero una base de datos llamada <code>Biblioteca</code>, y luego una tabla <code>Autor</code> con seis atributos (<code>CodAtutor</code>, <code>Nombre</code>, <code>Apellido1</code>, <code>Apellido2</code>, <code>Pseudonimo</code> y <code>Nacionalidad</code>), donde se podrán almacenar los valores correspondientes a dichos atributos, conformando así la base de datos:</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="datos-sql.html#cb37-1" tabindex="-1"></a>       create database Biblioteca</span>
+<span id="cb37-2"><a href="datos-sql.html#cb37-2" tabindex="-1"></a>        create Table <span class="fu">Autor</span> (</span>
+<span id="cb37-3"><a href="datos-sql.html#cb37-3" tabindex="-1"></a>          CodAutor <span class="fu">nvarchar</span> (<span class="dv">20</span>) primary key,</span>
+<span id="cb37-4"><a href="datos-sql.html#cb37-4" tabindex="-1"></a>          Nombre    <span class="fu">nvarchar</span>(<span class="dv">40</span>) not null,</span>
+<span id="cb37-5"><a href="datos-sql.html#cb37-5" tabindex="-1"></a>          Apellido1 <span class="fu">nvarchar</span>(<span class="dv">50</span>) not null,</span>
+<span id="cb37-6"><a href="datos-sql.html#cb37-6" tabindex="-1"></a>          Apellido2 <span class="fu">nvarchar</span>(<span class="dv">50</span>), </span>
+<span id="cb37-7"><a href="datos-sql.html#cb37-7" tabindex="-1"></a>          Pseudonimo <span class="fu">nvarchar</span>(<span class="dv">50</span>),</span>
+<span id="cb37-8"><a href="datos-sql.html#cb37-8" tabindex="-1"></a>          Nacionalidad <span class="fu">nvarchar</span> (<span class="dv">50</span>)</span>
+<span id="cb37-9"><a href="datos-sql.html#cb37-9" tabindex="-1"></a>        );</span></code></pre></div>
+<ul>
+<li>
+<strong><em>Alter</em></strong>: permite modificar la estructura de un componente, añadiendo, por ejemplo, atributos a una tabla, restricciones a un atributo o modificando el tipo de datos de algún atributo existente; también permite eliminar un atributo de una tabla existente. Siguiendo el ejemplo anterior, con la siguiente instrucción se añade un nuevo atributo, <code>LocalidadNacimiento</code>, a la tabla <code>Autor</code>:</li>
+</ul>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="datos-sql.html#cb38-1" tabindex="-1"></a>   alter table Autor add LocalidadNacimiento <span class="fu">nvarchar</span>(<span class="dv">50</span>) not null</span></code></pre></div>
+<ul>
+<li>
+<strong><em>Drop</em></strong>: sirve para eliminar un componente específico, como una tabla, una vista… pero no sirve para eliminar los valores almacenados en una tabla. En el siguiente ejemplo, se eliminan las tablas <code>Escribe</code>, <code>Autor</code> y <code>Libro</code>:</li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="datos-sql.html#cb39-1" tabindex="-1"></a>   drop table Escribe;</span>
+<span id="cb39-2"><a href="datos-sql.html#cb39-2" tabindex="-1"></a>   drop table Autor;</span>
+<span id="cb39-3"><a href="datos-sql.html#cb39-3" tabindex="-1"></a>   drop table Libro;</span></code></pre></div>
+</div>
+<div id="sql-como-lenguaje-de-manipulación-de-datos" class="section level3" number="5.3.2">
+<h3>
+<span class="header-section-number">5.3.2</span> SQL como lenguaje de manipulación de datos<a class="anchor" aria-label="anchor" href="#sql-como-lenguaje-de-manipulaci%C3%B3n-de-datos"><i class="fas fa-link"></i></a>
+</h3>
+<p>En esta sección se describen las instrucciones más importantes de SQL para el soporte a las operaciones CRUD anteriormente introducidas. Existen, por tanto, cuatro tipos de sentencia para manipular los datos:</p>
+<ul>
+<li>
+<strong><em>Create</em></strong>: implementada mediante la instrucción <code>insert</code>, sirve para insertar registros (también llamados <strong>tuplas</strong>) en una base de datos. En los ejemplos siguientes se insertan diversas tuplas en varias tablas, siguiendo el mismo orden en el que se especificaron los atributos cuando se creó la tabla. Así, por ejemplo, se crean los códigos “dbrown” (como valor para el atributo <code>CodAutor</code>) para “Dan Brown” y “cdv” (como valor para el atributo <code>CodLibro</code>) para su libro “El Código da Vinci”. El siguiente código SQL muestra las instrucciones necesarias:</li>
+</ul>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="datos-sql.html#cb40-1" tabindex="-1"></a>    insert into Autor <span class="fu">values</span> (<span class="st">'dbrown'</span>, <span class="st">'Dan'</span>, <span class="st">'Brown'</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">'EstadoUnidense'</span>);</span>
+<span id="cb40-2"><a href="datos-sql.html#cb40-2" tabindex="-1"></a>    insert into Libro <span class="fu">values</span> (<span class="st">'cdv'</span>, <span class="st">'El Código da Vinci'</span>, <span class="st">'Random House'</span>, <span class="st">'2003-04-23'</span>);</span>
+<span id="cb40-3"><a href="datos-sql.html#cb40-3" tabindex="-1"></a>    insert into Escribe <span class="fu">values</span> (<span class="st">'dbrown'</span>, <span class="st">'cdv'</span>);</span></code></pre></div>
+<ul>
+<li>
+<strong><em>Read</em></strong>: implementada mediante la instrucción <code>select</code>, permite hacer consultas a la base de datos. En los siguientes ejemplos se escribe el código que selecciona <span class="math inline">\((i)\)</span> el nombre y primer apellido de los autores con nacionalidad española, ordenados por orden alfabético del <code>Apellido1</code> y <span class="math inline">\((ii)\)</span> la lista todos los libros que haya escrito el autor “Pérez Reverte” (cuyo <code>CodAutor</code> es “perezreverte”).</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="datos-sql.html#cb41-1" tabindex="-1"></a>   Select Nombre, Apellido1 from Autor where Nacionalidad like <span class="st">'Español'</span> order by Apellido1;</span>
+<span id="cb41-2"><a href="datos-sql.html#cb41-2" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="datos-sql.html#cb41-3" tabindex="-1"></a>   Select Libro.Título from Autor, Escribe, Libro <span class="fu">where</span> ( <span class="at">Libro.CodLibro =</span> Escribe.CodLibro and <span class="at">Autor.CodAutor =</span> Escribe.CodAutor) <span class="fu">and</span> (<span class="at">Escribe.CodAutor =</span><span class="st">'perezreverte'</span>);</span></code></pre></div>
+<ul>
+<li>
+<strong><em>Update</em></strong>: permite actualizar los valores de las tuplas seleccionadas. En el siguiente ejemplo, se actualiza el valor del atributo <code>pseudonimo</code> al valor “El Manco de Lepanto” para el autor “Miguel de Cervantes”, con <code>CodAutor</code> “mcervantes”:</li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="datos-sql.html#cb42-1" tabindex="-1"></a>   update Autor set pseudonimo<span class="ot">=</span><span class="st">"El Manco de Lepanto"</span> where CodAutor<span class="ot">=</span><span class="st">'mcervantes'</span>;</span></code></pre></div>
+<ul>
+<li>
+<strong><em>Delete</em></strong>: su principal objetivo es eliminar, en bloque o de forma selectiva, una o varias tuplas o registros de datos que cumplan una determinada condición. En el siguiente código SQL se borra(n) la(s) tupla(s) que contiene(n) datos del autor cuyo <code>CodAutor</code> es “perezreverte”.</li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="datos-sql.html#cb43-1" tabindex="-1"></a>   delete from Autor where CodAutor <span class="ot">=</span><span class="st">'perezreverte'</span>;</span></code></pre></div>
+</div>
+<div id="sql-como-lenguaje-de-administración-de-datos" class="section level3" number="5.3.3">
+<h3>
+<span class="header-section-number">5.3.3</span> SQL como lenguaje de administración de datos<a class="anchor" aria-label="anchor" href="#sql-como-lenguaje-de-administraci%C3%B3n-de-datos"><i class="fas fa-link"></i></a>
+</h3>
+<p>SQL también puede usarse para administrar los usuarios de una base de datos. Esto implica crear usuarios de la base de datos y asignarles diferentes tipos de permisos para realizar los diferentes tipos de operaciones vistos anteriormente sobre los distintos componentes de datos. Por ejemplo, para crear un usuario llamado <code>Ismael.Caballero</code> que tenga por contraseña <code>LibroMDSR</code> se puede usar la siguiente instrucción:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="datos-sql.html#cb44-1" tabindex="-1"></a>    create user <span class="st">'Ismael.Caballero'</span> identified by <span class="st">'LibroMDSR'</span>;</span></code></pre></div>
+<p>y la siguiente instrucción se usa para asignar al usuario <code>Ismael.Caballero</code> los permisos necesarios para el acceso, lectura, selección, inserción, actualización y borrado de los valores de la base de datos <code>Biblioteca</code>, así como para poder modificar la estructura de los componentes de la base de datos <code>Biblioteca</code> creada anteriormente:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="datos-sql.html#cb45-1" tabindex="-1"></a>   GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER ON biblioteca.<span class="sc">*</span>  TO <span class="st">'Ismael.Caballero'</span><span class="sc">@</span><span class="st">'%'</span>; </span>
+<span id="cb45-2"><a href="datos-sql.html#cb45-2" tabindex="-1"></a>   FLUSH PRIVILEGES;</span></code></pre></div>
+<p>Recuérdese que los ejemplos mostrados han sido realizados para MySQL 8, aunque la sintaxis no debería ser muy diferente para otros SGBDR.</p>
+</div>
+</div>
+<div id="acceso-y-explotación-de-bases-de-datos-desde-r" class="section level2" number="5.4">
+<h2>
+<span class="header-section-number">5.4</span> Acceso y explotación de bases de datos desde <strong>R</strong><a class="anchor" aria-label="anchor" href="#acceso-y-explotaci%C3%B3n-de-bases-de-datos-desde-r"><i class="fas fa-link"></i></a>
+</h2>
+<p> </p>
+<p>Como el propósito de este manual es aprender los fundamentos de la ciencia de datos usando <strong>R</strong>, en las siguientes secciones se explicará cómo implementar las operaciones CRUD usando sentencias de paquetes específicos de <strong>R</strong>. Dado que en este capítulo se usa MySQL, se utiliza el <em>driver</em> específico de <code>RMySQL</code> <span class="citation">(<a href="referencias.html#ref-RMySQL2022">Ooms et al. 2022</a>)</span>. En caso de que se hubiese usado otro sistema gestor de bases de datos, se habría tenido que recurrir al paquete específico que contuviera el <em>driver</em> correspondiente. En las siguientes secciones se explica cómo conectarse a una base de datos usando las funciones correspondientes y cómo se implementan las operaciones CRUD con funciones del paquete <code>RMySQL</code>.</p>
+<div id="conexión-a-una-base-de-datos" class="section level3" number="5.4.1">
+<h3>
+<span class="header-section-number">5.4.1</span> Conexión a una base de datos<a class="anchor" aria-label="anchor" href="#conexi%C3%B3n-a-una-base-de-datos"><i class="fas fa-link"></i></a>
+</h3>
+<p>Antes de poder realizar ninguna operación con las bases de datos gestionadas por MySQL es preciso tener instalado el paquete <code>RMySQL</code> y cargar los paquetes necesarios:</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"RMySQL"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://downloads.mariadb.org/connector-c/">"RMySQL"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span></span></code></pre></div>
+<p>Es necesaria también la librería <code>DBI</code> <span class="citation">(<a href="referencias.html#ref-DBI2022">R Special Interest Group on Databases (R-SIG-DB), Wickham, and Müller 2022</a>)</span> porque proporciona la infraestructura común para todos los <em>drivers</em> de acceso a base de datos. Además del mencionado <code>RMySQL</code>, otros ejemplos de <em>drivers</em> son <code>RPostgres</code> <span class="citation">(<a href="referencias.html#ref-RPostgres2022">Hadley Wickham, Ooms, and Müller 2023</a>)</span>, <code>RMariaDB</code> <span class="citation">(<a href="referencias.html#ref-RMariaDB2022">Müller, Ooms, et al. 2022</a>)</span>, <code>odbc</code> <span class="citation">(<a href="referencias.html#ref-odbc2022">Hester and Wickham 2023</a>)</span> o <code>RSQLite</code><span class="citation">(<a href="referencias.html#ref-RSQLite2022">Müller, Wickham, et al. 2022</a>)</span>, por citar algunos.</p>
+<p>Para desarrollar las explicaciones, se usa una base de datos llamada <code>classicmodels</code>, implementada en MySQL v8.0 y desplegada en un servidor con dirección IP 172.20.48.118 que está escuchando en el puerto 3306. El usuario que se conecta a la base de datos es <code>Ismael.Caballero</code>, siendo su contraseña <code>MdsR.2022</code>. Otros usuarios tendrían que modificar los parámetros correspondientes para realizar las conexiones a sus propias bases de datos. Se almacenan todos estos datos en variables para hacer más sencillo el mantenimiento de los scripts. Con <code><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect()</a></code> se realiza la conexión. Con <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> o con <code><a href="https://dbi.r-dbi.org/reference/dbGetInfo.html">dbGetInfo()</a></code> se pueden mostrar los resultados de la conexión en caso de que esta se haya realizado con éxito.
+Una vez terminadas todas las tareas con la base de datos, debería desconectarse mediante la instrucción <code><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html">dbDisconnect()</a></code>.</p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">usuario</span>   <span class="op">=</span>   <span class="st">'Ismael.Caballero'</span> </span>
+<span><span class="va">passwd</span>    <span class="op">=</span>   <span class="st">'MdsR.2022#'</span></span>
+<span><span class="va">nombrebd</span>  <span class="op">=</span>   <span class="st">'classicmodels'</span></span>
+<span></span>
+<span><span class="va">servidor</span>  <span class="op">=</span>   <span class="st">'172.20.48.118'</span> </span>
+<span><span class="va">puerto</span>    <span class="op">=</span>   <span class="fl">3306</span></span>
+<span></span>
+<span><span class="va">mibbdd</span> <span class="op">=</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">MySQL</span><span class="op">(</span><span class="op">)</span>, user<span class="op">=</span><span class="va">usuario</span>, password<span class="op">=</span><span class="va">passwd</span>, dbname<span class="op">=</span><span class="va">nombrebd</span>, </span>
+<span>                   host<span class="op">=</span><span class="va">servidor</span>, port<span class="op">=</span> <span class="va">puerto</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> <span class="op">(</span><span class="va">mibbdd</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetInfo.html">dbGetInfo</a></span><span class="op">(</span><span class="va">mibbdd</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html">dbDisconnect</a></span> <span class="op">(</span><span class="va">mibdd</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="operaciones-de-lectura-consulta-selección-read-de-datos" class="section level3" number="5.4.2">
+<h3>
+<span class="header-section-number">5.4.2</span> Operaciones de lectura / consulta/ selección (<em>read</em>) de datos<a class="anchor" aria-label="anchor" href="#operaciones-de-lectura-consulta-selecci%C3%B3n-read-de-datos"><i class="fas fa-link"></i></a>
+</h3>
+<p>Entre las operaciones más frecuentes en cualquier tipo de bases de datos están las de lectura o consulta (<em>read</em>), implementadas en SQL con las sentencias de tipo <code>select</code>. El <em>driver</em> <code>RMySQL</code> ofrece distintas alternativas para realizar consultas de selección en <strong>R</strong>. La elección de la mejor operación dependerá de la complejidad de las consultas que se quieran realizar. Se listan a continuación:</p>
+<ol style="list-style-type: decimal">
+<li>
+<code><a href="https://dbi.r-dbi.org/reference/dbReadTable.html">dbReadTable()</a></code>, que permite leer una tabla entera de una base de datos MySQL. Es recomendable usar este método si la tabla no es excesivamente grande. Se pueden almacenar los resultados en un <code>data.frame</code> para hacer operaciones con ellos después. La ventaja es que, sabiendo manejar <code>data.frames</code> en <strong>R</strong>, no se necesita aprender mucho más detalle del lenguaje <a href="https://www.w3schools.com/sql/">SQL</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.w3schools.com/sql/" class="uri"&gt;https://www.w3schools.com/sql/&lt;/a&gt;&lt;/p&gt;'><sup>36</sup></a> como lenguaje de manipulación de datos (LMD); sin embargo, la desventaja es que se acaba perdiendo parte del potencial expresivo de SQL para hacer algunas operaciones más fáciles y eficientes. En el siguiente ejemplo se muestra cómo cargar toda la tabla <code>customers</code> en un <code>data.frame</code> llamado <code>tblCustomers</code>, obteniéndose los resultados con la instrucción <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>:</li>
+</ol>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tblCustomers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html">dbReadTable</a></span><span class="op">(</span><span class="va">mibbdd</span>, <span class="st">"customers"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> <span class="op">(</span><span class="va">tblCustomers</span><span class="op">)</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>
+<code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery()</a></code>, que tiene más flexibilidad que <code><a href="https://dbi.r-dbi.org/reference/dbReadTable.html">dbReadTable()</a></code> porque permite, mediante una sentencia SQL <code>select</code> (véase más información en <a href="https://www.w3schools.com/mysql/mysql_select.asp">el tutorial de SQL en W3C</a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.w3schools.com/mysql/mysql_select.asp" class="uri"&gt;https://www.w3schools.com/mysql/mysql_select.asp&lt;/a&gt;&lt;/p&gt;'><sup>37</sup></a> o en la página oficial de <a href="https://dev.mysql.com/doc/refman/5.7/en/select.html">“select” sobre MySQL</a>,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/select.html" class="uri"&gt;https://dev.mysql.com/doc/refman/5.7/en/select.html&lt;/a&gt;&lt;/p&gt;'><sup>38</sup></a>) particularizar la consulta a la base de datos. Esto puede implicar la selección de atributos específicos o incluso el uso de filtros sobre los atributos seleccionados. Por ejemplo, si se quisieran recuperar el número y el nombre de los clientes de Madrid, se podría personalizar la consulta añadiendo las condiciones correspondientes en la cláusula <code>where</code>,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.mysqltutorial.org/mysql-where/" class="uri"&gt;https://www.mysqltutorial.org/mysql-where/&lt;/a&gt;.&lt;/p&gt;'><sup>39</sup></a> como se muestra en siguiente código. Por comodidad, se escribe aparte la consulta SQL, en una variable, para poder manejar más fácilmente la operativa en <strong>R</strong>. Escribir esta consulta puede ser lo que entrañe más dificultad. A continuación, se ejecuta la consulta con <code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery()</a></code> y se almacenan los resultados en un <code>data.frame</code> para su uso posterior. Nuevamente, se comprueba el resultado con la instrucción <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</li>
+</ol>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">SentenciaSQL_Nombres_Clientes</span> <span class="op">=</span><span class="st">"Select CustomerNumber, CustomerName from customers where city = 'Madrid'"</span></span>
+<span></span>
+<span><span class="va">Consulta_Clientes_Madrid</span> <span class="op">=</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span> <span class="op">(</span><span class="va">mibbdd</span>, <span class="va">SentenciaSQL_Nombres_Clientes</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> <span class="op">(</span><span class="va">Consulta_Clientes_Madrid</span><span class="op">)</span></span></code></pre></div>
+<p>Teniendo los resultados en <code>data.frames</code>, ya es posible procesarlos en <strong>R</strong> como si fuesen cualquier otro tipo de datos.</p>
+<p>Obsérvese que las instrucciones siguientes serían equivalentes:</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html">dbReadTable</a></span><span class="op">(</span><span class="va">mibbdd</span>,<span class="st">"customers"</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span> <span class="op">(</span><span class="va">mibbdd</span>, <span class="st">"select * from customers"</span><span class="op">)</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>
+<code><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery()</a></code> combinado con <code><a href="https://dbi.r-dbi.org/reference/dbFetch.html">dbFetch()</a></code>. La principal diferencia entre <code><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery()</a></code> y <code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery()</a></code> es que la primera no recupera datos de la base de datos y hay que traerlos explícitamente con la función <code><a href="https://dbi.r-dbi.org/reference/dbFetch.html">dbFetch()</a></code>. En el siguiente fragmento de código se muestra la utilización de ambas funciones con un resultado exactamente igual que en el apartado anterior.</li>
+</ol>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">SentenciaSQL_Nombres_Clientes</span> <span class="op">=</span><span class="st">"Select CustomerNumber, CustomerName from customers where city = 'Madrid'"</span></span>
+<span></span>
+<span><span class="va">Consulta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery</a></span><span class="op">(</span><span class="va">mibbdd</span>, <span class="va">SentenciaSQL_Nombres_Clientes</span><span class="op">)</span>;</span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetInfo.html">dbGetInfo</a></span><span class="op">(</span><span class="va">Consulta</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $statement</span></span>
+<span><span class="co">#&gt; [1] "Select CustomerNumber, CustomerName from customers where city = 'Madrid'" </span></span>
+<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; $isSelect</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; $rowsAffected</span></span>
+<span><span class="co">#&gt; [1] -1</span></span>
+<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; $rowCount</span></span>
+<span><span class="co">#&gt; [1] 0</span></span>
+<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; $completed</span></span>
+<span><span class="co">#&gt; [1] 0</span></span>
+<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; $fieldDescription</span></span>
+<span><span class="co">#&gt; $fieldDescription[[1]]</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Consulta realizada:"</span>, <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetStatement.html">dbGetStatement</a></span><span class="op">(</span><span class="va">Consulta</span><span class="op">)</span><span class="op">)</span> <span class="op">)</span></span>
+<span></span>
+<span><span class="va">Consulta_Clientes_Madrid_condbSendQuery</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbFetch.html">dbFetch</a></span><span class="op">(</span><span class="va">Consulta</span>, n<span class="op">=</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Número de elementos devueltos en la consulta"</span>,<span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetRowCount.html">dbGetRowCount</a></span><span class="op">(</span><span class="va">Consulta</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> <span class="op">(</span><span class="va">Consulta_Clientes_Madrid_condbSendQuery</span><span class="op">)</span></span></code></pre></div>
+<!-- En el ejemplo anterior se muestra cómo leer los datos de la tabla `customers` combinando   `dbSendQuery()` con `dbFetch()`. De forma análoga, la sentencia SQL es la misma pero la recuperación de los datos se lleva a cabo de forma diferente, con la función `dbSendQuery()` (el resultado se almacena en el `data.frame` `Consulta`). Con `dbFetch` se recuperan los resultados de las consulta desde la base de datos y se almacenan en la variable `Consulta_ClientesMadrid_condbSendQuery`. Con `dbGetInfo()` se muestran los metadatos de la consulta.   -->
+<p>En cualquier caso, para considerar la opción más adecuada deben tenerse en cuenta los siguientes aspectos:</p>
+<ul>
+<li><p>La información de la consulta generada con <code><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery()</a></code> puede mostrarse con la función <code><a href="https://dbi.r-dbi.org/reference/dbGetInfo.html">dbGetInfo()</a></code>.</p></li>
+<li><p>Es posible recordar la consulta SQL que se utilizó en <code><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery()</a></code> mediante la función <code><a href="https://dbi.r-dbi.org/reference/dbGetStatement.html">dbGetStatement()</a></code>.</p></li>
+<li><p>La función <code><a href="https://dbi.r-dbi.org/reference/dbFetch.html">dbFetch()</a></code> tiene dos argumentos: la consulta y el número de registros a recuperar; si se quieren recuperar todos los registros que haya podido producir la consulta, debe pasarse el argumento <code>n=-1</code>.</p></li>
+<li><p>Si se quiere saber el número de elementos que se han traído con la función <code><a href="https://dbi.r-dbi.org/reference/dbFetch.html">dbFetch()</a></code> se puede usar la función <code><a href="https://dbi.r-dbi.org/reference/dbGetRowCount.html">dbGetRowCount()</a></code>.</p></li>
+</ul>
+<p>La principal ventaja de <code><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery()</a></code> combinado con <code><a href="https://dbi.r-dbi.org/reference/dbFetch.html">dbFetch()</a></code> es que el filtro se hace en el sistema gestor de bases de datos y solo llegan a la memoria de <strong>R</strong> los datos que se van a utilizar, que es mejor que descargar toda la tabla a la memoria de <strong>R</strong> y, después, hacer el filtro.</p>
+<p>Para extraer información de los resultados de la consulta, se puede usar la función <code><a href="https://dbi.r-dbi.org/reference/dbColumnInfo.html">dbColumnInfo()</a></code>:</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbColumnInfo.html">dbColumnInfo</a></span><span class="op">(</span><span class="va">Consulta</span><span class="op">)</span></span>
+<span><span class="co">#&gt; name Sclass type length</span></span>
+<span><span class="co">#&gt; 1 CustomerNumber integer INTEGER 11</span></span>
+<span><span class="co">#&gt; 2 CustomerName character VAR_STRING 200</span></span></code></pre></div>
+<p>El <em>driver</em> <code>RMySQL</code> no proporciona funciones para conocer directamente el tipo y tamaño de los atributos de una tabla. Mediante la función <code><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery()</a></code> y <code><a href="https://dbi.r-dbi.org/reference/dbColumnInfo.html">dbColumnInfo()</a></code> se puede obtener esta información haciendo una consulta que incluya los atributos en los cuales se está interesado. Por ejemplo, para conocer el tipo de datos y tamaño de los atributos de la tabla <code>Employees</code> se podría usar el siguiente fragmento de código:</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">SentenciaSQL_Tabla_Employees</span> <span class="op">=</span> <span class="st">"Select * from employees"</span></span>
+<span><span class="va">Consulta_Employees</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery</a></span><span class="op">(</span><span class="va">mibbdd</span>,<span class="va">SentenciaSQL_Tabla_Employees</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbColumnInfo.html">dbColumnInfo</a></span><span class="op">(</span><span class="va">Consulta_Employees</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; name Sclass type length</span></span>
+<span><span class="co">#&gt; 1 employeeNumber integer INTEGER 11</span></span>
+<span><span class="co">#&gt; 2 lastName character VAR_STRING 200</span></span>
+<span><span class="co">#&gt; 3 firstName character VAR_STRING 200</span></span>
+<span><span class="co">#&gt; 4 extension character VAR_STRING 40</span></span>
+<span><span class="co">#&gt; 5 email character VAR_STRING 400</span></span>
+<span><span class="co">#&gt; 6 officeCode character VAR_STRING 40</span></span>
+<span><span class="co">#&gt; 7 reportsTo integer INTEGER 11</span></span>
+<span><span class="co">#&gt; 8 jobTitle character VAR_STRING 200</span></span>
+<span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbClearResult.html">dbClearResult</a></span><span class="op">(</span><span class="va">Consulta_Employees</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>Con <code><a href="https://dbi.r-dbi.org/reference/dbColumnInfo.html">dbColumnInfo()</a></code> se muestran los metadatos de implementación (operativos) de los atributos de la tabla <code>Employees</code>. Finalmente, con la instrucción <code>dbClearResult(ConsultaEmployees)</code> se pueden limpiar los resultados de la consulta para optimizar el sistema.</p>
+</div>
+<div id="operaciones-de-inserción-create-y-actualización-update-de-datos" class="section level3" number="5.4.3">
+<h3>
+<span class="header-section-number">5.4.3</span> Operaciones de inserción (<em>create</em>) y actualización (<em>update</em>) de datos<a class="anchor" aria-label="anchor" href="#operaciones-de-inserci%C3%B3n-create-y-actualizaci%C3%B3n-update-de-datos"><i class="fas fa-link"></i></a>
+</h3>
+<p>Antes de almacenar los datos en la base de datos, es necesario crear las estructuras necesarias, que, como se avanzó anteriormente, son las tablas y los atributos. Para ello se utilizan instrucciones especiales SQL como lenguaje de definición de datos (LDD); esto incluye instrucciones para crear tablas (<a href="https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html"><code>create table</code></a>),<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html" class="uri"&gt;https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html&lt;/a&gt;&lt;/p&gt;'><sup>40</sup></a> para modificarlas (<a href="https://dev.mysql.com/doc/refman/8.0/en/alter-table.html"><code>alter table</code></a>)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/8.0/en/alter-table.html" class="uri"&gt;https://dev.mysql.com/doc/refman/8.0/en/alter-table.html&lt;/a&gt;&lt;/p&gt;'><sup>41</sup></a> o para borrarlas (<a href="https://dev.mysql.com/doc/refman/8.0/en/drop-table.html"><code>drop table</code></a>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/8.0/en/drop-table.html" class="uri"&gt;https://dev.mysql.com/doc/refman/8.0/en/drop-table.html&lt;/a&gt;&lt;/p&gt;'><sup>42</sup></a></p>
+<p>Para poder hacer operaciones con los datos, es preciso crear usuarios y asignarles los privilegios adecuados sobre las tablas y atributos. Ello también requiere las instrucciones especiales SQL como lenguaje de administración de datos (LAD), que incluye instrucciones para crear usuarios (<a href="https://dev.mysql.com/doc/refman/8.0/en/create-user.html"><code>create user</code></a>),<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/8.0/en/create-user.html" class="uri"&gt;https://dev.mysql.com/doc/refman/8.0/en/create-user.html&lt;/a&gt;&lt;/p&gt;'><sup>43</sup></a> modificar ciertos aspectos de los mismos (<a href="https://dev.mysql.com/doc/refman/8.0/en/alter-user.html"><code>alter user</code></a>)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/8.0/en/alter-user.html" class="uri"&gt;https://dev.mysql.com/doc/refman/8.0/en/alter-user.html&lt;/a&gt;&lt;/p&gt;'><sup>44</sup></a> y borrarlos (<a href="https://dev.mysql.com/doc/refman/5.6/en/drop-user.html"><code>drop user</code></a>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.6/en/drop-user.html" class="uri"&gt;https://dev.mysql.com/doc/refman/5.6/en/drop-user.html&lt;/a&gt;&lt;/p&gt;'><sup>45</sup></a></p>
+<p>Un usuario de la base de datos que tenga privilegios suficientes sobre las estructuras creadas puede crear (<a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html"><code>insert</code></a>)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/8.0/en/insert.html" class="uri"&gt;https://dev.mysql.com/doc/refman/8.0/en/insert.html&lt;/a&gt;&lt;/p&gt;'><sup>46</sup></a> o modificar (<a href="https://dev.mysql.com/doc/refman/8.0/en/update.html"><code>update</code></a>)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/8.0/en/update.html" class="uri"&gt;https://dev.mysql.com/doc/refman/8.0/en/update.html&lt;/a&gt;&lt;/p&gt;'><sup>47</sup></a> registros de datos usando las instrucciones específicas de SQL como lenguaje de manipulación de datos (LMD) <a href="https://dev.mysql.com/doc/refman/5.7/en/grant-tables.html">(véase cómo otorgar privilegios a un usuario para crear tablas)</a>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/5.7/en/grant-tables.html" class="uri"&gt;https://dev.mysql.com/doc/refman/5.7/en/grant-tables.html&lt;/a&gt;&lt;/p&gt;'><sup>48</sup></a></p>
+<p>No obstante, y dado que el software en el que se centra este manual es en <strong>R</strong>, se deja fuera del alcance de este capítulo el uso de los aspectos LDD, LMD y LAD de SQL, y se cubrirán mediante la instrucciones <code><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable()</a></code> de <code>RMySQL</code> los aspectos de inserción y de actualización de los registros. <code><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable()</a></code> se usa, por tanto, para exportar datos de <strong>R</strong> a una base de datos MySQL, y puede ser usado para las acciones que se exponen a continuación, siempre y cuando el usuario que ejecute las acciones tenga suficientes permisos en el sistema gestor de bases de datos para realizarlas.</p>
+<div id="crear-una-nueva-tabla-con-datos" class="section level4" number="5.4.3.1">
+<h4>
+<span class="header-section-number">5.4.3.1</span> Crear una nueva tabla con datos<a class="anchor" aria-label="anchor" href="#crear-una-nueva-tabla-con-datos"><i class="fas fa-link"></i></a>
+</h4>
+<p>La creación de una nueva tabla de datos se lleva a cabo a partir de un <code>data.frame</code> que se puebla con datos iniciales y que tendrá tantas columnas como atributos tenga la tabla. Por ejemplo, a continuación se crea un <code>data.frame</code> llamado <code>dfDatos_Prueba</code> con dos columnas, una de tipo numérico llamada <code>CodPrueba</code> y otra de tipo texto llamada <code>DatosPrueba</code>. En este ejemplo, y a modo ilustrativo, los datos son completamente arbitrarios. Después, se construye el <code>data.frame</code> <code>dfDatos_Pruebas</code> y mediante <code><a href="https://dbi.r-dbi.org/reference/dbListTables.html">dbListTables()</a></code> se comprueba que la tabla no existe en la conexión a la base de datos. Finalmente, con <code><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable()</a></code>, se crea la nueva tabla. Es importante tener en cuenta las posibles conexiones simultáneas a la base de datos porque se podrían generar problemas. Con <code><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable()</a></code> se puede comprobar si la tabla se ha creado correctamente.</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">CodPrueba</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">26</span><span class="op">)</span></span>
+<span><span class="va">Nombre_Prueba</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">26</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">dfDatos_Prueba</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">CodPrueba</span>, <span class="va">Nombre_Prueba</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html">dbListTables</a></span><span class="op">(</span><span class="va">mibbdd</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Autor" "DatosPrueba_16" "DatosPrueba_22" "Datos_Prueba_01",</span></span>
+<span><span class="co">#&gt; [5] "Make" "Pelicula" "customers" "employees",</span></span>
+<span><span class="co">#&gt; [9] "offices" "orderdetails" "orders""payments",</span></span>
+<span><span class="co">#&gt; [13] "productlines" "products"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable</a></span><span class="op">(</span><span class="va">mibbdd</span>, <span class="st">"DatosPrueba"</span>, <span class="va">dfDatos_Prueba</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span>, row.names <span class="op">=</span><span class="cn">FALSE</span> <span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html">dbListTables</a></span><span class="op">(</span><span class="va">mibbdd</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Autor" "DatosPrueba" "DatosPrueba_16" "DatosPrueba_22",</span></span>
+<span><span class="co">#&gt; [5] "Datos_Prueba_01" "Make" "Pelicula" "customers" ,</span></span>
+<span><span class="co">#&gt; [9] "employees" "offices" "orderdetails","orders" ,</span></span>
+<span><span class="co">#&gt; [13] "payments" "productlines" "products"</span></span></code></pre></div>
+<p>Es interesante pensar en la utilidad de este método para duplicar tablas en caso necesario.</p>
+</div>
+<div id="sobreescribir-una-tabla-existente-con-datos-actualizados" class="section level4" number="5.4.3.2">
+<h4>
+<span class="header-section-number">5.4.3.2</span> Sobreescribir una tabla existente con datos actualizados<a class="anchor" aria-label="anchor" href="#sobreescribir-una-tabla-existente-con-datos-actualizados"><i class="fas fa-link"></i></a>
+</h4>
+<p>Cuando se trata de actualizar algunos valores de los atributos de la tabla o de añadir nuevos registros a la tabla, la operación es básicamente la misma que antes, pero primeramente habrá que leer la tabla y convertirla en un <code>data.frame</code> para actualizar en él los valores o añadir los nuevos valores (en este caso se añade una nueva fila); una vez hecho esto, se vuelve a utilizar el comando <code><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable()</a></code> añadiendo los parámetros <code>overwrite = TRUE</code> (para sobrescribir toda la tabla) y <code>row.names = FALSE</code>. En el siguiente ejemplo se actualizan los valores de una tupla específica.</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dfDatos_Prueba</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html">dbReadTable</a></span><span class="op">(</span><span class="va">mibbdd</span>, <span class="st">"DatosPrueba"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dfDatos_Prueba</span><span class="op">$</span><span class="va">NombrePrueba</span><span class="op">[</span><span class="fl">25</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"en un lugar de la mancha"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable</a></span><span class="op">(</span><span class="va">mibbdd</span>, <span class="st">"DatosPrueba"</span>, <span class="va">dfDatos_Prueba</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>             row.names <span class="op">=</span><span class="cn">FALSE</span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span></span>
+<span><span class="va">dfDatos_Prueba_Modificado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html">dbReadTable</a></span><span class="op">(</span><span class="va">mibbdd</span>, <span class="st">"DatosPrueba"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="añadir-nuevos-registros-a-una-tabla" class="section level4" number="5.4.3.3">
+<h4>
+<span class="header-section-number">5.4.3.3</span> Añadir nuevos registros a una tabla<a class="anchor" aria-label="anchor" href="#a%C3%B1adir-nuevos-registros-a-una-tabla"><i class="fas fa-link"></i></a>
+</h4>
+<p>Existen dos estrategias para añadir registros a una tabla. La primera es utilizar la técnica de sobreescritura descrita anteriormente. Para ello, se procede como antes: se carga la tabla en un
+<code>data.frame</code> (en este caso <code>dfDatos_Prueba</code>), se añaden nuevas filas (registros) al <code>data.frame</code> (cargadas previamente en el <code>data.frame</code> <code>dfNuevoRegistro</code>) usando <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code>, y a continuación se sobreescribe la tabla usando <code><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable()</a></code>. En el siguiente fragmento de código se muestra cómo añadir nuevos registros a una tabla sobreescribiéndola completamente.</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dfDatos_Prueba</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html">dbReadTable</a></span><span class="op">(</span><span class="va">mibbdd</span>, <span class="st">"DatosPrueba"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dfNuevo_Registro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="va">dfDatos_Prueba</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dfNuevo_Registro</span><span class="op">$</span><span class="va">CodPrueba</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">27</span><span class="op">)</span></span>
+<span><span class="va">dfNuevo_Registro</span><span class="op">$</span><span class="va">NombrePrueba</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Un Valor Nuevo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dfDatos_Prueba</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span> <span class="op">(</span><span class="va">dfDatos_Prueba</span>, <span class="va">dfNuevo_Registro</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable</a></span><span class="op">(</span><span class="va">mibbdd</span>, <span class="st">"DatosPrueba"</span>, <span class="va">dfDatos_Prueba</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span>, row.names <span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>La opción anterior puede ser interesante si la tabla no tiene muchos registros y el coste computacional no es muy grande. Pero si se tienen muchos registros es preferible usar otra estrategia para añadir un nuevo registro a la tabla. En este caso, se puede hacer creando un <code>data.frame</code> compatible con la estructura de la tabla, y ejecutar la instrucción <code><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable()</a></code> poniendo el parámetro <code>append = TRUE</code>. Esto añadirá el nuevo registro al final de la tabla. El siguiente fragmento de código muestra cómo realizar esta operación.</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dfDatos_Prueba_Nuevos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="va">dfDatos_Prueba</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dfDatos_Prueba_Nuevos</span><span class="op">$</span><span class="va">CodPrueba</span> <span class="op">&lt;-</span> <span class="fl">28</span></span>
+<span><span class="va">dfDatos_Prueba_Nuevos</span><span class="op">$</span><span class="va">NombrePrueba</span> <span class="op">&lt;-</span> <span class="st">"Otro valor nuevo"</span></span>
+<span></span>
+<span><span class="va">dfDatos_Prueba_Nuevos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span> <span class="op">(</span><span class="va">dfDatos_Prueba_Nuevos</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable</a></span><span class="op">(</span><span class="va">mibbdd</span>, <span class="st">"DatosPrueba"</span>, <span class="va">dfDatos_Prueba_Nuevos</span>, append <span class="op">=</span> <span class="cn">TRUE</span>, row.names <span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+</div>
+<div id="inserción-con-consulta-sql-usando-la-instrucción-dbsendquery" class="section level4" number="5.4.3.4">
+<h4>
+<span class="header-section-number">5.4.3.4</span> Inserción con consulta SQL usando la instrucción <code>dbSendQuery()</code><a class="anchor" aria-label="anchor" href="#inserci%C3%B3n-con-consulta-sql-usando-la-instrucci%C3%B3n-dbsendquery"><i class="fas fa-link"></i></a>
+</h4>
+<p>Una última forma de insertar valores en una tabla es mediante la instrucción <code>dbSendQuery</code>, utilizando una consulta de inserción <code>insert</code>. En el siguiente ejemplo se muestra cómo insertar tuplas o registros mediante <code><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery()</a></code>; en este caso, se añaden datos completamente arbitrarios a modo de ejemplo.</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">SentenciaSQL_Insercion</span> <span class="op">=</span><span class="st">"insert into DatosPrueba value (29, 'Una tercera forma')"</span></span>
+<span> </span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery</a></span> <span class="op">(</span><span class="va">mibbdd</span>, <span class="va">SentenciaSQL_Insercion</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;MySQLResult:-365007472,0,23&gt;</span></span></code></pre></div>
+</div>
+</div>
+<div id="operaciones-de-borrado-de-datos-delete" class="section level3" number="5.4.4">
+<h3>
+<span class="header-section-number">5.4.4</span> Operaciones de borrado de datos (<em>delete</em>)<a class="anchor" aria-label="anchor" href="#operaciones-de-borrado-de-datos-delete"><i class="fas fa-link"></i></a>
+</h3>
+<p>Finalmente, se describen las operaciones de borrado. Análogamente a como se hacían las operaciones de inserción, se puede proceder de dos formas:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Borrado de valores usando <code><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable()</a></code> con sobreescritura</strong>: esto implica extraer todos los datos de la tabla, borrar el registro o los registros correspondientes y sobreescribir nuevamente la tabla en la base de datos mediante la instrucción <code><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable()</a></code> con la opción <code>overwrite = TRUE</code>; para ver el resultado se puede usar la función <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>. El siguiente fragmento de código muestra cómo hacerlo:</li>
+</ol>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dfDatos_Prueba</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html">dbReadTable</a></span><span class="op">(</span><span class="va">mibbdd</span>, <span class="st">"DatosPrueba"</span><span class="op">)</span></span>
+<span><span class="va">dfDatos_Prueba</span> <span class="op">&lt;-</span> <span class="va">dfDatos_Prueba</span><span class="op">[</span><span class="va">dfDatos_Prueba</span><span class="op">$</span><span class="va">CodPrueba</span> <span class="op">&lt;</span> <span class="fl">25</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable</a></span><span class="op">(</span><span class="va">mibbdd</span>, <span class="st">"DatosPrueba"</span>, <span class="va">dfDatos_Prueba</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span>, row.names <span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>
+<strong>Borrado de registros con consulta SQL en <code><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery()</a></code></strong>: se puede llevar a cabo utilizando una sentencia SQL de borrado <a href="https://dev.mysql.com/doc/refman/8.0/en/delete.html"><code>delete</code></a><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/8.0/en/delete.html" class="uri"&gt;https://dev.mysql.com/doc/refman/8.0/en/delete.html&lt;/a&gt;&lt;/p&gt;'><sup>49</sup></a> con la instrucción <code><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery()</a></code> para borrar registros de la base de datos. El siguiente fragmento de código muestra cómo hacerlo:</li>
+</ol>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Se usa una sentencia SQL de borrado. El criterio de borrado es completamente arbitrario a efectos ilustrativos.</span></span>
+<span><span class="va">SentenciaSQL_Eliminación</span> <span class="op">=</span><span class="st">"delete from DatosPrueba where CodPrueba &gt; 10"</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery</a></span> <span class="op">(</span><span class="va">mibbdd</span>, <span class="va">SentenciaSQL_Eliminación</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;MySQLResult:1,0,30&gt;</span></span></code></pre></div>
+<p>Finalmente, si fuera necesario eliminar toda la tabla, se podría usar una sentencia <a href="https://dev.mysql.com/doc/refman/8.0/en/drop-table.html">drop table</a>:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://dev.mysql.com/doc/refman/8.0/en/drop-table.html" class="uri"&gt;https://dev.mysql.com/doc/refman/8.0/en/drop-table.html&lt;/a&gt;&lt;/p&gt;'><sup>50</sup></a></p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html">dbSendQuery</a></span><span class="op">(</span><span class="va">mibbdd</span>, <span class="st">"drop table DatosPrueba"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;MySQLResult:0,0,31&gt;</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html">dbDisconnect</a></span><span class="op">(</span><span class="va">mibbdd</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+</div>
+<div id="resumen-4" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>En este capítulo se han presentado los fundamentos de las bases de datos relacionales. Es importante tener presentes los siguientes aspectos:</p>
+<ul>
+<li><p>Los datos en las bases de datos se corresponden a valores de atributos relevantes de entidades del mundo real.</p></li>
+<li><p>Los datos de una base de datos son una percepción u observación del mundo real.</p></li>
+<li><p>Los datos son la materia prima de los procesos de negocio.</p></li>
+<li><p>Los sistemas de información dan soporte a los procesos de negocio.</p></li>
+<li><p>Los datos son un elemento fundamental de los sistemas de información.</p></li>
+<li><p>SQL es el lenguaje más comúnmente utilizado en operaciones sobre el modelo físico de bases de datos relacionales.</p></li>
+<li><p>SQL se puede utilizar como Lenguaje de Definición de Datos (LDD), como Lenguaje de Manipulación de Datos (LMD) y como Lenguaje de Administración de Datos (LAD).</p></li>
+<li><p>La sintaxis de SQL depende fuertemente del sistema gestor de bases de datos relacionales que lo implemente.</p></li>
+<li><p><strong>R</strong> software, a través del <em>driver</em> específico, permite manejar bases de datos implementando las operaciones CRUD.</p></li>
+</ul>
+</div>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></div>
+<div class="next"><a href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#datos-sql"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="nav-link" href="#introducci%C3%B3n-1"><span class="header-section-number">5.1</span> Introducción</a></li>
+<li>
+<a class="nav-link" href="#concepto-de-base-de-datos"><span class="header-section-number">5.2</span> Concepto de base de datos</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#gesti%C3%B3n-de-los-datos-en-una-base-o-repositorio-de-datos"><span class="header-section-number">5.2.1</span> Gestión de los datos en una base o repositorio de datos</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#sql-el-lenguaje-estructurado-de-consulta"><span class="header-section-number">5.3</span> SQL: el lenguaje estructurado de consulta</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#sql-como-lenguaje-de-definici%C3%B3n-de-datos"><span class="header-section-number">5.3.1</span> SQL como lenguaje de definición de datos</a></li>
+<li><a class="nav-link" href="#sql-como-lenguaje-de-manipulaci%C3%B3n-de-datos"><span class="header-section-number">5.3.2</span> SQL como lenguaje de manipulación de datos</a></li>
+<li><a class="nav-link" href="#sql-como-lenguaje-de-administraci%C3%B3n-de-datos"><span class="header-section-number">5.3.3</span> SQL como lenguaje de administración de datos</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#acceso-y-explotaci%C3%B3n-de-bases-de-datos-desde-r"><span class="header-section-number">5.4</span> Acceso y explotación de bases de datos desde R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#conexi%C3%B3n-a-una-base-de-datos"><span class="header-section-number">5.4.1</span> Conexión a una base de datos</a></li>
+<li><a class="nav-link" href="#operaciones-de-lectura-consulta-selecci%C3%B3n-read-de-datos"><span class="header-section-number">5.4.2</span> Operaciones de lectura / consulta/ selección (read) de datos</a></li>
+<li><a class="nav-link" href="#operaciones-de-inserci%C3%B3n-create-y-actualizaci%C3%B3n-update-de-datos"><span class="header-section-number">5.4.3</span> Operaciones de inserción (create) y actualización (update) de datos</a></li>
+<li><a class="nav-link" href="#operaciones-de-borrado-de-datos-delete"><span class="header-section-number">5.4.4</span> Operaciones de borrado de datos (delete)</a></li>
+<li><a class="nav-link" href="#resumen-4">Resumen</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

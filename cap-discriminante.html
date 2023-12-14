@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 21 Análisis discriminante | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="Mª Leticia Meseguer Santamaría\(^{a}\) y Manuel Vargas Vargas\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  21.1 Introducción El análisis discriminante (AD) es una técnica de dependencia...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Capítulo 21 Análisis discriminante | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="Mª Leticia Meseguer Santamaría\(^{a}\) y Manuel Vargas Vargas\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  21.1 Introducción El análisis discriminante (AD) es una técnica de dependencia...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 21 Análisis discriminante | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="Mª Leticia Meseguer Santamaría\(^{a}\) y Manuel Vargas Vargas\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  21.1 Introducción El análisis discriminante (AD) es una técnica de dependencia...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="active" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="cap-discriminante" class="section level1" number="21">
+<h1>
+<span class="header-section-number">Capítulo 21</span> Análisis discriminante<a class="anchor" aria-label="anchor" href="#cap-discriminante"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>Mª Leticia Meseguer Santamaría</em><span class="math inline">\(^{a}\)</span> y <em>Manuel Vargas Vargas</em><span class="math inline">\(^{a}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad de Castilla-La Mancha</p>
+<div id="introducción-10" class="section level2" number="21.1">
+<h2>
+<span class="header-section-number">21.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-10"><i class="fas fa-link"></i></a>
+</h2>
+<p>El <strong>análisis discriminante</strong> (AD) es una técnica de dependencia orientada a la clasificación de individuos en grupos (o poblaciones) preexistentes y con ciertas características conocidas, utilizando para ello la información proporcionada por un conjunto de variables clasificadoras.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La referencia a individuos es en sentido amplio, entendiéndose por individuos no solo personas, sino también objetos, entes, elementos, casos, etc.&lt;/p&gt;"><sup>155</sup></a> La clasificación se realiza mediante <strong>funciones discriminantes</strong>, combinaciones de las clasificadoras originales y que se emplean como criterio para asignar cada individuo a un grupo o población.</p>
+<p>De esta forma, en el análisis discriminante se identifican dos <strong>finalidades</strong>: la descriptiva, caracterizando la separación entre grupos al proporcionar la contribución de cada variable clasificadora a dicha separación; y la predictiva, estableciendo el criterio de clasificación de un individuo nuevo en alguno de los grupos a partir de sus valores para las variables clasificadoras.</p>
+<p>El problema de la <strong>discriminación</strong> puede plantearse de diversas formas y aparece en numerosas áreas de investigación. El AD se incluye en los modelos denominados <strong>supervisados</strong>, puesto que se conoce <em>a priori</em> a qué grupo o población está asignado cada individuo de la muestra, y se utiliza en campos tan diferentes como los sistemas automáticos de concesión de créditos bancarios (<em>credit scoring</em>), clasificación de pacientes en función de pruebas diagnósticas, atribución de obras literarias o pictóricas a autores, o en control de calidad, cuando la información es muy costosa o requiere la destrucción de las unidades; entre otros. En el campo de la ingeniería, la discriminación se conoce como <em>reconocimiento de patrones</em> (<em>pattern recognition)</em> y es utilizada para el diseño de máquinas de clasificación automática (reconocimiento de billetes o monedas, sonidos, etc.).</p>
+<p>Aunque existen varios enfoques diferentes, en este capítulo se adoptará el enfoque clásico de Fisher, que asume la normalidad multivariante de las variables clasificadoras. Como punto de partida, para un AD se considera:</p>
+<ul>
+<li><p>Un conjunto de <em>N</em> individuos, de los que se conoce su grupo de pertenencia. Esta información se resume en una variable categórica <span class="math inline">\(Y\)</span> cuyas categorías son los distintos grupos.</p></li>
+<li><p>Un conjunto de <em>k</em> grupos (<span class="math inline">\(k \geq 2\)</span>) con, al menos, dos individuos en cada uno de ellos.</p></li>
+<li><p>Un conjunto de <em>p</em> variables, medidas en intervalo o razón. Estas variables no deben presentar multicolinealidad, es decir, ninguna clasificadora puede ser combinación lineal de otras clasificadoras. Además, dado el enfoque adoptado, se asume que estas variables siguen una distribución normal multivariante.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Este supuesto garantiza que el método clásico propuesto por Fisher es óptimo. En la práctica, el AD es robusto frente a incumplimientos de la normalidad &lt;em&gt;p&lt;/em&gt;-dimensional, por lo que también se aplica en muchos casos donde no se puede garantizar este requisito.&lt;/p&gt;"><sup>156</sup></a></p></li>
+</ul>
+<p>El número de variables discriminantes debe ser inferior en más de dos al número de individuos (<span class="math inline">\(p&lt;N-2\)</span>) para poder identificar los parámetros de las funciones discriminantes. Además, en la práctica, es útil disponer de algún criterio o método que permita seleccionar qué variables se considerarán clasificadoras. Una alternativa pueden ser los métodos de jerarquización de variables desarrollados en análisis de regresión o la selección de variables (<em>feature selection</em>, véase Cap. <a href="chap-feature.html#chap-feature">9</a>). Como punto inicial, es frecuente que se considere que una variable puede ser clasificadora si presenta diferencias en su distribución entre los grupos, utilizando para ello un <em>ANOVA</em>.</p>
+<p>Así, el AD busca determinar un criterio o <em>regla discriminante</em> que clasifique a cada individuo, <span class="math inline">\(i, \hspace{0,2cm}i=1,..., N\)</span>, en uno de los <span class="math inline">\(k\)</span> grupos conociendo las observaciones de cada una de las <span class="math inline">\(p\)</span> variables <span class="math inline">\(X_j\)</span>, es decir, el vector <span class="math inline">\({\bf{x}}_i=(x_{1i},x_{2i}, ... , x_{pi})'\)</span>. Estas reglas discriminantes están basadas en la información muestral y en los supuestos que sobre esta se hacen; en el planteamiento clásico de Fisher, al asumir la normalidad de las variables, se basan en el comportamiento, en los <span class="math inline">\(k\)</span> grupos, de los vectores de medias y de las matrices de varianzas-covarianzas (véase Sec. <a href="cap-120006-aed.html#sec-120006-aedmulti">11.3</a>). Por ello, se suelen distinguir varios casos que conducen a distintos métodos de obtención de reglas discriminantes, por lo que reciben nombres diferentes:</p>
+<ul>
+<li><p>El caso más sencillo (e históricamente el más antiguo), además de la normalidad, supone que las matrices de varianzas-covarianzas son iguales en todos los grupos (supuesto de <strong>homocedasticidad</strong>). El método se conoce como <strong>análisis discriminante lineal</strong> (<em>linear discriminant analysis</em> o LDA). En este caso, detallado en la Sec. <a href="cap-discriminante.html#sec-150025lda">21.2</a>, la diferencia en la distribución de las variables entre los grupos se produce en los vectores de medias, y la función discriminante obtenida es una combinación lineal de las variables clasificadores que minimiza los errores de clasificación. </p></li>
+<li><p>Otra posibilidad es que se asuma la normalidad pero no que todos los grupos tengan la misma matriz de varianzas-covarianzas. En este caso, la función discriminante es una función cuadrática, por lo que el método se conoce como <strong>análisis discriminante cuadrático</strong> (<em>quadatric discriminant analysis</em> o QDA), detallado en la Sec. <a href="cap-discriminante.html#sec-150025qda">21.3</a>. </p></li>
+</ul>
+<p>Sea cual sea el método elegido, las <em>reglas discriminantes</em> que se obtengan para clasificar a un individuo en uno de los grupos deben determinarse minimizando los errores de clasificación, que pueden ser evaluados probabilísticamente al disponer de la distribución de probabilidad de las variables en cada grupo. Así, para cada individuo <span class="math inline">\(i\)</span> y sus valores de las variables clasificadoras <span class="math inline">\({\bf{x}}_i=(x_{1i},x_{2,i}, ... , x_{pi})'\)</span>, se dispone de las verosimilitudes para cada uno de los <span class="math inline">\(k\)</span> grupos, <span class="math inline">\(L_m\left( {\bf{x}}_i;{\bf{\theta}}_m \right )\ ,1\leq m \leq k\)</span>, donde en el vector <span class="math inline">\({\bf{\theta}}_m\)</span> se recogen los parámetros de la distribución probabilísitica de las variables (en el caso de normalidad, dichos parámetros son la media y la desviación típica).</p>
+<p>Conociendo la probabilidad <em>a priori</em> de pertenencia de un individuo a cada grupo,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Lo habitual es que la probabilidad &lt;em&gt;a priori&lt;/em&gt; de pertenencia de un individuo a un grupo
+sea &lt;span class="math inline"&gt;\(\pi _m = {{1}\over{k}},\hspace{0,2cm} m=1,...,k\)&lt;/span&gt;, cualquiera que sea el grupo, o bien proporcional al tamaño del grupo.&lt;/p&gt;'><sup>157</sup></a> <span class="math inline">\(\pi_m \, \ 1 \leq m \leq k\)</span>, se puede aplicar el teorema de Bayes (véase <a href="Funda-probab.html#eq:bayes">(12.3)</a>) y calcular la probabilidad de que el individuo pertenezca a cada uno de los grupos <span class="math inline">\(G_m,\hspace{0,2cm} m=1,...,k\)</span>. Por ejemplo, para el <em>m</em>-ésimo grupo:</p>
+<p><span class="math display" id="eq:probclas">\[\begin{equation}
+\tag{21.1}
+P(G_m/ {\bf{x}}_i) = \frac {L_m({\bf{x}}_i;{\bf{\theta}} _m) \pi _m} {\sum_{m=1}^{k} L_i ({\bf{x}}_i;{\bf{\theta}} _m) \pi _m}, \hspace{0,5cm} m \in [1,...,k].
+\end{equation}\]</span></p>
+<p>A partir de esta ecuación, la <em>regla discriminante</em> consiste en asignar el individuo al grupo más probable. Dado que el denominador de <a href="cap-discriminante.html#eq:probclas">(21.1)</a> es constante para todos los grupos, la regla equivale a asignar el individuo al grupo donde sea <em>ponderadamente</em> más verosímil. Es decir, el <em>i</em>-ésimo individuo se clasifica en el <em>m</em>-ésimo grupo si:</p>
+<p><span class="math display" id="eq:veroclas">\[\begin{equation}
+\tag{21.2}
+L_m({\bold {x}}_i;{\bold{\theta}}_m) \pi_m = \underset {m=1,...,k}{\max} L_m({\bf{x}}_i;{\bold {\theta}}_m) \pi_m,
+\end{equation}\]</span></p>
+<p>ecuación que se simplifica en el caso de igual probabilidad <em>a priori</em>, resultando la <em>regla discriminante</em> en asignar a cada individuo al grupo más verosímil.</p>
+<p>En general, se pueden cometer dos tipos de error: no clasificar al individuo en un grupo cuando realmente pertenece a él o clasificarlo en un grupo al que realmente no pertenece. Si no se conocen los costes de cometer dichos errores (o son iguales), no afectan a la <strong>regla discriminante</strong>; sin embargo, si son conocidos y han de ser tenidos en cuenta, la regla se modificaría, ponderando cada verosimilitud <span class="math inline">\(L_m({\bf{x}}_i;{\bf{\theta}}_m) ,\hspace{0,2cm} m=1,...,k,\)</span> por el coste de clasificar erróneamente un individuo perteneciente al <em>m</em>-ésimo grupo.</p>
+<p>En las secciones siguientes se abordarán ambos modelos de AD que, aunque no son los únicos, sí representan la gran mayoría de las aplicaciones prácticas.</p>
+</div>
+<div id="sec-150025lda" class="section level2" number="21.2">
+<h2>
+<span class="header-section-number">21.2</span> Análisis discriminante lineal<a class="anchor" aria-label="anchor" href="#sec-150025lda"><i class="fas fa-link"></i></a>
+</h2>
+<p>Es un modelo de <em>AD</em> basado en los supuestos generales expuestos en el epígrafe anterior (<span class="math inline">\(N\)</span> individuos, <span class="math inline">\(k\)</span> grupos y <span class="math inline">\(p\)</span> variables clasificadoras con distribución normal y sin multicolinealidad) y caracterizado por la <strong>igualdad de las matrices de varianza-covarianza</strong> de las variables en todos los grupos. Para la exposición de la metodología, se presenta el caso más sencillo, con solo dos grupos y probabilidades <em>a priori</em> iguales, para generalizarlo posteriormente al caso general de <span class="math inline">\(k\)</span> grupos.</p>
+<div id="dos-grupos-y-una-variable-clasificadora" class="section level3" number="21.2.1">
+<h3>
+<span class="header-section-number">21.2.1</span> Dos grupos y una variable clasificadora<a class="anchor" aria-label="anchor" href="#dos-grupos-y-una-variable-clasificadora"><i class="fas fa-link"></i></a>
+</h3>
+<p>Es el caso más simple posible, donde se han de clasificar <span class="math inline">\(N\)</span> individuos en dos grupos (I y II) a partir de la información de una única variable clasificadora, <span class="math inline">\(X\)</span>. En este caso, las distribuciones de probabilidad de <span class="math inline">\(X\)</span> en los grupos I y II solo difieren en la media, como se muestra en la Fig. <a href="cap-discriminante.html#fig:150025img01">21.1</a>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:150025img01"></span>
+<img src="img/150025img01.png" alt="LDA: dos grupos y una variable clasificadora." width="50%"><p class="caption">
+Figura 21.1: LDA: dos grupos y una variable clasificadora.
+</p>
+</div>
+<p>La <strong>regla discriminante</strong> consistirá en asignar cada individuo al grupo con mayor verosimilitud <a href="cap-discriminante.html#eq:veroclas">(21.2)</a>. Como se aprecia, esta regla divide la recta real en dos partes, a la izquierda y a la derecha de <span class="math inline">\(C\)</span>, que es el el valor de la recta correspondiente al corte entre las funciones de densidad de los grupos I y II:</p>
+<p><span class="math display">\[\begin{equation}
+C=\frac{\overline{x}_I+\overline{x}_{II}}{2},
+\end{equation}\]</span></p>
+<p>quedando la asignación de cada individuo como sigue:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;De forma intuitiva, se asigna cada individuo al grupo cuya media está más cercana al valor de la variable. Esta interpretación se generaliza a más variables clasificadoras, asignando cada individuo al grupo cuyo centroide esté más cercano a él. Si la probabilidad &lt;em&gt;a priori&lt;/em&gt; fuese proporcional al tamaño de los grupos, el punto de corte se calcularía como &lt;span class="math inline"&gt;\(C=\frac{n_I\bar{x}_I+n_{II}\bar{x}_{II}}{N}\)&lt;/span&gt;.&lt;/p&gt;'><sup>158</sup></a></p>
+<p><span class="math display">\[\begin{equation}
+\text{si } x_i&lt;C \in \text{ Grupo I y si } x_i&gt;C \in \text{ Grupo II}.
+\end{equation}\]</span></p>
+<p>Las probabilidades de los errores que se pueden cometer en la asignación corresponderían a las áreas resaltadas en rojo (individuo asignado al grupo I cuando realmente pertenece al grupo II) y en verde (individuo asignado al grupo II cuando realmente pertenece al grupo I), constituyendo la zona de error de clasificación.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Nótese que el menor error de clasificación se obtiene para el punto de corte correspondiente a la intersección de las distribuciones de los dos grupos; sobre la Fig. &lt;a href="cap-discriminante.html#fig:150025img01"&gt;21.1&lt;/a&gt; se intuye que cualquier desplazamiento del punto de corte reduce uno de los dos errores, pero aumenta en mayor medida el otro.&lt;/p&gt;'><sup>159</sup></a></p>
+</div>
+<div id="dos-grupos-y-dos-variables-clasificadoras" class="section level3" number="21.2.2">
+<h3>
+<span class="header-section-number">21.2.2</span> Dos grupos y dos variables clasificadoras<a class="anchor" aria-label="anchor" href="#dos-grupos-y-dos-variables-clasificadoras"><i class="fas fa-link"></i></a>
+</h3>
+<p>Si, bajo los mismos supuestos, se dispone de dos variables clasificadoras, <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span>, se proyectan los elipsoides de ambos grupos sobre las dos variables y se obtiene la Fig. <a href="cap-discriminante.html#fig:150025img02">21.2</a>:</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:150025img02"></span>
+<img src="img/150025img02.png" alt="LDA: dos grupos y dos variables clasificadoras." width="50%"><p class="caption">
+Figura 21.2: LDA: dos grupos y dos variables clasificadoras.
+</p>
+</div>
+<p>Se obtienen, sobre cada variable, zonas de error de clasificación amplias (marcadas en amarillo) que conllevarán errores de clasificación grandes. Sin embargo, si se proyectan ambos elipsoides sobre un nuevo <em>eje</em>, obtenido como una combinación lineal de ambas variables clasificadoras (<span class="math inline">\(w_1X_1 + w_2X_2 - D = 0\)</span>), es posible reducir la zona de error de clasificación y, como consecuencia, la probabilidad de error de clasificación.</p>
+<p>El problema de la obtención de la combinación lineal que minimiza la probabilidad de error de clasificación fue resuelto por Fisher buscando la <strong>función discriminante</strong> que maximiza la separación entre ambos grupos, maximizando la distancia entre sus centroides y minimizando la variabilidad dentro de cada grupo. El procedimiento se detalla para el caso general de <span class="math inline">\(p\)</span> variables.</p>
+</div>
+<div id="dos-grupos-y-p-variables-clasificadoras" class="section level3" number="21.2.3">
+<h3>
+<span class="header-section-number">21.2.3</span> Dos grupos y <em>p</em> variables clasificadoras<a class="anchor" aria-label="anchor" href="#dos-grupos-y-p-variables-clasificadoras"><i class="fas fa-link"></i></a>
+</h3>
+<p>El objetivo es encontrar una <strong>regla discriminante</strong> que permita <strong>separar</strong> ambos grupos. En otros términos, el objetivo es encontrar la <strong>función discriminante de Fisher</strong>, que se plantea como una combinación lineal de las <span class="math inline">\(p\)</span> variables clasificadoras:
+</p>
+<p><span class="math display">\[\begin{equation}
+D=w_1X_1+w_2X_2+...+w_pX_p,
+\end{equation}\]</span></p>
+<p>que asigna al individuo <em>i</em>-ésimo una <strong>puntuación discriminante</strong> <span class="math inline">\(D_i=w_1X_{1i}+w_2X_{2i}+...+w_pX_{pi}\)</span>; expresando matricialmente estas puntuaciones en diferencias respecto a las medias, se tiene que:</p>
+<p><span class="math display" id="eq:discr">\[\begin{equation}
+\tag{21.3}
+\begin{pmatrix} D_1 - \bar{D} \\ D_2 - \bar{D} \\ \vdots \\ {D}_N - \bar{D} \end{pmatrix} = \begin{pmatrix} X_{11} - \bar{X}_1 &amp; X_{21} - \bar{X}_2 &amp; \cdots &amp; X_{p1} - \bar{X}_p \\ X_{12} - \bar{X}_1 &amp; X_{22} - \bar{X}_2 &amp; \cdots &amp; X_{p2} - \bar{X}_p \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ X_{1N} - \bar{X}_1 &amp; X_{2N} - \bar{X}_2 &amp; \cdots &amp; X_{pN} - \bar{X}_p \\ \end{pmatrix} \ \begin{pmatrix} w_1 \\ w_2 \\ \vdots \\ w_p \\ \end{pmatrix}.
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(\bar{D}= w_1\bar{X}_1+ w_2\bar{X}_2+...+w_p\bar{X}_p\)</span>, por ser <span class="math inline">\(D\)</span> una combinación lineal de variables normales. En notación abreviada, la ecuación <a href="cap-discriminante.html#eq:discr">(21.3)</a> se puede expresar como <span class="math inline">\({\bf{d}}^{*}={{\bf{X}}^{*}}\bf{w}\)</span>.</p>
+<p>La suma de cuadrados de las desviaciones de la función discriminante respecto a su media quedaría entonces como:</p>
+<p><span class="math display" id="eq:discrm">\[\begin{equation}
+\tag{21.4}
+{\bf{d}}^{*\prime} {\bf{d}}^{*}= {\bf{w}}^{\prime} {\bf{X}}^{*\prime} \bf{X}^{*}\bf{w},
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\({\bf{X}}^{*\prime} {\bf{X}}^{*}\)</span> es la matriz simétrica de las desviaciones cuadráticas de las variables clasificadoras respecto a sus medias (o matriz <strong>suma de cuadrados y productos cruzados</strong>, SCPC). Esta matriz se puede descomponer en la suma de dos matrices: la SCPC <strong>entregrupos</strong> o <strong>intergrupos</strong>, <span class="math inline">\(\bf{F}\)</span>, y la SCPC <strong>residual</strong> o <strong>intragrupos</strong>, <span class="math inline">\(\bf{U}\)</span>, por lo que la ecuación <a href="cap-discriminante.html#eq:discrm">(21.4)</a> se puede reexpresar como:</p>
+<p><span class="math display" id="eq:discrp">\[\begin{equation}
+\tag{21.5}
+{\bf{d}}^{*\prime} {\bf{d}}^{*}={\bf{w}}^{\prime} \bf{Fw}+ {\bf{w}}^{\prime} \bf{Uw}.
+\end{equation}\]</span></p>
+<p>Fisher propuso determinar el vector de pesos, <span class="math inline">\(\bf{w}\)</span>, buscando que se produzca la máxima discriminación entre los grupos, maximizando la variabilidad entre grupos respecto a la variabilidad intragrupos, es decir:</p>
+<p><span class="math display" id="eq:discanova">\[\begin{equation}
+\tag{21.6}
+\max \frac{{\bf{w}}^{\prime} \bf{Fw}} {{\bf{w}}^{\prime} \bf{Uw}}.
+\end{equation}\]</span></p>
+<p>Como esta expresión es invariante frente a cambios de escala, maximizar <a href="cap-discriminante.html#eq:discanova">(21.6)</a> es equivalente a maximizar <span class="math inline">\({\bf{w}}^{\prime} \bf{Fw}\)</span> con la condición <span class="math inline">\({\bf{w}}^{\prime} \bf{Uw} =1\)</span> que, aplicando los multiplicadores de Lagrange, implica:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{array}{crl}
+L= {\bf{w}}^{\prime} {\bf{Fw}} - \lambda ({{\bf{w}}^{\prime} {\bf{Uw}}}-{1}) \Rightarrow \frac{\partial L}{\partial {\bf{w}}}=2{\bf{Fw}}-2\lambda\bf{Uw}=\bf{0} \Rightarrow \\
+\Rightarrow \bf{Fw}=\lambda \bf{Uw} \Rightarrow {\bf{(U}}^{-1} \bf{F)w}=\lambda \bf{w}. \\
+\end{array}
+\end{equation}\]</span></p>
+<p>Así, el autovector asociado al mayor autovalor de la matriz <span class="math inline">\(\textbf{U}^{-1}\textbf{F}\)</span> proporcionará los coeficientes de la <strong>función discriminante lineal de Fisher</strong> que mejor separa ambos grupos.</p>
+<p>El <strong>punto de corte (C)</strong> se obtiene evaluando la función discriminante en la media de cada grupo y calculando la media de las medias grupales ponderadas por el tamaño del grupo:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{array}{crl}
+\bar{D}_I=w_1\bar{X}_{1I}+w_2\bar{X}_{2I}+...+w_p\bar{X}_{pI} \\
+\bar{D}_{II}=w_1\bar{X}_{1II}+w_2\bar{X}_{2II}+...+w_p\bar{X}_{pII}, \\
+\end{array}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+C= \frac{n_I \bar{D}_I + n_{II} \bar{D}_{II}}{N},
+\end{equation}\]</span></p>
+<p>y el <strong>criterio de asignación para el <span class="math inline">\(i\)</span>-ésimo individuo</strong>, es:</p>
+<p><span class="math display">\[\begin{equation}
+\text{si } \ D_i&lt;C \in \text{ Grupo I   y   si } D_i&gt;C \in \text{ Grupo II}.
+\end{equation}\]</span></p>
+</div>
+<div id="k-grupos-y-p-variables" class="section level3" number="21.2.4">
+<h3>
+<span class="header-section-number">21.2.4</span> <em>k</em> grupos y <em>p</em> variables<a class="anchor" aria-label="anchor" href="#k-grupos-y-p-variables"><i class="fas fa-link"></i></a>
+</h3>
+<p>En caso de existir más de dos grupos, la generalización del caso anterior es relativamente sencilla. Siguiendo la misma idea utilizada para dos grupos, se debe obtener un número de <strong>funciones discriminantes de Fisher</strong> suficiente para separar lo más posible los <span class="math inline">\(k\)</span> grupos; este número es <span class="math inline">\(T=\min {(k-1,p)}\)</span>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Para separar linealmente &lt;span class="math inline"&gt;\(k\)&lt;/span&gt; grupos hacen falta &lt;span class="math inline"&gt;\(k-1\)&lt;/span&gt; hiperplanos, pero su obtención está también limitada por el número &lt;span class="math inline"&gt;\(p\)&lt;/span&gt; de variables clasificadoras.&lt;/p&gt;'><sup>160</sup></a></p>
+<p>Cada una de las <span class="math inline">\(T\)</span> funciones discriminantes es una combinación lineal de las <span class="math inline">\(p\)</span> variables clasificadoras:</p>
+<p><span class="math display">\[\begin{equation}
+D_t=w_{t1}X_1+w_{t2}X_2+...+w_{tp}X_p\hspace{0,5cm} t=1,...T,
+\end{equation}\]</span></p>
+<p>donde se exige que el coeficiente de correlación lineal entre cada dos funciones discriminantes distintas sea nulo.</p>
+<p>La suma de cuadrados de las desviaciones de la matriz <span class="math inline">\(\textbf{D}\)</span> de funciones discriminantes respecto a sus medias tendría una expresión equivalente a la ecuación <a href="cap-discriminante.html#eq:discrm">(21.4)</a>:</p>
+<p><span class="math display" id="eq:discrmg">\[\begin{equation}
+\tag{21.7}
+\bf{D}^{*\prime} {\bf{D}}^{*}= {\bf{W}}^{\prime} {\bf{X}}^{* \prime}{\bf{XW}}.
+\end{equation}\]</span></p>
+<p>Para que las funciones discriminen lo máximo posible a los <span class="math inline">\(k\)</span> grupos, las combinaciones lineales han de maximizar la variabilidad entre los grupos respecto a la variabilidad intragrupos, en un razonamiento análogo al expuesto en la ecuación <a href="cap-discriminante.html#eq:discanova">(21.6)</a>:</p>
+<p><span class="math display" id="eq:discanova">\[\begin{equation}
+\tag{21.6}
+\max \frac{{\bf{W}}^{\prime} \bf{FW}} {{\bf{W}}^{\prime} \bf{UW}}.
+\end{equation}\]</span></p>
+<p>Al tratarse de una función homogénea, la maximización de <a href="cap-discriminante.html#eq:discanova">(21.6)</a> equivale a maximizar <span class="math inline">\({\bf{W}}^{\prime}\bf{FW}\)</span> con la condición <span class="math inline">\({{\bf{W}}^{\prime}\bf{UW}}=1\)</span>, que, aplicando los multiplicadores de Lagrange, implica:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{array}{crl}
+L= {\bf{W}}^{\prime} {\bf{FW}} - \lambda ({{\bf{W}}^{\prime} {\bf{UW}}}-{1}) \Rightarrow \frac{\partial L}{\partial {\bf{w}}}=2{\bf{FW}}-2\lambda\bf{UW}=\bf{0} \Rightarrow \\
+\Rightarrow \bf{FW}=\lambda {\bf{UW}} \Rightarrow {({\bf{U}}^{-1} {\bf{F}}}){W}=\lambda \bf{w}. \\
+\end{array}
+\end{equation}\]</span></p>
+<p>Por tanto, el autovector asociado al mayor autovalor de la matriz <span class="math inline">\(\textbf{U}^{-1}\textbf{F}\)</span> (generalmente no simétrica) proporciona los coeficientes de la <strong>primera función discriminante lineal de Fisher</strong>, siendo el autovalor la proporción de la varianza total explicada por las <span class="math inline">\(T\)</span> funciones discriminantes que recoge la primera función.</p>
+<p>Para obtener el resto de funciones discriminantes, basta con ir eligiendo los siguientes autovectores asociados a los autovalores, ordenados decrecientemente. Como los autovectores son linealmente independientes, las funciones de discriminación están incorrelacionadas.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Como la capacidad discriminante de la funciones va decreciendo, puede haber casos donde no se consideren relevantes todas, sino las &lt;span class="math inline"&gt;\(h\)&lt;/span&gt; primeras. En ese caso, la variabilidad explicada por una de estas &lt;span class="math inline"&gt;\(h\)&lt;/span&gt; funciones discriminantes, por ejemplo la &lt;span class="math inline"&gt;\(r\)&lt;/span&gt;-ésima, sería &lt;span class="math inline"&gt;\(\lambda_r\)&lt;/span&gt;, por lo que la proporción de variabilidad atribuible a dicha función sería &lt;span class="math inline"&gt;\(D_r=\frac {\lambda_r}{\sum _{t=1} ^{h} \lambda_t}, \hspace{0,2cm} t=1,...h\)&lt;/span&gt;.&lt;/p&gt;'><sup>161</sup></a></p>
+<p>De esta forma, la primera función discriminante, <span class="math inline">\(D_1\)</span>, es la que proporciona mayor discriminación entre los centroides de los grupos; <span class="math inline">\(D_2\)</span>, incorrelacionada con <span class="math inline">\(D_1\)</span>, es la que proporciona mayor discriminación, después de <span class="math inline">\(D_1\)</span>; y así sucesivamente: <span class="math inline">\(D_t\)</span> es la que produce mayor discriminación entre los centroides de los grupos, después de las <span class="math inline">\(t-1\)</span> anteriores, y está incorrelacionada con todas las anteriores.</p>
+</div>
+<div id="discriminante-lineal-con-r-la-función-lda" class="section level3" number="21.2.5">
+<h3>
+<span class="header-section-number">21.2.5</span> Discriminante lineal con <strong>R</strong>: la función <code>lda()</code><a class="anchor" aria-label="anchor" href="#discriminante-lineal-con-r-la-funci%C3%B3n-lda"><i class="fas fa-link"></i></a>
+</h3>
+<p>A continuación se ejemplifica la aplicación de un <strong>discriminante lineal</strong> con <strong>R</strong>. Para ello, se utilizará y cargará la base de datos <code>iris</code>, que consta de 150 observaciones y 5 variables, 4 numéricas, que serán las clasificadoras, y una categórica, sobre la que se realiza el análisis, con tres categorías: <span class="math inline">\(setosa\)</span>, <span class="math inline">\(versicolor\)</span> y <span class="math inline">\(virginica\)</span>.</p>
+<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/topepo/caret/">"caret"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">"MASS"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://statistik.tu-dortmund.de">"klaR"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"iris"</span><span class="op">)</span></span></code></pre></div>
+<p>Se clasificarán las flores <span class="math inline">\(iris\)</span>, identificadas con la variable <code>Species</code> (especies de <span class="math inline">\(iris\)</span>), utilizando como variables clasificadoras: <code>Sepal.Length</code> (longitud del sépalo), <code>Sepal.Width</code> (anchura del sépalo), <code>Petal.Lenght</code> (longitud del pétalo) y <code>Petal.Width</code> (anchura del pétalo).</p>
+<p>Para evaluar la capacidad predictiva del análisis discriminante, se divide el conjunto de datos en dos subconjuntos: el de entrenamiento o estimación (con el 80% de ellos) y el de test (con el 20% restante).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Esta estrategia es muy común en modelos predictivos, y tiene como objetivo evitar el &lt;strong&gt;sobreajuste&lt;/strong&gt; de los datos muestrales; así, los datos del conjunto de test son realmente “nuevos” para el modelo porque no han sido utilizados en la estimación.&lt;/p&gt;"><sup>162</sup></a></p>
+<p>Las distribuciones univariadas deben ser normales; si no fuera así, se podrían transformar utilizando las transformaciones logarítimicas y de raíces cuadradas (distribuciones exponenciales) y Box-Cox (distribuciones sesgadas). Igualmente, es conveniente estandarizar las variables para evitar que la diferencia de escalas influya en la importancia relativa de cada variable clasificadora en las funciones discriminantes.</p>
+<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># División de los datos: 80% para entrenamiento y 20% para test</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">muestra</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/caret/man/createDataPartition.html">createDataPartition</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.8</span>, list <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">entrenamiento_d</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="va">muestra</span>, <span class="op">]</span></span>
+<span><span class="va">test_d</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="op">-</span><span class="va">muestra</span>, <span class="op">]</span></span>
+<span><span class="co"># Estimación de los parámetros de preprocesamiento (estandarización)</span></span>
+<span><span class="va">preproc_param</span> <span class="op">&lt;-</span> <span class="va">entrenamiento_d</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/caret/man/preProcess.html">preProcess</a></span><span class="op">(</span>method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"center"</span>, <span class="st">"scale"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Transformación de los datos usando los parámetros estimados</span></span>
+<span><span class="va">entrenamiento_t</span> <span class="op">&lt;-</span> <span class="va">preproc_param</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">entrenamiento_d</span><span class="op">)</span></span>
+<span><span class="va">test_t</span> <span class="op">&lt;-</span> <span class="va">preproc_param</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">test_d</span><span class="op">)</span></span></code></pre></div>
+<p>Una inspección previa de los datos puede ayudar a detectar si las variables clasificadoras pueden contribuir a la discriminación entre los grupos. En este ejemplo, la Fig. <a href="cap-discriminante.html#fig:150025pre">21.3</a> muestra la función de densidad de cada variable sobre cada grupo con los datos del subconjunto de entrenamiento:</p>
+<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rpkgs.datanovia.com/ggpubr/">"ggpubr"</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">entrenamiento_t</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sepal.Length</span>, fill <span class="op">=</span> <span class="va">Species</span>, colour <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">entrenamiento_t</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sepal.Width</span>, fill <span class="op">=</span> <span class="va">Species</span>, colour <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">entrenamiento_t</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Petal.Length</span>, fill <span class="op">=</span> <span class="va">Species</span>, colour <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">entrenamiento_t</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Petal.Width</span>, fill <span class="op">=</span> <span class="va">Species</span>, colour <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html">ggarrange</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">2</span>, common.legend <span class="op">=</span> <span class="cn">TRUE</span>, legend <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:150025pre"></span>
+<img src="img/150025img04.png" alt="Función de densidad de cada variable clasificadora sobre los grupos." width="90%"><p class="caption">
+Figura 21.3: Función de densidad de cada variable clasificadora sobre los grupos.
+</p>
+</div>
+<p>Igualmente, los gráficos bivariantes pueden ayudar a ver si hay “distancias” entre los centroides de los grupos para las variables clasificadoras, como muestra la Fig. <a href="cap-discriminante.html#fig:150025pre3">21.4</a>:</p>
+<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">entrenamiento_t</span><span class="op">[</span>, <span class="op">-</span><span class="fl">5</span><span class="op">]</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"firebrick"</span>, <span class="st">"green3"</span>, <span class="st">"darkblue"</span><span class="op">)</span><span class="op">[</span><span class="va">entrenamiento_t</span><span class="op">$</span><span class="va">Species</span><span class="op">]</span>, pch <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:150025pre3"></span>
+<img src="img/150025img05.png" alt="Diagramas bivariantes de dispersión de las variables clasificadoras." width="90%"><p class="caption">
+Figura 21.4: Diagramas bivariantes de dispersión de las variables clasificadoras.
+</p>
+</div>
+<p>Como se observa en dichos gráficos, las variables clasificadoras pueden contribuir a la discriminación entre las tres especies de flores <em>iris</em>.</p>
+<p>Para aplicar la función <code><a href="https://rdrr.io/pkg/MASS/man/lda.html">lda()</a></code> se debe especificar la variable de clasificación (<code>Species</code>) y el conjunto de datos (<code>entrenamiento_t</code>); de forma opcional, se pueden especificar las probabilidades <em>a priori</em> (<code>prior</code>, por defecto se usa <code>proportions</code>), el método de estimación de las medias y varianzas (<code>method</code>, por defecto <code>moment</code>) o el argumento <code>CV</code> para obtener los grupos pronosticados y las probabilidades <em>a posteriori</em> (por defecto, <code>CV=FALSE</code>).</p>
+<div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">modelo_lda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/lda.html">lda</a></span><span class="op">(</span><span class="va">Species</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">entrenamiento_t</span><span class="op">)</span></span>
+<span><span class="va">modelo_lda</span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; lda(Species ~ ., data = entrenamiento_t)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prior probabilities of groups:</span></span>
+<span><span class="co">#&gt;     setosa versicolor  virginica </span></span>
+<span><span class="co">#&gt;     0.3333     0.3333     0.3333 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Group means:</span></span>
+<span><span class="co">#&gt;            Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
+<span><span class="co">#&gt; setosa          -1.0113     0.78049      -1.2900     -1.2453</span></span>
+<span><span class="co">#&gt; versicolor       0.1014    -0.68675       0.2566      0.1473</span></span>
+<span><span class="co">#&gt; virginica        0.9099    -0.09374       1.0334      1.0981</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients of linear discriminants:</span></span>
+<span><span class="co">#&gt;                  LD1      LD2</span></span>
+<span><span class="co">#&gt; Sepal.Length  0.6795  0.04464</span></span>
+<span><span class="co">#&gt; Sepal.Width   0.6565 -1.00330</span></span>
+<span><span class="co">#&gt; Petal.Length -3.8365  1.44176</span></span>
+<span><span class="co">#&gt; Petal.Width  -2.2722 -1.96516</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Proportion of trace:</span></span>
+<span><span class="co">#&gt;    LD1    LD2 </span></span>
+<span><span class="co">#&gt; 0.9902 0.0098</span></span></code></pre></div>
+<p>La salida muestra las <strong>probabilidades previas</strong> (<em>Prior probabilities of groups</em>) y los <strong>centroides de cada grupo</strong> (<em>Group means</em>). A continuación muestra las <strong>funciones discriminantes de Fisher</strong> mediante los respectivos coeficientes <span class="math inline">\(w_{jt}\)</span>. En este caso, las dos funciones discriminantes son:</p>
+<p><span class="math inline">\(D_1=0.6795 \cdot SL+0.6565 \cdot SW-3,8365 \cdot PL-2,2722 \cdot PW\)</span></p>
+<p><span class="math inline">\(D_2=0.0446 \cdot SL-1.0033 \cdot SW+1.4418 \cdot PL-1.9651 \cdot PW,\)</span></p>
+<p>con una proporción de discriminación de 0,9902 y 0,0098, respectivamente.</p>
+<p>La proyección de los individuos (en este caso flores) en el plano formado por las dos funciones discriminantes se recoge en la Fig. <a href="cap-discriminante.html#fig:150025graf">21.5</a>:</p>
+<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">datos_lda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">entrenamiento_t</span>, <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">modelo_lda</span><span class="op">)</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_lda</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">LD1</span>, <span class="va">LD2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Gráfico LDA"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:150025graf"></span>
+<img src="img/150025img03.png" alt="Proyección de los individuos (flores) sobre las dos funciones discriminantes." width="80%"><p class="caption">
+Figura 21.5: Proyección de los individuos (flores) sobre las dos funciones discriminantes.
+</p>
+</div>
+<p>Como se aprecia, la primera función discriminante es la que mayor contribución tiene a la separación entre los grupos, separando muy claramente a la especie <em>setosa</em> y, en menor medida, a las especies <em>virginica</em> y <em>versicolor</em>, grupos entre los que hay un pequeño grado de solapamiento. Por otro lado, la segunda función discriminante, con una proporción de discriminación de 0,0098, apenas contribuye a la separación entre grupos.</p>
+<p>Por último, mediante la función <code><a href="https://rdrr.io/pkg/klaR/man/partimat.html">partimat()</a></code> del paquete <code>klaR</code>, se puede visualizar cómo quedan las regiones bivariantes que clasifican los individuos en cada clase (Fig. <a href="cap-discriminante.html#fig:150025partimat">21.6</a>):</p>
+<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/klaR/man/partimat.html">partimat</a></span><span class="op">(</span><span class="va">Species</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">entrenamiento_t</span>, method <span class="op">=</span> <span class="st">"lda"</span>, image.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"skyblue"</span>, <span class="st">"lightgrey"</span>, <span class="st">"yellow"</span><span class="op">)</span>, col.mean <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:150025partimat"></span>
+<img src="img/150025img06.png" alt="Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo)." width="90%"><p class="caption">
+Figura 21.6: Regiones bivariantes de clasificación en cada grupo (centroides en rojo): <span class="math inline">\(setosa\)</span> (celeste), <span class="math inline">\(versicolor\)</span> (gris) y <span class="math inline">\(virginica\)</span> (amarillo).
+</p>
+</div>
+<p>Por último, aplicando las funciones discriminantes a los datos reservados para estudiar la capacidad predictiva del modelo, se obtiene la tabla conocida como <strong>matriz de confusión</strong>, donde se compara el grupo real con el pronosticado por el modelo:</p>
+<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">predicciones_lda</span> <span class="op">&lt;-</span> <span class="va">modelo_lda</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">test_t</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">test_t</span><span class="op">$</span><span class="va">Species</span>, <span class="va">predicciones_lda</span><span class="op">$</span><span class="va">class</span>, dnn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Grupo real"</span>, <span class="st">"Grupo pronosticado"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;             Grupo pronosticado</span></span>
+<span><span class="co">#&gt; Grupo real   setosa versicolor virginica</span></span>
+<span><span class="co">#&gt;   setosa         10          0         0</span></span>
+<span><span class="co">#&gt;   versicolor      0         10         0</span></span>
+<span><span class="co">#&gt;   virginica       0          1         9</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">predicciones_lda</span><span class="op">$</span><span class="va">class</span> <span class="op">==</span> <span class="va">test_t</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.9667</span></span></code></pre></div>
+<p>En este caso, se clasifican correctamente 29 de las 30 “nuevas” flores, indicando un grado de ajuste del 96,9667%.</p>
+</div>
+</div>
+<div id="sec-150025qda" class="section level2" number="21.3">
+<h2>
+<span class="header-section-number">21.3</span> Análisis discriminante cuadrático<a class="anchor" aria-label="anchor" href="#sec-150025qda"><i class="fas fa-link"></i></a>
+</h2>
+<p>En el discriminante lineal visto anteriormente, se asume que las variables clasificadoras tienen idénticas matrices de varianzas-covarianzas en los distintos grupos, supuesto que garantiza que las funciones discriminantes son combinaciones lineales de las variables clasificadoras.</p>
+<p>Es posible eliminar esta restricción, permitiendo que las matrices de varianzas-covarianzas sean diferentes en los grupos, lo que introduce términos cuadráticos en las funciones discriminantes que conducen límites de decisión curvilíneos, por lo que el análisis discriminante cuadrático (QDA) puede aplicarse a situaciones en las que la separación entre grupos no es lineal.</p>
+<p>Denominando <span class="math inline">\(\pi_m\)</span> a la probabilidad <em>a priori</em> de pertenecer al grupo <span class="math inline">\(G_m\)</span> y <span class="math inline">\({\bf{\mu}}_m\)</span> y <span class="math inline">\({\bf{\Sigma}}_m\)</span> al vector de medias y matriz de varianzas-covarianzas, respectivamente, en dicho grupo, a partir del vector de observaciones <span class="math inline">\(\bf x\)</span>, se puede obtener el <strong>discriminante cuadrático</strong> como:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Al existir &lt;span class="math inline"&gt;\(k\)&lt;/span&gt; grupos, hay &lt;span class="math inline"&gt;\(k(k-1)/2\)&lt;/span&gt; comparaciones entre grupos diferentes, que han de ser consideradas en conjunto.&lt;/p&gt;'><sup>163</sup></a></p>
+<p><span class="math display" id="eq:qda">\[\begin{equation}
+\tag{21.8}
+\begin{array}{crl}
+Q_{uv}\left({\bf{x}}\right)=\frac{1}{2}{\bf{x}}^{\prime}\left({\bf{\Sigma}}_u^{-1}-{\bf{\Sigma}}_v^{-1}\right){\bf{x}}+{\bf{x}}^{\prime} \left({\bf{\Sigma}}_u^{-1}{\bf{\mu}}_u-{\bf{\Sigma}}_v^{-1}{\bf{\mu}}_v\right){\bf{x}}+ \\
++ \frac{1}{2}{\bf{\mu}}_v^{\prime}{\bf{\Sigma}}_v^{-1}{\bf{\mu}}_v-\frac{1}{2}{\bf{\mu}}_u^{\prime}{\bf{\Sigma}}_u^{-1}{\bf{\mu}}_u+\frac{1}{2}\log \left(\left|{\bf{\Sigma}}_v\right|\right)-\frac{1}{2}\log \left(\left|{\bf{\Sigma}}_u\right|\right) \\
+\ \forall u\neq b \, \ i,j=1,2,...,k. \\
+\end{array}
+\end{equation}\]</span></p>
+<p>A partir de aquí, la <strong>regla de clasificación</strong> para un individuo consiste en evaluar el discriminante cuadrático <a href="cap-discriminante.html#eq:qda">(21.8)</a> para los diferentes grupos y, tras simplificaciones algebraicas, asignarlo al grupo <span class="math inline">\(G_h\)</span> que verifique:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;De la comparación dos a dos a partir de &lt;span class="math inline"&gt;\(Q_{uv}\left({\bf{x}}\right)\)&lt;/span&gt; se obtiene una matriz de comparaciones, que es la que hay que evaluar; pero es más cómodo evaluar cada grupo individualmente y utilizar &lt;a href="cap-discriminante.html#eq:simplificacion"&gt;(21.9)&lt;/a&gt;.&lt;/p&gt;'><sup>164</sup></a></p>
+<p><span class="math display" id="eq:simplificacion">\[\begin{equation}
+\tag{21.9}
+G_h=\underset{m}{\operatorname{argmax}} \log\pi_m+\frac{1}{2} \log \left |{\bf{\Sigma}}_m\right|-\frac{1}{2}\left({\bf{x}}-{\bf{\mu}}_{m}\right)^{\prime} {\bf{\Sigma}}_m^{-1}\left({\bf{x}}-{\bf{\mu}}_m\right).
+\end{equation}\]</span></p>
+<p>En este caso, los límites de la región de clasificación son ecuaciones cuadráticas del vector <span class="math inline">\(\bf{x}\)</span>.</p>
+<p>Finalmente, es pertinente señalar que el LDA es mucho más flexible que el QDA, y que tiene una varianza mucho menor, lo cual puede dar lugar a mejores clasificaciones que con QDA. Sin embargo, si el supuesto de igualdad de matrices de varianzas-covarianzas en cada grupo dista mucho de cumplirse, entonces el LDA puede tener un sesgo importante. El LDA suele ser mejor opción que el QDA si el subconjunto de entrenamiento es pequeño y la reducción de la varianza se convierte en un objetivo importante. Si el conjunto de entrenamiento tiene un tamaño grande, la varianza del clasificador no es un problema y el QDA sería la mejor opción; también lo es en caso de un incumplimiento significativo del supuesto de igualdad de varianzas covarianzas del LDA.</p>
+<div id="discriminante-cuadrático-con-r-la-función-qda" class="section level3" number="21.3.1">
+<h3>
+<span class="header-section-number">21.3.1</span> Discriminante cuadrático con <strong>R</strong>: la función <code>qda()</code><a class="anchor" aria-label="anchor" href="#discriminante-cuadr%C3%A1tico-con-r-la-funci%C3%B3n-qda"><i class="fas fa-link"></i></a>
+</h3>
+<p>Para ilustrar la realización de un análisis discriminante cuadrático en <strong>R</strong>, se aplica la función <code><a href="https://rdrr.io/pkg/MASS/man/qda.html">qda()</a></code> a los datos <code>iris</code> utilizados en el caso lineal. La elección de la misma base de datos responde a un planteamiento didáctico, para poder comparar los resultados de ambos métodos y las diferencias que produce asumir la igualdad de matrices de varianzas-covarianzas (método lineal) o no asumirlas (método cuadrático).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;En una situación real, la estrategia más razonable sería decidir previamente sobre la hipótesis de igualdad de la matrices de varianzas-covarianzas (utilizando, por ejemplo el contraste &lt;em&gt;M de Box&lt;/em&gt;, aunque es muy sensible al supuesto de normalidad multivariante) y, en función del resultado, optar por una de las dos alternativas.&lt;/p&gt;"><sup>165</sup></a></p>
+<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">modelo_qda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/qda.html">qda</a></span><span class="op">(</span><span class="va">Species</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">entrenamiento_t</span><span class="op">)</span></span>
+<span><span class="va">modelo_qda</span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; qda(Species ~ ., data = entrenamiento_t)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prior probabilities of groups:</span></span>
+<span><span class="co">#&gt;     setosa versicolor  virginica </span></span>
+<span><span class="co">#&gt;     0.3333     0.3333     0.3333 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Group means:</span></span>
+<span><span class="co">#&gt;            Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
+<span><span class="co">#&gt; setosa          -1.0113     0.78049      -1.2900     -1.2453</span></span>
+<span><span class="co">#&gt; versicolor       0.1014    -0.68675       0.2566      0.1473</span></span>
+<span><span class="co">#&gt; virginica        0.9099    -0.09374       1.0334      1.0981</span></span></code></pre></div>
+<p>La representación gráfica de las áreas por las que se clasifican los individuos se muestra en la Fig. <a href="cap-discriminante.html#fig:150025partimatc">21.7</a>.</p>
+<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/klaR/man/partimat.html">partimat</a></span><span class="op">(</span><span class="va">Species</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">entrenamiento_t</span>, method <span class="op">=</span> <span class="st">"qda"</span>, image.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"skyblue"</span>, <span class="st">"lightgrey"</span>, <span class="st">"yellow"</span><span class="op">)</span>, col.mean <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:150025partimatc"></span>
+<img src="img/150025img07.png" alt="Regiones bivariantes de clasificación en cada grupo (centroides en rojo): $setosa$ (celeste), $versicolor$ (gris) y $virginica$ (amarillo)." width="90%"><p class="caption">
+Figura 21.7: Regiones bivariantes de clasificación en cada grupo (centroides en rojo): <span class="math inline">\(setosa\)</span> (celeste), <span class="math inline">\(versicolor\)</span> (gris) y <span class="math inline">\(virginica\)</span> (amarillo).
+</p>
+</div>
+<p>Como se aprecia, ahora los contornos de las áreas no son siempre lineales, sino que incluyen fronteras cuadráticas. Por último, aplicando el discriminante cuadrático a los datos reservados para estudiar la capacidad predictiva del modelo, se obtiene la
+<strong>matriz de confusión</strong>, donde se observa que no se mejoran los resultados respecto al discriminante lineal.</p>
+<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">predicciones_qda</span> <span class="op">&lt;-</span> <span class="va">modelo_qda</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">test_t</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">test_t</span><span class="op">$</span><span class="va">Species</span>, <span class="va">predicciones_qda</span><span class="op">$</span><span class="va">class</span>, dnn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Grupo real"</span>, <span class="st">"Grupo pronosticado"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;             Grupo pronosticado</span></span>
+<span><span class="co">#&gt; Grupo real   setosa versicolor virginica</span></span>
+<span><span class="co">#&gt;   setosa         10          0         0</span></span>
+<span><span class="co">#&gt;   versicolor      0         10         0</span></span>
+<span><span class="co">#&gt;   virginica       0          1         9</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">predicciones_qda</span><span class="op">$</span><span class="va">class</span> <span class="op">==</span> <span class="va">test_t</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.9667</span></span></code></pre></div>
+</div>
+<div id="resumen-20" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-20"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>El <em>análisis discriminante</em> permite clasificar individuos en distintos grupos preexistentes en relación a una variable cualitativa, a partir de las variables clasificadoras.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>La información se sintetiza en las funciones discriminantes. Su uso puede tener una finalidad descriptiva: identificar la separación entre grupos y la contribución de cada variable clasificadora; y una finalidad predictiva: clasificar un individuo nuevo.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Los principales tipos son el lineal y el cuadrático, que se desarrollan en <strong>R</strong> con las funciones <code><a href="https://rdrr.io/pkg/MASS/man/lda.html">lda()</a></code> y <code><a href="https://rdrr.io/pkg/MASS/man/qda.html">qda()</a></code>, respectivamente.</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></div>
+<div class="next"><a href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cap-discriminante"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="nav-link" href="#introducci%C3%B3n-10"><span class="header-section-number">21.1</span> Introducción</a></li>
+<li>
+<a class="nav-link" href="#sec-150025lda"><span class="header-section-number">21.2</span> Análisis discriminante lineal</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#dos-grupos-y-una-variable-clasificadora"><span class="header-section-number">21.2.1</span> Dos grupos y una variable clasificadora</a></li>
+<li><a class="nav-link" href="#dos-grupos-y-dos-variables-clasificadoras"><span class="header-section-number">21.2.2</span> Dos grupos y dos variables clasificadoras</a></li>
+<li><a class="nav-link" href="#dos-grupos-y-p-variables-clasificadoras"><span class="header-section-number">21.2.3</span> Dos grupos y p variables clasificadoras</a></li>
+<li><a class="nav-link" href="#k-grupos-y-p-variables"><span class="header-section-number">21.2.4</span> k grupos y p variables</a></li>
+<li><a class="nav-link" href="#discriminante-lineal-con-r-la-funci%C3%B3n-lda"><span class="header-section-number">21.2.5</span> Discriminante lineal con R: la función lda()</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#sec-150025qda"><span class="header-section-number">21.3</span> Análisis discriminante cuadrático</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#discriminante-cuadr%C3%A1tico-con-r-la-funci%C3%B3n-qda"><span class="header-section-number">21.3.1</span> Discriminante cuadrático con R: la función qda()</a></li>
+<li><a class="nav-link" href="#resumen-20">Resumen</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

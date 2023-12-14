@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 27 Naive Bayes | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="Ramón A. Carrasco\(^{a}\), Itzcóatl Bueno\(^{b, \hspace{0,05cm}a}\) y José-María Montero\(^{c}\) \(^{a}\)Universidad Complutense de Madrid\(^{b}\)Instituto Nacional de...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Capítulo 27 Naive Bayes | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="Ramón A. Carrasco\(^{a}\), Itzcóatl Bueno\(^{b, \hspace{0,05cm}a}\) y José-María Montero\(^{c}\) \(^{a}\)Universidad Complutense de Madrid\(^{b}\)Instituto Nacional de...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 27 Naive Bayes | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="Ramón A. Carrasco\(^{a}\), Itzcóatl Bueno\(^{b, \hspace{0,05cm}a}\) y José-María Montero\(^{c}\) \(^{a}\)Universidad Complutense de Madrid\(^{b}\)Instituto Nacional de...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
+<li><a class="active" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="cap-naive-bayes" class="section level1" number="27">
+<h1>
+<span class="header-section-number">Capítulo 27</span> Naive Bayes<a class="anchor" aria-label="anchor" href="#cap-naive-bayes"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>Ramón A. Carrasco</em><span class="math inline">\(^{a}\)</span>, <em>Itzcóatl Bueno</em><span class="math inline">\(^{b, \hspace{0,05cm}a}\)</span> y <em>José-María Montero</em><span class="math inline">\(^{c}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad Complutense de Madrid<br><span class="math inline">\(^{b}\)</span>Instituto Nacional de Estadística<br><span class="math inline">\(^{c}\)</span>Universidad de Castilla-La Mancha</p>
+<div id="nb-intro" class="section level2" number="27.1">
+<h2>
+<span class="header-section-number">27.1</span> Introducción<a class="anchor" aria-label="anchor" href="#nb-intro"><i class="fas fa-link"></i></a>
+</h2>
+<p>Naive Bayes (NB) es un algoritmo de aprendizaje supervisado que se utiliza principalmente para la clasificación.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;No obstante, puede aplicarse a labores predictivas, como por ejemplo la identificación de empleados con más probabilidad de ser promocionados.&lt;/p&gt;"><sup>193</sup></a></p>
+<p>Como otros algoritmos de aprendizaje supervisado, se entrena con un conjunto de observaciones que incluye los valores de las <span class="math inline">\(p\)</span> variables de entrada y de las categorías de la variable respuesta correspondientes a dichas observaciones. Una vez entrenado el algoritmo, se utiliza para predecir la categoría de la variable respuesta que le corresponde a un conjunto de valores de las variables predictoras. La primera palabra del algoritmo, <strong><em>naive</em></strong>, responde al hecho de que asume que las variables de entrada son independientes entre sí, por lo cual si se quitan, se introducen o se cambian algunas variables predictoras, los cálculos en los que están involucrados las demás no se ven afectados. La segunda se debe a que su piedra angular es el <strong>teorema de Bayes</strong>.</p>
+<p>Aunque el algoritmo NB es sencillo y de fácil implementación, destaca por su potencia predictiva. Su principal ventaja es que utiliza un enfoque probabilístico, lo que implica que todos los cálculos se realizan en tiempo real y, por tanto, los resultados se obtienen inmediatamente. Cuando se trabaja con conjuntos de datos pequeños, la ventaja de NB respecto a algoritmos como SVM
+(Cap. <a href="cap-svm.html#cap-svm">25</a>), <em>random forest</em> (Cap. <a href="cap-bagg-rf.html#cap-bagg-rf">28</a>) o <em>boosting</em> (Cap. <a href="cap-boosting-xgboost.html#cap-boosting-xgboost">29</a>). Sin embargo, cuando el tamaño del conjunto de datos es pequeño, esta ventaja se reduce notablemente, pues en ese caso la optimización de estos últimos algoritmos no es tan exigente, y la ventaja en tiempo de computación del NB podría no compensar la pérdida en capacidad predictiva.</p>
+<p>Los conceptos probabilísticos necesarios para entender el funcionamiento del algoritmo NB pueden verse en el Cap. <a href="Funda-probab.html#Funda-probab">12</a>. No obstante, a continuación se muestra un brevísimo repaso del teorema de Bayes, que es la base del algoritmo. </p>
+</div>
+<div id="teorema-de-bayes" class="section level2" number="27.2">
+<h2>
+<span class="header-section-number">27.2</span> Teorema de Bayes<a class="anchor" aria-label="anchor" href="#teorema-de-bayes"><i class="fas fa-link"></i></a>
+</h2>
+<p>Sean dos sucesos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> definidos en un espacio muestral. Se define la probabilidad condicional de que ocurra el suceso <span class="math inline">\(A\)</span> dado que previamente se haya observado <span class="math inline">\(B\)</span> como:</p>
+<p><span class="math display">\[\begin{equation}
+P(A|B) = \frac{P(A\cap B)}{P(B)},
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(P(B) \neq 0\)</span> y <span class="math inline">\(P(A\cap B)\)</span> es la probabilidad de que ocurran ambos eventos a la vez. Los sucesos son intercambiables, de tal forma que:</p>
+<p><span class="math display">\[\begin{equation}
+P(B|A) = \frac{P(B\cap A)} {P(A)}, \text{\hspace{0,1cm}lo\hspace{0,1cm} que\hspace{0,1cm} \hspace{0,1cm}implica\hspace{0,1cm} que\hspace{0,1cm}} P(A\cap B) = P(A)P(B|A),
+\end{equation}\]</span></p>
+<p>con lo que:</p>
+<p><span class="math display">\[\begin{equation}
+P(A|B) = \frac{P(A)\cdot P(B|A)}{P(B)}.
+\end{equation}\]</span></p>
+<p>Y si <span class="math inline">\(A_1,A_2,...,A_k\)</span> forman una partición de <span class="math inline">\(A\)</span>, las denominadas <em>alternativas</em>, se tiene que:</p>
+<p><span class="math display">\[\begin{equation}
+P(A_m|B) = \frac {P(A_m) P(B|A_m)}{\sum_{i=1}^{k} P(A_m) P(B|{A_m})}.
+\end{equation}\]</span></p>
+<p>Esta expresión es conocida como teorema de Bayes. Para ampliar los conceptos probabilísticos aquí presentados puede consultarse el Cap. <a href="Funda-probab.html#Funda-probab">12</a>.</p>
+</div>
+<div id="el-algoritmo-naive-bayes" class="section level2" number="27.3">
+<h2>
+<span class="header-section-number">27.3</span> El algoritmo Naive Bayes<a class="anchor" aria-label="anchor" href="#el-algoritmo-naive-bayes"><i class="fas fa-link"></i></a>
+</h2>
+<p>Supóngase un conjunto de datos con <span class="math inline">\(p\)</span> variables predictoras, <span class="math inline">\(X_1,X_2,...,X_p\)</span>, y una variable respuesta con <span class="math inline">\(k\)</span> clases, <span class="math inline">\(c_1, c_2,...,c_k\)</span>. Considérese el caso, instancia u observación <span class="math inline">\({\bf{x}}^{\prime}_j=(x_1, x_2,...,x_p), \hspace{0,2cm} j=1,2,...,N\)</span>. Entonces, la adaptación del teorema de Bayes para aplicarlo a un problema de clasificación es como sigue: se trata de calcular la probabilidad de que, dada una observación, <span class="math inline">\({\bf{x}}_j\)</span>, esta pertenezca a una determinada clase de la variable respuesta, por ejemplo la <em>m</em>-ésima clase, <span class="math inline">\(c_m\)</span>, de tal manera que dicha observación se asignará a la clase para la que se obtenga una mayor probabilidad:</p>
+<p><span class="math display">\[\begin{equation}
+P(C=c_m|{\bf{x}}_j)=\frac{P(C=c_m) \cdot P({\bf{x}}_j|C=c_m)}{P({\bf{x}}_j)},
+\end{equation}\]</span></p>
+<p>donde, en la jerga bayesiana:</p>
+<ul>
+<li><p><span class="math inline">\(P(C=c_m), \hspace{0,1cm} i=1,...m, ...,k\)</span>, se denominan <strong>probabilidades</strong> <strong><em>a priori</em></strong> y son las probabilidades de que una observación o instancia, de la que no se conocen los valores de sus características, pertenezca (y, por tanto, sea asignada) a cada una de las clases de la variable respuesta.</p></li>
+<li><p><span class="math inline">\(P({\bf{x}}_j|C=c_m)\)</span> son las probabilidades de que una observación o instancia, <span class="math inline">\({\bf{x}}_j\)</span>, sea asignada a cada una de las clases de la variable respuesta, pero, esta vez, conociéndose los valores de sus características. Se denominan <strong>verosimilitudes</strong>.</p></li>
+<li><p><span class="math inline">\(P({\bf{x}}_j)\)</span> es la probabilidad de observar una instancia particular, <span class="math inline">\(P(C=c_m|{\bf{x}}_j)\)</span>, independientemente de a qué clase pertenezca el individuo.</p></li>
+<li><p><span class="math inline">\(P(C=c_m|{\bf{x}}_j)\)</span> son las probabilidades de que, dado un vector de características concreto, <span class="math inline">\({\bf{x}}_j\)</span>, el elemento al que pertenezcan sea clasificado en la clase <em>m</em>-ésima de la variable respuesta (<span class="math inline">\(m=1,2,...,k\)</span>). Se conocen como <strong>probabilidades</strong> <strong><em>a posteriori</em></strong> porque se calculan <em>a posteriori</em> a partir de las <em>probabilidades a priori</em> y las <em>verosimilitudes</em> haciendo uso del teorema de Bayes.</p></li>
+</ul>
+<p>Sin embargo, a la hora de computar las denominadas <em>probabilidades a posteriori</em>, surge una dificultad: el cálculo de las <em>verosimilitudes</em> <span class="math inline">\(P({\bf{x}}_j|C=c_m)= P(X_1=x_1\cap X_2=x_2\cap\dots\cap X_p=x_p|C=c_m)\)</span> (consúltese el Cap. <a href="Funda-probab.html#Funda-probab">12</a> para ver de forma específica su cálculo). En primer lugar, puede que en el conjunto de datos no exista ningún caso en el que las variables predictoras tomen precisamente los valores <span class="math inline">\(X_1=x_1; X_2=x_2,..., X_p=x_p\)</span>. En segundo lugar, en caso de existir, el número de ellos podría no ser suficiente para estimar con una mínima fiabilidad la probabilidad de pertenencia a cada una de las clases de la variable respuesta.</p>
+<p>La forma como el algoritmo KNN supera esta limitación es adoptar el supuesto de que las variables predictoras son independientes. Este supuesto, sin duda, es un supuesto muy fuerte y, de ahí, que la denominación de <em>ingenuo</em> (<em>naive</em>) que recibe el algoritmo.</p>
+<!-- para aplicar esta ecuación es la necesidad de conocer que $P(\ell|c)$ es igual a $P(\ell_1\cap\ell_2\cap\dots\cap\ell_\kappa|c)$. La existencia de un ejemplo concreto en el conjunto de datos de entrenamiento que coincida a la perfección con $\ell$ es complicado, y en el caso de existir, no se tendrían suficientes ejemplos para poder estimar una probabilidad de forma fiable. La forma de solucionar este problema es incluir una suposición de independencia particularmente fuerte, que como ya se mencionó en la Sec. \@ref(nb-intro), es lo que aporta la denominación de *'naive'* al algoritmo. -->
+<p>Dos sucesos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> son <em>condicionalmente independientes</em> dado un tercero, <span class="math inline">\(C\)</span>, si:</p>
+<p></p>
+<p><span class="math display">\[\begin{equation}
+P(AB|C) = P(A|C)\cdot P(B|C).
+\end{equation}\]</span></p>
+<p>Por consiguiente, la suposición <em>naive</em> de que las variables o características predictoras de los elementos que conforman el conjunto de datos disponible son independientes, lleva a que:</p>
+<p><span class="math display">\[\begin{equation} \label{nb-eq1}
+\begin{split}
+P({\bf{x}}_j|C=c_m) &amp; = P(X_1=x_1 \cap X_2=x_2\cap \dots\cap X_p = x_p|C=c_m) \\
+&amp; = P(X_1=x_1|C=c_m) \cdot P(X_2=x_2|C=c_m) \cdots P(X_p=x_p|C=c_m),
+\end{split}
+\end{equation}\]</span>
+donde cada uno de los términos <span class="math inline">\(P(X_j=x_j|C=c_m), \hspace{0,2cm} j=1,...,p\)</span>, puede obtenerse directamente de los datos.</p>
+<p>Por tanto,</p>
+<p><span class="math display">\[\begin{equation} \label{nb-eq2}
+\begin{split}
+P(C=c_m|{\bf{x}}_j) &amp; =\frac{P(C=c_m) \cdot P(X_1=x_1 \cap X_2=x_2\cap \dots\cap X_p = x_p|C=c_m)} {P({\bf{x}}_j)} \\
+&amp; =\frac{P(C=c_m) \cdot  P(X_1=x_1|C=c_m) \cdot P(X_2=x_2|C=c_m) \cdots P(X_p=x_p|C=c_m)} {P({\bf{x}}_j)}.
+\end{split}
+\end{equation}\]</span></p>
+<p>Y, como sea cual sea la clase <span class="math inline">\(c_m\)</span> el denominador de la expresión anterior es el mismo, se tiene finalmente que la ecuación de decisión del algoritmo NB es:</p>
+<p><span class="math display">\[\begin{equation}
+P(C=c_m) \cdot  P(X_1=x_1|C=c_m) \cdot P(X_2=x_2|C=c_m) \cdot P(X_p=x_p|C=c_m),
+\end{equation}\]</span></p>
+<p>de tal manera que a cada nueva observación, <span class="math inline">\({\bf{x}}_j\)</span>, se le asigna a la clase con mayor <span class="math inline">\(P(C=c_m|{\bf{x}}_j)\)</span>.</p>
+<!-- El algoritmo *Naive Bayes*\index{Naive Bayes} clasifica una nueva observación estimando la probabilidad de que pertenezca a cada clase y asignándole a aquella que tenga la mayor probabilidad. -->
+<p>En definitiva, el clasificador NB es muy eficiente en términos de espacio de almacenamiento y tiempos de procesamiento. Además, a pesar de ser muy simple, tiene en cuenta las características observadas. Otra de las ventajas de este clasificador es su aprendizaje incremental; es decir, es una técnica de inducción que se actualiza con cada nueva observación de entrenamiento, por lo que no es necesario volver a procesar todo el conjunto de entrenamiento cuando se dispone de nuevas observaciones.</p>
+<p>Para ilustrar los anteriores conceptos, considérese de nuevo el ejemplo presentado en el Cap. <a href="cap-arboles.html#cap-arboles">24</a>, en el que se trata de predecir si se puede jugar o no al tenis con unas condiciones meteorológicas determinadas. La variable respuesta es, por tanto, <em>Si un determinado día se juega al tenis</em>, con dos categorías: <span class="math inline">\(c_1=SÍ\)</span> y <span class="math inline">\(c_2=NO\)</span>. Las variables (en este caso factores) predictoras son <span class="math inline">\(X_1=Tipo \hspace{0,1cm} de \hspace{0,1cm}día\)</span>, con tres categorías: <em>soleado</em>, <em>nublado</em> y <em>con lluvia</em>, <span class="math inline">\(X_2=Humedad\)</span>, con dos categorías: <em>fuerte</em> y <em>débil</em>, y <span class="math inline">\(X_3=Fuerza \hspace{0,1cm} del \hspace{0,1cm} viento\)</span>, también con dos categorías: <em>fuerte</em> y <em>débil</em>. En cuanto a la regla de decisión, por ejemplo, para un día soleado con humedad fuerte y fuerza del viento débil, sería:</p>
+<p><strong>Se juega si</strong>:
+<span class="math display">\[\begin{equation*}
+\begin{split}
+&amp; P\left(Jugar=\textit {SÍ})| ( X_1= soleado; X_2= fuerte; X_3= débil \right) = \\
+&amp; P(Jugar=\textit {SÍ}) \cdot  P(X_1= soleado |Jugar=\textit {SÍ}) \cdot \\
+&amp; \cdot  P(X_2= fuerte|Jugar=\textit {SÍ}) \cdot P(X_3= débil|Jugar=\textit {SÍ})
+\end{split}
+\end{equation*}\]</span></p>
+<p><strong>es mayor que</strong>:</p>
+<p><span class="math display">\[\begin{equation*}
+\begin{split}
+&amp; P\left(Jugar={NO}| ( X_1= soleado; X_2= fuerte; X_3= débil \right)  = \\
+&amp; P(Jugar={NO}) \cdot  P(X_1= soleado |Jugar={NO}) \cdot \\
+&amp; \cdot P(X_2= fuerte|Jugar={NO}) \cdot P(X_3= débil|Jugar={NO}).
+\end{split}
+\end{equation*}\]</span></p>
+<p>Lo mismo se haría para decidir si se juega o no con cualquier otra combinación de categorías de la variables <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> y <span class="math inline">\(X_3\)</span>.</p>
+<p>Siguiendo con el ejemplo de un día soleado, con humedad fuerte y fuerza del viento débil, los pasos a seguir para determinar si se juega o no al tenis serían los tres siguientes:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Lo mismo se haría para cualquier otra combinación de las categorías de los tres factores predictores.&lt;/p&gt;"><sup>194</sup></a></p>
+<ul>
+<li>Organizar los datos en tablas de frecuencias de dos dimensiones, tantas como variables predictoras. Una de las dimensiones corresponde a una de las variables predictoras y la otra, a la variable respuesta.</li>
+<li>Calcular, a partir de la tablas anteriores, las <em>probabilidades a priori</em> y las <em>verosimilitudes</em>.</li>
+<li>Aplicar el teorema de Bayes para calcular las <em>probabilidades a posteriori</em> y realizar la predicción.</li>
+</ul>
+<p>Particularizando en el caso anteriormente referido en las Tablas <a href="cap-naive-bayes.html#tab:tenis-freq">27.1</a>, <a href="cap-naive-bayes.html#tab:tenis-freq2">27.2</a> y <a href="cap-naive-bayes.html#tab:tenis-freq3">27.3</a> (día soleado con humedad fuerte y viento débil), las 15 observaciones registradas se presentan en la Tabla <a href="cap-naive-bayes.html#tab:tenis-freq">27.1</a> (una tabla de contingencia (3 x 2), usando la terminología del Cap. <a href="tablas-contingencia.html#tablas-contingencia">23</a>), donde uno de los factores es el primer factor explicativo, <span class="math inline">\(X_1\)</span>, <em>Tipo de día</em>, con tres categorías (soleado, nublado, lluvioso) y el otro es <em>Si ese día se jugó</em>, con dos categorías: SÍ y NO.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:tenis-freq">Tabla 27.1: </span> Tabla de frecuencias - Tipo de día <span class="math inline">\(vs.\)</span> Jugar partido</caption>
+<thead><tr class="header">
+<th><span class="math inline">\(X_1\)</span></th>
+<th align="center">SÍ</th>
+<th align="center">NO</th>
+<th align="center">Total</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Soleado</td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td align="center">6</td>
+</tr>
+<tr class="even">
+<td>Nublado</td>
+<td align="center">4</td>
+<td align="center">0</td>
+<td align="center">4</td>
+</tr>
+<tr class="odd">
+<td>Lluvia</td>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td align="center">10</td>
+<td align="center">5</td>
+<td align="center">15</td>
+</tr>
+</tbody>
+</table></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:tenis-freq2">Tabla 27.2: </span> Tabla de frecuencias - Humedad <span class="math inline">\(vs.\)</span> Jugar partido</caption>
+<thead><tr class="header">
+<th><span class="math inline">\(X_2\)</span></th>
+<th align="center">SÍ</th>
+<th align="center">NO</th>
+<th align="center">Total</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Débil</td>
+<td align="center">6</td>
+<td align="center">2</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td>Fuerte</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">7</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td align="center">10</td>
+<td align="center">5</td>
+<td align="center">15</td>
+</tr>
+</tbody>
+</table></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:tenis-freq3">Tabla 27.3: </span> Tabla de frecuencias - Fuerza del viento <span class="math inline">\(vs.\)</span> Jugar partido</caption>
+<thead><tr class="header">
+<th><span class="math inline">\(X_3\)</span></th>
+<th align="center">SÍ</th>
+<th align="center">NO</th>
+<th align="center">Total</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Débil</td>
+<td align="center">6</td>
+<td align="center">1</td>
+<td align="center">7</td>
+</tr>
+<tr class="even">
+<td>Fuerte</td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td align="center">10</td>
+<td align="center">5</td>
+<td align="center">15</td>
+</tr>
+</tbody>
+</table></div>
+<p>En un segundo paso, a partir de cualquiera de las tablas anteriores se obtienen las probabilidades <em>a priori</em> de clasificar una observación en una u otra categoría de la variable respuesta (SÍ, NO). Por ejemplo, en la Tabla <a href="cap-naive-bayes.html#tab:tenis-likelihood">27.4</a> aparecen al final de las columnas SÍ y NO.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:tenis-likelihood">Tabla 27.4: </span> Tipo de día <span class="math inline">\(vs.\)</span> Jugar partido</caption>
+<colgroup>
+<col width="12%">
+<col width="26%">
+<col width="24%">
+<col width="36%">
+</colgroup>
+<thead><tr class="header">
+<th></th>
+<th align="center">SÍ</th>
+<th align="center">NO</th>
+<th align="center"><span class="math inline">\(P(\textrm{Tipo de día}_i)\)</span></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Soleado</td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td align="center"><span class="math inline">\(\frac{6}{15} = \text{0,40}\)</span></td>
+</tr>
+<tr class="even">
+<td>Nublado</td>
+<td align="center">4</td>
+<td align="center">0</td>
+<td align="center"><span class="math inline">\(\frac{4}{15} = \text{0,27}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Lluvia</td>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center"><span class="math inline">\(\frac{5}{15} = \text{0,33}\)</span></td>
+</tr>
+<tr class="even">
+<td>
+<span class="math inline">\(P\)</span>(Jugar)</td>
+<td align="center"><span class="math inline">\(\frac{10}{15} = \text{0,67}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{5}{15} = \text{0,33}\)</span></td>
+<td align="center">–</td>
+</tr>
+</tbody>
+</table></div>
+<p>También a partir de ellas se obtienen las verosimilitudes de cada categoría de los tres factores dada una categoría de la variable respuesta (se jugó; no se jugó).</p>
+<p>A partir de la Tabla <a href="cap-naive-bayes.html#tab:tenis-likelihood">27.4</a> se obtiene la probabilidad de cada tipo de día dado que con esa climatología se jugó o no, es decir, <span class="math inline">\(P(\textrm{Tipo de día}|Jugar)\)</span>, obteniendo las probabilidades mostradas en la Tabla <a href="cap-naive-bayes.html#tab:probs-tipodia">27.5</a>.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:probs-tipodia">Tabla 27.5: </span> Probabilidad de cada categoría de la variable “Tipo de día” sabiendo si se jugó o no el partido</caption>
+<thead><tr class="header">
+<th align="center"><span class="math inline">\(X_1\)</span></th>
+<th align="center">
+<span class="math inline">\(c_1\)</span> = SÍ</th>
+<th align="center">
+<span class="math inline">\(c_2\)</span> = NO</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">
+<span class="math inline">\(P\)</span>(Soleado | <span class="math inline">\(C=c_m\)</span>)</td>
+<td align="center"><span class="math inline">\(\frac{2}{10}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{4}{5}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">
+<span class="math inline">\(P\)</span>(Nublado | <span class="math inline">\(C=c_m\)</span>)</td>
+<td align="center"><span class="math inline">\(\frac{4}{10}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{0}{5}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">
+<span class="math inline">\(P\)</span>(Lluvia | <span class="math inline">\(C=c_m\)</span>)</td>
+<td align="center"><span class="math inline">\(\frac{4}{10}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{5}\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:probs-humedad">Tabla 27.6: </span> Probabilidad de cada categoría de la variable “Humedad” sabiendo si se jugó o no el partido</caption>
+<thead><tr class="header">
+<th align="center"><span class="math inline">\(X_2\)</span></th>
+<th align="center">
+<span class="math inline">\(c_1\)</span> = SÍ</th>
+<th align="center">
+<span class="math inline">\(c_2\)</span> = NO</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">
+<span class="math inline">\(P\)</span>(Débil | <span class="math inline">\(C=c_m\)</span>))</td>
+<td align="center"><span class="math inline">\(\frac{6}{15}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{15}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">
+<span class="math inline">\(P\)</span>(Fuerte | <span class="math inline">\(C=c_m\)</span>)</td>
+<td align="center"><span class="math inline">\(\frac{4}{15}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{4}{15}\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:probs-viento">Tabla 27.7: </span> Probabilidad de cada categoría de la variable “Fuerza del viento” sabiendo si se jugó o no el partido</caption>
+<thead><tr class="header">
+<th align="center"><span class="math inline">\(X_3\)</span></th>
+<th align="center">
+<span class="math inline">\(c_1\)</span> = SÍ</th>
+<th align="center">
+<span class="math inline">\(c_2\)</span> = NO</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">
+<span class="math inline">\(P\)</span>(Débil | <span class="math inline">\(C=c_m\)</span>))</td>
+<td align="center"><span class="math inline">\(\frac{6}{15}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{2}{15}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">
+<span class="math inline">\(P\)</span>(Fuerte | <span class="math inline">\(C=c_m\)</span>))</td>
+<td align="center"><span class="math inline">\(\frac{4}{15}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{3}{15}\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<p>A partir de las probabilidades previamente obtenidas (Tablas <a href="cap-naive-bayes.html#tab:probs-tipodia">27.5</a>, <a href="cap-naive-bayes.html#tab:probs-humedad">27.6</a> y <a href="cap-naive-bayes.html#tab:probs-viento">27.7</a>) y de la asunción de independencia entre las variables, se puede calcular la probabilidad de jugar, dadas las condiciones meteorológicas expuestas, como:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{split}
+P(\textit {SÍ}|X_1:soleado, X_2: fuerte, X_3: débil)  =  \\
+P(\textit {SÍ}) \cdot P(Soleado|\textit {SÍ}) \cdot P(Fuerte|\textit {SÍ}) \cdot  P (Débil|\textit {SÍ}) = \\
+\frac{10}{15}\cdot \frac{2}{10}\cdot \frac{4}{10}\cdot \frac{6}{10} = \text{0,0320}.
+\end{split}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\begin{split}
+P(NO|X_1: soleado, X_2: fuerte, X_3: débil) = \\
+P(NO) \cdot P(Soleado|NO) \cdot P(Fuerte|NO) \cdot P (Débil|NO) = \\
+\frac{5}{15}\cdot \frac{4}{5}\cdot \frac{4}{5}\cdot \frac{2}{5} = \text{0,0853}.
+\end{split}
+\end{equation}\]</span></p>
+<p>La probabilidad de no jugar es superior a la probabilidad de jugar y, por tanto, dado un día con esas condiciones climáticas se clasificará como un día en el que no se puede jugar.</p>
+<p>Igual que se ha procedido con esta predicción para un día soleado con fuerte humedad y fuerza del viento débil, se procede para cualquier combinación de las categorías de los factores predictores.</p>
+</div>
+<div id="procedimiento-con-r-la-función-naive_bayes" class="section level2" number="27.4">
+<h2>
+<span class="header-section-number">27.4</span> Procedimiento con <strong>R</strong>: la función <code>naive_bayes()</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-la-funci%C3%B3n-naive_bayes"><i class="fas fa-link"></i></a>
+</h2>
+<p>Para entrenar el algoritmo NB se utiliza la función <code>naive_bayes()</code> del paquete <code>naivebayes</code>.</p>
+<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">naive_bayes</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, prior <span class="op">=</span> <span class="va">...</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>
+<code>formula</code>: refleja la relación lineal entre la variable respuesta y los predictores: <span class="math inline">\(Y \sim X_1 + ... + X_p\)</span>.</li>
+<li>
+<code>data</code>: conjunto de datos con el que se entrena el modelo.</li>
+<li>
+<code>prior</code>: vector con las probabilidades <em>a priori</em> de las clases.</li>
+</ul>
+</div>
+<div id="clasificación-de-clientes-utilizando-el-modelo-naive-bayes" class="section level2" number="27.5">
+<h2>
+<span class="header-section-number">27.5</span> Clasificación de clientes utilizando el modelo Naive Bayes<a class="anchor" aria-label="anchor" href="#clasificaci%C3%B3n-de-clientes-utilizando-el-modelo-naive-bayes"><i class="fas fa-link"></i></a>
+</h2>
+<p>Como en los capítulos precedentes, para ejemplificar el uso del algoritmo NB se utiliza de nuevo el conjunto de datos <code>dp_entr</code>, incluido en el paquete <code>CDR</code>, que contiene una serie de variables predictoras relativas a los productos que han comprado previamente los clientes de una empresa, el importe que han gastado y otras características como su edad y su nivel educativo. Dicho conjunto se utiliza con los datos sin transformar, es decir, en su escala original y con las variables categóricas sin codificar. La variable objetivo indica si un cliente comprará o no el nuevo producto (<em>tensiómetro digital</em>).</p>
+<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/topepo/caret/">"caret"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/majkamichal/naivebayes">"naivebayes"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://had.co.nz/reshape">"reshape"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"dp_entr"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># se fija la semilla aleatoria</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># se entrena el modelo</span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/caret/man/train.html">train</a></span><span class="op">(</span><span class="va">CLS_PRO_pro13</span> <span class="op">~</span> <span class="va">.</span>,</span>
+<span>            data<span class="op">=</span><span class="va">dp_entr</span>,</span>
+<span>            method<span class="op">=</span><span class="st">"nb"</span>,</span>
+<span>            metric<span class="op">=</span><span class="st">"Accuracy"</span>,</span>
+<span>            trControl<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/caret/man/trainControl.html">trainControl</a></span><span class="op">(</span>classProbs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                                   method <span class="op">=</span> <span class="st">"cv"</span>,</span>
+<span>                                   number <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="cap-naive-bayes.html#cb391-1" tabindex="-1"></a><span class="co"># se muestra la salida del modelo</span></span>
+<span id="cb391-2"><a href="cap-naive-bayes.html#cb391-2" tabindex="-1"></a>model</span>
+<span id="cb391-3"><a href="cap-naive-bayes.html#cb391-3" tabindex="-1"></a></span>
+<span id="cb391-4"><a href="cap-naive-bayes.html#cb391-4" tabindex="-1"></a>Naive Bayes</span>
+<span id="cb391-5"><a href="cap-naive-bayes.html#cb391-5" tabindex="-1"></a></span>
+<span id="cb391-6"><a href="cap-naive-bayes.html#cb391-6" tabindex="-1"></a><span class="dv">558</span> samples</span>
+<span id="cb391-7"><a href="cap-naive-bayes.html#cb391-7" tabindex="-1"></a> <span class="dv">17</span> predictor</span>
+<span id="cb391-8"><a href="cap-naive-bayes.html#cb391-8" tabindex="-1"></a>  <span class="dv">2</span> classes<span class="sc">:</span> <span class="st">'S'</span>, <span class="st">'N'</span></span>
+<span id="cb391-9"><a href="cap-naive-bayes.html#cb391-9" tabindex="-1"></a></span>
+<span id="cb391-10"><a href="cap-naive-bayes.html#cb391-10" tabindex="-1"></a>No pre<span class="sc">-</span>processing</span>
+<span id="cb391-11"><a href="cap-naive-bayes.html#cb391-11" tabindex="-1"></a>Resampling<span class="sc">:</span> Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold)</span>
+<span id="cb391-12"><a href="cap-naive-bayes.html#cb391-12" tabindex="-1"></a>Summary of sample sizes<span class="sc">:</span> <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">502</span>, <span class="dv">503</span>, <span class="dv">503</span>, <span class="dv">502</span>, ...</span>
+<span id="cb391-13"><a href="cap-naive-bayes.html#cb391-13" tabindex="-1"></a>Resampling results across tuning parameters<span class="sc">:</span></span>
+<span id="cb391-14"><a href="cap-naive-bayes.html#cb391-14" tabindex="-1"></a></span>
+<span id="cb391-15"><a href="cap-naive-bayes.html#cb391-15" tabindex="-1"></a>  usekernel  Accuracy   Kappa</span>
+<span id="cb391-16"><a href="cap-naive-bayes.html#cb391-16" tabindex="-1"></a>  <span class="cn">FALSE</span>      <span class="fl">0.8512662</span>  <span class="fl">0.7026716</span></span>
+<span id="cb391-17"><a href="cap-naive-bayes.html#cb391-17" tabindex="-1"></a>   <span class="cn">TRUE</span>      <span class="fl">0.8512338</span>  <span class="fl">0.7025165</span></span>
+<span id="cb391-18"><a href="cap-naive-bayes.html#cb391-18" tabindex="-1"></a></span>
+<span id="cb391-19"><a href="cap-naive-bayes.html#cb391-19" tabindex="-1"></a>Tuning parameter <span class="st">'fL'</span> was held constant at a value of <span class="dv">0</span></span>
+<span id="cb391-20"><a href="cap-naive-bayes.html#cb391-20" tabindex="-1"></a>Tuning parameter</span>
+<span id="cb391-21"><a href="cap-naive-bayes.html#cb391-21" tabindex="-1"></a> <span class="st">'adjust'</span> was held constant at a value of <span class="dv">1</span></span>
+<span id="cb391-22"><a href="cap-naive-bayes.html#cb391-22" tabindex="-1"></a>Accuracy was used to select the optimal model using the largest value.</span>
+<span id="cb391-23"><a href="cap-naive-bayes.html#cb391-23" tabindex="-1"></a>The final values used <span class="cf">for</span> the model were fL <span class="ot">=</span> <span class="dv">0</span>, usekernel <span class="ot">=</span> <span class="cn">FALSE</span> and adjust <span class="ot">=</span> <span class="fl">1.</span></span></code></pre></div>
+<p>Los resultados del proceso de entrenamiento muestran que, en este caso, es indiferente indicar el argumento <code>usekernel</code> como <code>FALSE</code> o <code>TRUE</code>, pues los resultados de la medida de <code>accuracy</code> (proporción de predicciones correctas) son similares.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Cuando entran en juego variables predictoras cuantitativas se puede utilizar la estimación de densidad de &lt;em&gt;kernel&lt;/em&gt; (&lt;code&gt;usekernel=TRUE&lt;/code&gt;). La estimación se lleva a cabo con &lt;code&gt;function density()&lt;/code&gt;. Por defecto se utiliza un &lt;em&gt;kernel&lt;/em&gt; de suavizado Gaussiano y la regla general de Silverman para el ancho de banda. Para más detalles véase &lt;span class="citation"&gt;John and Langley (&lt;a href="referencias.html#ref-john2013estimating"&gt;2013&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>195</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;code&gt;Accuracy&lt;/code&gt; es una medida de la bondad clasificadora del modelo que indica cuántas observaciones han sido correctamente clasificadas respecto al total de observaciones en el conjunto de entrenamiento. El coeficiente &lt;code&gt;kappa&lt;/code&gt; de Cohen mide la concordancia entre las clasificaciones predichas y reales. Un valor kappa de 1 representa un acuerdo perfecto, mientras que un valor de 0 no representa ningún acuerdo (distinto del que cabría esperar por azar).&lt;/p&gt;"><sup>196</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;En los resultados expuestos aparece el parámetro de ajuste &lt;code&gt;fL&lt;/code&gt;. Este parámetro hace referencia a la corrección de Laplace, que se utiliza para suavizar las probabilidades y controlar el efecto de sucesos que no han ocurrido en el conjunto de entrenamiento (el problema de frecuencia cero) y que, por tanto, tienen probabilidad nula. De acuerdo con la corrección de Laplace: &lt;span class="math inline"&gt;\(P(X_i|C) = \frac{N_{X_{ic}}+1}{N_{C}+k}\)&lt;/span&gt;, donde &lt;span class="math inline"&gt;\(N_{X_{ic}}\)&lt;/span&gt; es el número de ocurrencias en la base de datos donde aparece el valor de l variable &lt;span class="math inline"&gt;\(X_i\)&lt;/span&gt;, &lt;span class="math inline"&gt;\(N_{C}\)&lt;/span&gt; es el total de observaciones en el conjunto de datos y &lt;span class="math inline"&gt;\(k\)&lt;/span&gt; el número de valores que puede tener la clase &lt;span class="math inline"&gt;\(C\)&lt;/span&gt;.&lt;/p&gt;'><sup>197</sup></a></p>
+<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/caret/man/confusionMatrix.html">confusionMatrix</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="cap-naive-bayes.html#cb393-1" tabindex="-1"></a>Cross<span class="sc">-</span><span class="fu">Validated</span> (<span class="dv">10</span> fold) Confusion Matrix</span>
+<span id="cb393-2"><a href="cap-naive-bayes.html#cb393-2" tabindex="-1"></a>(entries are percentual average cell counts across resamples)</span>
+<span id="cb393-3"><a href="cap-naive-bayes.html#cb393-3" tabindex="-1"></a></span>
+<span id="cb393-4"><a href="cap-naive-bayes.html#cb393-4" tabindex="-1"></a>          Reference</span>
+<span id="cb393-5"><a href="cap-naive-bayes.html#cb393-5" tabindex="-1"></a>Prediction    S    N</span>
+<span id="cb393-6"><a href="cap-naive-bayes.html#cb393-6" tabindex="-1"></a>         S <span class="fl">41.8</span>  <span class="fl">6.6</span></span>
+<span id="cb393-7"><a href="cap-naive-bayes.html#cb393-7" tabindex="-1"></a>         N  <span class="fl">8.2</span> <span class="fl">43.4</span></span>
+<span id="cb393-8"><a href="cap-naive-bayes.html#cb393-8" tabindex="-1"></a></span>
+<span id="cb393-9"><a href="cap-naive-bayes.html#cb393-9" tabindex="-1"></a> <span class="fu">Accuracy</span> (average) <span class="sc">:</span> <span class="fl">0.8513</span></span></code></pre></div>
+<p>En la matriz de confusión del modelo se proporciona en cada celda el promedio porcentual en los distintos remuestreos. Así, se observa que, en media, el modelo predice mejor cuando un cliente no va a comprar el nuevo producto que cuando sí lo hace, aunque no con mucha diferencia (menos de un 2%). En ambos casos, las clasificaciones erróneas no suponen ni el 10%.</p>
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html">melt</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">resample</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">value</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>show.legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:NBRESULTS"></span>
+<img src="img/nb_boxplot.png" alt="Resultados del modelo Naive Bayes obtenidos durante el proceso de validación cruzada." width="55%"><p class="caption">
+Figura 27.1: Resultados del modelo Naive Bayes obtenidos durante el proceso de validación cruzada.
+</p>
+</div>
+<p>En la Fig. <a href="cap-naive-bayes.html#fig:NBRESULTS">27.1</a> se puede observar que la <code>accuracy</code> oscila entre el 75% y el 95% en el proceso de validación cruzada, aunque en uno de los resultados se obtuvo un 96%, que aparece marcado como un <em>outlier</em>. La <code>kappa</code> de Cohen oscila entre el 63% y el 82%, con un <em>outlier</em> en el 82%.</p>
+<div id="resumen-26" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-26"><i class="fas fa-link"></i></a>
+</h3>
+<p>En este capítulo se introduce al lector en el algoritmo Naive Bayes. En concreto:</p>
+<ul>
+<li><p>Se presentan los fundamentos del algoritmo.</p></li>
+<li><p>Se explica el funcionamiento del algoritmo y su relación con dicho Teorema de Bayes.</p></li>
+<li><p>Se demuestra su aplicabilidad a un caso real de clasificación con <strong>R</strong>.</p></li>
+</ul>
+</div>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></div>
+<div class="next"><a href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cap-naive-bayes"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="nav-link" href="#nb-intro"><span class="header-section-number">27.1</span> Introducción</a></li>
+<li><a class="nav-link" href="#teorema-de-bayes"><span class="header-section-number">27.2</span> Teorema de Bayes</a></li>
+<li><a class="nav-link" href="#el-algoritmo-naive-bayes"><span class="header-section-number">27.3</span> El algoritmo Naive Bayes</a></li>
+<li><a class="nav-link" href="#procedimiento-con-r-la-funci%C3%B3n-naive_bayes"><span class="header-section-number">27.4</span> Procedimiento con R: la función naive_bayes()</a></li>
+<li>
+<a class="nav-link" href="#clasificaci%C3%B3n-de-clientes-utilizando-el-modelo-naive-bayes"><span class="header-section-number">27.5</span> Clasificación de clientes utilizando el modelo Naive Bayes</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#resumen-26">Resumen</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

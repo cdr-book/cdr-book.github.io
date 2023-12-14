@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 32 Análisis de componentes principales | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="José-María Montero\(^{a}\) y José Luis Alfaro Navarro\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  32.1 Introducción En el estudio de cualquier problema de interés, lo ideal es tomar...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Capítulo 32 Análisis de componentes principales | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="José-María Montero\(^{a}\) y José Luis Alfaro Navarro\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  32.1 Introducción En el estudio de cualquier problema de interés, lo ideal es tomar...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 32 Análisis de componentes principales | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="José-María Montero\(^{a}\) y José Luis Alfaro Navarro\(^{a}\) \(^{a}\)Universidad de Castilla-La Mancha  32.1 Introducción En el estudio de cualquier problema de interés, lo ideal es tomar...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
+<li><a class="active" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="acp" class="section level1" number="32">
+<h1>
+<span class="header-section-number">Capítulo 32</span> Análisis de componentes principales<a class="anchor" aria-label="anchor" href="#acp"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>José-María Montero</em><span class="math inline">\(^{a}\)</span> y <em>José Luis Alfaro Navarro</em><span class="math inline">\(^{a}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad de Castilla-La Mancha</p>
+<div id="introducción-14" class="section level2" number="32.1">
+<h2>
+<span class="header-section-number">32.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-14"><i class="fas fa-link"></i></a>
+</h2>
+<p>En el estudio de cualquier problema de interés, lo ideal es tomar información del mayor número de variables posible, lo cual, actualmente, no es un impedimento. Sin embargo, trabajar con muchas variables es incómodo (por ejemplo, si fueran 30 y se estuviese interesado en su correlación dos a a dos, habría que calcular 435 coeficientes). Además, tener muchas variables no implica necesariamente tener mucha información. Si están correlacionadas entre ellas (que suele ser el caso en la realidad), parte de la información que proporcionan es redundante. Por consiguiente, el reto es reducir la dimensionalidad del problema sin reducir la cantidad de información proporcionada por las variables originales, midiéndose dicha cantidad de información a través de su variabilidad, en consonancia con el concepto de entropía. En concreto, se adopta como medida de la variabilidad de las variables originales la suma de sus varianzas.</p>
+<p>
+</p>
+<p>Pues bien, el análisis de componentes principales (ACP, perteneciente al ámbito del aprendizaje no supervisado) es una técnica de reducción de la dimensionalidad, un problema importante en ciencia de datos, tanto en el aprendizaje supervisado como no supervisado. ACP opera sustituyendo las variables originales por un número reducido de combinaciones lineales de ellas, incorrelacionadas, denominadas <strong>componentes principales</strong> (c.p.), que capturan un elevado porcentaje de la variabilidad de las variables originales <span class="citation">(<a href="referencias.html#ref-Hothorn_Everitt2014">Hothorn and Everitt 2014</a>; <a href="referencias.html#ref-boehmke2019hands">Boehmke and Greenwell 2020</a>)</span>. ACP es el primer intento de reducción de la dimensionalidad y el único utilizado a tal fin hasta el advenimiento del escalamiento multidimensional (aunque no es su función principal) y otras técnicas más complicadas pertenecientes al ámbito del aprendizaje múltiple (<em>manifold learning</em>).</p>
+<p>
+</p>
+<p>La reducción de la dimensionalidad no solo es útil en el estudio de fenómenos complejos con un elevado número de dimensiones, sino también para facilitar la implementación de otros métodos de aprendizaje no supervisado, como el análisis clúster<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Aunque clúster es una palabra inglesa, no se escribirá en cursiva por ser un término popular y muy utilizado en la jerga de la ciencia de datos en español.&lt;/p&gt;"><sup>218</sup></a> (reduciendo el número de dimensiones a utilizar para configurar los clústeres), o supervisado, como, por ejemplo, la regresión (reduciendo el número de regresores y haciéndolos incorrelacionados, evitando así información redundante y la multicolinealidad); o la técnica de <em>partial least squares</em> (PLS, similar a la regresión con c.p., pero que, en vez de ignorar la variable respuesta en la determinación de las combinaciones lineales, busca aquellas que, además de explicar la varianza de las variables originales, predicen la variable respuesta lo mejor posible).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Como señala &lt;span class="citation"&gt;Amat Rodrigo (&lt;a href="referencias.html#ref-amat2017"&gt;2017&lt;/a&gt;)&lt;/span&gt;, PLS puede considerarse como una versión supervisada de la regresión con c.p.&lt;/p&gt;'><sup>219</sup></a> También es muy útil para representar gráficamente relaciones multivariantes.</p>
+<p>
+</p>
+<p>En <strong>R</strong> hay varias opciones para la realización de un ACP: <code><a href="https://rdrr.io/r/stats/princomp.html">princomp()</a></code>, <code><a href="https://rdrr.io/r/stats/prcomp.html">prcomp()</a></code> y <code><a href="https://rdrr.io/pkg/FactoMineR/man/PCA.html">PCA()</a></code>, de la librería <code>FactoMineR</code> <span class="citation">(<a href="referencias.html#ref-Leetal2008">Lê, Josse, and Husson 2008</a>)</span>, entre otras. Se ha optado por la última porque <span class="math inline">\((i)\)</span> incorpora notables mejoras gráficas; <span class="math inline">\((ii)\)</span> permite el ACP con <em>missing values</em>, imputando dichos valores (paquete <code>missMDA</code>); <span class="math inline">\((iii)\)</span> proporciona una descripción e interpretación automática de los resultados, seleccionando los mejores gráficos, mediante el paquete <code>FactoInvestigate</code>; <span class="math inline">\((iv)\)</span> permite la implementación de técnicas híbridas (por ejemplo, clusterización con c.p.); y <span class="math inline">\((vi)\)</span> posibilita la predicción de las coordenadas de individuos y variables adicionales utilizando únicamente <em>inputs</em> del ACP previo.</p>
+<p>Como ilustración práctica del ACP, se abordará la reducción de la dimensionalidad de un problema del ámbito de la sociedad de la información en la UE-27, en 2021. Se dispone, para 2021 y a nivel de país, de información sobre 7 variables: 4 relacionadas con el uso de las TIC por parte de las empresas y 3 relativas al uso de dichas tecnologías por parte de las personas y a la equipación TIC de los hogares. Dicha información, así como la descripción de las variables, puede consultarse en la base de datos <code>TIC2021</code> del paquete <code>CDR</code>.</p>
+</div>
+<div id="obtención-de-las-componentes-principales" class="section level2" number="32.2">
+<h2>
+<span class="header-section-number">32.2</span> Obtención de las componentes principales<a class="anchor" aria-label="anchor" href="#obtenci%C3%B3n-de-las-componentes-principales"><i class="fas fa-link"></i></a>
+</h2>
+<div id="descripción-formal-del-proceso" class="section level3" number="32.2.1">
+<h3>
+<span class="header-section-number">32.2.1</span> Descripción formal del proceso<a class="anchor" aria-label="anchor" href="#descripci%C3%B3n-formal-del-proceso"><i class="fas fa-link"></i></a>
+</h3>
+<p>Sea <span class="math inline">\(\mathbf{X^\prime}=(X_{1},\dotsc,X_{p})\)</span> un vector <span class="math inline">\(p\)</span>-dimensional de variables aleatorias con vector de medias <span class="math inline">\(\boldsymbol{\mu}\)</span> y matriz de covarianzas conocida <span class="math inline">\(\boldsymbol{\Sigma}\)</span>. Puesto que los cambios de origen no afectan a la covarianza, las variables originales se consideran centradas, de tal manera que <span class="math inline">\(\boldsymbol{\mu}=\mathbf {0}\)</span> y <span class="math inline">\(\boldsymbol{\Sigma}= E\left (\mathbf{X^\prime} \mathbf{X}\right)\)</span>. Se trata de encontrar un conjunto de <span class="math inline">\(p\)</span> combinaciones lineales incorrelacionadas de dichas variables,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Para mantener la misma notación que en capítulos precedentes, se respeta ell subíndice “&lt;em&gt;i&lt;/em&gt;” para las observaciones (&lt;span class="math inline"&gt;\(i=1,...,N\)&lt;/span&gt;), aunque no aparece en el texto por utilizarse notación matricial, y se usa el subíndice &lt;em&gt;j&lt;/em&gt; para las variables originales (&lt;span class="math inline"&gt;\(j=1,...,p\)&lt;/span&gt;). Para evitar confusiones, se utiliza el subíndice “&lt;em&gt;m&lt;/em&gt;” para las componentes principales (&lt;span class="math inline"&gt;\(m=1,...,p\)&lt;/span&gt;).&lt;/p&gt;'><sup>220</sup></a> <span class="math inline">\(Y_{m}=a_{1m}X_{1}+a_{2m}X_{2}+\dotsb+a_{pm}X_{p}=\mathbf{a}_{m}^{\prime}\mathbf{X}, \hspace{0,1 cm}{m=1,2,\dotsc,p}\)</span>, denominadas c.p., que recojan la variabilidad existente en los datos. La idea es ordenar las c.p. tal que <span class="math inline">\(V(Y_1)&gt; V(Y_2)&gt;...&gt; V(Y_p)\)</span>, y seleccionar <span class="math inline">\(k\)</span> de ellas (las <span class="math inline">\(k\)</span> primeras), <span class="math inline">\(k&lt;p\)</span>, que capturen un elevado porcentaje de la variabilidad de los datos.</p>
+<div class="infobox">
+<p><strong>Nota</strong></p>
+<p>Geométricamente, las c.p. representan un nuevo sistema de coordenadas obtenido mediante la rotación de los ejes originales. Los nuevos ejes representan las direcciones de máxima variabilidad y proporcionan una descripción más simple de la estructura de covarianza.</p>
+</div>
+<p>La varianza de cada componente y la covarianza entre ellas vienen dadas por:
+<span class="math display" id="eq:ecuacion1acp">\[\begin{equation}
+\begin{split}
+Var(Y_{m})=\mathbf{a}_{m}^{\prime}\mathbf{\Sigma}\mathbf{a}_{m},    \quad{\forall m=1,2,\dotsc,p}, \\
+Cov(Y_{m}, Y_{s})=\mathbf{a}_{m}^{\prime}\mathbf{\Sigma}\mathbf{a}_{s},      \quad{\forall m, s \{m\neq s\} =1,2,\dotsc,p}.
+\end{split}
+\tag{32.1}
+\end{equation}\]</span></p>
+<div id="obtención-de-la-primera-componente-principal" class="section level4" number="32.2.1.1">
+<h4>
+<span class="header-section-number">32.2.1.1</span> Obtención de la primera componente principal<a class="anchor" aria-label="anchor" href="#obtenci%C3%B3n-de-la-primera-componente-principal"><i class="fas fa-link"></i></a>
+</h4>
+<p>La primera c.p., <span class="math inline">\(Y_1\)</span>, se obtiene seleccionando el vector <span class="math inline">\(\mathbf{a}_{1}\)</span> que maximice su varianza. Sin embargo, dado que la varianza de cada c.p. puede incrementarse arbitrariamente multiplicando <span class="math inline">\(\mathbf{a}_{1}\)</span> por una constante, se impone la condición <span class="math inline">\(\mathbf{a}_{1}^{\prime}\mathbf{a}_{1}=1\)</span>; es decir, se normalizan los vectores, de tal forma que tengan longitud unitaria. Por tanto, se trata de encontrar el vector <span class="math inline">\(\mathbf{a}_{1}\)</span> que maximiza <span class="math inline">\(Var(Y_{1})=\mathbf{a}_{1}^{\prime}\mathbf{\Sigma}\mathbf{a}_{1}\)</span> sujeto a que <span class="math inline">\(\mathbf{a}_{1}^{\prime}\mathbf{a}_{1}=1\)</span>. En otros términos, se selecciona el vector <span class="math inline">\(\mathbf{a}_{1}\)</span> que maximiza el lagrangiano: <span class="math display">\[\begin{equation}
+\mathcal{L}(\mathbf {\mathbf a}_{1})=\mathbf{a}_{1}^{\prime}\mathbf{\Sigma}\mathbf{a}_{1}-\lambda (\mathbf{a}_{1}^{\prime}\mathbf{a}_{1}-1).
+(\#eq:ecuacion2acp)
+\end{equation}\]</span>
+Para ello, se deriva respecto a <span class="math inline">\(\mathbf{a}_{1}\)</span> y <span class="math inline">\(\lambda\)</span>, y se igualan a cero dichas derivadas: <span class="math display">\[\begin{equation}
+\begin{split}
+\frac{\partial\mathcal{L} (\mathbf{a}_{1})}{\partial\mathbf{a}_{1}}=2\mathbf{\Sigma}\mathbf{a}_{1}-2\lambda\mathbf{a}_{1}=(\mathbf{\Sigma}-\lambda\mathbf{I})\mathbf{a}_{1}= \mathbf{0}, \\
+\frac{\partial \mathcal{L}(\mathbf{a}_{1})}{\partial\lambda}=\mathbf{a}_{1}^{\prime}\mathbf{a}_{1}-1=0.
+\end{split}
+(\#eq:ecuacion3acp)
+\end{equation}\]</span> La primera ecuación tendrá solución distinta del vector nulo cuando <span class="math inline">\((\mathbf{\Sigma}-\lambda\mathbf{I})\)</span> sea singular; es decir, cuando <span class="math inline">\(|\mathbf{\Sigma}-\lambda\mathbf{I}|=0\)</span>, o en otros términos, cuando <span class="math inline">\(\lambda\)</span> sea un autovalor de <span class="math inline">\(\mathbf{\Sigma}\)</span>. Dado que,</p>
+<ul>
+<li>
+<span class="math inline">\(\boldsymbol{\Sigma}\)</span> es semidefinida positiva y, en general, tendrá <em>p</em> autovalores no negativos,</li>
+<li>y que en el proceso de optimización, premultiplicando <span class="math inline">\((\mathbf{\Sigma}-\lambda\mathbf{I})\mathbf{a}_{1}= \mathbf{0}\)</span> por <span class="math inline">\(\mathbf{a}^{\prime}_{1}\)</span> y teniendo en cuenta que <span class="math inline">\(\mathbf{a}_{1}^{\prime}\mathbf{a}_{1}=1\)</span>, resulta que <span class="math inline">\(\lambda= \mathbf{a}_{1}^{\prime}\mathbf{\Sigma}\mathbf{a}_{1}= V({Y_1})\)</span>,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La condición &lt;span class="math inline"&gt;\(\mathbf a^{\prime}_{i} \mathbf a_{i}^{\hspace{0,01cm}}=1\)&lt;/span&gt; lleva a que los autovalores de &lt;span class="math inline"&gt;\(\mathbf \Sigma\)&lt;/span&gt; coincidan con las varianzas de las c.p.&lt;/p&gt;'><sup>221</sup></a>
+</li>
+</ul>
+<p>se seleccionará el mayor de los autovalores de <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, obteniéndose el autovector <span class="math inline">\(\mathbf{a}_{1}\)</span> de tal forma que cumpla la condición <span class="math inline">\(\mathbf{a}_{1}^{\prime}\mathbf{a}_{1}=1\)</span>.
+</p>
+</div>
+<div id="obtención-de-la-segunda-componente-principal" class="section level4" number="32.2.1.2">
+<h4>
+<span class="header-section-number">32.2.1.2</span> Obtención de la segunda componente principal<a class="anchor" aria-label="anchor" href="#obtenci%C3%B3n-de-la-segunda-componente-principal"><i class="fas fa-link"></i></a>
+</h4>
+<p><span class="math inline">\(Y_{2} = \mathbf{a}_{2}^{\prime}\bf{X}\)</span> se obtiene igual que <span class="math inline">\(Y_{1}\)</span>, pero añadiendo la condición de incorrelación con <span class="math inline">\(Y_{1}\)</span>: <span class="math inline">\(Cov(Y_{1}, Y_{2}) = \mathbf{a}_{2}^{\prime} \mathbf{\Sigma} \mathbf{a}_{1} = 0,\)</span> o equivalentemente, <span class="math inline">\(\mathbf{a}_{2}^{\prime}\mathbf{a}_{1}=0\)</span> (<span class="math inline">\(\mathbf a_1\)</span> y <span class="math inline">\(\mathbf a_2\)</span> son ortogonales).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Si todos los autovalores de &lt;span class="math inline"&gt;\(\boldsymbol{\Sigma}\)&lt;/span&gt; son distintos, los autovectores son ortogonales. En caso contrario, los autovectores asociados a autovalores comunes se eligen de forma que sean ortogonales.&lt;/p&gt;'><sup>222</sup></a></p>
+<p>Por tanto, el lagrangiano a maximizar es:</p>
+<span class="math display" id="eq:ecuacion4">\[\begin{equation}
+\mathcal{L}(\mathbf {a}_{2})=\mathbf{a}_{2}^{\prime}\mathbf{\Sigma}\mathbf{a}_{2}-
+\lambda (\mathbf{a}_{2}^{\prime}\mathbf{a}_{2}-1)- \gamma (\mathbf{a}_{2}^{\prime}\mathbf{a}_{1}-0).
+\tag{32.2}
+\end{equation}\]</span>
+<p>Derivando respecto a <span class="math inline">\(\bf{a}_{2}\)</span> e igualando a cero:</p>
+<span class="math display" id="eq:ecuacion5">\[\begin{equation}
+\frac{\partial \mathcal{L}(\mathbf {a}_{2})}{\partial\mathbf{a}_{2}}=
+2\mathbf{\Sigma}\mathbf{a}_{2} -2\lambda \mathbf{a}_{2}- \gamma \mathbf{a}_{1}=
+2(\mathbf{\Sigma}- \lambda \mathbf{I}) \mathbf{a}_{2}- \gamma\mathbf{a}_{1} =
+\mathbf{0}.
+\tag{32.3}
+\end{equation}\]</span>
+<p>Premultiplicando por <span class="math inline">\(\mathbf{a}_{1}^{\prime}\)</span> y considerando la condición de ortogonalidad se tiene que <span class="math inline">\(\gamma=2 Cov (Y_1,Y_2)=0\)</span>, con lo que <span class="math inline">\(\frac{\partial \mathcal{L}(\mathbf {a}_{2})}{\partial\mathbf{a}_{2}}= 2{\mathbf \Sigma}{\mathbf {a}_2} - 2 \lambda \mathbf a_2 = 0\)</span>, que implica que <span class="math inline">\((\mathbf \Sigma -\lambda \mathbf I)\mathbf a_2=0\)</span>.</p>
+<p>Siguiendo el mismo razonamiento que en la obtención de la primera componente, se elige el segundo mayor autovalor de <span class="math inline">\(\mathbf\Sigma\)</span>,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;El mayor no puede ser, ya que coincidirían &lt;span class="math inline"&gt;\(\mathbf a_1\)&lt;/span&gt; y &lt;span class="math inline"&gt;\(\mathbf a_2\)&lt;/span&gt;, en cuyo caso &lt;span class="math inline"&gt;\(Y_1\)&lt;/span&gt; e &lt;span class="math inline"&gt;\(Y_2\)&lt;/span&gt; no estarían incorrelacionadas.&lt;/p&gt;'><sup>223</sup></a> <span class="math inline">\(\lambda_{2}\)</span>, siendo <span class="math inline">\({\bf{a}}_{2}\)</span> el autovector asociado a él.</p>
+</div>
+<div id="obtención-del-resto-de-las-componentes-principales" class="section level4" number="32.2.1.3">
+<h4>
+<span class="header-section-number">32.2.1.3</span> Obtención del resto de las componentes principales<a class="anchor" aria-label="anchor" href="#obtenci%C3%B3n-del-resto-de-las-componentes-principales"><i class="fas fa-link"></i></a>
+</h4>
+<p></p>
+<p>Repitiendo este procedimiento, se obtienen las <em>p</em> c.p., siendo los coeficientes de la <em>j</em>-ésima los componentes del autovector asociado al <em>j</em>-ésimo mayor autovalor de <span class="math inline">\(\mathbf \Sigma\)</span>.</p>
+<p>El vector de c.p. se puede expresar como <span class="math inline">\(\mathbf{Y}=\mathbf{A}^{\prime}\mathbf{X}\)</span>, donde <span class="math inline">\(\mathbf{A} = [{\bf{a}}_{1}, {\bf{a}}_{2},\dotsc,{\bf{a}}_{p}]\)</span> es la matriz de autovectores (ortogonales) obtenidos.</p>
+</div>
+</div>
+<div id="cuestiones-importantes-en-el-análisis-de-componentes-principales" class="section level3" number="32.2.2">
+<h3>
+<span class="header-section-number">32.2.2</span> Cuestiones importantes en el análisis de componentes principales<a class="anchor" aria-label="anchor" href="#cuestiones-importantes-en-el-an%C3%A1lisis-de-componentes-principales"><i class="fas fa-link"></i></a>
+</h3>
+<p></p>
+<div id="varianza-de-las-variables-originales-y-las-componentes-principales" class="section level4" number="32.2.2.1">
+<h4>
+<span class="header-section-number">32.2.2.1</span> Varianza de las variables originales y las componentes principales<a class="anchor" aria-label="anchor" href="#varianza-de-las-variables-originales-y-las-componentes-principales"><i class="fas fa-link"></i></a>
+</h4>
+<p>La matriz de covarianzas de las c.p., <span class="math inline">\(\mathbf V(\mathbf Y)=\mathbf A^\prime \mathbf \Sigma \mathbf A\)</span>, coincide con <span class="math inline">\(\mathbf{\Lambda}\)</span>, que es una matriz diagonal, puesto que las c.p. están incorrelacionadas y sus varianzas (los valores de la diagonal principal) son los autovalores de <span class="math inline">\(\boldsymbol{\Sigma}\)</span>. En consecuencia: <span class="math display">\[\begin{equation}
+\begin{split}
+\sum_{m=1}^{p}Var(Y_{m})= tr (\mathbf{\Lambda})= tr (\mathbf{A}^{\prime} \mathbf{\Sigma} \mathbf{A}) = tr (\mathbf{\Sigma} \mathbf{A} \mathbf{A}^{\prime})
+= tr (\mathbf{\Sigma}) = \sum_{j=1}^{p}Var(X_{j}),
+\end{split}
+(\#eq:ecuacion6)
+\end{equation}\]</span> pudiéndose comprobar que la suma de las varianzas de las variables originales<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Recuérdese que se adopta como medida de la variabilidad de las variables originales la suma de sus varianzas.&lt;/p&gt;"><sup>224</sup></a> coincide con la suma de las varianzas de las c.p.</p>
+<p>Por tanto, la <em>m</em>-ésima c.p. captura un porcentaje de la variabilidad de las variables originales cifrado en <span class="math inline">\(\frac{\lambda_{m}}{\sum_{m=1}^{p} \lambda_{m}} 100\)</span>, siendo <span class="math inline">\(\frac{\sum_{m=1}^k\lambda_{m}}{\sum_{m=1}^{p} \lambda_{m}} 100\)</span> la proporción capturada por las <span class="math inline">\(k\)</span> primeras componentes.</p>
+</div>
+<div id="componentes-principales-a-partir-de-variables-estandarizadas" class="section level4" number="32.2.2.2">
+<h4>
+<span class="header-section-number">32.2.2.2</span> Componentes principales a partir de variables estandarizadas<a class="anchor" aria-label="anchor" href="#componentes-principales-a-partir-de-variables-estandarizadas"><i class="fas fa-link"></i></a>
+</h4>
+<p>
+</p>
+<p>A menudo, no solo se centran las variables originales sino que también se estandarizan, para que tengan varianza unitaria.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Las variables estandarizadas se denotan por &lt;span class="math inline"&gt;\({Z_{1},Z_{2},...,Z_{p}}\)&lt;/span&gt;.&lt;/p&gt;'><sup>225</sup></a> La razón es que si las variables originales presentan grandes diferencias en sus escalas de medida o en los rangos de las unidades de medida (edad en años, altura en metros, longitud en kilómetros…), sus combinaciones lineales tendrán poco significado, porque las variables que las conforman no son “igualmente importantes” y en la primera componente tendrá un gran peso la variable original con mayor magnitud <span class="citation">(<a href="referencias.html#ref-chatfield1980">Chatfield and Collins 1980</a>)</span>. Si no fuera el caso, es mejor partir de <span class="math inline">\(\bf\Sigma\)</span>; además, la teoría muestral de las c.p. es mucho más compleja cuando las variables están estandarizadas que cuando no lo están <span class="citation">(<a href="referencias.html#ref-morrison1976">Morrison 1976</a>)</span>.</p>
+<p>El mecanismo de obtención de las c.p. no cambia en absoluto, pero su punto de arranque ya no es <span class="math inline">\(\boldsymbol{\Sigma}\)</span> sino <span class="math inline">\(\bf{P}\)</span>, la matriz de correlaciones de dichas variables. Los autovectores de <span class="math inline">\(\bf{P}\)</span> son, en general, distintos a los de <span class="math inline">\(\boldsymbol{\Sigma}\)</span>. Además, la suma de los autovalores, como coincide con la suma de las varianzas de las variables originales, es <em>p</em>, luego el porcentaje de la variación total capturada por la componente <em>m</em>-ésima es <span class="math inline">\(\frac{\lambda_{m}}{p} 100\)</span>, siendo <span class="math inline">\(\frac{\sum_{m=1}^k\lambda_{m}}{p} 100\)</span> la proporción capturada por las <span class="math inline">\(k\)</span> primeras componentes.</p>
+<p></p>
+</div>
+<div id="correlación-entre-las-variables-originales-y-las-componentes-principales" class="section level4" number="32.2.2.3">
+<h4>
+<span class="header-section-number">32.2.2.3</span> Correlación entre las variables originales y las componentes principales<a class="anchor" aria-label="anchor" href="#correlaci%C3%B3n-entre-las-variables-originales-y-las-componentes-principales"><i class="fas fa-link"></i></a>
+</h4>
+<p></p>
+<p>Considérese la variable original <span class="math inline">\(X_{j}\)</span> y la c.p. <span class="math inline">\(Y_{m}=a_{1m}X_{1}+a_{2m}X_{2}+\dotsb+a_{pm}X_{p}=\mathbf{a}_{m}^{\prime}\mathbf{X}\)</span>. Dado que <span class="math inline">\(\mathbf{X}^{\prime} = [X_{1},\dotsb,X_{p}]\)</span>, entonces <span class="math inline">\(X_{j}=\mathbf{e}_{j}^{\prime}\mathbf{X}\)</span>, donde <span class="math inline">\(\mathbf{e}_{j}\)</span> es un vector de ceros excepto un 1 en la <em>j</em>-ésima posición.</p>
+<p>Entonces, como <span class="math inline">\(({\bf \Sigma}-{\lambda_{m}} {\bf I)}{\bf {a}}_m=0\)</span>, se tiene que <span class="math inline">\({\bf\Sigma} {\bf a}_m={\lambda}_m {\bf {a}}_m\)</span> y que:</p>
+<span class="math display" id="eq:ecuacion7">\[\begin{equation}
+Cov(X_{j},Y_{m})=Cov(\mathbf{e}_{j}^{\prime}\prime\mathbf{X},\mathbf{a}_{m}^{\prime}\mathbf{X})= \mathbf{e}_{j}^{\prime} \mathbf{\Sigma} \mathbf{a}_{m}=
+\mathbf{e}_{j}^{\prime} \lambda_{m} \mathbf{a}_{m}=
+\lambda_{m} a_{jm},
+\tag{32.4}
+\end{equation}\]</span>
+<span class="math display" id="eq:ecuacion8">\[\begin{equation}
+r_{X_{j},Y_{m}}=\frac{Cov(X_{j},Y_{m})}{\sqrt{Var(X_{j})}\sqrt{Var(Y_{m})}}= \frac{\lambda_{m} a_{jm}}{\sqrt{\sigma_{jj}} \sqrt{\lambda_{m}}}=
+\frac {\sqrt{\lambda_{m}}a_{jm}}{\sigma_{jj}}
+\tag{32.5},
+\end{equation}\]</span>
+<p>donde <span class="math inline">\(\sigma_{jj}\)</span> es el elemento <em>j</em>-ésimo de la diagonal principal de <span class="math inline">\(\boldsymbol{\Sigma}\)</span>.</p>
+<p>Si se parte de variables estandarizadas, entonces se tiene que <span class="math inline">\(r_{Z_{j},Y_{m}}=\sqrt{\lambda_{m}}a_{jm}\)</span>, donde ahora <span class="math inline">\(\lambda_{m}\)</span> es el <em>m</em>-ésimo autovalor de <span class="math inline">\(\bf{P}\)</span> y <span class="math inline">\(a_{jm}\)</span> es el elemento <em>j</em>-ésimo de su autovector asociado. Sin embargo, el coeficiente de correlación lineal no varía por el hecho de haber estandarizado las variables originales.</p>
+<p>Como se verá posteriormente, estos dos coeficientes, <span class="math inline">\(r_{X_{j},Y_{m}}\)</span> y <span class="math inline">\(r_{Z_{j},Y_{m}}\)</span>, serán de gran utilidad en la interpretación de las c.p. Además, como <span class="math inline">\(r_{X_{j},Y_{m}}\)</span> coincide con el coseno del ángulo que forma <span class="math inline">\(X_{j}\)</span> con <span class="math inline">\(Y_{m}\)</span> (que es la proyección o coordenada de <span class="math inline">\(X_{j}\)</span> en el eje de <span class="math inline">\(Y_{m}\)</span>), resulta de gran ayuda para representar las variables originales en el espacio de las componentes y, por consiguiente, para la interpretación de estas últimas. A mayor coseno, mayor correlación lineal entre <span class="math inline">\(X_{j}\)</span> e <span class="math inline">\(Y_{m}\)</span>. Matricialmente, y denominando <span class="math inline">\({\mathbf A}^*\)</span> a la matriz de coeficientes de correlación lineal entre las variables originales estandarizadas y las c.p., se tiene que <span class="math inline">\({\mathbf A}^{*}= {\bf A} {\bf\Lambda}^{\frac {1}{2}}\)</span>. <span class="math inline">\(\mathbf{A}^*\)</span> (imprescindible en la interpretación de las c.p.) no cambia por el hecho de estandarizar también las c.p.</p>
+<p>Los cuadrados de los elementos de <span class="math inline">\(\bf A^*\)</span> expresan la proporción de varianza de la variable <span class="math inline">\(X_j\)</span> explicada por la componente <span class="math inline">\(Y_m\)</span>. Por tanto, la suma de los cuadrados de las filas de <span class="math inline">\(\bf A^*\)</span> será la unidad. Se denomina <em>contribución</em> (individual) de <span class="math inline">\(X_{j}\)</span> a la componente <span class="math inline">\(Y_{m}\)</span> a la cantidad <span class="math inline">\(\frac{r_{X_j,Y_m}^2} {\sum_{j=1}^{p} r_{{X_{j},Y_{m}}}^2}=\frac{cos(X_j,Y_m)}{\sum_{j=1}^{p}{cos(X_j,Y_m)}}\)</span>.</p>
+<p>Otras dos expresiones interesantes que involucran <span class="math inline">\(\bf A^*\)</span> son <span class="math inline">\(\bf A^*\bf A^*{^\prime}=\bf {R}\)</span> y <span class="math inline">\(\bf A^*{^\prime}\bf A^*=\bf {\Lambda}.\)</span></p>
+</div>
+</div>
+</div>
+<div id="estimación-de-las-componentes-principales" class="section level2" number="32.3">
+<h2>
+<span class="header-section-number">32.3</span> Estimación de las componentes principales<a class="anchor" aria-label="anchor" href="#estimaci%C3%B3n-de-las-componentes-principales"><i class="fas fa-link"></i></a>
+</h2>
+<p>
+</p>
+<p>Hasta el momento, se han derivado las c.p. suponiendo conocida la matriz de covarianzas poblacional <span class="math inline">\(\boldsymbol{\Sigma}\)</span> (o la de correlaciones <span class="math inline">\(\bf P\)</span>). Sin embargo, este no suele ser el caso en la práctica, por lo que se sustituyen por sus homónimas muestrales <span class="math inline">\({\bf{S}}=\frac {1}{N}\bf{X}^\prime\bf{X}\)</span> (o <span class="math inline">\(\bf{R}\)</span>). Nada cambia en el proceso de obtención de las c.p., salvo que el punto de partida es <span class="math inline">\(\bf{S}\)</span> (o <span class="math inline">\(\bf{R}\)</span>) y que los valores de los autovalores y autovectores asociados son estimaciones.</p>
+<p>En el ejemplo que nos ocupa, la matriz de correlaciones muestrales, <span class="math inline">\(\bf R\)</span>, se muestra en la Fig. <a href="acp.html#fig:lee-datos-ch11">32.1</a>. Puede apreciarse que la correlación entre las variables es notable en la mayoría de los casos, lo que invita a analizar el problema con menos variables e incorrelacionadas, es decir, mediante ACP.</p>
+<p></p>
+<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"TIC2021"</span><span class="op">)</span></span>
+<span><span class="va">TIC</span> <span class="op">&lt;-</span> <span class="va">TIC2021</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/taiyun/corrplot">"corrplot"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.mixed.html">corrplot.mixed</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">TIC</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:lee-datos-ch11"></span>
+<img src="140011_acp_files/figure-html/lee-datos-ch11-1.png" alt="Matriz de correlaciones." width="60%"><p class="caption">
+Figura 32.1: Matriz de correlaciones.
+</p>
+</div>
+<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://factominer.free.fr">"FactoMineR"</a></span><span class="op">)</span></span>
+<span><span class="va">acp</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FactoMineR/man/PCA.html">PCA</a></span><span class="op">(</span><span class="va">TIC</span>, ncp<span class="op">=</span><span class="fl">7</span>, graph<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="numcomp" class="section level2" number="32.4">
+<h2>
+<span class="header-section-number">32.4</span> Número de componentes a retener<a class="anchor" aria-label="anchor" href="#numcomp"><i class="fas fa-link"></i></a>
+</h2>
+<p></p>
+<p>Dado que la finalidad de la técnica de componentes principales es la reducción de la dimensionalidad, una decisión clave es el número <span class="math inline">\(k\)</span> de componentes a retener. Los criterios más populares para tomar esta decisión son:</p>
+<ol style="list-style-type: lower-alpha">
+<li><strong>Seleccionar un número de componentes que capturen, entre todas, un porcentaje de la variabilidad total determinado</strong></li>
+</ol>
+<p>Dicho porcentaje suele estar alrededor del 80%, si bien, si el número de c.p. es elevado, su interpretación es muy difícil.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>
+<strong>Criterio de la media aritmética o criterio de Kaiser</strong> </li>
+</ol>
+<p>Dado que la variabilidad total coincide con la suma de los autovalores, se seleccionan aquellas c.p. cuya varianza exceda la varianza media. Es decir, se selecciona la componente <em>m</em>-ésima si <span class="math inline">\(\lambda_{m}&gt; \bar{\lambda}\)</span> (si se parte de <span class="math inline">\(\mathbf\Sigma\)</span>) o si <span class="math inline">\(\lambda_{m}&gt; 1\)</span> (si se parte de <span class="math inline">\(\mathbf R\)</span>). En caso de valores anómalos (<em>outliers</em>) es recomendable utilizar la media geométrica en vez de la aritmética.
+</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>
+<strong>Criterio de Catell</strong> </li>
+</ol>
+<p>Se basa en la representación gráfica de los autovalores <em>vs.</em> su número de orden, que se denomina <strong>gráfico de sedimentación</strong> porque se asemeja a la ladera de una montaña con su correspondiente zona de sedimentación. Se seleccionan las c.p. asociadas a los autovalores previos a la zona de sedimentación. En general, el criterio de Catell tiende a incluir demasiadas c.p., al contrario que el de la media, que tiende a incluir demasiado pocas (sobre todo si <span class="math inline">\(p&lt;20\)</span>) <span class="citation">(<a href="referencias.html#ref-mardiaetal1979">Mardia, Kent, and Bibby 1979</a>)</span>.</p>
+<p>
+</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><strong>Otros criterios</strong></li>
+</ol>
+<p>Otros criterios menos populares son la validación cruzada, el test de esfericidad o igualdad de autovalores de Anderson (requiere normalidad multivariante) y el criterio del bastón roto <span class="citation">(véase <a href="referencias.html#ref-cuadras2007">Cuadras 2007</a> para los dos últimos)</span>. Para grandes conjuntos de datos, <span class="citation">(<a href="#ref-jobson1992"><strong>jobson1992?</strong></a>)</span> propone un criterio basado en la partición de la muestra en submuestras mutuamente excluyentes, similar a la validación cruzada.</p>
+<p>La Fig. <a href="acp.html#fig:autovalores-ch11">32.2</a> muestra el gráfico de sedimentación en el ejemplo que nos ocupa. Puede apreciarse que con tan solo las dos primeras c.p. se captura el 82,07% de la variabilidad total de las siete variables originales.</p>
+<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">acp</span><span class="op">$</span><span class="va">eig</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        eigenvalue percentage of variance</span></span>
+<span><span class="co">#&gt; comp 1      4.644                 66.341</span></span>
+<span><span class="co">#&gt; comp 2      1.101                 15.731</span></span>
+<span><span class="co">#&gt; comp 3      0.547                  7.814</span></span>
+<span><span class="co">#&gt; comp 4      0.328                  4.679</span></span>
+<span><span class="co">#&gt; comp 5      0.191                  2.731</span></span>
+<span><span class="co">#&gt; comp 6      0.124                  1.768</span></span>
+<span><span class="co">#&gt; comp 7      0.066                  0.937</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.sthda.com/english/rpkgs/factoextra">"factoextra"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/eigenvalue.html">fviz_eig</a></span><span class="op">(</span><span class="va">acp</span>, addlables<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:autovalores-ch11"></span>
+<img src="140011_acp_files/figure-html/autovalores-ch11-1.png" alt="Gráfico de sedimentación." width="60%"><p class="caption">
+Figura 32.2: Gráfico de sedimentación.
+</p>
+</div>
+</div>
+<div id="interpretación-de-las-componentes-principales" class="section level2" number="32.5">
+<h2>
+<span class="header-section-number">32.5</span> Interpretación de las componentes principales<a class="anchor" aria-label="anchor" href="#interpretaci%C3%B3n-de-las-componentes-principales"><i class="fas fa-link"></i></a>
+</h2>
+<p>
+Una primera vía consiste en analizar el signo y la magnitud de los coeficientes (cargas o <em>loadings</em>) de cada variable original en cada componente.</p>
+<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">loadings</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sweep.html">sweep</a></span><span class="op">(</span><span class="va">acp</span><span class="op">$</span><span class="va">var</span><span class="op">$</span><span class="va">coord</span>,<span class="fl">2</span>,<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">acp</span><span class="op">$</span><span class="va">eig</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">loadings</span>,<span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt;            Dim.1  Dim.2  Dim.3  Dim.4  Dim.5  Dim.6  Dim.7</span></span>
+<span><span class="co">#&gt; ebroad    -1.410 -0.854 -1.358 -0.561 -0.303 -0.271 -0.259</span></span>
+<span><span class="co">#&gt; esales    -1.604 -0.318 -0.411 -0.404 -0.310 -0.262 -0.225</span></span>
+<span><span class="co">#&gt; esocmedia -1.317 -0.858 -0.645 -1.062 -0.536 -0.311 -0.244</span></span>
+<span><span class="co">#&gt; eweb      -1.264 -0.865 -0.825 -0.356 -0.773 -0.422 -0.284</span></span>
+<span><span class="co">#&gt; hbroad    -1.343 -1.550 -0.570 -0.495 -0.413 -0.159 -0.386</span></span>
+<span><span class="co">#&gt; hiacc     -1.290 -1.496 -0.675 -0.495 -0.413 -0.348 -0.053</span></span>
+<span><span class="co">#&gt; iuse      -1.217 -1.135 -0.652 -0.587 -0.255 -0.608 -0.331</span></span></code></pre></div>
+<ul>
+<li>Una segunda vía es el análisis de los <span class="math inline">\(r_{X_{j},Y_{m}}, \hspace{0,2cm} \forall {j,m=1,...,p}\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">acp</span><span class="op">$</span><span class="va">var</span><span class="op">$</span><span class="va">cor</span>,<span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           Dim.1  Dim.2  Dim.3  Dim.4  Dim.5  Dim.6  Dim.7</span></span>
+<span><span class="co">#&gt; ebroad    0.745  0.195 -0.618  0.012  0.134  0.081 -0.003</span></span>
+<span><span class="co">#&gt; esales    0.551  0.731  0.328  0.169  0.128  0.090  0.031</span></span>
+<span><span class="co">#&gt; esocmedia 0.838  0.191  0.095 -0.490 -0.099  0.040  0.012</span></span>
+<span><span class="co">#&gt; eweb      0.891  0.185 -0.085  0.217 -0.336 -0.070 -0.028</span></span>
+<span><span class="co">#&gt; hbroad    0.812 -0.501  0.170  0.077  0.024  0.193 -0.129</span></span>
+<span><span class="co">#&gt; hiacc     0.865 -0.446  0.065  0.077  0.024  0.003  0.203</span></span>
+<span><span class="co">#&gt; iuse      0.938 -0.086  0.087 -0.014  0.183 -0.256 -0.075</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_pca.html">fviz_pca_var</a></span><span class="op">(</span><span class="va">acp</span>,</span>
+<span>             col.var <span class="op">=</span> <span class="st">"contrib"</span>, </span>
+<span>             gradient.cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span><span class="op">)</span>,</span>
+<span>             repel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:corrvariablecp-ch11"></span>
+<img src="140011_acp_files/figure-html/corrvariablecp-ch11-1.png" alt="Gráfico de cosenos o coeficientes de correlación variables-componentes." width="60%"><p class="caption">
+Figura 32.3: Gráfico de cosenos o coeficientes de correlación variables-componentes.
+</p>
+</div>
+<p>Se puede utilizar cualquiera de las dos vías, pues los resultados no serán contradictorios (véase Fig. <a href="acp.html#fig:corrvariablecp-ch11">32.3</a>). Sin embargo, algunos autores recomiendan no utilizar solo la segunda, pues los <span class="math inline">\(r_{X_{j},Y_{m}}\)</span> tienen en cuenta únicamente la variable original considerada y no el resto; es decir, se estarían interpretando las componentes desde una perspectiva univariante.</p>
+<div class="infobox">
+<p><strong>Nota</strong></p>
+<p>También es de interés la siguiente consideración: cuando las variables originales están correlacionadas positivamente, la primera c.p. tiene todas sus coordenadas del mismo signo y puede interpretarse como un promedio ponderado de todas ellas.</p>
+</div>
+<p>En la matriz de cargas (o <em>loadings</em>) se aprecia que la primera c.p. es una media ponderada (con ponderaciones similares) de las variables originales, mientras que <em>esales</em>, <em>hbroad</em> y <em>hiacc</em> cargan fuertemente en la segunda (<em>esales</em> positivamente y las otras dos de forma negativa) (Fig. <a href="acp.html#fig:grafico-contribucion-ch11">32.4</a>). La interpretación desde la perspectiva univariante de los coeficientes de correlación lineal es prácticamente la misma. Por ello, cabe interpretar la primera c.p. como un indicador general del uso de las TIC, mientras que la segunda, positivamente relacionada con la dotación TIC de las empresas pero con una fuerte relación negativa con la de los individuos y hogares, pudiera estar relacionada con las ayudas públicas a la implantación de las TIC en el tejido empresarial.</p>
+<div class="sourceCode" id="cb451"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">acp1</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_contrib.html">fviz_contrib</a></span><span class="op">(</span><span class="va">acp</span>, choice <span class="op">=</span> <span class="st">"var"</span>,  axes<span class="op">=</span><span class="fl">1</span>, top <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">acp2</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_contrib.html">fviz_contrib</a></span><span class="op">(</span><span class="va">acp</span>, choice <span class="op">=</span> <span class="st">"var"</span>,  axes<span class="op">=</span><span class="fl">2</span>, top <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
+<span><span class="va">acp1</span> <span class="op">+</span> <span class="va">acp2</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:grafico-contribucion-ch11"></span>
+<img src="140011_acp_files/figure-html/grafico-contribucion-ch11-1.png" alt="Contribución de las variables originales a las componentes retenidas." width="60%"><p class="caption">
+Figura 32.4: Contribución de las variables originales a las componentes retenidas.
+</p>
+</div>
+<p>
+</p>
+</div>
+<div id="reproducción-de-los-datos-tipificados-y-de-bf-r-a-partir-de-las-componentes-principales" class="section level2" number="32.6">
+<h2>
+<span class="header-section-number">32.6</span> Reproducción de los datos tipificados y de <span class="math inline">\(\bf R\)</span> a partir de las componentes principales<a class="anchor" aria-label="anchor" href="#reproducci%C3%B3n-de-los-datos-tipificados-y-de-bf-r-a-partir-de-las-componentes-principales"><i class="fas fa-link"></i></a>
+</h2>
+<p>
+En la práctica, el punto de partida del ACP es la matriz <span class="math inline">\(\bf R\)</span>, y en tal caso se suelen estandarizar también las c.p. Pues bien, se tiene que:</p>
+<p><span class="math display" id="eq:acp1">\[\begin{equation}
+\tag{32.6}
+{\bf Y^*}= {\bf X A} {\bf \Lambda}^{-\frac {1}{2}}= \bf X\bf A \bf{\Lambda^{\frac {1}{2}}} \bf\Lambda^{-1}=\bf X\bf A^*\bf\Lambda^{-1}=\bf X\bf F,
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(\bf F\)</span> es la matriz de puntuaciones de las c.p. La expresión anterior proporciona las coordenadas de los <span class="math inline">\(N\)</span> elementos en el espacio de las c.p. y, por tanto, sirve de ayuda en la interpretación de estas. La estandarización de las c.p. asegura que los <span class="math inline">\(m\)</span> ejes (componentes) tengan una métrica homogénea que facilitará la visualización e interpretación. Dichas coordenadas también constituyen el <em>input</em> de técnicas híbridas como, por ejemplo, regresión con c.p., clúster o PLS.</p>
+<p>En el ejemplo del uso de las TIC se tiene que:</p>
+<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">puntuaciones</span><span class="op">&lt;-</span> <span class="va">acp</span><span class="op">$</span><span class="va">ind</span><span class="op">$</span><span class="va">coord</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">puntuaciones</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span>,<span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     Dim.1  Dim.2  Dim.3  Dim.4  Dim.5  Dim.6  Dim.7</span></span>
+<span><span class="co">#&gt; BE  1.651  1.053  0.310 -0.238 -0.196  0.296 -0.196</span></span>
+<span><span class="co">#&gt; BG -4.759 -0.127 -0.128 -0.223  0.023 -0.013 -0.106</span></span>
+<span><span class="co">#&gt; CZ -0.324  0.875 -0.564  0.870 -0.082 -0.032 -0.345</span></span>
+<span><span class="co">#&gt; DK  3.188  1.331  0.497  0.262  0.343 -0.300  0.319</span></span>
+<span><span class="co">#&gt; DE  0.024  0.144 -0.183  0.560 -0.871 -0.485  0.115</span></span></code></pre></div>
+<p></p>
+<p>De la expresión <a href="acp.html#eq:acp1">(32.6)</a> se deduce que <span class="math inline">\({\bf X}={\bf Y} {\bf \Lambda}^{-\frac{1}{2}} {\bf\Lambda}^{\frac{1}{2}}{\bf A}^\prime={\bf Y^*}_{N \times k}{\bf A^*}^\prime_{k \times p}\)</span>, expresión que permite reproducir la matriz <span class="math inline">\(\bf X\)</span> a partir de las <span class="math inline">\(k\)</span> primeras c.p. estandarizadas. En consecuencia, la reproducción de <span class="math inline">\(\bf R\)</span> a partir de las <span class="math inline">\(k\)</span> primeras c.p. estandarizadas se lleva a cabo como sigue:
+<span class="math display">\[\begin{eqnarray}
+{\bf R}_{p \times p} = \frac {1}{N}  {\bf X}^{\prime}_{p \times N} {\bf X}_{N \times p}= {\bf A}^{*}_{p \times k} \frac {1} {N} {\bf Y}^{*^{\prime}}_{k \times N} {\bf Y}^{*}_{N \times k} {\bf A}^{*^{\prime}}_{k \times p} \nonumber\\
+={\bf A}^{*}_{p \times k} {\bf I}_{k\times k}{\bf A}^{*^{\prime}}_{k \times p}={\bf A}^{*}_{p \times k}{\bf A}^{*^{\prime}}_{k \times p}.
+\end{eqnarray}\]</span>
+Debajo se muestran las tres primeras filas de la reproducción de <span class="math inline">\(\bf R\)</span> a partir de las dos primeras c.p. De la comparación de sus valores con los de la verdadera <span class="math inline">\(\bf R\)</span> (Fig. <a href="acp.html#fig:lee-datos-ch11">32.1</a>) se concluye que se trata de una buena reproducción.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Con tres c.p. la reproducción es casi perfecta. Se han retenido solo dos para poder mostrar representaciones bidimensionales y para evitar la interpretación de una tercera componente.&lt;/p&gt;"><sup>226</sup></a></p>
+<div class="sourceCode" id="cb453"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">matrix</span><span class="op">&lt;-</span> <span class="va">acp</span><span class="op">$</span><span class="va">var</span><span class="op">$</span><span class="va">coord</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">acp</span><span class="op">$</span><span class="va">var</span><span class="op">$</span><span class="va">coord</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="op">]</span>,<span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           ebroad esales esocmedia  eweb hbroad hiacc  iuse</span></span>
+<span><span class="co">#&gt; ebroad     0.593  0.553     0.662 0.700  0.507 0.557 0.682</span></span>
+<span><span class="co">#&gt; esales     0.553  0.839     0.602 0.626  0.081 0.151 0.455</span></span>
+<span><span class="co">#&gt; esocmedia  0.662  0.602     0.740 0.782  0.585 0.640 0.770</span></span></code></pre></div>
+</div>
+<div id="limitaciones-del-análisis-de-componentes-principales" class="section level2" number="32.7">
+<h2>
+<span class="header-section-number">32.7</span> Limitaciones del análisis de componentes principales<a class="anchor" aria-label="anchor" href="#limitaciones-del-an%C3%A1lisis-de-componentes-principales"><i class="fas fa-link"></i></a>
+</h2>
+<p>
+</p>
+<p>Una primera limitación es que su implementación solo es posible si todas las variables se trabajan bajo un nivel de análisis numérico. Otra limitación importante es el supuesto subyacente de que los datos observados son combinación lineal de una cierta base. Es decir, solo se consideran las combinaciones lineales de las variables originales. Otros métodos de reducción de la dimensionalidad como, por ejemplo, el <em>t-distributed stochastic neighbor embedding</em> (<span class="math inline">\(t\)</span>SNE), o la versión Kernel de la técnica, que también funcionan con no linealidad, superan esta limitación.</p>
+<p>Además, el hecho que todas las c.p. sean combinaciones lineales de todas las variables originales dificulta su interpretación. Para superar esta limitación han surgido algunas alternativas, como el <em>sparse</em> PCA, que obtiene las c.p. como un problema minimización del error de reconstrucción forzando a que los autovectores tengan una gran parte de sus componentes nula.</p>
+<p>El <span class="math inline">\(t\)</span>-SNE no es la única alternativa no lineal procedente de la comunidad de <em>machine learning</em>. Otras, denominadas actualmente “aprendizaje múltiple” (<em>manifold learning</em>), incluyen el <em>Sammon’s mapping</em>, el <em>curvilinear component analysis</em> (CCA) y sus variantes: los <em>Laplacian eigenmaps</em> y el <em>maximum variance unfolding</em> (MVU); véase <span class="citation">Wismüller et al. (<a href="referencias.html#ref-wismuller_et_al2010">2010</a>)</span>.</p>
+<p>Finalmente, cabe señalar que el ACP es una técnica matemática que no requiere que las variables originales sigan una distribución normal multivariante, aunque, si así fuera, se podría dar una interpretación más profunda de las c.p.</p>
+<div id="resumen-31" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-31"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>El ACP es una técnica de reducción de la dimensionalidad que captura un gran porcentaje de la variabilidad de un conjunto de variables correlacionadas a partir de un número mucho menor de componentes latentes (las componentes principales) incorrelacionadas.</p></li>
+<li><p>La piedra angular de la construcción de estas componentes son los autovalores de la matriz de covarianzas (o de correlaciones) de las variables originales.</p></li>
+<li><p>En el ACP son cuestiones importantes, entre otras: <span class="math inline">\((i)\)</span> la determinación del número de componentes a retener, <span class="math inline">\((ii)\)</span> su interpretación y <span class="math inline">\((iii)\)</span> la cuantificación del valor de las componentes para cada observación (puntuaciones), que constituyen el <em>input</em> de técnicas híbridas como, por ejemplo, regresión con componentes principales, clúster o <em>partial least squares</em>.</p></li>
+</ul>
+</div>
+<p>
+</p>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></div>
+<div class="next"><a href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#acp"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="nav-link" href="#introducci%C3%B3n-14"><span class="header-section-number">32.1</span> Introducción</a></li>
+<li>
+<a class="nav-link" href="#obtenci%C3%B3n-de-las-componentes-principales"><span class="header-section-number">32.2</span> Obtención de las componentes principales</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#descripci%C3%B3n-formal-del-proceso"><span class="header-section-number">32.2.1</span> Descripción formal del proceso</a></li>
+<li><a class="nav-link" href="#cuestiones-importantes-en-el-an%C3%A1lisis-de-componentes-principales"><span class="header-section-number">32.2.2</span> Cuestiones importantes en el análisis de componentes principales</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#estimaci%C3%B3n-de-las-componentes-principales"><span class="header-section-number">32.3</span> Estimación de las componentes principales</a></li>
+<li><a class="nav-link" href="#numcomp"><span class="header-section-number">32.4</span> Número de componentes a retener</a></li>
+<li><a class="nav-link" href="#interpretaci%C3%B3n-de-las-componentes-principales"><span class="header-section-number">32.5</span> Interpretación de las componentes principales</a></li>
+<li><a class="nav-link" href="#reproducci%C3%B3n-de-los-datos-tipificados-y-de-bf-r-a-partir-de-las-componentes-principales"><span class="header-section-number">32.6</span> Reproducción de los datos tipificados y de \(\bf R\) a partir de las componentes principales</a></li>
+<li>
+<a class="nav-link" href="#limitaciones-del-an%C3%A1lisis-de-componentes-principales"><span class="header-section-number">32.7</span> Limitaciones del análisis de componentes principales</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#resumen-31">Resumen</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

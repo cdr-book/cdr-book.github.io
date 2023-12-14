@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 4 Ética en la ciencia de datos | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="Mónica Villas\(^{a}\) y Bilal Laouah\(^{b}\) \(^{a}\)OdiseIA\(^{b}\)Alexandria Business Solutions Based on Data  4.1 ¿Qué es la ética? La ética es una subdisciplina de la Filosofía que estudia de...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Capítulo 4 Ética en la ciencia de datos | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="Mónica Villas\(^{a}\) y Bilal Laouah\(^{b}\) \(^{a}\)OdiseIA\(^{b}\)Alexandria Business Solutions Based on Data  4.1 ¿Qué es la ética? La ética es una subdisciplina de la Filosofía que estudia de...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 4 Ética en la ciencia de datos | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="Mónica Villas\(^{a}\) y Bilal Laouah\(^{b}\) \(^{a}\)OdiseIA\(^{b}\)Alexandria Business Solutions Based on Data  4.1 ¿Qué es la ética? La ética es una subdisciplina de la Filosofía que estudia de...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="active" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="cap-etica" class="section level1" number="4">
+<h1>
+<span class="header-section-number">Capítulo 4</span> Ética en la ciencia de datos<a class="anchor" aria-label="anchor" href="#cap-etica"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>Mónica Villas</em><span class="math inline">\(^{a}\)</span> y <em>Bilal Laouah</em><span class="math inline">\(^{b}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>OdiseIA<br><span class="math inline">\(^{b}\)</span>Alexandria Business Solutions Based on Data</p>
+<div id="qué-es-la-ética" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> ¿Qué es la ética?<a class="anchor" aria-label="anchor" href="#qu%C3%A9-es-la-%C3%A9tica"><i class="fas fa-link"></i></a>
+</h2>
+<p>La ética es una subdisciplina de la Filosofía que estudia de manera
+sistemática el comportamiento humano desde las nociones del bien y del
+mal y en relación con la moral. Ambas disciplinas están muy relacionadas,
+pero son diferentes. La moral tiene un carácter normativo y
+prescriptivo: orienta las acciones de acuerdo con algún marco de valores
+específico (costumbres, creencias, códigos tradicionales, normas no
+escritas, etc.). Por el contrario, la ética está por encima de cualquier
+orientación particular, es decir, no se basa en ningún código de
+mandatos y prohibiciones concreto, sino que pretende establecer los
+principios a partir de los cuales evaluar las acciones y decisiones. La
+ética es Filosofía práctica, por eso no transmite juicios, sino que
+enseña a juzgar.</p>
+<p>Las dos preguntas fundamentales que ha tratado de responder la ética a
+lo largo del tiempo son: ¿qué debemos hacer? y ¿qué es valioso en la
+vida? La primera pregunta promueve el razonamiento ético, mientras que
+la segunda sirve para establecer el marco de valores desde el cual juzga
+y razona el sujeto ético. Desde una perspectiva histórica, Aristóteles
+es considerado el primer autor occidental en haber sistematizado la
+ética. Su tratado es comúnmente conocido bajo el título de <em>Ética a
+Nicómaco</em>.</p>
+<p>
+</p>
+<p>Este capítulo se centra en la ética aplicada, que es la
+utilización de la ética en la práctica. Algunos ejemplos de ética
+aplicada son la ética profesional (o deontología), la bioética o la ética
+medioambiental. La ética aplicada a la ciencia de datos hace referencia
+a la reflexión que debe acompañar a la toma de decisiones en el contexto
+de la praxis profesional de los científicos de datos; se puede
+considerar, por tanto, una concreción de la ética profesional. Y es que
+los científicos de datos tienen que tomar decisiones a lo largo del
+ciclo de vida de un proyecto de datos que pueden tener consecuencias
+sobre las personas. Algunos procesos que pueden ser fuente de dilemas
+éticos son: la recopilación de datos, su transformación, la definición
+de objetivos que se persiguen, el uso de algoritmos y la explicación de los
+resultados. Estos pasos se pueden ver de manera detallada en el
+Cap. <a href="ch-110003.html#ch-110003">3</a>. En todos estos pasos, el científico de datos
+debe usar su pensamiento crítico y tomar decisiones éticas. Así, por
+ejemplo, si el propósito es automatizar algún proceso, deberá
+reflexionar y anticipar los posibles impactos negativos que pueden
+derivarse ya que, si este proceso no se realiza adecuadamente, la toma
+de decisiones automáticas puede perpetuar algunos de los problemas
+éticos como son los sesgos. Para ser más específicos: supóngase que se
+quieren automatizar las contrataciones laborales. Para ello, el
+científico de datos necesita desarrollar un algoritmo que seleccione a
+los mejores profesionales para su compañía. Pues bien, algunas
+cuestiones que debe valorar son las siguientes: primero tiene que
+entender qué significa “los mejores profesionales” y definir los
+atributos que los representan. Después, tiene que buscar datos
+históricos de la compañía, recopilarlos y estar seguro de que esos
+datos cumplen con la normativa de privacidad establecida, especialmente
+si la compañía reside en Europa. Aquí, el científico de datos debe
+pensar en temas como la procedencia de los datos, ¿cuál es la fuente?,
+¿a quién pertenecen los datos?, ¿están los datos anonimizados para que
+no se pueda identificar a una persona de manera unívoca?, y algunas
+preguntas similares referidas a la privacidad. Seguidamente, tendrá que
+asegurarse de que se tiene una muestra de casos cuyos atributos
+(edad, profesión, experiencia, raza, género, procedencia geográfica,
+etc.) no tienen sesgos; es decir, que, por
+ejemplo, el porcentaje de personas de una determinada raza, o
+edad, o sexo, etc. no es significativamente distinto del que hay en la población de la cual se tomó la muestra. En
+definitiva, debe asegurarse de que la muestra que tiene es
+suficientemente representativa de la población con la que va a trabajar
+y, si no es así, tenerlo en cuenta a la hora de analizar y comunicar los
+resultados. Además, ha de tener cuidado con los datos personales,
+como género, edad, raza, etc., dado que, en algunos casos de uso, la
+toma de decisiones no debería tener en cuenta estos atributos porque
+podrían inducir a prácticas discriminantes, alejadas de los estándares
+éticos. Como se puede ver en este sencillo ejemplo, el científico de
+datos tiene que tomar decisiones, no solo técnicas, que influyen en el
+resultado de su trabajo y que pueden afectar a otras personas.
+Generalmente, los científicos de datos suelen ser profesionales que
+provienen del mundo técnico, de carreras tecnológicas o relacionadas con
+las Matemáticas y, a diferencia de otros itinerarios de corte humanista,
+la presencia de la ética es menos frecuente, razón por la cual conviene
+fomentar la sensibilización respecto a estas cuestiones.</p>
+<p>Mientras que para los profesionales de la salud existen códigos
+deontólogicos bien establecidos y organismos que regulan la práctica de
+acuerdo a los mejores estándares comportamentales, no existe una guía
+común para el científico de datos en que se describa cómo debe
+comportarse. A pesar de todo, la guía de buenas prácticas que publica la
+asociación ACM (<em>Association for Computing Machinery</em>) puede servir de
+inspiración, si bien, al tratarse de meras recomendaciones, sigue siendo
+insuficiente para orientar éticamente su comportamiento.</p>
+<p>
+</p>
+</div>
+<div id="los-principios-éticos" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Los principios éticos<a class="anchor" aria-label="anchor" href="#los-principios-%C3%A9ticos"><i class="fas fa-link"></i></a>
+</h2>
+<p>Un principio no es ni más ni menos que aquello que permite preservar
+los derechos y libertades de las personas, sin frenar la innovación
+tecnológica <span class="citation">(<a href="referencias.html#ref-olmeda2022manual">Villas and Camacho 2022</a>)</span>. La mayoría de los principios se pueden
+agrupar en cuatro grandes categorías: <strong>autonomía</strong>, <strong>justicia</strong>, <strong>evitar</strong>
+<strong>daños</strong> y <strong>generar beneficios</strong>. Algunos ejemplos de principios que se
+pueden clasificar en alguna de estas categorías son: <strong>transparencia</strong>,
+<strong>explicabilidad</strong>, <strong>privacidad</strong>, <strong>accesibilidad</strong> o <strong>equidad</strong>. Aunque no hay aún
+un acuerdo a nivel mundial sobre cuáles deberían ser los principios
+claves de la inteligencia artificial (IA), sí que se están desarrollando proyectos supranacionales
+como el de la UNESCO,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.unesco.org/artificial-intelligence/ethics" class="uri"&gt;https://en.unesco.org/artificial-intelligence/ethics&lt;/a&gt;&lt;/p&gt;'><sup>14</sup></a> que ha sido firmado recientemente por todos
+sus miembros.</p>
+<p>
+</p>
+<p>Desde principios de 2010, el crecimiento de la ciencia de datos ha sido
+exponencial y ha comenzado a usarse en todas las industrias de manera
+sistemática, entre otras cosas gracias al <em>Big Data</em>. Actualmente, se
+dispone de más datos que nunca y solo se analiza un 5% de ellos. Además,
+se han producido enormes mejoras en la computación con el surgimiento de
+nuevos procesadores y también han ocurrido grandes cambios en el área de
+la algoritmia, teniendo disponibles muchos más algoritmos que nunca, lo
+que facilita su reutilización. Por ello, la demanda de científicos de
+datos que conviertan dichos datos en información clave
+para las empresas ha crecido enormemente en los últimos años.</p>
+<p>Asimismo, desde 2016, distintos organismos, asociaciones, empresas y
+gobiernos han publicado numerosos documentos, donde se resalta la
+importancia de la necesidad de principios éticos para la ciencia de
+datos. Google, IBM y Amazon, en el ámbito de las empresas privadas,
+publicaron sus principios éticos en el 2018. También son muy conocidos
+los principios de Asilomar de 2016 o la declaración de Toronto de 2017.
+La mayoría de estos documentos están desarrollados por perfiles
+multidisciplinares: científicos de datos, abogados o expertos en ética,
+que resaltan la importancia de tener en cuenta los principios éticos en
+la toma de decisiones automáticas cuando se utiliza la ciencia de datos.</p>
+<p>En definitiva, las cuestiones éticas se están incorporando poco a poco
+en los proyectos de ciencia de datos en todo el mundo, siendo la
+regulación europea publicada en abril de 2021 un ejemplo a seguir. Esta
+regulación, diseñada a lo largo de tres años, parte de un primer
+documento en 2018<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://op.europa.eu/es/publication-detail/-/publication/d3988569-0434-11ea-8c1f-01aa75ed71a1" class="uri"&gt;https://op.europa.eu/es/publication-detail/-/publication/d3988569-0434-11ea-8c1f-01aa75ed71a1&lt;/a&gt;&lt;/p&gt;'><sup>15</sup></a> que fue liderado por un grupo de expertos de
+todos los países miembros: HLEGAI (<em>High Level Expert Group Artificial
+Intelligence</em>). A partir de este primer documento se publicaron otros incluyendo los
+comentarios y mejoras sugeridas por la sociedad civil, instituciones
+públicas, empresas e instituciones académicas, hasta, finalmente, publicarse, en abril de 2021, el
+actual documento de regulación de IA.</p>
+<p>En el actual documento regulatorio, se eligió un enfoque basado en riesgos:</p>
+<ul>
+<li><p><strong>Riesgo inaceptable</strong>, como el uso de aplicaciones de <em>social
+scoring</em> o de imágenes para procesos de
+administración de justicia.</p></li>
+<li><p><strong>Riesgo alto</strong>, como el uso de aplicaciones de contratación o
+médicas, que deberán ser supervisadas por organismos designados antes
+de su publicación.</p></li>
+<li><p><strong>Riesgo medio</strong>, como el uso de aplicaciones en las que hay que incluir las
+explicaciones necesarias (dependiendo del tipo de algoritmo de que se trate) para que el usuario pueda entender el proceso de toma de decisiones.</p></li>
+<li><p><strong>Riesgo bajo</strong>, para cualquier otro tipo de aplicación.</p></li>
+</ul>
+<p>En el resto del mundo, el progreso en este tipo de regulación está
+siendo algo más lento, aunque países como Estados Unidos, que hasta
+ahora no habían puesto el foco en este tipo de regulaciones, están
+empezando a trabajar en ello desde finales de 2021. Por otro lado,
+China, conocida mundialmente por su falta de respeto a la privacidad,
+está empezando a dar algún paso en esta área y comenzando a cambiar su
+política en este sentido. Como ejemplo, en marzo de 2022, ha lanzado
+una regulación en la que las empresas tienen que informar mejor a los
+usuarios sobre sus algoritmos de recomendación. En definitiva, parece
+que la necesidad de la ética para proyectos de ciencia de datos está
+avanzando poco a poco en todas las geografías, y Europa es, por el
+momento, un ejemplo a seguir.</p>
+<p>Llegados a este punto, conviene distinguir entre regulaciones legales y
+principios éticos. Generalmente, las regulaciones legales son
+coercitivas y su incumplimiento puede tener consecuencias punitivas para
+quienes no las ratifican e implementan. Estos principios legales, para
+que sean legítimos, deben fundamentarse e inspirarse en ciertos valores
+éticos. Ahora bien, es imposible e indeseable regular legalmente todos
+los aspectos del comportamiento humano, de ahí la necesidad de compartir
+un marco de valores. La ética permitirá al científico de datos
+considerar cuál es la mejor decisión cuando exista un vacío legal. El
+razonamiento ético implica, pues, asumir la responsabilidad de pensar de
+manera autónoma.</p>
+<p>Ahora bien, dado que no hay un acuerdo a nivel mundial sobre cuáles son
+los principios éticos más importantes para la ciencia de datos, en este capítulo se han
+seleccionado la <strong>equidad</strong> y la <strong>explicabilidad</strong>, por estar entre los que más deben tener en cuenta los
+expertos en ciencia de datos. Además, son dos de los principios en los
+que se centra la regulación europea.</p>
+</div>
+<div id="equidad-la-importancia-de-los-sesgos" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> Equidad: la importancia de los sesgos<a class="anchor" aria-label="anchor" href="#equidad-la-importancia-de-los-sesgos"><i class="fas fa-link"></i></a>
+</h2>
+<p>El sesgo se puede definir como el resultado de dar un peso
+desproporcionado a favor o en contra de una persona o cosa en
+comparación con otra, y normalmente de manera injusta. El término
+“equidad” se utiliza precisamente para tratar de que las decisiones no
+estén afectadas por esos sesgos. Si se analiza la literatura al respecto,
+se pueden encontrar multitud de tipos de sesgos. En la ciencia de datos,
+cuando se habla de sesgo, generalmente se hace referencia a los <strong>sesgos
+algorítmicos.</strong> Estos, según la RAE, son “errores sistemáticos en los
+que se puede incurrir cuando, al hacer muestreos o ensayos, se
+seleccionan o favorecen unas respuestas frente a otras”.</p>
+<p>Este sesgo algorítmico puede darse en cualquiera de los pasos que
+lleva a cabo el científico de datos (véase Cap.
+<a href="metodologia.html#metodologia">2</a>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.ibm.com/blogs/research/2018/09/ai-fairness-360/" class="uri"&gt;https://www.ibm.com/blogs/research/2018/09/ai-fairness-360/&lt;/a&gt;&lt;/p&gt;'><sup>16</sup></a> En la Fig. <a href="cap-etica.html#fig:sesgosibm">4.1</a> donde se
+representan los distintos pasos a la hora de diseñar un algoritmo de
+ciencia de datos, se puede ver cuáles son los momentos críticos en los que,
+sin percibirlo, se puede caer en este tipo de sesgo. En primer lugar, un sesgo
+en la <strong>adquisición de los datos</strong>, partiendo de muestras que ya lo
+tengan. En este punto se encuadran, por ejemplo, los <strong>sesgos
+históricos</strong> o los <strong>sesgos de representación</strong>. También puede haber <strong>sesgos de medida</strong>, que son los sesgos algorítmicos derivados de la selección de las características que se eligen
+para la construcción del modelo. Además, se pueden presentar sesgos en el momento
+del despliegue, denominados <strong>sesgos de implementación,</strong> que suceden
+cuando el contexto en el que se despliega el algoritmo es diferente del
+contexto en que se entrenó.</p>
+<p>
+</p>
+<p>El estudio detallado de estos sesgos algorítmicos está enfocado a evitar
+que se aumenten o perpetúen sesgos de cualquier tipo, teniendo en cuenta
+que los algoritmos tienen como objetivo automatizar y generalizar. Como
+se veía en la sección anterior, mucha de la regulación que se está
+desarrollando en Europa va enfocada a <strong>mantener el principio de
+equidad</strong>, es decir, a tratar de evitar los sesgos en la toma de
+decisiones automáticas realizadas por los algoritmos que se diseñan
+gracias a la ciencia de datos.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:sesgosibm"></span>
+<img src="img/sesgosibm.png" alt="Sesgos en el proceso de $machine$ $learning$. Fuente: Adaptada de IBM." width="60%"><p class="caption">
+Figura 4.1: Sesgos en el proceso de <span class="math inline">\(machine\)</span> <span class="math inline">\(learning\)</span>. Fuente: Adaptada de IBM.
+</p>
+</div>
+<p>Un ejemplo, que muestra la importancia de los sesgos históricos y de representación, es COMPAS (<em>Correctional Offender
+Management Profiling for Alternative Sanction</em>), una aplicación que da
+soporte al sistema de justicia americana y que utiliza un algoritmo para evaluar el riesgo potencial de reincidencia de una persona que va a ser juzgada.</p>
+<p>COMPAS evalúa, para cada acusado, dos tipos de riesgo:
+<strong>de reincidir</strong> y <strong>de reincidir con violencia.</strong> El algoritmo que utiliza califica de 1 a 10 la posibilidad de que el acusado vuelva a cometer un delito (sin y con violencia). De 1 a 4, el riesgo se califica de bajo; de 5 a 7, medio; y de 8 a 10,
+alto. Si la persona puede ser reincidente espera a que ocurra el juicio
+en la cárcel, y, en caso contrario, no tiene que ir a la cárcel hasta que se celebre
+el juicio. Diversos estudios y organizaciones analizaron los datos y no
+parecía que hubiera ningún problema de sesgo inicialmente. Sin embargo,
+la organización PROPUBLICA, con datos de 7.300 personas correspondientes a 2013 y 2014, demostró que la aplicación estaba sesgada. En concreto,
+demostró que los acusados negros tenían muchas más probabilidades que los acusados blancos de ser clasificados, incorrectamente, como de riesgo de reincidencia elevado, mientras que los acusados blancos tenían más probabilidades que los acusados negros de ser marcados incorrectamente como de riesgo bajo.</p>
+<p>El proceso que se siguió fue el siguiente:</p>
+<ol style="list-style-type: decimal">
+<li>Partiendo <strong>del proceso de asignación de un riesgo</strong>, se construyó
+el historial delictivo del acusado.</li>
+<li>Para determinar la raza, se usó la clasificación establecida, de
+negros, blancos, hispanos y asiáticos.</li>
+<li>Se <strong>revisó la definición de reincidencia</strong> y cómo se establecían
+los riesgos en la aplicación de COMPAS.</li>
+<li>Únicamente se analizaron los riesgos para <strong>“reincidencia”</strong> y
+<strong>“reincidencia con violencia”</strong>.</li>
+<li>Se analizaron los índices de reincidencia y de reincidencia con violencia en
+dos años, así como su distribución por raza.</li>
+<li>Para contrastar la hipótesis de disparidad entre razas en el índice de riesgo, se
+utilizó una regresión logística que consideraba la raza, la edad,
+la historia criminal, la reincidencia futura, el grado de los cargos
+y el género.</li>
+<li>Para evaluar la exactitud del algoritmo se usó una regresión de Cox.</li>
+<li>Se utilizó una muestra de unos 7.300 acusados (de los que se tenía
+datos de dos años) para analizar la tasa de falsos positivos y falsos
+negativos.</li>
+</ol>
+<p>El modelo logístico concluyó que el factor más predictivo de una puntuación de <strong>riesgo de reincidencia</strong> más alta era la edad. Los acusados menores de 25 años tenían 2,5 veces más probabilidades de obtener una puntuación más alta que los delincuentes de mediana edad, incluso cuando en el modelo se incluía como variable de control el número de los delitos anteriores, la delincuencia futura, la raza y el género. La raza también se consideró muy predictiva de una puntuación más alta. Si bien los acusados negros tenían tasas de reincidencia más altas en general, cuando se ajustaron por esta diferencia y otros factores, tenían un 45% o más de probabilidades de obtener una puntuación más alta que los blancos. En cuanto al sexo, las mujeres tenían un 19,4% más de probabilidades de obtener una puntuación más alta que los hombres, controlando los mismos factores. Esta conclusión resulta, cuando menos, sorprendente, dado que los niveles de criminalidad de las mujeres eran, en general, más bajos que los de los hombres.</p>
+<p>La herramienta predecía bien el <strong>riesgo de reincidencia</strong> en el 60% de los casos estudiados,
+pero solo en el 20% de ellos cuando se trataba del
+<strong>riesgo de reincidir con violencia</strong>. La Tabla <a href="cap-etica.html#tab:tab1etica">4.1</a> resume las principales conclusiones obtenidas en el estudio de PROPUBLICA.</p>
+<div class="inline-table"><table style="width:99%;" class="table table-sm">
+<caption>
+<span id="tab:tab1etica">Tabla 4.1: </span> Principales conclusiones del estudio de PROPUBLICA</caption>
+<colgroup>
+<col width="61%">
+<col width="37%">
+</colgroup>
+<thead><tr class="header">
+<th>Casuística en el estudio con datos de dos
+años</th>
+<th>Resultados en porcentaje</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>A los acusados de raza negra se les
+asignaba un riesgo más alto de
+reincidencia</td>
+<td>
+<p>Raza negra: 45%</p>
+<p>Raza caucásica: 23%</p>
+</td>
+</tr>
+<tr class="even">
+<td>A los acusados de raza blanca se les
+asignaba un riesgo más bajo de
+reincidencia que a los de raza negra</td>
+<td>
+<p>28% a los de raza blanca</p>
+<p>48% a los de raza negra</p>
+</td>
+</tr>
+<tr class="odd">
+<td>Mayor asignación de riesgo de
+reincidencia a las personas de raza negra</td>
+<td>77% más de riesgo de
+reincidir a las personas
+de raza negra que a las
+de raza blanca</td>
+</tr>
+<tr class="even">
+<td>Se determinó que las variables que tenían
+mayor importancia para la asignación de
+riesgo de reincidencia eran la <strong>edad, la
+raza y el género</strong>
+</td>
+<td>
+<p>&lt; 25 años tenía 2,5
+veces más de
+probabilidad de ser
+asignado un riesgo alto</p>
+<p>45% si eran de
+raza negra</p>
+<p>Casi un 20% si la
+persona era mujer</p>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p>En este caso, el problema del sesgo tiene como consecuencia que personas
+que no reincidirían permanezcan en la cárcel al asignárseles un índice de
+reincidencia más alto que el que realmente les corresponde, y que personas que sí podrían
+reincidir quedarían en libertad por asignárseles un índice más bajo del que realmente tienen.</p>
+<p>Hay multitud de ejemplos publicados respecto al tema de los sesgos. Una
+de las mejores referencias es <span class="citation">O’Neil (<a href="referencias.html#ref-o2016weapons">2016</a>)</span>, que recopila una gran
+variedad de casos en la que los sesgos pueden llevar a toma de
+decisiones erróneas y no equitativas.</p>
+</div>
+<div id="es-necesaria-la-explicabilidad" class="section level2" number="4.4">
+<h2>
+<span class="header-section-number">4.4</span> ¿Es necesaria la explicabilidad?<a class="anchor" aria-label="anchor" href="#es-necesaria-la-explicabilidad"><i class="fas fa-link"></i></a>
+</h2>
+<p>La explicabilidad es otro de los principios clave de de la propuesta
+europea de IA confiable y, sin duda, va a ser clave en los próximos años
+en cuanto la regulación europea de IA entre en vigor.</p>
+<p><strong>XAI (<em>Explainable AI</em>)</strong> es un término que acuñó DARPA (<em>Defense
+Advanced Research Project Agency</em>) en el año 2017 y que agrupa dentro del término “explicabilidad” no solo el concepto de interpretabilidad para los
+algoritmos de <em>machine learning</em>, sino también los aspectos de la Psicología que
+están relacionados con proporcionar explicaciones, como se puede ver en
+la Fig. <a href="cap-etica.html#fig:xai">4.2</a>. No se trata únicamente de entender la toma de
+decisión del algoritmo, sino también de dar una expliación adecuada de por qué se toma dicha decisión, en función del tipo de usuario. Si se considera, por ejemplo,
+de un algoritmo que selecciona imágenes cuando contienen un posible
+tumor, no serán las mismas explicaciones las que necesitará un
+científico de datos que un médico. Para el científico de datos será
+mucho más útil revisar las métricas propias del algoritmo (exactitud,
+precisión, sensibilidad, etc.) y, además, saber cuáles de los atributos
+de entrada del algoritmo han tenido más peso en la decisión. En cambio,
+al médico lo que le interesará será una explicación menos técnica, más
+cualitativa, en la que se le explique con detalle, por ejemplo, por qué
+se seleccionó esa imagen frente a otras, mencionando el tamaño, la
+forma o características de la imagen, aspectos con los que están familiarizados los profesionales médicos.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:xai"></span>
+<img src="img/xai_darpa.png" alt="Explicabilidad según DARPA." width="60%"><p class="caption">
+Figura 4.2: Explicabilidad según DARPA.
+</p>
+</div>
+<p></p>
+<p>Los algoritmos pueden clasificarse en algoritmos de <strong>caja blanca</strong> o
+<strong>transparente</strong> (aquellos que son fácilmente interpretables) y
+<strong>opacos</strong> o <strong>de caja negra</strong> (los que no son
+interpretables y que requieren de herramientas adicionales para su
+interpretación). Normalmente, se tiene que establecer un equilibrio
+entre la interpretabilidad y la exactitud, dado que son métricas que
+mantienen una relación inversa (véase Fig. <a href="cap-etica.html#fig:algoritmos">4.3</a>). A mayor exactitud, menor
+interpretabilidad, y viceversa. Los algoritmos más interpretables
+son normalmente los más sencillos, como los algoritmos de
+clasificación, regresión lineal o los árboles de decisión. Otros, como
+los modelos de <em>random forest</em>, <em>XGboost</em> o algoritmos de <em>deep learning,</em>
+son mucho más exactos pero no tan interpretables, lo cual puede
+llevar a ciertos problemas a la hora de usarlos en la toma de
+decisiones en las compañías, dado que es más difícil explicar el porqué de la
+decisión. Cuando las decisiones afectan a áreas clave para
+las personas (decisiones médicas, de contratación, de concesión de
+préstamos, etc.) es cuando más relevante resulta proporcionar la
+explicabilidad adecuada.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:algoritmos"></span>
+<img src="img/algoritmosexplicabilidad.png" alt="Interpretabilidad $vs.$ exactitud." width="65%"><p class="caption">
+Figura 4.3: Interpretabilidad <span class="math inline">\(vs.\)</span> exactitud.
+</p>
+</div>
+<p>Se está avanzando muy rápido en la interpretabilidad de los algoritmos,
+y desde 2017 se proporcionan distintas técnicas y herramientas que
+ayudan a ello, como, por ejemplo, las librerías SHAP (<em>SHapley Additive exPlanation</em>) o LIME (<em>Local Interpretable Model-agnostic Explanations</em>), de código abierto. En la
+mayoría de las ocasiones, se trata de utilizar algoritmos más sencillos
+que ayuden a explicar otros más complejos como redes neuronales o
+XGboost.</p>
+<p>Hay muchas taxonomías diferentes para la clasificación de los distintos
+tipos de algoritmos. Una de las más utilizadas clasifica los algoritmos
+como sigue:</p>
+<ul>
+<li><p><strong>Metodologías globales o locales</strong>: cuando el método utiliza una
+instancia para la interpretabilidad se denomina local y cuando este
+usa todo el modelo se denomina global.</p></li>
+<li><p><strong>Metodologías intrínsecas o</strong> <strong><em>post hoc</em></strong>: “intrínseca” se refiere a
+cuando el método es interpretable por sí mismo y <em>post hoc</em>, cuando es
+necesario usar otros algoritmos más sencillos para explicar los más
+complejos.</p></li>
+<li><p><strong>Metologías ligadas al modelo o agnósticas del modelo:</strong> las
+metodologías ligadas al modelo son aquellas que se usan para un tipo
+de algoritmo concreto, mientras que las metodologías agnósticas
+permiten trabajar con cualquier tipo de modelo.</p></li>
+</ul>
+<p>Es importante elegir la técnica más adecuada dependiendo del tipo de
+modelo a interpretar, así como poder combinarlas en aras de conseguir
+una mejor interpretabilidad. Uno de los mejores libros al respecto que
+recopila multitud de estas técnicas es <span class="citation">Molnar (<a href="referencias.html#ref-molnar2020interpretable">2020</a>)</span>.</p>
+</div>
+<div id="recursos-en-r-para-trabajar-en-sesgos-y-explicabilidad" class="section level2" number="4.5">
+<h2>
+<span class="header-section-number">4.5</span> Recursos en <strong>R</strong> para trabajar en sesgos y explicabilidad<a class="anchor" aria-label="anchor" href="#recursos-en-r-para-trabajar-en-sesgos-y-explicabilidad"><i class="fas fa-link"></i></a>
+</h2>
+<p>Para un científico de datos es muy relevante conocer las herramientas, tanto
+<em>open source</em> como comerciales, disponibles para ser usadas en labores de
+análisis de sesgos o explicabilidad. Todas las herramientas en esta área
+son relativamente recientes. Han ido surgiendo desde 2018 y siguen
+evolucionando rápidamente.</p>
+<p>En el caso de las herramientas para detectar sesgos, los proveedores
+que empiezan a incluir estos análisis son Microsoft, IBM, Google,
+Aequitas, Pymetric y LinkedIn, siendo el resto <em>open source</em>. La mayoría de
+ellas están abiertas a contribuciones externas y todas ellas utilizan
+mecanismos para la detección de sesgos, aunque únicamente las de Microsoft
+e IBM incluyen algoritmos para su mitigación.</p>
+<p>En lo relativo a las herramientas sobre explicabilidad, los proveedores más
+relevantes son Google, IBM, Oracle y H20.ai; el resto son <em>open
+source</em>. La mayoría de ellas se pueden usar con algoritmos de caja
+blanca o negra. Respecto a los tipos de explicaciones para
+distintos usuarios, solo la herramienta de IBM incluye esta
+funcionalidad. Se puede resaltar también la facilidad con la que H20.ai
+permite elegir el nivel de exactitud y explicabilidad en el momento del
+diseño del algoritmo. Para un mayor detalle se pueden consultar dos
+tablas comparativas sobre herramientas de explicabilidad y de sesgos que
+se incluyen en <span class="citation">Villas and Camacho (<a href="referencias.html#ref-olmeda2022manual">2022</a>)</span>.</p>
+<p>Algunas de estas herramientas comerciales incluyen implementaciones en
+Python o <strong>R</strong>, de ahí la importancia de revisarlas inicialmente antes de
+recurrir a otro tipo de recursos.</p>
+<p>Recursos en <strong>R</strong> para <strong>equidad</strong>:</p>
+<ul>
+<li><p>La librería <code>fairness</code>:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://cran.rproject.org/web/packages/fairness/vignettes/fairness.htmlhttps://kozodoi.me/r/fairness/packages/2020/05/01/fairness-tutorial.html" class="uri"&gt;https://cran.rproject.org/web/packages/fairness/vignettes/fairness.htmlhttps://kozodoi.me/r/fairness/packages/2020/05/01/fairness-tutorial.html&lt;/a&gt;&lt;/p&gt;'><sup>17</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://developer.ibm.com/blogs/the-aif360-team-adds-compatibility-with-r/" class="uri"&gt;https://developer.ibm.com/blogs/the-aif360-team-adds-compatibility-with-r/&lt;/a&gt;&lt;/p&gt;'><sup>18</sup></a> incluye algoritmos para detectar el sesgo, pero también para mitigarlo. Explica las distintas
+métricas usadas para medir la equidad (paridad demográfica, paridad
+proporcional, paridad predictiva, etc.) y permite crear las distintas
+métricas y visualizarlas. El tutorial emplea los datos de COMPAS.</p></li>
+<li><p>La librería <code>EDFfair</code>:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://github.com/matloff/EDFfair" class="uri"&gt;https://github.com/matloff/EDFfair&lt;/a&gt;&lt;/p&gt;'><sup>19</sup></a> tiene una aproximación distinta, dado
+que permite al usuario ajustar el nivel de equidad frente al de
+exactitud, y así mantener el equilibrio requerido. Los detalles pueden verse en <span class="citation">Matloff and Zhang (<a href="referencias.html#ref-matloff2022novel">2022</a>)</span>.</p></li>
+</ul>
+<p>Recursos en <strong>R</strong> para <strong>explicabilidad</strong>:</p>
+<ul>
+<li>Algunas de las herramientas más conocidas en explicabilidad que
+merecen mención aparte son SHAP<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://shap.readthedocs.io/en/latest/" class="uri"&gt;https://shap.readthedocs.io/en/latest/&lt;/a&gt;&lt;/p&gt;'><sup>20</sup></a> y LIME,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://homes.cs.washington.edu/~marcotcr/blog/lime/" class="uri"&gt;https://homes.cs.washington.edu/~marcotcr/blog/lime/&lt;/a&gt;&lt;/p&gt;'><sup>21</sup></a> disponibles en <strong>R</strong> y
+en Python y usadas en muchos paquetes comerciales. <code>shapr</code>
+es una de las librerías más usadas para la explicabilidad. Utiliza los
+valores de Shapley para poder explicar cualquier tipo de modelo. Los
+detalles se pueden encontrar en <span class="citation">Aas, Jullum, and Løland (<a href="referencias.html#ref-aas2021explaining">2021</a>)</span>, donde también se
+proporciona el código.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://cran.r-project.org/web/packages/shapr/vignettes/understanding_shapr.html" class="uri"&gt;https://cran.r-project.org/web/packages/shapr/vignettes/understanding_shapr.html&lt;/a&gt;&lt;/p&gt;'><sup>22</sup></a> <code>lime</code> es otra de las librerías más usadas para la explicabilidad. Para ello, se ajusta un modelo local
+alrededor de un punto concreto y lo que hace es estudiar los cambios
+alrededor de este modelo. Se puede encontrar una explicación
+detallada, junto con el código necesario,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://cran.r-project.org/web/packages/lime/index.html" class="uri"&gt;https://cran.r-project.org/web/packages/lime/index.html&lt;/a&gt;&lt;/p&gt;'><sup>23</sup></a> en <span class="citation">Ribeiro, Singh, and Guestrin (<a href="referencias.html#ref-ribeiro2016model">2016</a>)</span>.</li>
+</ul>
+<ul>
+<li>
+<span class="citation">Matloff and Zhang (<a href="referencias.html#ref-matloff2022novel">2022</a>)</span> hacen una recopilación de 27 librerías
+de <strong>R</strong>, incluyendo <code>lime</code> y <code>shapr</code>; el código para cada una de ellas puede encontrarse en GitHub.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://github.com/MI2DataLab/XAI-tools/blob/master/README.md" class="uri"&gt;https://github.com/MI2DataLab/XAI-tools/blob/master/README.md&lt;/a&gt;&lt;/p&gt;'><sup>24</sup></a>
+</li>
+</ul>
+<!-- --><ul>
+<li>
+<code>DALEX</code> <span class="citation">(<a href="referencias.html#ref-biecek2018dalex">Biecek 2018</a>)</span> es un paquete de <strong>R</strong> de reciente creación
+para ayudar a crear explicaciones partiendo de un modelo (el código también puede encontrarse en GitHub).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://github.com/ModelOriented/DALEX" class="uri"&gt;https://github.com/ModelOriented/DALEX&lt;/a&gt;&lt;/p&gt;'><sup>25</sup></a>
+</li>
+</ul>
+<!-- --><ul>
+<li>Esta área está evolucionando mucho en los últimos años, y están
+surgiendo multitud de técnicas nuevas alrededor de la
+explicabilidad que van a permitir entender mejor el proceso de
+decisión de los algoritmos más complejos.</li>
+</ul>
+<div id="resumen-3" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-3"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>La ética, subdisciplina de la Filosofía, es el estudio sistemático del
+comportamiento humano desde las categorías del bien y del mal. Se trata
+de una rama aplicada que proporciona métodos basados en la racionalidad
+crítica para evaluar decisiones y acciones en base a ciertos valores
+compartidos.</p></li>
+<li><p>La aparición de las actuales metodologías que propone la
+ciencia de datos supone un desafío que no puede resolverse únicamente a
+partir de criterios técnicos, puesto que muchas de las decisiones que se
+toman en este campo pueden tener repercusiones sobre las personas.</p></li>
+</ul>
+<!-- Para regular ciertas prácticas, se han desarrollado diversas --><!-- legislaciones en múltiples países y continentes. Estas regulaciones --><!-- tienen un fundamento ético y ofrecen un marco para valorar qué acciones --><!-- se ajustan a la legalidad. Ahora bien, ningún cuerpo normativo cubre --><!-- todas las posibles casuísticas, razón por la cual el razonamiento ético --><!-- es fundamental para orientar la praxis de los científicos de datos. --><ul>
+<li><p>No existe un acuerdo global en relación con los principios
+que deben regir el comportamiento del científico de datos, pero la
+numerosa literatura publicada desde 2016 parece estar de acuerdo en
+que todos ellos pueden agruparse en cuatro categorías: preservar la autonomía humana,
+generar beneficios, evitar daños y fomentar la justicia.</p></li>
+<li><p>Este capítulo se centra en los principios clave que señala la regulación
+europea: equidad y explicabilidad.</p></li>
+</ul>
+<!-- Desde 2016 han surgido herramientas que ayudan a los científicos de --><!-- datos a progresar más rápido en la aplicación de los principios de --><!-- equidad y explicabilidad. Algunas herramientas comerciales han ido --><!-- incluyendo ciertas funcionalidades respecto a la equidad y la --><!-- explicabilidad, pero además se han generado multitud de repositorios de --><!-- código abierto en lenguajes como Python o **R**. En este capítulo se --><!-- mencionan algunos de los más relevantes. -->
+</div>
+
+</div>
+</div>
+
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></div>
+<div class="next"><a href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cap-etica"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li><a class="nav-link" href="#qu%C3%A9-es-la-%C3%A9tica"><span class="header-section-number">4.1</span> ¿Qué es la ética?</a></li>
+<li><a class="nav-link" href="#los-principios-%C3%A9ticos"><span class="header-section-number">4.2</span> Los principios éticos</a></li>
+<li><a class="nav-link" href="#equidad-la-importancia-de-los-sesgos"><span class="header-section-number">4.3</span> Equidad: la importancia de los sesgos</a></li>
+<li><a class="nav-link" href="#es-necesaria-la-explicabilidad"><span class="header-section-number">4.4</span> ¿Es necesaria la explicabilidad?</a></li>
+<li>
+<a class="nav-link" href="#recursos-en-r-para-trabajar-en-sesgos-y-explicabilidad"><span class="header-section-number">4.5</span> Recursos en R para trabajar en sesgos y explicabilidad</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#resumen-3">Resumen</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

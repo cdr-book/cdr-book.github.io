@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 38 Minería de textos | Fundamentos de ciencia de datos con R</title>
+<meta name="author" content="Gema Fernández-Avilés y José-María Montero">
+<meta name="description" content="Víctor Casero-Alonso\(^{a}\), Ángela Celis\(^{a}\) y María Lozano Zahonero\(^{b}\) \(^{a}\)Universidad de Castilla–La Mancha\(^{b}\)Università degli Studi di Roma Tor Vergata  38.1 Introducción En...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Capítulo 38 Minería de textos | Fundamentos de ciencia de datos con R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/cover.png">
+<meta property="og:description" content="Víctor Casero-Alonso\(^{a}\), Ángela Celis\(^{a}\) y María Lozano Zahonero\(^{b}\) \(^{a}\)Universidad de Castilla–La Mancha\(^{b}\)Università degli Studi di Roma Tor Vergata  38.1 Introducción En...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 38 Minería de textos | Fundamentos de ciencia de datos con R">
+<meta name="twitter:description" content="Víctor Casero-Alonso\(^{a}\), Ángela Celis\(^{a}\) y María Lozano Zahonero\(^{b}\) \(^{a}\)Universidad de Castilla–La Mancha\(^{b}\)Università degli Studi di Roma Tor Vergata  38.1 Introducción En...">
+<meta name="twitter:image" content="/img/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<link rel="stylesheet" href="bs4_book.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentos de ciencia de datos con <strong>R</strong></a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+</form>
+
+      <nav aria-label="Contenido"><h2>Contenido</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="pr%C3%B3logo-by-julia-silge.html">Prólogo (by Julia Silge)</a></li>
+<li><a class="" href="pr%C3%B3logo-por-yanina-bellini.html">Prólogo (por Yanina Bellini)</a></li>
+<li class="book-part">Ciencia, datos, software… y científicos</li>
+<li><a class="" href="ciencia-datos.html"><span class="header-section-number">1</span> ¿Es la ciencia de datos una ciencia?</a></li>
+<li><a class="" href="metodologia.html"><span class="header-section-number">2</span> Metodología en ciencia de datos</a></li>
+<li><a class="" href="ch-110003.html"><span class="header-section-number">3</span> R para ciencia de datos</a></li>
+<li><a class="" href="cap-etica.html"><span class="header-section-number">4</span> Ética en la ciencia de datos</a></li>
+<li class="book-part">Bienvenidos a la jungla de datos</li>
+<li><a class="" href="datos-sql.html"><span class="header-section-number">5</span> Gestión de bases de datos relacionales</a></li>
+<li><a class="" href="cap-nosql.html"><span class="header-section-number">6</span> Gestión de bases de datos NoSQL</a></li>
+<li><a class="" href="DGDQM.html"><span class="header-section-number">7</span> Gobierno, gestión y calidad del dato</a></li>
+<li><a class="" href="cap-130009.html"><span class="header-section-number">8</span> Integración y limpieza de datos</a></li>
+<li><a class="" href="chap-feature.html"><span class="header-section-number">9</span> Selección y transformación de variables</a></li>
+<li><a class="" href="chap-herramientas.html"><span class="header-section-number">10</span> Herramientas para el análisis en ciencia de datos</a></li>
+<li><a class="" href="cap-120006-aed.html"><span class="header-section-number">11</span> Análisis exploratorio de datos</a></li>
+<li class="book-part">Fundamentos de estadística</li>
+<li><a class="" href="Funda-probab.html"><span class="header-section-number">12</span> Probabilidad</a></li>
+<li><a class="" href="Fundainfer.html"><span class="header-section-number">13</span> Inferencia estadística</a></li>
+<li><a class="" href="muestreo.html"><span class="header-section-number">14</span> Muestreo y remuestreo</a></li>
+<li class="book-part">Modelización estadística</li>
+<li><a class="" href="cap-lm.html"><span class="header-section-number">15</span> Modelización lineal</a></li>
+<li><a class="" href="cap-glm.html"><span class="header-section-number">16</span> Modelos lineales generalizados</a></li>
+<li><a class="" href="cap-gam.html"><span class="header-section-number">17</span> Modelos aditivos generalizados</a></li>
+<li><a class="" href="cap-mxm.html"><span class="header-section-number">18</span> Modelos mixtos</a></li>
+<li><a class="" href="cap-sparse.html"><span class="header-section-number">19</span> Modelos \(\textit{sparse}\) y métodos penalizados de regresión</a></li>
+<li><a class="" href="cap-series-temp.html"><span class="header-section-number">20</span> Modelización de series temporales</a></li>
+<li><a class="" href="cap-discriminante.html"><span class="header-section-number">21</span> Análisis discriminante</a></li>
+<li><a class="" href="cap-conjunto.html"><span class="header-section-number">22</span> Análisis conjunto</a></li>
+<li><a class="" href="tablas-contingencia.html"><span class="header-section-number">23</span> Análisis de tablas de contingencia</a></li>
+<li class="book-part">Machine learning supervisado</li>
+<li><a class="" href="cap-arboles.html"><span class="header-section-number">24</span> Árboles de clasificación y regresión</a></li>
+<li><a class="" href="cap-svm.html"><span class="header-section-number">25</span> Máquinas de vector soporte</a></li>
+<li><a class="" href="cap-knn.html"><span class="header-section-number">26</span> Clasificador \(k\)-vecinos más próximos</a></li>
+<li><a class="" href="cap-naive-bayes.html"><span class="header-section-number">27</span> Naive Bayes</a></li>
+<li><a class="" href="cap-bagg-rf.html"><span class="header-section-number">28</span> Métodos ensamblados: \(\bf \textit {bagging}\) y \(\bf \textit{random}\) \(\bf \textit{forest}\)</a></li>
+<li><a class="" href="cap-boosting-xgboost.html"><span class="header-section-number">29</span> \(\bf \textit{Boosting}\) y el algoritmo XGBoost</a></li>
+<li class="book-part">Machine learning no supervisado</li>
+<li><a class="" href="cap-cluster.html"><span class="header-section-number">30</span> Análisis clúster: clusterización jerárquica</a></li>
+<li><a class="" href="no-jerarquico.html"><span class="header-section-number">31</span> Análisis clúster: clusterización no jerárquica</a></li>
+<li><a class="" href="acp.html"><span class="header-section-number">32</span> Análisis de componentes principales</a></li>
+<li><a class="" href="af.html"><span class="header-section-number">33</span> Análisis factorial</a></li>
+<li><a class="" href="mds.html"><span class="header-section-number">34</span> Escalamiento multidimensional</a></li>
+<li><a class="" href="correspondencias.html"><span class="header-section-number">35</span> Análisis de correspondencias</a></li>
+<li class="book-part">Deep learning</li>
+<li><a class="" href="capNN.html"><span class="header-section-number">36</span> Redes neuronales artificiales</a></li>
+<li><a class="" href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></li>
+<li class="book-part">Ciencia de datos de texto y redes</li>
+<li><a class="active" href="mineria-textos.html"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="" href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></li>
+<li class="book-part">Ciencia de datos espaciales</li>
+<li><a class="" href="datos-espaciales.html"><span class="header-section-number">40</span> Trabajando con datos espaciales</a></li>
+<li><a class="" href="geo.html"><span class="header-section-number">41</span> Geoestadística</a></li>
+<li><a class="" href="cap-econom-esp.html"><span class="header-section-number">42</span> Modelos econométricos espaciales</a></li>
+<li><a class="" href="cap-pp.html"><span class="header-section-number">43</span> Procesos de puntos</a></li>
+<li class="book-part">Comunica y colabora</li>
+<li><a class="" href="cap-120007-informes.html"><span class="header-section-number">44</span> Informes reproducibles con R Markdown y Quarto</a></li>
+<li><a class="" href="shiny.html"><span class="header-section-number">45</span> Creación de aplicaciones web interactivas con Shiny</a></li>
+<li><a class="" href="github.html"><span class="header-section-number">46</span> Git y GitHub R</a></li>
+<li><a class="" href="geoproces.html"><span class="header-section-number">47</span> Geoprocesamiento en nube</a></li>
+<li class="book-part">Casos de estudio en ciencia de datos</li>
+<li><a class="" href="cap-crimen.html"><span class="header-section-number">48</span> Análisis de una red criminal</a></li>
+<li><a class="" href="cap-publicidad.html"><span class="header-section-number">49</span> Optimización de inversiones publicitarias</a></li>
+<li><a class="" href="cap-twitter.html"><span class="header-section-number">50</span> ¿Cómo tuitea Elon Musk?</a></li>
+<li><a class="" href="cap-periodismo.html"><span class="header-section-number">51</span> Análisis electoral: de RStudio a su periódico favorito</a></li>
+<li><a class="" href="paro-clm.html"><span class="header-section-number">52</span> El impacto de las crisis financiera y de la COVID-19 en el paro de CLM</a></li>
+<li><a class="" href="cap-rfm.html"><span class="header-section-number">53</span> Segmentación de clientes en el comercio minorista</a></li>
+<li><a class="" href="cap-medicina.html"><span class="header-section-number">54</span> Análisis de datos en medicina</a></li>
+<li><a class="" href="cap-futbol.html"><span class="header-section-number">55</span> Messi y Ronaldo: dos ídolos desde la perspectiva de los datos</a></li>
+<li><a class="" href="cambioclimatico.html"><span class="header-section-number">56</span> Una nota sobre el cambio climático</a></li>
+<li><a class="" href="cap-sist-exp.html"><span class="header-section-number">57</span> Implementación de un sistema experto en el ámbito pediátrico</a></li>
+<li><a class="" href="cap-ree.html"><span class="header-section-number">58</span> Predicción de consumo eléctrico con redes neuronales artificiales</a></li>
+<li><a class="" href="nlp-textil.html"><span class="header-section-number">59</span> El procesamiento del lenguaje natural para tendencias de moda en textil</a></li>
+<li><a class="" href="cap-fraude.html"><span class="header-section-number">60</span> Detección de fraude de tarjetas de crédito</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="info-session.html"><span class="header-section-number">A</span> Información de la sesión</a></li>
+<li><a class="" href="referencias.html">Referencias</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="mineria-textos" class="section level1" number="38">
+<h1>
+<span class="header-section-number">Capítulo 38</span> Minería de textos<a class="anchor" aria-label="anchor" href="#mineria-textos"><i class="fas fa-link"></i></a>
+</h1>
+<p><em>Víctor Casero-Alonso</em><span class="math inline">\(^{a}\)</span>,
+<em>Ángela Celis</em><span class="math inline">\(^{a}\)</span> y
+<em>María Lozano Zahonero</em><span class="math inline">\(^{b}\)</span></p>
+<p><span class="math inline">\(^{a}\)</span>Universidad de Castilla–La Mancha<br><span class="math inline">\(^{b}\)</span>Università degli Studi di Roma Tor Vergata</p>
+<div id="introducción-18" class="section level2" number="38.1">
+<h2>
+<span class="header-section-number">38.1</span> Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-18"><i class="fas fa-link"></i></a>
+</h2>
+<p>En la actualidad, entre el 80 % y el 90 % de los datos que se generan diariamente son datos no estructurados (véase Cap. <a href="cap-nosql.html#cap-nosql">6</a>). Un ejemplo típico de datos no estructurados son los textos, desde los comentarios o mensajes de las redes sociales, reseñas, blogs y microblogs, chats o WhatsApp hasta las noticias periodísticas, los discursos políticos o las obras literarias. En consecuencia, aprender a procesar y analizar datos exige aprender a procesar y analizar textos.</p>
+<p>Los textos precisan, sin embargo, un tratamiento especial. A diferencia de la mayoría de los datos que se tratan en este libro, que son datos estructurados, los datos textuales requieren que se les otorgue un orden y estructura para su manejo y análisis con el software <strong>R</strong>. Además, al utilizar un lenguaje natural –es decir, un idioma como, por ejemplo, el español, el chino o el inglés–, los textos no pueden ser procesados directamente por un ordenador. Es preciso “traducirlos” antes a un lenguaje formal que los ordenadores puedan entender.</p>
+<p>La <strong>minería de textos</strong> (en inglés, <em>text mining</em>), también conocida como <strong>análisis de textos</strong> (en inglés, <em>text analysis</em>), puede definirse como el proceso para detectar, extraer, clasificar, analizar y visualizar la información no explícita que contienen los textos, transformando los datos textuales en datos estructurados y el lenguaje natural en lenguaje formal a fin de determinar, después, de manera automática, patrones recurrentes y desviaciones de los mismos. La minería de textos utiliza muchas técnicas y métodos diferentes, la mayoría procedentes del <strong>procesamiento del lenguaje natural</strong> (PLN), un ámbito de la inteligencia artificial que se ocupa de la comunicación entre los seres humanos y las máquinas mediante el tratamiento computacional del lenguaje humano.</p>
+<p>Este capítulo constituye una primera aproximación a la minería de textos con <strong>R</strong>. Su objetivo es proporcionar un marco teórico y aplicado básico de este ámbito. Para ello, en la Sec. <a href="mineria-textos.html#secCONCEPTOS">38.2</a>, se presentan los conceptos y fases fundamentales de la minería de textos. La Sec. <a href="mineria-textos.html#secSENTIM">38.3</a> está dedicada al análisis de sentimientos, que constituye uno de los campos de la minería de textos de mayor desarrollo en la actualidad. La Sec. <a href="mineria-textos.html#secPACKAGEStext">38.4</a> se centra en algunos paquetes de <strong>R</strong> que permiten realizar análisis textuales de distintos tipos.
+Cierra el capítulo un ejemplo (Sec. <a href="mineria-textos.html#secEJEMPLO">38.5</a>), en el que se aplica y se amplía lo estudiado anteriormente. Dos referencias útiles sobre el tema son <span class="citation">Fradejas Rueda (<a href="referencias.html#ref-fradejas">2022</a>)</span> y <span class="citation">Jockers (<a href="referencias.html#ref-jockers2014">2014</a>)</span>.</p>
+</div>
+<div id="secCONCEPTOS" class="section level2" number="38.2">
+<h2>
+<span class="header-section-number">38.2</span> Conceptos y tareas fundamentales<a class="anchor" aria-label="anchor" href="#secCONCEPTOS"><i class="fas fa-link"></i></a>
+</h2>
+<p>Lo primero que se necesita para hacer un análisis de textos son los textos. Esta afirmación podría parecer banal, pero no lo es. El volumen de textos en circulación es ingente, pero, en la mayor parte de los casos, es necesario realizar una serie de operaciones complejas para poder extraer y recopilar los datos textuales que se quieren analizar. En muchas ocasiones también es difícil acceder después a estos datos, ya que los textos pueden presentar formatos muy heterogéneos, no siempre interpretables o fáciles de convertir en un formato interpretable. Baste pensar, por ejemplo, en una nota escrita a mano. Dado que este capítulo es una primera aproximación a la minería de textos, se parte del supuesto de que el texto o los textos están disponibles ya en un fichero, denominado <strong>corpus</strong>, legible por <strong>R</strong>. En este contexto, corpus es la colección de textos con el mismo origen: por ejemplo, el corpus de las obras de un autor, que para poder manejarse requiere metadatos con detalles adicionales.</p>
+<div id="secPREPARA" class="section level3" number="38.2.1">
+<h3>
+<span class="header-section-number">38.2.1</span> Preparación de los datos<a class="anchor" aria-label="anchor" href="#secPREPARA"><i class="fas fa-link"></i></a>
+</h3>
+<p>Una vez constituido el corpus, la primera fase es la <strong>preparación de los datos</strong>. Los textos suelen contener un cierto grado de “suciedad”, es decir, elementos que alteran o impiden el análisis. La validez de los resultados que se obtengan dependerá, en gran parte, de una buena “limpieza” inicial. Entre las operaciones de “limpieza” generales figuran una serie de transformaciones cuya finalidad es evitar el recuento incorrecto de palabras, como el cambio de mayúsculas por minúsculas y la eliminación de los signos de puntuación, los números y los espacios en blanco en exceso.</p>
+<p>La siguiente operación de preparación, que tiene un importante peso en el análisis, es la eliminación de las <strong>palabras vacías</strong> (en inglés, <em>stopwords</em>). En la lengua no todas las palabras tienen el mismo tipo de significado. Las palabras con significado léxico, como <em>mesa</em> o corpus, son palabras a las que corresponde un concepto que se puede definir o explicar. Otras palabras, sin embargo, son palabras funcionales, cuyo contenido es puramente gramatical. Son palabras como el artículo <em>el</em>, la preposición <em>de</em> o la conjunción <em>o</em>: se puede explicar cómo se usan, pero no definirlas asociándolas a un concepto porque carecen de contenido léxico-semántico.</p>
+<p>Las palabras vacías son, con gran diferencia respecto de las palabras léxicas, las más frecuentes de la lengua, pero, dado su escaso o nulo significado léxico, carecen de valor informativo en los análisis de tipo semántico, como el análisis de sentimientos o el modelado de temas, por lo que es conveniente eliminarlas. No es aconsejable eliminarlas, sin embargo, en otros tipos de análisis, como los análisis estilométricos, donde tienen un importante valor informativo como se verá en la Sec. <a href="mineria-textos.html#secESTILOM">38.2.4</a>. Las palabras vacías pertenecen a clases cerradas, es decir, a clases de palabras con un número de elementos limitado, finito. Es posible confeccionar, por tanto, listas de palabras vacías para facilitar su eliminación. En el ejemplo de aplicación que se verá en la Sec. <a href="mineria-textos.html#secEJEMPLO">38.5</a>, se aprenderá a usar estas listas y se podrá apreciar con detalle la diferente información que proporciona una tabla de frecuencias con y sin palabras vacías.</p>
+</div>
+<div id="secTOKEN" class="section level3" number="38.2.2">
+<h3>
+<span class="header-section-number">38.2.2</span> Segmentación del texto: tokenización<a class="anchor" aria-label="anchor" href="#secTOKEN"><i class="fas fa-link"></i></a>
+</h3>
+<p>La segunda fase de la minería de textos consiste en la <strong>segmentación del texto</strong>, denominada también <strong>tokenización</strong>. El texto se divide en <em>tokens</em>, secuencias de texto con valor informativo. De esta manera, se pasa del lenguaje natural a un lenguaje formal comprensible por el software, dándole formato de vector o tabla. Así se pueden aplicar algunas de las herramientas que se utilizan con datos numéricos para manejar el texto y obtener resúmenes y visualizaciones que muestren la información no explícita contenida en él en forma de patrones recurrentes.</p>
+<p>Generalmente, los <em>tokens</em> son <strong>palabras</strong>, es decir, secuencias de caracteres entre dos espacios en blanco y/o signos de puntuación, pero pueden ser también <strong>oraciones</strong>, <strong>líneas</strong>, <strong>párrafos</strong> o <strong><em>n</em>-gramas</strong>. Como se verá en el ejemplo de aplicación, un primer análisis del significado consiste en eliminar las palabras vacías y obtener las frecuencias<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Frecuencias relativas si se comparan distintos textos.&lt;/p&gt;"><sup>253</sup></a> de las palabras con valor informativo para responder a la pregunta “¿Qué se dice?” <span class="citation">(<a href="referencias.html#ref-silge2017">Silge and Robinson 2017</a>)</span>.</p>
+<div class="infobox">
+<p><strong>Nota</strong></p>
+<p>También puede ser útil obtener la <strong>tasa de riqueza léxica</strong> (TTR, del inglés <em>type-token ratio</em>), que mide la relación entre el número de palabras diferentes que contiene un texto (<em>types</em>) y el número de palabras totales de dicho texto (<em>tokens</em>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Véase &lt;a href="https://www.fundeu.es/consideraciones-teoricas/" class="uri"&gt;https://www.fundeu.es/consideraciones-teoricas/&lt;/a&gt;&lt;/p&gt;'><sup>254</sup></a>
+<span class="math display">\[TTR=\dfrac{{Types}}{Tokens}\]</span></p>
+</div>
+<div id="n-gramas" class="section level4" number="38.2.2.1">
+<h4>
+<span class="header-section-number">38.2.2.1</span> <span class="math inline">\(N\)</span>-gramas<a class="anchor" aria-label="anchor" href="#n-gramas"><i class="fas fa-link"></i></a>
+</h4>
+<p>
+El análisis puede proseguir estudiando la frecuencia de los <em>n</em>-gramas, secuencias de <em>n</em> palabras consecutivas en el mismo orden. Se tienen así bigramas o 2-gramas (secuencias de dos palabras), trigramas o 3-gramas (secuencias de tres palabras), etc. El estudio de los <em>n</em>-gramas responde al principio de Firth: “You shall know a word by the company it keeps” <span class="citation">(<a href="referencias.html#ref-firth">Firth 1957, 11</a>)</span>. Este principio es el fundamento del llamado <strong>análisis de colocaciones</strong>: para conocer el significado de una palabra es preciso conocer las palabras con las que aparece, el contexto relevante. En un sentido amplio, el análisis de colocaciones consiste en examinar los contextos izquierdo y/o derecho de una palabra. La segmentación en <em>n</em>-gramas permite tener en cuenta este contexto relevante que indicará, por ejemplo, que <em>banco</em> es, con toda probabilidad, un asiento en las secuencias <em>banco de madera</em> o <em>banco en la terraza</em>, pero no lo es en secuencias como <em>banco de peces</em>, <em>banco de arena</em>, <em>banco de inversiones</em>, <em>banco de datos</em> o <em>banco de pruebas</em>. La división en <em>n</em>-gramas permitirá también considerar en el análisis, al menos hasta cierto punto, el peso de la ambigüedad, la negación o el distinto significado que pueden tener las palabras según el ámbito temático. Por ejemplo, la forma <em>larga</em> no tiene el mismo significado en los bigramas <em>falda larga</em>, <em>mano larga</em> y <em>cara larga</em>, ni tiene tampoco el mismo valor informativo en <em>es larga</em> / <em>no es larga</em> o en <em>de larga experiencia</em> (valor positivo) y en <em>se me hizo larga</em> (valor negativo). En el ejemplo de aplicación (Sec. <a href="mineria-textos.html#secEJEMPLO">38.5</a>), se verá la segmentación en <em>n</em>-gramas en la práctica, y cómo la visualización de redes contribuye a complementar el análisis.</p>
+</div>
+</div>
+<div id="stemming-y-lematización" class="section level3" number="38.2.3">
+<h3>
+<span class="header-section-number">38.2.3</span> <em>Stemming</em> y lematización<a class="anchor" aria-label="anchor" href="#stemming-y-lematizaci%C3%B3n"><i class="fas fa-link"></i></a>
+</h3>
+<p></p>
+<p>La tokenización se puede refinar mediante el <strong><em>stemming</em></strong>, o reducción de las palabras flexionadas a su raíz, y la <strong>lematización</strong>, o extracción del lema de cada palabra. Un ejemplo de <em>stemming</em> sería reducir las palabras <em>texto</em>, <em>textos</em>, <em>textual</em> y <em>textuales</em>, que <strong>R</strong> cuenta como cuatro palabras diferentes, a la raíz “text”. El <em>stemming</em> puede proporcionar un recuento más preciso en algunos casos, pero en otros, al eliminar los sufijos de las palabras, puede crear confusión. Además, como en el ejemplo anterior, las raíces pueden no coincidir con palabras existentes, lo que hace que sean difíciles de interpretar y resulten extrañas si se visualizan en nubes de palabras. Con la lematización se reducen las formas flexionadas de una misma palabra al lema, que es la forma que encabeza la entrada de la palabra en el diccionario. Por ejemplo, si se quiere buscar el significado de la palabra <em>niñas</em> no se encontrará como tal sino bajo el lema <em>niño</em> y si se quiere buscar <em>iremos</em> se tendrá que buscar el lema <em>ir</em>. En el caso anterior, la lematización reduciría las formas <em>texto</em>, <em>textos</em>, <em>textual</em> y <em>textuales</em> a dos lemas: <em>texto</em> y <em>textual</em>. La lematización evita la dispersión de significado en varias formas, pero a veces es compleja y puede conducir a la pérdida de información pertinente.</p>
+</div>
+<div id="secESTILOM" class="section level3" number="38.2.4">
+<h3>
+<span class="header-section-number">38.2.4</span> Campos de aplicación de la minería de textos<a class="anchor" aria-label="anchor" href="#secESTILOM"><i class="fas fa-link"></i></a>
+</h3>
+<p>La minería de textos tiene varios campos de aplicación. Entre ellos destacan tres:</p>
+<ol style="list-style-type: decimal">
+<li><p>El <strong>análisis de sentimientos</strong>, que se tratará con detalle en la Sec. <a href="mineria-textos.html#secSENTIM">38.3</a> y en el ejemplo de aplicación (Sec. <a href="mineria-textos.html#secSENTYEMO">38.5.4</a>).</p></li>
+<li><p>El <strong>modelado de temas</strong> o <strong>tópicos</strong> (en inglés, <em>topic modelling</em>), que, como su propio nombre indica, tiene por objeto identificar los temas principales sobre los que versa el texto haciendo uso de técnicas de clasificación no supervisada del campo del aprendizaje automático, como por ejemplo LDA (<em>Latent Dirichlet Allocation</em>). Se ilustrará en el Cap. <a href="nlp-textil.html#nlp-textil">59</a>.</p></li>
+<li><p>La <strong>estilometría</strong> o <strong>análisis estilométrico</strong>, que es una aplicación de la minería de textos cuya finalidad consiste en determinar las relaciones existentes entre el estilo de los textos y los metadatos incluidos en ellos. Se utiliza principalmente en la atribución de autoría. El concepto base es el de <strong>huella lingüística</strong>, constituida por el conjunto de rasgos lingüísticos que caracterizan el estilo de un autor como un estilo individual y único y permiten identificarlo. Un punto clave es que, contrariamente a lo que podría pensarse, los rasgos que conforman en mayor medida la huella lingüística son los que tienen un mayor índice de frecuencia. La mayor parte de los enfoques utilizan el vector de las “palabras más frecuentes” (MFW, por sus siglas en inglés), que son, como se ha visto antes, las palabras vacías y no las palabras con significado léxico, para determinar el estilo de un autor. Esto es debido fundamentalmente a que las palabras vacías se usan de manera involuntaria e inconsciente, configurando de esta manera, sin ningún tipo de filtros racionales, una clave estilística idiosincrásica <span class="citation">(<a href="referencias.html#ref-zahonero2020">Lozano Zahonero 2020</a>)</span>. De lo anterior se deduce fácilmente que en este tipo de análisis no deben eliminarse las palabras vacías.</p></li>
+</ol>
+<p>En la actualidad, el análisis estilométrico se usa en ámbitos muy dispares: desde la criminología o los servicios de inteligencia para identificar a los autores de mensajes o notas en casos de asesinatos, terrorismo, secuestro o acoso, por ejemplo, hasta el derecho civil o la literatura en cuestiones de derechos de autor o detección de plagio, entre muchas otras cuestiones.</p>
+</div>
+</div>
+<div id="secSENTIM" class="section level2" number="38.3">
+<h2>
+<span class="header-section-number">38.3</span> Análisis de sentimientos<a class="anchor" aria-label="anchor" href="#secSENTIM"><i class="fas fa-link"></i></a>
+</h2>
+<p>El <strong>análisis de sentimientos</strong> (en inglés, <em>sentiment analysis</em>) es una aplicación de la minería de textos que tiene como finalidad la detección, extracción, clasificación, análisis y visualización de la dimensión subjetiva asociada a los temas o tópicos presentes en los textos. La dimensión subjetiva comprende no solo los sentimientos, sino también las <strong>emociones</strong>, sensaciones y estados afectivos y anímicos, así como las opiniones, creencias, percepciones, puntos de vista, actitudes, juicios y valoraciones. De ahí que reciba también el nombre de <strong>minería de opinión</strong> (en inglés, <em>opinion mining</em>) <span class="citation">(<a href="referencias.html#ref-zahonero2020">Lozano Zahonero 2020</a>)</span>.</p>
+<p>El análisis de sentimientos asigna a esta dimensión subjetiva una polaridad, que puede ser positiva o negativa <span class="citation">(<a href="referencias.html#ref-pang2008opinion">Pang and Lee 2008</a>)</span>. Algunas técnicas añaden además una polaridad neutra. En algunos casos, el análisis de sentimientos se refina hasta llegar a las emociones básicas: este subcampo del análisis de sentimientos se conoce como <strong>detección de emociones</strong>.</p>
+<p>La primera aplicación del análisis de sentimientos fue la investigación de mercados. A partir del año 2000, se registra un crecimiento exponencial de textos como reseñas, chats, foros, blogs, microblogs o comentarios y mensajes de las redes sociales, en los que predomina la expresión de emociones y opiniones personales. Mediante el análisis de sentimientos se extrae de ellos información que permite conocer los gustos del consumidor y diseñar productos a su medida. Esta idea se extendió después a otros ámbitos, en especial a aquellos en los que predomina la comunicación persuasiva, como las campañas publicitarias o políticas. Recientemente, ha empezado a utilizarse también con fines predictivos y preventivos en muchas esferas: desde cuáles son los políticos, las empresas, las películas, canciones u obras literarias que obtendrán un mayor rendimiento, mejores resultados o más votos o ventas hasta cómo detectar y prevenir, por ejemplo, conductas suicidas mediante el análisis de mensajes en las redes sociales.</p>
+<p>En el análisis de sentimientos y la detección de emociones existen dos enfoques principales: el enfoque basado en el aprendizaje automático (<em>machine learning</em>), en el que se usan algoritmos de aprendizaje supervisado, y el enfoque semántico, basado en diccionarios o <strong>lexicones</strong>. Este último enfoque es el que se verá en detalle en el ejemplo de aplicación.</p>
+<p>En <strong>R</strong> están implementados varios lexicones para el análisis de sentimientos. Dos de los más utilizados son <code>bing</code>, de Bing Liu y colaboradores <span class="citation">(<a href="referencias.html#ref-liu2015sentiment">B. Liu 2015</a>)</span>, y <code>NRC</code>, de Saif Mohammad y Peter Turney, ambos incluidos tanto en el paquete <code>tidytext</code> como en <code>syuzhet</code> <span class="citation">(<a href="referencias.html#ref-jockers2017">Jockers 2017</a>)</span>. Estos lexicones tienen en común que están basados en unigramas, es decir, en palabras sueltas, y que tienen como idioma original el inglés, si bien hay versiones traducidas automáticamente a distintas lenguas. La diferencia principal entre los dos lexicones es que <code>bing</code> clasifica las palabras de forma binaria en polaridad positiva/negativa, mientras que <code>NRC</code>, además de la polaridad positiva/negativa, permite detectar también ocho emociones básicas (<em>ira, miedo, anticipación, confianza, sorpresa, tristeza, alegría y asco</em>). En el ejemplo de aplicación se compararán ambos diccionarios. Como se verá, los resultados del análisis dependerán en buena medida del lexicón elegido, así como del idioma del texto y de si el lexicón se elaboró originalmente en ese idioma o es una versión traducida automáticamente de otra lengua.</p>
+</div>
+<div id="secPACKAGEStext" class="section level2" number="38.4">
+<h2>
+<span class="header-section-number">38.4</span> Minería de textos en <strong>R</strong><a class="anchor" aria-label="anchor" href="#secPACKAGEStext"><i class="fas fa-link"></i></a>
+</h2>
+<p>En <strong>R</strong> existen diversos paquetes y funciones que facilitan la minería de textos, entre los que destacan:</p>
+<ul>
+<li><p><code>tidytext</code>: con la filosofía del <code>tidyverse</code>, puede combinarse con los conocidos paquetes <code>dplyr</code>, <code>broom</code>, <code>ggplot2</code>, etc. Se puede destacar la función <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens()</a></code>, que automatiza el proceso de <em>tokenización</em> y el almacenamiento en formato <em>tidy</em> en un único paso.</p></li>
+<li><p><code>tm</code>: destaca por tener soporte <em>back-end</em> de base de datos integrada, gestión avanzada de metadatos y soporte nativo para leer en varios formatos de archivo.</p></li>
+<li><p><code>tokenizers</code>: incluye <em>tokenizadores</em> de palabras, oraciones, párrafos, <span class="math inline">\(n\)</span>-gramas, <em>tweets</em>, expresiones regulares, así como funciones para contar caracteres, palabras y oraciones, y para dividir textos más largos en documentos separados, cada uno con el mismo número de palabras.</p></li>
+<li><p><code>wordcloud</code>: permite visualizar <strong>nubes de palabras</strong>. Las palabras más frecuentes aparecen en mayor tamaño permitiendo, de un vistazo, conocer las palabras clave del texto.</p></li>
+<li><p><code>quanteda</code>: maneja <strong>matrices de documentos-términos</strong> y destaca en tareas cuantitativas, como el recuento de palabras o sílabas.</p></li>
+<li><p><code>syuzhet</code>: incluye distintas funciones que facilitan el análisis de textos, en particular el <em>análisis de sentimientos</em> de textos literarios.</p></li>
+<li><p><code>gutenbergr</code>: almacena las obras del proyecto Gutenberg;<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Proyecto desarrollado por Michael Hart en 1971 para crear una biblioteca de libros electrónicos gratuitos y accesibles en Internet, a partir de libros en soporte físico, generalmente de dominio público. Cuenta con más de 50.000 libros.&lt;/p&gt;"><sup>255</sup></a> muy útil si se quieren analizar textos literarios.</p></li>
+</ul>
+</div>
+<div id="secEJEMPLO" class="section level2" number="38.5">
+<h2>
+<span class="header-section-number">38.5</span> Ejemplo de aplicación<a class="anchor" aria-label="anchor" href="#secEJEMPLO"><i class="fas fa-link"></i></a>
+</h2>
+<div id="declaración-institucional-del-estado-de-alarma-2020" class="section level3" number="38.5.1">
+<h3>
+<span class="header-section-number">38.5.1</span> Declaración institucional del Estado de Alarma 2020<a class="anchor" aria-label="anchor" href="#declaraci%C3%B3n-institucional-del-estado-de-alarma-2020"><i class="fas fa-link"></i></a>
+</h3>
+<p>La “Declaración institucional del presidente del Gobierno anunciando el Estado de Alarma en la crisis del coronavirus” (en adelante, “la Declaración”), pronunciada en La Moncloa el 13 de marzo de 2020 es el objeto de análisis. Esta se puede encontrar en el paquete <code>CDR</code> que acompaña este libro.
+Se le van a aplicar las operaciones y técnicas mencionadas en la Sec. <a href="mineria-textos.html#secCONCEPTOS">38.2</a>.</p>
+<div class="sourceCode" id="cb546"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"CDR"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"declaracion"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="segmentación-en-palabras-y-oraciones" class="section level3" number="38.5.2">
+<h3>
+<span class="header-section-number">38.5.2</span> Segmentación en palabras y oraciones<a class="anchor" aria-label="anchor" href="#segmentaci%C3%B3n-en-palabras-y-oraciones"><i class="fas fa-link"></i></a>
+</h3>
+<p>Las primeras tareas del análisis son la preparación, limpieza y segmentación o tokenización de los textos, como se vio en las Sec. <a href="mineria-textos.html#secPREPARA">38.2.1</a> y <a href="mineria-textos.html#secTOKEN">38.2.2</a>. A continuación, se verá una segmentación en palabras individuales. La función <code><a href="https://docs.ropensci.org/tokenizers/reference/basic-tokenizers.html">tokenize_words()</a></code> del paquete <code>tokenizers</code> prepara el texto convirtiéndolo a minúsculas, elimina todos los signos de puntuación y finalmente segmenta el texto en palabras.</p>
+<div class="sourceCode" id="cb547"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://docs.ropensci.org/tokenizers/">"tokenizers"</a></span><span class="op">)</span></span>
+<span><span class="va">palabras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/tokenizers/reference/basic-tokenizers.html">tokenize_words</a></span><span class="op">(</span><span class="va">declaracion</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://docs.ropensci.org/tokenizers/reference/word-counting.html">count_words</a></span><span class="op">(</span><span class="va">declaracion</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 922</span></span></code></pre></div>
+<p>Con la última sentencia se obtiene la longitud de la Declaración, es decir, el número de palabras utilizadas: 922.</p>
+<p>La frecuencia de cada palabra se puede obtener y presentar con el código de abajo.
+La primera sentencia crea la tabla de frecuencias;
+la tercera la transforma en el tipo <code>tibble</code>, creando la columna recuento,
+y ordena la tabla de forma descendente, de mayor a menor frecuencia.</p>
+<div class="sourceCode" id="cb548"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span>
+<span><span class="va">tabla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">palabras</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">tabla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  palabra <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">tabla</span><span class="op">)</span>,</span>
+<span>  recuento <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">tabla</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">recuento</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 390 × 2</span></span>
+<span><span class="co">#&gt;    palabra recuento</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;      &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 de            43</span></span>
+<span><span class="co">#&gt;  2 y             41</span></span>
+<span><span class="co">#&gt;  3 la            35</span></span>
+<span><span class="co">#&gt;  4 a             31</span></span>
+<span><span class="co">#&gt;  5 los           26</span></span>
+<span><span class="co">#&gt;  6 en            22</span></span>
+<span><span class="co">#&gt;  7 que           20</span></span>
+<span><span class="co">#&gt;  8 el            17</span></span>
+<span><span class="co">#&gt;  9 al            14</span></span>
+<span><span class="co">#&gt; 10 para          14</span></span>
+<span><span class="co">#&gt; # ℹ 380 more rows</span></span></code></pre></div>
+<p>En la primera fila de la salida se indican las dimensiones de la <code>tibble</code>, por lo que se puede ver que en la Declaración hay 390 “palabras” distintas (los números se consideran como palabras).</p>
+<p>El resultado son las palabras más utilizadas en el texto, que, como puede apreciarse, son palabras vacías. Esto no debería sorprender porque, como ya se ha visto, estas palabras son las más frecuentes. En la siguiente sección se verá cómo eliminarlas para obtener datos con valor informativo.</p>
+<p>Para otras formas de segmentar el texto (oraciones, párrafos, <em>tweets</em>, etc.) véase <code>?tokenize_words.</code> Por ejemplo, para segmentar en oraciones:</p>
+<div class="sourceCode" id="cb549"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">oraciones</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/tokenizers/reference/basic-tokenizers.html">tokenize_sentences</a></span><span class="op">(</span><span class="va">declaracion</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://docs.ropensci.org/tokenizers/reference/word-counting.html">count_sentences</a></span><span class="op">(</span><span class="va">declaracion</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 44</span></span></code></pre></div>
+<p>Las tres primeras oraciones y la última se obtienen con el siguiente código.</p>
+<div class="sourceCode" id="cb550"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">oraciones</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span> <span class="co"># primeras 3 oraciones</span></span>
+<span><span class="co">#&gt; [1] "Buenas tardes."                                                                                                                                                                                                                  </span></span>
+<span><span class="co">#&gt; [2] "Estimados compatriotas."                                                                                                                                                                                                         </span></span>
+<span><span class="co">#&gt; [3] "En el día de hoy, acabo de comunicar al Jefe del Estado la celebración, mañana, de un Consejo de Ministros extraordinario, para decretar el Estado de Alarma en todo nuestro país, en toda España, durante los próximos 15 días."</span></span>
+<span><span class="va">oraciones</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://docs.ropensci.org/tokenizers/reference/word-counting.html">count_sentences</a></span><span class="op">(</span><span class="va">declaracion</span><span class="op">)</span><span class="op">]</span> <span class="co"># última oración</span></span>
+<span><span class="co">#&gt; [1] "Buenas tardes."</span></span></code></pre></div>
+<p>También podría medirse la longitud de cada oración, en número de palabras, normalmente para hacer comparaciones con otros textos. Para ello hay que separar cada oración en palabras y obtener la longitud de cada oración, con la función <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>, que puede verse en la Fig. <a href="mineria-textos.html#fig:mintex-graf-long-o">38.1</a>.</p>
+<div class="sourceCode" id="cb551"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">palabras_oracion</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/tokenizers/reference/basic-tokenizers.html">tokenize_words</a></span><span class="op">(</span><span class="va">oraciones</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">longitud_o</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">palabras_oracion</span>, <span class="va">length</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">longitud_o</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]  2  2 39 33 33 32</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mintex-graf-long-o"></span>
+<img src="210045-mineria-textos_files/figure-html/mintex-graf-long-o-1.png" alt="Número de palabras en cada oración de la Declaración." width="60%"><p class="caption">
+Figura 38.1: Número de palabras en cada oración de la Declaración.
+</p>
+</div>
+</div>
+<div id="análisis-exploratorio" class="section level3" number="38.5.3">
+<h3>
+<span class="header-section-number">38.5.3</span> Análisis exploratorio<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-exploratorio"><i class="fas fa-link"></i></a>
+</h3>
+<div id="eliminación-de-palabras-vacías" class="section level4" number="38.5.3.1">
+<h4>
+<span class="header-section-number">38.5.3.1</span> Eliminación de palabras vacías<a class="anchor" aria-label="anchor" href="#eliminaci%C3%B3n-de-palabras-vac%C3%ADas"><i class="fas fa-link"></i></a>
+</h4>
+<p>Se lleva a cabo con el paquete <code>stopwords</code>, que contiene listas de <em>palabras vacías</em> en diferentes idiomas.
+Para el ejemplo, se define una tabla con la misma estructura que la tabla de la Declaración con las 308 palabras vacías españolas que tiene el paquete:</p>
+<div class="sourceCode" id="cb552"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/quanteda/stopwords">"stopwords"</a></span><span class="op">)</span></span>
+<span><span class="va">tabla_stopwords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>palabra <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stopwords/man/stopwords.html">stopwords</a></span><span class="op">(</span><span class="st">"es"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>La siguiente sentencia “limpia” la tabla de la Declaración quitando las palabras vacías españolas. Además, se hace uso de la función <code>kable()</code> para una visualización más sofisticada de la tabla (con la longitud que se desee):</p>
+<div class="sourceCode" id="cb553"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tabla</span> <span class="op">&lt;-</span> <span class="va">tabla</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">tabla_stopwords</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tabla</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span>,</span>
+<span>  caption <span class="op">=</span> <span class="st">"Palabras más frecuentes (sin palabras vacías)"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:mintex-MFW-tabla">Tabla 38.1: </span>Palabras más frecuentes (sin palabras vacías)</caption>
+<thead><tr class="header">
+<th align="left">palabra</th>
+<th align="right">recuento</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">virus</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">recursos</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">social</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">alarma</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">conjunto</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">emergencia</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">españa</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">semanas</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">va</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">cada</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table></div>
+<p>El resultado, Tabla <a href="mineria-textos.html#tab:mintex-MFW-tabla">38.1</a>, se puede considerar el primer análisis léxico con valor informativo: la palabra más frecuente es <em>virus</em>, seguida de <em>recursos</em> y <em>social</em>. Se podría ver que en total hay 319 palabras no vacías distintas.</p>
+<p>El método de eliminar palabras con el paquete <code>stopwords</code> no es perfecto. Por ejemplo, <em>va</em> y <em>cada</em> (posiciones 9 y 10 de la tabla) no son muy informativas. En estos casos, como se ha visto antes, se pueden utilizar listas de palabras vacías de otros paquetes como, por ejemplo, <code>tidytext</code> o <code>tokenizers</code> o el listado en español propuesto por <span class="citation">Fradejas Rueda (<a href="referencias.html#ref-fradejas">2022</a>)</span>, o pueden confeccionarse listas <em>ad hoc</em>.</p>
+</div>
+<div id="nubes-de-palabras" class="section level4" number="38.5.3.2">
+<h4>
+<span class="header-section-number">38.5.3.2</span> Nubes de palabras<a class="anchor" aria-label="anchor" href="#nubes-de-palabras"><i class="fas fa-link"></i></a>
+</h4>
+<p>Una manera habitual de mostrar la información de forma visual es con las denominadas <strong>nubes de palabras</strong>, acudiendo a la función <code><a href="https://rdrr.io/pkg/wordcloud/man/wordcloud.html">wordcloud()</a></code> del paquete con el mismo nombre. Como esta función contiene un componente aleatorio, se fija con <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> (para la reproducibilidad del gráfico por parte del lector).</p>
+<div class="sourceCode" id="cb554"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://blog.fellstat.com/?cat=11">"wordcloud"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/wordcloud/man/wordcloud.html">wordcloud</a></span><span class="op">(</span><span class="va">tabla</span><span class="op">$</span><span class="va">palabra</span>, <span class="va">tabla</span><span class="op">$</span><span class="va">recuento</span>, max.words <span class="op">=</span> <span class="fl">50</span>, colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mintex-nube-palabras"></span>
+<img src="210045-mineria-textos_files/figure-html/mintex-nube-palabras-1.png" alt="Nube de palabras más frecuentes de la Declaración." width="80%"><p class="caption">
+Figura 38.2: Nube de palabras más frecuentes de la Declaración.
+</p>
+</div>
+<p>El resultado se muestra en la Fig. <a href="mineria-textos.html#fig:mintex-nube-palabras">38.2</a>. Como se puede observar, el tamaño de letra de la palabra, y en este caso también el color, están relacionados con su frecuencia.</p>
+</div>
+</div>
+<div id="secSENTYEMO" class="section level3" number="38.5.4">
+<h3>
+<span class="header-section-number">38.5.4</span> Análisis de sentimientos y detección de emociones<a class="anchor" aria-label="anchor" href="#secSENTYEMO"><i class="fas fa-link"></i></a>
+</h3>
+<div id="lexicón-bing" class="section level4" number="38.5.4.1">
+<h4>
+<span class="header-section-number">38.5.4.1</span> Lexicón <code>bing</code><a class="anchor" aria-label="anchor" href="#lexic%C3%B3n-bing"><i class="fas fa-link"></i></a>
+</h4>
+<p>Como se ha visto en la Sec. <a href="mineria-textos.html#secSENTIM">38.3</a>, el lexicón <code>bing</code> es uno de los repertorios léxicos que se pueden encontrar en <strong>R</strong> para el análisis de sentimientos. Es un diccionario de polaridad (positiva/negativa) cuyo idioma original es el inglés. Se puede obtener con la función <code><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments()</a></code> del paquete <code>tidytext</code>. Contiene 2.005 palabras positivas y 4.781 palabras negativas, por lo que tiene un marcado sesgo hacia la polaridad negativa.</p>
+<!-- 4781 -->
+<p>Para ilustrar el uso de <code>bing</code>, se ha traducido al inglés (automáticamente) la Declaración. A continuación se carga el texto y se genera el objeto <code>tabla</code>, replicando el procedimiento descrito anteriormente de preparación, limpieza, segmentación en palabras y eliminación de palabras vacías (obviamente, en idioma inglés).</p>
+<div class="sourceCode" id="cb555"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"EN_declaracion"</span><span class="op">)</span></span>
+<span><span class="va">tabla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://docs.ropensci.org/tokenizers/reference/basic-tokenizers.html">tokenize_words</a></span><span class="op">(</span><span class="va">EN_declaracion</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">tabla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  word <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">tabla</span><span class="op">)</span>,</span>
+<span>  recuento <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">tabla</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">tabla</span> <span class="op">&lt;-</span> <span class="va">tabla</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/stopwords/man/stopwords.html">stopwords</a></span><span class="op">(</span><span class="st">"en"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">recuento</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Los sentimientos positivos de la Declaración se obtienen con:</p>
+<div class="sourceCode" id="cb556"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/juliasilge/tidytext">"tidytext"</a></span><span class="op">)</span></span>
+<span><span class="va">pos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"bing"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sentiment</span> <span class="op">==</span> <span class="st">"positive"</span><span class="op">)</span></span>
+<span><span class="va">pos_EN</span> <span class="op">&lt;-</span> <span class="va">tabla</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">pos</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">pos_EN</span><span class="op">)</span></span></code></pre></div>
+<p>Análogamente se pueden obtener los sentimientos negativos. Las siete palabras más frecuentes de cada tipo que aparecen en la Declaración se presentan conjuntamente en la Tabla <a href="mineria-textos.html#tab:mintex-tablaBingNRC">38.2</a>.</p>
+</div>
+<div id="lexicón-nrc" class="section level4" number="38.5.4.2">
+<h4>
+<span class="header-section-number">38.5.4.2</span> Lexicón NRC<a class="anchor" aria-label="anchor" href="#lexic%C3%B3n-nrc"><i class="fas fa-link"></i></a>
+</h4>
+<p>Para poder observar las similitudes y diferencias en el análisis según el lexicón elegido, se aplica también <code>NRC</code> a la Declaración (véase la Tabla <a href="mineria-textos.html#tab:mintex-tablaBingNRC">38.2</a>).</p>
+<div class="inline-table"><table style="width:93%;" class="table table-sm">
+<caption>
+<span id="tab:mintex-tablaBingNRC">Tabla 38.2: </span> Palabras más frecuentes de la Declaración utilizando <code>bing</code> y <code>NRC</code>
+</caption>
+<colgroup>
+<col width="19%">
+<col width="4%">
+<col width="19%">
+<col width="4%">
+<col width="17%">
+<col width="4%">
+<col width="17%">
+<col width="4%">
+</colgroup>
+<thead><tr class="header">
+<th>positivas bing</th>
+<th>fr</th>
+<th>negativas bing</th>
+<th>fr</th>
+<th>positivas NRC</th>
+<th>fr</th>
+<th>negativas NRC</th>
+<th>fr</th>
+</tr></thead>
+<tbody></tbody>
+<tfoot>
+<tr class="odd">
+<td>extraordinary</td>
+<td>6</td>
+<td>virus</td>
+<td>9</td>
+<td>resources</td>
+<td>7</td>
+<td>virus</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>protect</td>
+<td>4</td>
+<td>alarm</td>
+<td>4</td>
+<td>extraordinary</td>
+<td>6</td>
+<td>alarm</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>work</td>
+<td>4</td>
+<td>emergency</td>
+<td>4</td>
+<td>protect</td>
+<td>4</td>
+<td>emergency</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>like</td>
+<td>3</td>
+<td>vulnerable</td>
+<td>3</td>
+<td>maximum</td>
+<td>3</td>
+<td>government</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>decisive</td>
+<td>2</td>
+<td>difficult</td>
+<td>2</td>
+<td>public</td>
+<td>3</td>
+<td>discipline</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>good</td>
+<td>2</td>
+<td>hard</td>
+<td>2</td>
+<td>council</td>
+<td>2</td>
+<td>avoid</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>adequate</td>
+<td>1</td>
+<td>unfortunately</td>
+<td>2</td>
+<td>good</td>
+<td>2</td>
+<td>combat</td>
+<td>1</td>
+</tr>
+</tfoot>
+</table></div>
+<p>Con el léxico <code>NRC</code> pueden detectarse emociones. La misma palabra puede tener asociadas distintas emociones/sentimientos. En la Fig. <a href="mineria-textos.html#fig:mintex-barplot-NRC">38.3</a> se puede observar la dispar frecuencia de palabras de cada tipo:</p>
+<div class="sourceCode" id="cb557"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">emo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"nrc"</span><span class="op">)</span></span>
+<span><span class="va">emo</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">sentiment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">sentiment</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mintex-barplot-NRC"></span>
+<img src="img/text-emo1.png" alt="Gráfico de barras con la frecuencia de las emociones del lexicón NRC." width="85%"><p class="caption">
+Figura 38.3: Gráfico de barras con la frecuencia de las emociones del lexicón NRC.
+</p>
+</div>
+<p>El análisis de sentimientos y la detección de emociones de la Declaración mediante NRC se puede realizar con el siguiente código, mediante el cual se obtiene la tabla de frecuencias por emociones y sentimientos:</p>
+<div class="sourceCode" id="cb558"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">emo_tab</span> <span class="op">&lt;-</span> <span class="va">tabla</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">emo</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">emo_tab</span>, n <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 7 x 3</span></span>
+<span><span class="co">#&gt; word recuento sentiment</span></span>
+<span><span class="co">#&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; 1 virus 9 negative</span></span>
+<span><span class="co">#&gt; 2 resources 7 joy</span></span>
+<span><span class="co">#&gt; 3 resources 7 positive</span></span>
+<span><span class="co">#&gt; 4 resources 7 trust</span></span>
+<span><span class="co">#&gt; 5 extraordinary 6 positive</span></span>
+<span><span class="co">#&gt; 6 alarm 4 fear</span></span>
+<span><span class="co">#&gt; 7 alarm 4 negative</span></span></code></pre></div>
+<p>Como se ha mencionado anteriormente, algunas palabras tienen asociados distintos sentimientos; por ejemplo, <em>resources</em>. La información de la tabla se puede visualizar con un gráfico de barras (Fig. <a href="mineria-textos.html#fig:mintex-emobarras">38.4</a>) o con una nube de palabras (Fig. <a href="mineria-textos.html#fig:mintex-emonube">38.5</a>).</p>
+<div class="sourceCode" id="cb559"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">emo_tab</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">sentiment</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sentiment</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">sentiment</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">n</span><span class="op">)</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.25</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mintex-emobarras"></span>
+<img src="img/text-emo2.png" alt="Frecuencia de emociones de la Declaración utilizando NRC." width="85%"><p class="caption">
+Figura 38.4: Frecuencia de emociones de la Declaración utilizando NRC.
+</p>
+</div>
+<p>Entre las distintas opciones para dibujar nubes de palabras para el análisis de sentimientos es interesante la que se obtiene con el paquete <code>syuzhet</code>, dado que permite visualizar las palabras agrupadas por emociones. Su obtención requiere distintos pasos en los que primero las palabras se agrupan por emoción y después se organizan en una <strong>matriz de documentos</strong> con la función <code><a href="https://rdrr.io/pkg/tm/man/matrix.html">TermDocumentMatrix()</a></code> del paquete <code>tm</code>. Finalmente, la función <code><a href="https://rdrr.io/pkg/wordcloud/man/comparison.cloud.html">comparison.cloud()</a></code> permite visualizar el gráfico (tiene distintos argumentos opcionales que admiten distintas posibilidades). En el ejemplo que figura a continuación solo se han escogido tres emociones.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Se deja al lector el análisis de la Declaración con más emociones, en castellano, etc.&lt;/p&gt;"><sup>256</sup></a></p>
+<div class="sourceCode" id="cb560"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/mjockers/syuzhet">"syuzhet"</a></span><span class="op">)</span></span>
+<span><span class="va">palabras_EN2</span> <span class="op">&lt;-</span> <span class="fu">get_tokens</span><span class="op">(</span><span class="va">EN_declaracion</span><span class="op">)</span></span>
+<span><span class="va">emo_tab2</span> <span class="op">&lt;-</span> <span class="fu">get_nrc_sentiment</span><span class="op">(</span><span class="va">palabras_EN2</span>, lang <span class="op">=</span> <span class="st">"english"</span><span class="op">)</span></span>
+<span><span class="va">emo_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">palabras_EN2</span><span class="op">[</span><span class="va">emo_tab2</span><span class="op">$</span><span class="va">anger</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">]</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">palabras_EN2</span><span class="op">[</span><span class="va">emo_tab2</span><span class="op">$</span><span class="va">anticipation</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">]</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">palabras_EN2</span><span class="op">[</span><span class="va">emo_tab2</span><span class="op">$</span><span class="va">disgust</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">]</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tm.r-forge.r-project.org/">"tm"</a></span><span class="op">)</span></span>
+<span><span class="va">corpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tm/man/Corpus.html">Corpus</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tm/man/VectorSource.html">VectorSource</a></span><span class="op">(</span><span class="va">emo_vec</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">TDM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tm/man/matrix.html">TermDocumentMatrix</a></span><span class="op">(</span><span class="va">corpus</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">TDM</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"anger"</span>, <span class="st">"anticipation"</span>, <span class="st">"disgust"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/wordcloud/man/comparison.cloud.html">comparison.cloud</a></span><span class="op">(</span><span class="va">TDM</span>,</span>
+<span>  random.order <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"firebrick"</span>, <span class="st">"forestgreen"</span>, <span class="st">"orange3"</span><span class="op">)</span>,</span>
+<span>  title.size <span class="op">=</span> <span class="fl">1.5</span>, scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3.5</span>, <span class="fl">1</span><span class="op">)</span>, rot.per <span class="op">=</span> <span class="fl">0</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mintex-emonube"></span>
+<img src="img/text-emo3.png" alt="Nube de palabras de la Declaración de tres emociones NRC seleccionadas." width="88%"><p class="caption">
+Figura 38.5: Nube de palabras de la Declaración de tres emociones NRC seleccionadas.
+</p>
+</div>
+</div>
+</div>
+<div id="n-gramas-1" class="section level3" number="38.5.5">
+<h3>
+<span class="header-section-number">38.5.5</span> <em>N</em>-gramas<a class="anchor" aria-label="anchor" href="#n-gramas-1"><i class="fas fa-link"></i></a>
+</h3>
+<p></p>
+<p>El siguiente código muestra la obtención de <em>n</em>-gramas con <code>tokenizers</code>:</p>
+<div class="sourceCode" id="cb561"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bigramas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/tokenizers/reference/ngram-tokenizers.html">tokenize_ngrams</a></span><span class="op">(</span><span class="va">declaracion</span>,</span>
+<span>  n <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  stopwords <span class="op">=</span> <span class="va">tabla_stopwords</span><span class="op">$</span><span class="va">palabra</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">bigramas</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "buenas tardes"          "tardes estimados"       "estimados compatriotas"</span></span>
+<span></span>
+<span><span class="va">trigramas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/tokenizers/reference/ngram-tokenizers.html">tokenize_ngrams</a></span><span class="op">(</span><span class="va">declaracion</span>,</span>
+<span>  n <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  stopwords <span class="op">=</span> <span class="va">tabla_stopwords</span><span class="op">$</span><span class="va">palabra</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">trigramas</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "buenas tardes estimados"       "tardes estimados compatriotas"</span></span>
+<span><span class="co">#&gt; [3] "estimados compatriotas día"</span></span></code></pre></div>
+<p>Se han eliminado de los bigramas y trigramas aquellas combinaciones con al menos una palabra vacía (<em>stopword</em>).
+</p>
+<p>Se procede ahora a obtener los bigramas con <code>tidytext</code>. Para el resto de <em>n</em>-gramas el procedimiento es análogo, haciendo las modificaciones oportunas.
+En el último paso se ordenan por frecuencia (de mayor a menor):</p>
+<div class="sourceCode" id="cb562"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">declara2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>texto <span class="op">=</span> <span class="va">declaracion</span><span class="op">)</span></span>
+<span><span class="va">bigramas</span> <span class="op">&lt;-</span> <span class="va">declara2</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">bigram</span>, <span class="va">texto</span>, token <span class="op">=</span> <span class="st">"ngrams"</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">bigram</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">bigramas</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 2</span></span>
+<span><span class="co">#&gt;   bigram         n</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;      &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 todos los      6</span></span>
+<span><span class="co">#&gt; 2 de la          5</span></span>
+<span><span class="co">#&gt; 3 de los         5</span></span>
+<span><span class="co">#&gt; 4 del estado     5</span></span>
+<span><span class="co">#&gt; 5 estado de      5</span></span></code></pre></div>
+<p>Una forma de eliminar las palabras vacías es:</p>
+<div class="sourceCode" id="cb563"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bigramas_limpios</span> <span class="op">&lt;-</span> <span class="va">bigramas</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">bigram</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"word1"</span>, <span class="st">"word2"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">word1</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">tabla_stopwords</span><span class="op">$</span><span class="va">palabra</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">word2</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">tabla_stopwords</span><span class="op">$</span><span class="va">palabra</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="va">bigram</span>, <span class="va">word1</span>, <span class="va">word2</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">bigramas_limpios</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 2</span></span>
+<span><span class="co">#&gt;   bigram                       n</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                    &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 autoridades sanitarias       2</span></span>
+<span><span class="co">#&gt; 2 buenas tardes                2</span></span>
+<span><span class="co">#&gt; 3 disciplina social            2</span></span>
+<span><span class="co">#&gt; 4 haga falta                   2</span></span>
+<span><span class="co">#&gt; 5 ministros extraordinario     2</span></span></code></pre></div>
+<div id="significado-y-contexto" class="section level4" number="38.5.5.1">
+<h4>
+<span class="header-section-number">38.5.5.1</span> Significado y contexto<a class="anchor" aria-label="anchor" href="#significado-y-contexto"><i class="fas fa-link"></i></a>
+</h4>
+<p>Como se ha visto en la Sec. <a href="mineria-textos.html#secTOKEN">38.2.2</a>, con los <em>n</em>-gramas se puede hacer un análisis de colocaciones para extraer los distintos significados y valores informativos a partir del contexto. En este caso, se puede ver cómo la palabra <em>atender</em> cambia de sentido cuando va precedida de <em>no</em> o <em>sin</em>. A continuación, se filtran los bigramas cuya primera palabra es <em>no</em>:</p>
+<div class="sourceCode" id="cb564"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bigramas_no</span> <span class="op">&lt;-</span> <span class="va">bigramas</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">bigram</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"word1"</span>, <span class="st">"word2"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">word1</span> <span class="op">==</span> <span class="st">"no"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word1</span>, <span class="va">word2</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">bigramas_no</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span><span class="co">#&gt;   word1 word2       n</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 no    atiende     1</span></span>
+<span><span class="co">#&gt; 2 no    cabe        1</span></span>
+<span><span class="co">#&gt; 3 no    es          1</span></span></code></pre></div>
+<p>Estos resultados se pueden utilizar para el análisis de sentimientos y la detección de emociones.</p>
+</div>
+</div>
+<div id="análisis-de-redes" class="section level3" number="38.5.6">
+<h3>
+<span class="header-section-number">38.5.6</span> Análisis de redes<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-de-redes"><i class="fas fa-link"></i></a>
+</h3>
+<p>En esta sección se proporcionan las instrucciones necesarias para realizar un <strong>análisis</strong> básico <strong>de redes</strong> (véase Cap. <a href="grafos.html#grafos">39</a>) utilizando los paquetes <code>igraph</code> y <code>ggraph</code>. Dada la corta extensión de la Declaración no es posible obtener conclusiones.
+En la Fig. <a href="mineria-textos.html#fig:mintex-figredes">38.6</a> se pueden ver los gráficos de redes de bigramas, tanto sin palabras vacías como con ellas.</p>
+<div class="sourceCode" id="cb565"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r.igraph.org/">"igraph"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggraph.data-imaginist.com">"ggraph"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">graf_bigramas_l</span> <span class="op">&lt;-</span> <span class="va">bigramas_limpios</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">bigram</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"first"</span>, <span class="st">"second"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">g1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html">ggraph</a></span><span class="op">(</span><span class="va">graf_bigramas_l</span>, layout <span class="op">=</span> <span class="st">"fr"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html">geom_edge_link</a></span><span class="op">(</span>arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html">arrow</a></span><span class="op">(</span>length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">4</span>, <span class="st">"mm"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html">geom_node_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html">geom_node_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">graf_bigramas</span> <span class="op">&lt;-</span> <span class="va">bigramas</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">bigram</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"first"</span>, <span class="st">"second"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">g2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html">ggraph</a></span><span class="op">(</span><span class="va">graf_bigramas</span>, layout <span class="op">=</span> <span class="st">"fr"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html">geom_edge_link0</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html">geom_node_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html">geom_node_label</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://patchwork.data-imaginist.com">"patchwork"</a></span><span class="op">)</span></span>
+<span><span class="va">g1</span> <span class="op">+</span> <span class="va">g2</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mintex-figredes"></span>
+<img src="210045-mineria-textos_files/figure-html/mintex-figredes-1.png" alt="Redes de bigramas de la Declaración sin palabras vacías y con ellas." width="85%"><p class="caption">
+Figura 38.6: Redes de bigramas de la Declaración sin palabras vacías y con ellas.
+</p>
+</div>
+</div>
+<div id="resumen-37" class="section level3 unnumbered infobox_resume">
+<h3>Resumen<a class="anchor" aria-label="anchor" href="#resumen-37"><i class="fas fa-link"></i></a>
+</h3>
+<p>En este capítulo se introduce al lector en la minería de textos. En particular:</p>
+<ul>
+<li>Se presentan los conceptos y tareas fundamentales de este ámbito, así como sus principales campos de aplicación.</li>
+<li>Se pone de relieve la importancia de la preparación de los datos y su segmentación (a distintos niveles) para obtener buenos resultados, acordes con el objetivo de la investigación.</li>
+<li>Se muestra el uso de <strong>R</strong> para el análisis de textos y de sentimientos.</li>
+<li>Se presenta un ejemplo de aplicación para ilustrar las técnicas de minería de textos.</li>
+<li>Se mencionan otros análisis plausibles de minería de textos, como la estilometría o el modelado de temas (véase el Cap. <a href="nlp-textil.html#nlp-textil">59</a>).</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="cap-redes-convol.html"><span class="header-section-number">37</span> Redes neuronales convolucionales</a></div>
+<div class="next"><a href="grafos.html"><span class="header-section-number">39</span> Análisis de grafos y redes sociales</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="Índice del capítulo"><h2>Índice del capítulo</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#mineria-textos"><span class="header-section-number">38</span> Minería de textos</a></li>
+<li><a class="nav-link" href="#introducci%C3%B3n-18"><span class="header-section-number">38.1</span> Introducción</a></li>
+<li>
+<a class="nav-link" href="#secCONCEPTOS"><span class="header-section-number">38.2</span> Conceptos y tareas fundamentales</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#secPREPARA"><span class="header-section-number">38.2.1</span> Preparación de los datos</a></li>
+<li><a class="nav-link" href="#secTOKEN"><span class="header-section-number">38.2.2</span> Segmentación del texto: tokenización</a></li>
+<li><a class="nav-link" href="#stemming-y-lematizaci%C3%B3n"><span class="header-section-number">38.2.3</span> Stemming y lematización</a></li>
+<li><a class="nav-link" href="#secESTILOM"><span class="header-section-number">38.2.4</span> Campos de aplicación de la minería de textos</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#secSENTIM"><span class="header-section-number">38.3</span> Análisis de sentimientos</a></li>
+<li><a class="nav-link" href="#secPACKAGEStext"><span class="header-section-number">38.4</span> Minería de textos en R</a></li>
+<li>
+<a class="nav-link" href="#secEJEMPLO"><span class="header-section-number">38.5</span> Ejemplo de aplicación</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#declaraci%C3%B3n-institucional-del-estado-de-alarma-2020"><span class="header-section-number">38.5.1</span> Declaración institucional del Estado de Alarma 2020</a></li>
+<li><a class="nav-link" href="#segmentaci%C3%B3n-en-palabras-y-oraciones"><span class="header-section-number">38.5.2</span> Segmentación en palabras y oraciones</a></li>
+<li><a class="nav-link" href="#an%C3%A1lisis-exploratorio"><span class="header-section-number">38.5.3</span> Análisis exploratorio</a></li>
+<li><a class="nav-link" href="#secSENTYEMO"><span class="header-section-number">38.5.4</span> Análisis de sentimientos y detección de emociones</a></li>
+<li><a class="nav-link" href="#n-gramas-1"><span class="header-section-number">38.5.5</span> N-gramas</a></li>
+<li><a class="nav-link" href="#an%C3%A1lisis-de-redes"><span class="header-section-number">38.5.6</span> Análisis de redes</a></li>
+<li><a class="nav-link" href="#resumen-37">Resumen</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentos de ciencia de datos con <strong>R</strong></strong>" coordinado por <a href="https://blog.uclm.es/gemafaviles/" class="text-light">Gema Fernández-Avilés y José-María Montero</a>. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Este libro ha sido generado con el paquete de R <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
