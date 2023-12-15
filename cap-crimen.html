@@ -145,7 +145,7 @@
 <h2>
 <span class="header-section-number">48.2</span> El conjunto de datos <em>Oversize</em><a class="anchor" aria-label="anchor" href="#el-conjunto-de-datos-oversize"><i class="fas fa-link"></i></a>
 </h2>
-<p>Los datos que se van a analizar se han obtenido de la operación <em>Oversize</em> <span class="citation">(<a href="referencias.html#ref-berlusconi2016">Berlusconi et al. 2016</a>; <a href="referencias.html#ref-oversize1">Tribunale di Milano, Ufficio del giudice per le indagini preliminari 2006</a>; <a href="referencias.html#ref-oversize2">Tribunale di Lecco, 2a Sezione Penale 2009</a>)</span>, un proceso italiano contra un grupo mafioso. La investigación duró del 2000 al 2006, y se enfocó en más de 50 sospechosos involucrados en tráfico internacional de drogas, homicidios y robos. El juicio empezó en el 2007 y duró hasta el 2009, cuando se dictó la sentencia y los principales sospechosos fueron condenados con penas de 5 a 22 años de cárcel. La mayoría de los sospechosos eran afiliados de la ’<em>Ndrangheta</em>, una mafia de Calabria (una región del sur de Italia) con ramificaciones en otras regiones y en el extranjero.</p>
+<p>Los datos que se van a analizar se han obtenido de la operación <em>Oversize</em> <span class="citation">(<a href="referencias.html#ref-berlusconi2016">Berlusconi et al., 2016</a>; <a href="referencias.html#ref-oversize2">Tribunale di Lecco, 2a Sezione Penale, 2009</a>; <a href="referencias.html#ref-oversize1">Tribunale di Milano, Ufficio del giudice per le indagini preliminari, 2006</a>)</span>, un proceso italiano contra un grupo mafioso. La investigación duró del 2000 al 2006, y se enfocó en más de 50 sospechosos involucrados en tráfico internacional de drogas, homicidios y robos. El juicio empezó en el 2007 y duró hasta el 2009, cuando se dictó la sentencia y los principales sospechosos fueron condenados con penas de 5 a 22 años de cárcel. La mayoría de los sospechosos eran afiliados de la ’<em>Ndrangheta</em>, una mafia de Calabria (una región del sur de Italia) con ramificaciones en otras regiones y en el extranjero.</p>
 <p>En particular, se va a estudiar la red obtenida de las escuchas telefónicas. Los datos hacen referencia a todas las conversaciones telefónicas transcritas por la policía y consideradas relevantes. En esta red, los nodos representan sospechosos (los datos son anónimos y los nombres asignados en la red se han generado de forma aleatoria). Las aristas conectan los sospechosos que han tenido al menos una conversación telefónica relevante al caso durante la investigación.</p>
 </div>
 <div id="creación-de-la-red-mafiosa" class="section level2" number="48.3">
@@ -162,9 +162,9 @@
 <span>                             vertices<span class="op">=</span><span class="va">oversize_nodes</span>, </span>
 <span>                             directed<span class="op">=</span><span class="cn">F</span><span class="op">)</span> </span>
 <span><span class="va">net</span></span>
-<span><span class="co">#&gt; IGRAPH 9498030 UN-- 182 247 -- </span></span>
+<span><span class="co">#&gt; IGRAPH dd12378 UN-- 182 247 -- </span></span>
 <span><span class="co">#&gt; + attr: name (v/c)</span></span>
-<span><span class="co">#&gt; + edges from 9498030 (vertex names):</span></span>
+<span><span class="co">#&gt; + edges from dd12378 (vertex names):</span></span>
 <span><span class="co">#&gt;  [1] Casto Ben          --Gustavo Mango          </span></span>
 <span><span class="co">#&gt;  [2] Casto Ben          --Metrofane Abbatiello   </span></span>
 <span><span class="co">#&gt;  [3] Uranio Natoli      --Fidenziano Marcellino  </span></span>
@@ -261,7 +261,7 @@ Figura 48.3: Grafo de la red mafiosa (mejorado con medidas de centralidad).
 <h2>
 <span class="header-section-number">48.6</span> Identificación de comunidades de la mafia<a class="anchor" aria-label="anchor" href="#identificaci%C3%B3n-de-comunidades-de-la-mafia"><i class="fas fa-link"></i></a>
 </h2>
-<p>A continuación, se procede a identificar las comunidades existentes en el grafo de la operación <em>Overdrive</em>. <code>igraph</code> proporciona una gran variedad de algoritmos para la detección de comunidades en redes sociales. En el siguiente ejemplo, se usa el algoritmo Louvain <span class="citation">(<a href="referencias.html#ref-blondel2008fast">Blondel et al. 2008</a>)</span>, que es el más popular.</p>
+<p>A continuación, se procede a identificar las comunidades existentes en el grafo de la operación <em>Overdrive</em>. <code>igraph</code> proporciona una gran variedad de algoritmos para la detección de comunidades en redes sociales. En el siguiente ejemplo, se usa el algoritmo Louvain <span class="citation">(<a href="referencias.html#ref-blondel2008fast">Blondel et al., 2008</a>)</span>, que es el más popular.</p>
 <div class="sourceCode" id="cb737"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">louvain_partition</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_louvain.html">cluster_louvain</a></span><span class="op">(</span><span class="va">net</span><span class="op">)</span> <span class="co"># Ejecución del algoritmo Louvain</span></span>
 <span><span class="va">net</span><span class="op">$</span><span class="va">community</span> <span class="op">&lt;-</span> <span class="va">louvain_partition</span><span class="op">$</span><span class="va">membership</span> <span class="co"># Asignación de las comunidades al grafo</span></span>
@@ -294,7 +294,7 @@ Figura 48.3: Grafo de la red mafiosa (mejorado con medidas de centralidad).
 Figura 48.4: Visualización de comunidades de la mafia.
 </p>
 </div>
-<p>Se puede mejorar aún más el aspecto del grafo. Para ello, se va a experimentar con una disposición diferente de los nodos. En este ejemplo, se usa el algoritmo Fruchterman-Reingold <span class="citation">(<a href="referencias.html#ref-fruchterman1991graph">Fruchterman and Reingold 1991</a>)</span>. Además, se aplica un efecto de curvatura a las aristas asignando un valor positivo al parámetro <code>edge.curved</code>. El resultado se puede ver en la Fig. <a href="cap-crimen.html#fig:red-fr">48.5</a>.</p>
+<p>Se puede mejorar aún más el aspecto del grafo. Para ello, se va a experimentar con una disposición diferente de los nodos. En este ejemplo, se usa el algoritmo Fruchterman-Reingold <span class="citation">(<a href="referencias.html#ref-fruchterman1991graph">Fruchterman &amp; Reingold, 1991</a>)</span>. Además, se aplica un efecto de curvatura a las aristas asignando un valor positivo al parámetro <code>edge.curved</code>. El resultado se puede ver en la Fig. <a href="cap-crimen.html#fig:red-fr">48.5</a>.</p>
 <div class="sourceCode" id="cb739"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">l1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/layout_with_fr.html">layout_with_fr</a></span><span class="op">(</span><span class="va">net2</span><span class="op">)</span> <span class="co"># algoritmo Fruchterman-Reingold</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html">plot</a></span><span class="op">(</span><span class="va">net2</span>, </span>

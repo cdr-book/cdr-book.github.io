@@ -153,7 +153,7 @@ una decisión sobre el problema en estudio.</p>
 <span class="header-section-number">11.1.1</span> El cuarteto de Anscombe<a class="anchor" aria-label="anchor" href="#el-cuarteto-de-anscombe"><i class="fas fa-link"></i></a>
 </h3>
 <p></p>
-<p>Un ejemplo clásico de la importancia del <strong>AED</strong> y, concretamente, de las representaciones gráficas es el “cuarteto de Anscombe” <span class="citation">(<a href="referencias.html#ref-Anscombe1973">Anscombe 1973</a>)</span>,
+<p>Un ejemplo clásico de la importancia del <strong>AED</strong> y, concretamente, de las representaciones gráficas es el “cuarteto de Anscombe” <span class="citation">(<a href="referencias.html#ref-Anscombe1973">Anscombe, 1973</a>)</span>,
 el cual está compuesto por 11 filas de 8 variables numéricas que conforman 4 conjuntos de datos (disponibles en el objeto <code>anscombe</code>), con los mismos resúmenes estadísticos pero con propiedades muy distintas, lo que se ve fácilmente cuando se representan en forma gráfica. Si se calculan, por ejemplo, la media y la desviación típica de cada variable, se observa que son prácticamente iguales. Incluso los coeficientes de correlación de cada <span class="math inline">\(X\)</span> con su <span class="math inline">\(Y\)</span> son también prácticamente idénticos.</p>
 <div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span></span>
@@ -179,7 +179,7 @@ es prácticamente la misma, y los coeficientes de correlación entre las variabl
 Es evidente que la relación entre las variables es muy distinta en cada uno
 de los casos, y si no se visualizan los datos para elegir el mejor modelo
 de regresión y después interpretarlo, se pueden tomar decisiones
-erróneas. El cuarteto de Anscombe es muy ilustrativo, al igual que <em>The Datasaurus Dozen</em> <span class="citation">(<a href="referencias.html#ref-Matejka2017">Matejka and Fitzmaurice 2017</a>)</span> en <a href="https://www.autodeskresearch.com/publications/samestats" class="uri">https://www.autodeskresearch.com/publications/samestats</a>.</p>
+erróneas. El cuarteto de Anscombe es muy ilustrativo, al igual que <em>The Datasaurus Dozen</em> <span class="citation">(<a href="referencias.html#ref-Matejka2017">Matejka &amp; Fitzmaurice, 2017</a>)</span> en <a href="https://www.autodeskresearch.com/publications/samestats" class="uri">https://www.autodeskresearch.com/publications/samestats</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ch-120006-anscombelm"></span>
 <img src="120006_Analisis_exp_files/figure-html/ch-120006-anscombelm-1.png" alt="Los cuatro gráficos que constituyen el cuarteto de Anscombe junto con un ajuste lineal." width="60%"><p class="caption">
@@ -194,7 +194,7 @@ Figura 11.2: Los cuatro gráficos que constituyen el cuarteto de Anscombe junto 
 <p>
 </p>
 <p>Muy brevemente, se presenta una serie de conceptos esenciales para la mejor
-comprensión de este manual.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Para un análisis extenso de los conceptos aquí expuestos puede consultarse, por ejemplo, &lt;span class="citation"&gt;José María Montero (&lt;a href="referencias.html#ref-lorenzo2007estadistica"&gt;2007&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>90</sup></a> Los datos que se analizan
+comprensión de este manual.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Para un análisis extenso de los conceptos aquí expuestos puede consultarse, por ejemplo, &lt;span class="citation"&gt;Montero (&lt;a href="referencias.html#ref-lorenzo2007estadistica"&gt;2007&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>90</sup></a> Los datos que se analizan
 provienen de una determinada <strong>población</strong>, y no son más que
 una <strong>muestra</strong>, es decir, un subconjunto de toda la población.
 La <strong>Estadística Descriptiva</strong> se ocupa del AED en sentido amplio, que se aplica
@@ -219,8 +219,8 @@ Figura 11.3: La esencia de los métodos estadísticos.
 <span class="header-section-number">11.1.3</span> Componentes de un gráfico y su representación en <strong>R</strong><a class="anchor" aria-label="anchor" href="#componentes-de-un-gr%C3%A1fico-y-su-representaci%C3%B3n-en-r"><i class="fas fa-link"></i></a>
 </h3>
 <p></p>
-<p>De los diferentes sistemas que tiene <strong>R</strong> para representar gráficos <span class="citation">(los “base,” paquete <code>graphics</code>, y los “grid,” paquete <code>lattice</code> <a href="referencias.html#ref-lattice">Sarkar 2008</a>)</span>,
-este capítulo se centra en el paquete <code>ggplot2</code> <span class="citation">(<a href="referencias.html#ref-Wickham2016">Hadley Wickham 2016a</a>)</span>, que forma parte del <em>tidyverse</em>, por su amplio uso y popularidad.</p>
+<p>De los diferentes sistemas que tiene <strong>R</strong> para representar gráficos <span class="citation">(los “base,” paquete <code>graphics</code>, y los “grid,” paquete <code>lattice</code> <a href="referencias.html#ref-lattice">Sarkar, 2008</a>)</span>,
+este capítulo se centra en el paquete <code>ggplot2</code> <span class="citation">(<a href="referencias.html#ref-Wickham2016">Wickham, 2016a</a>)</span>, que forma parte del <em>tidyverse</em>, por su amplio uso y popularidad.</p>
 <p>El flujo de trabajo con <code>ggplot2</code> se puede resumir en los siguientes pasos:</p>
 <ol style="list-style-type: decimal">
 <li><p>Proporcionar una <strong>tabla de datos</strong> a la función <code>ggplot</code>. Es el primer argumento (<code>data</code>) y
@@ -308,7 +308,7 @@ Figura 11.4: Gráfico de barras con ggplot2.
 <div class="infobox">
 <p><strong>Nota</strong></p>
 <p>El código anterior es la forma más básica de hacer un gráfico con <code>ggplot2</code>.
-Opciones más avanzadas pueden encontrarse en <span class="citation">H. Wickham and Grolemund (<a href="referencias.html#ref-wickham2016r">2016</a>)</span>.</p>
+Opciones más avanzadas pueden encontrarse en <span class="citation">Wickham &amp; Grolemund (<a href="referencias.html#ref-wickham2016r">2016</a>)</span>.</p>
 </div>
 <p>Ya se ha comentado que los gráficos de sectores no se recomiendan a menos que se incluya en ellos información numérica. El paquete <code>ggstatsplot</code> realiza gráficos que incluyen análisis estadísticos. Por ejemplo, la función <code><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.html">ggpiestats()</a></code> proporciona un gráfico de sectores con algunos tests estadísticos (véase la ayuda de la función) y podría utilizarse para determinar en qué medida un conjunto de 80 ayuntamientos de distinto signo político presta o no un determinado servicio <code>serv</code> (véase el conjunto de datos en el paquete del libro <code><a href="https://rdrr.io/pkg/CDR/man/ayuntam.html">?CDR::ayuntam</a></code>). El siguiente código produce el gráfico de la Fig. <a href="cap-120006-aed.html#fig:ch-120006-ggs">11.5</a>.</p>
 <div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">

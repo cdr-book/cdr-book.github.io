@@ -201,7 +201,7 @@ Figura 39.3: Grafo de amistades y comunidades.
 <h2>
 <span class="header-section-number">39.3</span> Elementos de un grafo<a class="anchor" aria-label="anchor" href="#elementos-de-un-grafo"><i class="fas fa-link"></i></a>
 </h2>
-<p>El análisis de RR. SS. mediante la teoría de grafos requiere conocer previamente una serie de conceptos básicos <span class="citation">(<a href="referencias.html#ref-Perez2021">Pérez-Solà and Casas-Roma 2021</a>)</span> que se listan y definen a continuación:</p>
+<p>El análisis de RR. SS. mediante la teoría de grafos requiere conocer previamente una serie de conceptos básicos <span class="citation">(<a href="referencias.html#ref-Perez2021">Pérez-Solà &amp; Casas-Roma, 2021</a>)</span> que se listan y definen a continuación:</p>
 <ul>
 <li><p>los <strong>vértices</strong>: representan nodos que se unen mediante aristas. En una red social cada vértice representa una de las personas de dicha red, unidas en ocasiones por intereses comunes a otras;</p></li>
 <li><p>las <strong>aristas</strong>: son las relaciones que unen los nodos. Son <strong>dirigidas</strong>
@@ -267,14 +267,14 @@ Figura 39.4: De izquierda a derecha: grafo dirigido, grafo no dirigido y grafo s
 <code class="sourceCode R"><span><span class="co"># Camino más corto entre el nodo 2 y el 5</span></span>
 <span><span class="va">caminos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/distances.html">get.shortest.paths</a></span><span class="op">(</span><span class="va">grafo</span>, from <span class="op">=</span> <span class="st">"2"</span>, to <span class="op">=</span> <span class="st">"5"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://r.igraph.org/reference/V.html">V</a></span><span class="op">(</span><span class="va">grafo</span><span class="op">)</span><span class="op">[</span><span class="va">caminos</span><span class="op">$</span><span class="va">vpath</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt; + 3/5 vertices, from 81b7f87:</span></span>
+<span><span class="co">#&gt; + 3/5 vertices, from cab8005:</span></span>
 <span><span class="co">#&gt; [1] 2 4 5</span></span></code></pre></div>
 </div>
 <div id="procedimiento-con-r-el-paquete-igraph" class="section level2" number="39.4">
 <h2>
 <span class="header-section-number">39.4</span> Procedimiento con <strong>R</strong>: el paquete <code>igraph</code><a class="anchor" aria-label="anchor" href="#procedimiento-con-r-el-paquete-igraph"><i class="fas fa-link"></i></a>
 </h2>
-<p>Existen diversos paquetes en <strong>R</strong> para representar grafos, pero el más utilizado y popularizado, por su sencillez y eficacia, es <code>igraph</code> <span class="citation">(<a href="referencias.html#ref-igraph">Csardi and Nepusz 2006</a>)</span>. Se trata de un paquete que permite crear y manipular grafos para analizar redes en <strong>R</strong> de forma muy sencilla (Fig. <a href="grafos.html#fig:grafobasico">39.5</a>). A continuación se muestra un sencillo ejemplo sobre cómo crear un grafo dirigido a partir de un <em>dataframe</em> usando la función <code><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph_from_data_frame()</a></code> con los siguientes argumentos:</p>
+<p>Existen diversos paquetes en <strong>R</strong> para representar grafos, pero el más utilizado y popularizado, por su sencillez y eficacia, es <code>igraph</code> <span class="citation">(<a href="referencias.html#ref-igraph">Csardi &amp; Nepusz, 2006</a>)</span>. Se trata de un paquete que permite crear y manipular grafos para analizar redes en <strong>R</strong> de forma muy sencilla (Fig. <a href="grafos.html#fig:grafobasico">39.5</a>). A continuación se muestra un sencillo ejemplo sobre cómo crear un grafo dirigido a partir de un <em>dataframe</em> usando la función <code><a href="https://r.igraph.org/reference/graph_from_data_frame.html">graph_from_data_frame()</a></code> con los siguientes argumentos:</p>
 <ul>
 <li><p><strong><code>edges</code></strong>: <em>dataframe</em> en el que las dos primeras columnas representan una lista o conjunto de aristas.</p></li>
 <li><p><strong><code>directed</code></strong>: un valor lógico que indica si es un grafo dirigido o no dirigido.</p></li>
@@ -371,11 +371,11 @@ Figura 39.8: Subgrafo en RR. SS.
 </h3>
 <p></p>
 <p>En teoría de grafos y análisis de RR. SS., el concepto de <strong>centralidad</strong> se refiere a la importancia o prominencia de los vértices o nodos en un determinado grafo o red social. En el caso de una red social de amigos, como Facebook, la centralidad de un nodo (persona) representa el número de amigos que tiene.</p>
-<p>Un grafo no tiene una centralidad real porque no tiene coordenadas <span class="citation">(<a href="referencias.html#ref-Easly2010">Easley and Kleinberg 2010</a>)</span>, pero existen distintas medidas de centralidad que, en una red/grafo social, permiten identificar el <em>networking</em> social de cada individuo, es decir, su influencia.</p>
+<p>Un grafo no tiene una centralidad real porque no tiene coordenadas <span class="citation">(<a href="referencias.html#ref-Easly2010">Easley &amp; Kleinberg, 2010</a>)</span>, pero existen distintas medidas de centralidad que, en una red/grafo social, permiten identificar el <em>networking</em> social de cada individuo, es decir, su influencia.</p>
 <p>Son innumerables las medidas de <strong>centralidad</strong> (generalmente normalizadas o estandarizadas) que pueden encontrarse en la literatura sobre la cuestión para determinar y comparar, de forma cuantitativa, la importancia relativa de un nodo en el conjunto de la red.</p>
 <p>La <strong>centralidad</strong> no es un atributo intrínseco de los nodos, sino un atributo estructural: un valor que depende de las relaciones de dicho nodo con los demás de la red. Generalmente, el nodo central suele tener la mayor centralidad, mientras que la mínima suele corresponder a los nodos periféricos.</p>
 <p>En los grafos dirigidos, cuantas más aristas reciba un nodo (persona en el caso de una RR. SS.) más nodos (personas) están intentando interactuar con él y más importancia tendrá en el grafo (más “prestigio” tendrá la persona en la red). Pero si la conexión de un nodo con otro (la influencia de una persona sobre otra en una RR. SS.) no es directa, sino que tiene lugar a través de un camino más largo (pasando por más nodos), entonces quiere decir que su influencia es mayor, ya que, en el caso de la RR. SS. más personas han recibido esa influencia, unas directamente y otras de forma indirecta.</p>
-<p>En la literatura existen diversas medidas de la centralidad <span class="citation">(<a href="referencias.html#ref-Stanley1995">Wasserman and Faust 1995</a>)</span>. Entre ellas, a continuación se definen la centralidad de grado, la centralidad de intermediación (o simplemente centralidad) y la centralidad de vector propio.</p>
+<p>En la literatura existen diversas medidas de la centralidad <span class="citation">(<a href="referencias.html#ref-Stanley1995">Wasserman &amp; Faust, 1995</a>)</span>. Entre ellas, a continuación se definen la centralidad de grado, la centralidad de intermediación (o simplemente centralidad) y la centralidad de vector propio.</p>
 <ul>
 <li>La <strong>centralidad de grado</strong> (en inglés, <em>degree centrality</em>) fue la primera de las medidas de centralidad y también es la más sencilla. Más concretamente, la centralidad del <span class="math inline">\(i\)</span>-ésimo nodo es su grado, es decir, el número de aristas que posee un nodo con los demás:</li>
 </ul>
@@ -425,9 +425,9 @@ donde <span class="math inline">\(a_{ij}\)</span> es el <span class="math inline
 <span class="header-section-number">39.5.2</span> Detección de comunidades<a class="anchor" aria-label="anchor" href="#detecci%C3%B3n-de-comunidades"><i class="fas fa-link"></i></a>
 </h3>
 <p></p>
-<p>En el análisis de una RR. SS. es importante detectar las distintas comunidades que la componen, entendiendo por comunidad un grupo de personas afines. La detección de dichas comunidades permite estudiar los distintos grupos que conforman la RR. SS. en función de sus relaciones y afinidad <span class="citation">(<a href="referencias.html#ref-Missaouri2015">Missaoui and Sarr 2015</a>)</span>.</p>
+<p>En el análisis de una RR. SS. es importante detectar las distintas comunidades que la componen, entendiendo por comunidad un grupo de personas afines. La detección de dichas comunidades permite estudiar los distintos grupos que conforman la RR. SS. en función de sus relaciones y afinidad <span class="citation">(<a href="referencias.html#ref-Missaouri2015">Missaoui &amp; Sarr, 2015</a>)</span>.</p>
 <p>En principio, podría identificarse la detección de comunidades con la agrupación o clusterización. Aunque esta última podría aplicarse a grafos/RR. SS., en la agrupación en clústeres los elementos con atributos similares se agrupan en el mismo clúster, mientras que la detección de comunidades está especialmente diseñada para analizar redes en función de un único tipo de atributo: los bordes. Además, los algoritmos de agrupación tienden a separar nodos periféricos individuales de las comunidades a las que deberían pertenecer, cosa que no ocurre con las técnicas de detección de comunidades.</p>
-<p>Existen diversos algoritmos en <strong>R</strong> para detectar comunidades <span class="citation">(<a href="referencias.html#ref-borgatti2022analyzing">S. P. Borgatti et al. 2022</a>)</span>, pero ninguno ha demostrado que pueda actuar a la perfección con todos los grafos debido a la gran tipología existente. En el ejemplo anterior se detectan las siguientes comunidades:</p>
+<p>Existen diversos algoritmos en <strong>R</strong> para detectar comunidades <span class="citation">(<a href="referencias.html#ref-borgatti2022analyzing">Borgatti et al., 2022</a>)</span>, pero ninguno ha demostrado que pueda actuar a la perfección con todos los grafos debido a la gran tipología existente. En el ejemplo anterior se detectan las siguientes comunidades:</p>
 <ul>
 <li>Detección de comunidades mediante <strong>centralidad de intermediación</strong>:</li>
 </ul>
