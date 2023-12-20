@@ -1,3 +1,6 @@
+
+![CoverCDR](https://github.com/cdr-book/cdr-book.github.io/assets/80209018/8ae9aa8b-c3c6-44d9-a258-d0b8551cf45b)
+
 Este es el repositorio del libro [**Fundamentos de ciencia de datos con R**](https://cdr-book.github.io/index.html), editado por Gema Fernández-Avilés y José-María Montero.
 
 Las copias físicas están disponibles en [**McGraw Hill**](https://www.mheducation.com/). La versión online se puede leer de forma gratuita en https://cdr-book.github.io/ y 
