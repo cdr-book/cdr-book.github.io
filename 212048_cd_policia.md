@@ -37,9 +37,9 @@ net <- graph_from_data_frame(d=oversize_edges,
                              vertices=oversize_nodes, 
                              directed=F) 
 net
-#> IGRAPH dd12378 UN-- 182 247 -- 
+#> IGRAPH 15796ae UN-- 182 247 -- 
 #> + attr: name (v/c)
-#> + edges from dd12378 (vertex names):
+#> + edges from 15796ae (vertex names):
 #>  [1] Casto Ben          --Gustavo Mango          
 #>  [2] Casto Ben          --Metrofane Abbatiello   
 #>  [3] Uranio Natoli      --Fidenziano Marcellino  

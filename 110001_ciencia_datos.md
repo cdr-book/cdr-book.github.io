@@ -32,7 +32,7 @@ Una definición generalmente aceptada de ciencia es la propuesta por
 @Blaug_1980: "ciencia es el cuerpo de proposiciones sintéticas acerca
 del mundo real que es susceptible, al menos en principio, de falsaciones
 por medio de la observación empírica, ya que excluye la posibilidad de
-que ciertos acontecimientos se produzcan". Es decir, según el autor "la ciencia se
+que ciertos acontecimientos se produzcan". Es decir, según el autor, "la ciencia se
 caracteriza por su método de formulación de proposiciones contrastables,
 y no por su contenido, ni por su pretensión de certeza en el
 conocimiento; si alguna certeza proporciona la ciencia, esta será más
@@ -62,7 +62,7 @@ de ciencia, sí lo hay a la hora de aceptar el método
 científico como el elemento que define la ciencia.  @Bunge_2004 manifiesta que 
 "el método científico y la finalidad a la cual se aplica (el conocimiento objetivo del mundo)
 constituyen la entera diferencia que existe entre la ciencia y la
-no-ciencia [...]". Por tanto,  según el autor "el método científico es un rasgo característico de la ciencia, tanto de la pura como de la aplicada: donde no hay método
+no-ciencia [...]". Por tanto,  según el autor, "el método científico es un rasgo característico de la ciencia, tanto de la pura como de la aplicada: donde no hay método
 científico no hay ciencia", [@Bunge_2004]. "Una ciencia es una disciplina
 que utiliza el método científico con la finalidad de hallar estructuras
 generales (leyes)." [@Montero_1997].

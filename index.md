@@ -1,7 +1,7 @@
 ---
 title: "Fundamentos de ciencia de datos con **R**"
 author: "Gema Fernández-Avilés y José-María Montero"
-#date: "2023-12-15"
+#date: "2023-12-20"
 output:
   html_document:
     df_print: paged
@@ -11,11 +11,11 @@ cover-image: 'img/cover.png'
 csl: apa.csl
 #biblio-style: apa.csl
 description: |
-  Ciencia de datos con R.
+  Fundamentos de ciencia de datos con R.
 link-citations: yes
 urlcolor: blue
 linkcolor: red
-nocite: '@*'
+#nocite: '@*'
 site: bookdown::bookdown_site
 ---
 
