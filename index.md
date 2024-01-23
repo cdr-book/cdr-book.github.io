@@ -136,7 +136,7 @@ Se ha dejado a disposición del lector una versión *online* de este manual en e
 
 
 ::: {.infobox_resume data-latex=""}
-### Este manual está publicado por [McGraw Hill](https://www.mheducation.com/). Las copias físicas están disponibles en [McGraw Hill](https://www.mheducation.com/). La versión *online* se puede leer de forma gratuita en [https://cdr-book.github.io/](https://cdr-book.github.io/) y tiene la [licencia de Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional](https://creativecommons.org/licenses/by-nc-nd/4.0/). Si tiene algún comentario o sugerencia, no dude en contactar con los editores y los autores. ¡Gracias! {-} 
+### Este manual está publicado por [McGraw Hill](https://www.mheducation.com/](https://www.mheducation.es/fundamentos-de-ciencia-de-datos-con-r-9788448636289-spain). Las copias físicas están disponibles en [McGraw Hill](https://www.mheducation.com/](https://www.mheducation.es/fundamentos-de-ciencia-de-datos-con-r-9788448636289-spain). La versión *online* se puede leer de forma gratuita en [https://cdr-book.github.io/](https://cdr-book.github.io/) y tiene la [licencia de Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional](https://creativecommons.org/licenses/by-nc-nd/4.0/). Si tiene algún comentario o sugerencia, no dude en contactar con los editores y los autores. ¡Gracias! {-} 
 :::
 
 
